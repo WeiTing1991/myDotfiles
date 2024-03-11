@@ -46,9 +46,9 @@ eval
 alias python='/opt/homebrew/bin/python3'
 
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
+
 # add file to my dotfiles dir
 alias config='/opt/homebrew/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 
 
 # pyenv
