@@ -1,23 +1,22 @@
 local luacheck = require("efmls-configs.linters.luacheck")
---
--- https://github.com/mattn/efm-langserver
--- Note https://github.com/mfussenegger/nvim-lint
-local lspconfig = require("lspconfig")
-lspconfig.efm.setup({
-  filetypes = {
-    "lua",
+
+local languages = {
+  lua = { luacheck },
+}
+
+local efmls_config = {
+  filetypes = vim.tbl_keys(languages),
+  settings = {
+    rootMarkers = { ".git/" },
+    languages = languages,
   },
   init_options = {
     documentFormatting = true,
     documentRangeFormatting = true,
-    hover = true,
-    documentSymbol = true,
-    codeAction = true,
-    completion = true,
   },
-  settings = {
-    languages = {
-      lua = { luacheck },
-    },
-  },
-})
+}
+
+require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, {
+  -- on_attach = on_attach,
+  -- capabilities = capabilities,
+}))

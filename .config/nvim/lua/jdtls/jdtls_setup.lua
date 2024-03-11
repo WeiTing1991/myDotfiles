@@ -13,10 +13,11 @@ function M.setup()
   local workspace_dir = home .. "/.cache/jdtls/workspace" .. project_name
   -- 💀
   print(workspace_dir)
-  local path_to_mason_packages = home .. "/.local/share/nvim/mason/packages"
+  local path_to_mason_bin = home .. "/.local/share/nvim/mason/bin"
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
+  local path_to_mason_packages = home .. "/.local/share/nvim/mason/packages"
 
-  local path_to_jdtls = path_to_mason_packages .. "/jdtls"
+  local path_to_jdtls = path_to_mason_bin .. "/jdtls"
   local path_to_jdebug = path_to_mason_packages .. "/java-debug-adapter"
   local path_to_jtest = path_to_mason_packages .. "/java-test"
 

@@ -282,7 +282,7 @@ config.key_tables = {
 		{ key = "V", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Line" }) },
 		{ key = "V", mods = "SHIFT", action = act.CopyMode({ SetSelectionMode = "Line" }) },
 
-		{ key = "ESC", mods = "NONE", action = act.CopyMode("Close") },
+		{ key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
 
 		-- { key = "Tab", mods = "NONE", action = act.CopyMode("MoveForwardWord") },
 		-- { key = "Tab", mods = "SHIFT", action = act.CopyMode("MoveBackwardWord") },
