@@ -1,2 +1,3 @@
-vim.loader.enable()
 require("core")
+
+vim.cmd("colorscheme carbonfox")

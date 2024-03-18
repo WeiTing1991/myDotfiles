@@ -1,100 +1,101 @@
--- See `:help vim.opt`
---  For more options, you can see `:help option-list`
+local undoDir = ''
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+if vim.loop.os_uname().sysname == 'Darwin' then
+  undoDir = os.getenv 'HOME' .. '/.vim/undodir'
+elseif vim.loop.os_uname().sysname == 'windoes' then
+  undoDir = os.getenv 'USERPROFILE' .. '/.vim/undodir'
+else
+  undoDir = os.getenv 'HOME' .. '/.vim/undodir'
+end
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
+local options = {
+  -- See :help
+  number = true,
+  relativenumber = true,
+  ma = true,
+  mouse = 'a',
 
--- Don't show the mode, since it's already in status line
-vim.opt.showmode = false
+  --  See `:help 'clipboard'`
+  clipboard = 'unnamedplus',
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
+  -- Enable break indent
+  breakindent = false,
+  -- set tab to 2 spaces
+  tabstop = 4,
+  softtabstop = 4,
+  shiftwidth = 4,
+  expandtab = true,
+  smartindent = true,
+  wrap = false,
 
--- Enable break indent
-vim.opt.breakindent = true
--- set tab to 2 spaces
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.wrap = false
+  -- Save undo history
+  backup = false,
+  undofile = true,
+  undodir = undoDir,
 
--- Save undo history
-vim.opt.backup = false
-vim.opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+  -- Case-insensitive searching UNLESS \C or capital in search
+  ignorecase = true,
+  smartcase = false,
 
--- Case-insensitive searching UNLESS \C or capital in search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+  -- Decrease update time
+  updatetime = 100,
+  timeoutlen = 300,
 
--- Keep signcolumn on by default
-vim.opt.signcolumn = "no"
+  -- Configure how new splits should be opened
+  splitright = true,
+  splitbelow = true,
 
--- Decrease update time
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+  compatible = false,
+  -- Sets how neovim will display certain whitespace in the editor.
+  --  See `:help 'list'`
+  listchars = { tab = ' . ', trail = ' ', nbsp = '+' },
+  list = true,
 
--- Configure how new splits should be opened
+  -- Preview substitutions live, as you type!
+  --inccommand = "split"
+  signcolumn = 'yes',
 
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+  -- Show which line your cursor is on
+  cursorline = true,
+  cursorcolumn = false,
 
--- Sets how neovim will display certain whitespace in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.listchars = { tab = " .", trail = ".", nbsp = "+" }
-vim.opt.list = true
+  -- Minimal number of screen lines to keep above and below the cursor.
+  scrolloff = 40,
+  sidescrolloff = 1,
+  conceallevel = 0, -- so that `` is visible in markdown files
 
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+  -- search
+  -- enable incremental searching
+  incsearch = true,
+  hlsearch = false,
 
--- Show which line your cursor is on
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+  -- apperance
+  termguicolors = true,
+  background = 'dark',
+  cmdheight = 1,
 
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 40
-vim.opt.sidescrolloff = 1
+  -- behavior
+  hidden = true,
+  errorbells = false,
+  swapfile = false,
+  backspace = 'indent,eol,start',
 
-vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
+  autochdir = false,
+  selection = 'exclusive',
+  modifiable = true,
+  encoding = 'UTF-8',
 
--- search
-vim.opt.incsearch = true
-vim.opt.hlsearch = false
+  -- folds
+  foldmethod = 'expr',
+  foldexpr = 'nvim_treesitter#foldexpr()',
+  foldlevel = 99,
 
--- apperance
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.opt.isfname:append("@-@")
-vim.opt.cmdheight = 1
-vim.opt.colorcolumn = "120"
+  --titlestring = string.sub('%{&pvw} - %F', 0, 10),
+}
 
--- behavior
-vim.opt.hidden = true
-vim.opt.errorbells = false
-vim.opt.swapfile = false
-vim.opt.backspace = "indent,eol,start"
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
 
-vim.opt.autochdir = false
-vim.opt.iskeyword:append("-")
-vim.opt.selection = "exclusive"
-vim.opt.modifiable = true
-vim.opt.encoding = "UTF-8"
-
--- folds
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevel = 99
-
-vim.opt.title = true
-vim.opt.titlelen = 0 -- do not shorten title
--- vim.g.netrw_banner = 1
--- vim.g.nertw_liststyle = 3
---vim.g.netrw_mouse = 2
+--isfname = append("@-@"),
+-- iskeyword:append("-"),

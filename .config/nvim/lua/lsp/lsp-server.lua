@@ -1,18 +1,34 @@
 local M = {}
 
 M = {
-  vimls = {},
-  efm = {},
   marksman = {},
+  gopls = {
+    settings = {
+      gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        gofumpt = true,
+        analyses = {
+          unusedparams = true,
+          -- shadow = true,
+          -- unusedwrite = true,
+          -- fieldalignment = true,
+        },
+      },
+    },
+    flags = {
+      debounce_text_changes = 150,
+    },
+  },
   jdtls = {},
   -- lua
   lua_ls = {
-    -- cmd = {...},
-    -- filetypes { ...},
-    -- capabilities = {},
     settings = {
       Lua = {
         runtime = { version = "LuaJIT" },
+        diagnostics = {
+          globals = { "vim" },
+        },
         workspace = {
           checkThirdParty = false,
           -- Tells lua_ls where to find all the Lua files that you have loaded
@@ -25,11 +41,8 @@ M = {
         completion = {
           callSnippet = "Replace",
         },
-        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-        -- diagnostics = { disable = { 'missing-fields' } },
       },
     },
   },
 }
-
 return M
