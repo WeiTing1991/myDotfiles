@@ -1,7 +1,6 @@
 # Wellcome my dotfiles
 
-They're finally organized for my windows and mac for now. \
-I use the [gitbare] method to sync my dotfiles.
+This repositary is my dotflies(still in progress) for my windows and mac via [stow]. \
 
 ## Neovim
 
@@ -69,7 +68,7 @@ UI
 - [trouble](https://github.com/folke/trouble.nvim)
 </details>
 
-[gitbare]: https://www.atlassian.com/git/tutorials/dotfiles
+[gitbare]: https://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html
 [kickstart]: https://github.com/nvim-lua/kickstart.nvim
 [Neovim]: https://neovim.io/
 
