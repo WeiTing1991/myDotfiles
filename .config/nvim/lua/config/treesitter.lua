@@ -1,28 +1,28 @@
-require("nvim-treesitter.configs").setup({
-  -- TSConfig = {},
-  -- modules = {},
+require('nvim-treesitter.configs').setup {
+  TSConfig = {},
+  modules = {},
   --check the https://github.com/nvim-treesitter/nvim-treesitter
   ensure_installed = {
-    "go",
-    "bash",
-    "cpp",
-    "c",
-    "json",
-    "lua",
-    "luadoc",
-    "markdown",
-    "markdown_inline",
-    "python",
-    "regex",
-    "vim",
-    "vimdoc",
-    "yaml",
-    "rust",
-    "cmake",
-    "dockerfile",
-    "gitignore",
-    "xml",
-    "java",
+    'go',
+    'bash',
+    'cpp',
+    'c',
+    'json',
+    'lua',
+    'luadoc',
+    'markdown',
+    'markdown_inline',
+    'python',
+    'regex',
+    'vim',
+    'vimdoc',
+    'yaml',
+    'rust',
+    'cmake',
+    'dockerfile',
+    'gitignore',
+    'xml',
+    'java',
   },
   ignore_install = {},
   sync_install = false,
@@ -44,12 +44,12 @@ require("nvim-treesitter.configs").setup({
     additional_vim_regex_highlighting = false,
   },
   incremental_selection = {
-    enable = false,
+    enable = true,
     keymaps = {
-      init_selection = "<leader>gn", -- set to `false` to disable one of the mappings
-      node_incremental = "<leader>grn",
+      init_selection = '<leader>gnn', -- set to `false` to disable one of the mappings
+      node_incremental = '<leader>grn',
       scope_incremental = false,
-      node_decremental = "<leader>grm",
+      node_decremental = '<leader>grm',
     },
   },
   --https://github.com/nvim-treesitter/nvim-treesitter-textobjects
@@ -60,14 +60,14 @@ require("nvim-treesitter.configs").setup({
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['ac'] = '@class.outer',
         -- You can optionally set descriptions to the mappings (used in the desc parameter of
         -- nvim_buf_set_keymap) which plugins like which-key display
-        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+        ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
         -- You can also use captures from other query groups like `locals.scm`
-        ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+        ['as'] = { query = '@scope', query_group = 'locals', desc = 'Select language scope' },
       },
       -- You can choose the select mode (default is charwise 'v')
       --
@@ -77,9 +77,9 @@ require("nvim-treesitter.configs").setup({
       -- and should return the mode ('v', 'V', or '<c-v>') or a table
       -- mapping query_strings to modes.
       selection_modes = {
-        ["@parameter.outer"] = "v", -- charwise
-        ["@function.outer"] = "V", -- linewise
-        ["@class.outer"] = "<c-v>", -- blockwise
+        ['@parameter.outer'] = 'v', -- charwise
+        ['@function.outer'] = 'V', -- linewise
+        ['@class.outer'] = '<c-v>', -- blockwise
       },
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding or succeeding whitespace. Succeeding
@@ -93,7 +93,7 @@ require("nvim-treesitter.configs").setup({
       include_surrounding_whitespace = true,
     },
   },
-})
+}
 -- the setting template for new lanuague.
 -- local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 -- treesitter_parser_config.go = {

@@ -10,7 +10,7 @@ end
 -- https://wezfurlong.org/wezterm/tags.html
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "Hack Nerd Font", weight = "Regular", italic = false },
+	{ family = "Hack Nerd Font", weight = "Medium", italic = false },
 	--{ family = "JetBrains Mono", weight = "Regular", italic = false },
 })
 
