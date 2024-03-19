@@ -2,8 +2,8 @@ local undoDir = ''
 
 if vim.loop.os_uname().sysname == 'Darwin' then
   undoDir = os.getenv 'HOME' .. '/.vim/undodir'
-elseif vim.loop.os_uname().sysname == 'windoes' then
-  undoDir = os.getenv 'USERPROFILE' .. '/.vim/undodir'
+elseif vim.fn.has('Win32') then
+  undoDir = os.getenv 'USERPROFILE' .. '\\.vim\\undodir'
 else
   undoDir = os.getenv 'HOME' .. '/.vim/undodir'
 end
