@@ -2,7 +2,7 @@ local undoDir = ''
 
 if vim.loop.os_uname().sysname == 'Darwin' then
   undoDir = os.getenv 'HOME' .. '/.vim/undodir'
-elseif vim.fn.has('Win32') then
+elseif vim.fn.has 'Win32' then
   undoDir = os.getenv 'USERPROFILE' .. '\\.vim\\undodir'
 else
   undoDir = os.getenv 'HOME' .. '/.vim/undodir'
@@ -57,8 +57,8 @@ local options = {
 
   -- Show which line your cursor is on
   cursorline = true,
-  cursorcolumn = false,
-
+  colorcolumn = '120',
+  textwidth = 100,
   -- Minimal number of screen lines to keep above and below the cursor.
   scrolloff = 40,
   sidescrolloff = 1,
