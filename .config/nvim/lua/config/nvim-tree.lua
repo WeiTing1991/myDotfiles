@@ -1,4 +1,4 @@
-local nvimtree = require("nvim-tree")
+local nvimtree = require('nvim-tree')
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -32,8 +32,8 @@ nvimtree.setup({
         local center_x = 0
         local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
         return {
-          border = "rounded",
-          relative = "editor",
+          border = 'rounded',
+          relative = 'editor',
           row = center_y,
           col = center_x,
           width = window_w_int,
@@ -50,8 +50,8 @@ nvimtree.setup({
     icons = {
       glyphs = {
         folder = {
-          arrow_closed = "- ", -- arrow when folder is closed
-          arrow_open = "|", -- arrow when folder is open
+          arrow_closed = '- ', -- arrow when folder is closed
+          arrow_open = '|', -- arrow when folder is open
         },
       },
     },
@@ -67,14 +67,14 @@ nvimtree.setup({
     },
   },
   filters = {
-    custom = { ".DS_Store" },
+    custom = { '.DS_Store' },
   },
   git = {
-    ignore = false,
+    ignore = true,
   },
 })
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Tree" })
-vim.keymap.set("n", "q", "<cmd>NvimTreeClose<CR>", { desc = "Close File Tree" })
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
+vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
 --keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
 --keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
 --keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })

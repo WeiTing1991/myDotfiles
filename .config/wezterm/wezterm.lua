@@ -21,8 +21,13 @@ table.insert(launch_menu, {
 -- https://wezfurlong.org/wezterm/tags.html
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
+<<<<<<< HEAD
 	{ family = "Hack Nerd Font", weight = "Bold", italic = false },
 	{ family = "JetBrains Mono", weight = "Bold", italic = false },
+=======
+	{ family = "Hack Nerd Font", weight = "Medium", italic = false },
+	--{ family = "JetBrains Mono", weight = "Regular", italic = false },
+>>>>>>> main
 })
 config.launch_menu = launch_menu
 config.color_scheme = "Dracula"
