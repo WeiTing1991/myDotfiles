@@ -1,4 +1,4 @@
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
   TSConfig = {},
   modules = {},
   --check the https://github.com/nvim-treesitter/nvim-treesitter
@@ -93,7 +93,7 @@ require('nvim-treesitter.configs').setup {
       include_surrounding_whitespace = true,
     },
   },
-}
+})
 -- the setting template for new lanuague.
 -- local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 -- treesitter_parser_config.go = {

@@ -1,13 +1,9 @@
 --vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 
 --leave the file
-vim.keymap.set('n', '<leader>q', function()
-  vim.cmd ':q'
-end, { desc = 'Leave the file' })
+vim.keymap.set('n', '<leader>q', function() vim.cmd(':q') end, { desc = 'Leave the file' })
 
-vim.keymap.set('n', '<C-s>', function()
-  vim.cmd ':w'
-end, { desc = 'Save file' })
+vim.keymap.set('n', '<C-s>', function() vim.cmd(':w') end, { desc = 'Save file' })
 
 -- Parser info
 vim.keymap.set('n', '<leader><F2>', ':InspectTree<CR>', { desc = 'Inspect Tree' })

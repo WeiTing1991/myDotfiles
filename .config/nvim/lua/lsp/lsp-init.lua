@@ -23,6 +23,7 @@ require('mason').setup({
 --  - and more!
 --
 -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization
+
 -- key mappings.
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -77,7 +78,8 @@ require('fidget').setup({ notification = { window = { winblend = 0 } } })
 local ensure_installed = vim.tbl_keys(require('lsp.lsp-server') or {})
 local formatting = vim.tbl_values(require('lsp.formatting'))
 local dap_servers = vim.tbl_values(require('lsp.dap-server'))
-local linter = vim.tbl_values(require('lsp.linter'))
+--local linter = vim.tbl_values(require('lsp.linter'))
+
 vim.list_extend(ensure_installed, formatting)
 vim.list_extend(ensure_installed, dap_servers)
 -- vim.list_extend(ensure_installed, linter)

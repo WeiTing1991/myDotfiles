@@ -9,25 +9,22 @@ end
 local launch_menu = {}
 -- for windows
 --- Set Pwsh as the default on Windows
-config.default_prog = { 'pwsh.exe', '-NoLogo' }
+config.default_prog = { "pwsh.exe", "-NoLogo" }
 table.insert(launch_menu, {
-  label = 'Bash',
-  args = { 'C:/Program Files/Git/bin/bash.exe', '-NoLogo' },
+	label = "Bash",
+	args = { "C:/Program Files/Git/bin/bash.exe", "-NoLogo" },
 })
 table.insert(launch_menu, {
-  label = 'Pwsh',
-  args = { 'pwsh.exe', '-NoLogo' },
+	label = "Pwsh",
+	args = { "pwsh.exe", "-NoLogo" },
 })
 -- https://wezfurlong.org/wezterm/tags.html
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-<<<<<<< HEAD
 	{ family = "Hack Nerd Font", weight = "Bold", italic = false },
 	{ family = "JetBrains Mono", weight = "Bold", italic = false },
-=======
 	{ family = "Hack Nerd Font", weight = "Medium", italic = false },
 	--{ family = "JetBrains Mono", weight = "Regular", italic = false },
->>>>>>> main
 })
 config.launch_menu = launch_menu
 config.color_scheme = "Dracula"
@@ -36,7 +33,7 @@ config.font_size = 10.0
 config.window_background_opacity = 0.90
 --config.macos_window_background_blur = 20
 config.window_close_confirmation = "AlwaysPrompt"
--- windows 
+-- windows
 -- window
 config.initial_cols = 120
 config.initial_rows = 40
@@ -52,9 +49,9 @@ config.window_padding = {
 }
 config.window_decorations = "RESIZE"
 
-config.use_fancy_tab_bar = false 
+config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
-config.tab_bar_at_bottom = false 
+config.tab_bar_at_bottom = false
 
 -- keys
 -- disable default keybindings

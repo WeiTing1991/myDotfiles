@@ -7,11 +7,9 @@ return {
       'rcarriga/nvim-dap-ui',
       'theHamsta/nvim-dap-virtual-text',
       'jay-babu/mason-nvim-dap.nvim',
-<<<<<<< HEAD
       'nvim-neotest/nvim-nio',
       -- Add own debuggers here
       'leoluz/nvim-dap-go',
-=======
       -- Add own debuggers here
       'leoluz/nvim-dap-go',
     },
@@ -25,7 +23,6 @@ return {
       'nvim-lua/plenary.nvim',
       'antoinemadec/FixCursorHold.nvim',
       'nvim-treesitter/nvim-treesitter',
->>>>>>> main
     },
   },
 }

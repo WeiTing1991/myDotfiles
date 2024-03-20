@@ -9,29 +9,29 @@ end
 local launch_menu = {}
 -- for windows
 --- Set Pwsh as the default on Windows
-config.default_prog = { 'pwsh.exe', '-NoLogo' }
+config.default_prog = { "pwsh.exe", "-NoLogo" }
 table.insert(launch_menu, {
-  label = 'Bash',
-  args = { 'C:/Program Files/Git/bin/bash.exe', '-NoLogo' },
+	label = "Bash",
+	args = { "C:/Program Files/Git/bin/bash.exe", "-NoLogo" },
 })
 table.insert(launch_menu, {
-  label = 'Pwsh',
-  args = { 'pwsh.exe', '-NoLogo' },
+	label = "Pwsh",
+	args = { "pwsh.exe", "-NoLogo" },
 })
 -- https://wezfurlong.org/wezterm/tags.html
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "Hack Nerd Font", weight = "Bold", italic = false },
-	{ family = "JetBrains Mono", weight = "Bold", italic = false },
+	{ family = "Hack Nerd Font", weight = "Regular", italic = false },
+	--{ family = "JetBrains Mono", weight = "Bold", italic = false },
 })
 config.launch_menu = launch_menu
 config.color_scheme = "Dracula"
 config.font_size = 10.0
 --config.adjust_window_size_when_changing_font_size = true
-config.window_background_opacity = 0.90
---config.macos_window_background_blur = 20
+config.window_background_opacity = 0.95
+config.macos_window_background_blur = 20
 config.window_close_confirmation = "AlwaysPrompt"
--- windows 
+-- windows
 -- window
 config.initial_cols = 120
 config.initial_rows = 40
@@ -47,9 +47,9 @@ config.window_padding = {
 }
 config.window_decorations = "RESIZE"
 
-config.use_fancy_tab_bar = false 
+config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
-config.tab_bar_at_bottom = false 
+config.tab_bar_at_bottom = false
 
 -- keys
 -- disable default keybindings
@@ -305,12 +305,12 @@ config.key_tables = {
 		{ key = "k", mods = "NONE", action = act.CopyMode("MoveUp") },
 		{ key = "l", mods = "NONE", action = act.CopyMode("MoveRight") },
 
-		{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
-		{ key = "y", mods = "NONE", action = act.CopyTo("Clipboard") },
-		{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
-		{ key = "p", mods = "NONE", action = act.PasteFrom("Clipboard") },
-		{ key = "V", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Line" }) },
-		{ key = "V", mods = "SHIFT", action = act.CopyMode({ SetSelectionMode = "Line" }) },
+		{ key = "Copy", action = act.CopyTo("Clipboard") },
+		{ key = "y", action = act.CopyTo("Clipboard") },
+		{ key = "Paste", action = act.PasteFrom("Clipboard") },
+		{ key = "p", action = act.PasteFrom("Clipboard") },
+		{ key = "V", action = act.CopyMode({ SetSelectionMode = "Line" }) },
+		{ key = "V", action = act.CopyMode({ SetSelectionMode = "Line" }) },
 
 		{ key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
 

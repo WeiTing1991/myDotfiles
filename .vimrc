@@ -71,6 +71,9 @@ let mapleader = " "
 " Clear highlights
 nnoremap <leader>zz :nohl<CR>
 
+nnoremap <C-s> :w<CR>
+nnoremap <leader>q :wq<CR>
+
 " Disable the space key
 nnoremap <Space> <Nop>
 vnoremap <Space> <Nop>
@@ -124,6 +127,6 @@ nnoremap <leader>Y "+Y
 nnoremap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Leave insert mode by pressing leader followed by backspace
-inoremap jj <Esc>
-inoremap kk <Esc>
+inoremap jk <Esc>
+inoremap kj <Esc>
 

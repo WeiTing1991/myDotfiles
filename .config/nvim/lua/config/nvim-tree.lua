@@ -70,7 +70,7 @@ nvimtree.setup({
     custom = { '.DS_Store' },
   },
   git = {
-    ignore = true,
+    ignore = false,
   },
 })
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })

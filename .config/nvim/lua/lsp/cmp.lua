@@ -1,12 +1,12 @@
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-local lspkind = require 'lspkind'
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+local lspkind = require('lspkind')
 
 --luasnip.config.setup({})
 --local luasnip_loaders = require("luasnip.loaders.from_vscode")
 --luasnip_loaders.lazy_load()
 
-cmp.setup {
+cmp.setup({
   performance = {
     max_view_entries = 30,
     -- debounce = 250,
@@ -20,23 +20,23 @@ cmp.setup {
   },
   completion = { completeopt = 'menuone,noinsert,noselect' },
   window = {
-    completion = cmp.config.window.bordered {
+    completion = cmp.config.window.bordered({
       --border = vim.cfg.ui__float_border,
       winhighlight = 'CursorLine:PmenuSel,NormalFloat:NormalFloat,FloatBorder:FloatBorder',
       winblend = 0,
-    },
-    documentation = cmp.config.window.bordered {
+    }),
+    documentation = cmp.config.window.bordered({
       winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
       --border = vim.cfg.ui__float_border,
-    },
+    }),
   },
   --Please read `:help ins-completion`, it is really good!
-  mapping = cmp.mapping.preset.insert {
+  mapping = cmp.mapping.preset.insert({
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+    ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
 
     -- ["<C-l>"] = cmp.mapping(function()
     --   if luasnip.expand_or_locally_jumpable() then
@@ -48,16 +48,16 @@ cmp.setup {
     --     luasnip.jump(-1)
     --   end
     -- end, { "i", "s" }),
-  },
+  }),
   experimental = {
     native_menu = false,
     ghost_text = false, -- this feature conflict with copilot.vim's preview.
   },
-  sources = cmp.config.sources {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp', priority = 10, max_item_count = 8 },
 
     -- java
-    { name = 'nvim-jdtls', priority = 10 },
+    { name = 'nvim-jdtls', priority = 10, max_item_count = 8 },
 
     { name = 'luasnip', priority = 6, max_item_count = 5 }, -- For luasnip users.
     { name = 'nvim_lsp_signature_help', priority = 10, max_item_count = 5 },
@@ -69,8 +69,8 @@ cmp.setup {
       max_item_count = 4,
     },
     -- { name = "nvim_lua", priority = 5, ft = "lua" },
-  },
+  }),
   formatting = {
-    format = lspkind.cmp_format { with_text = true, maxwidth = 50 },
+    format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
   },
-}
+})
