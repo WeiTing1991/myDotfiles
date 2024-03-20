@@ -38,8 +38,8 @@ local options = {
   smartcase = false,
 
   -- Decrease update time
-  updatetime = 100,
-  timeoutlen = 300,
+  updatetime = 200,
+  timeoutlen = 400,
 
   -- Configure how new splits should be opened
   splitright = true,

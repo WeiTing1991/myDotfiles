@@ -25,21 +25,21 @@ M = {
   lua_ls = {
     settings = {
       Lua = {
-        runtime = { version = "LuaJIT" },
+        runtime = { version = 'LuaJIT' },
         diagnostics = {
-          globals = { "vim" },
+          globals = { 'vim', 'it', 'describe', 'before_each', 'after_each' },
         },
         workspace = {
           checkThirdParty = false,
           -- Tells lua_ls where to find all the Lua files that you have loaded
           -- for your neovim configuration.
-          library = {
-            "${3rd}/luv/library",
-            unpack(vim.api.nvim_get_runtime_file("", true)),
-          },
+          library = {},
         },
         completion = {
-          callSnippet = "Replace",
+          callSnippet = 'Replace',
+        },
+        telemetry = {
+          enable = false,
         },
       },
     },
