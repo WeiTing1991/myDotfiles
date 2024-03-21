@@ -9,29 +9,17 @@ end
 local launch_menu = {}
 -- for windows
 --- Set Pwsh as the default on Windows
-config.default_prog = { "pwsh.exe", "-NoLogo" }
-table.insert(launch_menu, {
-	label = "Bash",
-	args = { "C:/Program Files/Git/bin/bash.exe", "-NoLogo" },
-})
-table.insert(launch_menu, {
-	label = "Pwsh",
-	args = { "pwsh.exe", "-NoLogo" },
-})
--- https://wezfurlong.org/wezterm/tags.html
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "Hack Nerd Font", weight = "Bold", italic = false },
-	{ family = "JetBrains Mono", weight = "Bold", italic = false },
 	{ family = "Hack Nerd Font", weight = "Medium", italic = false },
 	--{ family = "JetBrains Mono", weight = "Regular", italic = false },
 })
 config.launch_menu = launch_menu
 config.color_scheme = "Dracula"
-config.font_size = 10.0
+config.font_size = 14.0
 --config.adjust_window_size_when_changing_font_size = true
-config.window_background_opacity = 0.90
---config.macos_window_background_blur = 20
+config.window_background_opacity = 0.65
+config.macos_window_background_blur = 30
 config.window_close_confirmation = "AlwaysPrompt"
 -- windows
 -- window

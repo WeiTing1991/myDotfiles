@@ -54,7 +54,7 @@ config.tab_bar_at_bottom = false
 -- keys
 -- disable default keybindings
 config.disable_default_key_bindings = true
-config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 5000 }
+config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 3000 }
 
 --tab bar
 wezterm.on("update-status", function(window, pane)

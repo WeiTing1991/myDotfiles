@@ -1,11 +1,11 @@
 local undoDir = ''
 
 if vim.loop.os_uname().sysname == 'Darwin' then
-  undoDir = os.getenv 'HOME' .. '/.vim/undodir'
-elseif vim.fn.has 'Win32' then
-  undoDir = os.getenv 'USERPROFILE' .. '\\.vim\\undodir'
+  undoDir = os.getenv('HOME') .. '/.vim/undodir'
+elseif vim.fn.has('Win32') then
+  undoDir = os.getenv('USERPROFILE') .. '\\.vim\\undodir'
 else
-  undoDir = os.getenv 'HOME' .. '/.vim/undodir'
+  undoDir = os.getenv('HOME') .. '/.vim/undodir'
 end
 
 local options = {
@@ -54,7 +54,6 @@ local options = {
   -- Preview substitutions live, as you type!
   --inccommand = "split"
   signcolumn = 'yes',
-
   -- Show which line your cursor is on
   cursorline = true,
   colorcolumn = '120',

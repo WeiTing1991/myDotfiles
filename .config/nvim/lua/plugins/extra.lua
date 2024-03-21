@@ -7,9 +7,9 @@ return {
     ft = { 'markdown' },
     build = function() vim.fn['mkdp#util#install']() end,
     config = function()
-      vim.keymap.set('n', '<leader>mk', '<cmd>MarkdownPrviewToggle<cr>', { desc = 'markdown toggle' })
+      vim.keymap.set('n', '<leader>mk', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'markdown toggle' })
       vim.keymap.set('n', '<leader>mkp', '<cmd>MarkdownPreview<cr>', { desc = 'markdown preview' })
-      vim.keymap.set('n', '<leader>mks', '<cmd>MarkdownPreviewStop<cr>', { desc = 'markdown preview' })
+      vim.keymap.set('n', '<leader>mks', '<cmd>MarkdownPreviewStop<cr>', { desc = 'markdown stop' })
     end,
   },
   {
@@ -33,9 +33,9 @@ return {
       )
 
       vim.keymap.set('n', '<leader>a1', function() harpoon:list():select(1) end)
-      vim.keymap.set('n', '<C-a-2>', function() harpoon:list():select(2) end)
-      vim.keymap.set('n', '<C-a-3>', function() harpoon:list():select(3) end)
-      vim.keymap.set('n', '<C-a-4>', function() harpoon:list():select(4) end)
+      vim.keymap.set('n', '<leader>a1', function() harpoon:list():select(2) end)
+      vim.keymap.set('n', '<leader>a2', function() harpoon:list():select(3) end)
+      vim.keymap.set('n', '<leader>a3', function() harpoon:list():select(4) end)
 
       -- Toggle previous & next buffers stored within Harpoon list
       vim.keymap.set('n', '<C-S-p>', function() harpoon:list():prev() end, { desc = 'Go to pervious mark' })
@@ -43,7 +43,7 @@ return {
     end,
   },
   -- NOTE:
-  --REF https://github.com/nvim-neotest/neotest?tab=readme-ov-file
+  -- REF https://github.com/nvim-neotest/neotest?tab=readme-ov-file
 
   {
     'folke/trouble.nvim',
