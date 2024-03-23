@@ -21,6 +21,7 @@ M = {
     },
   },
   jdtls = {},
+
   -- lua
   lua_ls = {
     settings = {
@@ -42,6 +43,12 @@ M = {
           enable = false,
         },
       },
+    },
+  },
+  -- spelling
+  ltex = {
+    settings = {
+      language = 'en',
     },
   },
 }

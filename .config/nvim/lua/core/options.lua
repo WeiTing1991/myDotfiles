@@ -8,6 +8,16 @@ else
   undoDir = os.getenv('HOME') .. '/.vim/undodir'
 end
 
+local spelldir = ''
+
+if vim.loop.os_uname().sysname == 'Darwin' then
+  spelldir = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
+elseif vim.fn.has('Win32') then
+  spelldir = os.getenv('USERPROFILE') .. '/spell/en.utf-8.add'
+else
+  spelldir = os.getenv('HOME') .. '/spell/en.utf-8.add'
+end
+
 local options = {
   -- See :help
   number = true,
@@ -88,6 +98,11 @@ local options = {
   foldmethod = 'expr',
   foldexpr = 'nvim_treesitter#foldexpr()',
   foldlevel = 99,
+
+  -- spell check
+  spelllang = 'en_us',
+  spell = false,
+  spellfile = spelldir,
 
   --titlestring = string.sub('%{&pvw} - %F', 0, 10),
 }
