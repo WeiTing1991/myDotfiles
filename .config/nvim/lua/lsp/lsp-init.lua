@@ -109,3 +109,5 @@ require('mason-nvim-dap').setup({
   automatic_setup = true,
   ensure_installed = {},
 })
+
+vim.filetype.add({ extension = { templ = 'templ' } })

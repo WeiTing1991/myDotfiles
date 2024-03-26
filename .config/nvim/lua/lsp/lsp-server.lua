@@ -1,7 +1,6 @@
 local M = {}
 
 M = {
-  marksman = {},
   gopls = {
     settings = {
       gopls = {
@@ -20,8 +19,41 @@ M = {
       debounce_text_changes = 150,
     },
   },
-  jdtls = {},
+  templ = {
+    settings = {
+      templ = {
+        filetypes = { 'templ' },
+      },
+    },
+  },
+  htmx = {
+    settings = {
+      htmx = {
+        filetypes = { 'html' },
+      },
+    },
+  },
+  html = {
+    settings = {
+      html = {
+        filetypes = { 'html', 'templ' },
+      },
+    },
+  },
+  tailwindcss = {
+    settings = {
+      tailwindcss = {
+        filetypes = { 'templ' },
+        init_options = {
+          userLanguages = {
+            templ = 'html',
+          },
+        },
+      },
+    },
+  },
 
+  jdtls = {},
   -- lua
   lua_ls = {
     settings = {
@@ -46,6 +78,7 @@ M = {
     },
   },
   -- spelling
+  marksman = {},
   ltex = {
     settings = {
       language = 'en',

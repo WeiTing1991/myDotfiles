@@ -23,6 +23,7 @@ require('nvim-treesitter.configs').setup({
     'gitignore',
     'xml',
     'java',
+    'make',
   },
   ignore_install = {},
   sync_install = false,

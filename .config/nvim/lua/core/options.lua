@@ -48,8 +48,8 @@ local options = {
   smartcase = false,
 
   -- Decrease update time
-  updatetime = 200,
-  timeoutlen = 400,
+  updatetime = 50,
+  timeoutlen = 300,
 
   -- Configure how new splits should be opened
   splitright = true,
@@ -71,7 +71,7 @@ local options = {
   -- Minimal number of screen lines to keep above and below the cursor.
   scrolloff = 40,
   sidescrolloff = 1,
-  conceallevel = 0, -- so that `` is visible in markdown files
+  conceallevel = 2, -- so that `` is visible in markdown files
 
   -- search
   -- enable incremental searching

@@ -1,5 +1,17 @@
 --vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 
+function ToggleSpellCheck()
+  if vim.o.spell then
+    vim.o.spell = false
+    print('Spellcheck OFF')
+  else
+    vim.o.spell = true
+    print('Spellcheck ON')
+  end
+end
+
+-- spell check toggle
+vim.api.nvim_set_keymap('n', '<Leader>sp', ':lua ToggleSpellCheck()<CR>', { desc = 'spell check off' })
 --leave the file
 vim.keymap.set('n', '<leader>q', function() vim.cmd(':q') end, { desc = 'Leave the file' })
 

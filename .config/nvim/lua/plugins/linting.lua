@@ -10,17 +10,6 @@ return {
     luacheck.args = {
       'vim',
     }
-    local markdownlint = require('lint').linters.markdownlint
-    markdownlint.args = {
-      '--disable',
-      'MD013',
-      'MD007',
-      'MD033',
-      'MD009',
-      'MD045',
-      '--', -- Required
-    }
-
     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
 
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {

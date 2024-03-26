@@ -2,9 +2,11 @@ local M = {}
 
 M = {
   lua = { 'stylua' },
-  markdown = { 'markdownlint', 'prettierd' },
+  markdown = { 'prettierd' },
   go = { 'gofumpt', 'goimports', 'golines' },
   java = { 'google-java-format' },
+  html = { 'prettierd' },
+  templ = { 'prettierd' },
   --python = { "isort", "black" },
   -- javascript = { { "prettierd", "prettier" } },
 }
