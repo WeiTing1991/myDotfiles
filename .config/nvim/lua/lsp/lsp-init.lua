@@ -69,6 +69,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- See `:help CursorHold` for information about when this is executed
 -- When you move your cursor, the highlights will be cleared (the second autocommand).
+vim.filetype.add({ extension = { templ = 'templ' } })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())

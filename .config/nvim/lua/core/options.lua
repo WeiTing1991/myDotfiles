@@ -8,6 +8,16 @@ else
   undoDir = os.getenv('HOME') .. '/.vim/undodir'
 end
 
+local spelldir = ''
+
+if vim.loop.os_uname().sysname == 'Darwin' then
+  spelldir = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
+elseif vim.fn.has('Win32') then
+  spelldir = os.getenv('USERPROFILE') .. '/spell/en.utf-8.add'
+else
+  spelldir = os.getenv('HOME') .. '/spell/en.utf-8.add'
+end
+
 local options = {
   -- See :help
   number = true,
@@ -38,8 +48,8 @@ local options = {
   smartcase = false,
 
   -- Decrease update time
-  updatetime = 200,
-  timeoutlen = 400,
+  updatetime = 50,
+  timeoutlen = 300,
 
   -- Configure how new splits should be opened
   splitright = true,
@@ -56,12 +66,12 @@ local options = {
   signcolumn = 'yes',
   -- Show which line your cursor is on
   cursorline = true,
-  colorcolumn = '120',
+  colorcolumn = '100',
   textwidth = 100,
   -- Minimal number of screen lines to keep above and below the cursor.
   scrolloff = 40,
   sidescrolloff = 1,
-  conceallevel = 0, -- so that `` is visible in markdown files
+  conceallevel = 2, -- so that `` is visible in markdown files
 
   -- search
   -- enable incremental searching
@@ -88,6 +98,11 @@ local options = {
   foldmethod = 'expr',
   foldexpr = 'nvim_treesitter#foldexpr()',
   foldlevel = 99,
+
+  -- spell check
+  spelllang = 'en_us',
+  spell = false,
+  spellfile = spelldir,
 
   --titlestring = string.sub('%{&pvw} - %F', 0, 10),
 }

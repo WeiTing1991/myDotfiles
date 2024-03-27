@@ -45,6 +45,8 @@ eval
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias python='/opt/homebrew/bin/python3'
 
+alias nv='nvim'
+alias ob='cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 
 # add file to my dotfiles dir
@@ -56,8 +58,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-export PATH=$PATH:/usr/local/go/bin 
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
