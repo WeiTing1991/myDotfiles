@@ -28,3 +28,9 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   pattern = 'markdown',
   command = 'highlight SpellBad cterm=underline ctermbg=red guibg=red',
 })
+
+-- higjlight the templ
+vim.api.nvim_create_autocmd(
+  { 'FileType' },
+  { pattern = 'templ', callback = function() vim.cmd('TSBufEnable highlight') end }
+)

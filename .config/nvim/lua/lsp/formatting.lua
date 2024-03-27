@@ -6,7 +6,8 @@ M = {
   go = { 'gofumpt', 'goimports', 'golines' },
   java = { 'google-java-format' },
   html = { 'prettierd' },
-  templ = { 'prettierd' },
+  htmx = { 'prettierd' },
+  templ = { 'templ' },
   --python = { "isort", "black" },
   -- javascript = { { "prettierd", "prettier" } },
 }

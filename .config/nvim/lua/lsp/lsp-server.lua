@@ -21,15 +21,15 @@ M = {
   },
   templ = {
     settings = {
-      templ = {
-        filetypes = { 'templ' },
+      htmx = {
+        filetypes = { 'html', 'templ' },
       },
     },
   },
   htmx = {
     settings = {
       htmx = {
-        filetypes = { 'html' },
+        filetypes = { 'html', 'templ' },
       },
     },
   },
