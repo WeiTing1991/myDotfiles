@@ -8,6 +8,7 @@ M = {
   html = { 'prettierd' },
   htmx = { 'prettierd' },
   templ = { 'templ' },
+  cpp = { 'clang-format' },
   --python = { "isort", "black" },
   -- javascript = { { "prettierd", "prettier" } },
 }

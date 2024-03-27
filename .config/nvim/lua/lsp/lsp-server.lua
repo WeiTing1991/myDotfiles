@@ -52,7 +52,10 @@ M = {
       },
     },
   },
-
+  clangd = {
+    cmd = { 'clangd', '--offset-encoding=utf-16' },
+    roo_files = { '.clang-format' },
+  },
   jdtls = {},
   -- lua
   lua_ls = {
