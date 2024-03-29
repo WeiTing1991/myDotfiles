@@ -1,13 +1,14 @@
 # Welcome my dotfiles
-
+p
 This repository is my dotfiles(still in progress) for my windows and mac via [stow]. \
 
 ## Neovim
 
-I start with [kickstart] to configure my personal [Neovim] setting. Feel free to use it and let me know if it has any issuse. \
-If you would like to use my configure, you can clone it and follow the command below.
-For macOS
+I start with [kickstart] to configure my personal [Neovim] setting. Feel free to use it and let me
+know if it has any issuse. \ If you would like to use my configure, you can clone it and follow the
+command below.
 
+For Mac user
 ```bash
 mv ~/.config/nvim ~/.config/nvim.bak
 rm -rf ~/.local/share/nvim
@@ -17,7 +18,7 @@ cd YOURGITREPO
 mv nvim ~/.config
 ```
 
-For Windows(git clone to $HOME)
+For Windows user (git clone to $HOME)
 
 ```powershell
 ./intall.ps1
@@ -76,8 +77,8 @@ UI
 
 I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configuration like tumx.
 It is a amazing GPU terminal emulator for cross platform. \
-for macOS
 
+for macOS
 ```bash
 cd YOURGITREPO
 mv wezterm ~/.config

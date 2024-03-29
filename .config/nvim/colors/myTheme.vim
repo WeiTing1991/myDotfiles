@@ -127,7 +127,10 @@ call s:hi('Todo', s:black, s:yellow, s:bold)
 " Signs.
 call s:hi('SignColumn')
 
-"
+call s:hi('GitSignsAdd', s:Gold)
+call s:hi('GitSingsChange', s:Rose)
+call s:hi('GitsSingsDelete', s:Love)
+
 " --- Programming languages ----------------------------------------------------
 "
 
