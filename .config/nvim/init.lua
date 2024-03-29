@@ -1,3 +1,1 @@
-require('core')
-
-vim.cmd('colorscheme catppuccin')
+require("core")

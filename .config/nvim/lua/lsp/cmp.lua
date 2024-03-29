@@ -8,7 +8,7 @@ local lspkind = require('lspkind')
 
 cmp.setup({
   performance = {
-    max_view_entries = 30,
+    max_view_entries = 40,
     -- debounce = 250,
     -- throttle = 2000,
     -- fetching_timeoul = 1400,
@@ -36,7 +36,7 @@ cmp.setup({
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
+    ['<C-k>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
 
     -- ["<C-l>"] = cmp.mapping(function()
     --   if luasnip.expand_or_locally_jumpable() then
@@ -54,26 +54,18 @@ cmp.setup({
     ghost_text = false, -- this feature conflict with copilot.vim's preview.
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp', priority = 10, max_item_count = 8 },
+    { name = 'nvim_lsp',                priority = 10, max_item_count = 8 },
+    { name = "nvim_lua",                priority = 10,  ft = "lua" },
 
     -- java
-    { name = 'nvim-jdtls', priority = 10, max_item_count = 8 },
+    { name = 'nvim-jdtls',              priority = 10, ft = "java", max_item_count = 8 },
 
-    { name = 'luasnip', priority = 6, max_item_count = 5 }, -- For luasnip users.
-    { name = 'nvim_lsp_signature_help', priority = 10, max_item_count = 5 },
-    { name = 'path', priority = 4 },
-    {
-      name = 'buffer',
-      priority = 8,
-      keyword_length = 2,
-      max_item_count = 4,
-    },
-    -- { name = "nvim_lua", priority = 5, ft = "lua" },
+    { name = 'luasnip',                 priority = 6,  max_item_count = 5 }, -- For luasnip users.
+    { name = 'nvim_lsp_signature_help', priority = 6,  max_item_count = 5 },
+    { name = 'path',                    priority = 4 },
+    { name = 'buffer',                  priority = 8,  keyword_length = 2, max_item_count = 4, },
   }),
   formatting = {
     format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
   },
 })
-
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

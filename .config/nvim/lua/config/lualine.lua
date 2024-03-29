@@ -1,7 +1,7 @@
 --	local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 require('lualine').setup({
   options = {
-    theme = 'dracula',
+    theme = 'codedark',
     component_separators = '|',
     section_separators = { left = '', right = '' },
     refresh = {
@@ -26,7 +26,7 @@ require('lualine').setup({
     lualine_y = {
       {
         function()
-          local msg = 'No Active Lsp'
+          local msg = 'NoActiveLsp'
           local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
           local clients = vim.lsp.get_active_clients()
           if next(clients) == nil then return msg end

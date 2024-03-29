@@ -10,19 +10,17 @@ return {
       'nvim-neotest/nvim-nio',
       -- Add own debuggers here
       'leoluz/nvim-dap-go',
-      -- Add own debuggers here
-      'leoluz/nvim-dap-go',
     },
   },
   -- test
-  {
-    'nvim-neotest/neotest',
-    event = 'BufEnter',
-    dependencies = {
-      'nvim-neotest/nvim-nio',
-      'nvim-lua/plenary.nvim',
-      'antoinemadec/FixCursorHold.nvim',
-      'nvim-treesitter/nvim-treesitter',
-    },
-  },
+  -- {
+  --   'nvim-neotest/neotest',
+  --   event = 'BufEnter',
+  --   dependencies = {
+  --     'nvim-neotest/nvim-nio',
+  --     'nvim-lua/plenary.nvim',
+  --     'antoinemadec/FixCursorHold.nvim',
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  -- },
 }

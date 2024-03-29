@@ -2,12 +2,9 @@ local nvimtree = require('nvim-tree')
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+-- change color for arrows in tree to light blue check this
+-- https://raw.githubusercontent.com/kyazdani42/nvim-tree.lua/master/doc/nvim-tree-lua.txt
 
--- change color for arrows in tree to light blue
---chek this
---https://raw.githubusercontent.com/kyazdani42/nvim-tree.lua/master/doc/nvim-tree-lua.txt
-
--- configure nvim-tree
 nvimtree.setup({
   disable_netrw = true,
   hijack_netrw = true,
@@ -73,6 +70,8 @@ nvimtree.setup({
     ignore = false,
   },
 })
+
+-- keymapping
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
 --keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })

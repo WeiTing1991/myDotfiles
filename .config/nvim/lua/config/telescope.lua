@@ -19,7 +19,7 @@ require('telescope').setup({
     prompt_prefix = ' / ',
     selection_caret = '  ',
     entry_prefix = '  ',
-    initial_mode = 'insert',
+    initial_mode = 'normal',
     selection_strategy = 'reset',
     sorting_strategy = 'ascending',
     layout_strategy = 'horizontal',
@@ -105,18 +105,12 @@ pcall(require('telescope').load_extension, 'ui-select')
 
 -- keymapping
 vim.keymap.set('n', '<space>fB', ':Telescope file_browser<CR>', { desc = 'File browser' })
-vim.keymap.set(
-  'n',
-  '<space>fb',
-  ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
+vim.keymap.set( 'n', '<space>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
   { desc = 'file browser in buffer' }
 )
 
 -- open the nvim config file folder
-vim.keymap.set(
-  'n',
-  '<space>fc',
-  ':Telescope file_browser path=' .. vim.fn.stdpath('config') .. '<CR>',
+vim.keymap.set( 'n', '<space>fc', ':Telescope file_browser path=' .. vim.fn.stdpath('config') .. '<CR>',
   { desc = 'open the nvim config' }
 )
 --fzf keybinding
@@ -128,19 +122,12 @@ vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find file in 
 --vim.keymap.set("n", "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>" )
 vim.keymap.set('n', '<leader>fl', builtin.live_grep, { desc = 'Find live grep' })
 
-vim.keymap.set(
-  'n',
-  '<leader>fs',
-  function() builtin.grep_string({ search = vim.fn.input('Grep > ') }) end,
+vim.keymap.set( 'n', '<leader>fs', function() builtin.grep_string({ search = vim.fn.input('Grep > ') }) end,
   { desc = 'Grep search' }
 )
 --
 -- word search
-vim.keymap.set('n', '<leader>fw', function()
-  local word = vim.fn.expand('<cword>')
-  builtin.grep_string({ search = word })
+vim.keymap.set('n', '<leader>fw', function() local word = vim.fn.expand('<cword>') builtin.grep_string({ search = word })
 end, { desc = 'word search' })
-vim.keymap.set('n', '<leader>fW', function()
-  local word = vim.fn.expand('<cWORD>')
-  builtin.grep_string({ search = word })
+vim.keymap.set('n', '<leader>fW', function() local word = vim.fn.expand('<cWORD>') builtin.grep_string({ search = word })
 end, { desc = 'cWord search' })

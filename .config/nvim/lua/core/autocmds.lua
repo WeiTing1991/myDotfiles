@@ -34,3 +34,5 @@ vim.api.nvim_create_autocmd(
   { 'FileType' },
   { pattern = 'templ', callback = function() vim.cmd('TSBufEnable highlight') end }
 )
+
+

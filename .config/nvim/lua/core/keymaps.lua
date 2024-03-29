@@ -9,6 +9,10 @@ function ToggleSpellCheck()
     print('Spellcheck ON')
   end
 end
+-- markdown preview
+vim.keymap.set('n', '<leader>mk', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'markdown toggle' })
+vim.keymap.set('n', '<leader>mkp', '<cmd>MarkdownPreview<cr>', { desc = 'markdown preview' })
+vim.keymap.set('n', '<leader>mks', '<cmd>MarkdownPreviewStop<cr>', { desc = 'markdown stop' })
 
 -- spell check toggle
 vim.api.nvim_set_keymap('n', '<Leader>sp', ':lua ToggleSpellCheck()<CR>', { desc = 'spell check off' })
@@ -43,8 +47,8 @@ vim.keymap.set('i', '[]', '[]<left>', { desc = '' })
 
 -- Remove the old global variables
 -- move between buffer
-vim.keymap.set('n', '<C-i>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<C-o>', '<cmd>bprevious<cr>', { desc = 'Prevous buffer' })
+vim.keymap.set('n', '<C-o>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<C-i>', '<cmd>bprevious<cr>', { desc = 'Prevous buffer' })
 
 -- indenting
 vim.keymap.set('v', '<', '<gv')
@@ -91,13 +95,3 @@ vim.keymap.set(
 -- Leave insert mode by pressing leader followed by backspace
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'kj', '<Esc>')
-
--- NOTE: copilot keybindings
-vim.g.copilot_no_tab_map = true
--- vim.g.copilot_assume_mapped = true
-vim.keymap.set(
-  'i',
-  '<C-l>',
-  'copilot#Accept("")',
-  { noremap = true, silent = true, expr = true, replace_keycodes = false }
-)

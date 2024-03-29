@@ -1,10 +1,13 @@
 local M = {}
 
 M = {
-  lua = { 'luacheck' },
-  markdown = { 'vale' },
+  lua = { 'selene' },
   -- NOTE: https://golangci-lint.run/
-  go = { 'golangcilint' },
+  --
+  --go = { 'golangcilint' },
+
+  -- markdown = { 'vale' },
+
   --java = { "checkstyle" },
   --python = {},
   --javascript = {},

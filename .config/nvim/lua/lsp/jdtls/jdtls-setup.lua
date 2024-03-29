@@ -15,7 +15,7 @@ function M.setup()
   -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
   local path_to_mason_packages = home .. "/.local/share/nvim/mason/packages"
 
-  local path_to_jdtls = path_to_mason_packages .. "/jdtls"
+  local path_to_jdtls = path_to_mason_packages.. "/jdtls"
   local path_to_jdebug = path_to_mason_packages .. "/java-debug-adapter"
   local path_to_jtest = path_to_mason_packages .. "/java-test"
 
@@ -32,26 +32,21 @@ function M.setup()
 
   -- LSP settings for Java.
   -- NOTE: importants for the `jdtls`dap to work!!!!!
+  -- Run :JdtUpdateDebugConfigs
   local on_attach = function(_, bufnr)
     jdtls.setup_dap({ hotcodereplace = "auto" })
     jdtls_dap.setup_dap_main_class_configs()
     jdtls_setup.add_commands()
 
-    -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-      vim.lsp.buf.format()
-    end, { desc = "Format current buffer with LSP" })
+    require("lsp_signature").on_attach({
+      bind = true,
+      padding = "",
+      handler_opts = {
+        border = "rounded",
+      },
+    }, bufnr)
 
-    -- require("lsp_signature").on_attach({
-    --   bind = true,
-    --   padding = "",
-    --   handler_opts = {
-    --     border = "rounded",
-    --   },
-    --   hint_prefix = "󱄑 ",
-    -- }, bufnr)
-
-    -- require("lspsaga").init_lsp_saga()
+    require("lspsaga").init_lsp_saga()
   end
 
   local capabilities = {
@@ -74,8 +69,6 @@ function M.setup()
   }
 
   config.cmd = {
-    --
-    -- 				-- 💀
     "java", -- or '/path/to/java17_or_newer/bin/java'
     -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
@@ -210,7 +203,7 @@ function M.setup()
   -- Start Server
   require("jdtls").start_or_attach(config)
 
-  -- Set Java Specific Keymaps
+  -- keymapping
   vim.cmd(
     "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
   )

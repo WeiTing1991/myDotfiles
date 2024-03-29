@@ -1,4 +1,6 @@
-require('nvim-treesitter.configs').setup({
+local treesitter = require('nvim-treesitter.configs')
+
+treesitter.setup({
   TSConfig = {},
   modules = {},
   --check the https://github.com/nvim-treesitter/nvim-treesitter
@@ -7,6 +9,7 @@ require('nvim-treesitter.configs').setup({
     'bash',
     'cpp',
     'c',
+    'java',
     'json',
     'lua',
     'luadoc',
@@ -19,13 +22,13 @@ require('nvim-treesitter.configs').setup({
     'yaml',
     'rust',
     'cmake',
+    'make',
     'dockerfile',
     'gitignore',
     'xml',
-    'java',
-    'make',
     'html',
     'css',
+    "templ",
   },
   ignore_install = {},
   sync_install = false,
@@ -35,11 +38,12 @@ require('nvim-treesitter.configs').setup({
   auto_tags = {
     enable = true,
   },
-
   indent = {
     enable = true,
   },
-  autopairs = { enable = true },
+  autopairs = {
+    enable = true
+  },
   highight = {
     -- `false` will disable the whole extension
     enable = true,

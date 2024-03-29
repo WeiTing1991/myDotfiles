@@ -18,8 +18,8 @@ config.launch_menu = launch_menu
 config.color_scheme = "rose-pine"
 config.font_size = 14.0
 --config.adjust_window_size_when_changing_font_size = true
-config.window_background_opacity = 0.75
-config.macos_window_background_blur = 50
+config.window_background_opacity = 0.70
+config.macos_window_background_blur = 80
 config.window_close_confirmation = "AlwaysPrompt"
 -- windows
 -- window
@@ -129,7 +129,7 @@ config.keys = {
 	{ key = "_", mods = "LEADER", action = act.IncreaseFontSize },
 	{ key = "+", mods = "LEADER", action = act.DecreaseFontSize },
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
-	{ key = "T", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "T", mods = "LEADER", action = act.SpawnTab("DefaultDomain") },
 	{
 		key = "e",
 		mods = "LEADER",

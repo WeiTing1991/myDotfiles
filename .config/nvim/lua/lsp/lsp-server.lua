@@ -53,10 +53,9 @@ M = {
     },
   },
   clangd = {
-    cmd = { 'clangd', '--offset-encoding=utf-16' },
-    roo_files = { '.clang-format' },
+    cmd = { 'clangd', "--offset-encoding=utf-16" },
   },
-  jdtls = {},
+  -- jdtls = {},
   -- lua
   lua_ls = {
     settings = {
@@ -81,7 +80,13 @@ M = {
     },
   },
   -- spelling
-  marksman = {},
+  marksman = {
+    settings = {
+      marksman = {
+        filetypes = { 'markdown' },
+      },
+    },
+  },
   ltex = {
     settings = {
       language = 'en',
