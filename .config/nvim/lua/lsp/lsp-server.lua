@@ -22,47 +22,55 @@ M = {
   templ = {
     settings = {
       htmx = {
-        filetypes = { 'html', 'templ' },
+        filetypes = { "html", "templ" },
       },
     },
   },
   htmx = {
     settings = {
       htmx = {
-        filetypes = { 'html', 'templ' },
+        filetypes = { "html", "templ" },
       },
     },
   },
   html = {
     settings = {
       html = {
-        filetypes = { 'html', 'templ' },
+        filetypes = { "html", "templ" },
       },
     },
   },
   tailwindcss = {
     settings = {
       tailwindcss = {
-        filetypes = { 'templ' },
+        filetypes = { "templ" },
         init_options = {
           userLanguages = {
-            templ = 'html',
+            templ = "html",
           },
         },
       },
     },
   },
   clangd = {
-    cmd = { 'clangd', "--offset-encoding=utf-16" },
+    cmd = {
+      "clangd",
+      "--offset-encoding=utf-16",
+    },
+    setting = {
+      clangd = {
+        filetypes = { "c", "cpp", "objc", "objcpp" },
+      },
+    },
   },
   -- jdtls = {},
   -- lua
   lua_ls = {
     settings = {
       Lua = {
-        runtime = { version = 'LuaJIT' },
+        runtime = { version = "LuaJIT" },
         diagnostics = {
-          globals = { 'vim', 'it', 'describe', 'before_each', 'after_each' },
+          globals = { "vim", "it", "describe", "before_each", "after_each" },
         },
         workspace = {
           checkThirdParty = false,
@@ -71,7 +79,7 @@ M = {
           library = {},
         },
         completion = {
-          callSnippet = 'Replace',
+          callSnippet = "Replace",
         },
         telemetry = {
           enable = false,
@@ -83,13 +91,13 @@ M = {
   marksman = {
     settings = {
       marksman = {
-        filetypes = { 'markdown' },
+        filetypes = { "markdown" },
       },
     },
   },
   ltex = {
     settings = {
-      language = 'en',
+      language = "en",
     },
   },
 }

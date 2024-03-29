@@ -1,4 +1,4 @@
-local null_ls = require("null-ls")
+local null_ls = require "null-ls"
 
 --local formatter = vim.tbl_values(require('lsp.lsp-formater'))
 -- NOTE: https://github.com/nvimtools/none-ls.nvim
@@ -6,8 +6,11 @@ local null_ls = require("null-ls")
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
-require("null-ls").setup({
+require("null-ls").setup {
   debug = false,
+  on_init = function(new_client, _)
+    new_client.offset_encoding = "utf-16"
+  end,
   sources = {
     -- lua
     -- formating
@@ -19,10 +22,8 @@ require("null-ls").setup({
     -- formating
     formatting.google_java_format,
 
-
-    -- C/C++
-    formatting.clang_format.with({
-      args = { '--style=file:' .. vim.fn.stdpath('config') .. '/.clang-format' },
-    })
+    formatting.clang_format.with {
+      args = { "--style=file:" .. vim.fn.stdpath "config" .. "/.clang-format" },
+    },
   },
-})
+}

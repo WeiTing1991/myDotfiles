@@ -1,8 +1,8 @@
 -- https://github.com/folke/neodev.nvim
-require("neodev").setup({
+require("neodev").setup {
   -- add any options here, or leave empty to use the default settings
-})
-require("mason").setup({
+}
+require("mason").setup {
   ui = {
     icons = {
       package_installed = "✓",
@@ -10,7 +10,7 @@ require("mason").setup({
       package_uninstalled = "✗",
     },
   },
-})
+}
 -- LSP provides Neovim with features like:
 --  - Go to definition
 --  - Find references
@@ -22,13 +22,13 @@ require("mason").setup({
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-require("fidget").setup({ notification = { window = { winblend = 0 } } })
+require("fidget").setup { notification = { window = { winblend = 0 } } }
 
-local lsp_server = vim.tbl_keys(require("lsp.lsp-server") or {})
+local lsp_server = vim.tbl_keys(require "lsp.lsp-server" or {})
 
-local formatter = vim.tbl_values(require("lsp.lsp-formater"))
-local linter = vim.tbl_values(require("lsp.lsp-linter"))
-local dap_server = vim.tbl_values(require('lsp.dap-server'))
+local formatter = vim.tbl_values(require "lsp.lsp-formater")
+local linter = vim.tbl_values(require "lsp.lsp-linter")
+local dap_server = vim.tbl_values(require "lsp.dap-server")
 
 local ensure_installed = {}
 for _, value in ipairs(formatter) do
@@ -43,31 +43,29 @@ for _, value in ipairs(dap_server) do
   table.insert(ensure_installed, value)
 end
 
-require("mason-tool-installer").setup({
+require("mason-tool-installer").setup {
   automatic_installation = true,
   ensure_installed = ensure_installed,
-})
+}
 
-require("mason-lspconfig").setup({
+require("mason-lspconfig").setup {
   ensure_installed = lsp_server,
   automatic_installation = true,
   handlers = {
     function(server_name)
-      local server = lsp_server[server_name] or {}
+      local server = require("lsp.lsp-server")[server_name] or {}
       -- dissable javaserver attach here
       if server_name ~= "jdtls" then
-      -- This handles overriding only values explicitly passed
-      -- by the server configuration above. Useful when disabling
-      -- certain features of an LSP (for example, turning off formatting for tsserver)
-      server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-      require("lspconfig")[server_name].setup(server)
+        -- Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for tsserver)
+        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+        require("lspconfig")[server_name].setup(server)
       end
     end,
   },
-})
+}
 
 --require('mason-nvim-dap').setup({
---  -- NOTE: it not work with mason-tool-installer
 --  automatic_installation = true,
 --  -- see mason-nvim-dap README for more information
 --  automatic_setup = true,
@@ -75,4 +73,4 @@ require("mason-lspconfig").setup({
 --})
 
 -- extra register
-vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add { extension = { templ = "templ" } }
