@@ -1,7 +1,4 @@
 -- set color scheme
-vim.cmd.colorscheme("myTheme")
-
-
 require("core.globals")
 require("core.keymaps")
 require("core.options")

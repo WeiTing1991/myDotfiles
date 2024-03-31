@@ -41,7 +41,7 @@ LSP and Autocompletion
 - [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)
 - [lspsaga](https://github.com/glepnir/lspsaga.nvim)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+- [none-ls](https://github.com/nvimtools/none-ls.nvim)
 
 Java LSP
 

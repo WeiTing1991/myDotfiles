@@ -49,7 +49,7 @@ local options = {
 
   -- Decrease update time
   updatetime = 50,
-  timeoutlen = 300,
+  timeoutlen = 400,
 
   -- Configure how new splits should be opened
   splitright = true,
@@ -58,7 +58,7 @@ local options = {
   compatible = false,
   -- Sets how neovim will display certain whitespace in the editor.
   --  See `:help 'list'`
-  listchars = { tab = ' . ', trail = ' ', nbsp = '+' },
+  listchars = { tab = '..', trail = ' ', nbsp = '+' },
   list = true,
 
   -- Preview substitutions live, as you type!
@@ -103,7 +103,6 @@ local options = {
   spelllang = 'en_us',
   spell = false,
   spellfile = spelldir,
-
   --titlestring = string.sub('%{&pvw} - %F', 0, 10),
 }
 

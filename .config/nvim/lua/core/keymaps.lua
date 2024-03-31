@@ -9,6 +9,7 @@ function ToggleSpellCheck()
     print('Spellcheck ON')
   end
 end
+
 -- markdown preview
 vim.keymap.set('n', '<leader>mk', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'markdown toggle' })
 vim.keymap.set('n', '<leader>mkp', '<cmd>MarkdownPreview<cr>', { desc = 'markdown preview' })
@@ -16,8 +17,9 @@ vim.keymap.set('n', '<leader>mks', '<cmd>MarkdownPreviewStop<cr>', { desc = 'mar
 
 -- spell check toggle
 vim.api.nvim_set_keymap('n', '<Leader>sp', ':lua ToggleSpellCheck()<CR>', { desc = 'spell check off' })
+
 --leave the file
-vim.keymap.set('n', '<leader>q', function() vim.cmd(':q') end, { desc = 'Leave the file' })
+vim.keymap.set('n', '<leader>q', function() vim.cmd(':bw') end, { desc = 'Close the buffer' })
 
 vim.keymap.set('n', '<C-s>', function() vim.cmd(':w') end, { desc = 'Save file' })
 

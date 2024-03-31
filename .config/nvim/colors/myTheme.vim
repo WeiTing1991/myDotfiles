@@ -97,7 +97,8 @@ call s:hi('Visual', s:white, s:sblue)
 call s:hi('ErrorMsg', s:white, s:red)
 
 " Tildes at the bottom of a buffer, etc.
-call s:hi('NonText', s:dgray)
+hi TabLine  guifg=#CCCCCC guibg=NONE    gui=NONE      ctermfg=250   ctermbg=NONE    cterm=NONE
+hi TabLineFill  guifg=#e0def4 guibg=NONE    gui=NONE      ctermfg=250   ctermbg=NONE    cterm=NONE
 
 " Folding.
 call s:hi('FoldColumn', s:dgray)
@@ -131,20 +132,20 @@ call s:hi('GitSignsAdd', s:Gold)
 call s:hi('GitSingsChange', s:Rose)
 call s:hi('GitsSingsDelete', s:Love)
 
+"
 " --- Programming languages ----------------------------------------------------
 "
 
-call s:hi('Statement', s:white, s:default_bg, s:bold)
-call s:hi('PreProc', s:white, s:default_bg, s:bold)
-call s:hi('String', s:sblue)
+call s:hi('Statement', s:Pine, s:default_bg, s:bold)
+call s:hi('PreProc', s:Pine, s:default_bg, s:bold)
+call s:hi('String', s:Subtle)
 call s:hi('Comment', s:cgray, s:default_bg, s:comment_attr)
 call s:hi('Constant')
-call s:hi('Type', s:white, s:default_bg, s:bold)
-call s:hi('Function', s:Pine)
+call s:hi('Type',s:white, s:default_bg, s:bold)
+call s:hi('Function', s:white, s:default_bg, s:bold)
 call s:hi('Identifier')
 call s:hi('Special')
 call s:hi('MatchParen', s:lgray, s:black, s:underline)
-
 
 "
 " --- VimL ---------------------------------------------------------------------
@@ -163,7 +164,11 @@ call s:hi('vimSynType')
 hi link vimCommentTitle Comment
 
 
+" --- c/cpp ---------------------------------------------------------------
 "
+autocmd FileType cpp highlight Type ctermfg=0 guifg=#31748f gui=bold
+
+
 " --- Ruby ---------------------------------------------------------------------
 "
 
@@ -225,7 +230,6 @@ call s:hi('javaScriptFunction', s:white, s:default_bg, s:bold)
 " --- Java ---------------------------------------------------------------
 "
 autocmd FileType java highlight @lsp.type.class ctermfg=240 guifg=#908caa gui=bold
-
 
 "
 " --- Diffs --------------------------------------------------------------------

@@ -1,4 +1,13 @@
 return {
+  -- color theme
+  {
+    "weiting1991/rose-pine.nvim",
+    lazy = false,
+    proirity = 1000,
+    config = function()
+      require "config.rose-pine"
+    end,
+  },
   -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -89,31 +98,50 @@ return {
   },
   -- makdown preview
   {
-    'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    event = 'BufEnter',
-    ft = { 'markdown' },
-    build = function() vim.fn['mkdp#util#install']() end,
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    event = "BufEnter",
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
   {
     -- https://github.com/epwalsh/obsidian.nvim
-    'epwalsh/obsidian.nvim',
-    version = '*', -- recommended, use latest release instead of latest commit
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
-    ft = 'markdown',
+    ft = "markdown",
     config = function()
-      require('config.obsidian')
+      require "config.obsidian"
     end,
   },
   -- harpoon
   {
-    'ThePrimeagen/harpoon',
-    event = 'BufEnter',
-    branch = 'harpoon2',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "ThePrimeagen/harpoon",
+    event = "BufEnter",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require('config.harpoon')
-    end
+      require "config.harpoon"
+    end,
+  },
+  {
+    "romgrk/barbar.nvim",
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    version = "^1.0.0", -- optional: only update when a new 1.x version is released
+    opts = {
+      animation = false,
+      highlights_alternative = true,
+      button = " ",
+      gitsigns = {
+        added = { enabled = false, icon = "+" },
+        changed = { enabled = false, icon = "~" },
+        deleted = { enabled = false, icon = "-" },
+      },
+    },
   },
   -- notest
   -- ministarter

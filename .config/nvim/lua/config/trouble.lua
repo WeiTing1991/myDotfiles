@@ -13,7 +13,7 @@ vim.keymap.set('n', '<leader>tl',
     end,
     { desc = 'loclist' }
 )
-vim.keymap.set('n', '<leader>tq',
+vim.keymap.set('n', '<leader>tf',
     function()
         require('trouble').toggle('quickfix')
     end,
