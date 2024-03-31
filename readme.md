@@ -3,9 +3,8 @@ This repository is my dotfiles(still in progress) for my windows and mac via [st
 
 ## Neovim
 
-I start with [kickstart] to configure my personal [Neovim] setting. Feel free to use it and let me
-know if it has any issuse. \ If you would like to use my configure, you can clone it and follow the
-command below.
+I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the
+command below. Feel free to use it and let me know if these is any issue. 
 
 For Mac user
 ```bash
@@ -19,7 +18,7 @@ mv nvim ~/.config
 
 For Windows user (git clone to $HOME)
 
-```powershell
+```PowerShell
 ./intall.ps1
 ```
 
@@ -74,8 +73,8 @@ UI
 
 ## Terminal
 
-I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configuration like tumx.
-It is a amazing GPU terminal emulator for cross platform. \
+I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations like tumx.
+It is an amazing GPU terminal emulator for cross-platform. \
 
 for macOS
 ```bash
