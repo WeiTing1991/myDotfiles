@@ -21,11 +21,11 @@ table.insert(launch_menu, {
 -- https://wezfurlong.org/wezterm/tags.html
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "Hack Nerd Font", weight = "Regular", italic = false },
+	{ family = "Roboto Mono", weight = "Regular", italic = false },
 	--{ family = "JetBrains Mono", weight = "Bold", italic = false },
 })
 config.launch_menu = launch_menu
-config.color_scheme = "Dracula"
+config.color_scheme = "rose-pine"
 config.font_size = 10.0
 --config.adjust_window_size_when_changing_font_size = true
 config.window_background_opacity = 0.95
@@ -127,8 +127,8 @@ config.keys = {
 	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
 	{ key = "b", mods = "LEADER|CTRL", action = act.SendKey({ key = "b", mods = "CTRL" }) },
 	-- windows
-	{ key = "'", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "5", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "'", mods = "LEADER", action = act.SplitVertical({ domain = "DefaultDomain" }) },
+    { key = "5", mods = "LEADER", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
 	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
@@ -139,7 +139,7 @@ config.keys = {
 	{ key = "_", mods = "LEADER", action = act.IncreaseFontSize },
 	{ key = "+", mods = "LEADER", action = act.DecreaseFontSize },
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
-	{ key = "T", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "T", mods = "LEADER", action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
 	{
 		key = "e",
 		mods = "LEADER",
@@ -253,8 +253,8 @@ config.keys = {
 	{ key = "q", mods = "SUPER", action = act.QuitApplication },
 	{ key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
 	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
-	{ key = "t", mods = "SHIFT|CTRL", action = act.SpawnTab("DefaultDomain") },
-	{ key = "t", mods = "ALT", action = act.SpawnTab("DefaultDomain") },
+	{ key = "t", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab({ cwd = "DefaultDomain" }) },
+	{ key = "t", mods = "ALT", action = act.SpawnCommandInNewTab({ cwd = "DefaultDomain" })},
 	{ key = "t", mods = "SUPER", action = act.SpawnTab("DefaultDomain") },
 	{
 		key = "u",

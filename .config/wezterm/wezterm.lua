@@ -117,8 +117,8 @@ config.keys = {
 	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
 	{ key = "b", mods = "LEADER|CTRL", action = act.SendKey({ key = "b", mods = "CTRL" }) },
 	-- windows
-	{ key = "'", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "5", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "'", mods = "LEADER", action = act.SplitVertical({ domain = "DefaultDomain" }) },
+	{ key = "5", mods = "LEADER", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
 	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
