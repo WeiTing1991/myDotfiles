@@ -1,21 +1,21 @@
-local undoDir = ''
+local undoDir = ""
 
-if vim.loop.os_uname().sysname == 'Darwin' then
-  undoDir = os.getenv('HOME') .. '/.vim/undodir'
-elseif vim.fn.has('Win32') then
-  undoDir = os.getenv('USERPROFILE') .. '\\.vim\\undodir'
+if vim.loop.os_uname().sysname == "Darwin" then
+  undoDir = os.getenv "HOME" .. "/.vim/undodir"
+elseif vim.fn.has "Win32" then
+  undoDir = os.getenv "USERPROFILE" .. "\\.vim\\undodir"
 else
-  undoDir = os.getenv('HOME') .. '/.vim/undodir'
+  undoDir = os.getenv "HOME" .. "/.vim/undodir"
 end
 
-local spelldir = ''
+local spelldir = ""
 
-if vim.loop.os_uname().sysname == 'Darwin' then
-  spelldir = vim.fn.stdpath('config') .. '/spell/en.utf-8.add'
-elseif vim.fn.has('Win32') then
-  spelldir = os.getenv('USERPROFILE') .. '/spell/en.utf-8.add'
+if vim.loop.os_uname().sysname == "Darwin" then
+  spelldir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
+elseif vim.fn.has "Win32" then
+  spelldir = os.getenv "USERPROFILE" .. "/spell/en.utf-8.add"
 else
-  spelldir = os.getenv('HOME') .. '/spell/en.utf-8.add'
+  spelldir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 end
 
 local options = {
@@ -23,10 +23,10 @@ local options = {
   number = true,
   relativenumber = true,
   ma = true,
-  mouse = 'a',
+  mouse = "a",
 
   --  See `:help 'clipboard'`
-  clipboard = 'unnamedplus',
+  clipboard = "unnamedplus",
 
   -- Enable break indent
   breakindent = false,
@@ -58,20 +58,20 @@ local options = {
   compatible = false,
   -- Sets how neovim will display certain whitespace in the editor.
   --  See `:help 'list'`
-  listchars = { tab = '..', trail = ' ', nbsp = '+' },
+  listchars = { tab = "··", trail = "·", extends="»",precedes="«"},
   list = true,
 
   -- Preview substitutions live, as you type!
   --inccommand = "split"
-  signcolumn = 'yes',
+  signcolumn = "yes",
   -- Show which line your cursor is on
   cursorline = true,
-  colorcolumn = '120',
+  colorcolumn = "120",
   textwidth = 100,
   -- Minimal number of screen lines to keep above and below the cursor.
-  scrolloff = 40,
+  scrolloff = 999,
   sidescrolloff = 1,
-  conceallevel = 2, -- so that `` is visible in markdown files
+  conceallevel = 2,
 
   -- search
   -- enable incremental searching
@@ -80,27 +80,27 @@ local options = {
 
   -- apperance
   termguicolors = true,
-  background = 'dark',
+  background = "dark",
   cmdheight = 1,
 
   -- behavior
   hidden = true,
   errorbells = false,
   swapfile = false,
-  backspace = 'indent,eol,start',
+  backspace = "indent,eol,start",
 
   autochdir = false,
-  selection = 'exclusive',
+  selection = "exclusive",
   modifiable = true,
-  encoding = 'UTF-8',
+  encoding = "UTF-8",
 
   -- folds
-  foldmethod = 'expr',
-  foldexpr = 'nvim_treesitter#foldexpr()',
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()",
   foldlevel = 99,
 
   -- spell check
-  spelllang = 'en_us',
+  spelllang = "en_us",
   spell = false,
   spellfile = spelldir,
   --titlestring = string.sub('%{&pvw} - %F', 0, 10),

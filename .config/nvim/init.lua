@@ -1,4 +1,6 @@
+if vim.loader then
+	vim.loader.enable()
+end
+
 require("core")
--- vim.cmd.colorscheme("default")
-vim.cmd.colorscheme("rose-pine")
 

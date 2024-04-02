@@ -6,6 +6,7 @@ return {
     proirity = 1000,
     config = function()
       require "config.rose-pine"
+      vim.cmd.colorscheme("rose-pine")
     end,
   },
   -- treesitter

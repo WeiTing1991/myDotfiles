@@ -18,10 +18,19 @@ require("null-ls").setup {
     -- linting
     -- diagnostics.selene,
 
+    --go
+    formatting.gofumpt,
+
+    --
+    --prettierd
+    formatting.prettierd.with {
+      filetypes = { "html", "htmx", "templ" ,"json" },
+    },
     -- java
     -- formating
     formatting.google_java_format,
 
+    -- c/c++
     formatting.clang_format.with {
       args = { "--style=file:" .. vim.fn.stdpath "config" .. "/.clang-format" },
     },

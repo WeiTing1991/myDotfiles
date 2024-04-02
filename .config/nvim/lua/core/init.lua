@@ -1,4 +1,3 @@
--- set color scheme
 require("core.globals")
 require("core.keymaps")
 require("core.options")

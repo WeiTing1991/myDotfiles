@@ -74,3 +74,6 @@ require("mason-lspconfig").setup {
 
 -- extra register
 vim.filetype.add { extension = { templ = "templ" } }
+
+vim.diagnostic.config {
+}

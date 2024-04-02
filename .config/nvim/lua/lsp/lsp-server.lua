@@ -57,7 +57,7 @@ M = {
       "clangd",
       "--offset-encoding=utf-16",
     },
-    setting = {
+    settings = {
       clangd = {
         filetypes = { "c", "cpp", "objc", "objcpp" },
       },
@@ -97,6 +97,7 @@ M = {
   },
   ltex = {
     settings = {
+      filetypes = { "markdown" },
       language = "en",
     },
   },
