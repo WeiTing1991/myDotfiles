@@ -25,7 +25,7 @@ config.font = wezterm.font_with_fallback({
 	--{ family = "JetBrains Mono", weight = "Bold", italic = false },
 })
 config.launch_menu = launch_menu
-config.color_scheme = "rose-pine"
+config.color_scheme = "carbonfox"
 config.font_size = 10.0
 --config.adjust_window_size_when_changing_font_size = true
 config.window_background_opacity = 0.95
@@ -135,6 +135,28 @@ config.keys = {
 	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 	{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "t", mods = "LEADER", action = act.TogglePaneZoomState },
+	{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
+	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState},
+	{
+		key = "t",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(_, pane)
+            local tab = pane:tab()
+            local panes = tab:panes_with_info()
+            if #panes == 1 then
+                pane:split({
+                    direction = "Down",
+                    size = 0.4,
+                })
+            elseif not panes[1].is_zoomed then
+                panes[1].pane:activate()
+                tab:set_zoomed(true)
+            elseif panes[1].is_zoomed then
+                tab:set_zoomed(false)
+                panes[2].pane:activate()
+            end
+        end),
+	},
 
 	{ key = "_", mods = "LEADER", action = act.IncreaseFontSize },
 	{ key = "+", mods = "LEADER", action = act.DecreaseFontSize },
@@ -160,22 +182,6 @@ config.keys = {
 	{ key = "F1", mods = "LEADER", action = act.ShowDebugOverlay },
 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
 	{ key = "m", mods = "LEADER", action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
-	-- { key = '!', mods = 'CTRL', action = act.ActivateTab(0) },
-	-- { key = '!', mods = 'SHIFT|CTRL', action = act.ActivateTab(0) },
-	-- { key = '#', mods = 'CTRL', action = act.ActivateTab(2) },
-	-- { key = '#', mods = 'SHIFT|CTRL', action = act.ActivateTab(2) },
-	-- { key = '$', mods = 'CTRL', action = act.ActivateTab(3) },
-	-- { key = '$', mods = 'SHIFT|CTRL', action = act.ActivateTab(3) },
-	-- { key = '%', mods = 'CTRL', action = act.ActivateTab(4) },
-	-- { key = '%', mods = 'SHIFT|CTRL', action = act.ActivateTab(4) },
-	-- { key = '&', mods = 'CTRL', action = act.ActivateTab(6) },
-	-- { key = '&', mods = 'SHIFT|CTRL', action = act.ActivateTab(6) },
-	-- { key = '(', mods = 'CTRL', action = act.ActivateTab(-1) },
-	-- { key = '(', mods = 'SHIFT|CTRL', action = act.ActivateTab(-1) },
-	-- { key = ')', mods = 'CTRL', action = act.ResetFontSize },
-	-- { key = ')', mods = 'SHIFT|CTRL', action = act.ResetFontSize },
-	-- { key = '*', mods = 'CTRL', action = act.ActivateTab(7) },
-	-- { key = '*', mods = 'SHIFT|CTRL', action = act.ActivateTab(7) },
 
 	{ key = "1", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },
 	{ key = "1", mods = "SUPER", action = act.ActivateTab(0) },

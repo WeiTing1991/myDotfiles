@@ -123,6 +123,7 @@ return {
   },
   {
     -- https://github.com/epwalsh/obsidian.nvim
+    enabled = false,
     "epwalsh/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
