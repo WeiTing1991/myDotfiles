@@ -3,10 +3,19 @@ return {
   {
     "weiting1991/rose-pine.nvim",
     lazy = false,
-    proirity = 1000,
+    priority = 1000,
     config = function()
       require "config.rose-pine"
-      vim.cmd.colorscheme("rose-pine")
+      vim.cmd.colorscheme "rose-pine"
+    end,
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      --require "config.catppuccin"
+      -- vim.cmd.colorscheme "catppuccin"
     end,
   },
   -- treesitter
@@ -21,6 +30,11 @@ return {
     config = function()
       require "config.treesitter"
     end,
+  },
+  -- syntax
+  {
+    "charlespascoe/vim-go-syntax",
+    event = "BufEnter",
   },
   -- telescope
   {

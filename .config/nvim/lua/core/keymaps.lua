@@ -10,6 +10,9 @@ function ToggleSpellCheck()
   end
 end
 
+-- cd to current file directory
+vim.keymap.set("n", "<leader>cd", ":cd %:p:h", { desc = "cd current file dir" })
+
 vim.keymap.set("n", "<leader>G", "<cmd>LazyGit<cr>", { desc = "open lazygit" })
 -- markdown preview
 vim.keymap.set("n", "<leader>mk", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown toggle" })
@@ -21,8 +24,8 @@ vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc
 
 --leave the file
 vim.keymap.set("n", "<leader>q", function()
-  vim.cmd ":bw"
-end, { desc = "Close the buffer" })
+  vim.cmd ":q"
+end, { desc = "Close windos" })
 
 vim.keymap.set("n", "<C-s>", function()
   vim.cmd ":w"

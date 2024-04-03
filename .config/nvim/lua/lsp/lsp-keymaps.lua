@@ -17,11 +17,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
     map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
     map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+    map("<leader>k", "<cmd>Lspsaga peek_type_definition", "Type [D]efinition")
+
     map("<C-j>", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
     map("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Buffer singture help")
 
     map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
     map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+
     map("<leader>cr", vim.lsp.buf.rename, "rename")
     map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
     map("<leader>ck", vim.lsp.buf.type_definition, "type defintion")

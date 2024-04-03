@@ -124,8 +124,27 @@ config.keys = {
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
 	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 	{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
-	{ key = "t", mods = "LEADER", action = act.TogglePaneZoomState },
-
+	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState},
+	{
+		key = "t",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(_, pane)
+            local tab = pane:tab()
+            local panes = tab:panes_with_info()
+            if #panes == 1 then
+                pane:split({
+                    direction = "Down",
+                    size = 0.4,
+                })
+            elseif not panes[1].is_zoomed then
+                panes[1].pane:activate()
+                tab:set_zoomed(true)
+            elseif panes[1].is_zoomed then
+                tab:set_zoomed(false)
+                panes[2].pane:activate()
+            end
+        end),
+	},
 	{ key = "_", mods = "LEADER", action = act.IncreaseFontSize },
 	{ key = "+", mods = "LEADER", action = act.DecreaseFontSize },
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
