@@ -159,6 +159,10 @@ return {
       },
     },
   },
+  {
+    "mbbill/undotree",
+    event = "VeryLazy",
+  },
   -- notest
   -- ministarter
   -- gen.nvim

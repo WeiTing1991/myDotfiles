@@ -14,6 +14,8 @@ end
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h", { desc = "cd current file dir" })
 
 vim.keymap.set("n", "<leader>G", "<cmd>LazyGit<cr>", { desc = "open lazygit" })
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
+
 -- markdown preview
 vim.keymap.set("n", "<leader>mk", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown toggle" })
 vim.keymap.set("n", "<leader>mkp", "<cmd>MarkdownPreview<cr>", { desc = "markdown preview" })
@@ -24,12 +26,14 @@ vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc
 
 --leave the file
 vim.keymap.set("n", "<leader>q", function()
-  vim.cmd ":q"
-end, { desc = "Close windos" })
+  vim.cmd ":bw"
+end, { desc = "Close windows" })
 
 vim.keymap.set("n", "<C-s>", function()
   vim.cmd ":w"
 end, { desc = "Save file" })
+
+vim.keymap.set("n", "<C-a>", "ggVG" , { desc = "select all" })
 
 -- Parser info
 vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })

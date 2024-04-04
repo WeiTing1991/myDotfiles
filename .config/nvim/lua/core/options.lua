@@ -69,7 +69,7 @@ local options = {
   colorcolumn = "120",
   textwidth = 100,
   -- Minimal number of screen lines to keep above and below the cursor.
-  scrolloff = 999,
+  scrolloff = 40,
   sidescrolloff = 1,
   conceallevel = 2,
 
@@ -110,5 +110,5 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
---isfname = append("@-@"),
--- iskeyword:append("-"),
+vim.opt.isfname:append("@-@")
+vim.opt.iskeyword:append("-")

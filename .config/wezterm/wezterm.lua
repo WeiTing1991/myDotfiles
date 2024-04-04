@@ -39,7 +39,7 @@ config.window_decorations = "RESIZE"
 
 config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
-config.tab_bar_at_bottom = false
+config.tab_bar_at_bottom = true
 
 -- keys
 -- disable default keybindings
