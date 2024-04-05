@@ -1,6 +1,15 @@
+-- NOTE: https://github.com/pwntester/nvim-lsp/tree/master?tab=readme-ov-file#bashls
 local M = {}
 
 M = {
+  bashls = {},
+  cmake = {
+    settings = {
+      cmake = {
+        filetypes = { "CMakeLists", "cmake" },
+      },
+    },
+  },
   gopls = {
     settings = {
       gopls = {

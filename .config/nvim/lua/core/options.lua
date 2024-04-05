@@ -71,7 +71,7 @@ local options = {
   -- Minimal number of screen lines to keep above and below the cursor.
   scrolloff = 40,
   sidescrolloff = 1,
-  conceallevel = 2,
+  conceallevel = 0,
 
   -- search
   -- enable incremental searching
