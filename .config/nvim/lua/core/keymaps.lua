@@ -107,5 +107,5 @@ vim.keymap.set(
 )
 
 -- Leave insert mode by pressing leader followed by backspace
-vim.keymap.set("i", "jk", "<Esc>")
-vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "<Backspace>", "<Esc>")
+--vim.keymap.set("i", "kj", "<Esc>")
