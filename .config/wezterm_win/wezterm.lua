@@ -21,7 +21,7 @@ table.insert(launch_menu, {
 -- https://wezfurlong.org/wezterm/tags.html
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "Roboto Mono", weight = "Regular", italic = false },
+	{ family = "RobotoMonoNerdFont", weight = "Regular", italic = false },
 	--{ family = "JetBrains Mono", weight = "Bold", italic = false },
 })
 config.launch_menu = launch_menu

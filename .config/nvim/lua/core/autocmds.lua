@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   pattern = 'markdown',
-  command = 'highlight SpellBad cterm=underline ctermbg=red ',
+  command = 'highlight SpellBad cterm=underline ctermbg=red',
 })
 
 -- higjlight the templ

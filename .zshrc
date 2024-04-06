@@ -11,7 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
 	git
-	vi-mode
+	zsh-vi-mode
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	)

@@ -11,7 +11,7 @@ local launch_menu = {}
 --- Set Pwsh as the default on Windows
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "Hack Nerd Font", weight = "Medium", italic = false },
+	{ family = "RobotoMono Nerd Font", weight = "Medium", italic = false },
 	--{ family = "JetBrains Mono", weight = "Regular", italic = false },
 })
 config.launch_menu = launch_menu

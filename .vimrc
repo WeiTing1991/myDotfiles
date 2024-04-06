@@ -33,7 +33,8 @@ set splitright
 set splitbelow
 
 " Display settings
-set list
+" set list
+" set listchars tab="··" trail="·" extends="»"precedes="«"
 set signcolumn=yes
 set cursorline
 
@@ -65,7 +66,7 @@ set encoding=UTF-8
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
 " set foldlevel=99
-let mapleader = " " 
+let mapleader = " "
 
 " keyboard settings
 " Clear highlights
