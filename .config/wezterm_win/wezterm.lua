@@ -21,14 +21,14 @@ table.insert(launch_menu, {
 -- https://wezfurlong.org/wezterm/tags.html
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "RobotoMonoNerdFont", weight = "Regular", italic = false },
+	{ family = "RobotoMono Nerd Font", weight = "Regular", italic = false },
 	--{ family = "JetBrains Mono", weight = "Bold", italic = false },
 })
 config.launch_menu = launch_menu
 config.color_scheme = "carbonfox"
 config.font_size = 10.0
 --config.adjust_window_size_when_changing_font_size = true
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.85
 config.macos_window_background_blur = 20
 config.window_close_confirmation = "AlwaysPrompt"
 -- windows
@@ -92,7 +92,7 @@ wezterm.on("update-status", function(window, pane)
 	local cmd = pane:get_foreground_process_name()
 	cmd = cmd and basename(cmd) or ""
 
-	window:active_tab():set_title(cwd)
+	window:active_tab():set_title(cwd.file_path)
 	-- Time
 	local time = wezterm.strftime("%D:%H:%M")
 

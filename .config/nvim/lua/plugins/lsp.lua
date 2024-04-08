@@ -78,6 +78,9 @@ return {
   -- formater and linter
   {
     "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     event = "VeryLazy",
     config = function()
       require("lsp.none-ls")

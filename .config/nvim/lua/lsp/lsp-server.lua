@@ -72,6 +72,8 @@ M = {
       },
     },
   },
+  pyright = {},
+
   -- jdtls = {},
   -- lua
   lua_ls = {

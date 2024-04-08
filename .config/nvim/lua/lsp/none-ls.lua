@@ -34,5 +34,16 @@ require("null-ls").setup {
     formatting.clang_format.with {
       args = { "--style=file:" .. vim.fn.stdpath "config" .. "/.clang-format" },
     },
+
+    -- python
+    require("none-ls.diagnostics.flake8").with{
+      filetypes = { "python" },
+    },
+    formatting.isort.with {
+      filetypes = { "python" },
+    },
+    formatting.black.with {
+      filetypes = { "python" },
+    },
   },
 }
