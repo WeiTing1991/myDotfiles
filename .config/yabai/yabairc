@@ -1,4 +1,4 @@
-# bsp stack or float
+# bsp, stack or float
 yabai -m config layout bsp
 
 # new window spawns to the right if vertical split, or bottom if horizontal split
@@ -39,3 +39,5 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Obsidian$" manage=off
 yabai -m rule --add app="^Discord$" manage=off
 yabai -m rule --add app="^Slack$" manage=off
+yabai -m rule --add app="^Pages$" manage=off
+yabai -m rule --add app="^Word$" manage=off

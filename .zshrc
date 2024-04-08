@@ -46,6 +46,7 @@ eval
 alias python='/opt/homebrew/bin/python3'
 
 alias nv='nvim'
+
 alias ob='cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 

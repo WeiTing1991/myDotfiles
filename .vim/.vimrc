@@ -128,6 +128,5 @@ nnoremap <leader>Y "+Y
 nnoremap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Leave insert mode by pressing leader followed by backspace
-inoremap jk <Esc>
-inoremap kj <Esc>
+inoremap qq <Esc>
 
