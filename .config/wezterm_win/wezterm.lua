@@ -29,7 +29,7 @@ config.color_scheme = "carbonfox"
 config.font_size = 10.0
 --config.adjust_window_size_when_changing_font_size = true
 config.window_background_opacity = 0.85
-config.macos_window_background_blur = 20
+config.macos_window_background_blur = 0
 config.window_close_confirmation = "AlwaysPrompt"
 -- windows
 -- window
@@ -87,12 +87,12 @@ wezterm.on("update-status", function(window, pane)
 	else
 		cwd = ""
 	end
+	window:active_tab():set_title(cwd)
 
 	-- Current command
 	local cmd = pane:get_foreground_process_name()
 	cmd = cmd and basename(cmd) or ""
 
-	window:active_tab():set_title(cwd.file_path)
 	-- Time
 	local time = wezterm.strftime("%D:%H:%M")
 
