@@ -1,15 +1,15 @@
 local M = {}
 
 M = {
-  lua = { 'selene' },
+  lua = { "selene" },
   -- NOTE: https://golangci-lint.run/
   --
   --go = { 'golangcilint' },
+  python = { "ruff", "flake8" },
 
   -- markdown = { 'vale' },
 
   --java = { "checkstyle" },
-  --python = {},
   --javascript = {},
 }
 

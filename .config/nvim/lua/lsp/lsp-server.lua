@@ -3,6 +3,7 @@ local M = {}
 
 M = {
   bashls = {},
+  jsonls = {},
   cmake = {
     settings = {
       cmake = {

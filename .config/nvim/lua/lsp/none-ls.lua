@@ -32,18 +32,23 @@ require("null-ls").setup {
 
     -- c/c++
     formatting.clang_format.with {
+      filetypes = { "c", "cpp", "objc", "objcpp"},
       args = { "--style=file:" .. vim.fn.stdpath "config" .. "/.clang-format" },
     },
 
     -- python
-    require("none-ls.diagnostics.flake8").with{
+    require("none-ls.diagnostics.ruff").with{
       filetypes = { "python" },
     },
+    -- require("none-ls.diagnostics.flake8").with{
+    --   filetypes = { "python" },
+    -- },
     formatting.isort.with {
       filetypes = { "python" },
     },
     formatting.black.with {
       filetypes = { "python" },
+      extra_arges = {"--fast"},
     },
   },
 }
