@@ -12,6 +12,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    enabled = false,
     priority = 1000,
     config = function()
       --require "config.catppuccin"
@@ -58,6 +59,7 @@ return {
   -- tree
   {
     "nvim-tree/nvim-tree.lua",
+    event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require "config.nvim-tree"
@@ -98,6 +100,7 @@ return {
   },
   {
     "karb94/neoscroll.nvim",
+    event = "BufEnter",
     enabled = false,
     config = function()
       require("neoscroll").setup()
@@ -124,8 +127,8 @@ return {
   },
   {
     -- https://github.com/epwalsh/obsidian.nvim
-    enabled = false,
     "epwalsh/obsidian.nvim",
+    enabled = false,
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
@@ -145,6 +148,7 @@ return {
   },
   {
     "romgrk/barbar.nvim",
+    event = "VimEnter",
     init = function()
       vim.g.barbar_auto_setup = false
     end,
@@ -164,6 +168,7 @@ return {
     "mbbill/undotree",
     event = "VeryLazy",
   },
+
   -- notest
   -- ministarter
   -- gen.nvim

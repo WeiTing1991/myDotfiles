@@ -81,7 +81,7 @@ return {
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
     },
-    event = "VeryLazy",
+    event = "BufEnter",
     config = function()
       require("lsp.none-ls")
     end,
@@ -90,6 +90,7 @@ return {
   -- Java
   {
     "mfussenegger/nvim-jdtls",
+    ft = "java",
     config = function()
       vim.cmd([[
                 augroup jdtls_lsp
