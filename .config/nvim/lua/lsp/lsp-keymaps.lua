@@ -15,8 +15,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
     end
     map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-    map("<leader>k", "<cmd>Lspsaga peek_type_definition<CR>", "Type [D]efinition")
-    map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+    map("gd", "<cmd>Lspsaga peek_type_definition<CR>", "Type [D]efinition")
+    map("<leader>gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
     map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
     map("<C-j>", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
@@ -40,17 +40,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --map("gdc", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client.server_capabilities.documentHighlightProvider then
-      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-        buffer = event.buf,
-        callback = vim.lsp.buf.document_highlight,
-      })
+    if client.supports_method "textDocument/documentHighlight" then
+      if client and client.server_capabilities.documentHighlightProvider then
+        vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+          buffer = event.buf,
+          callback = vim.lsp.buf.document_highlight,
+        })
 
-      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-        buffer = event.buf,
-        callback = vim.lsp.buf.clear_references,
-      })
+        vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+          buffer = event.buf,
+          callback = vim.lsp.buf.clear_references,
+        })
+      end
     end
   end,
 })
-

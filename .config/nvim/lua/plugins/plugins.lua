@@ -36,6 +36,7 @@ return {
   {
     "charlespascoe/vim-go-syntax",
     event = "BufEnter",
+    ft = { "go" },
   },
   -- telescope
   {

@@ -6,6 +6,10 @@ treesitter.setup {
   --check the https://github.com/nvim-treesitter/nvim-treesitter
   ensure_installed = {
     "go",
+    "gomod",
+    "gowork",
+    "gosum",
+
     "bash",
     "cpp",
     "c",
@@ -24,6 +28,7 @@ treesitter.setup {
     "cmake",
     "make",
     "dockerfile",
+
     "gitignore",
     "xml",
     "html",

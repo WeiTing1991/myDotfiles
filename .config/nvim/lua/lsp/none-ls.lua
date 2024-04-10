@@ -20,6 +20,7 @@ require("null-ls").setup {
 
     --go
     formatting.gofumpt,
+    formatting.goimports,
 
     --
     --prettierd

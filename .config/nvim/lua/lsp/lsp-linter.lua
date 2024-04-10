@@ -1,16 +1,22 @@
 local M = {}
 
 M = {
-  lua = { "selene" },
-  -- NOTE: https://golangci-lint.run/
-  --
-  --go = { 'golangcilint' },
-  python = { "ruff", "flake8" },
+  --lua
+  "selene",
 
-  -- markdown = { 'vale' },
+  -- go
+  -- https://golangci-lint.run/
+  --'golangcilint',
 
-  --java = { "checkstyle" },
-  --javascript = {},
+  --bash
+  "shellcheck",
+
+  --cmake
+  "cmakelint",
+
+  -- python
+  "ruff",
+  "flake8",
 }
 
 return M

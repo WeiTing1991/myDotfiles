@@ -53,6 +53,12 @@ vim.keymap.set('i', '()', '()<left>', { desc = '' })
 vim.keymap.set('i', '{}', '{}<left>', { desc = '' })
 vim.keymap.set('i', '[]', '[]<left>', { desc = '' })
 
+-- move between neovim buffers
+vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "move left" })
+vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "move right" })
+vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "move up" })
+vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "move down" })
+
 -- split the windows
 --vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "split window vertically" })
 --vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "split window horizontally" })

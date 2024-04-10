@@ -13,10 +13,13 @@ M = {
   },
   gopls = {
     settings = {
+      --check http://www.lazyvim.org/extras/lang/go
       gopls = {
         completeUnimported = true,
         usePlaceholders = true,
         gofumpt = true,
+        staticcheck = true,
+        semanticTokens = false,
         analyses = {
           unusedparams = true,
           -- shadow = true,
@@ -30,11 +33,6 @@ M = {
     },
   },
   templ = {
-    settings = {
-      htmx = {
-        filetypes = { "html", "templ" },
-      },
-    },
   },
   htmx = {
     settings = {
@@ -53,7 +51,7 @@ M = {
   tailwindcss = {
     settings = {
       tailwindcss = {
-        filetypes = {},
+        filetypes = { "html", "templ" },
         init_options = {
           userLanguages = {
             templ = "html",

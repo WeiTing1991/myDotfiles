@@ -25,14 +25,16 @@ require("lualine").setup {
           local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
           local clients = vim.lsp.get_active_clients()
           local clients_name = {}
-          if next(clients) == nil then
-            return msg
-          end
+
           for _, client in ipairs(clients) do
-            table.insert(clients_name, client.name)
+            if vim.tbl_contains(client.config.filetypes, buf_ft) then
+              table.insert(clients_name, client.name)
             end
+          end
           if #clients_name > 0 then
             msg = table.concat(clients_name, ", ")
+          else
+            return msg
           end
           return msg
         end,

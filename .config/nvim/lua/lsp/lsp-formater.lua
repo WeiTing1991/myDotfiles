@@ -1,16 +1,27 @@
 local M = {}
 
 M = {
-  lua = { "stylua" },
-  markdown = { "prettierd" },
-  go = { "gofumpt", "goimports", "golines" },
-  java = { "google-java-format" },
-  templ = { "templ" },
-  cpp = { "clang-format" },
-  python = { "isort", "black" },
-  --html = { 'prettierd' },
-  --htmx = { 'prettierd' },
-  -- javascript = { { "prettierd", "prettier" } },
+  "stylua",
+
+  "prettierd",
+  "prettier",
+
+  -- go
+  "gofumpt",
+  "goimports",
+  "golines",
+
+  --java
+  "google-java-format",
+
+  --python
+  "isort",
+  "black",
+
+  "templ",
+  --c/c++
+  "clang-format"
+
 }
 
 return M

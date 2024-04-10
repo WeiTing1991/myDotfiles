@@ -31,6 +31,7 @@ local linter = vim.tbl_values(require "lsp.lsp-linter")
 local dap_server = vim.tbl_values(require "lsp.dap-server")
 
 local ensure_installed = {}
+
 for _, value in ipairs(formatter) do
   table.insert(ensure_installed, value)
 end
@@ -60,7 +61,17 @@ require("mason-lspconfig").setup {
         -- certain features of an LSP (for example, turning off formatting for tsserver)
         server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
         require("lspconfig")[server_name].setup(server)
+
+        -- if server_name == 'gopls' and not server.server_capabilities.semanticTokensProvider then
+        --   local semantic = server.config.capabilities.textDocument.semanticTokens
+        --   server.server_capabilities.semanticTokensProvider = {
+        --     full = true,
+        --     legend = {tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes},
+        --     range = true,
+        --   }
+        -- end
       end
+
     end,
   },
 }
