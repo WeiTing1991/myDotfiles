@@ -187,8 +187,8 @@ return {
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons", "chrisgrieser/nvim-dr-lsp" },
+    event = { "BufFilePre", "BufFilePost", "BufWrite", "BufWritePost", "BufEnter" },
     config = function()
       require "config.lualine"
     end,

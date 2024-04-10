@@ -1,4 +1,25 @@
 --	local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+
+local function showLsp()
+  local msg = "NoActiveLsp"
+  local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+  local clients = vim.lsp.get_active_clients()
+
+  if next(clients) == nil or buf_ft == "java" then
+    return msg
+  end
+
+  for _, client in ipairs(clients) do
+    local filetypes = client.config.filetypes
+    if vim.tbl_contains(filetypes, buf_ft) then
+      if client.name ~= nil and client.name ~= "null-ls" then
+        msg = client.name
+      end
+    end
+  end
+  return msg
+end
+
 require("lualine").setup {
   options = {
     theme = "codedark",
@@ -20,24 +41,10 @@ require("lualine").setup {
     lualine_x = {},
     lualine_y = {
       {
-        function()
-          local msg = "NoActiveLsp"
-          local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-          local clients = vim.lsp.get_active_clients()
-          local clients_name = {}
-
-          for _, client in ipairs(clients) do
-            if vim.tbl_contains(client.config.filetypes, buf_ft) then
-              table.insert(clients_name, client.name)
-            end
-          end
-          if #clients_name > 0 then
-            msg = table.concat(clients_name, ", ")
-          else
-            return msg
-          end
-          return msg
-        end,
+        -- lsp attaced
+        showLsp,
+        icon = " LSP:",
+        color = { fg = "#ffffff", gui = "bold" },
       },
       "progress",
     },

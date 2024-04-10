@@ -75,7 +75,7 @@ return {
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
     },
-    event = { "BufWritePost", "BufReadPost", "InsertLeave" },
+    event = "BufEnter",
     config = function()
       require "lsp.none-ls"
     end,
@@ -84,7 +84,7 @@ return {
   -- Java
   {
     "mfussenegger/nvim-jdtls",
-    ft = "java",
+    event = "BufEnter",
     config = function()
       vim.cmd [[
                 augroup jdtls_lsp
