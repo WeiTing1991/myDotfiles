@@ -29,7 +29,7 @@ vim.keymap.set("n", "<leader>q", function()
   vim.cmd ":bw"
 end, { desc = "Close windows" })
 
-vim.keymap.set("n", "<C-s>", function()
+vim.keymap.set({"n", "i",},"<C-s>", function()
   vim.cmd ":w"
 end, { desc = "Save file" })
 

@@ -12,8 +12,8 @@ local function showLsp()
   for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes
     if vim.tbl_contains(filetypes, buf_ft) then
-      if client.name ~= nil and client.name ~= "null-ls" then
-        msg = client.name
+      if filetypes and client.name ~= nil and client.name ~= "null-ls" then
+        return client.name
       end
     end
   end
