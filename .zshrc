@@ -35,6 +35,7 @@ export PATH=/opt/homebrew/bin:\
 /bin:\
 /usr/sbin:\
 /sbin:\
+/opt/homebrew/sbin:\
 /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:\
 /var/run/com.apple.security.c
 
@@ -46,7 +47,7 @@ eval
 alias python='/opt/homebrew/bin/python3'
 
 alias nv='nvim'
-
+alias rundocker='open --background -a Docker'
 alias ob='cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 

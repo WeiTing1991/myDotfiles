@@ -58,7 +58,7 @@ local options = {
   compatible = false,
   -- Sets how neovim will display certain whitespace in the editor.
   --  See `:help 'list'`
-  listchars = { tab = "··", trail = "·", extends="»",precedes="«"},
+  listchars = { tab = "· ", trail = "·", extends="»",precedes="«"},
   list = true,
 
   -- Preview substitutions live, as you type!

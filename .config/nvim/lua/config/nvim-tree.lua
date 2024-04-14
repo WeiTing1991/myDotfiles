@@ -22,7 +22,7 @@ nvimtree.setup({
       open_win_config = function()
         local screen_w = vim.opt.columns:get()
         local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-        local window_w = screen_w * 0.5
+        local window_w = screen_w * 0.4
         local window_h = screen_h * 0.9
         local window_w_int = math.floor(window_w)
         local window_h_int = math.floor(window_h)
@@ -74,6 +74,6 @@ nvimtree.setup({
 -- keymapping
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
+vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
+vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 --keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
---keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
---keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })

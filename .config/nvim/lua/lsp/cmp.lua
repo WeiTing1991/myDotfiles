@@ -54,7 +54,7 @@ cmp.setup {
     ghost_text = false, -- this feature conflict with copilot.vim's preview.
   },
   sources = cmp.config.sources {
-    { name = "nvim_lsp", priority = 10, max_item_count = 8 },
+    { name = "nvim_lsp", priority = 10, max_item_count = 10 },
     { name = "nvim_lua", priority = 10, ft = "lua" },
 
     -- java
@@ -66,7 +66,6 @@ cmp.setup {
     { name = "buffer", priority = 8, keyword_length = 2, max_item_count = 4 },
   },
   formatting = {
-    format = require("tailwindcss-colorizer-cmp").formatter,
+    format = lspkind.cmp_format { with_text = true, maxwidth = 50 },
   },
 }
-

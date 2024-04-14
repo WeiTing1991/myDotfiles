@@ -265,8 +265,9 @@ config.key_tables = {
 		{ key = "y", mods = "NONE", action = act.CopyTo("Clipboard") },
 		{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 		{ key = "p", mods = "NONE", action = act.PasteFrom("Clipboard") },
-		{ key = "V", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Line" }) },
-		{ key = "V", mods = "SHIFT", action = act.CopyMode({ SetSelectionMode = "Line" }) },
+		{ key = "v", mods = "CTRL", action = act.CopyMode({ SetSelectionMode = "Block" }) },
+		{ key = "v", mods = "SHIFT", action = act.CopyMode({ SetSelectionMode = "Line" }) },
+		{ key = "v", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
 
 		{ key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
 		{ key = "f", mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
@@ -314,8 +315,6 @@ config.key_tables = {
 		-- { key = "q", mods = "NONE", action = act.CopyMode("Close") },
 		-- { key = "t", mods = "NONE", action = act.CopyMode({ JumpForward = { prev_char = true } }) },
 		-- { key = "u", mods = "CTRL", action = act.CopyMode({ MoveByPage = -0.5 }) },
-		-- { key = "v", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
-		-- { key = "v", mods = "CTRL", action = act.CopyMode({ SetSelectionMode = "Block" }) },
 		-- { key = "w", mods = "NONE", action = act.CopyMode("MoveForwardWord") },
 		-- {
 		-- 	key = "y",

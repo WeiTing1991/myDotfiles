@@ -3,7 +3,12 @@ local M = {}
 
 M = {
   bashls = {},
+
+  docker_compose_language_service = {},
+  dockerls = {},
+
   jsonls = {},
+
   cmake = {
     settings = {
       cmake = {
@@ -32,8 +37,7 @@ M = {
       debounce_text_changes = 150,
     },
   },
-  templ = {
-  },
+  templ = {},
   htmx = {
     settings = {
       htmx = {

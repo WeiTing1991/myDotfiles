@@ -11,7 +11,9 @@ function ToggleSpellCheck()
 end
 
 -- cd to current file directory
-vim.keymap.set("n", "<leader>cd", ":cd %:p:h", { desc = "cd current file dir" })
+vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
+vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmd line" })
+
 
 vim.keymap.set("n", "<leader>G", "<cmd>LazyGit<cr>", { desc = "open lazygit" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })

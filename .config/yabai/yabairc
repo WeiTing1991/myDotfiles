@@ -43,3 +43,6 @@ yabai -m rule --add app="^Pages$" manage=off
 yabai -m rule --add app="^Preview$" manage=off
 yabai -m rule --add app="^Mail$" manage=off
 yabai -m rule --add app="^Microsoft Word$" manage=off
+yabai -m rule --add app="^Docker Desktop$" manage=off
+yabai -m rule --add app="^Notes$" manage=off
+yabai -m rule --add app="^Textedit$" manage=off
