@@ -122,12 +122,12 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "<space>fo",
-  ":Telescope file_browser path=" .. vim.fn.expand ("~/.local/share/nvim/lazy/rose-pine.nvim") .. "<CR>",
+  ":Telescope file_browser path=" .. vim.fn.expand "~/.local/share/nvim/lazy/rose-pine.nvim" .. "<CR>",
   { desc = "open the colorscheme config" }
 )
 
 --fzf keybinding
-vim.keymap.set("n", "<leader>ky", builtin.keymaps, { desc = " Keymaps" })
+vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = " Search Keymaps" })
 vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find Git Files" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help Teles" })

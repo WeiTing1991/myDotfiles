@@ -14,7 +14,10 @@ require("null-ls").setup {
   sources = {
     -- lua
     -- formating
-    formatting.stylua,
+    formatting.stylua.with {
+      args = { "--style=file:" .. vim.fn.stdpath "config" .. "/.stylua.toml " },
+    },
+
     -- linting
     -- diagnostics.selene,
 
@@ -25,7 +28,7 @@ require("null-ls").setup {
     --
     --prettierd
     formatting.prettierd.with {
-      filetypes = { "html", "htmx", "templ" ,"json" },
+      filetypes = { "html", "htmx", "templ", "json" },
     },
     -- java
     -- formating
@@ -33,12 +36,12 @@ require("null-ls").setup {
 
     -- c/c++
     formatting.clang_format.with {
-      filetypes = { "c", "cpp", "objc", "objcpp"},
+      filetypes = { "c", "cpp", "objc", "objcpp" },
       args = { "--style=file:" .. vim.fn.stdpath "config" .. "/.clang-format" },
     },
 
     -- python
-    require("none-ls.diagnostics.ruff").with{
+    require("none-ls.diagnostics.ruff").with {
       filetypes = { "python" },
     },
     -- require("none-ls.diagnostics.flake8").with{
@@ -49,7 +52,7 @@ require("null-ls").setup {
     },
     formatting.black.with {
       filetypes = { "python" },
-      extra_arges = {"--fast"},
+      extra_arges = { "--fast" },
     },
   },
 }

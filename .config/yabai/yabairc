@@ -46,3 +46,4 @@ yabai -m rule --add app="^Microsoft Word$" manage=off
 yabai -m rule --add app="^Docker Desktop$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^Textedit$" manage=off
+yabai -m rule --add app="^Illustrator$" manage=off

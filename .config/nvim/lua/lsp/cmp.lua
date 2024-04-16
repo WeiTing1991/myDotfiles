@@ -8,7 +8,7 @@ luasnip_loaders.lazy_load()
 
 cmp.setup {
   performance = {
-    max_view_entries = 40,
+    max_view_entries = 100,
     -- debounce = 250,
     -- throttle = 2000,
     -- fetching_timeoul = 1400,
@@ -31,11 +31,12 @@ cmp.setup {
     },
   },
   --Please read `:help ins-completion`, it is really good!
+
   mapping = cmp.mapping.preset.insert {
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item({behavior = cmp.ConfirmBehavior.Insert, select = true}),
+    ["<C-n>"] = cmp.mapping.select_next_item({behavior = cmp.ConfirmBehavior.Insert, select = true}),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<C-space>"] = cmp.mapping.complete(),
+    ["<C-space>"] = cmp.mapping.complete();
     ["<C-k>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
 
     -- ["<C-l>"] = cmp.mapping(function()
@@ -55,12 +56,12 @@ cmp.setup {
   },
   sources = cmp.config.sources {
     { name = "nvim_lsp", priority = 10, max_item_count = 10 },
-    { name = "nvim_lua", priority = 10, ft = "lua" },
+    { name = "luasnip", priority = 6, max_item_count = 5 }, -- For luasnip users.
 
+    { name = "nvim_lua", priority = 10, ft = "lua" },
     -- java
     { name = "nvim-jdtls", priority = 10, ft = "java", max_item_count = 8 },
 
-    { name = "luasnip", priority = 6, max_item_count = 5 }, -- For luasnip users.
     { name = "nvim_lsp_signature_help", priority = 6, max_item_count = 5 },
     { name = "path", priority = 4 },
     { name = "buffer", priority = 8, keyword_length = 2, max_item_count = 4 },

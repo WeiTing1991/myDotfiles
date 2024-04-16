@@ -125,5 +125,5 @@ vim.keymap.set(
 )
 
 -- Leave insert mode by pressing leader followed by backspace
-vim.keymap.set("i", "qq", "<Esc>")
+vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<Tab>", "<Nop>")

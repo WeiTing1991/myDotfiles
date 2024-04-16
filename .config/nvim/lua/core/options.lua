@@ -19,7 +19,7 @@ else
 end
 
 local options = {
-  -- See :help
+  -- See :h
   number = true,
   relativenumber = true,
   ma = true,
@@ -58,18 +58,18 @@ local options = {
   compatible = false,
   -- Sets how neovim will display certain whitespace in the editor.
   --  See `:help 'list'`
-  listchars = { tab = "· ", trail = "·", extends="»",precedes="«"},
   list = true,
+  listchars = { tab = "· ", trail = "·", extends = "»", precedes = "«" },
 
   -- Preview substitutions live, as you type!
   --inccommand = "split"
   signcolumn = "yes",
   -- Show which line your cursor is on
-  cursorline = true,
+  cursorline = false,
   colorcolumn = "120",
   textwidth = 120,
   -- Minimal number of screen lines to keep above and below the cursor.
-  scrolloff = 40,
+  scrolloff = 20,
   sidescrolloff = 1,
   conceallevel = 0,
 
@@ -110,5 +110,5 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.opt.isfname:append("@-@")
-vim.opt.iskeyword:append("-")
+vim.opt.isfname:append "@-@"
+vim.opt.iskeyword:append "-"

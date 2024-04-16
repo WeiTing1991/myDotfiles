@@ -126,9 +126,38 @@ config.keys = {
 	-- copy mode
 	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
 	{ key = "b", mods = "LEADER|CTRL", action = act.SendKey({ key = "b", mods = "CTRL" }) },
+
+	-- workspace
+	{
+		key = "w",
+		mods = "LEADER",
+		action = act.PromptInputLine({
+			description = wezterm.format({
+				{ Attribute = { Intensity = "Bold" } },
+				{ Foreground = { AnsiColor = "Fuchsia" } },
+				{ Text = "Enter name for new workspace" },
+			}),
+			action = wezterm.action_callback(function(window, pane, line)
+				-- line will be `nil` if they hit escape without entering anything
+				-- An empty string if they just hit enter
+				-- Or the actual line of text they wrote
+				if line then
+					window:perform_action(
+						act.SwitchToWorkspace({
+							name = line,
+						}),
+						pane
+					)
+				end
+			end),
+		}),
+	},
+	{ key = "n", mods = "LEADER", action = act.SwitchWorkspaceRelative(1) },
+	{ key = "p", mods = "LEADER", action = act.SwitchWorkspaceRelative(-1) },
+
 	-- windows
 	{ key = "'", mods = "LEADER", action = act.SplitVertical({ domain = "DefaultDomain" }) },
-    { key = "5", mods = "LEADER", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
+	{ key = "5", mods = "LEADER", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
 	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
