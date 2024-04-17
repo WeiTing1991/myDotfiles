@@ -111,8 +111,10 @@ M = {
   },
   ltex = {
     settings = {
-      filetypes = { "markdown" },
-      language = "en",
+      ltex = {
+        filetypes = { "markdown" },
+        language = "en",
+      }
     },
   },
 }
