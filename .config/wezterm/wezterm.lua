@@ -11,15 +11,16 @@ local launch_menu = {}
 --- Set Pwsh as the default on Windows
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "RobotoMono Nerd Font", weight = "Medium", italic = false },
-	--{ family = "JetBrains Mono", weight = "Regular", italic = false },
+	{ family = "RobotoMono Nerd Font", weight = "Regular", italic = false },
+	-- { family = "Hack Nerd Font", weight = "Regular", italic = false },
+	-- { family = "JetBrains Mono", weight = "Regular", italic = false },
 })
 config.launch_menu = launch_menu
 config.color_scheme = "carbonfox"
 config.font_size = 14.0
 --config.adjust_window_size_when_changing_font_size = true
-config.window_background_opacity = 0.75
-config.macos_window_background_blur = 50
+config.window_background_opacity = 0.85
+config.macos_window_background_blur = 40
 config.window_close_confirmation = "AlwaysPrompt"
 -- windows
 -- window

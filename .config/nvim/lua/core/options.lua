@@ -66,7 +66,7 @@ local options = {
   signcolumn = "yes",
   -- Show which line your cursor is on
   cursorline = false,
-  colorcolumn = "120",
+  colorcolumn = "160",
   textwidth = 120,
   -- Minimal number of screen lines to keep above and below the cursor.
   scrolloff = 20,

@@ -37,7 +37,9 @@ M = {
       debounce_text_changes = 150,
     },
   },
+  tsserver = {},
   templ = {},
+  cssls = {},
   htmx = {
     settings = {
       htmx = {
