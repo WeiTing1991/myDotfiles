@@ -99,14 +99,6 @@ return {
       -- ref: https://github.com/danymat/neogen?tab=readme-ov-file#configuration
     end,
   },
-  {
-    "karb94/neoscroll.nvim",
-    event = "BufEnter",
-    enabled = false,
-    config = function()
-      require("neoscroll").setup()
-    end,
-  },
   -- Copilot
   {
     "zbirenbaum/copilot.lua",
@@ -169,7 +161,12 @@ return {
     "mbbill/undotree",
     event = "VeryLazy",
   },
-
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+      require "config.zen-mode"
+    end,
+  },
   -- notest
   -- ministarter
   -- gen.nvim

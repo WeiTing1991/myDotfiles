@@ -1,10 +1,10 @@
 # Welcome my dotfiles
-This repository is my dotfiles(still in progress) for my windows and mac via [stow].
+This repository is my dotfiles (still in progress) for my windows and mac via [stow].
 
 ## Neovim
 
-I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the
-command below. Feel free to use it and let me know if these is any issue. 
+I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can
+clone it and follow the command below. Feel free to use it and let me know if these is any issue.
 
 For Mac user
 ```bash

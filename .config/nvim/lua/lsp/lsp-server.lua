@@ -54,18 +54,8 @@ M = {
       },
     },
   },
-  tailwindcss = {
-    settings = {
-      tailwindcss = {
-        filetypes = { "html", "templ" },
-        init_options = {
-          userLanguages = {
-            templ = "html",
-          },
-        },
-      },
-    },
-  },
+  tailwindcss = {},
+
   clangd = {
     cmd = {
       "clangd",
@@ -103,21 +93,12 @@ M = {
       },
     },
   },
+
   -- spelling
-  marksman = {
-    settings = {
-      marksman = {
-        filetypes = { "markdown" },
-      },
-    },
-  },
+  marksman = {},
   ltex = {
-    settings = {
-      ltex = {
-        filetypes = { "markdown" },
-        language = "en",
-      }
-    },
+    language = "en",
   },
+
 }
 return M

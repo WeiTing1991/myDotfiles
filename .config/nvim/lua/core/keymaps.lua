@@ -12,7 +12,9 @@ end
 
 -- cd to current file directory
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
-vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmd line" })
+vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
+
+vim.keymap.set("n", "<leader>ee", ":Oil<cr>", { desc = "" })
 
 
 vim.keymap.set("n", "<leader>G", "<cmd>LazyGit<cr>", { desc = "open lazygit" })
@@ -31,17 +33,17 @@ vim.keymap.set("n", "<leader>q", function()
   vim.cmd ":bw"
 end, { desc = "Close windows" })
 
-vim.keymap.set({"n", "i",},"<C-s>", function()
+vim.keymap.set({ "n", "i", }, "<C-s>", function()
   vim.cmd ":w"
 end, { desc = "Save file" })
 
-vim.keymap.set("n", "<C-a>", "ggVG" , { desc = "select all" })
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "select all" })
 
 -- Parser info
 vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })
 
 -- clear search highlights
-vim.keymap.set("n", "<leader>zz", ":nohl<CR>", { desc = "Clear highlights" })
+vim.keymap.set("n", "qq", ":nohl<CR>", { desc = "Clear highlights" })
 
 -- open the tree
 --vim.keymap.set("n", "<leader>e", ":25Lex<cr>")

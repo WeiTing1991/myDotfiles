@@ -14,9 +14,7 @@ require("null-ls").setup {
   sources = {
     -- lua
     -- formating
-    formatting.stylua.with {
-      args = { "--style=file:" .. vim.fn.stdpath "config" .. "/.stylua.toml " },
-    },
+    formatting.stylua,
 
     -- linting
     -- diagnostics.selene,

@@ -71,7 +71,6 @@ require("mason-lspconfig").setup {
         --   }
         -- end
       end
-
     end,
   },
 }
@@ -87,4 +86,19 @@ require("mason-lspconfig").setup {
 vim.filetype.add { extension = { templ = "templ" } }
 
 vim.diagnostic.config {
+  virtual_text = {
+
+    source = "if_many",
+    prefix = "● ",
+  },
+  -- update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
 }

@@ -22,7 +22,6 @@ local options = {
   -- See :h
   number = true,
   relativenumber = true,
-  ma = true,
   mouse = "a",
 
   --  See `:help 'clipboard'`
@@ -49,7 +48,7 @@ local options = {
 
   -- Decrease update time
   updatetime = 50,
-  timeoutlen = 400,
+  timeoutlen = 300,
 
   -- Configure how new splits should be opened
   splitright = true,
@@ -66,10 +65,10 @@ local options = {
   signcolumn = "yes",
   -- Show which line your cursor is on
   cursorline = false,
-  colorcolumn = "160",
+  colorcolumn = "125",
   textwidth = 120,
   -- Minimal number of screen lines to keep above and below the cursor.
-  scrolloff = 20,
+  scrolloff = 10,
   sidescrolloff = 1,
   conceallevel = 0,
 
