@@ -97,8 +97,8 @@ M = {
   -- spelling
   marksman = {},
   ltex = {
+    filetypes = { "markdown" },
     language = "en",
   },
-
 }
 return M

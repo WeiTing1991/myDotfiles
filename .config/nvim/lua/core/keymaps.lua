@@ -14,9 +14,15 @@ end
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
 
-vim.keymap.set("n", "<leader>ee", ":Oil<cr>", { desc = "" })
+vim.keymap.set("n", "<leader>e", ":Oil<cr>", { desc = "" })
 
+-- nvim treee keymapping
+vim.keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
+vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
+vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
+vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 
+--keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
 vim.keymap.set("n", "<leader>G", "<cmd>LazyGit<cr>", { desc = "open lazygit" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 

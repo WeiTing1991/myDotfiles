@@ -337,8 +337,8 @@ config.key_tables = {
 		{ key = "0", mods = "NONE", action = act.CopyMode("MoveToStartOfLine") },
 		{ key = "$", mods = "NONE", action = act.CopyMode("MoveToEndOfLineContent") },
 		{ key = "Enter", mods = "NONE", action = act.CopyMode("MoveToStartOfNextLine") },
-		{ key = "d", mods = "CTRL", action = act.CopyMode("PageUp") },
-		{ key = "u", mods = "CTRL", action = act.CopyMode("PageDown") },
+		{ key = "u", mods = "CTRL", action = act.CopyMode("PageUp") },
+		{ key = "d", mods = "CTRL", action = act.CopyMode("PageDown") },
 		--
 		-- { key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
 		-- { key = "Space", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
