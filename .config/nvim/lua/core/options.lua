@@ -1,3 +1,6 @@
+vim.opt.isfname:append "@-@"
+vim.opt.iskeyword:append "-"
+
 local undoDir = ""
 
 if vim.loop.os_uname().sysname == "Darwin" then
@@ -67,6 +70,7 @@ local options = {
   cursorline = false,
   colorcolumn = "125",
   textwidth = 120,
+
   -- Minimal number of screen lines to keep above and below the cursor.
   scrolloff = 10,
   sidescrolloff = 1,
@@ -109,5 +113,4 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.opt.isfname:append "@-@"
-vim.opt.iskeyword:append "-"
+

@@ -36,6 +36,8 @@ config.window_padding = {
 	top = 5,
 	bottom = 5,
 }
+
+config.default_cursor_style = "BlinkingBlock"
 config.window_decorations = "RESIZE"
 
 config.use_fancy_tab_bar = false

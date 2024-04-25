@@ -58,3 +58,7 @@ require("lazy").setup({
     },
   },
 })
+
+-- Set cursor
+vim.opt.guicursor = "n-v-c:block,n-v-c-i:blinkon1,i:block50-Cursor,r-cr-o:hor100-cursor"
+vim.api.nvim_set_hl(0, "cursor", { background = "#eb6f92", foreground = "white"})
