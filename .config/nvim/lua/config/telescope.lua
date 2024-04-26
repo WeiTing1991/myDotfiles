@@ -1,5 +1,6 @@
 local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
+local utils = require "telescope.utils"
 -- :hlep check this https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#remove--from-fd-results
 require("telescope").setup {
   defaults = {
@@ -52,7 +53,7 @@ require("telescope").setup {
     mappings = {
       n = {
         ["<C-p>"] = actions.move_selection_previous, -- move to prev result
-        ["<C-n>"] = actions.move_selection_next, -- move to next result
+        ["<C-n>"] = actions.move_selection_next,     -- move to next result
         ["<C-d>"] = actions.delete_buffer,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["q"] = require("telescope.actions").close,
@@ -77,10 +78,10 @@ require("telescope").setup {
       require("telescope.themes").get_dropdown {},
     },
     fzf = {
-      fuzzy = true, -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
     },
     file_browser = {
       --theme = "ivy",
@@ -103,6 +104,7 @@ pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "file_browser")
 pcall(require("telescope").load_extension, "ui-select")
 
+
 -- keymapping
 vim.keymap.set("n", "<space>fB", ":Telescope file_browser<CR>", { desc = "File browser" })
 vim.keymap.set(
@@ -122,8 +124,15 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "<space>fo",
-  ":Telescope file_browser path=" .. vim.fn.expand "~/.local/share/nvim/lazy/rose-pine.nvim" .. "<CR>",
+  ":Telescope file_browser path=" .. vim.fn.expand("~/.local/share/nvim/lazy/rose-pine.nvim") .. "<CR>",
   { desc = "open the colorscheme config" }
+)
+
+vim.keymap.set(
+  "n",
+  "<space>ff",
+  function() builtin.find_files({ cwd = utils.buffer_dir()}) end,
+  { desc = "file browser in buffer" }
 )
 
 --fzf keybinding
@@ -132,7 +141,7 @@ vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find Git Files" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help Teles" })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Find file in buffer" })
---vim.keymap.set("n", "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>" )
+vim.keymap.set("n", "<leader>ffb", "<cmd>Telescope current_buffer_fuzzy_find sorting_strategy=ascending prompt_position=top<CR>" )
 vim.keymap.set("n", "<leader>fl", builtin.live_grep, { desc = "Find live grep" })
 
 vim.keymap.set("n", "<leader>fs", function()

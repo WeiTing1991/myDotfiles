@@ -50,27 +50,27 @@ config.disable_default_key_bindings = true
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 5000 }
 
 -- zen mode
-wezterm.on('user-var-changed', function(window, pane, name, value)
-    local overrides = window:get_config_overrides() or {}
-    if name == "ZEN_MODE" then
-        local incremental = value:find("+")
-        local number_value = tonumber(value)
-        if incremental ~= nil then
-            while (number_value > 0) do
-                window:perform_action(wezterm.action.IncreaseFontSize, pane)
-                number_value = number_value - 1
-            end
-            overrides.enable_tab_bar = false
-        elseif number_value < 0 then
-            window:perform_action(wezterm.action.ResetFontSize, pane)
-            overrides.font_size = nil
-            overrides.enable_tab_bar = true
-        else
-            overrides.font_size = number_value
-            overrides.enable_tab_bar = false
-        end
-    end
-    window:set_config_overrides(overrides)
+wezterm.on("user-var-changed", function(window, pane, name, value)
+	local overrides = window:get_config_overrides() or {}
+	if name == "ZEN_MODE" then
+		local incremental = value:find("+")
+		local number_value = tonumber(value)
+		if incremental ~= nil then
+			while number_value > 0 do
+				window:perform_action(wezterm.action.IncreaseFontSize, pane)
+				number_value = number_value - 1
+			end
+			overrides.enable_tab_bar = false
+		elseif number_value < 0 then
+			window:perform_action(wezterm.action.ResetFontSize, pane)
+			overrides.font_size = nil
+			overrides.enable_tab_bar = true
+		else
+			overrides.font_size = number_value
+			overrides.enable_tab_bar = false
+		end
+	end
+	window:set_config_overrides(overrides)
 end)
 
 --tab bar
@@ -82,7 +82,7 @@ wezterm.on("update-status", function(window, pane)
 
 	if window:active_key_table() then
 		stat = window:active_key_table()
-		stat_color = '#e0def4'
+		stat_color = "#e0def4"
 	end
 	if window:leader_is_active() then
 		stat = "TERMINAL"
@@ -172,6 +172,12 @@ config.keys = {
 	},
 	{ key = "n", mods = "LEADER", action = act.SwitchWorkspaceRelative(1) },
 	{ key = "p", mods = "LEADER", action = act.SwitchWorkspaceRelative(-1) },
+	-- { key = "l", mods = "LEADER", action = act.SwitchWorkspace},
+	{
+		key = "s",
+		mods = "LEADER",
+		action = act.ShowLauncherArgs({ title = "Workspaces", flags = "FUZZY|WORKSPACES" }),
+	},
 
 	-- windows
 	{ key = "'", mods = "LEADER", action = act.SplitVertical({ domain = "DefaultDomain" }) },

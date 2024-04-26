@@ -25,9 +25,8 @@ require("null-ls").setup {
 
     --
     --prettierd
-    formatting.prettierd.with {
-      filetypes = { "html", "htmx", "templ", "json", "css", "javascript" },
-    },
+    formatting.prettierd,
+
     -- java
     -- formating
     formatting.google_java_format,
