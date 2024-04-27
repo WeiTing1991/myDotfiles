@@ -8,9 +8,9 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 require("null-ls").setup {
   debug = false,
-  on_init = function(new_client, _)
-    new_client.offset_encoding = "utf-16"
-  end,
+  -- on_init = function(new_client, _)
+  --   new_client.offset_encoding = "utf-16"
+  -- end,
   sources = {
     -- lua
     -- formating
