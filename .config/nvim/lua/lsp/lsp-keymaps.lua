@@ -14,8 +14,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local map = function(keys, func, desc)
       vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
     end
-    map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-    map("gd", "<cmd>Lspsaga peek_type_definition<CR>", "Type [D]efinition")
+    map("K", "<cmd>Lspsaga hover_doc", "Hover Documentation")
+    map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type [D]efinition")
     map("<leader>gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
     map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
