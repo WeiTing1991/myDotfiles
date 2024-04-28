@@ -60,6 +60,7 @@ return {
   -- tree
   {
     "nvim-tree/nvim-tree.lua",
+    enabled = false,
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
@@ -118,17 +119,6 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
-  {
-    -- https://github.com/epwalsh/obsidian.nvim
-    "epwalsh/obsidian.nvim",
-    enabled = false,
-    version = "*", -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = "markdown",
-    config = function()
-      require "config.obsidian"
-    end,
-  },
   -- harpoon
   {
     "ThePrimeagen/harpoon",
@@ -167,9 +157,22 @@ return {
       require "config.zen-mode"
     end,
   },
+  {
+    -- https://github.com/epwalsh/obsidian.nvim
+    "epwalsh/obsidian.nvim",
+    enabled = false,
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    config = function()
+      require "config.obsidian"
+    end,
+  },
+
   -- notest
   -- ministarter
   -- gen.nvim
+  --
   --
   -------------------------------------------------------------------------------------------------
   --NOTE: UI

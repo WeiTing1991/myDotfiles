@@ -14,7 +14,8 @@ end
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
 
-vim.keymap.set("n", "<leader>e", ":Oil<cr>", { desc = "" })
+vim.keymap.set("n", "<leader>ej", ":Oil<cr>", { desc = "" })
+vim.keymap.set("n", "<leader>e", function() require("oil").open_float() end,{ desc = "" })
 
 -- nvim treee keymapping
 vim.keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
@@ -52,7 +53,7 @@ vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" 
 vim.keymap.set("n", "qq", ":nohl<CR>", { desc = "Clear highlights" })
 
 -- open the tree
---vim.keymap.set("n", "<leader>e", ":25Lex<cr>")
+vim.keymap.set("n", "<leader>ee", ":25Lex<cr>")
 -- disable the space key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 

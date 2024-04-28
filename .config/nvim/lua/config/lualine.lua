@@ -33,8 +33,8 @@ require("lualine").setup {
   },
   sections = {
     lualine_a = {
-      { "mode", separator = { left = "" }, right_padding = 2 },
-      { "filename", path = 1 },
+      { "mode", right_padding = 2 },
+      { "filename", path = 0 },
     },
     lualine_b = { "branch", "diff" },
     lualine_c = {},
@@ -43,13 +43,9 @@ require("lualine").setup {
       {
         -- lsp attaced
         showLsp,
-        icon = " LSP:",
-        color = { fg = "#ffffff", gui = "bold" },
+        icon = "  LSP:",
+        color = { fg = "#31748f"},
       },
-      "progress",
-    },
-    lualine_z = {
-      { "location", separator = { right = "" }, left_padding = 2 },
       {
         "diagnostics",
         sources = { "nvim_diagnostic", "nvim_lsp" },
@@ -66,6 +62,10 @@ require("lualine").setup {
         update_in_insert = false, -- Update diagnostics in insert mode.
         always_visible = false, -- Show diagnostics even if there are none.
       },
+    },
+    lualine_z = {
+      "progress",
+      { "location", left_padding = 2 },
     },
   },
   inactive_sections = {

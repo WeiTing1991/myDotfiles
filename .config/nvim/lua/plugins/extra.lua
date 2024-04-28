@@ -11,6 +11,7 @@ return {
   {
     "stevearc/oil.nvim",
     opts = {
+      default_file_explorer = false,
       keymaps = {
         ["g?"] = "actions.show_help",
         ["<CR>"] = "actions.select",
@@ -28,6 +29,16 @@ return {
         ["gx"] = "actions.open_external",
         ["g."] = "actions.toggle_hidden",
         ["g\\"] = "actions.toggle_trash",
+      },
+      float = {
+        -- Padding around the floating window
+        padding = 10,
+        max_width = 0,
+        max_height = 0,
+        border = "rounded",
+        win_options = {
+          winblend = 0,
+        },
       },
       view_options = {
         show_hidden = true,

@@ -29,6 +29,8 @@ yabai -m mouse_drop_action swap
 yabai -m active_window_opacity 1.0
 yabai -m normal_window_opacity 0.90
 
+
+
 # disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
@@ -47,3 +49,4 @@ yabai -m rule --add app="^Docker Desktop$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^Textedit$" manage=off
 yabai -m rule --add app="^Illustrator$" manage=off
+
