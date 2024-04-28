@@ -9,7 +9,7 @@ end
 local launch_menu = {}
 -- for windows
 --- Set Pwsh as the default on Windows
-config.default_prog = { "pwsh.exe", "-NoLogo" }
+config.default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoLogo" }
 table.insert(launch_menu, {
 	label = "Bash",
 	args = { "C:/Program Files/Git/bin/bash.exe", "-NoLogo" },
@@ -26,7 +26,7 @@ config.font = wezterm.font_with_fallback({
 })
 config.launch_menu = launch_menu
 config.color_scheme = "carbonfox"
-config.font_size = 10.0
+config.font_size = 9.0
 --config.adjust_window_size_when_changing_font_size = true
 config.window_background_opacity = 0.90
 config.macos_window_background_blur = 50
