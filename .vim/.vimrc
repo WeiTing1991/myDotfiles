@@ -36,7 +36,8 @@ set splitbelow
 " set list
 " set listchars tab="··" trail="·" extends="»"precedes="«"
 set signcolumn=yes
-set cursorline
+" set cursorline
+set guicursor = "n-v-c:block,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
 
 " Scroll settings
 set scrolloff=40
@@ -46,6 +47,7 @@ set conceallevel=0
 " Search settings
 set incsearch
 set nohlsearch
+
 
 " Appearance settings
 set termguicolors
