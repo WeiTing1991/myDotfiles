@@ -9,7 +9,6 @@ treesitter.setup {
     "gomod",
     "gowork",
     "gosum",
-
     "bash",
     "cpp",
     "c",
@@ -28,7 +27,6 @@ treesitter.setup {
     "cmake",
     "make",
     "dockerfile",
-
     "gitignore",
     "xml",
     "html",
@@ -78,9 +76,9 @@ treesitter.setup {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
+        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
         -- You can optionally set descriptions to the mappings (used in the desc parameter of
         -- nvim_buf_set_keymap) which plugins like which-key display
-        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
         -- You can also use captures from other query groups like `locals.scm`
         ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
       },
