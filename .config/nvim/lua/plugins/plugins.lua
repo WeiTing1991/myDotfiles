@@ -60,7 +60,6 @@ return {
   -- tree
   {
     "nvim-tree/nvim-tree.lua",
-    enabled = false,
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()

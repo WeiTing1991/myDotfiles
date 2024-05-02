@@ -30,6 +30,12 @@ yabai -m active_window_opacity 1.0
 yabai -m normal_window_opacity 0.90
 
 
+# disable apps
+yabai -m rule --add app=".*" manage=off
+
+# enable specific apps
+yabai -m rule --add app="^WezTerm$" manage=on
+yabai -m rule --add app="^Google Chrome$" manage=on
 
 # disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off

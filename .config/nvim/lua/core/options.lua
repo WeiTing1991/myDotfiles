@@ -32,6 +32,7 @@ local options = {
 
   -- Enable break indent
   breakindent = false,
+
   -- set tab to 2 spaces
   tabstop = 4,
   softtabstop = 4,

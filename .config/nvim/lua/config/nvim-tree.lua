@@ -13,7 +13,7 @@ nvimtree.setup({
     update_cwd = true,
   },
   view = {
-    width = 30,
+    width = 25,
     relativenumber = true,
     -- float settings
     float = {
@@ -22,8 +22,8 @@ nvimtree.setup({
       open_win_config = function()
         local screen_w = vim.opt.columns:get()
         local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-        local window_w = screen_w * 0.4
-        local window_h = screen_h * 0.9
+        local window_w = screen_w * 0.25
+        local window_h = screen_h * 0.95
         local window_w_int = math.floor(window_w)
         local window_h_int = math.floor(window_h)
         local center_x = 0

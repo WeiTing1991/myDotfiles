@@ -50,10 +50,11 @@ vim.keymap.set("n", "<C-a>", "ggVG", { desc = "select all" })
 vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })
 
 -- clear search highlights
-vim.keymap.set("n", "qq", ":nohl<CR>", { desc = "Clear highlights" })
+vim.keymap.set("n", "zz", ":nohl<CR>", { desc = "Clear highlights" })
 
 -- open the tree
-vim.keymap.set("n", "<leader>ee", ":25Lex<cr>")
+-- vim.keymap.set("n", "<leader>ee", ":25Lex<cr>")
+
 -- disable the space key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -63,6 +64,7 @@ vim.keymap.set('i', "''", "''<left>", { desc = '' })
 vim.keymap.set('i', '()', '()<left>', { desc = '' })
 vim.keymap.set('i', '{}', '{}<left>', { desc = '' })
 vim.keymap.set('i', '[]', '[]<left>', { desc = '' })
+vim.keymap.set('i', '<>', '<><left>', { desc = '' })
 
 -- move between neovim buffers
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "move left" })
