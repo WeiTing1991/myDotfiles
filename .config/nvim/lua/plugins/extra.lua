@@ -47,6 +47,16 @@ return {
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
+
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    opts = {
+      open_mapping = [[<leader>/]]
+    },
+    config = true,
+  },
+
   {
     "p00f/clangd_extensions.nvim",
     lazy = true,
