@@ -37,7 +37,7 @@ cmp.setup {
     ["<C-n>"] = cmp.mapping.select_next_item({behavior = cmp.ConfirmBehavior.Insert, select = true}),
     ["<C-e>"] = cmp.mapping.close(),
     ["<C-space>"] = cmp.mapping.complete();
-    ["<C-k>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+    ["<tab>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
 
     -- ["<C-l>"] = cmp.mapping(function()
     --   if luasnip.expand_or_locally_jumpable() then

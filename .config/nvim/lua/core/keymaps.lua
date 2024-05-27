@@ -98,7 +98,7 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- comments
-vim.api.nvim_set_keymap("n", "<C-/>", "gcc", { desc = "comment" })
+vim.api.nvim_set_keymap("n", "<C-_>", "gcc", { desc = "comment" })
 vim.api.nvim_set_keymap("v", "<C-/>", "gc", { desc = "comment" })
 
 -- Move the highlighted line down

@@ -36,7 +36,8 @@ set splitbelow
 " set list
 " set listchars tab="··" trail="·" extends="»"precedes="«"
 set signcolumn=yes
-" set cursorline
+
+"set cursorline
 set guicursor = "n-v-c:block,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
 
 " Scroll settings
@@ -128,7 +129,4 @@ nnoremap <leader>Y "+Y
 
 " Replace the word throughout the file
 nnoremap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-
-" Leave insert mode by pressing leader followed by backspace
-inoremap qq <Esc>
 
