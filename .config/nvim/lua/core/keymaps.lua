@@ -24,7 +24,7 @@ vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collaps
 vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 
 --keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
-vim.keymap.set("n", "<leader>G", "<cmd>LazyGit<cr>", { desc = "open lazygit" })
+-- vim.keymap.set("n", "<leader>G", "<cmd>LazyGit<cr>", { desc = "open lazygit" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 
 -- markdown preview
@@ -99,7 +99,7 @@ vim.keymap.set("v", ">", ">gv")
 
 -- comments
 vim.api.nvim_set_keymap("n", "<C-_>", "gcc", { desc = "comment" })
-vim.api.nvim_set_keymap("v", "<C-/>", "gc", { desc = "comment" })
+vim.api.nvim_set_keymap("v", "<C-_>", "gc", { desc = "comment" })
 
 -- Move the highlighted line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
