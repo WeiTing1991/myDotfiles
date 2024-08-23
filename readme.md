@@ -16,9 +16,10 @@ cd YOURGITREPO
 mv nvim ~/.config
 ```
 
-For Windows user (git clone to $HOME)
+For Windows
 
 ```PowerShell
+git clone GitPath $HOME/.mydotfiles
 ./intall.ps1
 ```
 

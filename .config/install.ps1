@@ -2,6 +2,7 @@
 # install neovim and wezterm
 winget install neovim
 winget install wez.wezterm
+winget install --id Microsoft.Powershell --source winget
 
 Remove-Item $env:USERPROFILE\AppData\Local\nvim -Recurse -Force
 Remove-Item $env:USERPROFILE\AppData\Local\nvim-data -Recurse -Force

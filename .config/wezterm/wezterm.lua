@@ -212,7 +212,7 @@ config.keys = {
 	{ key = "=", mods = "LEADER", action = act.DecreaseFontSize },
 	{ key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
 	{ key = "T", mods = "LEADER", action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
-	{ key = "t", mods = "SUPER", action = act.SpawnCommandInNewTab({ domain = "DefaultDomain" }) },
+	{ key = "t", mods = "SUPER", action = act.SpawnCommandInNewTab({ domain = "CurrentPaneDomain" }) },
 	{
 		key = "e",
 		mods = "LEADER",

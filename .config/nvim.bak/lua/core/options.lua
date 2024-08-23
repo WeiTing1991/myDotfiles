@@ -55,19 +55,18 @@ local options = {
   timeoutlen = 300,
 
   -- Configure how new splits should be opened
-  --splitright = true,
-  --splitbelow = true,
+  splitright = true,
+  splitbelow = true,
 
-  --compatible = false,
+  compatible = false,
   -- Sets how neovim will display certain whitespace in the editor.
   --  See `:help 'list'`
   list = true,
   listchars = { tab = "· ", trail = "·", extends = "»", precedes = "«" },
 
   -- Preview substitutions live, as you type!
-  inccommand = "split",
+  --inccommand = "split"
   signcolumn = "yes",
-
   -- Show which line your cursor is on
   cursorline = false,
   colorcolumn = "145",
@@ -114,3 +113,5 @@ local options = {
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+

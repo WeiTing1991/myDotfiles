@@ -2,7 +2,6 @@ local globals = {
   mapleader = " ",
   prev_buffer = nil,
   next_buffer = nil,
-  have_nerd_font = true,
   -- netrw_browse_split = 0,
   -- netrw_banner  = 0,
   -- netrw_altv = 1,
@@ -13,3 +12,4 @@ local globals = {
 for k, v in pairs(globals) do
   vim.g[k] = v
 end
+

@@ -16,3 +16,6 @@ require("rose-pine").setup({
         transparency = true,
     },
 })
+
+
+
