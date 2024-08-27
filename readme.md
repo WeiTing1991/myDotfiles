@@ -1,13 +1,17 @@
-# Welcome my dotfiles
-This repository is my dotfiles (still in progress) for my windows and mac via [stow].
+# Welcome to my dotfiles
+
+This repository is my dotfiles (in progress) for my windows and mac via [GNU stow].
 
 ## Neovim
 
 I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can
 clone it and follow the command below. Feel free to use it and let me know if these is any issue.
 
-For Mac user
+For MacOS/Linux
+
 ```bash
+# remove the old config file
+
 mv ~/.config/nvim ~/.config/nvim.bak
 rm -rf ~/.local/share/nvim
 rm -rf ~/.cache/nvim
@@ -16,16 +20,20 @@ cd YOURGITREPO
 mv nvim ~/.config
 ```
 
-For Windows
+For Windows 11
 
 ```PowerShell
 git clone GitPath $HOME/.mydotfiles
+
+# install the required software and create the symbolic link
 ./intall.ps1
 ```
 
 ### Configuration
 
-<details><summary>The plugins I am using now </summary>
+<details><summary>The plugins I am using now <p></summary>
+
+Package manager
 
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 
@@ -46,11 +54,6 @@ Java LSP
 
 - [jdtls](https://github.com/mfussenegger/nvim-jdtls)
 
-Debugging
-
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-- [nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
-
 Navigation
 
 - [telescope](https://github.com/nvim-telescope/telescope.nvim)
@@ -62,6 +65,11 @@ Editor tool and Git
 - [copilot](https://github.com/zbirenbaum/copilot.lua)
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 
+Debugging
+
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+- [nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
+
 UI
 
 - [lualine](https://github.com/nvim-lualine/lualine.nvim)
@@ -71,13 +79,22 @@ UI
 
 [kickstart]: https://github.com/nvim-lua/kickstart.nvim
 [Neovim]: https://neovim.io/
+[GNU stow]: https://www.gnu.org/software/stow/manual/stow.html
 
 ## Terminal
 
-I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations like tumx.
+I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations, which make it simliart to tumx.
 It is an amazing GPU terminal emulator for cross-platform. \
 
-for macOS
+MacOS
+
+```bash
+cd YOURGITREPO
+mv wezterm ~/.config
+```
+
+Windows 11
+
 ```bash
 cd YOURGITREPO
 mv wezterm ~/.config
