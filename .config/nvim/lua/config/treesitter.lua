@@ -2,7 +2,7 @@ local treesitter = require "nvim-treesitter.configs"
 
 treesitter.setup {
   ensure_installed = {
-    "lua",
+    "bash", "c", "lua",
   },
   ignore_install = {},
   sync_install = false,
@@ -12,5 +12,6 @@ treesitter.setup {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
+  indent = { enable = true }
 }
 
