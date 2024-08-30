@@ -16,18 +16,17 @@ cmp.setup {
     end,
   },
   completion = { completeopt = "menu,menuone,noinsert" },
-  window = {
-    completion = cmp.config.window.bordered {
-      --border = vim.cfg.ui__float_border,
-      winhighlight = "CursorLine:PmenuSel,NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-      winblend = 0,
-    },
-    documentation = cmp.config.window.bordered {
-      winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-      --border = vim.cfg.ui__float_border,
-    },
-  },
-
+  -- window = {
+  --   completion = cmp.config.window.bordered {
+  --     --border = vim.cfg.ui__float_border,
+  --     winhighlight = "CursorLine:PmenuSel,NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+  --     winblend = 0,
+  --   },
+  --   documentation = cmp.config.window.bordered {
+  --     winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+  --     --border = vim.cfg.ui__float_border,
+  --   },
+  -- },
   -- read `:help ins-completion`
 
   mapping = cmp.mapping.preset.insert {
@@ -53,6 +52,11 @@ cmp.setup {
     ghost_text = false, -- this feature conflict with copilot.vim's preview.
   },
   sources = {
+    {
+      name = 'lazydev',
+      -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
+      group_index = 0,
+    },
     { name = "nvim_lsp",                priority = 10, max_item_count = 10 },
     { name = "luasnip",                 priority = 6,  max_item_count = 5 }, -- For luasnip users.
 

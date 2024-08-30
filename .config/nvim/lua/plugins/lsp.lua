@@ -1,15 +1,30 @@
 return {
   -- LSP config
+  --
+  {
+    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins 
+    --  used for completion, annotations and signatures of Neovim apis
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  { "Bilal2453/luvit-meta", lazy = true },
+
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+      { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opt = {} },
       { "jay-babu/mason-nvim-dap.nvim" },
       -- Allows extra capabilities provided by nvim-cmp
-      'hrsh7th/cmp-nvim-lsp',
+      "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
       require "lsp.lsp-init" -- lsp engine
@@ -19,7 +34,7 @@ return {
       --require "lsp.dap-init"
     end,
   },
- {
+  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {

@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>dl", "<cmd>Telescope diagnostics<cr>", "Diagnostics")
 
     map("<leader>m", vim.lsp.buf.format, "formatting")
+
     -- For example, in C this would take you to the header
     --map("gdc", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 

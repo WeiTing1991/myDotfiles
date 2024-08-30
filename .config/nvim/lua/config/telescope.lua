@@ -1,7 +1,20 @@
 local builtin = require "telescope.builtin"
 
 -- setup
-require('telescope').setup {}
+require("telescope").setup {
+  layout_config = {
+    horizontal = {
+      prompt_position = "bottom",
+      preview_width = 0.65,
+    },
+    vertical = {
+      mirror = false,
+    },
+    width = 0.85,
+    height = 0.90,
+    preview_cutoff = 80,
+  },
+}
 
 pcall(require("telescope").load_extension, "fzf")
 
