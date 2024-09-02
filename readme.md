@@ -7,6 +7,8 @@ This repository is my dotfiles (in progress) for my windows and mac via [GNU sto
 I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can
 clone it and follow the command below. Feel free to use it and let me know if these is any issue.
 
+### Usage
+
 For MacOS/Linux
 
 ```bash
