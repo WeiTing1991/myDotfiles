@@ -26,6 +26,7 @@ return {
           return vim.fn.executable "make" == 1
         end,
       },
+      { "nvim-tree/nvim-web-devicons" },
     },
     config = function()
       require "config.telescope"
@@ -65,6 +66,40 @@ return {
       )
     end,
   },
+  -- tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require "config.nvim-tree"
+    end,
+  },
   -- editors
-  --
+  {
+    "romgrk/barbar.nvim",
+    event = "VimEnter",
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    version = "^1.0.0", -- optional: only update when a new 1.x version is released
+    opts = {
+      animation = false,
+      highlights_alternative = true,
+      button = " ",
+      gitsigns = {
+        added = { enabled = false, icon = "+" },
+        changed = { enabled = false, icon = "~" },
+        deleted = { enabled = false, icon = "-" },
+      },
+    },
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require "config.copilot"
+    end,
+  },
 }
