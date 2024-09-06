@@ -3,6 +3,9 @@
 winget install neovim
 winget install wez.wezterm
 winget install --id Microsoft.Powershell --source winget
+# for telescope (fzf)
+winget install BurntSushi.ripgrep.MSVC
+winget install sharkdp.fd
 
 Remove-Item $env:USERPROFILE\AppData\Local\nvim -Recurse -Force
 Remove-Item $env:USERPROFILE\AppData\Local\nvim-data -Recurse -Force

@@ -26,7 +26,7 @@ config.font_size = 9.0
 --config.adjust_window_size_when_changing_font_size = true
 --config.macos_window_background_blur = 0
 
-config.window_background_opacity = 0.6
+config.window_background_opacity = 0.8
 config.win32_system_backdrop = "Acrylic"
 config.window_close_confirmation = "AlwaysPrompt"
 
@@ -51,9 +51,6 @@ config.status_update_interval = 1000
 config.tab_bar_at_bottom = true
 
 -- keys
--- disable default keybindings
-config.disable_default_key_bindings = true
-
 -- disable default keybindings
 config.disable_default_key_bindings = true
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 3000 }

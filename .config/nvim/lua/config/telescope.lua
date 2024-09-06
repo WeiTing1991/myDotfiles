@@ -4,7 +4,8 @@ local utils = require "telescope.utils"
 -- setup
 require("telescope").setup {
   defaults = {
-    vimgrep_arguments = {},
+    vimgrep_arguments = {
+    },
     layout_config = {
       horizontal = {
         prompt_position = "bottom",
@@ -39,6 +40,5 @@ pcall(require("telescope").load_extension, "fzf")
 vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Search Keymaps" })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Find file in buffer" })
-vim.keymap.set("n", "<space>ff", function()
-  builtin.find_files { cwd = utils.buffer_dir() }
-end, { desc = "file browser in buffer" })
+vim.keymap.set("n", "<space>ff", function() builtin.find_files { cwd = utils.buffer_dir() } end,
+  { desc = "file browser in buffer" })
