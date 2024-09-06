@@ -11,8 +11,8 @@ local launch_menu = {}
 --- Set Pwsh as the default on Windows
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
-	{ family = "RobotoMono Nerd Font", weight = "Regular", italic = false },
-	-- { family = "Hack Nerd Font", weight = "Regular", italic = false },
+	-- { family = "RobotoMono Nerd Font", weight = "Regular", italic = false },
+	{ family = "Hack Nerd Font", weight = "Regular", italic = false },
 	-- { family = "JetBrains Mono", weight = "Regular", italic = false },
 })
 config.launch_menu = launch_menu
@@ -44,7 +44,7 @@ config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
 config.tab_bar_at_bottom = true
 
--- keys
+-- keysmaps
 -- disable default keybindings
 config.disable_default_key_bindings = true
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 5000 }
@@ -111,7 +111,7 @@ wezterm.on("update-status", function(window, pane)
 
 	window:active_tab():set_title(cwd)
 	-- Time
-	local time = wezterm.strftime("%D:%H:%M")
+	--local time = wezterm.strftime("%D:%H:%M")
 
 	-- Left status
 	window:set_left_status(wezterm.format({
@@ -130,7 +130,6 @@ wezterm.on("update-status", function(window, pane)
 		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
 		"ResetAttributes",
 		{ Text = " | " },
-		{ Text = wezterm.nerdfonts.md_clock .. "  " .. time },
 		{ Text = "  " },
 	}))
 end)
