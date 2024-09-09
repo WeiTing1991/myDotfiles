@@ -1,3 +1,8 @@
-local M = {}
+local M = {
+
+  --python
+  "isort",
+  "black",
+}
 
 return M

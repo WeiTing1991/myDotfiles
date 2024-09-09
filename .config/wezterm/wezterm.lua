@@ -16,7 +16,7 @@ config.font = wezterm.font_with_fallback({
 	-- { family = "JetBrains Mono", weight = "Regular", italic = false },
 })
 config.launch_menu = launch_menu
-config.color_scheme = "carbonfox"
+config.color_scheme = "rose-pine"
 config.font_size = 14.0
 --config.adjust_window_size_when_changing_font_size = true
 config.window_background_opacity = 0.85
@@ -42,7 +42,7 @@ config.window_decorations = "RESIZE"
 
 config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
-config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = false
 
 -- keysmaps
 -- disable default keybindings

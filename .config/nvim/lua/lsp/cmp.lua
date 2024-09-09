@@ -57,8 +57,8 @@ cmp.setup {
       -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
       group_index = 0,
     },
-    { name = "nvim_lsp",                priority = 10, max_item_count = 10 },
-    { name = "luasnip",                 priority = 6,  max_item_count = 5 }, -- For luasnip users.
+    { name = "nvim_lsp",                priority = 8, max_item_count = 15 },
+    { name = "luasnip",                 priority = 6,  max_item_count = 10 }, -- For luasnip users.
 
     { name = "path",                    priority = 4 },
     { name = "buffer",                  priority = 8,  keyword_length = 2, max_item_count = 4 },

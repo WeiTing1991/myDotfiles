@@ -5,17 +5,27 @@ vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
 -- nvim treee keymapping
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
-vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
-vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+vim.keymap.set("n", "<leader>ee", "<cmd>Oil<CR>", { desc = "Collapse file explorer" })
 
-vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
+
 
 -- markdown preview
 vim.keymap.set("n", "<leader>mk", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown toggle" })
 vim.keymap.set("n", "<leader>mkp", "<cmd>MarkdownPreview<cr>", { desc = "markdown preview" })
 vim.keymap.set("n", "<leader>mks", "<cmd>MarkdownPreviewStop<cr>", { desc = "markdown stop" })
+vim.keymap.set("n", "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", { desc = "markdown render toggle" })
 
+
+function ToggleSpellCheck()
+  if vim.o.spell then
+    vim.o.spell = false
+    print "Spellcheck OFF"
+  else
+    vim.o.spell = true
+    print "Spellcheck ON"
+  end
+end
 -- spell check toggle
 vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc = "spell check on/off" })
 
@@ -73,8 +83,8 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- comments
-vim.api.nvim_set_keymap("n", "<->", "gcc", { desc = "comment" })
-vim.api.nvim_set_keymap("v", "<->", "gc", { desc = "comment" })
+vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
+vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
 
 -- Move the highlighted line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })

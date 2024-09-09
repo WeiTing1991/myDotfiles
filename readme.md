@@ -1,6 +1,12 @@
 # Welcome to my dotfiles
 
-This repository is my dotfiles (in progress) for my windows and mac via [GNU stow].
+This repository is my dotfiles (for now) for my windows and mac via [GNU stow].
+
+## stow 
+
+```bash
+stow .
+```
 
 ## Neovim
 
@@ -22,9 +28,9 @@ cd YOURGITREPO
 mv nvim ~/.config
 ```
 
-For Windows 11
+For Windows 10/11
 
-```PowerShell
+```powershell
 git clone GitPath $HOME/.mydotfiles
 
 # install the required software and create the symbolic link
@@ -35,6 +41,7 @@ git clone GitPath $HOME/.mydotfiles
 
 <details><summary>The plugins I am using now <p></summary>
 
+Latest version of the Neovim setup and plugins.
 Package manager
 
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
@@ -43,7 +50,7 @@ Parsing
 
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
-LSP and Autocompletion
+LSP and Auto completion
 
 - [lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [mason](https://github.com/williamboman/mason.nvim)
@@ -52,30 +59,32 @@ LSP and Autocompletion
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [none-ls](https://github.com/nvimtools/none-ls.nvim)
 
-Java LSP
-
-- [jdtls](https://github.com/mfussenegger/nvim-jdtls)
-
 Navigation
 
 - [telescope](https://github.com/nvim-telescope/telescope.nvim)
 - [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
+- [oil]()
 
-Editor tool and Git
+Editor tool/ Git/ notes taking
 
-- [comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [copilot](https://github.com/zbirenbaum/copilot.lua)
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
+- [render markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+- [trouble](https://github.com/folke/trouble.nvim)
+
+UI
+
+- [lualine](https://github.com/nvim-lualine/lualine.nvim)
+- [mini-indentscope](https://github.com/echasnovski/mini.indentscop)
 
 Debugging
 
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
 
-UI
+Java LSP
 
-- [lualine](https://github.com/nvim-lualine/lualine.nvim)
-- [trouble](https://github.com/folke/trouble.nvim)
+- [jdtls](https://github.com/mfussenegger/nvim-jdtls)
 
 </details>
 
@@ -85,8 +94,7 @@ UI
 
 ## Terminal
 
-I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations, which make it simliart to tumx.
-It is an amazing GPU terminal emulator for cross-platform. \
+I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations, which make it similar to tumx. It is an amazing GPU terminal emulator for cross-platform system.
 
 MacOS
 

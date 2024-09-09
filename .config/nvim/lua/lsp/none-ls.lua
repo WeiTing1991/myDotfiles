@@ -14,5 +14,19 @@ require("null-ls").setup {
     -- formating
     formatting.stylua,
 
-  }
+    -- python
+    -- formating
+    require("none-ls.diagnostics.ruff").with {
+      filetypes = { "python" },
+    },
+
+    formatting.isort.with {
+      filetypes = { "python" },
+    },
+
+    formatting.black.with {
+      filetypes = { "python" },
+      extra_arges = { "--fast" },
+    },
+  },
 }

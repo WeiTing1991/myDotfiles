@@ -62,7 +62,7 @@ local options = {
   -- Sets how neovim will display certain whitespace in the editor.
   --  See `:help 'list'`
   list = true,
-  listchars = { tab = "· ", trail = "·", extends = "»", precedes = "«" },
+  listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" },
 
   -- Preview substitutions live, as you type!
   inccommand = "split",
@@ -70,8 +70,8 @@ local options = {
 
   -- Show which line your cursor is on
   cursorline = false,
-  colorcolumn = "145",
-  textwidth = 140,
+  colorcolumn = "125",
+  textwidth = 120,
 
   -- Minimal number of screen lines to keep above and below the cursor.
   scrolloff = 10,

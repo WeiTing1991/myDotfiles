@@ -15,6 +15,9 @@ M = {
       },
     },
   },
+
+  pyright = {}
+
 }
 
 return M

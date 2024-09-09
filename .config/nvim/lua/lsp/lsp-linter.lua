@@ -1,4 +1,9 @@
-local M = {}
+local M = {
+
+  -- python
+  "ruff",
+
+}
 
 return M
 

@@ -1,16 +1,13 @@
 return {
-  -- color theme
+  -- colortheme
   {
     "weiting1991/rose-pine.nvim",
     lazy = false,
-    priority = 1000,
+    priority = 1001,
     config = function()
       require "config.rose-pine"
       vim.cmd.colorscheme "rose-pine"
     end,
-  },
-  {
-    "tpope/vim-sleuth",
   },
   -- telescope
   {
@@ -66,7 +63,18 @@ return {
       )
     end,
   },
-  -- tree
+  -- quickfix
+  {
+    "folke/trouble.nvim",
+    event = "BufEnter",
+    opts = {},
+    cmd = "Trouble",
+    config = function()
+      require "config.trouble"
+    end,
+  },
+
+  -- file tree
   {
     "nvim-tree/nvim-tree.lua",
     event = "VimEnter",
@@ -75,7 +83,22 @@ return {
       require "config.nvim-tree"
     end,
   },
+  {
+    "stevearc/oil.nvim",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    config = function()
+      require "config.oil"
+    end,
+  },
+
   -- editors
+  {
+    "tpope/vim-sleuth",
+  },
   {
     "romgrk/barbar.nvim",
     event = "VimEnter",
@@ -94,7 +117,52 @@ return {
       },
     },
   },
+  {
+    "echasnovski/mini.indentscope",
+    version = false,
+    config = function()
+      require "config.indentscope"
+    end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require "config.lualine"
+    end,
+  },
 
+  -- note taking
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    lazy = false,
+    event = "BufEnter",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown", ".md" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {},
+    config = function()
+      require "config.obsidian"
+    end,
+  },
+
+  -- ai system
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
