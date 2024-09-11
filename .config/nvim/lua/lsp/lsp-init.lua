@@ -124,7 +124,7 @@ require("mason-lspconfig").setup {
   },
 }
 
--- extra register
+-- -- extra register
 vim.diagnostic.config {
   virtual_text = {
     source = "if_many",
@@ -136,8 +136,9 @@ vim.diagnostic.config {
   float = {
     style = "minimal",
     border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
+--     source = "always",
+--     header = "",
+--     prefix = "",
   },
 }
+

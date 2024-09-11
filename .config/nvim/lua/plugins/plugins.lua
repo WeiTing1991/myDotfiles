@@ -144,14 +144,16 @@ return {
     event = "BufEnter",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown", ".md" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
     end,
   },
   {
     "epwalsh/obsidian.nvim",
     version = "*",
     lazy = true,
+    enabled = false,
     ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
