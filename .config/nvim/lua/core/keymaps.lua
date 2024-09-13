@@ -1,22 +1,4 @@
--- cd to current file directory
-vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
-vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
-
--- nvim treee keymapping
-vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
-vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
-vim.keymap.set("n", "<leader>ee", "<cmd>Oil<CR>", { desc = "Collapse file explorer" })
-
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
-
-
--- markdown preview
-vim.keymap.set("n", "<leader>mk", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown toggle" })
-vim.keymap.set("n", "<leader>mkp", "<cmd>MarkdownPreview<cr>", { desc = "markdown preview" })
-vim.keymap.set("n", "<leader>mks", "<cmd>MarkdownPreviewStop<cr>", { desc = "markdown stop" })
-vim.keymap.set("n", "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", { desc = "markdown render toggle" })
-
-
+-- spelling
 function ToggleSpellCheck()
   if vim.o.spell then
     vim.o.spell = false
@@ -28,6 +10,26 @@ function ToggleSpellCheck()
 end
 -- spell check toggle
 vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc = "spell check on/off" })
+
+-- cd to current file directory
+vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
+vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
+
+-- nvim treee keymapping
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
+vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
+vim.keymap.set("n", "<leader>ee", "<cmd>Oil<CR>", { desc = "Collapse file explorer" })
+
+--
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
+
+
+-- markdown preview
+vim.keymap.set("n", "<leader>mk", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown toggle" })
+vim.keymap.set("n", "<leader>mkp", "<cmd>MarkdownPreview<cr>", { desc = "markdown preview" })
+vim.keymap.set("n", "<leader>mks", "<cmd>MarkdownPreviewStop<cr>", { desc = "markdown stop" })
+vim.keymap.set("n", "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", { desc = "markdown render toggle" })
+
 
 --leave the file
 vim.keymap.set("n", "<leader>q", function()
@@ -50,12 +52,12 @@ vim.keymap.set("n", "zz", ":nohl<CR>", { desc = "Clear highlights" })
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- autopair
-vim.keymap.set('i', '""', '""<left>', { desc = '' })
-vim.keymap.set('i', "''", "''<left>", { desc = '' })
-vim.keymap.set('i', '()', '()<left>', { desc = '' })
-vim.keymap.set('i', '{}', '{}<left>', { desc = '' })
-vim.keymap.set('i', '[]', '[]<left>', { desc = '' })
-vim.keymap.set('i', '<>', '<><left>', { desc = '' })
+-- vim.keymap.set('i', '""', '""<left>', { desc = '' })
+-- vim.keymap.set('i', "''", "''<left>", { desc = '' })
+-- vim.keymap.set('i', '()', '()<left>', { desc = '' })
+-- vim.keymap.set('i', '{}', '{}<left>', { desc = '' })
+-- vim.keymap.set('i', '[]', '[]<left>', { desc = '' })
+-- vim.keymap.set('i', '<>', '<><left>', { desc = '' })
 
 -- move between neovim buffers
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "move left" })

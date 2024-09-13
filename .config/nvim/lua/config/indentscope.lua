@@ -16,9 +16,7 @@ callback = function()
     'help',
     'lazy',
     'mason',
-    'neo-tree',
     'NvimTree',
-    'toggleterm',
     'Trouble',
   }
   if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then

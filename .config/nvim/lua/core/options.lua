@@ -60,7 +60,7 @@ local options = {
 
   --compatible = false,
   -- Sets how neovim will display certain whitespace in the editor.
-  --  See `:help 'list'`
+  -- See `:help 'list'`
   list = true,
   listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" },
 

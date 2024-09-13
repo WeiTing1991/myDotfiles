@@ -3,12 +3,27 @@ return {
   {
     "weiting1991/rose-pine.nvim",
     lazy = false,
-    priority = 1001,
+    priority = 1000,
     config = function()
       require "config.rose-pine"
       vim.cmd.colorscheme "rose-pine"
     end,
   },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+  },
+  -- {
+  --   "rose-pine/neovim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require "config.rose-pine"
+  --     vim.cmd.colorscheme "rose-pine"
+  --   end,
+  -- },
+
   -- telescope
   {
     "nvim-telescope/telescope.nvim",
@@ -122,6 +137,19 @@ return {
     version = false,
     config = function()
       require "config.indentscope"
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+    config = function()
+      require("ibl").setup {
+        indent = { char = "▏" },
+        scope = { enabled = false },
+      }
     end,
   },
   {

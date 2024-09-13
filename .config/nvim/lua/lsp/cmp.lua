@@ -32,7 +32,7 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<Esc>"] = cmp.mapping.close(),
     ["<C-space>"] = cmp.mapping.complete(),
     ["<tab>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
 
