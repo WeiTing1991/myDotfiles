@@ -1,35 +1,46 @@
 -- good to chekout: the mux
 local wezterm = require("wezterm")
 local act = wezterm.action
+
 -- This will hold the configuration.
 local config = {}
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
+
 local launch_menu = {}
 -- for windows
---- Set Pwsh as the default on Windows
+-- Set Pwsh as the default on Windows
 -- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
 	-- { family = "RobotoMono Nerd Font", weight = "Regular", italic = false },
 	{ family = "Hack Nerd Font", weight = "Regular", italic = false },
 	-- { family = "JetBrains Mono", weight = "Regular", italic = false },
 })
+
 config.launch_menu = launch_menu
 config.color_scheme = "rose-pine"
+config.colors = {
+	foreground = "silver",
+background = "#0D0907",
+	selection_fg = "#20211A",
+	selection_bg = "silver",
+}
+
 config.font_size = 14.0
 --config.adjust_window_size_when_changing_font_size = true
 config.window_background_opacity = 0.85
-config.macos_window_background_blur = 40
+config.macos_window_background_blur = 30
 config.window_close_confirmation = "AlwaysPrompt"
+
 -- windows
--- window
 config.initial_cols = 120
 config.initial_rows = 40
 config.inactive_pane_hsb = {
 	saturation = 0.5,
 	brightness = 0.8,
 }
+
 config.window_padding = {
 	left = 14,
 	right = 14,
@@ -302,8 +313,8 @@ config.key_tables = {
 		{ key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
 		{ key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
 		{ key = "Escape", action = "PopKeyTable" },
-		{ key = "_", action = act.IncreaseFontSize },
-		{ key = "+", action = act.DecreaseFontSize },
+		{ key = "+", action = act.IncreaseFontSize },
+		{ key = "-", action = act.DecreaseFontSize },
 		{ key = "Enter", action = "PopKeyTable" },
 	},
 	move_tab = {
@@ -346,50 +357,6 @@ config.key_tables = {
 		{ key = "Enter", mods = "NONE", action = act.CopyMode("MoveToStartOfNextLine") },
 		{ key = "u", mods = "CTRL", action = act.CopyMode("PageUp") },
 		{ key = "d", mods = "CTRL", action = act.CopyMode("PageDown") },
-		--
-		-- { key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
-		-- { key = "Space", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
-		-- { key = "$", mods = "NONE", action = act.CopyMode("MoveToEndOfLineContent") },
-		-- { key = "$", mods = "SHIFT", action = act.CopyMode("MoveToEndOfLineContent") },
-		-- { key = ",", mods = "NONE", action = act.CopyMode("JumpReverse") },
-		-- { key = ";", mods = "NONE", action = act.CopyMode("JumpAgain") },
-		-- { key = "F", mods = "NONE", action = act.CopyMode({ JumpBackward = { prev_char = false } }) },
-		-- { key = "F", mods = "SHIFT", action = act.CopyMode({ JumpBackward = { prev_char = false } }) },
-		-- { key = "G", mods = "NONE", action = act.CopyMode("MoveToScrollbackBottom") },
-		-- { key = "G", mods = "SHIFT", action = act.CopyMode("MoveToScrollbackBottom") },
-		-- { key = "H", mods = "NONE", action = act.CopyMode("MoveToViewportTop") },
-		-- { key = "H", mods = "SHIFT", action = act.CopyMode("MoveToViewportTop") },
-		-- { key = "L", mods = "NONE", action = act.CopyMode("MoveToViewportBottom") },
-		-- { key = "L", mods = "SHIFT", action = act.CopyMode("MoveToViewportBottom") },
-		-- { key = "M", mods = "NONE", action = act.CopyMode("MoveToViewportMiddle") },
-		-- { key = "M", mods = "SHIFT", action = act.CopyMode("MoveToViewportMiddle") },
-		-- { key = "O", mods = "NONE", action = act.CopyMode("MoveToSelectionOtherEndHoriz") },
-		-- { key = "O", mods = "SHIFT", action = act.CopyMode("MoveToSelectionOtherEndHoriz") },
-		-- { key = "T", mods = "NONE", action = act.CopyMode({ JumpBackward = { prev_char = true } }) },
-		-- { key = "T", mods = "SHIFT", action = act.CopyMode({ JumpBackward = { prev_char = true } }) },
-		-- { key = "^", mods = "NONE", action = act.CopyMode("MoveToStartOfLineContent") },
-		-- { key = "^", mods = "SHIFT", action = act.CopyMode("MoveToStartOfLineContent") },
-		-- { key = "b", mods = "NONE", action = act.CopyMode("MoveBackwardWord") },
-		-- { key = "b", mods = "ALT", action = act.CopyMode("MoveBackwardWord") },
-		-- { key = "c", mods = "CTRL", action = act.CopyMode("Close") },
-		-- { key = "d", mods = "CTRL", action = act.CopyMode({ MoveByPage = 0.5 }) },
-		-- { key = "e", mods = "NONE", action = act.CopyMode("MoveForwardWordEnd") },
-		-- { key = "f", mods = "NONE", action = act.CopyMode({ JumpForward = { prev_char = false } }) },
-		-- { key = "f", mods = "ALT", action = act.CopyMode("MoveForwardWord") },
-		-- { key = "g", mods = "NONE", action = act.CopyMode("MoveToScrollbackTop") },
-		-- { key = "g", mods = "CTRL", action = act.CopyMode("Close") },
-		--
-		-- { key = "m", mods = "ALT", action = act.CopyMode("MoveToStartOfLineContent") },
-		-- { key = "o", mods = "NONE", action = act.CopyMode("MoveToSelectionOtherEnd") },
-		-- { key = "q", mods = "NONE", action = act.CopyMode("Close") },
-		-- { key = "t", mods = "NONE", action = act.CopyMode({ JumpForward = { prev_char = true } }) },
-		-- { key = "w", mods = "NONE", action = act.CopyMode("MoveForwardWord") },
-		-- { key = "LeftArrow", mods = "NONE", action = act.CopyMode("MoveLeft") },
-		-- { key = "LeftArrow", mods = "ALT", action = act.CopyMode("MoveBackwardWord") },
-		-- { key = "RightArrow", mods = "NONE", action = act.CopyMode("MoveRight") },
-		-- { key = "RightArrow", mods = "ALT", action = act.CopyMode("MoveForwardWord") },
-		-- { key = "UpArrow", mods = "NONE", action = act.CopyMode("MoveUp") },
-		-- { key = "DownArrow", mods = "NONE", action = act.CopyMode("MoveDown") },
 	},
 
 	search_mode = {

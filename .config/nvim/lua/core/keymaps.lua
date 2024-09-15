@@ -20,7 +20,7 @@ vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle Fil
 vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
 vim.keymap.set("n", "<leader>ee", "<cmd>Oil<CR>", { desc = "Collapse file explorer" })
 
---
+-- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 
 
@@ -87,6 +87,10 @@ vim.keymap.set("v", ">", ">gv")
 -- comments
 vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
 vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
+
+vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
+vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise"})
+
 
 -- Move the highlighted line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })

@@ -16,20 +16,20 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+      { "williamboman/mason.nvim",     config = true }, -- NOTE: Must be loaded before dependants
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim", opt = {} },
+      { "j-hui/fidget.nvim",           opt = {} },
       { "jay-babu/mason-nvim-dap.nvim" },
       -- Allows extra capabilities provided by nvim-cmp
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
       require "lsp.lsp-init" -- lsp engine
-      require "lsp.cmp" -- completion
+      require "lsp.cmp"      -- completion
 
       --only if load with lspconfig and mason
-      --require "lsp.dap-init"
+      require "lsp.dap-init"
     end,
   },
   {
@@ -39,6 +39,7 @@ return {
       -- Snippet Engine & its associated nvim-cmp source
       {
         "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
         build = (function()
           -- Build Step is needed for regex support in snippets
           -- This step is not supported in many windows environments
@@ -53,13 +54,28 @@ return {
 
       -- Adds other completion capabilities.
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer", -- source for text in buffer
-      "hrsh7th/cmp-path", -- source for file system paths
+      "hrsh7th/cmp-buffer",   -- source for text in buffer
+      "hrsh7th/cmp-path",     -- source for file system paths
       "onsails/lspkind.nvim", -- vs-code like pictograms
-
       --"hrsh7th/cmp-calc",
     },
   },
+
+  -- debugger
+  {
+    'mfussenegger/nvim-dap',
+    event = 'BufEnter',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
+      'theHamsta/nvim-dap-virtual-text',
+      'jay-babu/mason-nvim-dap.nvim',
+      'nvim-neotest/nvim-nio',
+
+      -- Add own debuggers here
+      'leoluz/nvim-dap-go',
+    },
+  },
+
   -- LSP saga
   {
     "nvimdev/lspsaga.nvim",
@@ -74,6 +90,7 @@ return {
       }
     end,
   },
+
   -- formater and linter
   {
     "nvimtools/none-ls.nvim",

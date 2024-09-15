@@ -29,4 +29,5 @@ require("null-ls").setup {
       extra_arges = { "--fast" },
     },
   },
+
 }

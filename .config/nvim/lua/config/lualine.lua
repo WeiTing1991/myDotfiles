@@ -34,9 +34,9 @@ require("lualine").setup {
     component_separators = "",
     section_separators = {},
     refresh = {
-      statusline = 500,
-      tabline = 500,
-      winbar = 500,
+      statusline = 300,
+      tabline = 300,
+      winbar = 300,
     },
   },
   sections = {
@@ -52,7 +52,6 @@ require("lualine").setup {
         -- lsp attaced
         showLsp,
         icon = "  LSP:",
-        color = { fg = "#31748f"},
       },
       {
         "diagnostics",

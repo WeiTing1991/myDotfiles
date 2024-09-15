@@ -2,6 +2,7 @@
 local M = {}
 
 M = {
+  -- lua
   lua_ls = {
     settings = {
       Lua = {
@@ -16,7 +17,24 @@ M = {
     },
   },
 
-  pyright = {}
+  -- python
+  pyright = {},
+  basedpyright = {
+    settings = {
+      basedpyright = {
+        typeCheckingMode = "off",
+        logLevel = "error",
+      },
+    }
+  },
+  ruff = {},
+
+  -- c/ c++
+  clangd = {
+    capabilities = {
+      offsetEncoding = { "utf-16" },
+    },
+  }
 
 }
 

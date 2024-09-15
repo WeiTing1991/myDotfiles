@@ -9,20 +9,12 @@ return {
       vim.cmd.colorscheme "rose-pine"
     end,
   },
+
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
   },
-  -- {
-  --   "rose-pine/neovim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require "config.rose-pine"
-  --     vim.cmd.colorscheme "rose-pine"
-  --   end,
-  -- },
 
   -- telescope
   {
@@ -44,14 +36,19 @@ return {
       require "config.telescope"
     end,
   },
+
   -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = function()
       require "config.treesitter"
     end,
   },
+
   -- gitool
   {
     "lewis6991/gitsigns.nvim",
@@ -88,7 +85,6 @@ return {
       require "config.trouble"
     end,
   },
-
   -- file tree
   {
     "nvim-tree/nvim-tree.lua",
@@ -107,6 +103,39 @@ return {
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     config = function()
       require "config.oil"
+    end,
+  },
+
+
+  -- note taking
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    lazy = false,
+    event = "BufEnter",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown", ".md" },
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    enabled = false,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {},
+    config = function()
+      require "config.obsidian"
     end,
   },
 
@@ -159,36 +188,30 @@ return {
       require "config.lualine"
     end,
   },
-
-  -- note taking
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {},
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-  },
-  {
-    "iamcco/markdown-preview.nvim",
-    lazy = false,
-    event = "BufEnter",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown", ".md" },
-    build = "cd app && npm install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-  },
-  {
-    "epwalsh/obsidian.nvim",
-    version = "*",
-    lazy = true,
-    enabled = false,
-    ft = "markdown",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
+    "numToStr/Comment.nvim",
+    opts = {
+      -- add any options here
     },
-    opts = {},
+  },
+  {
+    "mbbill/undotree",
+    event = "VeryLazy",
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+  },
+
+  -- ui
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
     config = function()
-      require "config.obsidian"
+      require "config.transparent"
     end,
   },
 
@@ -201,4 +224,7 @@ return {
       require "config.copilot"
     end,
   },
+
+  -- syntax highlights
+
 }

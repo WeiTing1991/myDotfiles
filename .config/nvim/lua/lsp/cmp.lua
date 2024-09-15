@@ -1,7 +1,9 @@
 local cmp = require "cmp"
 local luasnip = require "luasnip"
+local lspkind = require "lspkind"
 
 luasnip.config.setup({})
+require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup {
   performance = {
@@ -15,7 +17,8 @@ cmp.setup {
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
-  completion = { completeopt = "menu,menuone,noinsert" },
+
+  completion = { completeopt = "menu, menuone, noinsert" },
   -- window = {
   --   completion = cmp.config.window.bordered {
   --     --border = vim.cfg.ui__float_border,
@@ -32,7 +35,7 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-    ["<Esc>"] = cmp.mapping.close(),
+    ["<C-e>"] = cmp.mapping.close(),
     ["<C-space>"] = cmp.mapping.complete(),
     ["<tab>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
 
@@ -63,4 +66,7 @@ cmp.setup {
     { name = "path",                    priority = 4 },
     { name = "buffer",                  priority = 8,  keyword_length = 2, max_item_count = 4 },
   },
+  formatting = {
+    format = lspkind.cmp_format({ mode = "symbol", maxwidth = 100 }),
+  }
 }

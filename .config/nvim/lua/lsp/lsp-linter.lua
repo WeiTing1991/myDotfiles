@@ -2,6 +2,9 @@ local M = {
 
   -- python
   "ruff",
+  -- bash
+
+
 
 }
 
