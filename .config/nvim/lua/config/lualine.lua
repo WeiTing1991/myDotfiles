@@ -23,7 +23,7 @@ local function spell_status()
   if vim.wo.spell then
     -- When spell is on, show the language name
     local lang = vim.bo.spelllang
-    return "Spell:" ..lang
+    return "Spell:" .. lang
   else
     return "Spell:Off"
   end
@@ -42,10 +42,13 @@ require("lualine").setup {
   sections = {
     lualine_a = {
       { "mode", right_padding = 2 },
-      { "filename", path = 1 },
     },
-    lualine_b = { "branch", "diff" },
-    lualine_c = {},
+    lualine_b = {
+      { "branch" },
+      { "diff" },
+    },
+    lualine_c = { { "filename", path = 1 },
+    },
     lualine_x = {},
     lualine_y = {
       {
@@ -58,9 +61,9 @@ require("lualine").setup {
         sources = { "nvim_diagnostic", "nvim_lsp" },
         sections = { "error", "warn", "info", "hint" },
         symbols = { error = "E", warn = "W", info = "I", hint = "H" },
-        colored = true, -- Displays diagnostics status in color if set to true.
+        colored = true,           -- Displays diagnostics status in color if set to true.
         update_in_insert = false, -- Update diagnostics in insert mode.
-        always_visible = false, -- Show diagnostics even if there are none.
+        always_visible = false,   -- Show diagnostics even if there are none.
       },
     },
     lualine_z = {

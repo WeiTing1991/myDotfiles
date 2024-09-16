@@ -2,7 +2,7 @@ require("obsidian").setup {
   workspaces = {
     {
       name = "notes",
-      path = "/Users/weitingchen/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen/",
+      path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen/",
     },
   },
   completion = {
