@@ -31,6 +31,19 @@ cmp.setup {
   --   },
   -- },
   -- read `:help ins-completion`
+  --
+  sorting = {
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.recently_used,
+      require("clangd_extensions.cmp_scores"),
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
 
   mapping = cmp.mapping.preset.insert {
     ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
@@ -60,11 +73,11 @@ cmp.setup {
       -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
       group_index = 0,
     },
-    { name = "nvim_lsp",                priority = 8, max_item_count = 15 },
-    { name = "luasnip",                 priority = 6,  max_item_count = 10 }, -- For luasnip users.
+    { name = "nvim_lsp", priority = 8, max_item_count = 15 },
+    { name = "luasnip",  priority = 6, max_item_count = 10 },                 -- For luasnip users.
 
-    { name = "path",                    priority = 4 },
-    { name = "buffer",                  priority = 8,  keyword_length = 2, max_item_count = 4 },
+    { name = "path",     priority = 4 },
+    { name = "buffer",   priority = 8, keyword_length = 2, max_item_count = 4 },
   },
   formatting = {
     format = lspkind.cmp_format({ mode = "symbol", maxwidth = 100 }),

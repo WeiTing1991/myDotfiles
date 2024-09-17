@@ -34,8 +34,7 @@ M = {
     capabilities = {
       offsetEncoding = { "utf-16" },
     },
-  }
-
+  },
 }
 
 return M

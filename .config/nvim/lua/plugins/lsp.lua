@@ -102,4 +102,16 @@ return {
       require "lsp.none-ls"
     end,
   },
+
+  -- other lsp
+  {
+    "p00f/clangd_extensions.nvim",
+    lazy = true,
+    config = function() end,
+    opts = {
+      inlay_hints = {
+        inline = false,
+      },
+    },
+  }
 }

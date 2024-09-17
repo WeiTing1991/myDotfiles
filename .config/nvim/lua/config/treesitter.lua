@@ -5,11 +5,12 @@ treesitter.setup {
     "bash",
     "c",
     "cpp",
+    "cmake",
     "lua",
     "json",
     "python",
     "toml",
-    "markdown"
+    "markdown",
   },
   ignore_install = {},
   sync_install = false,
