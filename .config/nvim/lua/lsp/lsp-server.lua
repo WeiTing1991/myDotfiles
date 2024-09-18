@@ -31,12 +31,15 @@ M = {
 
   -- c/ c++
   clangd = {
-    cmd = { "clangd", "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg" },
-    -- root_dir = vim.fn.getcwd(),
-    settings = {
-      clangd = { -- extraArgs = {"-I./vcpkg_installed/x64-windows/include/"}
-      },
+    cmd = { "clangd",
+      "--clang-tidy",
+      "--log=verbose",
+      "--enable-config",
+      "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
     },
+    root_dir = function()
+      return vim.fn.getcwd()
+    end,
     capabilities = {
       offsetEncoding = { "utf-16" },
     },
@@ -45,4 +48,3 @@ M = {
 
 
 return M
-
