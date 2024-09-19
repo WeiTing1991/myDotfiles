@@ -32,12 +32,12 @@ config.colors = {
 	selection_bg = "silver",
 }
 
-config.font_size = 9.0
+config.font_size = 10.0
 
 -- config.adjust_window_size_when_changing_font_size = true
 -- config.macos_window_background_blur = 30
-config.window_background_opacity = 0.8
-config.win32_system_backdrop = "Acrylic"
+config.window_background_opacity = 0.3
+config.win32_system_backdrop = "Mica"
 config.window_close_confirmation = "AlwaysPrompt"
 
 -- window

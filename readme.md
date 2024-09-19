@@ -81,9 +81,12 @@ Debugging
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
 
-Java LSP
-
+LSP
+- [clangd_extension](https://github.com/p00f/clangd_extensions.nvim)
 - [jdtls](https://github.com/mfussenegger/nvim-jdtls)
+
+Debuger
+
 
 </details>
 
@@ -91,6 +94,7 @@ Java LSP
 [Neovim]: https://neovim.io/
 [GNU stow]: https://www.gnu.org/software/stow/manual/stow.html
 
+More information you can fine [here]().
 ## Terminal
 
 I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations, which make it similar to tumx. It is an amazing GPU terminal emulator for cross-platform system.

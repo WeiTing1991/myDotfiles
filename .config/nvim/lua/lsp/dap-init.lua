@@ -33,33 +33,39 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
+local mason_registry = require("mason-registry")
+local codelldb = mason_registry.get_package("codelldb")
+local extension_path = codelldb:get_install_path()
+local codelldb_path = extension_path .. "/extension/adapter/codelldb"
+
 -- install cpp specific config
--- dap.adapters.codelldb = {
---   type = "server",
---   port = "${port}",
---   executable = {
---     -- CHANGE THIS to your path!
---     command = vim.fn.stdpath "data" .. "/mason/bin/codelldb",
---     args = { "--port", "${port}" },
---     -- On windows you may have to uncomment this:
---     -- detached = false,
---   },
--- }
---
--- dap.configurations.cpp = {
---   {
---     name = "Launch file",
---     type = "codelldb",
---     request = "launch",
---     program = function()
---       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
---     end,
---     cwd = "${workspaceFolder}",
---     stopOnEntry = false,
---   },
--- }
+-- cpp configurations
+dap.adapters.codelldb = {
+  type = "server",
+  port = "${port}",
+  executable = {
+    -- CHANGE THIS to your path!
+    command = codelldb_path,
+    args = { "--port", "${port}" },
+    -- On windows you may have to uncomment this:
+    -- detached = false,
+  },
+}
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+  },
+}
 
 -- Install golang specific config
 -- Basic debugging keymaps, feel free to change to your liking!
 -- require("dap-go").setup()
 -- vim.keymap.set("n", "<leader>dt", ":lua require'dap-go'.debug_test()<CR>")
+print (vim.fn.stdpath "data" .. "/mason/bin/codelldb")
