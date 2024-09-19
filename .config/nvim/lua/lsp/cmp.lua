@@ -80,6 +80,6 @@ cmp.setup {
     { name = "buffer",   priority = 8, keyword_length = 2, max_item_count = 4 },
   },
   formatting = {
-    format = lspkind.cmp_format({ mode = "symbol", maxwidth = 100 }),
+    format = lspkind.cmp_format({ mode = "text", maxwidth = 100 }),
   }
 }
