@@ -7,14 +7,19 @@ treesitter.setup {
     "cpp",
     "cmake",
     "lua",
-    "json",
     "python",
+    "vim",
+    "vimdoc",
+
     "toml",
+    "json",
     "markdown",
+    "markdown_inline"
+
   },
   ignore_install = {},
   sync_install = false,
-  auto_install = false,
+  auto_install = true,
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
 

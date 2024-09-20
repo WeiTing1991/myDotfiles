@@ -1,3 +1,5 @@
+-- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#pickers
+--
 local builtin = require "telescope.builtin"
 local utils = require "telescope.utils"
 local actions = require "telescope.actions"
@@ -8,14 +10,17 @@ require("telescope").setup {
     vimgrep_arguments = {
       "rg",
       "-L",
-      "--files",
       "--hidden",
       "--glob",
       "!**/.git/*",
       "--smart-case",
       "--with-filename",
+      '--column',
+
+      '--line-number',
     },
-    initial_mode = "normal",
+    path_display = "smart",
+    initial_mode = "insert",
     layout_config = {
       horizontal = {
         prompt_position = "bottom",
@@ -28,14 +33,14 @@ require("telescope").setup {
       height = 0.90,
       preview_cutoff = 80,
     },
-  },
-  mappings = {
-    n = {
-      ["<C-p>"] = actions.move_selection_previous, -- move to prev result
-      ["<C-n>"] = actions.move_selection_next,     -- move to next result
-      ["<C-d>"] = actions.delete_buffer,
-      ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-      ["q"] = actions.close,
+    mappings = {
+      n = {
+        ["<C-p>"] = actions.move_selection_previous, -- move to prev result
+        ["<C-n>"] = actions.move_selection_next,     -- move to next result
+        ["<C-d>"] = actions.delete_buffer,
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["q"] = actions.close,
+      },
     },
   },
   pickers = {
@@ -49,6 +54,12 @@ require("telescope").setup {
         "--glob",
         "!**/.git/*",
       },
+    },
+    grep_string = {
+      additional_args = { "--hidden" }
+    },
+    live_grep = {
+      additional_args = { "--hidden" }
     },
   },
   extensions = {
@@ -69,7 +80,8 @@ vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Search Keymaps" })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Find file in buffer" })
 vim.keymap.set("n", "<space>ff", function() builtin.find_files { cwd = utils.buffer_dir() } end,
   { desc = "file browser in buffer" })
-vim.keymap.set("n", "<leader>fl", builtin.live_grep, { desc = "Find live grep" })
+vim.keymap.set("n", "<leader>fl", function() builtin.live_grep { grep_open_files = true } end,
+  { desc = "Find live grep" })
 
 vim.keymap.set("n", "<leader>fs", function()
   builtin.grep_string { search = vim.fn.input "Grep > " }
