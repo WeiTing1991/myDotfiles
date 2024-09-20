@@ -9,7 +9,6 @@ return {
       vim.cmd.colorscheme "rose-pine"
     end,
   },
-
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -59,10 +58,10 @@ return {
           change = { text = "~" },
           delete = { text = "_" },
           topdelete = { text = "‾" },
-          changedelete = { text = "~" },
+          changedelete = { text = "│"},
         },
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
+        current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d>-<summary>",
       }
       -- NOTE: https://github.com/lewis6991/gitsigns.nvim
       -- keymaps
@@ -225,7 +224,5 @@ return {
       require "config.copilot"
     end,
   },
-
-  -- syntax highlights
 
 }

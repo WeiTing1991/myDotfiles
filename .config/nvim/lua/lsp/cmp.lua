@@ -7,7 +7,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup {
   performance = {
-    max_view_entries = 100,
+    -- max_view_entries = 100,
     -- debounce = 250,
     -- throttle = 2000,
     -- fetching_timeoul = 1400,
@@ -74,12 +74,25 @@ cmp.setup {
       group_index = 0,
     },
     { name = "nvim_lsp", priority = 8, max_item_count = 15 },
-    { name = "luasnip",  priority = 6, max_item_count = 10 },                 -- For luasnip users.
+    { name = "luasnip",  priority = 6, max_item_count = 10 }, -- For luasnip users.
 
     { name = "path",     priority = 4 },
-    { name = "buffer",   priority = 8, keyword_length = 2, max_item_count = 4 },
+    { name = "buffer",   priority = 6, keyword_length = 2, max_item_count = 4 },
   },
   formatting = {
-    format = lspkind.cmp_format({ mode = "text", maxwidth = 100 }),
-  }
+    format = lspkind.cmp_format {
+      mode = "text",
+      menu = {
+        nvim_lsp = "[LSP]",
+        ultisnips = "[US]",
+        path = "[Path]",
+        buffer = "[Buffer]",
+        emoji = "[Emoji]",
+        omni = "[Omni]",
+      },
+      show_labelDetails = true,
+      maxwidth = 40,
+      ellipsis_char = "...",
+    },
+  },
 }

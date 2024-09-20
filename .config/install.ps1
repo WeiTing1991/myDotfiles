@@ -7,7 +7,7 @@ winget install --id Microsoft.Powershell --source winget
 # for telescope (fzf)
 winget install BurntSushi.ripgrep.MSVC
 winget install sharkdp.fd
-winget install --id=junegunn.fzf  -e
+# winget install --id=junegunn.fzf  -e
 
 Remove-Item $env:USERPROFILE\AppData\Local\nvim -Recurse -Force
 Remove-Item $env:USERPROFILE\AppData\Local\nvim-data -Recurse -Force

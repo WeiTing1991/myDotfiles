@@ -1,5 +1,5 @@
 -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#pickers
---
+
 local builtin = require "telescope.builtin"
 local utils = require "telescope.utils"
 local actions = require "telescope.actions"
