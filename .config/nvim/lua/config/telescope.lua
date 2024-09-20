@@ -19,7 +19,7 @@ require("telescope").setup {
 
       '--line-number',
     },
-    path_display = "smart",
+    -- path_display = "smart",
     initial_mode = "insert",
     layout_config = {
       horizontal = {
