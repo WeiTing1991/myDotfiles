@@ -58,7 +58,7 @@ return {
           change = { text = "~" },
           delete = { text = "_" },
           topdelete = { text = "‾" },
-          changedelete = { text = "│"},
+          changedelete = { text = "│" },
         },
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
         current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d>-<summary>",
@@ -224,5 +224,17 @@ return {
       require "config.copilot"
     end,
   },
+
+  -- session
+  {
+    'rmagatti/auto-session',
+    lazy = false,
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    config = function()
+      require "config.auto-session"
+    end,
+  }
 
 }
