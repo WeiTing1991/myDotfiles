@@ -13,6 +13,7 @@ plugins=(
 	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	virtualenv
 	)
 
 source $ZSH/oh-my-zsh.sh
@@ -65,11 +66,6 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.cargo/bin
 
-# Haskell
-export PATH="$HOME/.ghcup/bin:$PATH"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -86,3 +82,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+# Haskell
+export PATH="$HOME/.ghcup/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

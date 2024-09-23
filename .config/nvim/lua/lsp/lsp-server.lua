@@ -21,7 +21,18 @@ M = {
   jsonls = {},
 
   -- python
-  pyright = {},
+  pyright = {
+    settings = {
+      pyright = {
+        disableOrganizeImports = true,
+      },
+      python = {
+        analysis = {
+          typeCheckingMode = "basic",
+        },
+      },
+    },
+  },
   basedpyright = {
     settings = {
       basedpyright = {

@@ -2,19 +2,36 @@ local treesitter = require "nvim-treesitter.configs"
 
 treesitter.setup {
   ensure_installed = {
+    "vim",
+    "vimdoc",
+
     "bash",
     "c",
     "cpp",
+    "make",
     "cmake",
     "lua",
     "python",
-    "vim",
-    "vimdoc",
+    "java",
+
+    "go",
+    -- "gomod",
+    -- "gowork",
+    -- "gosum",
+
+    "regex",
+    "dockerfile",
+    "gitignore",
 
     "toml",
     "json",
     "markdown",
-    "markdown_inline"
+    "markdown_inline",
+
+    "xml",
+    "html",
+    "css",
+    "templ",
 
   },
   ignore_install = {},

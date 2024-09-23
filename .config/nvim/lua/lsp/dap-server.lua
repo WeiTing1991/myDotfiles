@@ -1,7 +1,8 @@
 local M = {}
 
 M = {
-  cpp = "codelldb"
+  cpp = "codelldb",
+  python = "debugpy"
 }
 
 return M

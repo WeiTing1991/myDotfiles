@@ -8,6 +8,7 @@ function ToggleSpellCheck()
     print "Spellcheck ON"
   end
 end
+
 -- spell check toggle
 vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc = "spell check on/off" })
 
@@ -37,7 +38,7 @@ vim.keymap.set("n", "<leader>q", function()
 end, { desc = "Close windows" })
 
 vim.keymap.set({ "n", "i", }, "<C-s>", function()
-  vim.cmd ":w"
+  vim.cmd ":wa"
 end, { desc = "Save file" })
 
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "select all" })
@@ -71,7 +72,6 @@ if vim.loop.os_uname().sysname == "Darwin" then
   vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
   vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
 elseif vim.fn.has "Win32" then
-
   vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
   vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
 
@@ -94,7 +94,7 @@ vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
 vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
 
 vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
-vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise"})
+vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise" })
 
 
 -- Move the highlighted line down
@@ -132,3 +132,6 @@ vim.keymap.set(
 
 -- Leave insert mode by pressing leader followed by backspace
 vim.keymap.set("i", "<C-c>", "<Esc>")
+
+
+-- custom keymaps

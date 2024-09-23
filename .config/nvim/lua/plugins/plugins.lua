@@ -9,6 +9,7 @@ return {
       vim.cmd.colorscheme "rose-pine"
     end,
   },
+
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -105,7 +106,6 @@ return {
     end,
   },
 
-
   -- note taking
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -199,9 +199,9 @@ return {
     event = "VeryLazy",
   },
   {
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     event = "InsertEnter",
-    config = true
+    config = true,
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
   },
@@ -227,14 +227,14 @@ return {
 
   -- session
   {
-    'rmagatti/auto-session',
+    "rmagatti/auto-session",
     lazy = false,
+
     ---enables autocomplete for opts
     ---@module "auto-session"
     ---@type AutoSession.Config
     config = function()
       require "config.auto-session"
     end,
-  }
-
+  },
 }

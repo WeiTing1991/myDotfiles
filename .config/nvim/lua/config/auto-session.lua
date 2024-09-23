@@ -3,6 +3,7 @@
 require("auto-session").setup {
   suppressed_dirs = { '~/', '~/Project', '~/Downloads', '/' },
   auto_restore = false,
+  auto_save = true,
 
 }
 

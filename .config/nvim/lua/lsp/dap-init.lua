@@ -12,6 +12,7 @@ vim.keymap.set("n", "<leader>gb", dap.run_to_cursor, { desc = "" })
 vim.keymap.set("n", "<F2>", dap.continue, { desc = "Debug" })
 vim.keymap.set("n", "<F3>", dapui.toggle, { desc = "Debug: See last session result." })
 vim.keymap.set("n", "<F4>", dap.restart, { desc = "Debug: reopen" })
+vim.keymap.set("n", "<F5>", dap.terminate, { desc = "Debug: terminate" })
 
 vim.keymap.set("n", "<F8>", dap.step_into, { desc = "Debug: Step Into" })
 vim.keymap.set("n", "<F9>", dap.step_over, { desc = "Debug: Step Over" })
@@ -62,6 +63,11 @@ dap.configurations.cpp = {
     stopOnEntry = false,
   },
 }
+
+-- python config
+local debugpy = mason_registry.get_package("debugpy")
+local python_path = debugpy:get_install_path() .. "/venv/bin/python"
+require("dap-python").setup(python_path)
 
 -- Install golang specific config
 -- Basic debugging keymaps, feel free to change to your liking!

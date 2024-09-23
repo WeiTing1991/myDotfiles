@@ -16,17 +16,17 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim",     config = true }, -- NOTE: Must be loaded before dependants
+      { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim",           opt = {} },
+      { "j-hui/fidget.nvim", opt = {} },
       { "jay-babu/mason-nvim-dap.nvim" },
       -- Allows extra capabilities provided by nvim-cmp
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
       require "lsp.lsp-init" -- lsp engine
-      require "lsp.cmp"      -- completion
+      require "lsp.cmp" -- completion
 
       --only if load with lspconfig and mason
       require "lsp.dap-init"
@@ -54,8 +54,8 @@ return {
 
       -- Adds other completion capabilities.
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",   -- source for text in buffer
-      "hrsh7th/cmp-path",     -- source for file system paths
+      "hrsh7th/cmp-buffer", -- source for text in buffer
+      "hrsh7th/cmp-path", -- source for file system paths
       "onsails/lspkind.nvim", -- vs-code like pictograms
       --"hrsh7th/cmp-calc",
     },
@@ -63,16 +63,17 @@ return {
 
   -- debugger
   {
-    'mfussenegger/nvim-dap',
-    event = 'BufEnter',
+    "mfussenegger/nvim-dap",
+    event = "BufEnter",
     dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'theHamsta/nvim-dap-virtual-text',
-      'jay-babu/mason-nvim-dap.nvim',
-      'nvim-neotest/nvim-nio',
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "jay-babu/mason-nvim-dap.nvim",
+      "nvim-neotest/nvim-nio",
 
       -- Add own debuggers here
-      'leoluz/nvim-dap-go',
+      "leoluz/nvim-dap-go",
+      "mfussenegger/nvim-dap-python",
     },
   },
 
@@ -113,5 +114,5 @@ return {
         inline = false,
       },
     },
-  }
+  },
 }
