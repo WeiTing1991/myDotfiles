@@ -7,9 +7,10 @@ return {
     config = function()
       require "config.rose-pine"
       vim.cmd.colorscheme "rose-pine"
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
   },
-
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -75,6 +76,7 @@ return {
       )
     end,
   },
+
   -- quickfix
   {
     "folke/trouble.nvim",
@@ -205,15 +207,20 @@ return {
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
   },
-
-  -- ui
   {
-    "xiyaowong/transparent.nvim",
-    lazy = false,
+    "norcalli/nvim-colorizer.lua",
     config = function()
-      require "config.transparent"
+      require("colorizer").setup {
+        "*",
+        css = { rgb_fn = true },
+        user_default_options = {
+          names = false,
+        }
+      }
     end,
   },
+
+  -- ui
 
   -- ai system
   {

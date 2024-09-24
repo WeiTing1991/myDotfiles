@@ -9,28 +9,41 @@ if wezterm.config_builder then
 end
 
 local launch_menu = {}
--- for windows
--- Set Pwsh as the default on Windows
--- This is where you actually apply your config choices
 config.font = wezterm.font_with_fallback({
 	-- { family = "RobotoMono Nerd Font", weight = "Regular", italic = false },
-	{ family = "Hack Nerd Font", weight = "Regular", italic = false },
+	{ family = "Hack Nerd Font", weight = "Light", italic = false },
 	-- { family = "JetBrains Mono", weight = "Regular", italic = false },
 })
 
+-- config.term = "xterm-256color"
+
 config.launch_menu = launch_menu
 config.color_scheme = "rose-pine"
+
 config.colors = {
 	foreground = "silver",
-background = "#0D0907",
+	background = "#0D0907",
 	selection_fg = "#20211A",
 	selection_bg = "silver",
+	tab_bar = {
+		background = "#0D0907",
+		active_tab = {
+			bg_color = "#0D0907",
+			fg_color = "silver",
+			intensity = "Bold",
+		},
+		inactive_tab = {
+			bg_color = "#20211A",
+			fg_color = "silver",
+			intensity = "Half",
+		},
+	},
 }
 
 config.font_size = 14.0
---config.adjust_window_size_when_changing_font_size = true
+config.adjust_window_size_when_changing_font_size = true
 config.window_background_opacity = 0.85
-config.macos_window_background_blur = 50
+config.macos_window_background_blur = 0
 config.window_close_confirmation = "AlwaysPrompt"
 
 -- windows
@@ -86,7 +99,6 @@ end)
 
 --tab bar
 wezterm.on("update-status", function(window, pane)
-	--window:set_position(0, 0)
 	-- Workspace name
 	local stat = window:active_workspace()
 	local stat_color = "#eb6f92"
@@ -108,7 +120,7 @@ wezterm.on("update-status", function(window, pane)
 	local cwd = pane:get_current_working_dir()
 	if cwd then
 		if type(cwd) == "userdata" then
-			cwd = basename(cwd.file_path)
+			cwd = cwd.file_path
 		else
 			cwd = basename(cwd)
 		end
@@ -120,28 +132,32 @@ wezterm.on("update-status", function(window, pane)
 	local cmd = pane:get_foreground_process_name()
 	cmd = cmd and basename(cmd) or ""
 
-	window:active_tab():set_title(cwd)
+	window:active_tab():set_title(basename(cwd))
+
 	-- Time
 	--local time = wezterm.strftime("%D:%H:%M")
 
 	-- Left status
 	window:set_left_status(wezterm.format({
-		{ Foreground = { Color = stat_color } },
 		{ Text = "  " },
-		{ Text = wezterm.nerdfonts.oct_table .. "  " .. stat .. "  " .. window:window_id() },
-		{ Text = " | " },
 	}))
 
 	-- Right status
 	window:set_right_status(wezterm.format({
+		{ Foreground = { Color = stat_color } },
+		{ Text = "  " },
+		{ Text = wezterm.nerdfonts.oct_table .. "  " .. stat .. "  " .. window:window_id() },
+		{ Text = " | " },
 		-- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
+
+		{ Foreground = { Color = "#f6c177" } },
 		{ Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
 		{ Text = " | " },
+
 		{ Foreground = { Color = "#f6c177" } },
 		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
 		"ResetAttributes",
 		{ Text = " | " },
-		{ Text = "  " },
 	}))
 end)
 
@@ -240,7 +256,7 @@ config.keys = {
 		}),
 	},
 	-- mode
-	{ key = "F1", mols = "LEADER", action = act.ShowDebugOverlay },
+	-- { key = "F1", mols = "LEADER", action = act.ShowDebugOverlay },
 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
 	{ key = "m", mods = "LEADER", action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
 	{ key = "1", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },

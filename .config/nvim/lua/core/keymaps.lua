@@ -19,7 +19,7 @@ vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
 -- nvim treee keymapping
 vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
-vim.keymap.set("n", "<leader>ee", "<cmd>Oil<CR>", { desc = "Collapse file explorer" })
+vim.keymap.set("n", "<leader>ee", function() require("oil").open_float() end, { desc = "Collapse file explorer" })
 
 -- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })

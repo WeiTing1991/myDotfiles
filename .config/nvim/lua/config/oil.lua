@@ -1,5 +1,5 @@
 require("oil").setup {
-  default_file_explorer = true,
+  default_file_explorer = false,
   delete_to_trash = true,
   skip_confirm_for_simple_edits = true,
   view_options = {
@@ -11,8 +11,9 @@ require("oil").setup {
   },
   float = {
     padding = 2,
-    max_width = 90,
+    max_width = 0,
     max_height = 0,
+    border = "rounded"
   },
   win_options = {
     wrap = true,
