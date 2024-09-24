@@ -23,15 +23,25 @@ config.font = wezterm.font_with_fallback({
 config.launch_menu = launch_menu
 config.color_scheme = "rose-pine"
 
-config.launch_menu = launch_menu
-config.color_scheme = "rose-pine"
 config.colors = {
 	foreground = "silver",
-	background = "black",
-	selection_fg = "black",
+	background = "#0D0907",
+	selection_fg = "#20211A",
 	selection_bg = "silver",
+	tab_bar = {
+		background = "#0D0907",
+		active_tab = {
+			bg_color = "#0D0907",
+			fg_color = "silver",
+			intensity = "Bold",
+		},
+		inactive_tab = {
+			bg_color = "#20211A",
+			fg_color = "silver",
+			intensity = "Half",
+		},
+	},
 }
-
 config.font_size = 9.0
 
 -- config.adjust_window_size_when_changing_font_size = true
@@ -88,41 +98,47 @@ wezterm.on("update-status", function(window, pane)
 	local cwd = pane:get_current_working_dir()
 	if cwd then
 		if type(cwd) == "userdata" then
-			cwd = basename(cwd.file_path)
+			cwd = cwd.file_path
 		else
 			cwd = basename(cwd)
 		end
 	else
 		cwd = ""
 	end
-	window:active_tab():set_title(cwd)
+
 
 	-- Current command
 	local cmd = pane:get_foreground_process_name()
-	cmd = cmd and basename(cmd) or ""
+	cmd = cmd and basename(cmd) or " "
+
+	window:active_tab():set_title(basename(cwd))
+	print("cwd: ", cwd)
 
 	-- Time
 	local time = wezterm.strftime("%D:%H:%M")
 
 	-- Left status
 	window:set_left_status(wezterm.format({
+		{ Text = "  " },
+	}))
+
+	-- Right status
+	-- Right status
+	window:set_right_status(wezterm.format({
 		{ Foreground = { Color = stat_color } },
 		{ Text = "  " },
 		{ Text = wezterm.nerdfonts.oct_table .. "  " .. stat .. "  " .. window:window_id() },
 		{ Text = " | " },
-	}))
-
-	-- Right status
-	window:set_right_status(wezterm.format({
 		-- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
+
+		{ Foreground = { Color = "#f6c177" } },
 		{ Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
 		{ Text = " | " },
+
 		{ Foreground = { Color = "#f6c177" } },
 		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
 		"ResetAttributes",
 		{ Text = " | " },
-		{ Text = wezterm.nerdfonts.md_clock .. "  " .. time },
-		{ Text = "  " },
 	}))
 end)
 
@@ -254,7 +270,6 @@ config.keys = {
 	{ key = "8", mods = "ALT", action = act.ActivateTab(7) },
 	{ key = "9", mods = "ALT", action = act.ActivateTab(-1) },
 
-
 	{ key = "f", mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
 	{ key = "f", mods = "SUPER", action = act.Search("CurrentSelectionOrEmptyString") },
 	{ key = "k", mods = "SHIFT|CTRL", action = act.ClearScrollback("ScrollbackOnly") },
@@ -326,7 +341,6 @@ config.key_tables = {
 
 		{ key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
 		{ key = "q", action = act.CopyMode("Close") },
-
 	},
 
 	search_mode = {
