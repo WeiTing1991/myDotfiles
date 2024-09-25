@@ -6,15 +6,31 @@ return {
     priority = 1000,
     config = function()
       require "config.rose-pine"
-      vim.cmd.colorscheme "rose-pine"
-      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      -- vim.cmd.colorscheme "rose-pine"
+      -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
   },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "shaunsingh/nord.nvim",
+    lazy = false,
     priority = 1000,
+    config = function()
+      vim.cmd.colorscheme "nord"
+
+      -- Example config in lua
+      vim.g.nord_contrast = true
+      vim.g.nord_borders = true
+      vim.g.nord_disable_background = true
+      vim.g.nord_italic = false
+      vim.g.nord_uniform_diff_background = true
+      vim.g.nord_bold = false
+
+      -- Load the colorscheme
+      require('nord').set()
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    end,
   },
 
   -- telescope
@@ -215,7 +231,7 @@ return {
         css = { rgb_fn = true },
         user_default_options = {
           names = false,
-        }
+        },
       }
     end,
   },
