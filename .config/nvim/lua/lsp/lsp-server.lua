@@ -8,7 +8,7 @@ M = {
       Lua = {
         diagnostics = {
           globals = { "vim", "it", "describe", "before_each", "after_each" },
-          disable = { 'missing-fields' },
+          disable = { "missing-fields" },
         },
         completion = {
           callSnippet = "Replace",
@@ -39,13 +39,14 @@ M = {
         typeCheckingMode = "off",
         logLevel = "error",
       },
-    }
+    },
   },
   ruff = {},
 
   -- c/ c++
   clangd = {
-    cmd = { "clangd",
+    cmd = {
+      "clangd",
       "--clang-tidy",
       "--log=verbose",
       "--enable-config",
@@ -57,8 +58,7 @@ M = {
     capabilities = {
       offsetEncoding = { "utf-16" },
     },
-  }
+  },
 }
-
 
 return M

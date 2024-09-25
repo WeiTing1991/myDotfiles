@@ -1,4 +1,6 @@
 require('transparent').clear_prefix('trouble')
+require('transparent').clear_prefix('NvimTree')
+require('transparent').clear_prefix('oil')
 
 require("transparent").setup({
   -- table: default groups
@@ -27,5 +29,6 @@ require("transparent").setup({
   -- Also the user event "TransparentClear" will be triggered
   on_clear = function() end,
 })
+
 
 vim.g.transparent_groups = vim.list_extend(vim.g.transparent_groups or {}, { "ExtraGroup" })

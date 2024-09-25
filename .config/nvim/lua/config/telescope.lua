@@ -39,7 +39,7 @@ require("telescope").setup {
         ["<C-n>"] = actions.move_selection_next,     -- move to next result
         ["<C-d>"] = actions.delete_buffer,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["q"] = actions.close,
+        ["<C-c>"] = actions.close,
       },
     },
   },

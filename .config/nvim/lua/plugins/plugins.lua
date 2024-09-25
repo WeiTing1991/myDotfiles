@@ -12,24 +12,25 @@ return {
     end,
   },
   {
-    "shaunsingh/nord.nvim",
+    "gbprod/nord.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "nord"
+      require "config.nord"
 
-      -- Example config in lua
-      vim.g.nord_contrast = true
-      vim.g.nord_borders = true
-      vim.g.nord_disable_background = true
-      vim.g.nord_italic = false
-      vim.g.nord_uniform_diff_background = true
-      vim.g.nord_bold = false
-
-      -- Load the colorscheme
-      require('nord').set()
+      vim.cmd.colorscheme("nord")
       vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    end,
+  },
+  install = {
+    colorscheme = { "nord" },
+  },
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    config = function()
+      require "config.transparent"
     end,
   },
 
@@ -238,6 +239,7 @@ return {
 
   -- ui
 
+  
   -- ai system
   {
     "zbirenbaum/copilot.lua",
