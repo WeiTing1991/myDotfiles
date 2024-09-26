@@ -14,6 +14,21 @@ require("null-ls").setup {
     -- formating
     formatting.stylua,
 
+    formatting.prettier.with {
+      filetyes = {
+        -- "javascript",
+        -- "typescript",
+        "css",
+        "html",
+        "json",
+        "jsonc",
+        -- "yaml",
+        "markdown",
+        -- "toml"
+      },
+      extra_filetypes = { "toml" },
+    },
+
     -- python
     -- formating
     require("none-ls.diagnostics.ruff").with {

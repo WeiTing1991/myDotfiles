@@ -20,7 +20,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
     map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type Definition")
 
-    map("<leader>cr", vim.lsp.buf.rename, "rename")
+    map("<leader>rn", vim.lsp.buf.rename, "rename")
+
     map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
     map("<leader>ck", vim.lsp.buf.type_definition, "type defintion")
 

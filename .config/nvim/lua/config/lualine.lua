@@ -19,6 +19,7 @@ local function showLsp()
   end
   return msg
 end
+
 local function spell_status()
   if vim.wo.spell then
     -- When spell is on, show the language name
@@ -31,6 +32,7 @@ end
 
 require("lualine").setup {
   options = {
+    theme = "rose-pine",
     component_separators = "",
     section_separators = {},
     refresh = {
@@ -52,11 +54,6 @@ require("lualine").setup {
     lualine_x = {},
     lualine_y = {
       {
-        -- lsp attaced
-        showLsp,
-        icon = "  LSP:",
-      },
-      {
         "diagnostics",
         sources = { "nvim_diagnostic", "nvim_lsp" },
         sections = { "error", "warn", "info", "hint" },
@@ -67,6 +64,11 @@ require("lualine").setup {
       },
     },
     lualine_z = {
+      {
+        -- lsp attaced
+        showLsp,
+        icon = "  LSP:",
+      },
       spell_status,
       "progress",
       { "location", left_padding = 2 },

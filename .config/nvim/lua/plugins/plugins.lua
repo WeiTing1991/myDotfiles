@@ -2,7 +2,7 @@ return {
   -- colortheme
   {
     "weiting1991/rose-pine.nvim",
-    lazy = false,
+    -- lazy = false,
     priority = 1000,
     config = function()
       require "config.rose-pine"
@@ -17,8 +17,8 @@ return {
     priority = 1000,
     config = function()
       require "config.nord"
+      vim.cmd.colorscheme "nord"
 
-      vim.cmd.colorscheme("nord")
       vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
@@ -28,7 +28,7 @@ return {
   },
   {
     "xiyaowong/transparent.nvim",
-    lazy = false,
+    -- lazy = false,
     config = function()
       require "config.transparent"
     end,

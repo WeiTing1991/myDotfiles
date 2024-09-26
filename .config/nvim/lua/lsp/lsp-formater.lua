@@ -1,4 +1,7 @@
 local M = {
+  -- javascript
+  "prettier",
+
   -- lua
   "stylua",
 
