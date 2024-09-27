@@ -19,6 +19,8 @@ M = {
 
   bashls = {},
   jsonls = {},
+  html = {},
+  cssls = {},
 
   -- python
   pyright = {
