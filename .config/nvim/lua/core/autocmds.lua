@@ -14,7 +14,8 @@ vim.api.nvim_create_autocmd("FileType", {
   group = markdowngroup,
   pattern = { "markdown" },
   callback = function()
-    vim.opt_local.textwidth = 80
+    -- vim.opt_local.colrocolumn = "80"
+    vim.opt_local.textwidth = 100
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
     vim.opt_local.tabstop = 2
@@ -29,7 +30,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = cppgroup,
   pattern = { "cpp", "c" , "h"},
   callback = function()
-    vim.opt_local.textwidth = 120
+    -- vim.opt_local.textwidth = 120
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
     vim.opt_local.shiftwidth = 2

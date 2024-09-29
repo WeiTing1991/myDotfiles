@@ -238,8 +238,15 @@ return {
   },
 
   -- ui
+  {
+    "lukas-reineke/virt-column.nvim",
+    opts = {
+      char = { "┆" },
+      virtcolumn = "130",
+      highlight = { "NonText" },
+    },
+  },
 
-  
   -- ai system
   {
     "zbirenbaum/copilot.lua",
