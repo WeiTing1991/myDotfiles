@@ -2,6 +2,7 @@ return {
   {
     "yetone/avante.nvim",
     opts = {},
+    enabled = false,
     build = "make",
     dependencies = {
       "stevearc/dressing.nvim",
