@@ -15,9 +15,9 @@ require("telescope").setup {
       "!**/.git/*",
       "--smart-case",
       "--with-filename",
-      '--column',
+      "--column",
 
-      '--line-number',
+      "--line-number",
     },
     -- path_display = "smart",
     initial_mode = "insert",
@@ -36,7 +36,7 @@ require("telescope").setup {
     mappings = {
       n = {
         ["<C-p>"] = actions.move_selection_previous, -- move to prev result
-        ["<C-n>"] = actions.move_selection_next,     -- move to next result
+        ["<C-n>"] = actions.move_selection_next, -- move to next result
         ["<C-d>"] = actions.delete_buffer,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ["<C-c>"] = actions.close,
@@ -56,32 +56,39 @@ require("telescope").setup {
       },
     },
     grep_string = {
-      additional_args = { "--hidden" }
+      additional_args = { "--hidden" },
     },
     live_grep = {
-      additional_args = { "--hidden" }
+      additional_args = { "--hidden" },
     },
   },
   extensions = {
     fzf = {
-      fuzzy = true,                   -- false will only do exact matching
+      fuzzy = true, -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true,    -- override the file sorter
-      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+    },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {},
     },
   },
 }
 
 pcall(require("telescope").load_extension, "fzf")
+pcall(require("telescope").load_extension, "frecency")
+pcall(require("telescope").load_extension "ui-select")
 
 -- keymaps
 vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Search Keymaps" })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Find file in buffer" })
-vim.keymap.set("n", "<space>ff", function() builtin.find_files { cwd = utils.buffer_dir() } end,
-  { desc = "file browser in buffer" })
-vim.keymap.set("n", "<leader>fl", function() builtin.live_grep { grep_open_files = true } end,
-  { desc = "Find live grep" })
+vim.keymap.set("n", "<space>ff", function()
+  builtin.find_files { cwd = utils.buffer_dir() }
+end, { desc = "file browser in buffer" })
+vim.keymap.set("n", "<leader>fl", function()
+  builtin.live_grep { grep_open_files = true }
+end, { desc = "Find live grep" })
 
 vim.keymap.set("n", "<leader>fs", function()
   builtin.grep_string { search = vim.fn.input "Grep > " }

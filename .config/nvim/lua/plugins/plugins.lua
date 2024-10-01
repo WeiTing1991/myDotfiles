@@ -49,6 +49,8 @@ return {
         end,
       },
       { "nvim-tree/nvim-web-devicons" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
+      { "nvim-telescope/telescope-frecency.nvim" },
     },
     config = function()
       require "config.telescope"
@@ -107,6 +109,7 @@ return {
   -- file tree
   {
     "nvim-tree/nvim-tree.lua",
+    enabled = false,
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
@@ -125,11 +128,21 @@ return {
     end,
   },
 
-  -- note taking
+  {
+    "echasnovski/mini.files",
+    version = false,
+    config = function()
+      require("mini.files").setup {}
+    end,
+  },
+
+  -- note taking/markdown
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    enabled = false,
-    opts = {},
+    opts = {
+      file_types = {"markdown", "Avante"},
+    },
+    ft = {"markdown", "Avante"},
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
   },
   {
@@ -147,7 +160,7 @@ return {
     "epwalsh/obsidian.nvim",
     version = "*",
     lazy = true,
-    enabled = false,
+    -- enabled = false,
     ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -225,18 +238,10 @@ return {
     -- this is equivalent to setup({}) function
   },
   {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup {
-        "*",
-        css = { rgb_fn = true },
-        user_default_options = {
-          names = false,
-        },
-      }
-    end,
+    "echasnovski/mini.hipatterns",
+    event = "BufReadPre",
+    opts = {},
   },
-
   -- ui
   {
     "lukas-reineke/virt-column.nvim",
@@ -244,6 +249,15 @@ return {
       char = { "┆" },
       virtcolumn = "130",
       highlight = { "NonText" },
+    },
+  },
+
+  {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add options here
+      -- or leave it empty to use the default settings
     },
   },
 

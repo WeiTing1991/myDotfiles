@@ -9,6 +9,7 @@ function ToggleSpellCheck()
   end
 end
 
+
 -- spell check toggle
 vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc = "spell check on/off" })
 
@@ -16,20 +17,23 @@ vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
 
--- nvim treee keymapping
-vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
-vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
+-- tree keymapping
+-- vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
+-- vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
+
+vim.keymap.set('n', '<leader>e', '<cmd>lua MiniFiles.open()<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set("n", "<leader>ee", function() require("oil").open_float() end, { desc = "Collapse file explorer" })
 
 -- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
-
 
 -- markdown preview
 vim.keymap.set("n", "<leader>mk", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown toggle" })
 vim.keymap.set("n", "<leader>mkp", "<cmd>MarkdownPreview<cr>", { desc = "markdown preview" })
 vim.keymap.set("n", "<leader>mks", "<cmd>MarkdownPreviewStop<cr>", { desc = "markdown stop" })
 vim.keymap.set("n", "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", { desc = "markdown render toggle" })
+
+vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianOpen<cr>", { desc = "markdown render toggle" })
 
 
 --leave the file

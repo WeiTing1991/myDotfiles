@@ -11,7 +11,7 @@ end
 local launch_menu = {}
 config.font = wezterm.font_with_fallback({
 	-- { family = "RobotoMono Nerd Font", weight = "Regular", italic = false },
-	{ family = "Hack Nerd Font", weight = "Light", italic = false },
+	{ family = "Hack Nerd Font", weight = "Regular", italic = false },
 	-- { family = "JetBrains Mono", weight = "Regular", italic = false },
 })
 
