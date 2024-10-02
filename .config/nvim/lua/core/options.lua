@@ -78,7 +78,7 @@ local options = {
   scrolloff = 10,
   sidescrolloff = 1,
   conceallevel = 0,
-
+ 
   -- search
   -- enable incremental searching
   incsearch = true,
@@ -101,8 +101,10 @@ local options = {
   encoding = "UTF-8",
 
   -- folds
+  -- foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()",
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()",
+  foldtext = "",
   foldlevel = 99,
 
   -- spell check

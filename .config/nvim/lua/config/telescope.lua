@@ -16,11 +16,10 @@ require("telescope").setup {
       "--smart-case",
       "--with-filename",
       "--column",
-
       "--line-number",
     },
     -- path_display = "smart",
-    initial_mode = "insert",
+    initial_mode = "normal",
     layout_config = {
       horizontal = {
         prompt_position = "bottom",
@@ -36,13 +35,22 @@ require("telescope").setup {
     mappings = {
       n = {
         ["<C-p>"] = actions.move_selection_previous, -- move to prev result
-        ["<C-n>"] = actions.move_selection_next, -- move to next result
+        ["<C-n>"] = actions.move_selection_next,     -- move to next result
         ["<C-d>"] = actions.delete_buffer,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<C-c>"] = actions.close,
+        ["<q>"] = actions.close,
+        ["<C-v>"] = function(prompt_bufnr)
+          local selection = require('telescope.actions.state').get_selected_entry()
+          require('telescope.actions').close(prompt_bufnr)
+          if selection ~= nil then
+            vim.cmd('vsplit ' .. selection.value) -- Opens in vertical split
+          end
+        end,
       },
     },
   },
+  -- Also notice the "reverse_directories" option which will show the
+  -- closest dir right after the filename
   pickers = {
     find_files = {
       hidden = true,
@@ -53,6 +61,7 @@ require("telescope").setup {
         "--hidden",
         "--glob",
         "!**/.git/*",
+        "--sortr=modified",
       },
     },
     grep_string = {
@@ -64,10 +73,10 @@ require("telescope").setup {
   },
   extensions = {
     fzf = {
-      fuzzy = true, -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
     },
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {},

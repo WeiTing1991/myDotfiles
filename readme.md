@@ -1,8 +1,8 @@
 # Welcome to my dotfiles
 
-This repository is my dotfiles (for now) for my windows and mac via [GNU stow].
 
-## stow 
+## stow
+This repository is my dotfiles (for now) for my windows and mac via [GNU stow].
 
 ```bash
 stow .
@@ -29,6 +29,7 @@ mv nvim ~/.config
 
 For Windows 10/11
 
+
 ```powershell
 git clone GitPath $HOME/.mydotfiles
 
@@ -38,63 +39,58 @@ git clone GitPath $HOME/.mydotfiles
 
 ### Configuration
 
-<details><summary>The plugins I am using now <p></summary>
+The plugins I am using now are listed below.
+I am using the latest version of the Neovim version 0.10.0.
 
 Latest version of the Neovim setup and plugins.
+
+
+#### Plugins
+<details>
+<summary>List<p></summary>
+
 Package manager
 
-- [lazy.nvim](https://github.com/folke/lazy.nvim)
+  - [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 Parsing
 
-- [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-
-LSP and Auto completion
-
-- [lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [mason](https://github.com/williamboman/mason.nvim)
-- [mason-lspconfig](https://github.com/williamboman/mason-lspconfig.nvim)
-- [lspsaga](https://github.com/glepnir/lspsaga.nvim)
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- [none-ls](https://github.com/nvimtools/none-ls.nvim)
+  - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 Navigation
 
-- [telescope](https://github.com/nvim-telescope/telescope.nvim)
-- [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
-- [oil]()
+  - [telescope](https://github.com/nvim-telescope/telescope.nvim): fuzzy finder
+  - [mini-files](https://github.com/nvim-tree/nvim-tree.lua): mini file explorer
+  - [oil](https://github.com/stevearc/oil.nvim): really useful for creating and modifying files as
+  normal buffer.
 
 Editor tool/ Git/ notes taking
 
-- [copilot](https://github.com/zbirenbaum/copilot.lua)
-- [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
-- [render markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
-- [trouble](https://github.com/folke/trouble.nvim)
+  - [gitsigns](https://github.com/lewis6991/gitsigns.nvim): git signs integration
+  - [copilot](https://github.com/zbirenbaum/copilot.lua)
+  - [render markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+  - [markdown-preview](https://github.com/iamcco/markdown-preview.nvim)
+  - [obsidian](https://github.com/iamcco/markdown-preview.nvim)
+  - [trouble](https://github.com/folke/trouble.nvim)
 
 UI
 
-- [lualine](https://github.com/nvim-lualine/lualine.nvim)
-- [mini-indentscope](https://github.com/echasnovski/mini.indentscop)
-
-Debugging
-
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-- [nvim-dap-go](https://github.com/leoluz/nvim-dap-go)
-
-LSP
-- [clangd_extension](https://github.com/p00f/clangd_extensions.nvim)
-- [jdtls](https://github.com/mfussenegger/nvim-jdtls)
-
-Debuger
-
+  - [lualine](https://github.com/nvim-lualine/lualine.nvim)
+  - [barbar](https://github.com/nvim-lualine/lualine.nvim)
+  - [mini-indentscope](https://github.com/echasnovski/mini.indentscop)
+  - [virt-column](https://github.com/echasnovski/mini.indentscop)
+  - [auto-session](https://github.com/echasnovski/mini.indentscop)
 
 </details>
+
+#### LSP
+
+More information you can fine [here](https://weiting1991.github.io/weitingworks/posts/240927_neovim_setup/).
 
 [kickstart]: https://github.com/nvim-lua/kickstart.nvim
 [Neovim]: https://neovim.io/
 [GNU stow]: https://www.gnu.org/software/stow/manual/stow.html
 
-More information you can fine [here]().
 ## Terminal
 
 I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations, which make it similar to tumx. It is an amazing GPU terminal emulator for cross-platform system.

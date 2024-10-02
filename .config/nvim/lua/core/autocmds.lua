@@ -14,8 +14,8 @@ vim.api.nvim_create_autocmd("FileType", {
   group = markdowngroup,
   pattern = { "markdown" },
   callback = function()
-    -- vim.opt_local.colrocolumn = "80"
-    vim.opt_local.textwidth = 100
+    -- vim.g.markdown_recommended_style = 0
+    vim.opt_local.textwidth = 80
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
     vim.opt_local.tabstop = 2
@@ -23,7 +23,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 2
     vim.opt_local.expandtab = true
     vim.opt.conceallevel = 2
+
     vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste the image" })
+
+
   end,
 })
 
@@ -38,4 +41,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.expandtab = true
   end,
 })
-

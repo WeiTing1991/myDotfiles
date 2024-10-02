@@ -21,6 +21,7 @@ M = {
   jsonls = {},
   html = {},
   cssls = {},
+  marksman = {},
 
   -- python
   pyright = {

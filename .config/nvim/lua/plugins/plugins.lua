@@ -6,9 +6,9 @@ return {
     priority = 1000,
     config = function()
       require "config.rose-pine"
-      -- vim.cmd.colorscheme "rose-pine"
-      -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      vim.cmd.colorscheme "rose-pine"
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
   },
   {
@@ -17,10 +17,9 @@ return {
     priority = 1000,
     config = function()
       require "config.nord"
-      vim.cmd.colorscheme "nord"
-
-      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      -- vim.cmd.colorscheme "nord"
+      -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
   },
   install = {
@@ -106,10 +105,10 @@ return {
       require "config.trouble"
     end,
   },
+
   -- file tree
   {
     "nvim-tree/nvim-tree.lua",
-    enabled = false,
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
@@ -127,10 +126,16 @@ return {
       require "config.oil"
     end,
   },
-
   {
     "echasnovski/mini.files",
     version = false,
+    opts = {
+      windows = {
+        preview = true,
+        width_focus = 50,
+        width_preview = 50,
+      },
+    },
     config = function()
       require("mini.files").setup {}
     end,
@@ -140,9 +145,9 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
-      file_types = {"markdown", "Avante"},
+      file_types = { "markdown", "Avante" },
     },
-    ft = {"markdown", "Avante"},
+    ft = { "markdown", "Avante" },
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
   },
   {
@@ -160,7 +165,6 @@ return {
     "epwalsh/obsidian.nvim",
     version = "*",
     lazy = true,
-    -- enabled = false,
     ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -177,6 +181,7 @@ return {
   },
   {
     "romgrk/barbar.nvim",
+    enabled = false,
     event = "VimEnter",
     init = function()
       vim.g.barbar_auto_setup = false
@@ -222,9 +227,7 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    opts = {
-      -- add any options here
-    },
+    opts = {},
   },
   {
     "mbbill/undotree",
@@ -242,15 +245,17 @@ return {
     event = "BufReadPre",
     opts = {},
   },
+
   -- ui
   {
     "lukas-reineke/virt-column.nvim",
     opts = {
       char = { "┆" },
-      virtcolumn = "130",
+      -- virtcolumn = "120",
       highlight = { "NonText" },
     },
   },
+
   -- ai system
   {
     "zbirenbaum/copilot.lua",
@@ -261,7 +266,7 @@ return {
     end,
   },
 
-  -- session
+  -- auto session
   {
     "rmagatti/auto-session",
     lazy = false,

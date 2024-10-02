@@ -9,6 +9,18 @@ function ToggleSpellCheck()
   end
 end
 
+-- fold
+vim.keymap.set("n", "<Tab>", function()
+  -- Get the current line number
+  local line = vim.fn.line "."
+  -- Get the fold level of the current line
+  local foldlevel = vim.fn.foldlevel(line)
+  if foldlevel == 0 then
+    vim.notify("No fold found", vim.log.levels.INFO)
+  else
+    vim.cmd "normal! za"
+  end
+end, { desc = "Toggle fold" })
 
 -- spell check toggle
 vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc = "spell check on/off" })
@@ -18,8 +30,8 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir
 vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
 
 -- tree keymapping
--- vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
--- vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
+vim.keymap.set('n', '<leader>ef', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
+vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
 
 vim.keymap.set('n', '<leader>e', '<cmd>lua MiniFiles.open()<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set("n", "<leader>ee", function() require("oil").open_float() end, { desc = "Collapse file explorer" })
@@ -137,5 +149,3 @@ vim.keymap.set(
 -- Leave insert mode by pressing leader followed by backspace
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
-
--- custom keymaps
