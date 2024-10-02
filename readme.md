@@ -1,6 +1,5 @@
 # Welcome to my dotfiles
 
-
 ## stow
 This repository is my dotfiles (for now) for my windows and mac via [GNU stow].
 
