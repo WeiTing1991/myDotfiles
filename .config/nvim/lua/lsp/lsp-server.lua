@@ -53,7 +53,7 @@ M = {
       "--clang-tidy",
       "--log=verbose",
       "--enable-config",
-      "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
+      -- "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
     },
     root_dir = function()
       return vim.fn.getcwd()

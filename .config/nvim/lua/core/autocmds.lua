@@ -25,8 +25,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.conceallevel = 2
 
     vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste the image" })
-
-
   end,
 })
 
@@ -34,10 +32,12 @@ vim.api.nvim_create_autocmd("FileType", {
   group = cppgroup,
   pattern = { "cpp", "c", "h" },
   callback = function()
-    -- vim.opt_local.textwidth = 120
+    vim.opt_local.textwidth = 100
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
     vim.opt_local.shiftwidth = 2
     vim.opt_local.expandtab = true
+
+    vim.keymap.set("n", "<leader>h", "<cmd>ClangdSwitchSourceHeader<cr>", { desc = "Switch between source and header" })
   end,
 })
