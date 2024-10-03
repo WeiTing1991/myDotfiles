@@ -28,7 +28,6 @@ mv nvim ~/.config
 
 For Windows 10/11
 
-
 ```powershell
 git clone GitPath $HOME/.mydotfiles
 
@@ -38,13 +37,10 @@ git clone GitPath $HOME/.mydotfiles
 
 ### Configuration
 
-The plugins I am using now are listed below.
-I am using the latest version of the Neovim version 0.10.0.
-
-Latest version of the Neovim setup and plugins.
-
+The **plugins** I am using now are listed below. I am using the latest version of the Neovim version 0.10.0.
 
 #### Plugins
+
 <details>
 <summary>List<p></summary>
 
@@ -75,7 +71,6 @@ Editor tool/ Git/ notes taking
 UI
 
   - [lualine](https://github.com/nvim-lualine/lualine.nvim)
-  - [barbar](https://github.com/nvim-lualine/lualine.nvim)
   - [mini-indentscope](https://github.com/echasnovski/mini.indentscop)
   - [virt-column](https://github.com/echasnovski/mini.indentscop)
   - [auto-session](https://github.com/echasnovski/mini.indentscop)

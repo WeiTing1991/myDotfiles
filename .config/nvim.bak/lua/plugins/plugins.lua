@@ -1,13 +1,12 @@
 return {
-  -- UI
-  { "nvim-lua/plenary.nvim",
-  },
+
   {
     "nvchad/ui",
     config = function()
       require "nvchad"
     end,
   },
+
   {
     "nvchad/base46",
     lazy = true,
@@ -15,6 +14,7 @@ return {
       require("base46").load_all_highlights()
     end,
   },
+  -- colortheme
   {
     "weiting1991/rose-pine.nvim",
     -- lazy = false,
@@ -22,9 +22,23 @@ return {
     config = function()
       require "config.rose-pine"
       vim.cmd.colorscheme "rose-pine"
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    end,
+  },
+  {
+    "gbprod/nord.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require "config.nord"
+      -- vim.cmd.colorscheme "nord"
       -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
       -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
+  },
+  install = {
+    colorscheme = { "nord" },
   },
   {
     "xiyaowong/transparent.nvim",
@@ -33,6 +47,7 @@ return {
       require "config.transparent"
     end,
   },
+
   -- telescope
   {
     "nvim-telescope/telescope.nvim",
@@ -86,7 +101,12 @@ return {
       -- NOTE: https://github.com/lewis6991/gitsigns.nvim
       -- keymaps
       vim.keymap.set("n", "<leader>gh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
-      vim.keymap.set( "n", "<leader>gb", ":Gitsign toggle_current_line_blame<CR>", { desc = "toggle current line blame" })
+      vim.keymap.set(
+        "n",
+        "<leader>gb",
+        ":Gitsign toggle_current_line_blame<CR>",
+        { desc = "toggle current line blame" }
+      )
     end,
   },
 
@@ -142,6 +162,25 @@ return {
     "tpope/vim-sleuth",
   },
   {
+    "romgrk/barbar.nvim",
+    enabled = false,
+    event = "VimEnter",
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    version = "^1.0.0", -- optional: only update when a new 1.x version is released
+    opts = {
+      animation = false,
+      highlights_alternative = true,
+      button = " ",
+      gitsigns = {
+        added = { enabled = false, icon = "+" },
+        changed = { enabled = false, icon = "~" },
+        deleted = { enabled = false, icon = "-" },
+      },
+    },
+  },
+  {
     "echasnovski/mini.indentscope",
     version = false,
     config = function()
@@ -162,8 +201,14 @@ return {
     end,
   },
   {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require "config.lualine"
+    end,
+  },
+  {
     "numToStr/Comment.nvim",
-    event = "InsertEnter",
     opts = {},
   },
   {
@@ -177,6 +222,22 @@ return {
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
   },
+  {
+    "echasnovski/mini.hipatterns",
+    event = "BufReadPre",
+    opts = {},
+  },
+
+  -- ui
+  {
+    "lukas-reineke/virt-column.nvim",
+    opts = {
+      char = { "┆" },
+      -- virtcolumn = "120",
+      highlight = { "NonText" },
+    },
+  },
+
   -- ai system
   {
     "zbirenbaum/copilot.lua",
@@ -186,6 +247,7 @@ return {
       require "config.copilot"
     end,
   },
+
   -- auto session
   {
     "rmagatti/auto-session",
@@ -199,4 +261,3 @@ return {
     end,
   },
 }
-

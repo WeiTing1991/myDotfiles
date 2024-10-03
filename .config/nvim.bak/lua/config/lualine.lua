@@ -33,7 +33,7 @@ end
 require("lualine").setup {
   options = {
     theme = "rose-pine",
-    component_separators = "",
+    component_separators = "|",
     section_separators = {},
     refresh = {
       statusline = 300,

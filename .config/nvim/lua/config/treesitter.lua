@@ -32,7 +32,6 @@ treesitter.setup {
     "html",
     "css",
     "templ",
-
   },
   ignore_install = {},
   sync_install = false,
@@ -44,5 +43,5 @@ treesitter.setup {
     enable = true,
     additional_vim_regex_highlighting = { "markdown" },
   },
-  indent = { enable = true }
+  indent = { enable = true },
 }

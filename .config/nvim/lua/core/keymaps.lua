@@ -30,11 +30,11 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir
 vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
 
 -- tree keymapping
-vim.keymap.set('n', '<leader>ef', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
+vim.keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
 vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
 
-vim.keymap.set('n', '<leader>e', '<cmd>lua MiniFiles.open()<CR>', { desc = 'Toggle File Tree' })
-vim.keymap.set("n", "<leader>ee", function() require("oil").open_float() end, { desc = "Collapse file explorer" })
+vim.keymap.set('n', '<leader>ef', '<cmd>lua MiniFiles.open()<CR>', { desc = 'Toggle File Tree' })
+vim.keymap.set("n", "<leader>e", function() require("oil").open_float() end, { desc = "Collapse file explorer" })
 
 -- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })

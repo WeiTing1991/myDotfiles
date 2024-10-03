@@ -42,7 +42,7 @@ config.colors = {
 
 config.font_size = 14.0
 config.adjust_window_size_when_changing_font_size = true
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.65
 config.macos_window_background_blur = 100
 config.window_close_confirmation = "AlwaysPrompt"
 
