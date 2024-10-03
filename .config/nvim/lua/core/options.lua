@@ -70,7 +70,7 @@ local options = {
 
   -- Show which line your cursor is on
   cursorline = false,
-  colorcolumn = "130",
+  -- colorcolumn = "120",
   textwidth = 120,
   linebreak = true,
 

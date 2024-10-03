@@ -73,6 +73,9 @@ vim.keymap.set("n", "zz", ":nohl<CR>", { desc = "Clear highlights" })
 -- disable the space key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
+-- Zen mode
+vim.keymap.set("n", "<leader>z", function() require("zen-mode").toggle({ window = { width = .85 }}) end , { desc = "Zen mode" })
+
 -- autopair
 -- vim.keymap.set('i', '""', '""<left>', { desc = '' })
 -- vim.keymap.set('i', "''", "''<left>", { desc = '' })

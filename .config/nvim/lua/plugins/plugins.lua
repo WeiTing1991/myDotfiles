@@ -182,14 +182,19 @@ return {
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
   },
-  { "lukas-reineke/virt-column.nvim",
+  {
+    "lukas-reineke/virt-column.nvim",
     opts = {
       char = { "┆" },
-      -- virtcolumn = "80",
+      virtcolumn = "120",
       highlight = { "NonText" },
     },
   },
-
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+    },
+  },
   -- ai system
   {
     "zbirenbaum/copilot.lua",
