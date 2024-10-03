@@ -35,6 +35,13 @@ return {
       require "config.obsidian"
     end,
   },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1001, -- this plugin needs to run before anything else
+    config = true,
+    opts = {
+    },
+  },
 
   -- support for image pasting
   -- NOTE https://github.com/HakonHarnes/img-clip.nvim
@@ -54,13 +61,6 @@ return {
         -- required for Windows users
         use_absolute_path = true,
       },
-    },
-  },
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1001, -- this plugin needs to run before anything else
-    opts = {
-      rocks = { "magick" },
     },
   },
   {

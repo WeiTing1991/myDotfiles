@@ -1,7 +1,6 @@
 return {
   -- UI
-  { "nvim-lua/plenary.nvim",
-  },
+  { "nvim-lua/plenary.nvim" },
   {
     "nvchad/ui",
     config = function()
@@ -20,8 +19,8 @@ return {
     -- lazy = false,
     priority = 1000,
     config = function()
-      require "config.rose-pine"
-      vim.cmd.colorscheme "rose-pine"
+      -- require "config.rose-pine"
+      -- vim.cmd.colorscheme "rose-pine"
       -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
       -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
@@ -33,6 +32,7 @@ return {
       require "config.transparent"
     end,
   },
+
   -- telescope
   {
     "nvim-telescope/telescope.nvim",
@@ -86,7 +86,12 @@ return {
       -- NOTE: https://github.com/lewis6991/gitsigns.nvim
       -- keymaps
       vim.keymap.set("n", "<leader>gh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
-      vim.keymap.set( "n", "<leader>gb", ":Gitsign toggle_current_line_blame<CR>", { desc = "toggle current line blame" })
+      vim.keymap.set(
+        "n",
+        "<leader>gb",
+        ":Gitsign toggle_current_line_blame<CR>",
+        { desc = "toggle current line blame" }
+      )
     end,
   },
 
@@ -177,6 +182,14 @@ return {
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
   },
+  { "lukas-reineke/virt-column.nvim",
+    opts = {
+      char = { "┆" },
+      -- virtcolumn = "80",
+      highlight = { "NonText" },
+    },
+  },
+
   -- ai system
   {
     "zbirenbaum/copilot.lua",
@@ -199,4 +212,3 @@ return {
     end,
   },
 }
-

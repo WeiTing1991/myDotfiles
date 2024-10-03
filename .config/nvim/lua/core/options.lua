@@ -78,7 +78,7 @@ local options = {
   scrolloff = 10,
   sidescrolloff = 1,
   conceallevel = 0,
- 
+
   -- search
   -- enable incremental searching
   incsearch = true,

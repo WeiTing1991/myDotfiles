@@ -29,12 +29,18 @@ vim.api.nvim_set_keymap("n", "<Leader>sp", ":lua ToggleSpellCheck()<CR>", { desc
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 vim.keymap.set("n", "<leader>/", ":!", { desc = "quick cmdline" })
 
--- tree keymapping
-vim.keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle File Tree' })
-vim.keymap.set('n', 'q', '<cmd>NvimTreeClose<CR>', { desc = 'Close File Tree' })
+vim.keymap.set("n", "<leader>ch", function()
+  require("nvchad.themes").open()
+end, { desc = "cd" })
 
-vim.keymap.set('n', '<leader>ef', '<cmd>lua MiniFiles.open()<CR>', { desc = 'Toggle File Tree' })
-vim.keymap.set("n", "<leader>e", function() require("oil").open_float() end, { desc = "Collapse file explorer" })
+-- tree keymapping
+vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Tree" })
+vim.keymap.set("n", "q", "<cmd>NvimTreeClose<CR>", { desc = "Close File Tree" })
+
+vim.keymap.set("n", "<leader>ef", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle File Tree" })
+vim.keymap.set("n", "<leader>e", function()
+  require("oil").open_float()
+end, { desc = "Collapse file explorer" })
 
 -- undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
@@ -47,13 +53,12 @@ vim.keymap.set("n", "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", { desc = "ma
 
 vim.keymap.set("n", "<leader>ob", "<cmd>ObsidianOpen<cr>", { desc = "markdown render toggle" })
 
-
 --leave the file
 vim.keymap.set("n", "<leader>q", function()
   vim.cmd ":bw"
 end, { desc = "Close windows" })
 
-vim.keymap.set({ "n", "i", }, "<C-s>", function()
+vim.keymap.set({ "n", "i" }, "<C-s>", function()
   vim.cmd ":wa"
 end, { desc = "Save file" })
 
@@ -108,7 +113,6 @@ vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
 vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
 vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise" })
 
-
 -- Move the highlighted line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 -- Move the highlighted line up
@@ -144,4 +148,3 @@ vim.keymap.set(
 
 -- Leave insert mode by pressing leader followed by backspace
 vim.keymap.set("i", "<C-c>", "<Esc>")
-

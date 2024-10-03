@@ -1,6 +1,7 @@
 local options = {
+
   base46 = {
-    theme = "monochrome", -- default theme
+    theme = "poimandres", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
@@ -23,11 +24,24 @@ local options = {
       -- default/round/block/arrow separators work only for default statusline theme
       -- round and block will work for minimal theme only
       separator_style = "default",
-      order = nil,
-      modules = nil,
-    },
+      order = { "mode", "f", "git", "%=", "lsp_msg", "%=", "lsp", "cwd", "xyz", "spell_check", "abc" }, -- Add spell_check to the order
+      modules = {
+        abc = function()
+          return ""
+        end,
 
-    -- lazyload it when there are 1+ buffers
+        xyz = "",
+        f = "%F",
+
+        spell_check = function()
+          if vim.wo.spell then
+            return "spell [" .. vim.opt.spelllang:get()[1] .. "]"
+          else
+            return "spell:Off"
+          end
+        end,
+      },
+    },
     tabufline = {
       enabled = false,
       lazyload = true,
@@ -37,10 +51,11 @@ local options = {
 
     nvdash = {
       load_on_startup = false,
-
       header = {
+        "                            ",
+        "     Powered By  eovim    ",
+        "                            ",
       },
-
       buttons = {
         { "  Find File", "Spc f f", "Telescope find_files" },
         { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
@@ -68,13 +83,11 @@ local options = {
   lsp = { signature = true },
 
   cheatsheet = {
-    theme = "grid", -- simple/grid
+    theme = "gird", -- simple/grid
     excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" }, -- can add group name or with mode
   },
-
   mason = { cmd = true, pkgs = {} },
 }
 
 local status, chadrc = pcall(require, "chadrc")
 return vim.tbl_deep_extend("force", options, status and chadrc or {})
-
