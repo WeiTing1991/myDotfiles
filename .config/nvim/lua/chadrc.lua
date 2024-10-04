@@ -24,7 +24,7 @@ local options = {
       -- default/round/block/arrow separators work only for default statusline theme
       -- round and block will work for minimal theme only
       separator_style = "default",
-      order = { "mode", "f", "git", "%=", "lsp_msg", "%=", "lsp", "cwd", "xyz", "spell_check", "abc" }, -- Add spell_check to the order
+      order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "lsp", "cwd", "xyz", "spell_check", "abc" }, -- Add spell_check to the order
       modules = {
         abc = function()
           return ""
