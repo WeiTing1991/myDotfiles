@@ -1,1 +1,0 @@
-c:/Users/weitingchen/.emacs.d/straight/repos/shrink-path.el/shrink-path.el

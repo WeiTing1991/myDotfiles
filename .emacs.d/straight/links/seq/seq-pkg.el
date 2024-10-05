@@ -1,1 +1,0 @@
-c:/Users/weitingchen/.emacs.d/straight/repos/seq/seq-pkg.el

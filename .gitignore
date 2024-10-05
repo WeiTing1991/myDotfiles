@@ -2,6 +2,6 @@
 .config/nvim/lazy-lock.json
 ..vimrc.*
 
-./.emacs.d/auto-save-list/
-./.emacs.d/eln-c/
-./.emacs.d/straight/
+.emacs.d/auto-save-list/
+.emacs.d/eln/
+.emacs.d/straight/

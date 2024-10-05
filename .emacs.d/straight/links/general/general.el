@@ -1,1 +1,0 @@
-c:/Users/weitingchen/.emacs.d/straight/repos/general.el/general.el

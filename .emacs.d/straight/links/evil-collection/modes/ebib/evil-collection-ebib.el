@@ -1,1 +1,0 @@
-c:/Users/weitingchen/.emacs.d/straight/repos/evil-collection/modes/ebib/evil-collection-ebib.el
