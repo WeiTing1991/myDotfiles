@@ -1,29 +1,15 @@
 ;; config.el
 ;; Initialize package sources
-(require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("org" . "https://orgmode.org/elpa/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
-
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; Initialize use-package on non-Linux platforms
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
-(setq use-package-always-ensure t)
-
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; (straight-use-package 'use-package)
 
 (use-package drag-stuff
-  :ensure t
+  :straight t
  )
 
 (use-package evil
+  :straight t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -50,12 +36,14 @@
   (evil-set-initial-state 'dashboard-mode 'normal))
 
 (use-package evil-collection
+  :straight t
   :after evil
   :config
   (add-to-list 'evil-collection-mode-list 'help) ;; evilify help mode
   (evil-collection-init))
 
 (use-package general
+  :straight t
   :config
   (general-evil-setup)
 
@@ -142,12 +130,11 @@
   (ivy-mode))
 
 (use-package all-the-icons-ivy-rich
-  :ensure t
+  :straight t
   :init (all-the-icons-ivy-rich-mode 1))
 
 (use-package ivy-rich
   :after ivy
-  :ensure t
   :init (ivy-rich-mode 1) ;; this gets us descriptions in M-x.
   :custom
   (ivy-virtual-abbreviate 'full
@@ -157,8 +144,11 @@
   (ivy-set-display-transformer 'ivy-switch-buffer
                                'ivy-rich-switch-buffer-transformer))
 ;; UI
+(use-package all-the-icons
+  :straight t
+ ) 
 (use-package nerd-icons
-  :ensure t
+  :straight t
   ;; :custom
   ;; The Nerd Font you want to use in GUI
   ;; "Symbols Nerd Font Mono" is the default and is recommended
@@ -168,47 +158,18 @@
   )
 
 (use-package nerd-icons-dired
+  :straight t
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
 (use-package doom-modeline
-  :ensure t
+  :straight t
   :init (doom-modeline-mode 1)
   :config
   (setq doom-modeline-height 35      ;; sets modeline height
         doom-modeline-bar-width 5    ;; sets right bar width
         doom-modeline-persp-name t   ;; adds perspective name to modeline
         doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
-
-
-;; shell
-(use-package vterm
-:config
-(setq shell-file-name "/bin/zsh"
-      vterm-max-scrollback 5000))
-
-(use-package vterm-toggle
-  :after vterm
-  :config
-  ;; When running programs in Vterm and in 'normal' mode, make sure that ESC
-  ;; kills the program as it would in most standard terminal programs.
-  (evil-define-key 'normal vterm-mode-map (kbd "<escape>") 'vterm--self-insert)
-  (setq vterm-toggle-fullscreen-p nil)
-  (setq vterm-toggle-scope 'project)
-  (add-to-list 'display-buffer-alist
-               '((lambda (buffer-or-name _)
-                     (let ((buffer (get-buffer buffer-or-name)))
-                       (with-current-buffer buffer
-                         (or (equal major-mode 'vterm-mode)
-                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                  (display-buffer-reuse-window display-buffer-at-bottom)
-                  ;;(display-buffer-reuse-window display-buffer-in-direction)
-                  ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                  ;;(direction . bottom)
-                  ;;(dedicated . t) ;dedicated is supported in emacs27
-                  (reusable-frames . visible)
-                  (window-height . 0.4))))
-
 
 ;; which key
 (use-package which-key

@@ -1,0 +1,1 @@
+c:/Users/weitingchen/.emacs.d/straight/repos/seq/seq-24.el

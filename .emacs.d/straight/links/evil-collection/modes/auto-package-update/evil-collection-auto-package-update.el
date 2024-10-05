@@ -1,0 +1,1 @@
+c:/Users/weitingchen/.emacs.d/straight/repos/evil-collection/modes/auto-package-update/evil-collection-auto-package-update.el

@@ -1,0 +1,1 @@
+c:/Users/weitingchen/.emacs.d/straight/repos/evil-collection/evil-collection.el

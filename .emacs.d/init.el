@@ -43,13 +43,11 @@
 (defvar wt/frame-transparency '(90 . 90))
 
 ;; Set the font
-(set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size)
+(set-face-attribute 'default nil :font "Hack Nerd Font" :height wt/default-font-size)
 ;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "RobotoMono Nerd Font" :height wt/default-font-size)
+(set-face-attribute 'fixed-pitch nil :font "Hack Nerd Font" :height wt/default-font-size)
 ;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'regular)
-
-(load-file (expand-file-name "config.el" user-emacs-directory))
+(set-face-attribute 'variable-pitch nil :font "Hack Nerd Font" :height wt/default-variable-font-size :weight 'regular)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -66,5 +64,7 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
 (setq straight-use-package-by-default t)
 
+(load-file (expand-file-name "config.el" user-emacs-directory))

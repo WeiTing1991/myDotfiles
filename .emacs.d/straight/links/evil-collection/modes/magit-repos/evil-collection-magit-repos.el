@@ -1,0 +1,1 @@
+c:/Users/weitingchen/.emacs.d/straight/repos/evil-collection/modes/magit-repos/evil-collection-magit-repos.el

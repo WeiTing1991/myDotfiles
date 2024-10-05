@@ -1,3 +1,7 @@
 .DS_store
 .config/nvim/lazy-lock.json
 ..vimrc.*
+
+./.emacs.d/auto-save-list/
+./.emacs.d/eln-c/
+./.emacs.d/straight/

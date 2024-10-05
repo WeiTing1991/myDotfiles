@@ -1,0 +1,1 @@
+c:/Users/weitingchen/.emacs.d/straight/repos/evil-collection/modes/color-rg/evil-collection-color-rg.el

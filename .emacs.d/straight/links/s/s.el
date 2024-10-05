@@ -1,0 +1,1 @@
+c:/Users/weitingchen/.emacs.d/straight/repos/s.el/s.el
