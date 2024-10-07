@@ -35,8 +35,6 @@
 (setq standard-indent 2)
 
 (electric-pair-mode 1)
-;; indeent mode
-(electric-indent-mode -1)
 
 ;; whitespace
 (setq-default
@@ -49,8 +47,8 @@
 	whitespace-line-column 120
 	)
 
-(add-hook 'prog-mode-hook (lambda ()
-  (whitespace-mode)))
+;; (add-hook 'prog-mode-hook (lambda ()
+;;   (whitespace-mode)))
 
 ;; Searching settings
 ;; (setq search-highlight t)
@@ -58,6 +56,7 @@
 ;; (setq evil-ex-search-case 'smart) ;; Equivalent to 'set smartcase'
 
 ;; Display settings
+;; column
 (setq-default display-fill-column-indicator-column 120)
 (setq-default display-fill-column-indicator-character ?|)
 (set-face-foreground 'fill-column-indicator "grey")
@@ -76,10 +75,6 @@
   (add-hook mode (lambda () (display-fill-column-indicator-mode -1))))
 
 ;; Centering cursor while jumping or searching
-(defun center-after-scroll ()
-  (evil-scroll-line-to-center (line-number-at-pos)))
-(advice-add 'evil-next-line :after #'center-after-scroll)
-(advice-add 'evil-previous-line :after #'center-after-scroll)
 
 
 ;; zoom in and out 

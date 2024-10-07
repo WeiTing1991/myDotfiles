@@ -62,13 +62,25 @@
 (set-fringe-mode 10)        ; Give some breathing room
 
 (menu-bar-mode -1)          ; Disable the menu bar
-
+(setq ring-bell-function 'ignore)
 
 ;;
 ;; basic font and frame setting
-(defvar wt/default-font-size 140)
-(defvar wt/default-variable-font-size 140)
-(defvar wt/frame-transparency '(95 . 95))
+
+(cond
+  ;; macOS configuration
+  ((eq system-type 'darwin)  ;; 'darwin' is for macOS
+  (setq wt/default-font-size 140)
+  (setq wt/default-variable-font-size 140)
+  (setq wt/frame-transparency '(95 . 95))
+)
+  ;; Windows configuration
+  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
+  (setq  wt/default-font-size 100)
+  (setq  wt/default-variable-font-size 100)
+  (setq  wt/frame-transparency '(90 . 90))
+  )
+  )
 
 ;; Set the font
 (set-face-attribute 'default nil :font "Hack Nerd Font" :height wt/default-font-size)

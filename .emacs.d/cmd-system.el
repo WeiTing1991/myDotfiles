@@ -2,6 +2,7 @@
 
 ;; may be check with ivy and consel
 ;; https://github.com/minad/vertico
+;; check https://github.com/tumashu/vertico-posframe
 (setq enable-recursive-minibuffers t)
 
 (use-package vertico
@@ -12,6 +13,7 @@
   (vertico-count 20) ;; Show more candidates
   (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
   (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  (vertico-resize nil)
   :init
   (vertico-mode))
 
@@ -56,8 +58,11 @@
   :straight t
   :bind
   (("C-." . embark-act)         ;; pick some comfortable binding
+	 :map minibuffer-local-map
    ("C-;" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+   ("C-h B" . embark-bindings) ;; alternative for `describe-bindings'
+	 ("C-c C-c" . embark-collect)
+	 ("C-c C-e" . embark-export))
 )
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult

@@ -66,7 +66,6 @@
   ;; main kyes
   (wt/leader-keys
     "/" '(execute-extended-command :wk "consult-M-x")
-
     "'" '(vterm-toggle :wk "Toggle vterm")
 		)
 
@@ -82,7 +81,7 @@
   ;; buffer move
   (wt/leader-keys
     "b" '(:ignore t :wk "Bookmarks/Buffers")
-    "bl" '(list-buffers :wk "List buffers")
+    "bl" '(persp-ibuffer ibu :wk "List buffers")
     "bb" '(consult-buffer-other-window :wk "Switch buffer")
     "q" '(kill-buffer-and-window :wk "Kill this buffer")
     "o" '(next-buffer :wk "Next buffer")
@@ -97,6 +96,7 @@
     "wn" '(evil-window-new :wk "New window")
     "ws" '(evil-window-split :wk "Horizontal split window")
     "wv" '(evil-window-vsplit :wk "Vertical split window")
+
     ;; Window motions
     "h" '(evil-window-left :wk "Window left")
     "j" '(evil-window-down :wk "Window down")
@@ -114,6 +114,18 @@
     "d" '(:ignore t :wk "Dir")
     "dd" '(dired :wk "Open dired")
     "dj" '(dired-jump :wk "Open dired")
+
+		)
+
+  (wt/leader-keys
+    "p" '(:ignore t :wk "project")
+    "pc" '(persp-new :wk "persp new ")
+    "ps" '(persp-switch :wk "persp switch ")
+    "pwj" '(persp-next :wk "persp next ")
+    "pwk" '(persp-prev :wk "persp prev ")
+
+    "pk" '(persp-kill :wk "persp kill")
+    "pK" '(persp-kill-others :wk "persp kill")
 
 		)
 
@@ -151,6 +163,15 @@
 
 
 ;; Terminals
+(use-package fakecygpty
+  ;; Not available on elpa
+  :straight (fakecygpty :host github :repo "d5884/fakecygpty")
+  ;; Only required on Windows
+  :if (eq system-type 'windows-nt)
+  :config
+  ;; Enable
+  (fakecygpty-activate))
+
 (use-package vterm
   :commands vterm
   :config

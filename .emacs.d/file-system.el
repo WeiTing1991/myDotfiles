@@ -30,21 +30,63 @@
   :hook (dired-mode . dired-hide-dotfiles-mode)
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
-    "H" 'dired-hide-dotfiles-mode))
+    "H" 'dired-hide-dotfiles-mode)
+	)
 
 
 (use-package peep-dired
-  :straight t
+ :straight t
   :after dired
   :hook (evil-normalize-keymaps . peep-dired-hook)
   :config
     (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
-    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
+    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) 
+		; use dired-find-file instead if not using dired-open package
     (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
     (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
     (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
 )
 
+;; (tab-bar-mode t)
+(use-package ibuffer
+	:straight nil
+	)
+;; poject and fzf
+(use-package perspective
+	:straight t
+  :bind
+  ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
+  :custom
+  (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
+  :init
+  (persp-mode)
+)
+
+;; ;;TODO https://docs.projectile.mx/projectile/projects.html
+;; (use-package projectile
+;; 	:defer t
+;;   :diminish projectile-mode
+;;   :config (projectile-mode)
+;;   :custom ((projectile-completion-system 'default))
+;;   :bind-keymap
+;;   ("C-c p" . projectile-command-map)
+;;   ;; :init
+;;   ;; NOTE: Set this to the folder where you keep your Git repos!
+;; 	;; (setq projectile-project-search-path '("~/projects/" "~/work/" ("~/github" . 1)))
+;; 	;;   (when (file-directory-p "~/Projects/Code")
+;; 	;;     (setq projectile-project-search-path '("~/Projects/Code")))
+;; 	;;   (setq projectile-switch-project-action #'projectile-dired)
+;; )
+
+
+;; git tool
+(use-package magit
+  :straight t
+  :commands magit-status
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package diminish)
 
 
 

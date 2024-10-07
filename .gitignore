@@ -4,4 +4,9 @@
 
 .emacs.d/auto-save-list/
 .emacs.d/eln/
+.emacs.d/eln-cache/
+.emacs.d/etc/
 .emacs.d/straight/
+.emacs.d/tree-sitter/
+.emacs.d/var/
+
