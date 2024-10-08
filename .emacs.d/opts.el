@@ -4,8 +4,8 @@
 (use-package doom-themes
              :ensure t
              :config
-             (setq doom-themes-enable-bold t    
-                   doom-themes-enable-italic 0)
+             (setq doom-themes-enable-bold t
+                   doom-themes-enable-italic nil)
              (load-theme 'doom-palenight t)
 
              ;; Enable flashing mode-line on errors
@@ -15,9 +15,9 @@
              ;; (doom-themes-org-config)
              )
 
-(custom-set-faces
-  '(default ((t (:background "#0D0907"))))
-  )
+;; (custom-set-faces
+;;   '(default ((t (:background "#0D0907"))))
+;;   )
 
 ;; Gerenal setting
 (setq inhibit-startup-message t)
@@ -36,11 +36,14 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq echo-keystrokes 0.1)
 
+;; smooth scrolling
+(when (>= emacs-major-version 29)
+  (pixel-scroll-precision-mode 1))
 
 ;; Revert buffer
 (recentf-mode 1)
 (global-auto-revert-mode 1)
-(setq global-auto-revert-non-file-buffers 1)
+(setq global-auto-revert-non-file-buffers t)
 
 ;; Relative line numbers
 (setq display-line-numbers-type 'relative)
@@ -49,12 +52,31 @@
 ;; default editorconfig
 ; Indentation settings
 (setq-default tab-width 2)         ;; Equivalent to 'set tabstop'
+(setq-default tab-width 2 indent-tabs-mode nil)         ;; Equivalent to 'set tabstop'
 (setq-default evil-shift-width 2)  ;; Equivalent to 'set shiftwidth'
 (setq standard-indent 2)
+;; (electric-pair-mode 1)
 
-(electric-pair-mode 1)
+
+;; code vim style fold
+;; TODO
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; whitespace
+(use-package whitespace-cleanup-mode
+  :straight t
+  :config
+  :hook (prog-mode , whitespaces-cleanup-mode)
+  )
+
+;; (add-hook 'ruby-mode-hook 'whitespace-cleanup-mode)
+
+;; delete becasue the slow
+;; (add-hook 'before-save-hook '(lambda()
+;;                                (when (not (or (derived-mode-p 'markdown-mode)
+;;                                               (derived-mode-p 'org-mode)))
+;;                                 (delete-trailing-whitespace))))
+
 (setq-default
 	whitespace-style '(face tabs tab-mark spaces space-mark trailing newline newline-mark)
 	whitespace-display-mappings '(
@@ -84,7 +106,7 @@
                 eshell-mode-hook
                 dired-mode-hook)
               )
-  (add-hook mode (lambda () 
+  (add-hook mode (lambda ()
                       (display-fill-column-indicator-mode -1)
                       (display-line-numbers-mode 0)
                       )

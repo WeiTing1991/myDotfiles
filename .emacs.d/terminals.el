@@ -17,11 +17,12 @@
   (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
   (evil-normalize-keymaps)
 
-  (setq eshell-history-size         10000 eshell-buffer-maximum-lines 10000
+  (setq eshell-history-size         1000 eshell-buffer-maximum-lines 1000
         eshell-hist-ignoredups t
         eshell-scroll-to-bottom-on-input t))
 
 (use-package eshell-git-prompt
+  :hook (eshell-first-time-mode . wt/configure-eshell)
   :after eshell)
 
 (use-package eshell
@@ -38,9 +39,9 @@
 
 ;; eat
 ;; https://codeberg.org/akib/emacs-eat
-
 (use-package eat
-  :ensure t
+  :hook (eshell-first-time-mode . wt/configure-eshell)
+  :straight t
   :config
   (eat-eshell-mode)
   ;; (setq eshell-visual-commands '())
@@ -49,5 +50,9 @@
 ;; ;; xterm color
 (use-package eterm-256color
 	:straight t
-  :hook ((eshell-mode shell-mode) . eterm-256color-mode)
+  :hook ((shell-mode . eterm-256color-mode)
+         (eshell-mode . eterm-256color-mode)
+         (eat-eshell-mode . eterm-256color-mode))
 	)
+
+

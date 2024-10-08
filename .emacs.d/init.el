@@ -8,6 +8,7 @@
   (setq native-comp-deferred-compilation t)
 )
 (setq load-prefer-newer noninteractive)
+(setq native-comp-async-report-warnings-errors nil)
 
 ;; The default is 800 kilobytes.  Measured in bytes.
 (defun efs/display-startup-time ()
@@ -19,7 +20,7 @@
 (add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
 
-;; disable the backup file 
+;; disable the backup file
 (setq auto-save-default t)
 (setq make-backup-files nil)
 ;; (setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
@@ -63,7 +64,7 @@
   ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
    (setq  wt/default-font-size 100)
    (setq  wt/default-variable-font-size 100)
-   (setq  wt/frame-transparency '(95 . 85))
+   (setq  wt/frame-transparency '(85 . 60))
    )
   )
 
@@ -96,3 +97,4 @@
 (load custom-file 'noerror 'nomessage)
 
 (setq gc-cons-threshold (* 2 1000 1000))
+

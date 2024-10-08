@@ -17,6 +17,7 @@
 					 (doom-modeline-buffer-encoding t)
 					 (doom-modeline-persp-name t)
 					 (doom-modeline-display-default-persp-name nil)
+					 (doom-modeline-project-root t)
 
 					 (doom-modeline-lsp t)           ;; Display LSP status
 					 (doom-modeline-git t)           ;; Display Git status
@@ -25,27 +26,27 @@
 					 ;; (doom-modeline-major-mode-color-icon t)
 					 (doom-modeline-indent-info t)   ;; Show indentation
 					 (doom-modeline-checker-simple-format t) ;; Spell checker and linter
-					 ;; (doom-modeline-env-version t)  ;; Show environment version (Python, etc.)  
+					 ;; (doom-modeline-env-version t)  ;; Show environment version (Python, etc.)
 		)
   )
 
 ;; TODO
 ;; check https://github.com/DarthFennec/highlight-indent-guides
 ;; indent mode
-(electric-indent-mode 1)
-(use-package highlight-indent-guides
-	:straight t 
-	:hook (prog-mode. highlight-indent-guides-mode)
-)
+(electric-indent-mode t)
+;; (use-package highlight-indent-guides
+;; )
 ;; (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+;; (setq highlight-indent-guides-method 'line)
 
-;; cursor center
+
 (custom-set-faces
  '(cursor ((t (:background "#eb6f92" :foreground "white")))))
 
 (setq scroll-margin 100)               ;; Keep 5 lines above/below the cursor
 (setq scroll-conservatively 10000)   ;; Keep the cursor in the same position
 (setq scroll-preserve-screen-position t)  ;; Maintain screen position
+
 ;; (use-package centered-cursor-mode
 ;;   :demand
 ;;   :config

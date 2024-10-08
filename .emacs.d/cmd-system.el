@@ -10,12 +10,12 @@
   :diminish
   :custom
   ;; (vertico-scroll-margin 0) ;; Different scroll margin
-  ;; (vertico-count 20) ;; Show more candidates
-  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
-  (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
-  ;; (vertico-resize nil)
+  (vertico-count 10) ;; Show more candidates
+  (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  (vertico-resize nil)
   :init
-  (vertico-mode))
+  (vertico-mode 1))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
@@ -33,6 +33,19 @@
               ("M-DEL" . vertico-directory-delete-word))
   ;; Tidy shadowed file names
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package vertico-posframe
+  :after vertico
+  :straight t
+  :config
+  (vertico-posframe-mode 1)
+  (setq vertico-posframe-parameters
+        '((left-fringe . 9)
+          (right-fringe . 9)))
+  )
+
+;;TODO
+;; https://github.com/tumashu/vertico-posframe
 
 ;; https://github.com/minad/consult
 ;; https://systemcrafters.net/live-streams/may-21-2021/
@@ -156,3 +169,4 @@
 ;;   :hook
 ;;   (embark-collect-mode . consult-preview-at-point-mode)
 ;; )
+

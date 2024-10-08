@@ -1,7 +1,7 @@
 ;; core.el
 
 ;; gernal keybinding
-;; zoom in and out 
+;; zoom in and out
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
@@ -38,15 +38,20 @@
   (define-key evil-insert-state-map (kbd "C-c") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 
+  (define-key evil-visual-state-map (kbd "C-v") 'evil-visual-paste)
+  (define-key evil-insert-state-map (kbd "C-v") 'evil-visual-paste)
+  (define-key evil-visual-state-map (kbd "C-c") 'evil-visual-copy)
+
   (define-key evil-normal-state-map (kbd "-") 'comment-line)
   (define-key evil-visual-state-map (kbd "-") 'comment-line)
-	
+
   (define-key evil-visual-state-map (kbd "J")   'drag-stuff-down)   ;; Move lines down
   (define-key evil-visual-state-map (kbd "K")   'drag-stuff-up)     ;; Move lines up
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal)
@@ -63,7 +68,7 @@
   :straight t
   :after evil
   :config
-  (global-evil-surround-mode 1))
+  (global-evil-surround-mode t))
 
 ;; Main keybinding
 (use-package general
@@ -81,10 +86,11 @@
   ;; main kyes
   (wt/leader-keys
     "/" '(execute-extended-command :wk "consult-M-x")
-    "'" '(project-eshell :wk "run eshell")
+    "'" '(project-shell :wk "run shell")
+    "C-'" '(project-eshell :wk "run eshell")
 		)
 
-  ;; find file 
+  ;; find file
   (wt/leader-keys
     "f"  '(:ignore t :wk "Files")
     "ff" '(find-file :wk "Find Files")
@@ -125,22 +131,21 @@
     ;; "w K" '(buf-move-up :wk "Buffer move up")
     ;; "w L" '(buf-move-right :wk "Buffer move right")
     )
- 
+
 	;; dir
   (wt/leader-keys
     "d" '(:ignore t :wk "Dir")
     "dd" '(dired :wk "Open dired")
-    "dj" '(dired-jump :wk "Open dired")
+    "dj" '(dired-jump :wk "Open dired jump current")
 
 		)
 
 	;; project
   (wt/leader-keys
     "p" '(:ignore t :wk "project")
-    "pc" '(persp-new :wk "persp new ")
-    "ps" '(persp-switch :wk "persp switch ")
-    "pwj" '(persp-next :wk "persp next ")
-    "pwk" '(persp-prev :wk "persp prev ")
+    "ps" '(persp-switch :wk "persp switch and create")
+    "pn" '(persp-next :wk "persp next ")
+    "pp" '(persp-prev :wk "persp prev ")
 
     "pk" '(persp-kill :wk "persp kill")
     "pK" '(persp-kill-others :wk "persp kill")
@@ -154,7 +159,7 @@
     "tr" '(rainbow-mode :wk "Toggle rainbow mode")
 		)
 
-  ;; reload 
+  ;; reload
   ;; (wt/leader-keys
   ;;   "h" '(:ignore t :wk "Help")
   ;;   "hr" '((lambda () (interactive)
@@ -166,7 +171,7 @@
 )
 ;j; hightlight yank
 (setq evil-goggles-delete nil)
-(setq evil-goggles-duration 0.05)
+(setq evil-goggles-duration 0.1)
 
 (use-package evil-goggles
   :straight t
@@ -175,7 +180,7 @@
   ;; optionally use diff-mode's faces; as a result, deleted text
   (evil-goggles-use-diff-faces)
   )
-(custom-set-faces 
+(custom-set-faces
   '(evil-goggles-default-face ((t (:inherit 'menu))))
   '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
   '(evil-goggles-yank-face ((t (:inherit 'menu))))
@@ -185,12 +190,33 @@
 ;; maybe check this https://github.com/casouri/vundo
 (use-package undo-tree
 	:straight t
-	:config 
+	:config
  (global-undo-tree-mode)
  :custom
+ ;; on windows is really slow
  (setq undo-tree-auto-save-history t)
- (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 )
+
+(with-eval-after-load 'evil
+  (when (bound-and-true-p global-undo-tree-mode)
+  (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo)
+  (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo))
+)
+
+(with-eval-after-load 'undo-tree
+  (let ((undo-dir (expand-file-name "undo" user-emacs-directory)))
+    (when (bound-and-true-p global-undo-tree-mode)
+	  (unless (file-exists-p undo-dir)
+		  (make-directory undo-dir)
+		  )
+	  (setq undo-tree-history-directory-alist `(("." . ,undo-dir)))
+	  )
+  )
+)
+
+(use-package diminish
+  :straight t
+  )
 
 ;; which-key
 (use-package which-key
@@ -207,9 +233,9 @@
 (use-package helpful
   :commands (helpful-callable helpful-variable helpful-command helpful-key)
   :bind
-  ([remap describe-function] . helpful-function) 
+  ([remap describe-function] . helpful-function)
   ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . helpful-variable) 
-  ([remap describe-callable] . helpful-callable) 
-  ([remap describe-key] . helpful-key) 
+  ([remap describe-variable] . helpful-variable)
+  ([remap describe-callable] . helpful-callable)
+  ([remap describe-key] . helpful-key)
 	)

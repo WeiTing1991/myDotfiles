@@ -16,7 +16,7 @@
   (lsp-headerline-breadcrumb-mode))
 
 (use-package lsp-mode
-  :straight t 
+  :straight t
   :commands (lsp lsp-deferred)
   :hook (lsp-mode . wt/lsp-mode-setup)
   :init
@@ -27,23 +27,25 @@
 
 ;; https://emacs-lsp.github.io/lsp-ui/
 (use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
+  :hook ((prog-mode lsp-mode). lsp-ui-mode)
   :custom
-  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-position 'at-point)
 )
 
 ;; auto compelte
+;; TODO
+;; https://company-mode.github.io/manual/
 (use-package company
   :straight t
-  ;; :after lsp-mode 
   :hook ((lsp-mode . company-mode)
-         (emacs-lisp-mode)) 
+         (emacs-lisp-mode))
   :bind (:map company-active-map
          ("<tab>" . company-complete-selection))
 
   :custom
-  (company-idle-delay 0.1)
+  (company-idle-delay 0.0)
   (company-minimum-prefix-length 1)
+	(company-tooltip-limit 8)
   ;; (company-tooltip-align-annotations 't)
 )
 
@@ -71,8 +73,22 @@
   ;;        (eshell-mode . corfu-mode))
 
   :init
-  (global-corfu-mode)
+  (global-corfu-mode t)
 	)
+
+;; Syntax check as linter
+;; NOTE
+;; https://www.flycheck.org/en/latest/user/installation.html
+(use-package flycheck
+  :straight t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  )
+
+;; for Emacs Lisp
+(with-eval-after-load 'flycheck
+  '(flycheck-package-setup)
+)
 
 ;; lsp setting
 
@@ -85,9 +101,60 @@
   :init (setq markdown-command "multimarkdown")
 	)
 
+;; (custom-set-faces!
+;;   '(markdown-header-delimiter-face :foreground "#616161" :height 0.9)
+;;   '(markdown-header-face-1 :height 1.8 :foreground "#A3BE8C" :weight extra-bold :inherit markdown-header-face)
+;;   '(markdown-header-face-2 :height 1.4 :foreground "#EBCB8B" :weight extra-bold :inherit markdown-header-face)
+;;   '(markdown-header-face-3 :height 1.2 :foreground "#D08770" :weight extra-bold :inherit markdown-header-face)
+;;   '(markdown-header-face-4 :height 1.15 :foreground "#BF616A" :weight bold :inherit markdown-header-face)
+;;   '(markdown-header-face-5 :height 1.1 :foreground "#b48ead" :weight bold :inherit markdown-header-face)
+;;   '(markdown-header-face-6 :height 1.05 :foreground "#5e81ac" :weight semi-bold :inherit markdown-header-face))
+;; )
+;;  (defvar nb/current-line '(0 . 0)
+;;    "(start . end) of current line in current buffer")
+;;  (make-variable-buffer-local 'nb/current-line)
+;;
+;;  (defun nb/unhide-current-line (limit)
+;;    "Font-lock function"
+;;    (let ((start (max (point) (car nb/current-line)))
+;;          (end (min limit (cdr nb/current-line))))
+;;      (when (< start end)
+;;        (remove-text-properties start end
+;;                        '(invisible t display "" composition ""))
+;;        (goto-char limit)
+;;        t)))
+;;
+;;  (defun nb/refontify-on-linemove ()
+;;    "Post-command-hook"
+;;    (let* ((start (line-beginning-position))
+;;           (end (line-beginning-position 2))
+;;           (needs-update (not (equal start (car nb/current-line)))))
+;;      (setq nb/current-line (cons start end))
+;;      (when needs-update
+;;        (font-lock-fontify-block 3))))
+;;
+;;  (defun nb/markdown-unhighlight ()
+;;    "Enable markdown concealling"
+;;    (interactive)
+;;    (markdown-toggle-markup-hiding 'toggle)
+;;    (font-lock-add-keywords nil '((nb/unhide-current-line)) t)
+;;    (add-hook 'post-command-hook #'nb/refontify-on-linemove nil t))
+;;
+;;  (add-hook 'markdown-mode-hook #'nb/markdown-unhighlight)
+;;
+;; (defun markdown-view-mode-maybe ()
+;;   (cond ((and (eq major-mode 'markdown-mode) buffer-read-only) (markdown-view-mode))
+;;         ((and (eq major-mode 'markdown-view-mode) (not buffer-read-only)) (markdown-mode))))
+;;
+;; (add-hook 'read-only-mode-hook 'markdown-view-mode-maybe)
+;;
+;;  (if (equal major-mode 'markdown-view-mode)
+;;    (local-set-key (kbd "C-x C-q") 'markdown-mode))
+;;  (if (equal major-mode 'markdown-mode)
+;;    (local-set-key (kbd "C-x C-q") 'markdown-view-mode))
+;;
 ;; lua
-;; (use-package lua-mode)
+(use-package lua-mode)
 
 
 ;; https://github.com/copilot-emacs/copilot.el
-
