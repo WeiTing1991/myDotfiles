@@ -47,6 +47,7 @@ eval
 alias python='/opt/homebrew/bin/python3'
 
 alias n='nvim'
+alias e='emacs'
 alias rundocker='open --background -a Docker'
 alias ob='cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen'
 alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'

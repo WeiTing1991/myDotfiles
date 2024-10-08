@@ -1,5 +1,4 @@
 ;; lsp.el
-;; TODO add the linter keybinding, and check md
 
 ;; treesitter
 (use-package treesit-auto
@@ -18,13 +17,12 @@
 (use-package lsp-mode
   :straight t 
   :commands (lsp lsp-deferred)
-  :hook (lsp-mode . wt/lsp-mode-setup)
+  :hook (lsp-mode . efs/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-l")  ;; Or 'C-l', 's-l'
   :config
   (lsp-enable-which-key-integration t)
 )
-
 ;; https://emacs-lsp.github.io/lsp-ui/
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -35,7 +33,7 @@
 ;; auto compelte
 (use-package company
   :straight t
-  ;; :after lsp-mode 
+  ;; :after lsp-mode
   :hook ((lsp-mode . company-mode)
          (emacs-lisp-mode)) 
   :bind (:map company-active-map
@@ -51,13 +49,12 @@
   :after company
   :hook (company-mode . company-box-mode)
 )
-
 (use-package corfu
   ;; Optional customizations
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
   ;; (corfu-auto t)                 ;; Enable auto completion
-  (corfu-separator ?\s)          ;; Orderless field separator
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
@@ -70,6 +67,9 @@
   ;;        (shell-mode . corfu-mode)
   ;;        (eshell-mode . corfu-mode))
 
+  ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
+  ;; be used globally (M-/).  See also the customization variable
+  ;; `global-corfu-modes' to exclude certain modes.
   :init
   (global-corfu-mode)
 	)
@@ -83,11 +83,9 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown")
-	)
+  )
 
-;; lua
-;; (use-package lua-mode)
+(use-package lua-mode)
 
 
 ;; https://github.com/copilot-emacs/copilot.el
-

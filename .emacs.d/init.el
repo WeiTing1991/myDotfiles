@@ -20,7 +20,7 @@
 
 
 ;; disable the backup file 
-;; (setq auto-save-default nil)
+(setq auto-save-default t)
 (setq make-backup-files nil)
 ;; (setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
 (setq create-lockfiles nil)
@@ -45,41 +45,26 @@
 (setq straight-use-package-by-default t)
 
 (use-package no-littering)
-
 ;; no-littering doesn't set this by default so we must place
 ;; auto save files in the same path as it uses for sessions
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
-
-;; Gerenal setting
-(setq inhibit-startup-message t)
-(setq initial-scratch-message nil)
-
-(scroll-bar-mode -1)        ; Disable visible scrollbar
-(tool-bar-mode -1)          ; Disable the toolbar
-(tooltip-mode -1)           ; Disable tooltips
-(set-fringe-mode 10)        ; Give some breathing room
-
-(menu-bar-mode -1)          ; Disable the menu bar
-(setq ring-bell-function 'ignore)
-
 ;;
 ;; basic font and frame setting
-
 (cond
   ;; macOS configuration
   ((eq system-type 'darwin)  ;; 'darwin' is for macOS
-  (setq wt/default-font-size 140)
-  (setq wt/default-variable-font-size 140)
-  (setq wt/frame-transparency '(95 . 95))
-)
+   (setq wt/default-font-size 140)
+   (setq wt/default-variable-font-size 140)
+   (setq wt/frame-transparency '(95 . 90))
+   )
   ;; Windows configuration
   ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-  (setq  wt/default-font-size 100)
-  (setq  wt/default-variable-font-size 100)
-  (setq  wt/frame-transparency '(90 . 90))
-  )
+   (setq  wt/default-font-size 100)
+   (setq  wt/default-variable-font-size 100)
+   (setq  wt/frame-transparency '(95 . 85))
+   )
   )
 
 ;; Set the font
@@ -87,27 +72,27 @@
 ;; Set the fixed pitch face
 (set-face-attribute 'fixed-pitch nil :font "Hack Nerd Font" :height wt/default-font-size)
 ;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "Hack Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+;; (set-face-attribute 'variable-pitch nil :font "Times New Rome" :height wt/default-variable-font-size :weight 'regular)
 
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
 (add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
 
+;; Set inital frame size
 ;; (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-
 ;; Load the package
+(load-file (expand-file-name "opts.el" user-emacs-directory))
 (load-file (expand-file-name "core.el" user-emacs-directory))
 (load-file (expand-file-name "cmd-system.el" user-emacs-directory))
 (load-file (expand-file-name "file-system.el" user-emacs-directory))
-(load-file (expand-file-name "option.el" user-emacs-directory))
 (load-file (expand-file-name "ui.el" user-emacs-directory))
 (load-file (expand-file-name "lsp.el" user-emacs-directory))
+(load-file (expand-file-name "terminals.el" user-emacs-directory))
 
-;; dont save the custom change into init.el
+;; do not save the custom change into init.el
 (setq custom-file (locate-user-emacs-file "custon-vars.el"))
 (load custom-file 'noerror 'nomessage)
-
 
 (setq gc-cons-threshold (* 2 1000 1000))

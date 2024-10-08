@@ -1,12 +1,23 @@
 ;; core.el
 
-;; essential package
-;; theme
-(use-package doom-themes
-  :init (load-theme 'doom-palenight t)
-)
-(custom-set-faces
-  '(default ((t (:background "#0D0907")))))
+;; gernal keybinding
+;; zoom in and out 
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+;; Toggle between split windows and a single window
+(defun toggle-windows-split()
+  (interactive)
+  (if (not(window-minibuffer-p (selected-window)))
+      (progn
+        (if (< 1 (count-windows))
+            (progn
+              (window-configuration-to-register ?u)
+              (delete-other-windows))
+          (jump-to-register ?u))))
+  (my-iswitchb-close))
+
+(define-key global-map (kbd "C-'") 'toggle-windows-split)
 
 ;; vim mode
 (use-package drag-stuff
@@ -42,15 +53,19 @@
 
 )
 
-
 (use-package evil-collection
   :straight t
   :after evil
   :config
-  (add-to-list 'evil-collection-mode-list 'help) ;; evilify help mode
   (evil-collection-init))
 
-;; main keybinding
+(use-package evil-surround
+  :straight t
+  :after evil
+  :config
+  (global-evil-surround-mode 1))
+
+;; Main keybinding
 (use-package general
   :straight t
   :config
@@ -66,7 +81,7 @@
   ;; main kyes
   (wt/leader-keys
     "/" '(execute-extended-command :wk "consult-M-x")
-    "'" '(vterm-toggle :wk "Toggle vterm")
+    "'" '(project-eshell :wk "run eshell")
 		)
 
   ;; find file 
@@ -89,6 +104,7 @@
     ;; "br" '(revert-buffer :wk "Reload buffer")
     )
 
+	;; window
   (wt/leader-keys
     "w" '(:ignore t :wk "Windows")
     ;; Window splits
@@ -109,7 +125,8 @@
     ;; "w K" '(buf-move-up :wk "Buffer move up")
     ;; "w L" '(buf-move-right :wk "Buffer move right")
     )
-
+ 
+	;; dir
   (wt/leader-keys
     "d" '(:ignore t :wk "Dir")
     "dd" '(dired :wk "Open dired")
@@ -117,6 +134,7 @@
 
 		)
 
+	;; project
   (wt/leader-keys
     "p" '(:ignore t :wk "project")
     "pc" '(persp-new :wk "persp new ")
@@ -129,6 +147,7 @@
 
 		)
 
+	;; toggle
   (wt/leader-keys
     "t" '(:ignore t :wk "Toggle")
     "to" '(org-mode :wk "Toggle org mode")
@@ -145,80 +164,33 @@
   ;;   )
 
 )
-;; hightlight yank
+;j; hightlight yank
+(setq evil-goggles-delete nil)
+(setq evil-goggles-duration 0.05)
+
 (use-package evil-goggles
   :straight t
   :config
   (evil-goggles-mode)
   ;; optionally use diff-mode's faces; as a result, deleted text
-  ;; will be highlighed with `diff-removed` face which is typically
-  ;; some red color (as defined by the color theme)
-  ;; other faces such as `diff-added` will be used for other actions
   (evil-goggles-use-diff-faces)
   )
-(custom-set-faces '(evil-goggles-default-face ((t (:inherit 'menu))))) ;; default is to inherit 'region
-(custom-set-faces
- '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
- '(evil-goggles-yank-face ((t (:inherit 'menu)))))
+(custom-set-faces 
+  '(evil-goggles-default-face ((t (:inherit 'menu))))
+  '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
+  '(evil-goggles-yank-face ((t (:inherit 'menu))))
+  )
 
-
-;; Terminals
-(use-package fakecygpty
-  ;; Not available on elpa
-  :straight (fakecygpty :host github :repo "d5884/fakecygpty")
-  ;; Only required on Windows
-  :if (eq system-type 'windows-nt)
-  :config
-  ;; Enable
-  (fakecygpty-activate))
-
-(use-package vterm
-  :commands vterm
-  :config
-  ;; Set max scrollback
-  (setq vterm-max-scrollback 5000)
-
-  ;; Check system type and set shell accordingly
-  (cond
-   ;; macOS
-   ((eq system-type 'darwin)
-    (setq shell-file-name "/bin/zsh")) ;; Use Zsh on macOS
-
-   ;; Windows
-   ((eq system-type 'windows-nt)
-    (setq shell-file-name "C:/Program Files/PowerShell/7/pwsh.exe")) ;; Use PowerShell 7 on Windows
-
-   ;; Default case (for other systems, e.g., Linux)
-   (t
-    (setq shell-file-name "/bin/sh"))))
-
-(use-package vterm-toggle
-  :after vterm
-  :config
-  ;; When running programs in Vterm and in 'normal' mode, make sure that ESC
-  ;; kills the program as it would in most standard terminal programs.
-  (evil-define-key 'normal vterm-mode-map (kbd "<escape>") 'vterm--self-insert)
-  (setq vterm-toggle-fullscreen-p nil)
-  (setq vterm-toggle-scope 'project)
-  (add-to-list 'display-buffer-alist
-               '((lambda (buffer-or-name _)
-                     (let ((buffer (get-buffer buffer-or-name)))
-                       (with-current-buffer buffer
-                         (or (equal major-mode 'vterm-mode)
-                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                  (display-buffer-reuse-window display-buffer-at-bottom)
-                  ;;(display-buffer-reuse-window display-buffer-in-direction)
-                  ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                  ;;(direction . bottom)
-                  ;;(dedicated . t) ;dedicated is supported in emacs27
-                  (reusable-frames . visible)
-                  (window-height . 0.4))))
-
-(use-package eterm-256color
-  :hook (vterm-mode . eterm-256color-mode))
-
-;; Eshell
-
+;; TODO
+;; maybe check this https://github.com/casouri/vundo
+(use-package undo-tree
+	:straight t
+	:config 
+ (global-undo-tree-mode)
+ :custom
+ (setq undo-tree-auto-save-history t)
+ (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+)
 
 ;; which-key
 (use-package which-key
@@ -226,5 +198,18 @@
   :diminish which-key-mode
   :config
   (which-key-mode)
-  (setq which-key-idle-delay 0.5)
+  (setq which-key-idle-delay 0.2)
   )
+
+;; TODO
+;; help fuction
+;; https://github.com/Wilfred/helpful?tab=readme-ov-file
+(use-package helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+  :bind
+  ([remap describe-function] . helpful-function) 
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . helpful-variable) 
+  ([remap describe-callable] . helpful-callable) 
+  ([remap describe-key] . helpful-key) 
+	)
