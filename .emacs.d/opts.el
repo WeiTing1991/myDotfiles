@@ -14,8 +14,7 @@
              (doom-themes-treemacs-config)
              ;; (doom-themes-org-config)
              )
-
-;; (custom-set-faces
+;; (Custom-set-faces
 ;;   '(default ((t (:background "#0D0907"))))
 ;;   )
 
@@ -24,12 +23,15 @@
 (setq initial-scratch-message nil)
 (setq require-final-newline t)
 
-
+(prefer-coding-system 'utf-8)
 (scroll-bar-mode -1)        ; Disable visible scrollbar
+(horizontal-scroll-bar-mode -1)
 (tool-bar-mode -1)          ; Disable the toolbar
 (tooltip-mode -1)           ; Disable tooltips
 (set-fringe-mode 10)        ; Give some breathing room
 (setq use-dialog-box nil)
+;;
+(global-visual-line-mode t)
 
 (menu-bar-mode -1)          ; Disable the menu bar
 (setq ring-bell-function 'ignore)
@@ -55,8 +57,20 @@
 (setq-default tab-width 2 indent-tabs-mode nil)         ;; Equivalent to 'set tabstop'
 (setq-default evil-shift-width 2)  ;; Equivalent to 'set shiftwidth'
 (setq standard-indent 2)
-;; (electric-pair-mode 1)
 
+(setq scroll-margin 50)               ;; Keep 5 lines above/below the cursor
+(setq scroll-conservatively 10000)   ;; Keep the cursor in the same position
+(setq scroll-preserve-screen-position t)  ;; Maintain screen position
+
+;; (use-package centered-cursor-mode
+;;   :demand
+;;   :config
+;;   ;; Optional, enables centered-cursor-mode in all buffers.
+;;   (global-centered-cursor-mode))
+
+;; Enable clipboard support
+(setq x-select-enable-clipboard t)
+(setq x-select-enable-primary t) ;; If you want to use primary selection as well
 
 ;; code vim style fold
 ;; TODO
@@ -68,9 +82,7 @@
   :config
   :hook (prog-mode , whitespaces-cleanup-mode)
   )
-
-;; (add-hook 'ruby-mode-hook 'whitespace-cleanup-mode)
-
+(add-hook 'ruby-mode-hook 'whitespace-cleanup-mode)
 ;; delete becasue the slow
 ;; (add-hook 'before-save-hook '(lambda()
 ;;                                (when (not (or (derived-mode-p 'markdown-mode)
@@ -90,7 +102,7 @@
 ;;   (whitespace-mode)))
 
 ;; line-column
-(setq-default display-fill-column-indicator-column 120)
+(setq-default display-fill-column-indicator-column 130)
 (setq-default display-fill-column-indicator-character ?|)
 (set-face-foreground 'fill-column-indicator "grey")
 

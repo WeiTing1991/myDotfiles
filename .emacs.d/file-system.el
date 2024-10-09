@@ -48,18 +48,19 @@
 ;; https://github.com/Fuco1/dired-hacks
 (use-package peep-dired
  :straight t
-  :after dired
-  :hook (evil-normalize-keymaps . peep-dired-hook)
-  :config
-    (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
-    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file)
-		; use dired-find-file instead if not using dired-open package
-    (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
-    (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
-    (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
+ :after dired
+ :hook (evil-normalize-keymaps . peep-dired-hook)
+ :config
+ (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+ (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file)
+ ; use dired-find-file instead if not using dired-open package
+ (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+ (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+ (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
 )
 
-;; (tab-bar-mode t)
+(tab-line-mode t)
+
 (use-package ibuffer
 	:straight nil
 	)
@@ -81,22 +82,23 @@
 	:defer t
   :diminish projectile-mode
   :config (projectile-mode)
+  ;; (define-key projectile-mode-map (kbd "C-p") 'projectile-persp-switch-project)
   :custom ((projectile-completion-system 'default))
   :bind-keymap
   ("C-c p" . projectile-command-map)
-  ;; :init
+  :init
   ;; NOTE: Set this to the folder where you keep your Git repos!
-	;; (setq projectile-project-search-path '("~/projects/" "~/work/" ("~/github" . 1)))
-	;;   (when (file-directory-p "~/Projects/Code")
-	;;     (setq projectile-project-search-path '("~/Projects/Code")))
-	;;   (setq projectile-switch-project-action #'projectile-dired)
+	(setq projectile-project-search-path '("~/projects/" "~/work/" ("~/github" . 1)))
+  (setq projectile-enable-caching t)  ;; Enable caching for faster project lookups
+  (setq projectile-indexing-method 'native)  ;; Use native indexing for performance
+
 )
 
-(defun wt/get-project-root ()
-  (when (fboundp 'projectile-project-root)
-    (projectile-project-root)))
-(define-key evil-normal-state-map (kbd "M-c d") 'wt/get-project-root)
+;; TODO
+(use-package persp-projectile
+  :straight t
 
+)
 
 ;; git tool
 (use-package magit

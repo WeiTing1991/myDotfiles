@@ -19,6 +19,7 @@
            gcs-done))
 (add-hook 'emacs-startup-hook #'efs/display-startup-time)
 
+;; diable compilation
 
 ;; disable the backup file
 (setq auto-save-default t)
@@ -64,7 +65,7 @@
   ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
    (setq  wt/default-font-size 100)
    (setq  wt/default-variable-font-size 100)
-   (setq  wt/frame-transparency '(85 . 60))
+   (setq  wt/frame-transparency '(90 . 90))
    )
   )
 
@@ -79,6 +80,11 @@
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
 (add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
 
+(add-hook 'minibuffer-setup-hook
+          (lambda ()
+            (set-frame-parameter nil 'alpha '(100 . 100)))) ;; Ensure fully opaque minibuffer
+
+
 ;; Set inital frame size
 ;; (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
 ;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -86,9 +92,9 @@
 ;; Load the package
 (load-file (expand-file-name "opts.el" user-emacs-directory))
 (load-file (expand-file-name "core.el" user-emacs-directory))
+(load-file (expand-file-name "ui.el" user-emacs-directory))
 (load-file (expand-file-name "cmd-system.el" user-emacs-directory))
 (load-file (expand-file-name "file-system.el" user-emacs-directory))
-(load-file (expand-file-name "ui.el" user-emacs-directory))
 (load-file (expand-file-name "lsp.el" user-emacs-directory))
 (load-file (expand-file-name "terminals.el" user-emacs-directory))
 

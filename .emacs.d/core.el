@@ -19,10 +19,12 @@
 
 (define-key global-map (kbd "C-'") 'toggle-windows-split)
 
+
 ;; vim mode
 (use-package drag-stuff
   :straight t
  )
+(drag-stuff-mode t)
 
 (use-package evil
   :straight t
@@ -38,24 +40,25 @@
   (define-key evil-insert-state-map (kbd "C-c") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 
-  (define-key evil-visual-state-map (kbd "C-v") 'evil-visual-paste)
-  (define-key evil-insert-state-map (kbd "C-v") 'evil-visual-paste)
-  (define-key evil-visual-state-map (kbd "C-c") 'evil-visual-copy)
+  ;; (define-key evil-visual-state-map (kbd "C-v") 'evil-visual-paste)
+  ;; (define-key evil-insert-state-map (kbd "C-v") 'evil-visual-paste)
+  ;; (define-key evil-visual-state-map (kbd "C-c") 'evil-visual-copy)
 
   (define-key evil-normal-state-map (kbd "-") 'comment-line)
   (define-key evil-visual-state-map (kbd "-") 'comment-line)
 
-  (define-key evil-visual-state-map (kbd "J")   'drag-stuff-down)   ;; Move lines down
-  (define-key evil-visual-state-map (kbd "K")   'drag-stuff-up)     ;; Move lines up
+  (define-key evil-visual-state-map (kbd "J") 'drag-stuff-down)   ;; Move lines down
+  (define-key evil-visual-state-map (kbd "K") 'drag-stuff-up)     ;; Move lines up
+
+  (define-key evil-visual-state-map (kbd ">") 'drag-stuff-right)   ;; Move lines down
+  (define-key evil-visual-state-map (kbd "<") 'drag-stuff-left)     ;; Move lines up
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
   (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
 
-
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal)
-
 )
 
 (use-package evil-collection
@@ -64,6 +67,7 @@
   :config
   (evil-collection-init))
 
+(electric-pair-mode 1)
 (use-package evil-surround
   :straight t
   :after evil
@@ -140,17 +144,6 @@
 
 		)
 
-	;; project
-  (wt/leader-keys
-    "p" '(:ignore t :wk "project")
-    "ps" '(persp-switch :wk "persp switch and create")
-    "pn" '(persp-next :wk "persp next ")
-    "pp" '(persp-prev :wk "persp prev ")
-
-    "pk" '(persp-kill :wk "persp kill")
-    "pK" '(persp-kill-others :wk "persp kill")
-
-		)
 
 	;; toggle
   (wt/leader-keys
@@ -158,6 +151,24 @@
     "to" '(org-mode :wk "Toggle org mode")
     "tr" '(rainbow-mode :wk "Toggle rainbow mode")
 		)
+
+
+  ;;
+  ;; Definer 'CTRL-b' for global
+  (general-create-definer wt/leader-project
+			  :states '(normal insert visual emacs)
+			  :prefix "C-b") ;; Set C-b as the prefix
+
+	;; project
+  (wt/leader-project
+    "h" '(persp-switch :wk "project switch")
+    "n" '(persp-next :wk "project next")
+    "p" '(persp-prev :wk "project prev")
+    "k" '(persp-kill :wk "persp kill")
+    "K" '(persp-kill-others :wk "persp kill")
+    ;;
+    "r" '(eval-buffer :wk "reload buffer")
+   )
 
   ;; reload
   ;; (wt/leader-keys
@@ -169,6 +180,7 @@
   ;;   )
 
 )
+
 ;j; hightlight yank
 (setq evil-goggles-delete nil)
 (setq evil-goggles-duration 0.1)

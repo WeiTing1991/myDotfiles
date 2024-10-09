@@ -5,9 +5,23 @@
 ;; check https://github.com/tumashu/vertico-posframe
 (setq enable-recursive-minibuffers t)
 
+(defun dw/minibuffer-backward-kill (arg)
+  "When minibuffer is completing a file name delete up to parent
+folder, otherwise delete a character backward"
+  (interactive "p")
+  (if minibuffer-completing-file-name
+      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
+      (if (string-match-p "/." (minibuffer-contents))
+          (zap-up-to-char (- arg) ?/)
+        (delete-minibuffer-contents))
+    (delete-backward-char arg))
+  )
+
 (use-package vertico
   :straight t
   :diminish
+  :bind (:map minibuffer-local-map
+         ("<backspace>" . dw/minibuffer-backward-kill))
   :custom
   ;; (vertico-scroll-margin 0) ;; Different scroll margin
   (vertico-count 10) ;; Show more candidates
