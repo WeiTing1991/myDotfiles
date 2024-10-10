@@ -30,6 +30,7 @@
   :hook ((prog-mode lsp-mode). lsp-ui-mode)
   :custom
   (lsp-ui-doc-position)
+  )
 
 ;; auto compelte
 ;; TODO

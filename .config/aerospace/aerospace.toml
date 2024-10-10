@@ -124,7 +124,7 @@ ctrl-shift-4 = 'move-node-to-workspace 4'
 ctrl-shift-5 = 'move-node-to-workspace 5'
 ctrl-shift-6 = 'move-node-to-workspace 6'
 
-alt-f = 'fullscreen'
+alt-shift-z = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'

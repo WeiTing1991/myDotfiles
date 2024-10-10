@@ -7,13 +7,13 @@
              (setq doom-themes-enable-bold t
                    doom-themes-enable-italic nil)
              (load-theme 'doom-palenight t)
-
              ;; Enable flashing mode-line on errors
              (doom-themes-visual-bell-config)
              ;; (setq doom-themes-treemacs-theme "doom-atom")
-             (doom-themes-treemacs-config)
+             ;; (doom-themes-treemacs-config)
              ;; (doom-themes-org-config)
              )
+
 ;; (Custom-set-faces
 ;;   '(default ((t (:background "#0D0907"))))
 ;;   )
@@ -36,7 +36,7 @@
 (menu-bar-mode -1)          ; Disable the menu bar
 (setq ring-bell-function 'ignore)
 (defalias 'yes-or-no-p 'y-or-n-p)
-(setq echo-keystrokes 0.1)
+(setq echo-keystrokes .1)
 
 ;; smooth scrolling
 (when (>= emacs-major-version 29)
@@ -68,13 +68,16 @@
 ;;   ;; Optional, enables centered-cursor-mode in all buffers.
 ;;   (global-centered-cursor-mode))
 
-;; Enable clipboard support
-(setq x-select-enable-clipboard t)
-(setq x-select-enable-primary t) ;; If you want to use primary selection as well
 
 ;; code vim style fold
-;; TODO
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+(with-eval-after-load 'evil
+  (define-key evil-normal-state-map (kbd "<tab>") 'hs-toggle-hiding)
+;; (define-key evil-normal-state-map (kbd "zc") 'hs-hide-block)
+;; (define-key evil-normal-state-map (kbd "zo") 'hs-show-block)
+;; (define-key evil-normal-state-map (kbd "zr") 'hs-show-all)
+;; (define-key evil-normal-state-map (kbd "zm") 'hs-hide-all)
+  )
 
 ;; whitespace
 (use-package whitespace-cleanup-mode

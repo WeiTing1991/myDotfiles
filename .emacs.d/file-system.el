@@ -59,8 +59,6 @@
  (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
 )
 
-(tab-line-mode t)
-
 (use-package ibuffer
 	:straight nil
 	)
@@ -77,28 +75,37 @@
   (persp-mode)
 )
 
-;;TODO https://docs.projectile.mx/projectile/projects.html
-(use-package projectile
-	:defer t
-  :diminish projectile-mode
-  :config (projectile-mode)
-  ;; (define-key projectile-mode-map (kbd "C-p") 'projectile-persp-switch-project)
-  :custom ((projectile-completion-system 'default))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
+(use-package perspective-tabs
+  :after (perspective)
+  :straight (:host sourcehut :repo "woozong/perspective-tabs")
   :init
-  ;; NOTE: Set this to the folder where you keep your Git repos!
-	(setq projectile-project-search-path '("~/projects/" "~/work/" ("~/github" . 1)))
-  (setq projectile-enable-caching t)  ;; Enable caching for faster project lookups
-  (setq projectile-indexing-method 'native)  ;; Use native indexing for performance
-
+  (perspective-tabs-mode +1)
 )
 
-;; TODO
-(use-package persp-projectile
-  :straight t
+;;TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file
 
-)
+;;TODO https://docs.projectile.mx/projectile/projects.html
+;; (use-package projectile
+;; 	:defer t
+;;   :diminish projectile-mode
+;;   :config (projectile-mode)
+;;   ;; (define-key projectile-mode-map (kbd "C-p") 'projectile-persp-switch-project)
+;;   :custom ((projectile-completion-system 'default))
+;;   :bind-keymap
+;;   ("C-c p" . projectile-command-map)
+;;   :init
+;;   ;; NOTE: Set this to the folder where you keep your Git repos!
+;; 	;; (setq projectile-project-search-path '("~/projects/" "~/work/"))
+;;   (setq projectile-enable-caching t)  ;; Enable caching for faster project lookups
+;;   (setq projectile-indexing-method 'native)  ;; Use native indexing for performance
+
+;; )
+
+;; or check the tabsspaces
+;; ;; TODO
+;; (use-package persp-projectile
+;;   :straight t
+;; )
 
 ;; git tool
 (use-package magit

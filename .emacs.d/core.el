@@ -7,6 +7,8 @@
 
 ;; Toggle between split windows and a single window
 (defun toggle-windows-split()
+
+
   (interactive)
   (if (not(window-minibuffer-p (selected-window)))
       (progn
@@ -26,6 +28,8 @@
  )
 (drag-stuff-mode t)
 
+;; TODO https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/+evil-bindings.el
+;; https://github.com/daviwil/dotfiles/blob/master/.emacs.d/modules/dw-keys-evil.e
 (use-package evil
   :straight t
   :init
@@ -33,25 +37,52 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
+  (setq evil-respect-visual-line-mode t)
   (setq evil-undo-system 'undo-redo)
+
+  ;; (setq evil-want-fine-undo t)
+  ;; (setq evil-ex-visual-char-range t)
 
   :config
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-c") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-k") nil)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 
-  ;; (define-key evil-visual-state-map (kbd "C-v") 'evil-visual-paste)
-  ;; (define-key evil-insert-state-map (kbd "C-v") 'evil-visual-paste)
-  ;; (define-key evil-visual-state-map (kbd "C-c") 'evil-visual-copy)
-
-  (define-key evil-normal-state-map (kbd "-") 'comment-line)
   (define-key evil-visual-state-map (kbd "-") 'comment-line)
+  (define-key evil-normal-state-map (kbd "-") 'comment-line)
 
   (define-key evil-visual-state-map (kbd "J") 'drag-stuff-down)   ;; Move lines down
   (define-key evil-visual-state-map (kbd "K") 'drag-stuff-up)     ;; Move lines up
 
-  (define-key evil-visual-state-map (kbd ">") 'drag-stuff-right)   ;; Move lines down
-  (define-key evil-visual-state-map (kbd "<") 'drag-stuff-left)     ;; Move lines up
+  ;; (define-key evil-visual-state-map (kbd "<") 'drag-stuff-right)   ;; Move lines down
+  ;; (define-key evil-visual-state-map (kbd "<") 'drag-stuff-left)     ;; Move up lines
+
+  ;; ;; TODO somthing is weire of after moving
+  ;; (defun my-shift-right()
+  ;;   (interactive)
+  ;;   (if (use-region-p)
+  ;;       (let ((beg (region-beginning))
+  ;;             (end (region-end)))
+  ;;         (evil-shift-right beg end)   ;; Shift the region right
+  ;;         (goto-char end))            ;; Move cursor to the end of the selection
+  ;;     (message "No active region"))
+  ;;   )
+  ;; (defun my-shift-left ()
+  ;;   "Shift the selected region left and reselect it."
+  ;;   (interactive)
+  ;;   (if (use-region-p)
+  ;;       (let ((beg (region-beginning))
+  ;;             (end (save-excursion
+  ;;                    (goto-char (region-end))
+  ;;                    (line-end-position)))) ;; Ensure end is at the end of the line
+  ;;         (evil-shift-left beg end)
+  ;;         (set-mark beg)
+  ;;         (goto-char end) ;; Move cursor to end after shift
+  ;;         (activate-mark)) ;; Reselect region
+  ;;     (message "No active region")))
+  ;; (define-key evil-visual-state-map (kbd ">") 'my-shift-right)
+  ;; (define-key evil-visual-state-map (kbd "<") 'my-shift-left)
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -59,6 +90,7 @@
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal)
+
 )
 
 (use-package evil-collection
@@ -67,12 +99,19 @@
   :config
   (evil-collection-init))
 
-(electric-pair-mode 1)
-(use-package evil-surround
+(use-package evil-mc
   :straight t
   :after evil
   :config
-  (global-evil-surround-mode t))
+  (global-evil-mc-mode 1))
+
+(electric-pair-mode 1)
+;; (use-package evil-surround
+;;   :straight t
+;;   :after evil
+;;   :config
+;;   (global-evil-surround-mode t))
+
 
 ;; Main keybinding
 (use-package general
@@ -109,8 +148,8 @@
     "bl" '(persp-ibuffer ibu :wk "List buffers")
     "bb" '(consult-buffer-other-window :wk "Switch buffer")
     "q" '(kill-buffer-and-window :wk "Kill this buffer")
-    "o" '(next-buffer :wk "Next buffer")
-    "i" '(previous-buffer :wk "Previous buffer")
+    "o" '(evil-next-buffer :wk "Next buffer")
+    "i" '(evil-previous-buffer :wk "Previous buffer")
     ;; "br" '(revert-buffer :wk "Reload buffer")
     )
 
@@ -161,7 +200,7 @@
 
 	;; project
   (wt/leader-project
-    "h" '(persp-switch :wk "project switch")
+    "h" '(wt/create-new-tab-and-perspective :wk "project switch")
     "n" '(persp-next :wk "project next")
     "p" '(persp-prev :wk "project prev")
     "k" '(persp-kill :wk "persp kill")
@@ -183,7 +222,7 @@
 
 ;j; hightlight yank
 (setq evil-goggles-delete nil)
-(setq evil-goggles-duration 0.1)
+(setq evil-goggles-duration 0.2)
 
 (use-package evil-goggles
   :straight t
@@ -205,8 +244,9 @@
 	:config
  (global-undo-tree-mode)
  :custom
+
  ;; on windows is really slow
- (setq undo-tree-auto-save-history t)
+ (setq undo-tree-auto-save-history nil)
 )
 
 (with-eval-after-load 'evil
@@ -241,13 +281,14 @@
 
 ;; TODO
 ;; help fuction
-;; https://github.com/Wilfred/helpful?tab=readme-ov-file
+;; https://github.com/Wilfred/helpful
 (use-package helpful
   :commands (helpful-callable helpful-variable helpful-command helpful-key)
   :bind
-  ([remap describe-function] . helpful-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . helpful-variable)
-  ([remap describe-callable] . helpful-callable)
+  ([remap describe-function] . helpful-function) ;;C-h F
+  ([remap describe-command] . helpful-command) ;;C-h x
+  ([remap describe-variable] . helpful-variable) ;;C-h k
+  ([remap describe-callable] . helpful-callable) ;;C-h f
   ([remap describe-key] . helpful-key)
+  ("C-c C-d" . helpful-at-point)
 	)

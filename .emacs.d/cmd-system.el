@@ -1,42 +1,63 @@
 ;; cmd-system
 
 ;; file search
+
 ;; https://github.com/minad/vertico
-;; check https://github.com/tumashu/vertico-posframe
-(setq enable-recursive-minibuffers t)
-
-(defun dw/minibuffer-backward-kill (arg)
-  "When minibuffer is completing a file name delete up to parent
-folder, otherwise delete a character backward"
-  (interactive "p")
-  (if minibuffer-completing-file-name
-      ;; Borrowed from https://github.com/raxod502/selectrum/issues/498#issuecomment-803283608
-      (if (string-match-p "/." (minibuffer-contents))
-          (zap-up-to-char (- arg) ?/)
-        (delete-minibuffer-contents))
-    (delete-backward-char arg))
-  )
-
 (use-package vertico
-  :straight t
-  :diminish
-  :bind (:map minibuffer-local-map
-         ("<backspace>" . dw/minibuffer-backward-kill))
+
+  :bind (:map vertico-map
+         ("C-n" . vertico-next)
+         ("C-p" . vertico-previous)
+         :map minibuffer-local-map
+         ("M-h" . backward-kill-word))
+  :init
+  (vertico-mode)
   :custom
   ;; (vertico-scroll-margin 0) ;; Different scroll margin
-  (vertico-count 10) ;; Show more candidates
-  (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
-  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
-  (vertico-resize nil)
-  :init
-  (vertico-mode 1))
+  (vertico-count 15) ;; Show more candidates
+  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  ;; https://github.com/minad/vertico/wiki#prefix-current-candidate-with-arrow
+  (advice-add #'vertico--format-candidate :around
+                                          (lambda (orig cand prefix suffix index _start)
+                                            (setq cand (funcall orig cand prefix suffix index _start))
+                                            (concat
+                                             (if (= vertico--index index)
+                                                 (propertize ">> " 'face 'vertico-current)
+                                               "  ")
+                                             cand)))
+  )
 
-;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
   :init
   (savehist-mode))
 
-;; Configure directory extension.
+;; A few more useful configurations...
+(use-package emacs
+  :custom
+  ;; Support opening new minibuffers from inside existing minibuffers.
+  (enable-recursive-minibuffers t)
+  ;; Hide commands in M-x which do not work in the current mode.  Vertico
+  ;; commands are hidden in normal buffers. This setting is useful beyond
+  ;; Vertico.
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+  ;; Do not allow the cursor in the minibuffer prompt
+  ;; (setq minibuffer-prompt-properties
+  ;;       '(read-only t cursor-intangible t face minibuffer-prompt))
+  ;; (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  )
+
 (use-package vertico-directory
   :after vertico
   :straight nil
@@ -46,23 +67,38 @@ folder, otherwise delete a character backward"
               ("DEL" . vertico-directory-delete-char)
               ("M-DEL" . vertico-directory-delete-word))
   ;; Tidy shadowed file names
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-
-(use-package vertico-posframe
-  :after vertico
-  :straight t
-  :config
-  (vertico-posframe-mode 1)
-  (setq vertico-posframe-parameters
-        '((left-fringe . 9)
-          (right-fringe . 9)))
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
   )
 
-;;TODO
-;; https://github.com/tumashu/vertico-posframe
+;; Enable vertico-multiform
+(vertico-multiform-mode 1)
+(setq vertico-multiform-commands
+      '((find-file reverse)
+        (execute-extended-command reverse)
+        )
+      )
+
+;; ;; Use a buffer with indices for imenu
+;; ;; and a flat (Ido-like) menu for M-x.
+;; (setq vertico-multiform-commands
+;;       '((consult-imenu buffer indexed)
+;;         (execute-extended-command unobtrusive)))
+
+;; (setq vertico-multiform-categories
+;;       '((file reverse)
+;;         (find-file)
+;;         (execute-extended-command)
+;;         ))
+
+
+;; ;; Sort directories before files
+;; (defun sort-directories-first (files)
+;;   (setq files (vertico-sort-history-length-alpha files))
+;;   (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
+;;          (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
+;; ;;TODO check this
 
 ;; https://github.com/minad/consult
-;; https://systemcrafters.net/live-streams/may-21-2021/
 (use-package consult
 	:straight t
   :bind (;; C-c bindings in `mode-specific-map'
@@ -137,50 +173,23 @@ folder, otherwise delete a character backward"
    consult--source-bookmark consult--source-file-register
    consult--source-recent-file consult--source-project-recent-file
    ;; :preview-key "M-."
-   :preview-key '(:debounce 0.4 any))
+   :preview-key '(:debounce 0.5 any))
 
-  ;; Optionally configure the narrowing key.
-  ;; Both < and C-+ work reasonably well.
-  (setq consult-narrow-key "<") ;; "C-+"
 )
 
+;; check https://github.com/tumashu/vertico-posframe
+;; https://github.com/minad/marginalia
 (use-package marginalia
   :after vertico
   :straight t
-  :config
-  ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
-  ;; available in the *Completions* buffer, add it to the
-  ;; `completion-list-mode-map'.
   :bind (:map minibuffer-local-map
          ("M-A" . marginalia-cycle))
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  (marginalia-align 'right)
   :init
   (marginalia-mode)
-	)
-;; https://github.com/oantolin/orderless
-(use-package orderless
-  :after vertico
-  :straight t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion))))
  )
 
-;; https://github.com/oantolin/embark
-;; (use-package embark
-;;   :after vertico
-;;   :straight t
-;;   :bind
-;;   (("C-." . embark-act)         ;; pick some comfortable binding
-;; 	 :map minibuffer-local-map
-;;    ("C-;" . embark-dwim)        ;; good alternative: M-.
-;;    ("C-h B" . embark-bindings) ;; alternative for `describe-bindings'
-;; 	 ("C-c C-c" . embark-collect)
-;; 	 ("C-c C-e" . embark-export))
-;; )
-;; ;; Consult users will also want the embark-consult package.
-;; (use-package embark-consult
-;;   :straight t ; only need to install it, embark loads it after consult if found
-;;   :hook
-;;   (embark-collect-mode . consult-preview-at-point-mode)
-;; )
-
+;; TODO Check the oderless
+;; https://kristofferbalintona.me/posts/202202211546/

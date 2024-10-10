@@ -6,8 +6,9 @@
 
 ;; TODO
 ;; check https://github.com/DarthFennec/highlight-indent-guides
-;; indent mode
-(electric-indent-mode t)
+
+;; indent mode and highlight
+;; (electric-indent-mode t)
 (use-package highlight-indent-guides)
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (setq highlight-indent-guides-method 'character)
@@ -25,14 +26,15 @@
   :init (doom-modeline-mode 1)
   :custom (
 					 (doom-modeline-support-imenu t)
-					 (doom-modeline-height 35)
+					 (doom-modeline-height 40)
            ;;
-					 (doom-modeline-bar-width 2)
-					 (doom-modeline-icon nil)
+					 (doom-modeline-bar-width 5)
+					 (doom-modeline-icon t)
 					 (doom-modeline-buffer-encoding t)
-					 (doom-modeline-persp-name t)
+					 ;; (doom-modeline-persp-name t)
 					 (doom-modeline-display-default-persp-name nil)
 					 (doom-modeline-project-root t)
+           (doom-modeline-project-detection 'auto)
            ;;
 					 (doom-modeline-lsp t)           ;; Display LSP status
 					 (doom-modeline-git t)           ;; Display Git status
@@ -44,7 +46,6 @@
 					 ;; (doom-modeline-env-version t)  ;; Show environment version (Python, etc.)
 		)
   )
-
 
 
 (custom-set-faces

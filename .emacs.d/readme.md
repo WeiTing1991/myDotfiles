@@ -1,6 +1,0 @@
-# My Emacs config
-
-##
-###
-
-
