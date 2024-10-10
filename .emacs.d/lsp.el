@@ -41,13 +41,22 @@
          (emacs-lisp-mode)
          )
   :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
+              ("<tab>" . company-complete-selection))
+
+  :config
+  (push 'company-lsp company-backends)
 
   :custom
-  (company-idle-delay 0.0)
+  (company-idle-delay 0)
+  (company-echo-delay 0)
   (company-minimum-prefix-length 1)
 	(company-tooltip-limit 8)
   ;; (company-tooltip-align-annotations 't)
+  )
+
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-files)
+  (add-to-list 'company-backends 'company-capf)
 )
 
 (use-package company-box
@@ -55,14 +64,15 @@
   :hook (company-mode . company-box-mode)
 )
 
+;;https://github.com/daviwil/dotfiles/blob/master/.emacs.d/modules/dw-interface.el
 (use-package corfu
   ;; Optional customizations
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  ;; (corfu-auto t)                 ;; Enable auto completion
-  (corfu-separator ?\s)          ;; Orderless field separator
-  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  (corfu-auto t)                 ;; Enable auto completion
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-quit-at-boundary t)   ;; Never quit at completion boundary
+  (corfu-quit-no-match t)      ;; Never quit, even if there is no match
   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
   ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
   ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
@@ -94,8 +104,17 @@
   '(flycheck-package-setup)
 )
 
+(use-package yasnippet
+  :straight t
+  :config
+  (yas-global-mode 1)
+  )
+
 ;; lsp setting
 
+;; (load-file (expand-file-name "..el" user-emacs-directory))
+
+;; TODO check this https://www.reddit.com/r/emacs/comments/10h9jf0/beautify_markdown_on_emacs/
 ;; markdown
 (use-package markdown-mode
   :straight t
@@ -104,6 +123,7 @@
          ("\\.markdown\\'" . markdown-mode))
   ;; :init (setq markdown-command "multimarkdown"))
   )
+(add-hook 'markdown-mode-hook 'lsp)
 
 (custom-set-faces
  '(markdown-header-delimiter-face ((t (:foreground "#616161" :height 0.9))))
@@ -115,51 +135,13 @@
  '(markdown-header-face-6 ((t (:height 1.05 :foreground "#5e81ac" :weight semi-bold :inherit markdown-header-face))))
 )
 
-;; ;;  (defvar nb/current-line '(0 . 0)
-;;    "(start . end) of current line in current buffer")
-;;  (make-variable-buffer-local 'nb/current-line)
-;;
-;;  (defun nb/unhide-current-line (limit)
-;;    "Font-lock function"
-;;    (let ((start (max (point) (car nb/current-line)))
-;;          (end (min limit (cdr nb/current-line))))
-;;      (when (< start end)
-;;        (remove-text-properties start end
-;;                        '(invisible t display "" composition ""))
-;;        (goto-char limit)
-;;        t)))
-;;
-;;  (defun nb/refontify-on-linemove ()
-;;    "Post-command-hook"
-;;    (let* ((start (line-beginning-position))
-;;           (end (line-beginning-position 2))
-;;           (needs-update (not (equal start (car nb/current-line)))))
-;;      (setq nb/current-line (cons start end))
-;;      (when needs-update
-;;        (font-lock-fontify-block 3))))
-;;
-;;  (defun nb/markdown-unhighlight ()
-;;    "Enable markdown concealling"
-;;    (interactive)
-;;    (markdown-toggle-markup-hiding 'toggle)
-;;    (font-lock-add-keywords nil '((nb/unhide-current-line)) t)
-;;    (add-hook 'post-command-hook #'nb/refontify-on-linemove nil t))
-;;
-;;  (add-hook 'markdown-mode-hook #'nb/markdown-unhighlight)
-;;
-;; (defun markdown-view-mode-maybe ()
-;;   (cond ((and (eq major-mode 'markdown-mode) buffer-read-only) (markdown-view-mode))
-;;         ((and (eq major-mode 'markdown-view-mode) (not buffer-read-only)) (markdown-mode))))
-;;
-;; (add-hook 'read-only-mode-hook 'markdown-view-mode-maybe)
-;;
-;;  (if (equal major-mode 'markdown-view-mode)
-;;    (local-set-key (kbd "C-x C-q") 'markdown-mode))
-;;  (if (equal major-mode 'markdown-mode)
-;;    (local-set-key (kbd "C-x C-q") 'markdown-view-mode))
-;;
 ;; lua
 (use-package lua-mode)
+(use-package c++-mode)
+
+;; c/cpp
+
+
 
 
 ;; https://github.com/copilot-emacs/copilot.el

@@ -183,12 +183,12 @@
 
 		)
 
-
 	;; toggle
   (wt/leader-keys
     "t" '(:ignore t :wk "Toggle")
     "to" '(org-mode :wk "Toggle org mode")
     "tr" '(rainbow-mode :wk "Toggle rainbow mode")
+    "tf" '(flycheck-mode :wk "Toggle check mode")
 		)
 
 
