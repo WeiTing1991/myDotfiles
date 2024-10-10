@@ -23,10 +23,10 @@
 
 
 ;; vim mode
-(use-package drag-stuff
-  :straight t
- )
-(drag-stuff-mode t)
+;; (use-package drag-stuff
+;;   :straight t
+;;  )
+;; (drag-stuff-mode t)
 
 ;; TODO https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/+evil-bindings.el
 ;; https://github.com/daviwil/dotfiles/blob/master/.emacs.d/modules/dw-keys-evil.e
@@ -52,8 +52,8 @@
   (define-key evil-visual-state-map (kbd "-") 'comment-line)
   (define-key evil-normal-state-map (kbd "-") 'comment-line)
 
-  (define-key evil-visual-state-map (kbd "J") 'drag-stuff-down)   ;; Move lines down
-  (define-key evil-visual-state-map (kbd "K") 'drag-stuff-up)     ;; Move lines up
+  ;; (define-key evil-visual-state-map (kbd "J") 'drag-stuff-down)   ;; Move lines down
+  ;; (define-key evil-visual-state-map (kbd "K") 'drag-stuff-up)     ;; Move lines up
 
   ;; (define-key evil-visual-state-map (kbd "<") 'drag-stuff-right)   ;; Move lines down
   ;; (define-key evil-visual-state-map (kbd "<") 'drag-stuff-left)     ;; Move up lines
@@ -129,8 +129,8 @@
   ;; main kyes
   (wt/leader-keys
     "/" '(execute-extended-command :wk "consult-M-x")
-    "'" '(project-shell :wk "run shell")
-    "C-'" '(project-eshell :wk "run eshell")
+    "'" '(project-eshell :wk "run eshell")
+    "C-'" '(project-shell :wk "run shell")
 		)
 
   ;; find file
@@ -148,8 +148,8 @@
     "bl" '(persp-ibuffer ibu :wk "List buffers")
     "bb" '(consult-buffer-other-window :wk "Switch buffer")
     "q" '(kill-buffer-and-window :wk "Kill this buffer")
-    "o" '(evil-next-buffer :wk "Next buffer")
-    "i" '(evil-previous-buffer :wk "Previous buffer")
+    "o" '(next-buffer :wk "Next buffer")
+    "i" '(previous-buffer :wk "Previous buffer")
     ;; "br" '(revert-buffer :wk "Reload buffer")
     )
 
@@ -200,13 +200,15 @@
 
 	;; project
   (wt/leader-project
-    "h" '(wt/create-new-tab-and-perspective :wk "project switch")
+    "h" '(persp-switch :wk "project switch")
     "n" '(persp-next :wk "project next")
     "p" '(persp-prev :wk "project prev")
     "k" '(persp-kill :wk "persp kill")
     "K" '(persp-kill-others :wk "persp kill")
     ;;
     "r" '(eval-buffer :wk "reload buffer")
+    "t" '(wt/switch-to-eshell :wk "toggle eshell")
+
    )
 
   ;; reload
@@ -242,11 +244,10 @@
 (use-package undo-tree
 	:straight t
 	:config
- (global-undo-tree-mode)
- :custom
-
- ;; on windows is really slow
- (setq undo-tree-auto-save-history nil)
+  (global-undo-tree-mode)
+  :custom
+  ;; on windows is really slow
+  (setq undo-tree-auto-save-history nil)
 )
 
 (with-eval-after-load 'evil
@@ -255,16 +256,16 @@
   (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo))
 )
 
-(with-eval-after-load 'undo-tree
-  (let ((undo-dir (expand-file-name "undo" user-emacs-directory)))
-    (when (bound-and-true-p global-undo-tree-mode)
-	  (unless (file-exists-p undo-dir)
-		  (make-directory undo-dir)
-		  )
-	  (setq undo-tree-history-directory-alist `(("." . ,undo-dir)))
-	  )
-  )
-)
+;; (with-eval-after-load 'undo-tree
+;;   (let ((undo-dir (expand-file-name "undo" user-emacs-directory)))
+;;     (when (bound-and-true-p global-undo-tree-mode)
+;; 	  (unless (file-exists-p undo-dir)
+;; 		  (make-directory undo-dir)
+;; 		  )
+;; 	  (setq undo-tree-history-directory-alist `(("." . ,undo-dir)))
+;; 	  )
+;;   )
+;; )
 
 (use-package diminish
   :straight t

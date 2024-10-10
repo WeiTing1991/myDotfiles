@@ -29,7 +29,7 @@
 					 (doom-modeline-height 40)
            ;;
 					 (doom-modeline-bar-width 5)
-					 (doom-modeline-icon t)
+					 (doom-modeline-icon nil)
 					 (doom-modeline-buffer-encoding t)
 					 ;; (doom-modeline-persp-name t)
 					 (doom-modeline-display-default-persp-name nil)

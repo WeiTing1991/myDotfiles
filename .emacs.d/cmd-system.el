@@ -2,6 +2,7 @@
 
 ;; file search
 
+(use-package hydra)
 ;; https://github.com/minad/vertico
 (use-package vertico
 
@@ -16,6 +17,7 @@
   ;; (vertico-scroll-margin 0) ;; Different scroll margin
   (vertico-count 15) ;; Show more candidates
   ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  (vertico-directory-up t)
   (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
   ;; https://github.com/minad/vertico/wiki#prefix-current-candidate-with-arrow
   (advice-add #'vertico--format-candidate :around

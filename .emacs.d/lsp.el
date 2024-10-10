@@ -38,7 +38,8 @@
 (use-package company
   :straight t
   :hook ((lsp-mode . company-mode)
-         (emacs-lisp-mode))
+         (emacs-lisp-mode)
+         )
   :bind (:map company-active-map
          ("<tab>" . company-complete-selection))
 
@@ -79,10 +80,6 @@
 (use-package lsp-treemacs
   :after lsp
   )
-
-(use-package treemacs
-  :straight nil
-)
 ;; Syntax check as linter
 ;; NOTE
 ;; https://www.flycheck.org/en/latest/user/installation.html
@@ -105,19 +102,20 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
-	)
+  ;; :init (setq markdown-command "multimarkdown"))
+  )
 
-;; (custom-set-faces!
-;;   '(markdown-header-delimiter-face :foreground "#616161" :height 0.9)
-;;   '(markdown-header-face-1 :height 1.8 :foreground "#A3BE8C" :weight extra-bold :inherit markdown-header-face)
-;;   '(markdown-header-face-2 :height 1.4 :foreground "#EBCB8B" :weight extra :Inherit Markdown-Header-FacE)
-;;   '(Markdown-header-face-3 :height 1.2 :foreground "#D08770" :weight extra-bold :inherit markdown-header-face)
-;;   '(markdown-header-face-4 :height 1.15 :foreground "#BF616A" :weight bold :inherit markdown-header-face)
-;;   '(markdown-header-face-5 :height 1.1 :foreground "#b48ead" :weight bold :inherit markdown-header-face)
-;;   '(markdown-header-face-6 :height 1.05 :foreground "#5e81ac" :weight semi-bold :inherit markdown-header-face))
-;; )
-;;  (defvar nb/current-line '(0 . 0)
+(custom-set-faces
+ '(markdown-header-delimiter-face ((t (:foreground "#616161" :height 0.9))))
+ '(markdown-header-face-1 ((t (:height 1.8 :foreground "#A3BE8C" :weight extra-bold :inherit markdown-header-face))))
+ '(markdown-header-face-2 ((t (:height 1.4 :foreground "#EBCB8B" :weight extra-bold :inherit markdown-header-face))))
+ '(markdown-header-face-3 ((t (:height 1.2 :foreground "#D08770" :weight extra-bold :inherit markdown-header-face))))
+ '(markdown-header-face-4 ((t (:height 1.15 :foreground "#BF616A" :weight bold :inherit markdown-header-face))))
+ '(markdown-header-face-5 ((t (:height 1.1 :foreground "#b48ead" :weight bold :inherit markdown-header-face))))
+ '(markdown-header-face-6 ((t (:height 1.05 :foreground "#5e81ac" :weight semi-bold :inherit markdown-header-face))))
+)
+
+;; ;;  (defvar nb/current-line '(0 . 0)
 ;;    "(start . end) of current line in current buffer")
 ;;  (make-variable-buffer-local 'nb/current-line)
 ;;

@@ -38,9 +38,10 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq echo-keystrokes .1)
 
+;; NOTE delay
 ;; smooth scrolling
-(when (>= emacs-major-version 29)
-  (pixel-scroll-precision-mode 1))
+;; (when (>= emacs-major-version 29)
+;;   (pixel-scroll-precision-mode 1))
 
 ;; Revert buffer
 (recentf-mode 1)

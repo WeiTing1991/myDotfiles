@@ -1,7 +1,7 @@
-;; Init.el
+;; Init.e il
 
 ;; Performance tweaks
-(setq gc-cons-threshold (* 500 1000 1000))
+(setq gc-cons-threshold (* 250 1000 1000))
 
 (if (boundp 'comp-deferred-compilation)
   (setq comp-deferred-compilation t)
@@ -65,7 +65,7 @@
   ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
    (setq  wt/default-font-size 100)
    (setq  wt/default-variable-font-size 100)
-   (setq  wt/frame-transparency '(90 . 90))
+   (setq  wt/frame-transparency '(95 . 90))
    )
   )
 
@@ -86,7 +86,7 @@
 
 
 ;; Set inital frame size
-(setq default-frame-alist '((width . 120) (height . 100)))
+(setq default-frame-alist '((width . 100) (height . 100)))
 
 ;; Load the package
 (load-file (expand-file-name "opts.el" user-emacs-directory))

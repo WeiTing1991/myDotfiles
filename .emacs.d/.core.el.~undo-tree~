@@ -1,0 +1,11 @@
+(undo-tree-save-format-version . 1)
+"84063b7666d857f6862113d1a3586e40b9772845"
+[nil nil nil nil (26375 46096 551109 0) 0 nil]
+([nil nil ((apply -3 1499 1587 undo--wrap-and-run-primitive-undo 1499 1587 ((1501 . 1504) 1499))) nil (26375 46096 551108 0) 0 nil])
+([nil nil ((apply -3 1587 1673 undo--wrap-and-run-primitive-undo 1587 1673 ((1589 . 1592)))) nil (26375 46096 551103 0) 0 nil])
+([nil nil ((apply -3 633 656 undo--wrap-and-run-primitive-undo 633 656 ((633 . 636)))) nil (26375 46101 428287 0) 0 nil])
+([nil nil ((6102 . 6114) (#("persp-sw" 0 8 (fontified t)) . -6102) (undo-tree-id0 . -8) (undo-tree-id1 . -8) (undo-tree-id2 . -8) 6110 (6102 . 6110) (#("wt/create-new-tab-and-perspective " 0 34 (fontified t)) . 6102) (undo-tree-id3 . -33) (undo-tree-id4 . -28) (undo-tree-id5 . -28) (undo-tree-id6 . -28) (undo-tree-id7 . -28) (undo-tree-id8 . -28) (undo-tree-id9 . -5) (undo-tree-id10 . -5) (undo-tree-id11 . -5) (undo-tree-id12 . -5) (undo-tree-id13 . -33) (undo-tree-id14 . -22) (undo-tree-id15 . -32) (undo-tree-id16 . -33) (undo-tree-id17 . -33) 6135 (t 26375 46101 0 0)) nil (26375 47172 8826 0) 0 nil])
+([nil nil ((6114 . 6115)) nil (26375 47172 8795 0) 0 nil])
+([nil nil ((apply -12 592 668 undo--wrap-and-run-primitive-undo 592 668 ((642 . 645) (636 . 639) (619 . 622) (592 . 595)))) nil (26375 47179 556716 0) 0 nil])
+([nil current ((apply 3 642 664 undo--wrap-and-run-primitive-undo 642 664 ((#(";; " 0 3 (face font-lock-comment-delimiter-face fontified t)) . -642) (#<marker (moves after insertion) at 642 in core.el> . 3) 646))) nil (26375 47181 549396 0) 0 nil])
+nil
