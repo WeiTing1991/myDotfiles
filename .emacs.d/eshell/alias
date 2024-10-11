@@ -1,4 +1,0 @@
-alias d dired $1
-alias f find-file $1
-alias ff find-file-other-window $1
-alias clear eshell/clear 1

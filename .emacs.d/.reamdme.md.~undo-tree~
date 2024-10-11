@@ -1,5 +1,0 @@
-(undo-tree-save-format-version . 1)
-"06f71d34bb1f7e96ea327987377ca91ac803d781"
-[nil nil nil nil (26375 57903 694423 0) 0 nil]
-([nil current ((#("." 0 1 (fontified t)) . -22) (undo-tree-id0 . -1) (#("/" 0 1 (fontified t)) . -23) (undo-tree-id1 . -1) 24 (22 . 24) (#("c" 0 1 (fontified t)) . -22) (undo-tree-id2 . -1) (#("o" 0 1 (fontified t)) . -23) (undo-tree-id3 . -1) (#("r" 0 1 (fontified t)) . -24) (undo-tree-id4 . -1) (#("e" 0 1 (fontified t)) . -25) (undo-tree-id5 . -1) 26 (22 . 26) (#("j" 0 1 (fontified t)) . -22) (undo-tree-id6 . -1) (#("d" 0 1 (fontified t)) . -23) (undo-tree-id7 . -1) (#("k" 0 1 (fontified t)) . -24) (undo-tree-id8 . -1) (#("d" 0 1 (fontified t)) . -25) (undo-tree-id9 . -1) (#("j" 0 1 (fontified t)) . -26) (undo-tree-id10 . -1) (#("k" 0 1 (fontified t)) . -27) (undo-tree-id11 . -1) (#("d" 0 1 (fontified t)) . -28) (undo-tree-id12 . -1) 29 (22 . 29) (t 26375 56388 0 0)) nil (26375 57903 694417 0) 0 nil])
-nil

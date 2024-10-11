@@ -1,4 +1,4 @@
-;; ui.el
+;;; ui.el
 
 ;; statusline
 (use-package all-the-icons
@@ -47,7 +47,7 @@
 		)
   )
 
-
+;; cursor
 (custom-set-faces
  '(cursor ((t (:background "#eb6f92" :foreground "white")))))
 

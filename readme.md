@@ -1,6 +1,7 @@
 # Welcome to my dotfiles
 
 ## stow
+
 This repository is my dotfiles (for now) for my windows and mac via [GNU stow].
 
 ```bash
@@ -14,7 +15,7 @@ I start with [kickstart] to configure my personal [Neovim] setting. If you would
 ### Usage
 For MacOS/Linux
 
-```bash
+ ``bash
 # remove the old config file
 
 mv ~/.config/nvim ~/.config/nvim.bak

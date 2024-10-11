@@ -1,31 +1,18 @@
-;; Init.e il
+;;; init.el
 
-;; Performance tweaks
-(setq gc-cons-threshold (* 250 1000 1000))
-
-(if (boundp 'comp-deferred-compilation)
-  (setq comp-deferred-compilation t)
-  (setq native-comp-deferred-compilation t)
-)
-(setq load-prefer-newer noninteractive)
-(setq native-comp-async-report-warnings-errors nil)
-
-;; The default is 800 kilobytes.  Measured in bytes.
-(defun efs/display-startup-time ()
+(defun wt/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
            (format "%.2f seconds"
                    (float-time
-                    (time-subtract after-init-time before-init-time)))
+                     (time-subtract after-init-time before-init-time)))
            gcs-done))
-(add-hook 'emacs-startup-hook #'efs/display-startup-time)
-
-;; diable compilation
+(add-hook 'emacs-startup-hook #'wt/display-startup-time)
 
 ;; disable the backup file
-(setq auto-save-default t)
 (setq make-backup-files nil)
-;; (setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
+
 (setq create-lockfiles nil)
+;; (setq backup-directory-alist '((".*" . "~/.local/share/Trash/files")))
 
 ;; straight package manager
 (defvar bootstrap-version)
@@ -46,60 +33,48 @@
 
 (setq straight-use-package-by-default t)
 
+;; (if (boundp 'comp-deferred-compilation)
+;;   (setq comp-deferred-compilation t)
+;;   (setq native-comp-deferred-compilation t)
+;;   )
+
+;;; GccEmacs (native-comp) stuff
+(when (and (fboundp 'native-comp-available-p) (native-comp-available-p))
+  (progn
+    (setq native-comp-async-report-warnings-errors nil)
+    (setq native-comp-deferred-compilation t)
+    (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
+    (setq package-native-compile t)
+    (setq load-prefer-newer noninteractive)
+))
+
+
 (use-package no-littering)
 ;; no-littering doesn't set this by default so we must place
 ;; auto save files in the same path as it uses for sessions
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
-;;
-;; basic font and frame setting
-(cond
-  ;; macOS configuration
-  ((eq system-type 'darwin)  ;; 'darwin' is for macOS
-   (setq wt/default-font-size 140)
-   (setq wt/default-variable-font-size 140)
-   (setq wt/frame-transparency '(90 . 90))
-   )
-  ;; Windows configuration
-  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-   (setq  wt/default-font-size 100)
-   (setq  wt/default-variable-font-size 100)
-   (setq  wt/frame-transparency '(95 . 90))
-   )
-  )
-
-;; Set the font
-(set-face-attribute 'default nil :font "Hack Nerd Font" :height wt/default-font-size)
-;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "Hack Nerd Font" :height wt/default-font-size)
-;; Set the variable pitch face
-;; (set-face-attribute 'variable-pitch nil :font "Times New Rome" :height wt/default-variable-font-size :weight 'regular)
-
-;; Set frame transparency
-(set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
-(add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
-
-;; (add-hook 'minibuffer-setup-hook
-;;           (lambda ()
-;;             (set-frame-parameter nil 'alpha '(100 . 100)))) ;; Ensure fully opaque minibuffer
-
-
-;; Set inital frame size
-(setq default-frame-alist '((width . 100) (height . 100)))
-
-;; Load the package
-(load-file (expand-file-name "opts.el" user-emacs-directory))
-(load-file (expand-file-name "core.el" user-emacs-directory))
-(load-file (expand-file-name "ui.el" user-emacs-directory))
-(load-file (expand-file-name "cmd-system.el" user-emacs-directory))
-(load-file (expand-file-name "file-system.el" user-emacs-directory))
-(load-file (expand-file-name "terminals.el" user-emacs-directory))
-(load-file (expand-file-name "lsp.el" user-emacs-directory))
-
+(setq auto-save-default t)
 ;; do not save the custom change into init.el
 (setq custom-file (locate-user-emacs-file "custon-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
-(setq gc-cons-threshold (* 2 1000 1000))
 
+(load-file (expand-file-name "./config/config.el" user-emacs-directory))
+(load-file (expand-file-name "./config/core.el" user-emacs-directory))
+(load-file (expand-file-name "./config/ui.el" user-emacs-directory))
+(load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
+(load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
+(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
+(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
+
+
+(use-package gcmh
+  ;; :hook (emacs-startup-hook . gcmh-mode)
+  :demand t
+  :config
+  (setq gcmh-low-cons-threshold (* 16 1024 1024))
+  (gcmh-mode +1))
+
+;;; init.el end here

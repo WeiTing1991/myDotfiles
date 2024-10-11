@@ -1,3 +1,4 @@
+;;; termainals.el
 ;; (setq eshell-destroy-buffer-when-process-dies t)
 
 (defun read-file (file-path)
@@ -122,10 +123,6 @@
   (setq exec-path-from-shell-check-startup-files nil)
   (exec-path-from-shell-initialize))
 
-;; (when(eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-;;   (
-;; ))
-
 (defun wt/switch-to-eshell ()
   (interactive)
   (if (project-current)
@@ -153,11 +150,13 @@
   (set-face-background 'company-preview nil))
 
 (use-package esh-autosuggest
+  :defer t
   :hook (eshell-mode . esh-autosuggest-mode)
   :config
   (setq esh-autosuggest-delay 0.5))
 
 (use-package eat
+  :after eshell
   :custom
   (eat-kill-buffer-on-exit t)
   (eat-enable-shell-prompt-annotation nil)

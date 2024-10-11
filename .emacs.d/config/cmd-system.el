@@ -1,8 +1,8 @@
-;; cmd-system
+;;; cmd-system
 
 ;; file search
-
 (use-package hydra)
+
 ;; https://github.com/minad/vertico
 (use-package vertico
 

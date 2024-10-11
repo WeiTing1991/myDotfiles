@@ -1,7 +1,0 @@
-(undo-tree-save-format-version . 1)
-"13677d00bc9282e35b2b64b62e2ed0313029b87f"
-[nil nil nil nil (26375 55185 682634 0) 0 nil]
-([nil nil ((31 . 32) (t 26375 31663 0 0) 31) nil (26375 55185 682633 0) 0 nil])
-([nil nil ((nil rear-nonsticky nil 50 . 51) (nil fontified nil 32 . 51) (32 . 51)) nil (26375 55185 682629 0) 0 nil])
-([nil current ((505 . 507) (485 . 505) (#("vertico-di" 0 10 (fontified t)) . -485) (undo-tree-id0 . -10) (undo-tree-id1 . -10) (undo-tree-id2 . -10) 495 (494 . 495) (493 . 494) (492 . 493) (491 . 492) (490 . 491) (488 . 490) (485 . 488) (484 . 486) (481 . 484) (t 26375 55185 0 0) 434) nil (26375 55373 394257 0) 0 nil])
-nil

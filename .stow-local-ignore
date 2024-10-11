@@ -2,6 +2,7 @@
 \.DS_Store
 
 # Comments and blank lines are allowed.
+\.emacs.d.bak
 
 RCS
 .+,v
