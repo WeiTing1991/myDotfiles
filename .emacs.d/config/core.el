@@ -32,7 +32,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
-  (setq evil-respect-visual-line-mode t)
+  ;; (setq evil-respect-visual-line-mode t)
   (setq evil-undo-system 'undo-redo)
 
   (setq select-enable-clipboard t)
@@ -61,7 +61,7 @@
   (define-key evil-normal-state-map (kbd "C-j") nil)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 
-  (define-key evil-visual-state-map (kbd "-") 'comment-line)
+  (define-key evil-visual-state-map (kbd "-") 'comment-dwim)
   (define-key evil-normal-state-map (kbd "-") 'comment-line)
 
   ;; Use visual line motions even outside of visual-line-mode buffers
@@ -82,6 +82,9 @@
   (define-key wt/window-map (kbd "v") #'wt/split-and-follow-vertically)
   (define-key wt/window-map (kbd "h") #'wt/split-and-follow-horizontally)
   (define-key wt/window-map (kbd "r") 'eval-buffer)
+  (define-key wt/window-map (kbd "s") 'persp-switch)
+  (define-key wt/window-map (kbd "n") 'persp-next)
+  (define-key wt/window-map (kbd "p") 'persp-prev)
 
     (with-eval-after-load 'which-key
     (which-key-add-key-based-replacements
@@ -225,9 +228,9 @@
 )
 
 
-;j; hightlight yank
-(setq evil-goggles-delete nil)
-(setq evil-goggles-duration 0.2)
+;; hightlight yank
+;(setq evil-goggles-delete nil)
+;(setq evil-goggles-duration 0.2)
 
 (use-package evil-goggles
   :straight t
@@ -244,22 +247,22 @@
   )
 
 ;; ;; maybe check this https://github.com/casouri/vundo
-(use-package undo-tree
-  :straight t
-  :config
-  (global-undo-tree-mode)
-  :custom
-  ;; on windows is really slow
-  (setq undo-tree-history-directory "~/.emacs.d/undo")
-  (setq undo-tree-auto-save-history t)
-)
-
-(with-eval-after-load 'evil
-  (when (bound-and-true-p global-undo-tree-mode)
-    (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo)
-    (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo))
-  ;; (global-set-key (kbd "C-x u") 'undo-tree-visualize)
-)
+;(use-package undo-tree
+;  :straight t
+;  :config
+;  (global-undo-tree-mode)
+;  :custom
+;  ;; on windows is really slow
+;  (setq undo-tree-history-directory "~/.emacs.d/undo")
+;  (setq undo-tree-auto-save-history t)
+;)
+;
+;(with-eval-after-load 'evil
+;  (when (bound-and-true-p global-undo-tree-mode)
+;    (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo)
+;    (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo))
+;  ;; (global-set-key (kbd "C-x u") 'undo-tree-visualize)
+;)
 
 (use-package diminish
   :straight t

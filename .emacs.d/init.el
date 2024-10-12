@@ -1,5 +1,4 @@
 ;;; init.el
-
 (defun wt/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
            (format "%.2f seconds"

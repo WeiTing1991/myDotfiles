@@ -1,7 +1,5 @@
 ;;;lsp.el
 
-;; TODO add the linter keybinding, and check md
-
 ;; treesitter
 (use-package treesit-auto
   :custom
@@ -52,14 +50,10 @@
 
 ;; https://emacs-lsp.github.io/lsp-mode/page/installation/
 ;; lsp server
-(defun wt/lsp-mode-setup ()
-  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-  (lsp-headerline-breadcrumb-mode))
 
 (use-package lsp-mode
   :straight t
   :commands (lsp lsp-deferred)
-  :hook (lsp-mode . wt/lsp-mode-setup)
   :init
   (setq lsp-keymap-prefix "C-l")  ;; Or 'C-l', 's-l'
   :config
@@ -78,36 +72,20 @@
 ;; https://company-mode.github.io/manual/
 (use-package company
   :straight t
-  :defer t
-  :hook ((lsp-mode . company-mode)
-         (emacs-lisp-mode)
-         (prog-mode)
-         )
+  :init
+  (global-company-mode)
   :bind (:map company-active-map
               ("<tab>" . company-complete-selection))
 
   :config
-  (push 'company-lsp company-backends)
   (setq company-minimum-prefix-length     1
         company-idle-delay                0.0
         company-toolsip-limit             14
         company-tooltip-align-annotations nil
         company-require-match             'never
-        ;; company-frontends
-        ;; '(company-pseudo-tooltip-frontend ; always show candidates in overlay tooltip
-          ;; company-echo-metadata-frontend) ; show selected candidate docs in echo area
-        company-backends '(company-capf)
-        company-backends '(company-files)
-        company-auto-commit         nil
-        company-auto-complete-chars nil
-        company-dabbrev-other-buffers nil
-        company-dabbrev-ignore-case nil
-        company-dabbrev-downcase    nil))
-  ;; :custom
-  ;; (company-echo-delay 0)
-  ;; (company-minimum-prefix-length 1)
-	;; (company-tooltip-limit 8)
-
+        company-backends '((company-capf company-files))
+        )
+  )
 
 (use-package company-dict
   :after company
@@ -127,33 +105,34 @@
 )
 
 ;;https://github.com/daviwil/dotfiles/blob/master/.emacs.d/modules/dw-interface.el
-(use-package corfu
-  :defer t
-  :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)                 ;; Enable auto completion
-  ;; (corfu-separator ?\s)          ;; Orderless field separator
-  (corfu-quit-at-boundary t)   ;; Never quit at completion boundary
-  (corfu-quit-no-match t)      ;; Never quit, even if there is no match
-  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+;; (use-package corfu
+;;   :defer t
+;;   :custom
+;;   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+;;   (corfu-auto t)                 ;; Enable auto completion
+;;   ;; (corfu-separator ?\s)          ;; Orderless field separator
+;;   (corfu-quit-at-boundary t)   ;; Never quit at completion boundary
+;;   (corfu-quit-no-match t)      ;; Never quit, even if there is no match
+;;   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+;;   ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+;;   ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+;;   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
-  ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
-  :hook ((prog-mode . corfu-mode)
-         (shell-mode . corfu-mode)
-         (eshell-mode . corfu-mode))
-	)
+;;   ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
+;;   :hook ((prog-mode . corfu-mode)
+;;          (shell-mode . corfu-mode)
+;;          (eshell-mode . corfu-mode))
+;; 	)
 
-(use-package lsp-treemacs
-  :after lsp-mode
-  )
+;; (use-package lsp-treemacs
+;;   :after lsp-mode
+;;   )
 
 ;; NOTE
 ;; Syntax check as linter
 ;; https://www.flycheck.org/en/latest/user/installation.html
 ;; flyspell
+
 (use-package flycheck
   :straight (:build t)
   :config
@@ -161,61 +140,54 @@
   (setq flycheck-display-errors-delay 0.2))
 
 
-
 ;; for Emacs Lisp
 (with-eval-after-load 'flycheck
   '(flycheck-package-setup)
 )
 
-(use-package yasnippet
-  :defer t
-  :straight t
-  :init
-  (yas-global-mode)
-  :hook ((prog-mode . yas-minor-mode)
-         (text-mode . yas-minor-mode)))
+;; (use-package yasnippet
+;;   :defer t
+;;   :straight t
+;;   :init
+;;   (yas-global-mode)
+;;   :hook ((prog-mode . yas-minor-mode)
+;;          (text-mode . yas-minor-mode)))
 
 
 ;; lsp server setting
-
 (load-file (expand-file-name "./config/lsp-config/md.el" user-emacs-directory))
-
 
 ;; lua
 (use-package lua-mode
-  :defer t
   :straight t
-  :hook (lua-mode . 'lsp-mode)
-)
+  :hook (lua-mode . lsp-mode))
 
 ;; c/cpp
 ;; Note check here https://config.phundrak.com/emacs/packages/programming.html#caddy
 ;; https://github.com/emacs-exordium/exordium/blob/master/modules/init-cpp.el
 (use-package cc-mode
   :straight nil
-  :hook ((c++-mode . 'lsp-mode)
+  :hook ((c++-mode . lsp-mode)
          (c++-mode . #'tree-sitter-hl-mode)
+         ;; (c-mode . #'tree-sitter-hl-mode)
          )
   :config
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+  ;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 )
 
-(use-package c-mode
-  :straight nil
-  :hook (c-mode . 'lsp-mode)
-)
+;; (use-package cmake-mode
+;;   :defer t
+;;   :straight t
+;;   :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
+;;          ("\\.cmake\\'" . cmake-mode)))
 
-(use-package cmake-mode
-  :defer t
-  :straight t
-  :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
-         ("\\.cmake\\'" . cmake-mode)))
+;; (use-package modern-cpp-font-lock
+;;   :if (eq exordium-enable-c++11-keywords :modern)
+;;   :diminish modern-c++-font-lock-mode
+;;   :hook (c++-mode . modern-c++-font-lock-mode)
+;; )
 
-(use-package modern-cpp-font-lock
-  :if (eq exordium-enable-c++11-keywords :modern)
-  :diminish modern-c++-font-lock-mode
-  :hook (c++-mode . modern-c++-font-lock-mode)
-)
+;; python
 
 
 

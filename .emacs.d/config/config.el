@@ -10,6 +10,7 @@
 ;;             browse-url-generic-args '("/c" "start" "")
 ;;             browse-url-browser-function 'browse-url-generic)))))
 
+;; split the windows and focus on
 (defun wt/split-and-follow-vertically ()
   "Split window vertically (below)."
   (interactive)
@@ -21,6 +22,7 @@
   (split-window-right)
   (other-window 1))
 
+
 (use-package emacs
   :straight nil
   :preface
@@ -31,8 +33,12 @@
   (setq frame-title-format '("Emacs " emacs-version))
 
   (setq initial-scratch-message "")
-  (setq echo-keystrokes 0.05)
-  (setq require-final-newline t)
+  (setq echo-keystrokes 0.01)
+
+  ;; (setq-default auto-fill-function nil)
+  ;; (setq comment-style 'indent)
+  ;; (electric-pair-mode -1)
+
   ;; ;; (setq use-dialog-box nil)
   ;; ;; (global-visual-line-mode t)
   ;;
@@ -40,21 +46,24 @@
   ;; (setq-default default-directory "~/")
   ;;
   ;; (setq auto-window-vscroll nil)
-  ;; (setq frame-resize-pixelwise t)
-  ;;
-  (setq scroll-margin 50)
-  (setq scroll-conservatively 101)
-  (setq scroll-preserve-screen-position t)
-  
-  ;; (when (>= emacs-major-version 29)
-  ;;   (pixel-scroll-precision-mode 1))
-  ;; ;;
+
+  (setq scroll-step 1)
+  (setq scroll-margin 10)
+  (setq scroll-conservatively 100000)
+  (setq scroll-preserve-screen-position 'always)
+
+  ;; (set-window-margins nil 0 0)
+  ;; (setq hscroll-step 1)
+  ;; (setq hscroll-margin 1)
+  ;; (setq auto-hscroll-mode nil) ;; Disable automatic horizontal scrolling
+
+  (set-fringe-mode '(10 . 10))
+  (set-default 'truncate-lines t)
+  (pixel-scroll-precision-mode 1)
+
   ;; (put 'scroll-right 'disabled nil)
   ;; (put 'scroll-left 'disabled nil)
   ;;
-  ;; (setq hscroll-step 0)
-  ;; (setq scroll-step 1)
-  ;; (setq hscroll-margin 0)
   ;; (setq load-prefer-newer t)
   ;;
   ;; ;; (setq inhibit-compacting-font-caches t)
@@ -64,6 +73,7 @@
   ;; ;; (put 'upcase-region 'disabled nil)
   ;;
   ;;
+
   ;; Revert buffer
   (recentf-mode 1)
   (global-auto-revert-mode 1)
@@ -71,7 +81,8 @@
 
   ;; Relative line numbers
   (setq display-line-numbers-type 'relative)
-  (global-display-line-numbers-mode t)
+  (global-display-line-numbers-mode 1)
+  (setq-default display-line-numbers-width 4)
 
   ;; default editorconfig
   ; Indentation settings
@@ -122,7 +133,7 @@
   ;; ;; (wt/maybe-set-default-browser)
   ;; (setq jit-lock-defer-time 0)
   ;; (setq fast-but-imprecise-scrolling t)
-  ;; (xterm-mouse-mode +1)
+  (xterm-mouse-mode +1)
 
   )
 
@@ -150,8 +161,8 @@
 ;; (set-face-attribute 'variable-pitch nil :font "Times New Rome" :height wt/default-variable-font-size :weight 'regular)
 
 ;; Set frame transparency
-;; (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
-;; (add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
+(set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
+(add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
 ;; (add-hook 'minibuffer-setup-hook
 ;;           (lambda ()
 ;;             (set-frame-parameter nil 'alpha '(100 . 100)))) ;; Ensure fully opaque
@@ -164,83 +175,32 @@
 (add-hook 'prog-mode-hook (lambda ()
   (display-fill-column-indicator-mode)))
 
-;; ;; disable in cetain mode
-;; (dolist (mode '(org-mode-hook
-;;                 term-mode-hook
-;;                 vterm-mode-hook
-;;                 shell-mode-hook
-;;                 treemacs-mode-hook
-;;                 eshell-mode-hook
-;;                 dired-mode-hook)
-;;               )
-;;   (add-hook mode (lambda ()
-;;                       (display-fill-column-indicator-mode -1)
-;;                       (display-line-numbers-mode 0)
-;;                       )
-;;             )
-;;   )
+;; disable in cetain mode
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                vterm-mode-hook
+                shell-mode-hook
+                treemacs-mode-hook
+                eshell-mode-hook
+                dired-mode-hook)
+              )
+  (add-hook mode (lambda ()
+                      (display-fill-column-indicator-mode -1)
+                      (display-line-numbers-mode 0)
+                      )
+            )
+  )
 
 (use-package doom-themes
   :straight t
-  :custom-face
-  (region                         ((t (:extend nil))))
-  (highlight-symbol-face          ((t (:background "#355266" :distant-foreground "#bbbbbb"))))
-  (highlight                      ((t (:foreground "#4db2ff" :background nil :underline t)))) ; link hover
-  (link                           ((t (:foreground "#3794ff"))))
-  (evil-ex-substitute-replacement ((t (:strike-through nil))))
-  (vertical-border                ((t (:foreground "black" :background "black"))))
-  (fringe                         ((t (:background nil))))
   :config
   (setq doom-themes-enable-bold t)
   (setq doom-themes-enable-italic nil)
-  (load-theme 'doom-palenight t))
-
+  (load-theme 'doom-palenight t)
+  )
 ;;
 ;; (use-package centered-cursor-mode
 ;;   :demand
 ;;   :config
 ;;   ;; Optional, enables centered-cursor-mode in all buffers.
 ;;   (global-centered-cursor-mode))
-
-
-;; code vim style fold
-(add-hook 'prog-mode-hook #'hs-minor-mode)
-(with-eval-after-load 'evil
-  (define-key evil-normal-state-map (kbd "<tab>") 'hs-toggle-hiding)
-;; (define-key evil-normal-state-map (kbd "zc") 'hs-hide-block)
-;; (define-key evil-normal-state-map (kbd "zo") 'hs-show-block)
-;; (define-key evil-normal-state-map (kbd "zr") 'hs-show-all)
-;; (define-key evil-normal-state-map (kbd "zm") 'hs-hide-all)
-  )
-
-;; whitespace
-(use-package whitespace-cleanup-mode
-  :straight t
-  :init
-  (setq whitespaces-cleanup-mode 0)
-  :hook (whitespaces-cleanup-mode . prog-mode)
-  )
-
-(setq-default
-	whitespace-style '(face tabs tab-mark spaces space-mark trailing newline newline-mark)
-	whitespace-display-mappings '(
-		(space-mark   ?\     [?\u00B7]     [?.])
-		(space-mark   ?\xA0  [?\u00A4]     [?_])
-		;; (newline-mark ?\n    [182 ?\n])
-		(tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t]))
-	whitespace-line-column 140
-	)
-
-;; (add-hook 'prog-mode-hook (lambda ()
-;;   (whitespace-mode)))
-
-;;; config code end here
-
-
-
-
-
-
-
-
-

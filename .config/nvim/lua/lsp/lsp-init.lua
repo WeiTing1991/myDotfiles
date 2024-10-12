@@ -1,6 +1,6 @@
 require("mason").setup()
--- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization
 
+-- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization
 -- key mappings.
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),

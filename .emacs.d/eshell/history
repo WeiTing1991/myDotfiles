@@ -1,0 +1,17 @@
+ls
+ls -al
+ls
+clear
+clear 1
+L
+exit
+ls
+la
+ls -al
+cd .config/
+ls
+dired
+dired .
+ls
+cd .config/nvim
+dired .

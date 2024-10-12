@@ -1,6 +1,0 @@
-(undo-tree-save-format-version . 1)
-"93f23d2adb5d7ee4806018127895f800ef0f604c"
-[nil nil nil nil (26376 39313 47867 0) 0 nil]
-([nil nil ((393 . 394) (#("`" 0 1 (face (markdown-markup-face markdown-code-face) invisible markdown-markup fontified t markdown-gfm-block-begin (393 400 393 396 396 396 396 400 nil nil 400 400 #<buffer readme.md>))) . 393) (undo-tree-id1 . -1) (t 26376 38956 344124 909000)) nil (26376 39313 47866 0) 0 nil])
-([nil current ((393 . 394) (#(" " 0 1 (fontified t)) . 393) (undo-tree-id0 . -1)) nil (26376 39313 47857 0) 0 nil])
-nil

@@ -15,7 +15,7 @@ I start with [kickstart] to configure my personal [Neovim] setting. If you would
 ### Usage
 For MacOS/Linux
 
- ``bash
+```bash
 # remove the old config file
 
 mv ~/.config/nvim ~/.config/nvim.bak
@@ -24,11 +24,13 @@ rm -rf ~/.cache/nvim
 
 cd YOURGITREPO
 mv nvim ~/.config
+
 ```
 
 For Windows 10/11
 
 ```powershell
+
 git clone GitPath $HOME/.mydotfiles
 
 # install the required software and create the symbolic link
@@ -105,6 +107,7 @@ mv wezterm ~/.config
 
 ## Emacs
 
+please find more infomation [here]().
 ```
 ```
 
