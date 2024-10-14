@@ -21,29 +21,31 @@
 (set-face-foreground 'highlight-indent-guides-character-face "dimgray")
 (setq highlight-indent-guides-delay 0)
 
+
 (use-package doom-modeline
   :straight t
+  :defer 0
   :init (doom-modeline-mode 1)
   :custom (
-					 (doom-modeline-support-imenu t)
-					 (doom-modeline-height 40)
-           ;;
-					 (doom-modeline-bar-width 5)
-					 (doom-modeline-icon nil)
-					 (doom-modeline-buffer-encoding t)
-					 ;; (doom-modeline-persp-name t)
-					 (doom-modeline-display-default-persp-name nil)
-					 (doom-modeline-project-root t)
-           (doom-modeline-project-detection 'auto)
-           ;;
-					 (doom-modeline-lsp t)           ;; Display LSP status
-					 (doom-modeline-git t)           ;; Display Git status
-					 (doom-modeline-buffer-file-name-style 'truncate-with-project) ;; File info
-					 ;; (doom-modeline-major-mode-icon t) ;; Display icon for the major mode
-					 ;; (doom-modeline-major-mode-color-icon t)
-					 (doom-modeline-indent-info t)   ;; Show indentation
-					 (doom-modeline-checker-simple-format t) ;; Spell checker and linter
-					 ;; (doom-modeline-env-version t)  ;; Show environment version (Python, etc.)
+           ;; (doom-modeline-support-imenu t)
+           (doom-modeline-height 40)
+           (doom-modeline-bar-width 5)
+           (doom-modeline-icon t)
+           (doom-modeline-buffer-encoding t)
+           ;; (doom-modeline-persp-name t)
+           (doom-modeline-display-default-persp-name nil)
+           (doom-modeline-project-root t)
+           (doom-modeline-project-detection 'project)
+           (doom-modeline-major-mode-icon t)
+           (doom-modeline-lsp t)           ;; Display LSP status
+           (doom-modeline-git t)           ;; Display Git status
+           (doom-modeline-buffer-file-name-style 'truncate-with-project) ;; File info
+           ;; (doom-modeline-major-mode-icon t) ;; Display icon for the major mode
+           ;; (doom-modeline-major-mode-color-icon t)
+           (doom-modeline-indent-info t)   ;; Show indentation
+           (doom-modeline-checker-simple-format t) ;; Spell checker and linter
+           (setq doom-modeline-python-executable "python")
+           (doom-modeline-env-version t)  ;; Show environment version (Python, etc.)
 		)
   )
 
@@ -59,6 +61,8 @@
 	)
 
 (use-package hl-todo
+	:straight t
+  :defer t
   :hook ((org-mode . hl-todo-mode)
          (prog-mode . hl-todo-mode))
   :config

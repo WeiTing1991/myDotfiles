@@ -5,7 +5,6 @@
 
 ;; https://github.com/minad/vertico
 (use-package vertico
-
   :bind (:map vertico-map
          ("C-n" . vertico-next)
          ("C-p" . vertico-previous)
@@ -15,7 +14,7 @@
   (vertico-mode)
   :custom
   ;; (vertico-scroll-margin 0) ;; Different scroll margin
-  (vertico-count 15) ;; Show more candidates
+  (vertico-count 20) ;; Show more candidates
   ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
   (vertico-directory-up t)
   (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
@@ -29,10 +28,6 @@
                                                "  ")
                                              cand)))
   )
-
-(use-package savehist
-  :init
-  (savehist-mode))
 
 ;; A few more useful configurations...
 (use-package emacs
@@ -72,13 +67,22 @@
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
   )
 
+;; https://github.com/tumashu/vertico-posframe
+;; (use-package vertico-posframe
+;;   :after vertico
+;;   :straight t
+;;   :config
+;;   (vertico-posframe-mode 1)
+;; )
+
 ;; Enable vertico-multiform
-(vertico-multiform-mode 1)
-(setq vertico-multiform-commands
-      '((find-file reverse)
-        (execute-extended-command reverse)
-        )
-      )
+;; (vertico-multiform-mode 1)
+;; (setq vertico-multiform-commands
+;;       '((find-file reverse)
+;;         (execute-extended-command reverse)
+;;         )
+;;       )
+
 
 ;; ;; Use a buffer with indices for imenu
 ;; ;; and a flat (Ido-like) menu for M-x.
@@ -175,8 +179,17 @@
    consult--source-bookmark consult--source-file-register
    consult--source-recent-file consult--source-project-recent-file
    ;; :preview-key "M-."
-   :preview-key '(:debounce 0.5 any))
-
+   :preview-key '(:debounce 0.5 any)
+   )
+  (setq consult-fd-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")
+                          "--full-path --color=never --hidden"
+                          "--exclude" ".git"))
+  ;;TODO setup the grep-args
+  ;; (setq consult-grep-args ("--hidden"
+  ;;                         "--exclude" ".git"))
+  ;; (setq consult-ripgrep-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")
+  ;;                         "--full-path --color=never --hidden"
+  ;;                         "--exclude" ".git"))
 )
 
 ;; check https://github.com/tumashu/vertico-posframe

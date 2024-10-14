@@ -1,9 +1,44 @@
-;; core.el
+;;; core.el
+
+;; (defun ian/maybe-set-default-browser ()
+;;   "When in WSL Emacs, open links in default Windows 11 browser."
+;;   (cond
+;;    ((eq system-type 'gnu/linux)
+;;     (when (string-match "Linux.*microsoft.*Linux"
+;;                         (shell-command-to-string "uname -a"))
+;;       (setq browse-url-generic-program "/mnt/c/Windows/System32/cmd.exe"
+;;             browse-url-generic-args '("/c" "start" "")
+;;             browse-url-browser-function 'browse-url-generic)))))
+
+;; split the windows and focus on
+(defun wt/split-and-follow-vertically ()
+  "Split window vertically (below)."
+  (interactive)
+  (split-window-below)
+  (other-window 1))
+
+(defun wt/split-and-follow-horizontally ()
+  "Split window horizontally (right)."
+  (interactive)
+  (split-window-right)
+  (other-window 1))
+
 
 ;; Gernal keybinding
 ;; zoom in and out
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+(define-key global-map (kbd "C-k") nil)
+(define-key global-map (kbd "C-j") nil)
+
+(defun open-all-recent-files ()
+  "Open all recent files."
+  (interactive)
+  (dolist (file  recentf-list) (find-file file)))
+
+(define-key global-map (kbd "C-w") 'open-all-recent-files)
 
 ;; Toggle between split windows and a single window
 (defun toggle-windows-split()
@@ -16,15 +51,34 @@
               (delete-other-windows))
           (jump-to-register ?u))))
   (my-iswitchb-close))
-
 (define-key global-map (kbd "C-'") 'toggle-windows-split)
 
+;; Advise `kill-emacs`
+(defun wt/advice-kill-emacs (orig-fun &rest args)
+  "Advise `kill-emacs` to confirm before exit."
+  (if (yes-or-no-p "Are you sure you want to exit Emacs? ")
+      (apply orig-fun args)
+    (message "Cancelled exit.")))
 
-;; Define a function to switch to the next buffer without showing messages
-;; TODO check is it not working
+(advice-add 'kill-emacs :around #'wt/advice-kill-emacs)
 
-;; TODO https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/+evil-bindings.el
+
+;; (defun wt/find-file-preview ()
+;;   (interactive)
+;;   (let ((consult-ripgrep-command "rg --multiline --null --ignore-case --type org --line-buffered --color=always --max-columns=500 --no-heading --line-number . -e ARG OPTS"))
+;;     (consult-ripgrep)))
+
+
+;; TODO
+;; https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/+evil-bindings.el
 ;; https://github.com/daviwil/dotfiles/blob/master/.emacs.d/modules/dw-keys-evil.e
+(use-package drag-stuff
+  :straight t
+  :after evil
+  :init
+  (drag-stuff-mode t)
+)
+
 (use-package evil
   :straight t
   :init
@@ -32,7 +86,6 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
-  ;; (setq evil-respect-visual-line-mode t)
   (setq evil-undo-system 'undo-redo)
 
   (setq select-enable-clipboard t)
@@ -46,7 +99,6 @@
   :config
   (evil-mode 1)
 
-
   ;; https://evil.readthedocs.io/en/latest/faq.html#underscore-is-not-a-word-character
   (define-key evil-outer-text-objects-map "w" 'evil-a-symbol)
   (define-key evil-inner-text-objects-map "w" 'evil-inner-symbol)
@@ -54,15 +106,17 @@
   (define-key evil-inner-text-objects-map "o" 'evil-inner-word)
 
   (define-key evil-insert-state-map (kbd "C-c") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-k") nil)
-  (define-key evil-normal-state-map (kbd "C-k") nil)
 
-  (define-key evil-insert-state-map (kbd "C-j") nil)
-  (define-key evil-normal-state-map (kbd "C-j") nil)
   (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
 
   (define-key evil-visual-state-map (kbd "-") 'comment-dwim)
   (define-key evil-normal-state-map (kbd "-") 'comment-line)
+
+  (define-key evil-visual-state-map (kbd "K") 'drag-stuff-up)
+  (define-key evil-visual-state-map (kbd "J") 'drag-stuff-down)
+
+  ;; (define-key evil-visual-state-map (kbd ">") 'drag-stuff-right)
+  ;; (define-key evil-visual-state-map (kbd "<") 'drag-stuff-left)
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -81,40 +135,20 @@
 
   (define-key wt/window-map (kbd "v") #'wt/split-and-follow-vertically)
   (define-key wt/window-map (kbd "h") #'wt/split-and-follow-horizontally)
+
   (define-key wt/window-map (kbd "r") 'eval-buffer)
   (define-key wt/window-map (kbd "s") 'persp-switch)
   (define-key wt/window-map (kbd "n") 'persp-next)
   (define-key wt/window-map (kbd "p") 'persp-prev)
+  (define-key wt/window-map (kbd "k") 'persp-kill)
+  (define-key wt/window-map (kbd "K") 'persp-kill-others)
 
-    (with-eval-after-load 'which-key
-    (which-key-add-key-based-replacements
-        "C-b r" "Reload the buffer"
-        "C-b v" "Split window Vertically"
-        "C-b h" "Split window Horizontally"))
+  (with-eval-after-load 'which-key
+  (which-key-add-key-based-replacements
+      "C-b r" "Reload the buffer"
+      "C-b v" "Split window Vertically"
+      "C-b h" "Split window Horizontally"))
 
-  ;; (global-set-key (kbd "c-s")   #'save-buffer)
-  ;; (unless (display-graphic-p)
-  ;;   (global-set-key (kbd "C-h") #'backward-kill-word))
-
-
-	;; ;; project
- ;;  (wt/leader-project
- ;;    "h" '(persp-switch :wk "project switch")
- ;;    "n" '(persp-next :wk "project next")
- ;;    "p" '(persp-prev :wk "project prev")
- ;;    "k" '(persp-kill :wk "persp kill")
- ;;    "K" '(persp-kill-others :wk "persp kill")
- ;;    ;;
- ;;    "r" '(eval-buffer :wk "reload buffer")
- ;;    "t" '(wt/switch-to-eshell :wk "toggle eshell")
- ;;
- ;;   )
-  (defun wt/confirm-exit ()
-    (interactive)
-    (if (yes-or-no-p "Are you sure you want to exit Emacs? ")
-        (save-buffers-kill-terminal)  ;; Save all buffers and kill Emacs
-      (message "Cancelled exit.")))  ;; Message if user cancels
-  ;; (define-key evil-normal-state-map (kbd ":q") #'wt/confirm-exit)
 )
 
 (use-package evil-collection
@@ -130,7 +164,6 @@
   (global-evil-mc-mode 1))
 
 (electric-pair-mode 1)
-
 ;; (use-package evil-surround
 ;;   :straight t
 ;;   :after evil
@@ -155,14 +188,18 @@
     "/" '(execute-extended-command :wk "consult-M-x")
     "'" '(project-eshell :wk "run eshell")
     "C-'" '(project-shell :wk "run shell")
+    "m" '(lsp-format-buffer :wk "formating")
 		)
 
   ;; find file
   (wt/leader-keys
     "f"  '(:ignore t :wk "Files")
-    "ff" '(find-file :wk "Find Files")
+    "ff" '(consult-fd :wk "fd Find Files")
+    "fd" '(find-file :wk "Find Files in current DIR")
     "fg" '(consult-grep :wk "Search for string in files in DIR")
     "fl" '(consult-ripgrep :wk "Search for string current file")
+
+    "fp" '(wt/find-file-preview :wk "Search for string current file")
     ;; "fn" '(counsel-recentf :wk "Find recent files")
     )
 
@@ -182,9 +219,6 @@
     "w" '(:ignore t :wk "Windows")
     ;; Window splits
     "wq" '(evil-window-delete :wk "Close window")
-    "wn" '(evil-window-new :wk "New window")
-    "ws" '(evil-window-split :wk "Horizontal split window")
-    "wv" '(evil-window-vsplit :wk "Vertical split window")
 
     ;; Window motions
     "h" '(evil-window-left :wk "Window left")
@@ -192,11 +226,12 @@
     "k" '(evil-window-up :wk "Window up")
     "l" '(evil-window-right :wk "Window right")
     "w w" '(evil-window-next :wk "Goto next window")
+
     ;; Move Windows
-    ;; "w H" '(buf-move-left :wk "Buffer move left")
-    ;; "w J" '(buf-move-down :wk "Buffer move down")
+    "H" '(buf-move-left :wk "Buffer move left")
+    ;; "J" '(buf-move-down :wk "Buffer move down")
     ;; "w K" '(buf-move-up :wk "Buffer move up")
-    ;; "w L" '(buf-move-right :wk "Buffer move right")
+    "L" '(buf-move-right :wk "Buffer move right")
     )
 
 	;; dir
@@ -204,18 +239,17 @@
     "d" '(:ignore t :wk "Dir")
     "dd" '(dired :wk "Open dired")
     "dj" '(dired-jump :wk "Open dired jump current")
-
-		)
+    )
 
 	;; toggle
   (wt/leader-keys
     "t" '(:ignore t :wk "Toggle")
+    "tt" '(lsp-treemacs-error-list :wk "Error list")
     "to" '(org-mode :wk "Toggle org mode")
     "tr" '(rainbow-mode :wk "Toggle rainbow mode")
     "tf" '(flycheck-mode :wk "Toggle check mode")
-		)
+    )
 
-	;;
   ;; reload
   ;; (wt/leader-keys
   ;;   "h" '(:ignore t :wk "Help")
@@ -229,21 +263,18 @@
 
 
 ;; hightlight yank
-;(setq evil-goggles-delete nil)
-;(setq evil-goggles-duration 0.2)
-
 (use-package evil-goggles
   :straight t
   :config
   (evil-goggles-mode)
-  ;; optionally use diff-mode's faces; as a result, deleted text
   (evil-goggles-use-diff-faces)
   )
-
+(setq evil-goggles-duration 0.3)
+;(setq evil-goggles-delete nil)
 (custom-set-faces
   '(evil-goggles-default-face ((t (:inherit 'menu))))
   '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
-  '(evil-goggles-yank-face ((t (:inherit 'menu))))
+  '(evil-goggles-yank-face ((t (:inherit 'isearch-fail))))
   )
 
 ;; ;; maybe check this https://github.com/casouri/vundo
@@ -277,19 +308,20 @@
   (setq which-key-idle-delay 0.1)
   )
 
-;; TODO
-;; help fuction
+;; TODO help fuction
 ;; https://github.com/Wilfred/helpful
-(use-package helpful
-  :commands (helpful-callable helpful-variable helpful-command helpful-key helpful-at-point)
-  :bind
-  ;; Remap standard help commands to helpful versions
-  ([remap describe-function] . helpful-function)    ;; Remaps C-h f
-  ([remap describe-command] . helpful-command)      ;; Remaps C-h x
-  ([remap describe-variable] . helpful-variable)    ;; Remaps C-h v
-  ([remap describe-key] . helpful-key)              ;; Remaps C-h k
-  ;; Bind helpful-at-point to a custom key (optional)
-  ("C-h p" . helpful-at-point))                   ;; Quickly show info at point
+;; (use-package helpful
+;;   :defer t
+;;   :commands (helpful-callable helpful-variable helpful-command helpful-key helpful-at-point)
+;;   :bind
+;;   ;; Remap standard help commands to helpful versions
+;;   ([remap describe-function] . helpful-function)    ;; Remaps C-h f
+;;   ([remap describe-command] . helpful-command)      ;; Remaps C-h x
+;;   ([remap describe-variable] . helpful-variable)    ;; Remaps C-h v
+;;   ([remap describe-key] . helpful-key)              ;; Remaps C-h k
+;;   ;; Bind helpful-at-point to a custom key (optional)
+;;   ("C-h p" . helpful-at-point)
+;;   )                   ;; Quickly show info at point
 
-
+(provide 'core)
 ;;; core.el code end here

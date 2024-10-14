@@ -2,8 +2,8 @@
 
 (setq dired-kill-when-opening-new-dired-buffer t)
 
-;; check
 ;; https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org
+
 (use-package dired
   :straight nil
   :commands (dired dired-jump)
@@ -35,11 +35,13 @@
 (use-package dired-narrow
   :hook (dired-mode . dired-hide-dotfiles-mode)
   :custom
-  (define-key dired-mode-map (kbd "/") 'dired-narrow-fuzzy)
+  (evil-define-key 'normal dired-mode-map (kbd "C-/") 'peep-dired)
  )
 
 (use-package dired-hide-dotfiles
-  :hook (dired-mode . dired-hide-dotfiles-mode)
+  ;; :hook (dired-mode . dired-hide-dotfiles-mode)
+  :custom
+  (dired-hide-dotfiles-mode 0)
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
     "H" 'dired-hide-dotfiles-mode)
@@ -47,16 +49,16 @@
 
 ;; https://github.com/Fuco1/dired-hacks
 (use-package peep-dired
- :straight t
- :after dired
- :hook (evil-normalize-keymaps . peep-dired-hook)
- :config
- (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
- (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file)
- ; use dired-find-file instead if not using dired-open package
- (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
- (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
- (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
+  :straight t
+  :after dired
+  :hook (dired-mode-map . peep-dired-hook)
+  :config
+  (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
+  ;; (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+  ;; (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file)
+  ;; ; use dired-find-file instead if not using dired-open package
+  ;; (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+  ;; (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
 )
 
 (use-package ibuffer
@@ -83,7 +85,6 @@
 )
 
 ;;TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file
-
 ;;TODO https://docs.projectile.mx/projectile/projects.html
 ;; (use-package projectile
 ;; 	:defer t
@@ -98,11 +99,8 @@
 ;; 	;; (setq projectile-project-search-path '("~/projects/" "~/work/"))
 ;;   (setq projectile-enable-caching t)  ;; Enable caching for faster project lookups
 ;;   (setq projectile-indexing-method 'native)  ;; Use native indexing for performance
-
 ;; )
 
-;; or check the tabsspaces
-;; ;; TODO
 ;; (use-package persp-projectile
 ;;   :straight t
 ;; )
@@ -113,3 +111,5 @@
   :commands magit-status
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+;;;

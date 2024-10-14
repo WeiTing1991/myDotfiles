@@ -12,17 +12,6 @@
   (markdown-fontify-code-blocks-natively t)
   )
 
-(use-package gh-md
-  :defer t
-  :after markdown-mode
-  :straight (:build t)
-  :general
-  (wt/leader-key
-    :packages 'gh-md
-    :keymaps 'markdown-mode-map
-    "mr" #'gh-md-render-buffer)
-  )
-
 ;; custom-visual mode
 
 (custom-set-faces

@@ -1,4 +1,4 @@
-;;;lsp.el
+;;; lsp.el
 
 ;; treesitter
 (use-package treesit-auto
@@ -50,22 +50,40 @@
 
 ;; https://emacs-lsp.github.io/lsp-mode/page/installation/
 ;; lsp server
-
 (use-package lsp-mode
   :straight t
   :commands (lsp lsp-deferred)
   :init
-  (setq lsp-keymap-prefix "C-l")  ;; Or 'C-l', 's-l'
+  (setq lsp-keymap-prefix "C-l l")  ;; Or 'C-l', 's-l'
   :config
   (lsp-enable-which-key-integration t)
-)
+
+  ;; LSP Keybinding
+  (evil-define-key 'normal 'global (kbd "gk") 'lsp-ui-doc-show)
+  (evil-define-key 'normal 'global (kbd "gd") 'lsp-ui-peek-find-definitions)
+  (evil-define-key 'normal 'global (kbd "gD") 'lsp-find-definition)
+  (evil-define-key 'normal 'global (kbd "gr") 'lsp-find-references)
+  (evil-define-key 'normal 'global (kbd "gI") 'lsp-goto-implementation)
+  (evil-define-key 'normal 'global (kbd "C-j") 'lsp-treemacs-symbols)
+
+  )
 
 ;; https://emacs-lsp.github.io/lsp-ui/
 (use-package lsp-ui
   :hook ((prog-mode lsp-mode). lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-position)
+  :defer t
+  :commands lsp-ui-mode
+  :config
+  (require 'lsp-ui-flycheck)
+  (require 'lsp-ui-sideline)
+  (setq lsp-ui-peek-always-show t
+        lsp-ui-doc-enable t
+        lsp-ui-sideline-show-diagnostics t
+        lsp-ui-sideline-show-code-action t)
+  (setq lsp-ui-doc-position 'at-point)
+  (setq lsp-ui-doc-enable t)
   )
+
 
 ;; auto compelte
 ;; TODO
@@ -93,51 +111,60 @@
   :config
   (setq company-dict-dir (expand-file-name "dicts" user-emacs-directory)))
 
-;; (with-eval-after-load 'company
-;;   (add-to-list 'company-backends 'company-files)
-;;   (add-to-list 'company-backends 'company-capf)
-;; )
-
 (use-package company-box
   :after company
   :straight t
   :hook (company-mode . company-box-mode)
 )
-
-;;https://github.com/daviwil/dotfiles/blob/master/.emacs.d/modules/dw-interface.el
+;; TODO
 ;; (use-package corfu
-;;   :defer t
+;;   :bind (:map corfu-map
+;;               ("C-j" . corfu-next)
+;;               ("C-k" . corfu-previous)
+;;               ("TAB" . corfu-insert)
+;;               ([tab] . corfu-insert)
+;;               ("C-f" . corfu-insert))
 ;;   :custom
-;;   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-;;   (corfu-auto t)                 ;; Enable auto completion
-;;   ;; (corfu-separator ?\s)          ;; Orderless field separator
-;;   (corfu-quit-at-boundary t)   ;; Never quit at completion boundary
-;;   (corfu-quit-no-match t)      ;; Never quit, even if there is no match
-;;   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-;;   ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-;;   ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-;;   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+;;   (corfu-cycle t)
+;;   (corfu-auto t)
+;;   (corfu-preview-current nil)
+;;   (corfu-quit-at-boundary t)
+;;   (corfu-quit-no-match t)
 
-;;   ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
-;;   :hook ((prog-mode . corfu-mode)
-;;          (shell-mode . corfu-mode)
-;;          (eshell-mode . corfu-mode))
-;; 	)
+;;   :config
+;;   (global-corfu-mode 1)
 
+;;   (defun corfu-enable-in-minibuffer ()
+;;     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
+;;     (when (where-is-internal #'completion-at-point (list (current-local-map)))
+;;       ;; (setq-local corfu-auto nil) ;; Enable/disable auto completion
+;;       (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
+;;                   corfu-popupinfo-delay nil)
+;;       (corfu-mode 1)))
+
+;;   (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer)
+;;   )
+
+;; ;; TODO
+;; ;; Check the cape
+;;
 ;; (use-package lsp-treemacs
 ;;   :after lsp-mode
 ;;   )
-
-;; NOTE
-;; Syntax check as linter
-;; https://www.flycheck.org/en/latest/user/installation.html
-;; flyspell
+;;
+;; ;; NOTE
+;; ;; Syntax check as linter
+;; ;; https://www.flycheck.org/en/latest/user/installation.html
+;; ;; flyspell
+;;
 
 (use-package flycheck
   :straight (:build t)
   :config
   (add-hook 'prog-mode-hook #'global-flycheck-mode)
-  (setq flycheck-display-errors-delay 0.2))
+  (setq flycheck-display-errors-delay 0.2)
+  ;; (setq flycheck-highlighting-mode 'lines)
+  )
 
 
 ;; for Emacs Lisp
@@ -145,13 +172,42 @@
   '(flycheck-package-setup)
 )
 
-;; (use-package yasnippet
-;;   :defer t
-;;   :straight t
-;;   :init
-;;   (yas-global-mode)
-;;   :hook ((prog-mode . yas-minor-mode)
-;;          (text-mode . yas-minor-mode)))
+
+(use-package yasnippet-snippets
+  :straight t
+  )
+
+(use-package yasnippet
+  :defer t
+  :straight t
+  :init
+  (yas-global-mode)
+  :hook ((prog-mode . yas-minor-mode)
+         (text-mode . yas-minor-mode))
+  :config
+  (setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+        ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+        ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+        ))
+  )
+
+(use-package editorconfig
+  :straight t
+  :config
+  (editorconfig-mode 1)
+  )
+
+(use-package format-all
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
+  :config
+  (setq-default format-all-formatters
+                '(("Python"     (ruff-format))
+                  ;; ("" ())
+                  )
+  )
+ )
 
 
 ;; lsp server setting
@@ -160,38 +216,69 @@
 ;; lua
 (use-package lua-mode
   :straight t
-  :hook (lua-mode . lsp-mode))
+  :hook (lua-mode . lsp-deferred)
+)
 
+;;
 ;; c/cpp
 ;; Note check here https://config.phundrak.com/emacs/packages/programming.html#caddy
 ;; https://github.com/emacs-exordium/exordium/blob/master/modules/init-cpp.el
 (use-package cc-mode
   :straight nil
-  :hook ((c++-mode . lsp-mode)
+  :hook ((c++-mode . lsp-deferred)
          (c++-mode . #'tree-sitter-hl-mode)
          ;; (c-mode . #'tree-sitter-hl-mode)
          )
   :config
-  ;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 )
 
-;; (use-package cmake-mode
-;;   :defer t
-;;   :straight t
-;;   :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
-;;          ("\\.cmake\\'" . cmake-mode)))
+;; ;; (use-package cmake-mode
+;; ;;   :defer t
+;; ;;   :straight t
+;; ;;   :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
+;; ;;          ("\\.cmake\\'" . cmake-mode)))
+;;
+;; ;; (use-package modern-cpp-font-lock
+;; ;;   :if (eq exordium-enable-c++11-keywords :modern)
+;; ;;   :diminish modern-c++-font-lock-mode
+;; ;;   :hook (c++-mode . modern-c++-font-lock-mode)
+;; ;; )
 
-;; (use-package modern-cpp-font-lock
-;;   :if (eq exordium-enable-c++11-keywords :modern)
-;;   :diminish modern-c++-font-lock-mode
-;;   :hook (c++-mode . modern-c++-font-lock-mode)
-;; )
-
+;;;
 ;; python
+(use-package python-mode
+  :straight nil
+  :hook (python-mode . lsp-deferred)
+  ;; :custom
+  ;; (python-shell-interpreter "python3")
+  )
 
+(use-package lsp-pyright
+  :ensure t
+  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp-deferred))))  ; or lsp-deferred
 
+;; (use-package elpy
+;;   :straight t
+;;   :defer t
+;;   :init
+;;   (advice-add 'python-mode :before 'elpy-enable)
+;;   )
 
+(use-package pyvenv
+  :straight t
+  )
 
+(use-package conda
+  :straight t
+  :config
+  (setq conda-env-subdirectory ".env")
+  )
+
+;;
 
 ;; https://github.com/copilot-emacs/copilot.el
 

@@ -1,0 +1,29 @@
+# Top-most EditorConfig file
+root = true
+
+# Default settings (applies to all files unless overridden)
+[*]
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Python-specific settings
+[*.py]
+indent_size = 4
+indent_style = tab
+
+# C++-specific settings
+[*.cpp]
+indent_size = 2
+indent_style = space
+
+[*.h]
+indent_size = 2
+indent_style = space
+
+
+# Makefile (use tabs instead of spaces)
+[Makefile]
+indent_style = tab

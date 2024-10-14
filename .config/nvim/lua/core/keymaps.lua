@@ -95,6 +95,8 @@ vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "move down" })
 if vim.loop.os_uname().sysname == "Darwin" then
   vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
   vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
+  vim.keymap.set("n", "<leader>o", ":bn<cr>", { desc = "Next buffer" })
+  vim.keymap.set("n", "<leader>i", ":bp<cr>", { desc = "Prevous buffer" })
 elseif vim.fn.has "Win32" then
   vim.keymap.set("n", "<leader>o", ":bn<cr>", { desc = "Next buffer" })
   vim.keymap.set("n", "<leader>i", ":bp<cr>", { desc = "Prevous buffer" })
