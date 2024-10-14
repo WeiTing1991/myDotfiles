@@ -2,8 +2,6 @@
 
 (setq dired-kill-when-opening-new-dired-buffer t)
 
-;; https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org
-
 (use-package dired
   :straight nil
   :commands (dired dired-jump)
@@ -12,7 +10,6 @@
 	)
 ;; (setq-default dired-listing-switches "-alh")
 
-;; NOTE
 (use-package dired-single
   :straight nil
   :commands (dired dired-jump))
@@ -32,19 +29,18 @@
                                 ("mkv" . "mpv")
                                 ("mp4" . "mpv"))))
 ;; fuzzy and filter
+;; TODO
 (use-package dired-narrow
-  :hook (dired-mode . dired-hide-dotfiles-mode)
+  :hook (dired-mode . dired-narrow-mode)
   :custom
   (evil-define-key 'normal dired-mode-map (kbd "C-/") 'peep-dired)
  )
 
+(setq dired-hide-dotfiles-mode -1)
 (use-package dired-hide-dotfiles
   ;; :hook (dired-mode . dired-hide-dotfiles-mode)
-  :custom
-  (dired-hide-dotfiles-mode 0)
   :config
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "H" 'dired-hide-dotfiles-mode)
+  (evil-collection-define-key 'normal 'dired-mode-map (kbd "H") 'dired-hide-dotfiles-mode)
 	)
 
 ;; https://github.com/Fuco1/dired-hacks
@@ -53,7 +49,7 @@
   :after dired
   :hook (dired-mode-map . peep-dired-hook)
   :config
-  (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
+  (evil-define-key 'normal 'dired-mode-map (kbd "C-p") 'peep-dired)
   ;; (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
   ;; (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file)
   ;; ; use dired-find-file instead if not using dired-open package
@@ -84,8 +80,8 @@
   (perspective-tabs-mode +1)
 )
 
-;;TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file
-;;TODO https://docs.projectile.mx/projectile/projects.html
+;; TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file
+;; https://docs.projectile.mx/projectile/projects.html
 ;; (use-package projectile
 ;; 	:defer t
 ;;   :diminish projectile-mode
@@ -112,4 +108,5 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
-;;;
+(provide 'file-system)
+;;;file-system code end here

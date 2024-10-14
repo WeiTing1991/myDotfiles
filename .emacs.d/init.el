@@ -26,7 +26,7 @@
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
 ;; do not save the custom change into init.el
-(setq custom-file (locate-user-emacs-file "custon-vars.el"))
+(setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
 (use-package gcmh
@@ -79,11 +79,11 @@
 
 (load-file (expand-file-name "./config/config.el" user-emacs-directory))
 (load-file (expand-file-name "./config/core.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/ui.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
+(load-file (expand-file-name "./config/ui.el" user-emacs-directory))
+(load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
+(load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
+(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
+(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
 ;; (load-file (expand-file-name "./config/app.el" user-emacs-directory))
 
 

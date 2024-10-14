@@ -1,5 +1,4 @@
 ;;; cmd-system
-
 ;; file search
 (use-package hydra)
 
@@ -29,11 +28,10 @@
                                              cand)))
   )
 
-;; A few more useful configurations...
 (use-package emacs
   :custom
-  ;; Support opening new minibuffers from inside existing minibuffers.
   (enable-recursive-minibuffers t)
+  ;; Support opening new minibuffers from inside existing minibuffers.
   ;; Hide commands in M-x which do not work in the current mode.  Vertico
   ;; commands are hidden in normal buffers. This setting is useful beyond
   ;; Vertico.
@@ -82,7 +80,6 @@
 ;;         (execute-extended-command reverse)
 ;;         )
 ;;       )
-
 
 ;; ;; Use a buffer with indices for imenu
 ;; ;; and a flat (Ido-like) menu for M-x.

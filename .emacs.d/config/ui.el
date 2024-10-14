@@ -4,49 +4,45 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
+(use-package nerd-icons
+  :straight (nerd-icons
+             :type git
+             :host github
+             :repo "rainstormstudio/nerd-icons.el"
+             :files (:defaults "data"))
+  :custom
+  (nerd-icons-font-family "Hack Nerd Font")
+)
+
 ;; TODO
 ;; check https://github.com/DarthFennec/highlight-indent-guides
-
 ;; indent mode and highlight
-;; (electric-indent-mode t)
-(use-package highlight-indent-guides)
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-(setq highlight-indent-guides-method 'character)
-(setq highlight-indent-guides-character ?▏)
-(setq highlight-indent-guides-responsive 'top)
+(use-package highlight-indent-guides
+  :straight t
+  :defer t
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :config
+  (setq highlight-indent-guides-method 'character)
+  (setq highlight-indent-guides-character ?▏)
+  (setq highlight-indent-guides-responsive 'top)
 
-(setq highlight-indent-guides-auto-enabled nil)
-(set-face-background 'highlight-indent-guides-odd-face "darkgray")
-(set-face-background 'highlight-indent-guides-even-face "darkgray")
-(set-face-foreground 'highlight-indent-guides-character-face "dimgray")
-(setq highlight-indent-guides-delay 0)
-
+  (setq highlight-indent-guides-auto-enabled nil)
+  (set-face-background 'highlight-indent-guides-odd-face "darkgray")
+  (set-face-background 'highlight-indent-guides-even-face "darkgray")
+  (set-face-foreground 'highlight-indent-guides-character-face "dimgray")
+  (setq highlight-indent-guides-delay 0)
+  )
 
 (use-package doom-modeline
   :straight t
   :defer 0
   :init (doom-modeline-mode 1)
-  :custom (
-           ;; (doom-modeline-support-imenu t)
-           (doom-modeline-height 40)
-           (doom-modeline-bar-width 5)
-           (doom-modeline-icon t)
-           (doom-modeline-buffer-encoding t)
-           ;; (doom-modeline-persp-name t)
-           (doom-modeline-display-default-persp-name nil)
-           (doom-modeline-project-root t)
-           (doom-modeline-project-detection 'project)
-           (doom-modeline-major-mode-icon t)
-           (doom-modeline-lsp t)           ;; Display LSP status
-           (doom-modeline-git t)           ;; Display Git status
-           (doom-modeline-buffer-file-name-style 'truncate-with-project) ;; File info
-           ;; (doom-modeline-major-mode-icon t) ;; Display icon for the major mode
-           ;; (doom-modeline-major-mode-color-icon t)
-           (doom-modeline-indent-info t)   ;; Show indentation
-           (doom-modeline-checker-simple-format t) ;; Spell checker and linter
-           (setq doom-modeline-python-executable "python")
-           (doom-modeline-env-version t)  ;; Show environment version (Python, etc.)
-		)
+  :config
+  (setq doom-modeline-bar-width 5)
+  (setq doom-modeline-height 30)
+  (setq doom-modeline-hud t)
+  (setq doom-modeline-indent-info t)
+  (setq doom-modeline-icon t)
   )
 
 ;; cursor
@@ -55,13 +51,13 @@
 
 ;; TODO
 (use-package rainbow-mode
-	:straight t
-	:defer t
+  :straight t
+  :defer t
   ;; :hook (prog-mode . rainbow-mode)
-	)
+  )
 
 (use-package hl-todo
-	:straight t
+  :straight t
   :defer t
   :hook ((org-mode . hl-todo-mode)
          (prog-mode . hl-todo-mode))
@@ -74,4 +70,4 @@
           ("REVIEW"     font-lock-keyword-face bold)
           ("NOTE"       success bold)
           ("DEPRECATED" font-lock-doc-face bold)))
-)
+  )

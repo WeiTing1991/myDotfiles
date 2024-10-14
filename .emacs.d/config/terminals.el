@@ -1,6 +1,13 @@
 ;;; termainals.el
 ;; (setq eshell-destroy-buffer-when-process-dies t)
 
+(when (eq system-type 'windows-nt)
+  (setq explicit-shell-file-name "C:/Program Files/PowerShell/7/pwsh.exe")
+  (setq shell-file-name explicit-shell-file-name)
+  (setq explicit-powershell-args '())
+  (setq shell-prompt-regexp "^[^#$%>\n]*[#$%>] *")
+  (setq comint-prompt-read-only t))
+
 (defun read-file (file-path)
   (with-temp-buffer
     (insert-file-contents file-path)
@@ -55,11 +62,16 @@
        (propertize "\nλ" 'face `(:foreground "#aece4a")))
      (propertize " " 'face `(:foreground "white")))))
 
-(use-package xterm-color)
+
+(use-package xterm-color
+  :straight t
+)
 
 (defun wt/eshell-configure ()
   ;; Make sure magit is loaded
   (require 'magit)
+
+  (setq eshell-terminal-type nil)
 
   (push 'eshell-tramp eshell-modules-list)
   (push 'xterm-color-filter eshell-preoutput-filter-functions)
@@ -80,6 +92,7 @@
   ;; a shell command to gather its output.
   (add-hook 'eshell-pre-command-hook
             (lambda () (setenv "TERM" "xterm-256color")))
+
   (add-hook 'eshell-post-command-hook
             (lambda () (setenv "TERM" "dumb")))
 
@@ -95,6 +108,7 @@
         (evil-collection-eshell-setup)
         (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'consult-history)
         (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+        (evil-define-key '(normal visual) eshell-mode-map (kbd "C-l") 'eshell/clear)
         (evil-normalize-keymaps))
     (define-key eshell-mode-map (kbd "C-r") 'consult-history))
 
@@ -107,7 +121,9 @@
         eshell-hist-ignoredups t
         eshell-highlight-prompt t
         eshell-scroll-to-bottom-on-input t
-        eshell-prefer-lisp-functions nil))
+        eshell-prefer-lisp-functions nil)
+  )
+
 
 (use-package eshell
   :config
@@ -115,6 +131,13 @@
   (setq eshell-directory-name "~/.emacs.d/eshell/"
   eshell-aliases-file (expand-file-name "~/.emacs.d/eshell/alias"))
 )
+
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (require 'eshell)
+            (eshell/alias "la" "ls -al")  ; Set alias for git
+            (eshell/alias "clear" "clear 1")  ; Set alias for git
+            ))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
@@ -129,10 +152,11 @@
       (call-interactively #'project-eshell)
     (call-interactively #'eshell)))
 
-
 (with-eval-after-load 'esh-opt
   (setq eshell-destroy-buffer-when-process-dies t)
-  (setq eshell-visual-commands '("htop" "zsh" "vim")))
+  (setq eshell-visual-commands '("htop" "zsh" "vim"))
+  ;; (setq eshell-visual-commands nil)
+  )
 
 (use-package pcmpl-args
   :demand t
@@ -171,3 +195,5 @@
 ;;   (setq vterm-max-scrollback 10000)
 ;;   (when (featurep 'evil)
 ;;     (advice-add 'evil-collection-vterm-insert :before #'vterm-reset-cursor-point)))
+
+;;; terminals code end here

@@ -65,7 +65,6 @@
   (evil-define-key 'normal 'global (kbd "gr") 'lsp-find-references)
   (evil-define-key 'normal 'global (kbd "gI") 'lsp-goto-implementation)
   (evil-define-key 'normal 'global (kbd "C-j") 'lsp-treemacs-symbols)
-
   )
 
 ;; https://emacs-lsp.github.io/lsp-ui/
@@ -101,7 +100,7 @@
         company-toolsip-limit             14
         company-tooltip-align-annotations nil
         company-require-match             'never
-        company-backends '((company-capf company-files))
+        company-backends '((company-capf company-files company-dabbrev))
         )
   )
 
@@ -115,7 +114,8 @@
   :after company
   :straight t
   :hook (company-mode . company-box-mode)
-)
+  )
+
 ;; TODO
 ;; (use-package corfu
 ;;   :bind (:map corfu-map
@@ -163,67 +163,77 @@
   :config
   (add-hook 'prog-mode-hook #'global-flycheck-mode)
   (setq flycheck-display-errors-delay 0.2)
-  ;; (setq flycheck-highlighting-mode 'lines)
+  :custom
+  (setq flycheck-highlighting-mode 'lines)
   )
-
 
 ;; for Emacs Lisp
 (with-eval-after-load 'flycheck
   '(flycheck-package-setup)
-)
-
-
-(use-package yasnippet-snippets
-  :straight t
   )
 
-(use-package yasnippet
-  :defer t
-  :straight t
-  :init
-  (yas-global-mode)
-  :hook ((prog-mode . yas-minor-mode)
-         (text-mode . yas-minor-mode))
-  :config
-  (setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"                 ;; personal snippets
-        ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
-        ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
-        ))
-  )
+
+;; (use-package yasnippet-snippets
+;;   :straight t
+;;   )
+
+;; (use-package yasnippet
+;;   :defer t
+;;   :straight t
+;;   :init
+;;   (yas-global-mode)
+;;   :hook ((prog-mode . yas-minor-mode)
+;;          (text-mode . yas-minor-mode))
+;;   :config
+;;   (setq yas-snippet-dirs
+;;       '("~/.emacs.d/snippets"                 ;; personal snippets
+;;         ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+;;         ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+;;         ))
+;;   )
 
 (use-package editorconfig
   :straight t
-  :config
-  (editorconfig-mode 1)
+  :defer t
+  :hook (prog-mode . editorconfig-mode)
   )
 
 (use-package format-all
-  :commands format-all-mode
-  :hook (prog-mode . format-all-mode)
+  :preface
+  (defun wt/format-code ()
+    "Auto-format whole buffer."
+    (interactive)
+    (if (derived-mode-p 'prolog-mode)
+        (prolog-indent-buffer)
+      (format-all-buffer)))
   :config
   (setq-default format-all-formatters
-                '(("Python"     (ruff-format))
-                  ;; ("" ())
+                '(
+                  ("Python"     (ruff-format))
                   )
-  )
+                )
+  (global-set-key (kbd "M-m") #'wt/format-code)
+  (add-hook 'prog-mode-hook #'format-all-ensure-formatter)
  )
-
 
 ;; lsp server setting
 (load-file (expand-file-name "./config/lsp-config/md.el" user-emacs-directory))
 
+
 ;; lua
 (use-package lua-mode
   :straight t
+  :defer t
   :hook (lua-mode . lsp-deferred)
-)
+  )
 
 ;;
 ;; c/cpp
 ;; Note check here https://config.phundrak.com/emacs/packages/programming.html#caddy
 ;; https://github.com/emacs-exordium/exordium/blob/master/modules/init-cpp.el
+
 (use-package cc-mode
+  :defer t
   :straight nil
   :hook ((c++-mode . lsp-deferred)
          (c++-mode . #'tree-sitter-hl-mode)
@@ -233,12 +243,12 @@
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 )
 
-;; ;; (use-package cmake-mode
-;; ;;   :defer t
-;; ;;   :straight t
-;; ;;   :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
-;; ;;          ("\\.cmake\\'" . cmake-mode)))
-;;
+(use-package cmake-mode
+  :defer t
+  :straight t
+  :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
+         ("\\.cmake\\'" . cmake-mode)))
+
 ;; ;; (use-package modern-cpp-font-lock
 ;; ;;   :if (eq exordium-enable-c++11-keywords :modern)
 ;; ;;   :diminish modern-c++-font-lock-mode
@@ -247,19 +257,19 @@
 
 ;;;
 ;; python
-(use-package python-mode
-  :straight nil
-  :hook (python-mode . lsp-deferred)
-  ;; :custom
-  ;; (python-shell-interpreter "python3")
-  )
+;; (use-package python-mode
+;;   :straight nil
+;;   :hook (python-mode . lsp-deferred)
+;;   ;; :custom
+;;   ;; (python-shell-interpreter "python3")
+;;   )
 
-(use-package lsp-pyright
-  :ensure t
-  :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp-deferred))))  ; or lsp-deferred
+;; (use-package lsp-pyright
+;;   :ensure t
+;;   :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-pyright)
+;;                           (lsp-deferred))))  ; or lsp-deferred
 
 ;; (use-package elpy
 ;;   :straight t
@@ -268,15 +278,15 @@
 ;;   (advice-add 'python-mode :before 'elpy-enable)
 ;;   )
 
-(use-package pyvenv
-  :straight t
-  )
+;; (use-package pyvenv
+;;   :straight t
+;;   )
 
-(use-package conda
-  :straight t
-  :config
-  (setq conda-env-subdirectory ".env")
-  )
+;; (use-package conda
+;;   :straight t
+;;   :config
+;;   (setq conda-env-subdirectory ".env")
+;;   )
 
 ;;
 

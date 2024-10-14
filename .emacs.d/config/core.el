@@ -163,7 +163,6 @@
   :config
   (global-evil-mc-mode 1))
 
-(electric-pair-mode 1)
 ;; (use-package evil-surround
 ;;   :straight t
 ;;   :after evil
@@ -189,7 +188,7 @@
     "'" '(project-eshell :wk "run eshell")
     "C-'" '(project-shell :wk "run shell")
     "m" '(lsp-format-buffer :wk "formating")
-		)
+    )
 
   ;; find file
   (wt/leader-keys
@@ -214,7 +213,7 @@
     ;; "br" '(revert-buffer :wk "Reload buffer")
     )
 
-	;; window
+  ;; window
   (wt/leader-keys
     "w" '(:ignore t :wk "Windows")
     ;; Window splits
@@ -234,14 +233,14 @@
     "L" '(buf-move-right :wk "Buffer move right")
     )
 
-	;; dir
+  ;; dir
   (wt/leader-keys
     "d" '(:ignore t :wk "Dir")
     "dd" '(dired :wk "Open dired")
     "dj" '(dired-jump :wk "Open dired jump current")
     )
 
-	;; toggle
+  ;; toggle
   (wt/leader-keys
     "t" '(:ignore t :wk "Toggle")
     "tt" '(lsp-treemacs-error-list :wk "Error list")
@@ -261,21 +260,22 @@
 
 )
 
-
 ;; hightlight yank
 (use-package evil-goggles
   :straight t
   :config
   (evil-goggles-mode)
-  (evil-goggles-use-diff-faces)
+  ;; (evil-goggles-use-diff-faces)
+  :custom
+  (setq evil-goggles-duration 0.3)
   )
-(setq evil-goggles-duration 0.3)
-;(setq evil-goggles-delete nil)
-(custom-set-faces
-  '(evil-goggles-default-face ((t (:inherit 'menu))))
-  '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
-  '(evil-goggles-yank-face ((t (:inherit 'isearch-fail))))
-  )
+(set-face-attribute 'evil-goggles-yank-face nil
+                    :foreground "white"
+                    :background "yellow"
+                    :weight 'bold)
+
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 
 ;; ;; maybe check this https://github.com/casouri/vundo
 ;(use-package undo-tree

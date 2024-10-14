@@ -7,20 +7,21 @@
   (defalias 'yes-or-no-p 'y-or-n-p)
 
   :config
-  (setq initial-scratch-message "I am EMPTY.")
+  ;; (setq initial-scratch-message "I am EMPTY.")
   (setq echo-keystrokes 0.01)
 
   (setq use-dialog-box nil)
   (global-visual-line-mode 1)
   (setq ring-bell-function 'ignore)
-  (setq-default default-directory "~/")
 
   (setq scroll-step 1)
   (setq scroll-margin 10)
   (setq scroll-conservatively 100000)
   (setq scroll-preserve-screen-position 'always)
 
-  (set-window-margins nil 0 0)
+  (setq default-directory "~/")
+
+  ;; (set-window-margins nil 0 0)
   ;; (setq hscroll-step 1)
   ;; (setq hscroll-margin 1)
   ;; (setq auto-window-vscroll nil)
@@ -33,7 +34,7 @@
   ;; ;; (setq inhibit-compacting-font-caches t)
   ;; ;; (setq kill-buffer-query-functions nil)
   ;; (setq delete-by-moving-to-trash t)
-  ;; ;; (put 'downcase-region 'disabled nil)
+  ;; ;; (put 'downcase-region 'disabled nil
   ;; ;; (put 'upcase-region 'disabled nil)
 
 
@@ -54,7 +55,8 @@
 
   ;; default editorconfig
 
-  (electric-indent-mode -1)
+  (electric-pair-mode 1)
+  (electric-indent-mode 1)
   (setq comment-style 'indent)
   (setq-default indent-tabs-mode nil)
   (setq-default tab-width 2)
@@ -78,16 +80,23 @@
   ;; (wt/maybe-set-default-browser)
 
   ;; ignore some buffer
-  (setq switch-to-prev-buffer-skip-regexp "\*[^*]+\*")
-  )
 
+  )
+(cond
+  ;; macOS configuration
+  ((eq system-type 'darwin)
+    (setq switch-to-prev-buffer-skip-regexp "\*[^*]+\*")
+   )
+  ;; Windows configuration
+  ((eq system-type 'windows-nt)
+    (setq switch-to-prev-buffer-skip-regexp "\\*[^*]+\\*")
+   )
+  )
 ;; line-column
 (setq-default display-fill-column-indicator-column 130)
 ;; (setq-default display-fill-column-indicator-character ?▏)
 (setq-default display-fill-column-indicator-character ?┆)
-
 ;; (set-face-foreground 'fill-column-indicator "grey")
-
 ;; (global-display-line-numbers-mode 1)
 ;; (display-fill-column-indicator-mode 1)
 
