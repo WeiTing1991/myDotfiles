@@ -83,7 +83,7 @@
 (load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
 (load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
 (load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
+(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
 
 
 (provide 'init)

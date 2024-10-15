@@ -1,0 +1,21 @@
+ls
+ls -al
+la
+clar
+clear
+dired .
+git
+git 
+clear
+dired .
+sl 
+ls
+dired .
+conda
+conda activate .env/
+clear
+dired .
+activate .env/
+ls
+clear
+dired .

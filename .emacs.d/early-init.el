@@ -1,8 +1,10 @@
 ;;; early-init.el
 
-;; (setq native-comp-async-report-warnings-errors 'silent)
+(setq native-comp-async-report-warnings-errors 'silent)
 
 (setq gc-cons-threshold (* 512 1024 1024))
+
+(setq idle-update-delay 1.0)
 
 ;; ;; Reset the garbage collection threshold after startup
 ;; (add-hook 'emacs-startup-hook
@@ -71,6 +73,15 @@
 (setq create-lockfiles nil)
 
 (setq initial-frame-alist '((background-color . "black")))
+
+;; (setq mac-command-modifier       'meta
+;;       mac-option-modifier         nil
+;;       mac-control-modifier       'control
+;;       mac-right-command-modifier 'super
+;;       mac-right-control-modifier 'hyper)
+
+;; Window configuration
+(setq frame-inhibit-implied-resize t) ;; Supposed to hasten startup
 
 (provide 'early-init)
 ;;; early-init.el ends here

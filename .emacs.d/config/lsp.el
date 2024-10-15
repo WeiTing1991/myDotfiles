@@ -113,8 +113,17 @@
 
 (use-package company-box
   :after company
+  :defer t
   :straight t
   :hook (company-mode . company-box-mode)
+  )
+
+
+(use-package company-prescient
+  :after company
+  :defer t
+  :straight t
+  :hook (company-mode . company-prescient-mode)
   )
 
 ;; TODO
@@ -132,7 +141,7 @@
   :straight (:build t)
   :config
   (add-hook 'prog-mode-hook #'global-flycheck-mode)
-  (setq flycheck-display-errors-delay 0.2)
+  (setq flycheck-display-errors-delay 0.1)
   :custom
   (setq flycheck-highlighting-mode 'lines)
   )
@@ -144,7 +153,7 @@
 
 
 (use-package yasnippet-snippets
-  :defter t
+  :defer t
   :after yasnippet
   :straight t
   )
@@ -158,7 +167,7 @@
          (text-mode . yas-minor-mode))
   :config
   (setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"                 ;; personal snippets
+      '("~/.emacs.d/snippets"                    ;; personal snippets
         ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
         ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
         ))
@@ -198,7 +207,6 @@
   :hook (lua-mode . lsp-deferred)
   )
 
-;;
 ;; c/cpp
 ;; Note check here https://config.phundrak.com/emacs/packages/programming.html#caddy
 ;; https://github.com/emacs-exordium/exordium/blob/master/modules/init-cpp.el
@@ -220,14 +228,16 @@
   :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
          ("\\.cmake\\'" . cmake-mode)))
 
-;; ;; (use-package modern-cpp-font-lock
-;; ;;   :if (eq exordium-enable-c++11-keywords :modern)
-;; ;;   :diminish modern-c++-font-lock-mode
-;; ;;   :hook (c++-mode . modern-c++-font-lock-mode)
-;; ;; )
+;;https://github.com/ludwigpacifici/modern-cpp-font-lock
+(use-package modern-cpp-font-lock
+  :straight t
+  :defer t
+  :diminish modern-c++-font-lock-mode
+  :hook (c++-mode . modern-c++-font-lock-mode)
+)
 
-;;;
-;; python
+;; ;;;
+;; ;; python
 ;; (use-package python-mode
 ;;   :straight nil
 ;;   :hook (python-mode . lsp-deferred)
@@ -236,31 +246,15 @@
 ;;   )
 
 ;; (use-package lsp-pyright
-;;   :ensure t
-;;   :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
+;;   :straight t
+;;   :custom (lsp-pyright-langserver-command "basedpyright")
 ;;   :hook (python-mode . (lambda ()
 ;;                           (require 'lsp-pyright)
-;;                           (lsp-deferred))))  ; or lsp-deferred
+;;                           (lsp-deferred))))
 
-;; (use-package elpy
-;;   :straight t
-;;   :defer t
-;;   :init
-;;   (advice-add 'python-mode :before 'elpy-enable)
-;;   )
-
-;; (use-package pyvenv
-;;   :straight t
-;;   )
-
-;; (use-package conda
-;;   :straight t
-;;   :config
-;;   (setq conda-env-subdirectory ".env")
-;;   )
-
-;;
 
 ;; https://github.com/copilot-emacs/copilot.el
+
+(provide 'lsp)
 
 ;;;
