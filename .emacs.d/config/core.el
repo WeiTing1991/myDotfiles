@@ -269,11 +269,13 @@
   :custom
   (setq evil-goggles-duration 0.3)
   )
+
 (set-face-attribute 'evil-goggles-yank-face nil
                     :foreground "white"
                     :background "yellow"
                     :weight 'bold)
 
+;; clean white space
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 

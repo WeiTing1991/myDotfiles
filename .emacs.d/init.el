@@ -32,7 +32,7 @@
 (use-package gcmh
   :demand t
   :config
-  (setq gcmh-low-cons-threshold (* 64 1024 1024))
+  (setq gcmh-low-cons-threshold (* 16 1024 1024))
   (gcmh-mode +1))
 
 
@@ -55,7 +55,7 @@
   ((eq system-type 'darwin)  ;; 'darwin' is for macOS
    (setq wt/default-font-size 140)
    (setq wt/default-variable-font-size 120)
-   (setq wt/frame-transparency '(90 . 90))
+   (setq wt/frame-transparency '(85 . 90))
    )
   ;; Windows configuration
   ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
@@ -83,8 +83,7 @@
 (load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
 (load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
 (load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
-(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/app.el" user-emacs-directory))
+;; (load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
 
 
 (provide 'init)

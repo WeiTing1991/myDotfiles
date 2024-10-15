@@ -38,9 +38,9 @@
   :defer 0
   :init (doom-modeline-mode 1)
   :config
-  (setq doom-modeline-bar-width 5)
+  (setq doom-modeline-bar-width 3)
   (setq doom-modeline-height 30)
-  (setq doom-modeline-hud t)
+  ;; (setq doom-modeline-hud t)
   (setq doom-modeline-indent-info t)
   (setq doom-modeline-icon t)
   )

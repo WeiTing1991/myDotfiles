@@ -99,11 +99,11 @@
 ;;   (setq files (vertico-sort-history-length-alpha files))
 ;;   (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
 ;;          (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
-;; ;;TODO check this
 
+;; ;;TODO check this
 ;; https://github.com/minad/consult
 (use-package consult
-	:straight t
+  :straight t
   :bind (;; C-c bindings in `mode-specific-map'
          ;; ("C-c M-x" . consult-mode-command)
          ;; ("C-c h" . consult-history)
@@ -156,7 +156,7 @@
          :map minibuffer-local-map
          ("C-s" . consult-history)                 ;; orig. next-matching-history-element
          ("C-r" . consult-history)                 ;; orig. previous-matching-history-element
-				 )
+         )
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
@@ -178,18 +178,20 @@
    ;; :preview-key "M-."
    :preview-key '(:debounce 0.5 any)
    )
+  ;; custom fd, grep, and rg
   (setq consult-fd-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")
                           "--full-path --color=never --hidden"
                           "--exclude" ".git"))
-  ;;TODO setup the grep-args
-  ;; (setq consult-grep-args ("--hidden"
-  ;;                         "--exclude" ".git"))
-  ;; (setq consult-ripgrep-args '((if (executable-find "fdfind" 'remote) "fdfind" "fd")
-  ;;                         "--full-path --color=never --hidden"
-  ;;                         "--exclude" ".git"))
+  (setq consult-grep-args '("grep" (consult--grep-exclude-args)
+      "--null --line-buffered --hidden --color=never --ignore-case\
+      --with-filename --line-number -I -r"))
+
+  (setq consult-ripgrep-args
+    "rg --null --hidden --line-buffered --color=never --max-columns=1000 --path-separator /\
+    --smart-case --no-heading --with-filename --line-number --search-zip"
+    )
 )
 
-;; check https://github.com/tumashu/vertico-posframe
 ;; https://github.com/minad/marginalia
 (use-package marginalia
   :after vertico
@@ -202,6 +204,17 @@
   :init
   (marginalia-mode)
  )
+
+;; faster sorting
+(use-package vertico-prescient
+             :straight t
+             :after consult
+             :config
+             (vertico-prescient-mode 1)
+             ;; (setq prescient-sort-length-enable nil)
+             ;; (setq prescient-filter-method '(literal regexp fuzzy))
+             (prescient-persist-mode 1)
+             )
 
 ;; TODO Check the oderless
 ;; https://kristofferbalintona.me/posts/202202211546/

@@ -116,8 +116,8 @@
 
   (setq eshell-prompt-function      'wt/eshell-prompt
         eshell-prompt-regexp        "^λ "
-        eshell-history-size         10000
-        eshell-buffer-maximum-lines 10000
+        eshell-history-size         5000
+        eshell-buffer-maximum-lines 5000
         eshell-hist-ignoredups t
         eshell-highlight-prompt t
         eshell-scroll-to-bottom-on-input t
@@ -141,6 +141,7 @@
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
+  :after eshell
   :demand t
   :config
   (setq exec-path-from-shell-check-startup-files nil)
@@ -177,7 +178,7 @@
   :defer t
   :hook (eshell-mode . esh-autosuggest-mode)
   :config
-  (setq esh-autosuggest-delay 0.5))
+  (setq esh-autosuggest-delay 0.2))
 
 (use-package eat
   :after eshell

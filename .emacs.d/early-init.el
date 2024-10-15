@@ -1,13 +1,13 @@
 ;;; early-init.el
 
-;(setq native-comp-async-report-warnings-errors 'silent)
+;; (setq native-comp-async-report-warnings-errors 'silent)
 
 (setq gc-cons-threshold (* 512 1024 1024))
 
-;; Reset the garbage collection threshold after startup
-(add-hook 'emacs-startup-hook
-         (lambda ()
-           (setq gc-cons-threshold (* 2 1024 1024))))  ; Reset to 800 KB after startup
+;; ;; Reset the garbage collection threshold after startup
+;; (add-hook 'emacs-startup-hook
+;;          (lambda ()
+;;            (setq gc-cons-threshold (* 2 1024 1024))))
 
 (setq package-enable-at-startup nil
       inhibit-startup-message t
@@ -21,14 +21,14 @@
 (tooltip-mode -1)                  ; Disable tooltips
 (setq inhibit-startup-message t)   ; Disable startup message
 (setq inhibit-startup-screen t)    ; Disable startup screen
-;; (fringe-mode 0)                    ; Disable fringes
+(fringe-mode 0)                    ; Disable fringes
 
 
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6
       file-name-handler-alist nil
       site-run-file nil
-      read-process-output-max (* 16 1024 1024)
+      read-process-output-max (* 64 1024 1024)
       bidi-inhibit-bpa t)
 
 (defvar wt/gc-cons-threshold (* 1024 1024 1024))
@@ -59,7 +59,7 @@
 
 ;;; Native compilation settings
 (when (and (fboundp 'native-comp-available-p) (native-comp-available-p))
-  (setq native-comp-async-report-warnings-errors nil)
+  ;; (setq native-comp-async-report-warnings-errors nil)
   (setq native-comp-deferred-compilation t)
   (setq package-native-compile t)
   (setq load-prefer-newer noninteractive)

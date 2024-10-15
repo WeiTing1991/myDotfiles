@@ -106,6 +106,7 @@
 
 (use-package company-dict
   :after company
+  :defer t
   :straight t
   :config
   (setq company-dict-dir (expand-file-name "dicts" user-emacs-directory)))
@@ -117,47 +118,16 @@
   )
 
 ;; TODO
-;; (use-package corfu
-;;   :bind (:map corfu-map
-;;               ("C-j" . corfu-next)
-;;               ("C-k" . corfu-previous)
-;;               ("TAB" . corfu-insert)
-;;               ([tab] . corfu-insert)
-;;               ("C-f" . corfu-insert))
-;;   :custom
-;;   (corfu-cycle t)
-;;   (corfu-auto t)
-;;   (corfu-preview-current nil)
-;;   (corfu-quit-at-boundary t)
-;;   (corfu-quit-no-match t)
+;; check corfu
+;; TODO
+;; Check the cape
 
-;;   :config
-;;   (global-corfu-mode 1)
-
-;;   (defun corfu-enable-in-minibuffer ()
-;;     "Enable Corfu in the minibuffer if `completion-at-point' is bound."
-;;     (when (where-is-internal #'completion-at-point (list (current-local-map)))
-;;       ;; (setq-local corfu-auto nil) ;; Enable/disable auto completion
-;;       (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
-;;                   corfu-popupinfo-delay nil)
-;;       (corfu-mode 1)))
-
-;;   (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer)
-;;   )
-
-;; ;; TODO
-;; ;; Check the cape
-;;
 ;; (use-package lsp-treemacs
 ;;   :after lsp-mode
 ;;   )
-;;
-;; ;; NOTE
-;; ;; Syntax check as linter
-;; ;; https://www.flycheck.org/en/latest/user/installation.html
-;; ;; flyspell
-;;
 
+;; Syntax check as linter
+;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
   :straight (:build t)
   :config
@@ -173,24 +143,26 @@
   )
 
 
-;; (use-package yasnippet-snippets
-;;   :straight t
-;;   )
+(use-package yasnippet-snippets
+  :defter t
+  :after yasnippet
+  :straight t
+  )
 
-;; (use-package yasnippet
-;;   :defer t
-;;   :straight t
-;;   :init
-;;   (yas-global-mode)
-;;   :hook ((prog-mode . yas-minor-mode)
-;;          (text-mode . yas-minor-mode))
-;;   :config
-;;   (setq yas-snippet-dirs
-;;       '("~/.emacs.d/snippets"                 ;; personal snippets
-;;         ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
-;;         ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
-;;         ))
-;;   )
+(use-package yasnippet
+  :defer t
+  :straight t
+  :init
+  (yas-global-mode)
+  :hook ((prog-mode . yas-minor-mode)
+         (text-mode . yas-minor-mode))
+  :config
+  (setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+        ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+        ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+        ))
+  )
 
 (use-package editorconfig
   :straight t
@@ -218,7 +190,6 @@
 
 ;; lsp server setting
 (load-file (expand-file-name "./config/lsp-config/md.el" user-emacs-directory))
-
 
 ;; lua
 (use-package lua-mode

@@ -7,7 +7,7 @@
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   ;; :custom ((dired-listing-switches "-al --group-directories-first"))
-	)
+  )
 ;; (setq-default dired-listing-switches "-alh")
 
 (use-package dired-single
@@ -15,6 +15,8 @@
   :commands (dired dired-jump))
 
 (use-package all-the-icons-dired
+  :straight t
+  :defer t
   :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; https://github.com/Fuco1/dired-hacks
@@ -28,9 +30,9 @@
                                 ("png" . "sxiv")
                                 ("mkv" . "mpv")
                                 ("mp4" . "mpv"))))
-;; fuzzy and filter
 ;; TODO
 (use-package dired-narrow
+  :defer t
   :hook (dired-mode . dired-narrow-mode)
   :custom
   (evil-define-key 'normal dired-mode-map (kbd "C-/") 'peep-dired)
@@ -38,33 +40,35 @@
 
 (setq dired-hide-dotfiles-mode -1)
 (use-package dired-hide-dotfiles
+  :straight t
   ;; :hook (dired-mode . dired-hide-dotfiles-mode)
   :config
   (evil-collection-define-key 'normal 'dired-mode-map (kbd "H") 'dired-hide-dotfiles-mode)
-	)
+  )
 
 ;; https://github.com/Fuco1/dired-hacks
+;; (setq peep-dired-mode 1)
 (use-package peep-dired
   :straight t
   :after dired
-  :hook (dired-mode-map . peep-dired-hook)
+  ;; :hook (dired-mode . peep-dired)
   :config
-  (evil-define-key 'normal 'dired-mode-map (kbd "C-p") 'peep-dired)
-  ;; (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
-  ;; (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file)
+  (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
+  (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+  (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file)
   ;; ; use dired-find-file instead if not using dired-open package
-  ;; (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
-  ;; (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+  (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+  (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
 )
 
 (use-package ibuffer
-	:straight nil
-	)
+  :straight nil
+  )
 
 ;; workspace
 ;; NOTE https://github.com/nex3/perspective-el
 (use-package perspective
-	:straight t
+  :straight t
   :bind
   ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
   :custom
@@ -74,8 +78,9 @@
 )
 
 (use-package perspective-tabs
-  :after (perspective)
   :straight (:host sourcehut :repo "woozong/perspective-tabs")
+  :defer t
+  :after (perspective)
   :init
   (perspective-tabs-mode +1)
 )
@@ -83,7 +88,7 @@
 ;; TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file
 ;; https://docs.projectile.mx/projectile/projects.html
 ;; (use-package projectile
-;; 	:defer t
+;;  :defer t
 ;;   :diminish projectile-mode
 ;;   :config (projectile-mode)
 ;;   ;; (define-key projectile-mode-map (kbd "C-p") 'projectile-persp-switch-project)
@@ -92,7 +97,7 @@
 ;;   ("C-c p" . projectile-command-map)
 ;;   :init
 ;;   ;; NOTE: Set this to the folder where you keep your Git repos!
-;; 	;; (setq projectile-project-search-path '("~/projects/" "~/work/"))
+;;  ;; (setq projectile-project-search-path '("~/projects/" "~/work/"))
 ;;   (setq projectile-enable-caching t)  ;; Enable caching for faster project lookups
 ;;   (setq projectile-indexing-method 'native)  ;; Use native indexing for performance
 ;; )

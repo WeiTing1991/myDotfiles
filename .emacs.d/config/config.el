@@ -55,8 +55,9 @@
 
   ;; default editorconfig
 
+  (show-paren-mode 1)
   (electric-pair-mode 1)
-  (electric-indent-mode 1)
+  ;; (electric-indent-mode 1)
   (setq comment-style 'indent)
   (setq-default indent-tabs-mode nil)
   (setq-default tab-width 2)
@@ -82,6 +83,7 @@
   ;; ignore some buffer
 
   )
+
 (cond
   ;; macOS configuration
   ((eq system-type 'darwin)
@@ -92,6 +94,7 @@
     (setq switch-to-prev-buffer-skip-regexp "\\*[^*]+\\*")
    )
   )
+
 ;; line-column
 (setq-default display-fill-column-indicator-column 130)
 ;; (setq-default display-fill-column-indicator-character ?▏)

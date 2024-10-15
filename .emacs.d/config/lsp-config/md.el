@@ -1,6 +1,7 @@
 ;;; markdown
 
 (use-package markdown-mode
+  :defer t
   :straight t
   :mode (("README\\.md\\'" . markdon-mode)
          ("\\.md\\'" . markdown-mode)
@@ -68,6 +69,4 @@
  (if (equal major-mode 'markdown-mode)
    (local-set-key (kbd "C-x C-q") 'markdown-view-mode))
 
-;;; md.el 
-
-
+;;; md.el
