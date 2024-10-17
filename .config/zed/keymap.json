@@ -86,7 +86,8 @@
       //
       "ctrl-d": ["editor::SendKeystrokes", "ctrl-d z z"],
       "ctrl-u": ["editor::SendKeystrokes", "ctrl-u z z"],
-      "tab" :"editor::ToggleFold"
+      "tab" :"editor::ToggleFold",
+      "space m r": "markdown::OpenPreviewToTheSide"
     }
   },
   {
@@ -108,6 +109,7 @@
       "x": "project_panel::Cut",
       "c": "project_panel::Copy",
       "p": "project_panel::Paste",
+      "/": "project_panel::NewSearchInDirectory",
 
       "q": "workspace::ToggleLeftDock",
       "space e": "project_panel::Open",

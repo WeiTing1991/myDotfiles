@@ -13,7 +13,6 @@
   "notification_panel": {
     "dock": "right"
   },
-
   "languages": {
     //
     "Python": {
@@ -33,8 +32,13 @@
       "tab_size": 4,
       "hard_tabs": true,
       "formatter": "prettier"
+    },
+    //markdon
+    "Markdown": {
+      "format_on_save": "on"
     }
   },
+
   // "file_types": {
   //   "C++": ["c"],
   //   "TOML": ["MyLockFile"],
@@ -52,6 +56,12 @@
     }
   },
 
+  "git": {
+     "inline_blame": {
+       "enabled": false,
+       "delay_ms": 500
+     }
+   },
   // base setting
   "telemetry": {
     "diagnostics": false,
@@ -121,9 +131,9 @@
     "font_family": "Hack Nerd Font",
     "font_size": 12,
     "line_height": "comfortable",
-    "shell": {
-      "program": "C:/Program Files/PowerShell/7/pwsh.exe"
-    },
+    // "shell": {
+    //   "program": "C:/Program Files/PowerShell/7/pwsh.exe"
+    // },
     "detect_venv": {
       "on": {
         // Default directories to search for virtual environments, relative
