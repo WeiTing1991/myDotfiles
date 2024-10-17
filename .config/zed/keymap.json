@@ -1,0 +1,135 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "bindings": {
+      // "space f": "file_finder::Toggle"
+      "ctrl-c ctrl-m": "zed::OpenKeymap",
+      "ctrl-c ctrl-s": "zed::OpenSettings",
+      "ctrl-c q": "pane::CloseActiveItem",
+      "ctrl-c n": "workspace::ClearAllNotifications",
+
+      // Navigate between panel
+      "ctrl-o": "pane::ActivateNextItem",
+      "ctrl-i": "pane::ActivatePrevItem",
+      "ctrl-'": "workspace::ToggleZoom",
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // put key-bindings here (in addition to above) if you want them to work when no editor exists
+      "space f": "file_finder::Toggle",
+      "space e": "project_panel::Open"
+      // "space e": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      // "ctrl-w z": "workspace::ToggleZoom",
+      "ctrl-b t": "terminal_panel::ToggleFocus",
+      "-": "editor::ToggleComments",
+      "space f": "file_finder::Toggle",
+      "space e": "workspace::ToggleLeftDock",
+      "space b": "tab_switcher::Toggle",
+      "ctrl-x": "tab_switcher::CloseSelectedItem",
+
+      // Split panel
+      "ctrl-w '": "pane::SplitRight",
+      "ctrl-w 5": "pane::SplitDown",
+      "space q": "pane::CloseActiveItem",
+
+      // Navigate between panel
+      "ctrl-o": "pane::ActivateNextItem",
+      "ctrl-i": "pane::ActivatePrevItem",
+      // "ctrl-'": "workspace::ToggleZoom",
+
+      "space h": ["workspace::ActivatePaneInDirection", "Left"],
+      "space l": ["workspace::ActivatePaneInDirection", "Right"],
+      "space k": ["workspace::ActivatePaneInDirection", "Up"],
+      "space j": ["workspace::ActivatePaneInDirection", "Down"],
+
+      // LSP
+      "g d": "editor::GoToDefinitionSplit",
+      "g D": "editor::GoToDefinition",
+      "g r": "editor::FindAllReferences",
+      "space m": "editor::Format",
+
+      // Symbol search
+      "ctrl-j": "outline::Toggle",
+      "ctrl-k": "project_symbols::Toggle",
+
+      // "g I": "editor::GoToImplementation",
+      // "g i": "editor::GoToImplementationSplit",
+      // "g T": "editor::GoToTypeDefinition",
+      // "g t": "editor::GoToTypeDefinitionSplit",
+
+      "space c a": "editor::ToggleCodeActions",
+      "space .": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+
+      // Diagnostic
+      "space t": "diagnostics::Deploy",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPrevDiagnostic",
+
+      // Misc
+      "g s": "editor::OpenUrl",
+      "g f": "editor::OpenFile",
+
+      //
+      "ctrl-d": ["editor::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["editor::SendKeystrokes", "ctrl-u z z"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+      ">": "editor::Indent",
+      "<": "editor::Outdent"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "n": "project_panel::NewFile",
+      "N": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "D": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+
+      "q": "workspace::ToggleLeftDock",
+      "space e": "project_panel::Open",
+
+      // Navigate between panel
+      "space h": ["workspace::ActivatePaneInDirection", "Left"],
+      "space l": ["workspace::ActivatePaneInDirection", "Right"],
+      "space k": ["workspace::ActivatePaneInDirection", "Up"],
+      "space j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  {
+    "context": "Workspace || Terminal",
+    "bindings": {
+      "ctrl-b t": "workspace::ToggleBottomDock",
+      "ctrl-b n": "workspace::NewTerminal",
+      "ctrl-b j": "workspace::NewCenterTerminal",
+      "ctrl-b b": "workspace::ToggleZoom",
+      "ctrl-b q": "pane::CloseActiveItem",
+
+      // Navigate between panel
+      "ctrl-o": "pane::ActivateNextItem",
+      "ctrl-i": "pane::ActivatePrevItem"
+    }
+  }
+]
