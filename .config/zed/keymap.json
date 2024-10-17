@@ -85,7 +85,8 @@
 
       //
       "ctrl-d": ["editor::SendKeystrokes", "ctrl-d z z"],
-      "ctrl-u": ["editor::SendKeystrokes", "ctrl-u z z"]
+      "ctrl-u": ["editor::SendKeystrokes", "ctrl-u z z"],
+      "tab" :"editor::ToggleFold"
     }
   },
   {
