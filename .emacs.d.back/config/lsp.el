@@ -229,29 +229,40 @@
          ("\\.cmake\\'" . cmake-mode)))
 
 ;;https://github.com/ludwigpacifici/modern-cpp-font-lock
-(use-package modern-cpp-font-lock
-  :straight t
-  :defer t
-  :diminish modern-c++-font-lock-mode
-  :hook (c++-mode . modern-c++-font-lock-mode)
-)
+;(use-package modern-cpp-font-lock
+;  :straight t
+;  :defer t
+;  :diminish modern-c++-font-lock-mode
+;  :hook (c++-mode . modern-c++-font-lock-mode)
+;)
 
 ;; ;;;
-;; ;; python
-;; (use-package python-mode
-;;   :straight nil
-;;   :hook (python-mode . lsp-deferred)
-;;   ;; :custom
-;;   ;; (python-shell-interpreter "python3")
-;;   )
+;; python
+(use-package python-mode
+  :straight nil
+  :hook (python-mode . lsp-deferred)
+  ;; :custom
+  ;; (python-shell-interpreter "python3")
+  )
 
-;; (use-package lsp-pyright
-;;   :straight t
-;;   :custom (lsp-pyright-langserver-command "basedpyright")
-;;   :hook (python-mode . (lambda ()
-;;                           (require 'lsp-pyright)
-;;                           (lsp-deferred))))
+(use-package lsp-pyright
+  :straight t
+  :custom (lsp-pyright-langserver-command "pyright")
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp-deferred))))
 
+
+(use-package conda
+  :straight t
+  :defer t
+  :config
+  (conda-env-initialize-interactive-shells)
+  (conda-env-initialize-eshell))
+
+(use-package direnv
+ :config
+ (direnv-mode))
 
 ;; https://github.com/copilot-emacs/copilot.el
 
