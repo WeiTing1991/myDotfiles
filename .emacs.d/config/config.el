@@ -7,10 +7,55 @@
   (defalias 'yes-or-no-p 'y-or-n-p)
 
   :config
-  ;; (setq initial-scratch-message "I am EMPTY.")
+
   (setq echo-keystrokes 0.01)
 
+  (setq use-file-dialog nil)
   (setq use-dialog-box nil)
+  ;; No message in scratch buffer
+  (setq initial-scratch-message nil)
+
+  ;; Initial buffer
+  (setq initial-buffer-choice nil)
+  ;; No frame title
+  (setq frame-title-format nil)
+
+  ;; No popup windows
+  (setq pop-up-windows nil)
+
+  ;; No empty line indicators
+  (setq indicate-empty-lines nil)
+
+  ;; No cursor in inactive windows
+  (setq cursor-in-non-selected-windows nil)
+
+  ;; Text mode is initial mode
+  (setq initial-major-mode 'text-mode)
+
+  ;; Text mode is default major mode
+  (setq default-major-mode 'text-mode)
+
+;; Moderate font lock
+(setq font-lock-maximum-decoration nil)
+
+;; No limit on font lock
+(setq font-lock-maximum-size nil)
+
+;; No line break space points
+(setq auto-fill-mode nil)
+
+(setq fill-column 100)
+
+;; No confirmation for visiting non-existent files
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; Completion style, see
+;; gnu.org/software/emacs/manual/html_node/emacs/Completion-Styles.html
+(setq completion-styles '(basic substring))
+
+;; Use RET to open org-mode links, including those in quick-help.org
+(setq org-return-follows-link t)
+
   (global-visual-line-mode 1)
   (setq ring-bell-function 'ignore)
 
@@ -21,26 +66,9 @@
 
   (setq default-directory "~/")
 
-  ;; (set-window-margins nil 0 0)
-  ;; (setq hscroll-step 1)
-  ;; (setq hscroll-margin 1)
-  ;; (setq auto-window-vscroll nil)
-  ;; (setq auto-hscroll-mode nil)
-
-
-  ;; (put 'scroll-right 'disabled nil)
-  ;; (put 'scroll-left 'disabled nil)
-  ;; (setq load-prefer-newer t)
-  ;; ;; (setq inhibit-compacting-font-caches t)
-  ;; ;; (setq kill-buffer-query-functions nil)
-  ;; (setq delete-by-moving-to-trash t)
-  ;; ;; (put 'downcase-region 'disabled nil
-  ;; ;; (put 'upcase-region 'disabled nil)
-
-
   ;; Revert buffer
-  ;; (recentf-mode 1)
-  ;; (global-auto-revert-mode 1)
+  (recentf-mode 1)
+  (global-auto-revert-mode 1)
   (setq global-auto-revert-non-file-buffers t)
 
   ;; Relative line numbers
@@ -49,9 +77,9 @@
 
   ;; (setq next-line-add-newlines t)
 
-  ;; (set-fringe-mode '(8 . 8))
+  (set-fringe-mode '(8 . 8))
   (set-default 'truncate-lines t)
-  (pixel-scroll-precision-mode 1)
+  ;; (pixel-scroll-precision-mode 1)
 
   ;; default editorconfig
 
@@ -75,7 +103,12 @@
   (setq jit-lock-stealth-load 200)
   ;; (setq fast-but-imprecise-scrolling t)
 
-  (setq xterm-mouse-mode +1)
+;; Mouse active in terminal
+  (unless (display-graphic-p)
+    (xterm-mouse-mode 1)
+    (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+    (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+
   (context-menu-mode 1)
 
   ;; (wt/maybe-set-default-browser)
@@ -83,6 +116,72 @@
 
   )
 
+;; No scroll bars
+(if (fboundp 'scroll-bar-mode) (set-scroll-bar-mode nil))
+
+;; No toolbar
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+
+;; No menu bar
+(if (display-graphic-p)
+    (menu-bar-mode t) ;; When nil, focus problem on OSX
+  (menu-bar-mode -1))
+
+;; Tab behavior
+;; (setq tab-always-indent 'complete)
+;; (global-company-mode)
+;; (define-key company-mode-map [remap indent-for-tab-command]
+;;   #'company-indent-or-complete-common)
+
+;; Pixel scroll (as opposed to char scrool)
+;; (pixel-scroll-mode t)
+
+;; Mac specific
+(when (eq system-type 'darwin)
+  (setq ns-use-native-fullscreen t
+        mac-option-key-is-meta nil
+        mac-command-key-is-meta t
+        mac-command-modifier 'meta
+        mac-option-modifier nil
+        mac-use-title-bar nil))
+
+;; Make sure clipboard works properly in tty mode on OSX
+;; (defun copy-from-osx ()
+;;   (shell-command-to-string "pbpaste"))
+;; (defun paste-to-osx (text &optional push)
+;;   (let ((process-connection-type nil))
+;;     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+;;       (process-send-string proc text)
+;;       (process-send-eof proc))))
+;; (when (and (not (display-graphic-p))
+;;            (eq system-type 'darwin))
+;;     (setq interprogram-cut-function 'paste-to-osx)
+;;     (setq interprogram-paste-function 'copy-from-osx))
+
+
+;; Size of temporary buffers
+(temp-buffer-resize-mode)
+(setq temp-buffer-max-height 8)
+
+;; Minimum window height
+(setq window-min-height 1)
+
+;; Buffer encoding
+(prefer-coding-system       'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment   'utf-8)
+
+;; Unique buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'reverse
+      uniquify-separator " • "
+      uniquify-after-kill-buffer-p t
+      uniquify-ignore-buffers-re "^\\*")
+
+
+;; buffer ignore
 (cond
   ;; macOS configuration
   ((eq system-type 'darwin)
@@ -96,9 +195,9 @@
 
 ;; line-column
 (setq-default display-fill-column-indicator-column 130)
-;; (setq-default display-fill-column-indicator-character ?▏)
 (setq-default display-fill-column-indicator-character ?┆)
 ;; (set-face-foreground 'fill-column-indicator "grey")
+
 ;; (global-display-line-numbers-mode 1)
 ;; (display-fill-column-indicator-mode 1)
 
@@ -109,18 +208,5 @@
                    ))
   )
 
-;; disable in cetain mode
-;(dolist (mode '(org-mode-hook
-;                term-mode-hook
-;                vterm-mode-hook
-;                shell-mode-hook
-;                treemacs-mode-hook
-;                eshell-mode-hook
-;                dired-mode-hook)
-;              )
-;  (add-hook mode (lambda ()
-;                      (display-fill-column-indicator-mode -1)
-;                      (display-line-numbers-mode 0)
-;                      )
-;            )
-;  )
+(provide 'config)
+;;;

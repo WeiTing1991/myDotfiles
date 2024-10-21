@@ -1,4 +1,6 @@
 ;;; cmd-system
+
+;;; code
 ;; file search
 (use-package hydra)
 
@@ -26,7 +28,13 @@
                                                  (propertize ">> " 'face 'vertico-current)
                                                "  ")
                                              cand)))
+
+  :config
+  (setq read-file-name-completion-ignore-case t
+        read-buffer-completion-ignore-case t
+        completion-ignore-case t)
   )
+
 
 (use-package emacs
   :custom
@@ -74,6 +82,10 @@
 )
 
 ;; Enable vertico-multiform
+(setq vertico-multiform-commands
+      '((find-file-at-point (:not posframe))
+        (t posframe)))
+
 ;; (vertico-multiform-mode 1)
 ;; (setq vertico-multiform-commands
 ;;       '((find-file reverse)
@@ -93,14 +105,14 @@
 ;;         (execute-extended-command)
 ;;         ))
 
-
+;; TODO
 ;; ;; Sort directories before files
 ;; (defun sort-directories-first (files)
 ;;   (setq files (vertico-sort-history-length-alpha files))
 ;;   (nconc (seq-filter (lambda (x) (string-suffix-p "/" x)) files)
 ;;          (seq-remove (lambda (x) (string-suffix-p "/" x)) files)))
 
-;; ;;TODO check this
+;; TODO check this
 ;; https://github.com/minad/consult
 (use-package consult
   :straight t
@@ -211,8 +223,8 @@
              :after consult
              :config
              (vertico-prescient-mode 1)
-             ;; (setq prescient-sort-length-enable nil)
-             ;; (setq prescient-filter-method '(literal regexp fuzzy))
+             (setq prescient-sort-length-enable nil)
+             (setq prescient-filter-method '(literal regexp fuzzy))
              (prescient-persist-mode 1)
              )
 

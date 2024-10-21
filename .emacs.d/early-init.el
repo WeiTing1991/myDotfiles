@@ -55,17 +55,9 @@
   (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory)))
 
 (setq inhibit-startup-message t
-      inhibit-startup-screen t)
+      inhibit-startup-screen t
+      inhibit-startup-echo-area-message t)
 
-;; no menu bar, toolbar, scroll bar
-(setq default-frame-alist
-      '((menu-bar-lines . 0)
-        (tool-bar-lines . 0)
-        (horizontal-scroll-bars)
-        (vertical-scroll-bars)))
-
-; Disable fringes
-(fringe-mode 0)
 
 (provide 'early-init)
 ;;; early-init.el ends here

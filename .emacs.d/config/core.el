@@ -187,7 +187,7 @@
     "/" '(execute-extended-command :wk "consult-M-x")
     "'" '(project-eshell :wk "run eshell")
     "C-'" '(project-shell :wk "run shell")
-    "m" '(lsp-format-buffer :wk "formating")
+    "c f" (lambda () (interactive) (dired "~/.emacs.d/"))
     )
 
   ;; find file
@@ -206,7 +206,7 @@
   (wt/leader-keys
     "b" '(:ignore t :wk "Bookmarks/Buffers")
     "bl" '(persp-ibuffer ibu :wk "List buffers")
-    "bb" '(consult-buffer-other-window :wk "Switch buffer")
+    "bb" '(consult-buffer :wk "Switch buffer")
     "q" '(kill-buffer-and-window :wk "Kill this buffer")
     "o" '(next-buffer  :wk "Next buffer")
     "i" '(previous-buffer :wk "Previous buffer")

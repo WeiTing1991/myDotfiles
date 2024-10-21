@@ -1,5 +1,6 @@
 ;;; file sytsem
 
+;; code
 (setq dired-kill-when-opening-new-dired-buffer t)
 
 (use-package dired
@@ -9,6 +10,13 @@
   ;; :custom ((dired-listing-switches "-al --group-directories-first"))
   )
 ;; (setq-default dired-listing-switches "-alh")
+
+(use-package dired+
+  :straight t
+  :defer t
+  :config
+  (require 'dired+)
+)
 
 (use-package dired-single
   :straight nil
@@ -52,12 +60,11 @@
 (use-package peep-dired
   :straight t
   :after dired
-  ;; :hook (dired-mode . peep-dired)
   :config
   (evil-define-key 'normal dired-mode-map (kbd "C-p") 'peep-dired)
   (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
   (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file)
-  ;; ; use dired-find-file instead if not using dired-open package
+
   (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
   (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
 )
@@ -77,22 +84,6 @@
   :init
   (persp-mode)
 )
-
-(use-package perspective-tabs
-  :straight (:host sourcehut :repo "woozong/perspective-tabs")
-  :defer t
-  :after (perspective)
-  :init
-  (perspective-tabs-mode +1)
-)
-
-(use-package company-prescient
-             :straight t
-             :after company
-             :config
-             (company-prescient-mode 1)
-             )
-
 
 ;; TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file
 ;; https://docs.projectile.mx/projectile/projects.html
@@ -118,6 +109,7 @@
 ;; git tool
 (use-package magit
   :straight t
+  :defer t
   :commands magit-status
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))

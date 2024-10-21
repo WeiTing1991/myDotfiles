@@ -68,6 +68,7 @@
   )
 
 ;; https://emacs-lsp.github.io/lsp-ui/
+
 (use-package lsp-ui
   :hook ((prog-mode lsp-mode). lsp-ui-mode)
   :defer t
@@ -83,46 +84,47 @@
   (setq lsp-ui-doc-enable t)
   )
 
-
 ;; auto compelte
 ;; TODO
 ;; https://company-mode.github.io/manual/
+
 (use-package company
   :straight t
   :init
   (global-company-mode)
   :bind (:map company-active-map
               ("<tab>" . company-complete-selection))
-
   :config
   (setq company-minimum-prefix-length     1
         company-idle-delay                0.0
-        company-toolsip-limit             14
-        company-tooltip-align-annotations nil
+        company-toolsip-limit             5
+        company-tooltip-align-annotations t
+        company-tooltip-maximum-width      50
+        company-tooltip-minimum-width      50
+        company-tooltip-height            5
         company-require-match             'never
+        company-selection-wrap-around     t
+        company-tooltip-scroll-amount 10
+        company-tooltip-scrollbar-width 0.0
         company-backends '((company-capf company-files company-dabbrev))
         )
   )
 
 (use-package company-dict
-  :after company
-  :defer t
   :straight t
+  :defer t
   :config
   (setq company-dict-dir (expand-file-name "dicts" user-emacs-directory)))
 
 (use-package company-box
-  :after company
-  :defer t
   :straight t
+  :defer t
   :hook (company-mode . company-box-mode)
   )
 
-
 (use-package company-prescient
-  :after company
-  :defer t
   :straight t
+  :defer t
   :hook (company-mode . company-prescient-mode)
   )
 
@@ -132,6 +134,7 @@
 ;; Check the cape
 
 ;; (use-package lsp-treemacs
+;;   :straight t
 ;;   :after lsp-mode
 ;;   )
 
@@ -141,9 +144,9 @@
   :straight (:build t)
   :config
   (add-hook 'prog-mode-hook #'global-flycheck-mode)
-  (setq flycheck-display-errors-delay 0.1)
+  (setq flycheck-display-errors-delay 0.2)
   :custom
-  (setq flycheck-highlighting-mode 'lines)
+  (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
   )
 
 ;; for Emacs Lisp
@@ -159,18 +162,19 @@
   )
 
 (use-package yasnippet
-  :defer t
   :straight t
-  :init
-  (yas-global-mode)
+  :defer t
+  ;; :init
+  ;; (yas-global-mode 1)
   :hook ((prog-mode . yas-minor-mode)
          (text-mode . yas-minor-mode))
   :config
+  (yas-reload-all)
   (setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"                    ;; personal snippets
-        ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
-        ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
-        ))
+        '("~/.emacs.d/snippets"                    ;; personal snippets
+          ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+          ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+          ))
   )
 
 (use-package editorconfig
@@ -193,9 +197,13 @@
                   ("Python"     (ruff-format))
                   )
                 )
-  (global-set-key (kbd "M-m") #'wt/format-code)
+  ;; (define-key evil-motion-state-map (kbd "SPC m") #'wt/format-code)
+  (require 'general)
+  (wt/leader-keys
+    "m" '(wt/format-code :wk "fomating")
+    )
   (add-hook 'prog-mode-hook #'format-all-ensure-formatter)
- )
+  )
 
 ;; lsp server setting
 (load-file (expand-file-name "./config/lsp-config/md.el" user-emacs-directory))
@@ -220,7 +228,7 @@
          )
   :config
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-)
+  )
 
 (use-package cmake-mode
   :defer t
@@ -229,17 +237,17 @@
          ("\\.cmake\\'" . cmake-mode)))
 
 ;;https://github.com/ludwigpacifici/modern-cpp-font-lock
-;(use-package modern-cpp-font-lock
-;  :straight t
-;  :defer t
-;  :diminish modern-c++-font-lock-mode
-;  :hook (c++-mode . modern-c++-font-lock-mode)
-;)
+                                        ;(use-package modern-cpp-font-lock
+                                        ;  :straight t
+                                        ;  :defer t
+                                        ;  :diminish modern-c++-font-lock-mode
+                                        ;  :hook (c++-mode . modern-c++-font-lock-mode)
+                                        ;)
 
-;; ;;;
 ;; python
 (use-package python-mode
   :straight nil
+  :defer t
   :hook (python-mode . lsp-deferred)
   ;; :custom
   ;; (python-shell-interpreter "python3")
@@ -247,11 +255,11 @@
 
 (use-package lsp-pyright
   :straight t
+  :defer t
   :custom (lsp-pyright-langserver-command "pyright")
   :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp-deferred))))
-
+                         (require 'lsp-pyright)
+                         (lsp-deferred))))
 
 (use-package conda
   :straight t
@@ -260,9 +268,12 @@
   (conda-env-initialize-interactive-shells)
   (conda-env-initialize-eshell))
 
-(use-package direnv
- :config
- (direnv-mode))
+(use-package pyenv-mode
+  :straight t
+  :defer t
+  :hook (python-mode .pyenv-mode)
+  )
+
 
 ;; https://github.com/copilot-emacs/copilot.el
 
