@@ -37,7 +37,7 @@
   ((eq system-type 'darwin)  ;; 'darwin' is for macOS
    (setq wt/default-font-size 140)
    (setq wt/default-variable-font-size 120)
-   (setq wt/frame-transparency '(85 . 90))
+   (setq wt/frame-transparency '(95 . 90))
    )
   ;; Windows configuration
   ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
@@ -49,7 +49,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/nano/")
 
-;; (require 'nano-layout)
+(require 'nano-layout)
 ;; (require 'nano-base-colors)
 ;; (require 'nano-faces)
 
@@ -60,14 +60,13 @@
 ;(setq nano-font-size (/ wt/default-font-size 10))
 
 ;; Set frame transparency
-;(set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
-;(add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
+(set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
+(add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
 
 (use-package base16-theme
   :straight t
-:defer 0
-:config
-(load-theme 'base16-onedark)
+  :config
+  (load-theme 'base16-onedark t)
 )
 
 ;(use-package zenburn-theme
@@ -90,52 +89,35 @@
 ;; (nano-theme-set-dark)
 ;; (call-interactively 'nano-refresh-theme)
 
-;(use-package lambda-themes
-;  :straight (:type git :host github :repo "lambda-emacs/lambda-themes")
-;  :custom
-;  (lambda-themes-set-italic-comments t)
-;  (lambda-themes-set-italic-keywords t)
-;  (lambda-themes-set-variable-pitch t)
-;  :config
-;  ;; load preferred theme
-;  (load-theme 'lambda-dark)
-;  )
 
-;; (use-package modus-themes
-;;   :straight t
-;;   :config
-;;   ;; load preferred theme
-;;   (load-theme 'modus-vivendi)
-;;   )
-
-;; (set-face-background 'default "#0D0907")
-;; (set-face-background 'fringe "#0D0907")
-;; (set-face-attribute 'line-number-current-line nil :foreground "light grey" )
+(set-face-background 'default "#0D0907")
+(set-face-background 'fringe "#0D0907")
+(set-face-attribute 'line-number nil :background "#0D0907" )
+(set-face-attribute 'line-number-current-line nil :foreground "light grey" )
 
 (add-to-list 'load-path "~/.emacs.d/config/")
 
 ;; (require 'nano-defaults)
-;; (require 'config)
+(require 'config)
 
-;; (load-file (expand-file-name "./config/core.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/ui.el" user-emacs-directory))
+(load-file (expand-file-name "./config/core.el" user-emacs-directory))
+(load-file (expand-file-name "./config/ui.el" user-emacs-directory))
 ;; (load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
 ;; (load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
 ;; (load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
 ;; (load-file (expand-file-name "./config/app.el" user-emacs-directory))
+;; (load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
 
-(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
-
-(defun my-persp-format ()
-  "Return the name of the current perspective."
-  (if (persp-mode)
-      (format "[%s]" (persp-name (persp-curr)))
-    ""))
-
-(setq frame-title-format '("WeiTingEmacs v" emacs-version "     "
-                           (:eval (my-persp-format))
-                           "  "
-                           " %b"))
+;(defun my-persp-format ()
+;  "Return the name of the current perspective."
+;  (if (persp-mode)
+;      (format "[%s]" (persp-name (persp-curr)))
+;    ""))
+;
+;(setq frame-title-format '("WeiTingEmacs v" emacs-version "     "
+;                           (:eval (my-persp-format))
+;                           "  "
+;                           " %b"))
 
 ;; (setq garbage-collection-messages t) ; for debug
 

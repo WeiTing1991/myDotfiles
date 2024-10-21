@@ -61,6 +61,15 @@
 ;;   :hook (prog-mode . doom-modeline-mode)
 ;;   )
 
+(set-face-attribute 'mode-line nil
+                    :background "#0D0907"  ;; Background color
+                    :box nil)              ;; Remove box around the mode line
+
+(set-face-attribute 'mode-line-inactive nil
+                    :background "#0D0907"  ;; Inactive background color
+                    :box nil)              ;; Remove box around the inactive mode line
+
+
 (use-package lambda-line
   :straight (:type git :host github :repo "lambda-emacs/lambda-line")
   :custom
@@ -94,7 +103,6 @@
   :straight t
   :defer t
   )
-
 
 (use-package hl-todo
   :straight t
