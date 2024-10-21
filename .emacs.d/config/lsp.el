@@ -264,6 +264,7 @@
 (use-package conda
   :straight t
   :defer t
+  :hook(python-mode . conda-env-autoactivate-mode)
   :config
   (conda-env-initialize-interactive-shells)
   (conda-env-initialize-eshell))

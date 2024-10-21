@@ -54,6 +54,8 @@
 ;; (require 'nano-faces)
 
 ;; Set the font
+(when (display-graphic-p)
+  (set-frame-font "Hack Nerd Font" nil t))
 (set-face-attribute 'default nil :font "Hack Nerd Font" :height wt/default-font-size)
 (set-face-attribute 'fixed-pitch nil :font "Hack Nerd Font" :height wt/default-variable-font-size)
 (set-face-attribute 'variable-pitch nil :font "Hack Nerd Font" :height wt/default-variable-font-size)
@@ -102,11 +104,11 @@
 
 (load-file (expand-file-name "./config/core.el" user-emacs-directory))
 (load-file (expand-file-name "./config/ui.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/app.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
+(load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
+(load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
+(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
+(load-file (expand-file-name "./config/app.el" user-emacs-directory))
+(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
 
 ;(defun my-persp-format ()
 ;  "Return the name of the current perspective."

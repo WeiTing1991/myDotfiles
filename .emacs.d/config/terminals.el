@@ -197,15 +197,15 @@
   ;;   :config
   ;;   (setq esh-autosuggest-delay 0.2))
   ;;
-  ;; (use-package eat
-  ;;   :after eshell
-  ;;   :custom
-  ;;   (eat-kill-buffer-on-exit t)
-  ;;   (eat-enable-shell-prompt-annotation nil)
-  ;;   :config
-  ;;   (eat-eshell-mode)
-  ;;   (eat-eshell-visual-command-mode)
-  ;;   (setq eshell-visual-commands '()))
+  (use-package eat
+    :after eshell
+    :custom
+    (eat-kill-buffer-on-exit t)
+    (eat-enable-shell-prompt-annotation nil)
+    :config
+    (eat-eshell-mode)
+    (eat-eshell-visual-command-mode)
+    (setq eshell-visual-commands '()))
 
   ;; (use-package vterm
   ;;   :commands vterm
