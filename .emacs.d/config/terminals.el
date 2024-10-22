@@ -3,7 +3,6 @@
 ;;; code
 
 ;; Default shell in term
-
 ;; Kill term buffer when exiting
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
   (if (memq (process-status proc) '(signal exit))
@@ -29,7 +28,6 @@
   (add-hook 'eshell-load-hook
             (lambda ()
               (defalias 'python 'python-shell-interpreter)))
-
   )
 
 (use-package exec-path-from-shell
@@ -215,7 +213,6 @@
   ;; (eat-eshell-mode)
   ;; (eat-eshell-visual-command-mode)
   ;; (setq eshell-visual-commands '())
-
   )
 
 (use-package em-cmpl
