@@ -50,9 +50,9 @@
 ;; Set the font
 (when (display-graphic-p)
   (set-frame-font "RobotoMono Nerd Font" nil t))
-(set-face-attribute 'default nil :font "Source Code Pro" :height wt/default-font-size)
-(set-face-attribute 'fixed-pitch nil :font "Source Code Pro" :height wt/default-variable-font-size)
-(set-face-attribute 'variable-pitch nil :font "Source Code Pro" :height wt/default-variable-font-size)
+;(set-face-attribute 'default nil :font "Sauce Code Pro Nerd Font" :height wt/default-font-size)
+;; (set-face-attribute 'fixed-pitch nil :font "Sauce Code Pro" :height wt/default-variable-font-size)
+;; (set-face-attribute 'variable-pitch nil :font "Sauce Code Pro" :height wt/default-variable-font-size)
 
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
