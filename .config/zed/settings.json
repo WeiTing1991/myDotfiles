@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  // theme
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Base16 Black Dark"
+  },
   // languages settings
   // https://zed.dev/docs/configuring-languages
   "languages": {
@@ -69,22 +75,24 @@
     "diagnostics": false,
     "metrics": false
   },
-  // theme
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Base16 Black Metal (Gorgoroth)"
-  },
 
-  //
+  // gerenal settings
   "base_keymap": "VSCode",
   "buffer_font_family": "Hack Nerd Font",
-  "ui_font_family": "Roboto Mono",
-  "ui_font_size": 14,
-  "buffer_font_size": 12,
+  "ui_font_family": "Hack Nerd Font",
+  "ui_font_size": 16,
+  "buffer_font_size": 14,
+  //"buffer_line_height": {"custom": 2},
+
   "scrollbar": {
-    "show": "never"
+    "show": "never",
+    "cursors": true,
+    "git_diff": true,
+    "search_results": true,
+    "selected_symbol": true,
+    "diagnostics": true
   },
+
   "tabs": {
     "file_icons": false,
     "git_status": true
@@ -109,7 +117,7 @@
     "folder_icons": true,
     "indent_size": 5,
     "auto_reveal_entries": false,
-    "auto_fold_dirs": true,
+    "auto_fold_dirs": true
 
   },
   "outline_panel": {
@@ -156,7 +164,7 @@
     "dock": "bottom",
     "default_height": 500,
     "font_family": "Hack Nerd Font",
-    "font_size": 10,
+    "font_size": 14,
     "line_height": "comfortable",
     "env": {
       "EDITOR": "zed --wait"

@@ -128,13 +128,13 @@
 
 (require 'config)
 
-(load-file (expand-file-name "./config/core.el" user-emacs-directory))
-(load-file (expand-file-name "./config/ui.el" user-emacs-directory))
-(load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
-(load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
-(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
-(load-file (expand-file-name "./config/app.el" user-emacs-directory))
-(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
+;;(load-file (expand-file-name "./config/core.el" user-emacs-directory))
+;;(load-file (expand-file-name "./config/ui.el" user-emacs-directory))
+;;(load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
+;;(load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
+;;(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
+;;(load-file (expand-file-name "./config/app.el" user-emacs-directory))
+;;(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
 
 ;; (defun my-persp-format ()
 ;;   "Return the name of the current perspective."

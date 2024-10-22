@@ -62,7 +62,6 @@
       "space k": ["workspace::ActivatePaneInDirection", "Up"],
       "space j": ["workspace::ActivatePaneInDirection", "Down"],
       "space q": "pane::CloseActiveItem",
-
       // LSP
       "g d": "editor::GoToDefinitionSplit",
       "g D": "editor::GoToDefinition",
