@@ -20,18 +20,10 @@
 ;;
 
 ;;; Code:
-(when (or (featurep 'esup-child)
-          (fboundp 'profile-dotemacs)
-          (daemonp)
-          (boundp 'startup-now)
-          noninteractive)
-  (setq package-enable-at-startup nil))
+(setq package-enable-at-startup nil)
 
 (defvar my-computer-has-smaller-memory-p nil
   "Installing&Compiling many packages could cost too much memory.")
-
-;; @see https://www.reddit.com/r/emacs/comments/ofhket/further_boost_start_up_time_with_a_simple_tweak/
-;; 10% speed up of startup for my configuration
 
 (setq gc-cons-threshold (* 512 1024 1024))
 
@@ -54,9 +46,22 @@
   (setq load-prefer-newer noninteractive)
   (add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory)))
 
-(setq inhibit-startup-message t
-      inhibit-startup-screen t
-      inhibit-startup-echo-area-message t)
+;; minimal UI
+(menu-bar-mode -1) ;; disables menubar
+(tool-bar-mode -1) ;; disables toolbar
+(scroll-bar-mode -1) ;; disables scrollbar
+(pixel-scroll-precision-mode 1) ;; enable smooth scrolling
+
+(setq inhibit-splash-screen t ;; no thanks
+      use-file-dialog nil ;; don't use system file dialog
+      tab-bar-new-button-show nil ;; don't show new tab button
+      tab-bar-close-button-show nil ;; don't show tab close button
+      tab-line-close-button-show nil) ;; don't show tab close button
+
+(setq inhibit-startup-screen t
+      inhibit-startup-message t
+      inhibit-startup-echo-area-message t
+      initial-scratch-message nil)
 
 
 (provide 'early-init)

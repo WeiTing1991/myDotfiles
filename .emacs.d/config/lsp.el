@@ -55,6 +55,14 @@
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-l l")  ;; Or 'C-l', 's-l'
+  (defun wt/lsp-mode-setup-completion ()
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(orderless))) ;; Configure orderless
+  :custom
+  (lsp-completion-provider :none) ;; we use corfu!
+  :hook
+  (lsp-completion-mode . wt/lsp-mode-setup-completion) ;; setup orderless completion style.
+
   :config
   (lsp-enable-which-key-integration t)
 
@@ -88,50 +96,144 @@
 ;; TODO
 ;; https://company-mode.github.io/manual/
 
-(use-package company
+;; (use-package company
+;;   :straight t
+;;   :init
+;;   (global-company-mode)
+;;   :bind (:map company-active-map
+;;               ("<tab>" . company-complete-selection))
+;;   :config
+;;   (setq company-minimum-prefix-length     1
+;;         company-idle-delay                0.0
+;;         company-toolsip-limit             5
+;;         company-tooltip-align-annotations t
+;;         company-tooltip-maximum-width      50
+;;         company-tooltip-minimum-width      50
+;;         company-tooltip-height            5
+;;         company-require-match             'never
+;;         company-selection-wrap-around     t
+;;         company-tooltip-scroll-amount 10
+;;         company-tooltip-scrollbar-width 0.0
+;;         company-backends '((company-capf company-files company-dabbrev))
+;;         )
+;;   )
+
+;; (use-package company-dict
+;;   :straight t
+;;   :defer t
+;;   :config
+;;   (setq company-dict-dir (expand-file-name "dicts" user-emacs-directory)))
+
+;; (use-package company-box
+;;   :straight t
+;;   :defer t
+;;   :hook (company-mode . company-box-mode)
+;;   )
+
+;; (use-package company-prescient
+;;   :straight t
+;;   :defer t
+;;   :hook (company-mode . company-prescient-mode)
+;;   )
+
+;; TODO
+(use-package corfu
   :straight t
+  :bind
+  (:map corfu-map
+        ("<tab>" . corfu-insert)   ;; Bind C-j to accept completion
+        ;; ("SPC" . corfu-insert-separator) ;; Insert a separator for multi-part completion
+        ("<escape>" . corfu-quit))    ;; Bind C-g to quit completion
+  :custom
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-auto-delay  0.1) ;; TOO SMALL - NOT RECOMMENDED
+  (corfu-auto-prefix 2) ;; TOO SMALL - NOT RECOMMENDED
+  ;; (corfu-popupinfo-delay '(0.5 . 0.5))
+  (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-min-width 1)
+  (corfu-max-width 50)
+  (corfu-count 14)
+  (corfu-scroll-margin 4)
+  ;; Have Corfu wrap around when going up
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-preselect-first t)
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+  ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
+
+  ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
+  ;; be used globally (M-/).  See also the customization variable
+  ;; `global-corfu-modes' to exclude certain modes.
   :init
-  (global-company-mode)
-  :bind (:map company-active-map
-              ("<tab>" . company-complete-selection))
+  ;; Enable Corfu
+  (global-corfu-mode t)
+  ;; Enable Corfu history mode to act like `prescient'
+  (corfu-history-mode t)
+  ;; Allow Corfu to show help text next to suggested completion
+  (corfu-popupinfo-mode t)
+  )
+
+;; A few more useful configurations...
+(use-package emacs
+  :straight t
+  :custom
+  ;; TAB cycle if there are only few candidates
+  ;; (completion-cycle-threshold 3)
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (tab-always-indent 'complete)
+
+  ;; Emacs 30 and newer: Disable Ispell completion function. As an alternative,
+  ;; try `cape-dict'.
+  (text-mode-ispell-word-completion nil)
+
+  ;; Hide commands in M-x which do not apply to the current mode.  Corfu
+  ;; commands are hidden, since they are not used via M-x. This setting is
+  ;; useful beyond Corfu.
+  (read-extended-command-predicate #'command-completion-default-include-p))
+
+(use-package corfu-popupinfo
+  :after corfu
+  :straight nil
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :custom
+  (corfu-popupinfo-delay '(0.25 . 0.1))
+  (corfu-popupinfo-hide nil)
   :config
-  (setq company-minimum-prefix-length     1
-        company-idle-delay                0.0
-        company-toolsip-limit             5
-        company-tooltip-align-annotations t
-        company-tooltip-maximum-width      50
-        company-tooltip-minimum-width      50
-        company-tooltip-height            5
-        company-require-match             'never
-        company-selection-wrap-around     t
-        company-tooltip-scroll-amount 10
-        company-tooltip-scrollbar-width 0.0
-        company-backends '((company-capf company-files company-dabbrev))
-        )
-  )
-
-(use-package company-dict
-  :straight t
-  :defer t
-  :config
-  (setq company-dict-dir (expand-file-name "dicts" user-emacs-directory)))
-
-(use-package company-box
-  :straight t
-  :defer t
-  :hook (company-mode . company-box-mode)
-  )
-
-(use-package company-prescient
-  :straight t
-  :defer t
-  :hook (company-mode . company-prescient-mode)
-  )
+  (corfu-popupinfo-mode))
 
 ;; TODO
-;; check corfu
-;; TODO
-;; Check the cape
+(use-package cape
+  :straight t
+  ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
+  ;; Press C-c p ? to for help.
+  :bind ("C-c p" . cape-prefix-map) ;; Alternative keys: M-p, M-+, ...
+  ;; Alternatively bind Cape commands individually.
+  ;; :bind (("C-c p d" . cape-dabbrev)
+  ;;        ("C-c p h" . cape-history)
+  ;;        ("C-c p f" . cape-file)
+  ;;        ...)
+  :init
+  ;; Add to the global default value of `completion-at-point-functions' which is
+  ;; used by `completion-at-point'.  The order of the functions matters, the
+  ;; first function returning a result wins.  Note that the list of buffer-local
+  ;; completion functions takes precedence over the global list.
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-abbrev)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  ;; (add-hook 'completion-at-point-functions #'cape-history)
+  ;; ...
+)
 
 ;; (use-package lsp-treemacs
 ;;   :straight t
@@ -144,7 +246,7 @@
   :straight (:build t)
   :config
   (add-hook 'prog-mode-hook #'global-flycheck-mode)
-  (setq flycheck-display-errors-delay 0.2)
+  (setq flycheck-display-errors-delay 0.1)
   :custom
   (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
   )

@@ -18,7 +18,8 @@
   (vertico-count 20) ;; Show more candidates
   ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
   (vertico-directory-up t)
-  (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  (vertico-cycle t)
+  ;; Enable cycling for `vertico-next/previous'
   ;; https://github.com/minad/vertico/wiki#prefix-current-candidate-with-arrow
   (advice-add #'vertico--format-candidate :around
                                           (lambda (orig cand prefix suffix index _start)
@@ -28,7 +29,6 @@
                                                  (propertize ">> " 'face 'vertico-current)
                                                "  ")
                                              cand)))
-
   :config
   (setq read-file-name-completion-ignore-case t
         read-buffer-completion-ignore-case t
@@ -93,11 +93,6 @@
 ;;         )
 ;;       )
 
-;; ;; Use a buffer with indices for imenu
-;; ;; and a flat (Ido-like) menu for M-x.
-;; (setq vertico-multiform-commands
-;;       '((consult-imenu buffer indexed)
-;;         (execute-extended-command unobtrusive)))
 
 ;; (setq vertico-multiform-categories
 ;;       '((file reverse)
@@ -197,7 +192,6 @@
   (setq consult-grep-args '("grep" (consult--grep-exclude-args)
       "--null --line-buffered --hidden --color=never --ignore-case\
       --with-filename --line-number -I -r"))
-
   (setq consult-ripgrep-args
     "rg --null --hidden --line-buffered --color=never --max-columns=1000 --path-separator /\
     --smart-case --no-heading --with-filename --line-number --search-zip"
@@ -218,15 +212,23 @@
  )
 
 ;; faster sorting
-(use-package vertico-prescient
-             :straight t
-             :after consult
-             :config
-             (vertico-prescient-mode 1)
-             (setq prescient-sort-length-enable nil)
-             (setq prescient-filter-method '(literal regexp fuzzy))
-             (prescient-persist-mode 1)
-             )
+;; (use-package vertico-prescient
+;;              :straight t
+;;              :after consult
+;;              :config
+;;              (vertico-prescient-mode 1)
+;;              (setq prescient-sort-length-enable nil)
+;;              (setq prescient-filter-method '(literal regexp fuzzy))
+;;              (prescient-persist-mode 1)
+;;              )
+
 
 ;; TODO Check the oderless
 ;; https://kristofferbalintona.me/posts/202202211546/
+(use-package orderless
+  :demand t
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion))))
+  )

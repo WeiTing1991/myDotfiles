@@ -29,6 +29,6 @@ In this document I've added links in many places that lead you to documentation 
 Emacs has a built in package manager but it doesn't make it easy to automatically install packages on a new system the first time you pull down your configuration.  [[https://github.com/jwiegley/use-package][use-package]] is a really helpful package used in this configuration to make it a lot easier to automate the installation and configuration of everything else we use.
 
 #+begin_src emacs-lisp
-
+https://github.com/lf-araujo/MxNotebook
 
 #+end_src
