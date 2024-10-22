@@ -138,12 +138,9 @@
 ;; No toolbar
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 ;; No menu bar
-(if (display-graphic-p)
-    (menu-bar-mode t) ;; When nil, focus problem on OSX
-  (menu-bar-mode -1))
 
 ;; Pixel scroll (as opposed to char scrool)
-;; (pixel-scroll-mode t)
+(pixel-scroll-mode t)
 
 ;; Mac specific
 (when (eq system-type 'darwin)

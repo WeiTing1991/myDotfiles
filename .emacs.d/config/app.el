@@ -13,11 +13,27 @@
 ;;   ;; Automatically open PDFs in pdf-view-mode
 ;;   (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode)))
 
-(setq doc-view-continuous t)
+;; (setq doc-view-continuous t)
 
 ;; pandoc
 (setq pandoc-binary "/opt/homebrew/bin/pandoc")
-(setq auto-mode-alist (append '(("\\.docx\\'" . doc-view-mode)) auto-mode-alist))
+
+(require 'dired)
+
+;; Replace with the path to your PDF viewer
+(setq my-pdf-viewer "C:/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe")
+
+(defun my-open-pdf-with-external-viewer (file)
+  "Open PDF FILE with an external viewer."
+  (start-process "pdf-viewer" nil my-pdf-viewer file))
+
+;; Set Dired to use the external viewer for PDF files
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (dired-omit-mode 1) ;; Optional: hide certain files
+            (define-key dired-mode-map "e" 'my-open-pdf-with-external-viewer)))
+
+;; (setq auto-mode-alist (append '(("\\.pdf\\'" . doc-view-mode)) auto-mode-alist))
 
 ;; org mode
 ;; https://doc.norang.ca/org-mode.html

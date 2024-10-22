@@ -350,16 +350,28 @@
 (use-package python-mode
   :straight nil
   :defer t
-  :hook (python-mode . lsp-deferred)
+  ;; :hook (python-mode . lsp-deferred)
   ;; :custom
   ;; (python-shell-interpreter "python3")
   )
+
+(use-package python-ts-mode
+  :straight nil
+  :defer t
+  :hook (python-ts-mode . lsp-deferred)
+  :custom
+  (python-shell-interpreter "python3")
+
+  (when (eq system-type 'windows-nt)
+    (setq python-shell-interpreter "C://Users//weitingche//anaconda//python.exe")
+    )
+)
 
 (use-package lsp-pyright
   :straight t
   :defer t
   :custom (lsp-pyright-langserver-command "pyright")
-  :hook (python-mode . (lambda ()
+  :hook (python-ts-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp-deferred))))
 

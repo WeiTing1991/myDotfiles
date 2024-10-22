@@ -5,19 +5,30 @@
 //
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
+
 [
   {
     "bindings": {
       // "space f": "file_finder::Toggle"
+      // "ctrl-c ctrl-n": "workspace::Open",
       "ctrl-c ctrl-m": "zed::OpenKeymap",
       "ctrl-c ctrl-s": "zed::OpenSettings",
       "ctrl-c q": "pane::CloseActiveItem",
-      "ctrl-c n": "workspace::ClearAllNotifications",
+      "ctrl-c backspace": "workspace::ClearAllNotifications",
 
       // Navigate between panel
       "ctrl-o": "pane::ActivateNextItem",
       "ctrl-i": "pane::ActivatePrevItem",
       "ctrl-'": "workspace::ToggleZoom",
+
+      // Split panel
+      "ctrl-b '": "pane::SplitRight",
+      "ctrl-b 5": "pane::SplitDown",
+
+      "ctrl-w h": ["workspace::SwapPaneInDirection", "Left"],
+      "ctrl-w l": ["workspace::SwapPaneInDirection", "Right"],
+      "ctrl-w k": ["workspace::SwapPaneInDirection", "Up"],
+      "ctrl-w j": ["workspace::SwapPaneInDirection", "Down"]
     }
   },
   {
@@ -25,35 +36,32 @@
     "bindings": {
       // put key-bindings here (in addition to above) if you want them to work when no editor exists
       "space f": "file_finder::Toggle",
-      "space e": "project_panel::Open"
-      // "space e": "workspace::ToggleLeftDock"
+      "space e": "project_panel::ToggleFocus"
+      // "s pace e": "workspace::ToggleLeftDock"
     }
   },
   {
-    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "context": "Editor && vim_mode == normal || tab_switcher",
+    "bindings": {
+      "space b": "tab_switcher::Toggle",
+      "ctrl-d": "tab_switcher::CloseSelectedItem"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
       // "ctrl-w z": "workspace::ToggleZoom",
       "ctrl-b t": "terminal_panel::ToggleFocus",
       "-": "editor::ToggleComments",
       "space f": "file_finder::Toggle",
-      "space e": "workspace::ToggleLeftDock",
-      "space b": "tab_switcher::Toggle",
-      "ctrl-x": "tab_switcher::CloseSelectedItem",
-
-      // Split panel
-      "ctrl-w '": "pane::SplitRight",
-      "ctrl-w 5": "pane::SplitDown",
-      "space q": "pane::CloseActiveItem",
-
-      // Navigate between panel
-      "ctrl-o": "pane::ActivateNextItem",
-      "ctrl-i": "pane::ActivatePrevItem",
-      // "ctrl-'": "workspace::ToggleZoom",
+      "space e": "project_panel::ToggleFocus",
+      ":": "command_palette::Toggle",
 
       "space h": ["workspace::ActivatePaneInDirection", "Left"],
       "space l": ["workspace::ActivatePaneInDirection", "Right"],
       "space k": ["workspace::ActivatePaneInDirection", "Up"],
       "space j": ["workspace::ActivatePaneInDirection", "Down"],
+      "space q": "pane::CloseActiveItem",
 
       // LSP
       "g d": "editor::GoToDefinitionSplit",
@@ -86,13 +94,14 @@
       //
       "ctrl-d": ["editor::SendKeystrokes", "ctrl-d z z"],
       "ctrl-u": ["editor::SendKeystrokes", "ctrl-u z z"],
-      "tab" :"editor::ToggleFold",
+      "tab": "editor::ToggleFold",
       "space m r": "markdown::OpenPreviewToTheSide"
     }
   },
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
     "bindings": {
+      "-": "editor::ToggleComments",
       "shift-j": "editor::MoveLineDown",
       "shift-k": "editor::MoveLineUp",
       ">": "editor::Indent",
@@ -105,14 +114,22 @@
       "n": "project_panel::NewFile",
       "N": "project_panel::NewDirectory",
       "r": "project_panel::Rename",
-      "D": "project_panel::Delete",
+      "d": "project_panel::Delete",
       "x": "project_panel::Cut",
       "c": "project_panel::Copy",
       "p": "project_panel::Paste",
+      "ctrl-p": "project_panel::CopyPath",
+      "ctrl-P": "project_panel::CopyRelativePath",
       "/": "project_panel::NewSearchInDirectory",
 
-      "q": "workspace::ToggleLeftDock",
-      "space e": "project_panel::Open",
+      "esc": null,
+      "space": null,
+      "backspace": null,
+      // "backspace": "project_panel::CollapseSelectedEntry",
+      // "enter": "project_panel::ExpandSelectedEntry",
+      "q": "workspace::ToggleRightDock",
+      "space e": "project_panel::ToggleFocus",
+      // "ctrl-enter": "project_panel::Open",
 
       // Navigate between panel
       "space h": ["workspace::ActivatePaneInDirection", "Left"],
@@ -122,7 +139,7 @@
     }
   },
   {
-    "context": "Workspace || Terminal",
+    "context": "Terminal",
     "bindings": {
       "ctrl-b t": "workspace::ToggleBottomDock",
       "ctrl-b n": "workspace::NewTerminal",
@@ -130,9 +147,21 @@
       "ctrl-b b": "workspace::ToggleZoom",
       "ctrl-b q": "pane::CloseActiveItem",
 
+      // "ctrl-b '": "pane::SplitRight",
+      // "ctrl-b 5": "pane::SplitDown",
+      // ":": "command_palette::Toggle",
+      // "ctrl-a v": ["workspace::SendKeystrokes", "ctrl-b ' : new center terminal enter"],
+      // "ctrl-a h": ["workspace::SendKeystrokes", "ctrl-b 6 : new center terminal enter"],
+
       // Navigate between panel
       "ctrl-o": "pane::ActivateNextItem",
-      "ctrl-i": "pane::ActivatePrevItem"
+      "ctrl-i": "pane::ActivatePrevItem",
+
+      // Navigate between panel
+      "space h": ["workspace::ActivatePaneInDirection", "Left"],
+      "space l": ["workspace::ActivatePaneInDirection", "Right"],
+      "space k": ["workspace::ActivatePaneInDirection", "Up"],
+      "space j": ["workspace::ActivatePaneInDirection", "Down"]
     }
   }
 ]
