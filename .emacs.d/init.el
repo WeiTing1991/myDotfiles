@@ -58,9 +58,10 @@
     (set-face-attribute 'fixed-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
     (set-face-attribute 'variable-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
     )))
-                                        ;(set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height wt/default-font-size :weight 'regular)
-                                        ;(set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
-                                        ;(set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+
+;(set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height wt/default-font-size :weight 'regular)
+;(set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+;(set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
 
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)

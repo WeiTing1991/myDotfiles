@@ -53,7 +53,5 @@
 
 
 
-
-
 (provide 'app)
 ;;; app.el ends here

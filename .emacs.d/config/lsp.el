@@ -72,7 +72,7 @@
   (evil-define-key 'normal 'global (kbd "gD") 'lsp-find-definition)
   (evil-define-key 'normal 'global (kbd "gr") 'lsp-find-references)
   (evil-define-key 'normal 'global (kbd "gI") 'lsp-goto-implementation)
-  (evil-define-key 'normal 'global (kbd "C-j") 'lsp-treemacs-symbols)
+  ;; (evil-define-key 'normal 'global (kbd "C-j") 'lsp-treemacs-symbols)
   )
 
 ;; https://emacs-lsp.github.io/lsp-ui/
@@ -146,9 +146,9 @@
         ("<escape>" . corfu-quit))    ;; Bind C-g to quit completion
   :custom
   (corfu-auto t)                 ;; Enable auto completion
-  (corfu-auto-prefix 2) ;; TOO SMALL - NOT RECOMMENDED
-  (corfu-auto-delay  0.1) ;; TOO SMALL - NOT RECOMMENDED
-  (corfu-popupinfo-delay '(0.1 . 0.2))
+  (corfu-auto-prefix 1)
+  (corfu-auto-delay  0.05)
+  (corfu-popupinfo-delay '(0.05 . 0.05))
   ;; (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-min-width 1)
   (corfu-max-width 50)
@@ -161,7 +161,7 @@
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
   (corfu-preview-current 'insert)    ;; Disable current candidate preview
   (corfu-preselect 'prompt)      ;; Preselect the prompt
-  (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
   ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
@@ -207,7 +207,8 @@
   (corfu-popupinfo-delay '(0.25 . 0.1))
   (corfu-popupinfo-hide nil)
   :config
-  (corfu-popupinfo-mode))
+  (corfu-popupinfo-mode)
+  )
 
 ;; TODO
 (use-package cape
@@ -231,7 +232,7 @@
   (add-hook 'completion-at-point-functions #'cape-abbrev)
   (add-hook 'completion-at-point-functions #'cape-elisp-block)
   (add-hook 'completion-at-point-functions #'cape-history)
-)
+  )
 
 
 (use-package lsp-treemacs
@@ -256,27 +257,27 @@
   )
 
 ;; TODO
-;; (use-package yasnippet-snippets
-;;   :defer t
-;;   :after yasnippet
-;;   :straight t
-;;   )
+(use-package yasnippet-snippets
+  :defer t
+  :after yasnippet
+  :straight t
+  )
 
-;; (use-package yasnippet
-;;   :straight t
-;;   :defer t
-;;   ;; :init
-;;   ;; (yas-global-mode 1)
-;;   :hook ((prog-mode . yas-minor-mode)
-;;          (text-mode . yas-minor-mode))
-;;   :config
-;;   (yas-reload-all)
-;;   (setq yas-snippet-dirs
-;;         '("~/.emacs.d/snippets"                    ;; personal snippets
-;;           ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
-;;           ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
-;;           ))
-;;   )
+(use-package yasnippet
+  :straight t
+  :defer t
+  ;; :init
+  ;; (yas-global-mode 1)
+  :hook ((prog-mode . yas-minor-mode)
+         (text-mode . yas-minor-mode))
+  :config
+  (yas-reload-all)
+  (setq yas-snippet-dirs
+        '("~/.emacs.d/snippets"                    ;; personal snippets
+          ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+          ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+          ))
+  )
 
 (use-package editorconfig
   :straight t
@@ -345,42 +346,41 @@
                                         ;  :hook (c++-mode . modern-c++-font-lock-mode)
                                         ;)
 
-;; ;; python
-;; (use-package python-mode
-;;   :straight nil
-;;   :defer t
-;;   ;; :hook (python-mode . lsp-deferred)
-;;   ;; :custom
-;;   ;; (python-shell-interpreter "python3")
-;;   )
+;; python
+(use-package python-mode
+  :straight nil
+  :defer t
+  :hook (python-mode . lsp-deferred)
+  ;; :custom
+  ;; (python-shell-interpreter "python3")
+  )
 
-;; (use-package python-ts-mode
-;;   :straight nil
-;;   :defer t
-;;   :hook (python-ts-mode . lsp-deferred)
-;;   :custom
-;;   (python-shell-interpreter "python3")
+(use-package python-ts-mode
+  :straight nil
+  :defer t
+  :hook (python-ts-mode . lsp-deferred)
+  :custom
+  (python-shell-interpreter "python3")
+  ;; (when (eq system-type 'windows-nt)
+  ;;   (setq python-shell-interpreter "C://Users//weitingche//anaconda//python.exe")
+  ;;   )
+  )
 
-;;   (when (eq system-type 'windows-nt)
-;;     (setq python-shell-interpreter "C://Users//weitingche//anaconda//python.exe")
-;;     )
-;; )
+(use-package lsp-pyright
+  :straight t
+  :defer t
+  :custom (lsp-pyright-langserver-command "pyright")
+  :hook (python-ts-mode . (lambda ()
+                            (require 'lsp-pyright)
+                            (lsp-deferred))))
 
-;; (use-package lsp-pyright
-;;   :straight t
-;;   :defer t
-;;   :custom (lsp-pyright-langserver-command "pyright")
-;;   :hook (python-ts-mode . (lambda ()
-;;                          (require 'lsp-pyright)
-;;                          (lsp-deferred))))
-
-;; (use-package conda
-;;   :straight t
-;;   :defer t
-;;   :hook(python-mode . conda-env-autoactivate-mode)
-;;   :config
-;;   (conda-env-initialize-interactive-shells)
-;;   (conda-env-initialize-eshell))
+(use-package conda
+  :straight t
+  :defer t
+  :hook(python-ts-mode . conda-env-autoactivate-mode)
+  :config
+  (conda-env-initialize-interactive-shells)
+  (conda-env-initialize-eshell))
 
 ;; (use-package pyenv-mode
 ;;   :straight t

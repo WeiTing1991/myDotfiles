@@ -25,7 +25,7 @@
 (defvar my-computer-has-smaller-memory-p nil
   "Installing&Compiling many packages could cost too much memory.")
 
-(setq gc-cons-threshold (* 512 1024 1024))
+(setq gc-cons-threshold (* 1024 1024 1024))
 
 (unless my-computer-has-smaller-memory-p
   (setq gc-cons-percentage 0.6)
@@ -33,7 +33,7 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (setq gc-cons-threshold (* 32 1024 1024)
+            (setq gc-cons-threshold (* 64 1024 1024)
                   gc-cons-percentage 0.1)))
 
 (setq idle-update-delay 1.0)
