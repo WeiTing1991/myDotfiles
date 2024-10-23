@@ -65,28 +65,29 @@
 
 ;; This prompt function mostly replicates my custom zsh prompt setup
 ;; that is powered by github.com/denysdovhan/spaceship-prompt.
-(defun wt/eshell-prompt ()
-  (let ((current-branch (magit-get-current-branch))
-        (package-version (wt/get-current-package-version)))
-    (concat
-     "\n"
-     (propertize (system-name) 'face `(:foreground "#62aeed"))
-     (propertize " | " 'face `(:foreground "white"))
-     (propertize (wt/get-prompt-path) 'face `(:foreground "#82cfd3"))
-     (when current-branch
-       (concat
-        (propertize " • " 'face `(:foreground "white"))
-        (propertize (concat "|" current-branch) 'face `(:foreground "#c475f0"))))
-     (when package-version
-       (concat
-        (propertize " @ " 'face `(:foreground "white"))
-        (propertize package-version 'face `(:foreground "#e8a206"))))
-     (propertize " • " 'face `(:foreground "white"))
-     (propertize (format-time-string "%I:%M:%S %p") 'face `(:foreground "#5a5b7f"))
-     (if (= (user-uid) 0)
-         (propertize "\n#" 'face `(:foreground "red2"))
-       (propertize "\n?" 'face `(:foreground "#aece4a")))
-     (propertize " " 'face `(:foreground "white")))))
+;; (defun wt/eshell-prompt ()
+;;   (let ((current-branch (magit-get-current-branch))
+;;         (package-version (wt/get-current-package-version)))
+;;     (concat
+;;      "\n"
+;;      ;; (propertize (system-name) 'face `(:foreground "#62aeed"))
+;;      ;; (propertize " ? " 'face `(:foreground "white"))
+;;      (propertize (wt/get-prompt-path) 'face `(:foreground "#82cfd3"))
+;;      (when current-branch
+;;        (concat
+;;         (propertize " • " 'face `(:foreground "white"))
+;;         (propertize (concat "|| " current-branch) 'face `(:foreground "#c475f0"))))
+;;      (when package-version
+;;        (concat
+;;         (propertize " @ " 'face `(:foreground "white"))
+;;         (propertize package-version 'face `(:foreground "#e8a206"))))
+;;      ;; (propertize " • " 'face `(:foreground "white"))
+;;      ;; (propertize (format-time-string "%I:%M:%S %p") 'face `(:foreground "#5a5b7f"))
+;;      ;; (if (= (user-uid) 0)
+;;      ;;     (propertize "\n#" 'face `(:foreground "red2"))
+;;      ;;   (propertize "\n?" 'face `(:foreground "#aece4a"))
+;;      ;;   )
+;;      (propertize " " 'face `(:foreground "white")))))
 
 (use-package xterm-color
   :straight t
@@ -136,11 +137,11 @@
         (evil-normalize-keymaps))
     (define-key eshell-mode-map (kbd "C-r") 'consult-history))
 
-  (setenv "PAGER" "cat")
+  ;; (setenv "PAGER" "cat")
 
   (setq
-   eshell-prompt-function      'wt/eshell-prompt
-   eshell-prompt-regexp        "^? "
+   ;; eshell-prompt-function      'wt/eshell-prompt
+   eshell-prompt-regexp        "| "
    eshell-history-size         1000
    eshell-buffer-maximum-lines 1000
    eshell-hist-ignoredups t
@@ -151,11 +152,11 @@
 
 
 ;;https://github.com/jschaf/powershell.el
-(use-package powershell
-  :if (eq system-type 'windows-nt)
-  :straight t
-  ;; :hook (eshell-mode . powershell-mode)
-  )
+;; (use-package powershell
+;;   :if (eq system-type 'windows-nt)
+;;   :straight t
+;;   :hook (eshell-mode . powershell-mode)
+;;   )
 
 (use-package eshell
   :config
@@ -177,15 +178,15 @@
       (call-interactively #'project-eshell)
     (call-interactively #'eshell)))
 
-(with-eval-after-load 'esh-opt
-  (setq eshell-destroy-buffer-when-process-dies t)
-  (setq eshell-visual-commands '("htop" "zsh" "vim"))
-  ;; (setq eshell-visual-commands nil)
-  )
+;; (with-eval-after-load 'esh-opt
+;; (setq eshell-destroy-buffer-when-process-dies t)
+;; (setq eshell-visual-commands '("htop" "zsh" "vim"))
+;; (setq eshell-visual-commands nil)
+;; )
 
-(use-package pcmpl-args
-  :demand t
-  :after eshell)
+;; (use-package pcmpl-args
+;;   :demand t
+;;   :after eshell)
 
 (use-package eshell-syntax-highlighting
   :after eshell
@@ -203,7 +204,7 @@
   :defer t
   :hook (eshell-mode . esh-autosuggest-mode)
   :config
-  (setq esh-autosuggest-delay 0.2))
+  (setq esh-autosuggest-delay 0.1))
 
 ;; (use-package eat
 ;;   :straight t
@@ -225,13 +226,13 @@
     (setq completion-at-point-functions
           (list #'cape-history #'cape-file #'cape-dabbrev)))
   (add-hook 'eshell-cmpl-mode-hook #'my/em-cmpl-mode-hook)
-  )
+)
 
-;; (use-package corfu-terminal
-;;   :if (not (display-graphic-p))
-;;   :straight t
-;;   :config
-;;   (corfu-terminal-mode))
+(use-package corfu-terminal
+  :if (not (display-graphic-p))
+  :straight t
+  :config
+  (corfu-terminal-mode))
 
 ;; (use-package vterm
 ;;   :commands vterm

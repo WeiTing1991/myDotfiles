@@ -109,3 +109,11 @@ ls
 git statue
 ls
 pwsh
+clear
+.dotfiles • || main 
+ls
+pwsh
+ls
+git status
+git add .
+git commit -am "fix term issue"
