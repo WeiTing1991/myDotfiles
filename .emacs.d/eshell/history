@@ -14,7 +14,6 @@ which python3
 clear
 la
 clear
-git status
 ls
 clear
 which pytho
@@ -36,7 +35,6 @@ clear 1
 clear
 ls
 conda
-git status
 dired .
 ls
 clear
@@ -46,7 +44,6 @@ pwsh
 ls
 conda 
 pwsh
-git status
 clear
 pwsh
 clear
@@ -71,3 +68,44 @@ ls
 git status 
 clear
 clear
+ls
+ls
+ls
+ls
+clear
+ls
+ls
+git add .
+git commit -am "update emacs on winodws"
+clear
+conda 
+clear
+ls
+exit
+ls
+ls
+dired .
+ls
+clear
+ls
+clear
+pwsh
+ls
+ls
+clear
+ls
+ls
+clear
+ls
+clear
+ls
+clear
+git
+clear
+ls
+~/.dotfiles $ls 
+git status
+ls
+git statue
+ls
+pwsh

@@ -226,36 +226,13 @@
   ;; used by `completion-at-point'.  The order of the functions matters, the
   ;; first function returning a result wins.  Note that the list of buffer-local
   ;; completion functions takes precedence over the global list.
-  (defun my/add-shell-completion ()
-    (interactive)
-    (setq completion-at-point-functions
-          (list #'cape-history #'cape-file #'cape-dabbrev)))
-    (add-to-list 'completion-at-point-functions 'pcomplete-completions-at-point)
-  (add-hook 'shell-mode-hook #'my/add-shell-completion nil t)
-
-  (add-hook 'pcomplete-completions-at-point #'cape-dabbrev)
-  (add-hook 'pcomplete-completions-at-point #'cape-file)
-  (add-hook 'pcomplete-completions-at-point #'cape-abbrev)
-  (add-hook 'pcomplete-completions-at-point #'cape-elisp-block)
-  (add-hook 'pcomplete-completions-at-point #'cape-history)
-
-  ;; (add-hook 'completion-at-point-functions #'cape-dabbrev)
-  ;; (add-hook 'completion-at-point-functions #'cape-file)
-  ;; (add-hook 'completion-at-point-functions #'cape-abbrev)
-  ;; (add-hook 'completion-at-point-functions #'cape-elisp-block)
-  ;; (add-hook 'completion-at-point-functions #'cape-history)
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-abbrev)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  (add-hook 'completion-at-point-functions #'cape-history)
 )
 
-;; (use-package em-cmpl
-;;   :straight nil
-;;   ;; :hook(eshell-mode . eshell-cmpl-mode-hook)
-;;   :config
-;;   (bind-key "C-M-i" nil eshell-cmpl-mode-map)
-;;   (defun my/em-cmpl-mode-hook ()
-;;     (setq completion-at-point-functions
-;;           (list #'cape-history #'cape-file #'cape-dabbrev)))
-;;   (add-hook 'eshell-cmpl-mode-hook #'my/em-cmpl-mode-hook)
-;;   )
 
 (use-package lsp-treemacs
   :straight t

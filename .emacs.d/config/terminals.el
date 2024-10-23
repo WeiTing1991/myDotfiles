@@ -71,21 +71,21 @@
     (concat
      "\n"
      (propertize (system-name) 'face `(:foreground "#62aeed"))
-     ;; (propertize " ॐ " 'face `(:foreground "white"))
+     (propertize " | " 'face `(:foreground "white"))
      (propertize (wt/get-prompt-path) 'face `(:foreground "#82cfd3"))
      (when current-branch
        (concat
-        (propertize " • " 'face `(:foreground "white"))
-        (propertize (concat " " current-branch) 'face `(:foreground "#c475f0"))))
+        (propertize " � " 'face `(:foreground "white"))
+        (propertize (concat "|" current-branch) 'face `(:foreground "#c475f0"))))
      (when package-version
        (concat
         (propertize " @ " 'face `(:foreground "white"))
         (propertize package-version 'face `(:foreground "#e8a206"))))
-     (propertize " • " 'face `(:foreground "white"))
+     (propertize " � " 'face `(:foreground "white"))
      (propertize (format-time-string "%I:%M:%S %p") 'face `(:foreground "#5a5b7f"))
      (if (= (user-uid) 0)
          (propertize "\n#" 'face `(:foreground "red2"))
-       (propertize "\nλ" 'face `(:foreground "#aece4a")))
+       (propertize "\n?" 'face `(:foreground "#aece4a")))
      (propertize " " 'face `(:foreground "white")))))
 
 (use-package xterm-color
@@ -96,7 +96,7 @@
   ;; Make sure magit is loaded
   (require 'magit)
 
-  ;; (setq eshell-terminal-type nil)
+  (setq eshell-terminal-type nil)
   (push 'eshell-tramp eshell-modules-list)
   (push 'xterm-color-filter eshell-preoutput-filter-functions)
   (delq 'eshell-handle-ansi-color eshell-output-filter-functions)
@@ -140,7 +140,7 @@
 
   (setq
    eshell-prompt-function      'wt/eshell-prompt
-   eshell-prompt-regexp        "^λ "
+   eshell-prompt-regexp        "^? "
    eshell-history-size         1000
    eshell-buffer-maximum-lines 1000
    eshell-hist-ignoredups t
@@ -152,9 +152,9 @@
 
 ;;https://github.com/jschaf/powershell.el
 (use-package powershell
-  :if (memq window-system '(nt))
+  :if (eq system-type 'windows-nt)
   :straight t
-  :hook (ehsell-mode . powershell-mode)
+  ;; :hook (eshell-mode . powershell-mode)
   )
 
 (use-package eshell
@@ -217,16 +217,15 @@
 ;;   (setq eshell-visual-commands '())
 ;;   )
 
-;; (use-package em-cmpl
-;;   :straight nil
-;;   ;; :hook(eshell-mode . eshell-cmpl-mode-hook)
-;;   :config
-;;   (bind-key "C-M-i" nil eshell-cmpl-mode-map)
-;;   (defun my/em-cmpl-mode-hook ()
-;;     (setq completion-at-point-functions
-;;           (list #'cape-history #'cape-file #'cape-dabbrev)))
-;;   (add-hook 'eshell-cmpl-mode-hook #'my/em-cmpl-mode-hook)
-;;   )
+(use-package em-cmpl
+  :straight nil
+  :config
+  (bind-key "C-M-i" nil eshell-cmpl-mode-map)
+  (defun my/em-cmpl-mode-hook ()
+    (setq completion-at-point-functions
+          (list #'cape-history #'cape-file #'cape-dabbrev)))
+  (add-hook 'eshell-cmpl-mode-hook #'my/em-cmpl-mode-hook)
+  )
 
 ;; (use-package corfu-terminal
 ;;   :if (not (display-graphic-p))

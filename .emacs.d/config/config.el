@@ -175,7 +175,6 @@
 (set-charset-priority 'unicode) ;; utf8 everywhere
 
 ;; Buffer encoding
-(set-charset-priority 'unicode)
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -183,18 +182,23 @@
 (set-language-environment   'utf-8)
 (set-selection-coding-system 'utf-8)
 
-(cond
- ((string-equal system-type "windows-nt")
-  (progn
-    (setq default-process-coding-system '(utf-8-dos . utf-8-dos))))
- ((string-equal system-type "gnu/linux")
-  (progn
-    (setq default-process-coding-system '(utf-8-unix . utf-8-unix)))))
+;; (cond
+;;  ((string-equal system-type "windows-nt")
+;;   (progn
+;;     (setq default-process-coding-system '(utf-8-dos . utf-8-dos))))
+;;  ((string-equal system-type "gnu/linux")
+;;   (progn
+;;     (setq default-process-coding-system '(utf-8-unix . utf-8-unix)))))
 
-(defun tp/encoding/dos2unix ()
-  "Not exactly but it's easier to remember"
-  (interactive)
-  (set-buffer-file-coding-system 'utf-8-unix 't))
+(setq locale-coding-system 'utf-8
+  coding-system-for-read 'utf-8
+  coding-system-for-write 'utf-8)
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+
+;; (defun tp/encoding/dos2unix ()
+;;   "Not exactly but it's easier to remember"
+;;   (interactive)
+;;   (set-buffer-file-coding-system 'utf-8-unix 't))
 
 ;; Unique buffer names
 (require 'uniquify)
