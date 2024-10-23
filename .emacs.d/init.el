@@ -41,8 +41,8 @@
   )
  ;; Windows configuration
  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-  (defvar  wt/default-font-size 100)
-  (defvar  wt/default-variable-font-size 80)
+  (defvar  wt/default-font-size 140)
+  (defvar  wt/default-variable-font-size 100)
   (defvar  wt/frame-transparency '(95 . 90))
   )
  )
@@ -50,9 +50,9 @@
 ;; Set the font
 (when (display-graphic-p)
   (set-frame-font "RobotoMono Nerd Font" nil t))
-;(set-face-attribute 'default nil :font "Sauce Code Pro Nerd Font" :height wt/default-font-size)
-;; (set-face-attribute 'fixed-pitch nil :font "Sauce Code Pro" :height wt/default-variable-font-size)
-;; (set-face-attribute 'variable-pitch nil :font "Sauce Code Pro" :height wt/default-variable-font-size)
+(set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height wt/default-font-size :weight 'regular)
+(set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+(set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
 
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
@@ -131,7 +131,7 @@
 (load-file (expand-file-name "./config/core.el" user-emacs-directory))
 (load-file (expand-file-name "./config/ui.el" user-emacs-directory))
 (load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
-;;(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
+(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
 ;;(load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
 ;;(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
 ;;(load-file (expand-file-name "./config/app.el" user-emacs-directory))

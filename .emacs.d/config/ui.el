@@ -44,6 +44,23 @@
 ;;   (mood-line-glyph-alist mood-line-glyphs-fira-code)
 ;;   (setq mood-line-format mood-line-format-default-extended)
 ;;   )
+(setq-default mode-line-format
+              '("%e" "  "
+                (:propertize
+                 ("" mode-line-mule-info mode-line-client mode-line-modified mode-line-remote))
+                mode-line-frame-identification
+                mode-line-buffer-identification
+                "   "
+                mode-line-position
+                mode-line-format-right-align
+                (vc-mode vc-mode)
+                "  "
+                mode-line-modes
+                mode-line-misc-info
+                "  ")
+              mode-line-percent-position nil
+              mode-line-buffer-identification '(" %b")
+              mode-line-position-column-line-format '(" %l:%c"))
 
 (use-package minions
   :straight t

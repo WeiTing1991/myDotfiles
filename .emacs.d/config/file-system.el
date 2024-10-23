@@ -106,13 +106,6 @@
 ;;   :straight t
 ;; )
 
-;; git tool
-(use-package magit
-  :straight t
-  :defer t
-  :commands magit-status
-  :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 (provide 'file-system)
 ;;;file-system code end here

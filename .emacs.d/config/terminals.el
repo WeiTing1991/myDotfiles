@@ -12,6 +12,14 @@
     ad-do-it))
 (ad-activate 'term-sentinel)
 
+;; git tool
+(use-package magit
+  :straight t
+  :defer t
+  :commands magit-status
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
 (when (eq system-type 'windows-nt)
   (setq explicit-shell-file-name "C:/Program Files/PowerShell/7/pwsh.exe")
   (setq shell-file-name explicit-shell-file-name)
@@ -202,18 +210,18 @@
   :hook (eshell-mode . esh-autosuggest-mode)
   :config
   (setq esh-autosuggest-delay 0.2))
-;;
-(use-package eat
-  :straight t
-  :after eshell
-  :custom
-  (eat-kill-buffer-on-exit t)
-  (eat-enable-shell-prompt-annotation nil)
-  ;; :config
-  ;; (eat-eshell-mode)
-  ;; (eat-eshell-visual-command-mode)
-  ;; (setq eshell-visual-commands '())
-  )
+
+;; (use-package eat
+;;   :straight t
+;;   :after eshell
+;;   :custom
+;;   (eat-kill-buffer-on-exit t)
+;;   (eat-enable-shell-prompt-annotation nil)
+;;   :config
+;;   (eat-eshell-mode)
+;;   (eat-eshell-visual-command-mode)
+;;   (setq eshell-visual-commands '())
+;;   )
 
 (use-package em-cmpl
   :straight nil
