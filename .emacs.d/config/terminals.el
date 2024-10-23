@@ -23,21 +23,9 @@
 (when (eq system-type 'windows-nt)
   (setq explicit-shell-file-name "C:/Program Files/PowerShell/7/pwsh.exe")
   (setq shell-file-name explicit-shell-file-name)
-  ;; (setq explicit-powershell-args '())
-  ;; (setq explicit-prompt-regexp "^[^#$%>\n]*[#$%>] ")
-  ;; (setq shell-prompt-regexp "^[^#$%>\n]*[#$%>] *")
-  ;; (setq comint-prompt-read-only t)
-
-  ;; (defun my-eshell-set-paths ()
-  ;;   "Set PATH and other environment variables for Eshell."
-  ;;   (setenv "PATH" (concat "C:/Users/weitingchen/anaconda3"
-  ;;                          (getenv "PATH"))))
-  ;; (add-hook 'eshell-mode-hook 'my-eshell-set-paths)
-  (add-hook 'eshell-load-hook
-            (lambda ()
-              (defalias 'python 'python-shell-interpreter)))
   )
 
+;; TODO this https://github.com/tompurl/dot-emacs/blob/master/emacs-init.org#spell-checking
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns x))
   :after eshell
@@ -83,7 +71,7 @@
     (concat
      "\n"
      (propertize (system-name) 'face `(:foreground "#62aeed"))
-     (propertize " ॐ " 'face `(:foreground "white"))
+     ;; (propertize " ॐ " 'face `(:foreground "white"))
      (propertize (wt/get-prompt-path) 'face `(:foreground "#82cfd3"))
      (when current-branch
        (concat
@@ -108,8 +96,7 @@
   ;; Make sure magit is loaded
   (require 'magit)
 
-  (setq eshell-terminal-type nil)
-
+  ;; (setq eshell-terminal-type nil)
   (push 'eshell-tramp eshell-modules-list)
   (push 'xterm-color-filter eshell-preoutput-filter-functions)
   (delq 'eshell-handle-ansi-color eshell-output-filter-functions)
@@ -130,8 +117,8 @@
   (add-hook 'eshell-pre-command-hook
             (lambda () (setenv "TERM" "xterm-256color")))
 
-  (add-hook 'eshell-post-command-hook
-            (lambda () (setenv "TERM" "dumb")))
+  ;; (add-hook 'eshell-post-command-hook
+  ;;           (lambda () (setenv "TERM" "dumb")))
 
   ;; Use completion-at-point to provide completions in eshell
   (define-key eshell-mode-map (kbd "<tab>") 'completion-at-point)
@@ -144,23 +131,31 @@
         (require 'evil-collection-eshell)
         (evil-collection-eshell-setup)
         (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'consult-history)
-        (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+        (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-n") 'eshell-bol)
         (evil-define-key '(normal visual) eshell-mode-map (kbd "C-l") 'eshell/clear)
         (evil-normalize-keymaps))
     (define-key eshell-mode-map (kbd "C-r") 'consult-history))
 
   (setenv "PAGER" "cat")
 
-  (setq eshell-prompt-function      'wt/eshell-prompt
-        eshell-prompt-regexp        "^λ "
-        eshell-history-size         5000
-        eshell-buffer-maximum-lines 5000
-        eshell-hist-ignoredups t
-        eshell-highlight-prompt t
-        eshell-scroll-to-bottom-on-input t
-        eshell-prefer-lisp-functions nil)
-  )
+  (setq
+   eshell-prompt-function      'wt/eshell-prompt
+   eshell-prompt-regexp        "^λ "
+   eshell-history-size         1000
+   eshell-buffer-maximum-lines 1000
+   eshell-hist-ignoredups t
+   eshell-highlight-prompt t
+   eshell-scroll-to-bottom-on-input t
+   eshell-prefer-lisp-functions nil)
+)
 
+
+;;https://github.com/jschaf/powershell.el
+(use-package powershell
+  :if (memq window-system '(nt))
+  :straight t
+  :hook (ehsell-mode . powershell-mode)
+  )
 
 (use-package eshell
   :config
@@ -176,7 +171,6 @@
             (eshell/alias "clear" "clear 1")  ; Set alias for git
             ))
 
-
 (defun wt/switch-to-eshell ()
   (interactive)
   (if (project-current)
@@ -189,7 +183,6 @@
   ;; (setq eshell-visual-commands nil)
   )
 
-
 (use-package pcmpl-args
   :demand t
   :after eshell)
@@ -200,12 +193,13 @@
   :config
   (eshell-syntax-highlighting-global-mode +1))
 
-(defun wt/esh-autosuggest-setup ()
-  (require 'company)
-  (set-face-foreground 'company-preview-common "#4b5668")
-  (set-face-background 'company-preview nil))
+;; (defun wt/esh-autosuggest-setup ()
+;;   (require 'company)
+;;   (set-face-foreground 'company-preview-common "#4b5668")
+;;   (set-face-background 'company-preview nil))
 
 (use-package esh-autosuggest
+  :straight t
   :defer t
   :hook (eshell-mode . esh-autosuggest-mode)
   :config
@@ -223,15 +217,16 @@
 ;;   (setq eshell-visual-commands '())
 ;;   )
 
-(use-package em-cmpl
-  :straight nil
-  :config
-  (bind-key "C-M-i" nil eshell-cmpl-mode-map)
-  (defun my/em-cmpl-mode-hook ()
-    (setq completion-at-point-functions
-          (list #'cape-history #'cape-file #'cape-dabbrev)))
-  (add-hook 'eshell-cmpl-mode-hook #'my/em-cmpl-mode-hook)
-  )
+;; (use-package em-cmpl
+;;   :straight nil
+;;   ;; :hook(eshell-mode . eshell-cmpl-mode-hook)
+;;   :config
+;;   (bind-key "C-M-i" nil eshell-cmpl-mode-map)
+;;   (defun my/em-cmpl-mode-hook ()
+;;     (setq completion-at-point-functions
+;;           (list #'cape-history #'cape-file #'cape-dabbrev)))
+;;   (add-hook 'eshell-cmpl-mode-hook #'my/em-cmpl-mode-hook)
+;;   )
 
 ;; (use-package corfu-terminal
 ;;   :if (not (display-graphic-p))

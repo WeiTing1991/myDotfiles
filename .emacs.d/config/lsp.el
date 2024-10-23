@@ -146,10 +146,10 @@
         ("<escape>" . corfu-quit))    ;; Bind C-g to quit completion
   :custom
   (corfu-auto t)                 ;; Enable auto completion
-  (corfu-auto-delay  0.1) ;; TOO SMALL - NOT RECOMMENDED
   (corfu-auto-prefix 2) ;; TOO SMALL - NOT RECOMMENDED
-  ;; (corfu-popupinfo-delay '(0.5 . 0.5))
-  (corfu-separator ?\s)          ;; Orderless field separator
+  (corfu-auto-delay  0.1) ;; TOO SMALL - NOT RECOMMENDED
+  (corfu-popupinfo-delay '(0.1 . 0.2))
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-min-width 1)
   (corfu-max-width 50)
   (corfu-count 14)
@@ -159,9 +159,9 @@
   (corfu-preselect-first t)
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  (corfu-preview-current 'insert)    ;; Disable current candidate preview
+  (corfu-preselect 'prompt)      ;; Preselect the prompt
+  (corfu-on-exact-match nil)     ;; Configure handling of exact matches
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
   ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
@@ -175,9 +175,7 @@
   :init
   ;; Enable Corfu
   (global-corfu-mode t)
-  ;; Enable Corfu history mode to act like `prescient'
   (corfu-history-mode t)
-  ;; Allow Corfu to show help text next to suggested completion
   (corfu-popupinfo-mode t)
   )
 
@@ -223,22 +221,47 @@
   ;;        ("C-c p f" . cape-file)
   ;;        ...)
   :init
+
   ;; Add to the global default value of `completion-at-point-functions' which is
   ;; used by `completion-at-point'.  The order of the functions matters, the
   ;; first function returning a result wins.  Note that the list of buffer-local
   ;; completion functions takes precedence over the global list.
-  (add-hook 'completion-at-point-functions #'cape-dabbrev)
-  (add-hook 'completion-at-point-functions #'cape-file)
-  (add-hook 'completion-at-point-functions #'cape-abbrev)
-  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  (defun my/add-shell-completion ()
+    (interactive)
+    (setq completion-at-point-functions
+          (list #'cape-history #'cape-file #'cape-dabbrev)))
+    (add-to-list 'completion-at-point-functions 'pcomplete-completions-at-point)
+  (add-hook 'shell-mode-hook #'my/add-shell-completion nil t)
+
+  (add-hook 'pcomplete-completions-at-point #'cape-dabbrev)
+  (add-hook 'pcomplete-completions-at-point #'cape-file)
+  (add-hook 'pcomplete-completions-at-point #'cape-abbrev)
+  (add-hook 'pcomplete-completions-at-point #'cape-elisp-block)
+  (add-hook 'pcomplete-completions-at-point #'cape-history)
+
+  ;; (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  ;; (add-hook 'completion-at-point-functions #'cape-file)
+  ;; (add-hook 'completion-at-point-functions #'cape-abbrev)
+  ;; (add-hook 'completion-at-point-functions #'cape-elisp-block)
   ;; (add-hook 'completion-at-point-functions #'cape-history)
-  ;; ...
 )
 
-;; (use-package lsp-treemacs
-;;   :straight t
-;;   :after lsp-mode
+;; (use-package em-cmpl
+;;   :straight nil
+;;   ;; :hook(eshell-mode . eshell-cmpl-mode-hook)
+;;   :config
+;;   (bind-key "C-M-i" nil eshell-cmpl-mode-map)
+;;   (defun my/em-cmpl-mode-hook ()
+;;     (setq completion-at-point-functions
+;;           (list #'cape-history #'cape-file #'cape-dabbrev)))
+;;   (add-hook 'eshell-cmpl-mode-hook #'my/em-cmpl-mode-hook)
 ;;   )
+
+(use-package lsp-treemacs
+  :straight t
+  :defer t
+  :after lsp-mode
+  )
 
 ;; Syntax check as linter
 ;; https://www.flycheck.org/en/latest/user/installation.html
@@ -250,34 +273,33 @@
   :custom
   (setq flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
   )
-
 ;; for Emacs Lisp
 (with-eval-after-load 'flycheck
   '(flycheck-package-setup)
   )
 
+;; TODO
+;; (use-package yasnippet-snippets
+;;   :defer t
+;;   :after yasnippet
+;;   :straight t
+;;   )
 
-(use-package yasnippet-snippets
-  :defer t
-  :after yasnippet
-  :straight t
-  )
-
-(use-package yasnippet
-  :straight t
-  :defer t
-  ;; :init
-  ;; (yas-global-mode 1)
-  :hook ((prog-mode . yas-minor-mode)
-         (text-mode . yas-minor-mode))
-  :config
-  (yas-reload-all)
-  (setq yas-snippet-dirs
-        '("~/.emacs.d/snippets"                    ;; personal snippets
-          ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
-          ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
-          ))
-  )
+;; (use-package yasnippet
+;;   :straight t
+;;   :defer t
+;;   ;; :init
+;;   ;; (yas-global-mode 1)
+;;   :hook ((prog-mode . yas-minor-mode)
+;;          (text-mode . yas-minor-mode))
+;;   :config
+;;   (yas-reload-all)
+;;   (setq yas-snippet-dirs
+;;         '("~/.emacs.d/snippets"                    ;; personal snippets
+;;           ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+;;           ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+;;           ))
+;;   )
 
 (use-package editorconfig
   :straight t
@@ -321,22 +343,22 @@
 ;; Note check here https://config.phundrak.com/emacs/packages/programming.html#caddy
 ;; https://github.com/emacs-exordium/exordium/blob/master/modules/init-cpp.el
 
-(use-package cc-mode
-  :defer t
-  :straight nil
-  :hook ((c++-mode . lsp-deferred)
-         (c++-mode . #'tree-sitter-hl-mode)
-         ;; (c-mode . #'tree-sitter-hl-mode)
-         )
-  :config
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-  )
+;; (use-package cc-mode
+;;   :defer t
+;;   :straight nil
+;;   :hook ((c++-mode . lsp-deferred)
+;;          (c++-mode . #'tree-sitter-hl-mode)
+;;          ;; (c-mode . #'tree-sitter-hl-mode)
+;;          )
+;;   :config
+;;   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;;   )
 
-(use-package cmake-mode
-  :defer t
-  :straight t
-  :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
-         ("\\.cmake\\'" . cmake-mode)))
+;; (use-package cmake-mode
+;;   :defer t
+;;   :straight t
+;;   :mode (("/CMakeLists\\.txt\\'" . cmake-mode)
+;;          ("\\.cmake\\'" . cmake-mode)))
 
 ;;https://github.com/ludwigpacifici/modern-cpp-font-lock
                                         ;(use-package modern-cpp-font-lock
@@ -346,48 +368,48 @@
                                         ;  :hook (c++-mode . modern-c++-font-lock-mode)
                                         ;)
 
-;; python
-(use-package python-mode
-  :straight nil
-  :defer t
-  ;; :hook (python-mode . lsp-deferred)
-  ;; :custom
-  ;; (python-shell-interpreter "python3")
-  )
+;; ;; python
+;; (use-package python-mode
+;;   :straight nil
+;;   :defer t
+;;   ;; :hook (python-mode . lsp-deferred)
+;;   ;; :custom
+;;   ;; (python-shell-interpreter "python3")
+;;   )
 
-(use-package python-ts-mode
-  :straight nil
-  :defer t
-  :hook (python-ts-mode . lsp-deferred)
-  :custom
-  (python-shell-interpreter "python3")
+;; (use-package python-ts-mode
+;;   :straight nil
+;;   :defer t
+;;   :hook (python-ts-mode . lsp-deferred)
+;;   :custom
+;;   (python-shell-interpreter "python3")
 
-  (when (eq system-type 'windows-nt)
-    (setq python-shell-interpreter "C://Users//weitingche//anaconda//python.exe")
-    )
-)
+;;   (when (eq system-type 'windows-nt)
+;;     (setq python-shell-interpreter "C://Users//weitingche//anaconda//python.exe")
+;;     )
+;; )
 
-(use-package lsp-pyright
-  :straight t
-  :defer t
-  :custom (lsp-pyright-langserver-command "pyright")
-  :hook (python-ts-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp-deferred))))
+;; (use-package lsp-pyright
+;;   :straight t
+;;   :defer t
+;;   :custom (lsp-pyright-langserver-command "pyright")
+;;   :hook (python-ts-mode . (lambda ()
+;;                          (require 'lsp-pyright)
+;;                          (lsp-deferred))))
 
-(use-package conda
-  :straight t
-  :defer t
-  :hook(python-mode . conda-env-autoactivate-mode)
-  :config
-  (conda-env-initialize-interactive-shells)
-  (conda-env-initialize-eshell))
+;; (use-package conda
+;;   :straight t
+;;   :defer t
+;;   :hook(python-mode . conda-env-autoactivate-mode)
+;;   :config
+;;   (conda-env-initialize-interactive-shells)
+;;   (conda-env-initialize-eshell))
 
-(use-package pyenv-mode
-  :straight t
-  :defer t
-  :hook (python-mode .pyenv-mode)
-  )
+;; (use-package pyenv-mode
+;;   :straight t
+;;   :defer t
+;;   :hook (python-mode .pyenv-mode)
+;;   )
 
 
 ;; https://github.com/copilot-emacs/copilot.el

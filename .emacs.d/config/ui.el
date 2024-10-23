@@ -35,15 +35,17 @@
   )
 
 ;; modeline
-;; (setq-default mode-line-format nil)
+;; Hide the mode line globally
+(setq-default mode-line-format nil)
 
-;; (use-package mood-line
-;;   :straight t
-;;   :hook(prog-mode . mood-line-mode)
-;;   :custom
-;;   (mood-line-glyph-alist mood-line-glyphs-fira-code)
-;;   (setq mood-line-format mood-line-format-default-extended)
-;;   )
+;; Enable the mode line in programming modes
+(defun enable-mode-line ()
+  "Enable the mode line in programming modes."
+  (setq mode-line-format (default-value 'mode-line-format)))
+
+;; Hook into all programming modes
+(add-hook 'prog-mode-hook 'enable-mode-line)
+
 (setq-default mode-line-format
               '("%e" "  "
                 (:propertize
@@ -62,6 +64,9 @@
               mode-line-buffer-identification '(" %b")
               mode-line-position-column-line-format '(" %l:%c"))
 
+(set-face-attribute 'mode-line nil :weight 'bold)
+(set-face-attribute 'mode-line-inactive nil :weight 'bold)
+
 (use-package minions
   :straight t
   :demand t
@@ -72,7 +77,6 @@
 ;; (set-face-attribute 'mode-line nil
 ;;                     :background "#0D0907"  ;; Background color
 ;;                     :box nil)              ;; Remove box around the mode line
-
 ;; (set-face-attribute 'mode-line-inactive nil
 ;;                     :background "#0D0907"  ;; Inactive background color
 ;;                     :box nil)              ;; Remove box around the inactive mode line

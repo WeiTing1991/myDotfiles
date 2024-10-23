@@ -41,8 +41,8 @@
   )
  ;; Windows configuration
  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-  (defvar  wt/default-font-size 140)
-  (defvar  wt/default-variable-font-size 100)
+  (defvar  wt/default-font-size 100)
+  (defvar  wt/default-variable-font-size 80)
   (defvar  wt/frame-transparency '(95 . 90))
   )
  )
@@ -50,9 +50,17 @@
 ;; Set the font
 (when (display-graphic-p)
   (set-frame-font "RobotoMono Nerd Font" nil t))
-(set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height wt/default-font-size :weight 'regular)
-(set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
-(set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+(cond
+ ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
+  (progn
+    (setq inhibit-compacting-font-caches 1)
+    (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'regular)
+    (set-face-attribute 'fixed-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+    (set-face-attribute 'variable-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+    )))
+                                        ;(set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height wt/default-font-size :weight 'regular)
+                                        ;(set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+                                        ;(set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
 
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
@@ -64,17 +72,17 @@
 
 (setq default-frame-alist
       (append (list
-              '(min-height . 1)
-              '(height     . 50)
-              '(min-width  . 1)
-              '(width      . 100)
-              '(horizontal-scroll-bars . nil)
-              '(vertical-scroll-bars . nil)
-              '(internal-border-width . 24)
-              '(left-fringe    . 1)
-              '(right-fringe   . 1)
-              '(tool-bar-lines . -1)
-              '(menu-bar-lines . -1)))
+               '(min-height . 1)
+               '(height     . 50)
+               '(min-width  . 1)
+               '(width      . 100)
+               '(horizontal-scroll-bars . nil)
+               '(vertical-scroll-bars . nil)
+               '(internal-border-width . 24)
+               '(left-fringe    . 1)
+               '(right-fringe   . 1)
+               '(tool-bar-lines . -1)
+               '(menu-bar-lines . -1)))
       )
 
 ;; Fall back font for glyph missing in Roboto
@@ -83,11 +91,11 @@
 (set-display-table-slot standard-display-table 'truncation
                         (make-glyph-code ?… 'fallback))
 (set-display-table-slot standard-display-table 'wrap
-                         (make-glyph-code ?↩ 'fallback))
+                        (make-glyph-code ?↩ 'fallback))
 
 ;; Fix bug on OSX in term mode & zsh (spurious % after each command)
 (add-hook 'term-mode-hook
-    (lambda () (setq buffer-display-table (make-display-table))))
+          (lambda () (setq buffer-display-table (make-display-table))))
 (setq x-underline-at-descent-line t)
 
 ;; Vertical window divider
@@ -132,23 +140,23 @@
 (load-file (expand-file-name "./config/ui.el" user-emacs-directory))
 (load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
 (load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
-;;(load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
-;;(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
-;;(load-file (expand-file-name "./config/app.el" user-emacs-directory))
+(load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
+(load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
+(load-file (expand-file-name "./config/app.el" user-emacs-directory))
 
-;; (defun my-persp-format ()
-;;   "Return the name of the current perspective."
-;;   (if (persp-mode)
-;;       (format "[%s]" (persp-name (persp-curr)))
-;;     ""))
 
-;; (setq frame-title-format '("WeiTingEmacs v" emacs-version "     "
+(setq frame-title-format
+      '("WeiTingEmacs v" emacs-version "     "
+        (:eval (if (fboundp 'persp-name) ;; Check if perspective package is loaded
+                   (format "@ | %s | " (persp-name (persp-curr)))
+                 "No workspace")))) ;; Fallback if no perspective is active
+
+;; (setq frame-title-format '("    WeiTingEmacs v" emacs-version "     "
 ;;                            (:eval (my-persp-format))
-;;                            "  "
-;;                            " %b"))
+;;                            ))
+
 
 ;; (setq garbage-collection-messages t) ; for debug
-
 (defun my-cleanup-gc ()
   "Clean up gc."
   (setq gc-cons-threshold (* 32 1024 1024))
@@ -175,7 +183,6 @@
 ;;   `((".*" . ,(concat user-emacs-directory "backups")))
 ;;   auto-save-file-name-transforms
 ;;   `((".*" ,(concat user-emacs-directory "backups") t)))
-
 
 (provide 'init)
 ;;; init.el ends here

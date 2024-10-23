@@ -2,7 +2,6 @@ ls
 ls
 clear1
 clear 1
-exit
 ls
 dired .
 ls
@@ -16,4 +15,59 @@ clear
 la
 clear
 git status
+ls
+clear
+which pytho
+which python
+clear
+ls
+which python
+ls
+clear
+ls 
+clear
+which python
+conda
+clear
+ls
+which python
+which conda
+clear 1
+clear
+ls
+conda
+git status
+dired .
+ls
+clear
+ls
 exit
+pwsh
+ls
+conda 
+pwsh
+git status
+clear
+pwsh
+clear
+dired .
+ls
+clear
+pwsh
+ls
+ls
+ls 
+clear
+ls
+ls
+clear
+pwsh
+ls
+clear
+dired .
+exit
+ls
+ls
+git status 
+clear
+clear

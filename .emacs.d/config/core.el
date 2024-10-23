@@ -62,6 +62,13 @@
 
 (advice-add 'kill-emacs :around #'wt/advice-kill-emacs)
 
+(defun paste-from-clipboard()
+  "Paste from the clipboard without altering the kill ring."
+  (interactive)
+  (let ((clip (current-kill 0)))  ;; Save the current kill ring
+    (insert (gui-get-selection))    ;; Insert the clipboard content
+    (kill-new clip)))               ;; Restore the kill ring
+
 
 ;; (defun wt/find-file-preview ()
 ;;   (interactive)
@@ -188,6 +195,7 @@
     "'" '(project-eshell :wk "run eshell")
     "C-'" '(project-shell :wk "run shell")
     "c f" (lambda () (interactive) (dired "~/.emacs.d/"))
+    "p" #'(paste-from-clipboard :wk "leader p")
     )
 
   ;; find file
