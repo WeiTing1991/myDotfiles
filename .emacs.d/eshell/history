@@ -117,3 +117,12 @@ ls
 git status
 git add .
 git commit -am "fix term issue"
+clear
+la
+ls
+pwd
+conda 
+which python
+clear
+dired .
+exit
