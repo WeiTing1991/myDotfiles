@@ -150,7 +150,7 @@
 (load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
 (load-file (expand-file-name "./config/app.el" user-emacs-directory))
 
-
+;; set title
 (setq frame-title-format
       '("WeiTingEmacs v" emacs-version "     "
         (:eval (if (fboundp 'persp-name) ;; Check if perspective package is loaded

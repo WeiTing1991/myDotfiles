@@ -24,7 +24,7 @@
 ;; org mode
 ;; https://doc.norang.ca/org-mode.html
 (use-package org
-  :straight nil
+  :straight t
   :config
   (setq org-ellipsis " ▾")
   (setq org-agenda-start-with-log-mode t)
