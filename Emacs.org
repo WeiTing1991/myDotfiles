@@ -4,6 +4,7 @@
 https://github.com/tompurl/dot-emacs/blob/master/emacs-init.org#spell-checking
 
 * Welcome!
+
 This is the configuration we've been building in the *Emacs From Scratch* series, now written as an Org Mode document.  This file generates [[file:init.el][init.el]] which can be loaded by Emacs at startup.
 
 *NOTE:* If you run into any issues while using this configuration, please [[https://github.com/daviwil/emacs-from-scratch/issues/new][file an issue]] or send me an email at =david at systemcrafters.cc=.

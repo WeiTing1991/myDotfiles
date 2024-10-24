@@ -62,13 +62,14 @@
 
 (advice-add 'kill-emacs :around #'wt/advice-kill-emacs)
 
-(defun paste-from-clipboard()
-  "Paste from the clipboard without altering the kill ring."
-  (interactive)
-  (let ((clip (current-kill 0)))  ;; Save the current kill ring
-    (insert (gui-get-selection))    ;; Insert the clipboard content
-    (kill-new clip)))               ;; Restore the kill ring
-
+;;TODO not working properly
+(defun paste-from-clipboard (count &optional register)
+  "Insert the latest clipboard content after the cursor without clearing it."
+  (interactive "p")
+  (let ((clip (current-kill 0)))  ;; Store the clipboard content
+    (evil-paste-after count register)  ;; Paste in Evil mode
+    (if (and selection (not (string= selection (current-kill 0))))
+        (set-selection 'clipboard selection))))  ;; Restore the clipboard if changed
 
 ;; (defun wt/find-file-preview ()
 ;;   (interactive)
@@ -147,8 +148,8 @@
   (define-key wt/window-map (kbd "s") 'persp-switch)
   (define-key wt/window-map (kbd "n") 'persp-next)
   (define-key wt/window-map (kbd "p") 'persp-prev)
-  (define-key wt/window-map (kbd "k") 'persp-kill)
-  (define-key wt/window-map (kbd "K") 'persp-kill-others)
+  (define-key wt/window-map (kbd "k") 'persp-kill-other-buffer)
+  ;; (define-key wt/window-map (kbd "K") 'persp-kill-others)
 
   (with-eval-after-load 'which-key
   (which-key-add-key-based-replacements
@@ -193,7 +194,7 @@
   (wt/leader-keys
     "/" '(execute-extended-command :wk "consult-M-x")
     "'" '(project-eshell :wk "run eshell")
-    "C-'" '(project-shell :wk "run shell")
+    "C-'" '(term :wk "run term")
     "c f" (lambda () (interactive) (dired "~/.emacs.d/"))
     "p" #'(paste-from-clipboard :wk "leader p")
     )
@@ -218,7 +219,8 @@
     "q" '(kill-buffer-and-window :wk "Kill this buffer")
     "o" '(next-buffer  :wk "Next buffer")
     "i" '(previous-buffer :wk "Previous buffer")
-    ;; "br" '(revert-buffer :wk "Reload buffer")
+    "br" '(revert-buffer :wk "Reload buffer")
+    "bq" '(kill-buffer :wk "Kill buffer")
     )
 
   ;; window

@@ -181,6 +181,12 @@
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment   'utf-8)
 (set-selection-coding-system 'utf-8)
+(set-locale-environment "en_US.UTF-8")
+
+(setq locale-coding-system 'utf-8
+      coding-system-for-read 'utf-8
+      coding-system-for-write 'utf-8)
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; (cond
 ;;  ((string-equal system-type "windows-nt")
@@ -190,15 +196,16 @@
 ;;   (progn
 ;;     (setq default-process-coding-system '(utf-8-unix . utf-8-unix)))))
 
-(setq locale-coding-system 'utf-8
-  coding-system-for-read 'utf-8
-  coding-system-for-write 'utf-8)
-(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+(defun wt/encoding/dos2unix ()
+  "Not exactly but it's easier to remember"
+  (interactive)
+  (set-buffer-file-coding-system 'utf-8-unix 't))
 
-;; (defun tp/encoding/dos2unix ()
-;;   "Not exactly but it's easier to remember"
-;;   (interactive)
-;;   (set-buffer-file-coding-system 'utf-8-unix 't))
+(defun wt/file/remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
 
 ;; Unique buffer names
 (require 'uniquify)

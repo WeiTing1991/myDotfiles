@@ -50,6 +50,7 @@
 ;; Set the font
 (when (display-graphic-p)
   (set-frame-font "RobotoMono Nerd Font" nil t))
+
 (cond
  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
   (progn
@@ -59,9 +60,13 @@
     (set-face-attribute 'variable-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
     )))
 
-;(set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height wt/default-font-size :weight 'regular)
-;(set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
-;(set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+(set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
+(set-face-attribute 'fixed-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+(set-face-attribute 'variable-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+
+;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height wt/default-font-size :weight 'regular)
+;; (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
+;; (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
 
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
@@ -140,8 +145,8 @@
 (load-file (expand-file-name "./config/core.el" user-emacs-directory))
 (load-file (expand-file-name "./config/ui.el" user-emacs-directory))
 (load-file (expand-file-name "./config/cmd-system.el" user-emacs-directory))
-(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
 (load-file (expand-file-name "./config/file-system.el" user-emacs-directory))
+(load-file (expand-file-name "./config/terminals.el" user-emacs-directory))
 (load-file (expand-file-name "./config/lsp.el" user-emacs-directory))
 (load-file (expand-file-name "./config/app.el" user-emacs-directory))
 
@@ -151,11 +156,6 @@
         (:eval (if (fboundp 'persp-name) ;; Check if perspective package is loaded
                    (format "@ | %s | " (persp-name (persp-curr)))
                  "No workspace")))) ;; Fallback if no perspective is active
-
-;; (setq frame-title-format '("    WeiTingEmacs v" emacs-version "     "
-;;                            (:eval (my-persp-format))
-;;                            ))
-
 
 ;; (setq garbage-collection-messages t) ; for debug
 (defun my-cleanup-gc ()

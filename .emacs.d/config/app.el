@@ -1,6 +1,6 @@
 ;;; app.el
 
-;;; code
+;;; code:
 ;; Spell
 ;; NOTE https://github.com/redguardtoo/wucuo?tab=readme-ov-file
 (setq ispell-program-name "aspell")
@@ -11,29 +11,12 @@
 (flyspell-mode -1)
 (use-package wucuo
   :straight t
+  :defer t
   :config
   ;; (add-hook 'prog-mode-hook #'wucuo-start)
   (add-hook 'org-mode-hook #'wucuo-start)
   (add-hook 'markdon-mode-hook #'wucuo-start)
   )
-
-;; file open
-;; checke this in windows
-;; https://emacs.stackexchange.com/questions/3105/how-to-use-an-external-program-as-the-default-way-to-open-pdfs-from-emacs
-;; Function to open a file with the system's default application
-(defun my-dired-open-with-system (file)
-  "Open FILE with the system's default application."
-  (w32-shell-execute "open" file))
-;; Function to open the marked file in Dired
-(defun my-dired-open ()
-  "Open the marked file with the system's default application."
-  (interactive)
-  (let ((file (dired-get-file-for-visit)))
-    (if file
-        (my-dired-open-with-system file)
-      (message "No file selected."))))
-
-(evil-collection-define-key 'normal 'dired-mode-map (kbd "C-o") 'my-dired-open)
 
 ;; pandoc
 (setq pandoc-binary "/opt/homebrew/bin/pandoc")

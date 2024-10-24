@@ -1,6 +1,6 @@
 ;;; file sytsem
 
-;; code
+;; code:
 (setq dired-kill-when-opening-new-dired-buffer t)
 
 (use-package dired
@@ -8,17 +8,38 @@
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   ;; :custom ((dired-listing-switches "-al --group-directories-first"))
+  ;; (setq-default dired-listing-switches "-alh")
   )
-;; (setq-default dired-listing-switches "-alh")
 
 (use-package dired+
   :straight t
   :defer t
   :config
-  (require 'dired+)
-)
+  (require 'dired+))
 ;; (setq dired-dwim-target nil)
 
+;; File open
+;; https://emacs.stackexchange.com/questions/3105/how-to-use-an-external-program-as-the-default-way-to-open-pdfs-from-emacs
+;; Function to open a file with the system's default application
+(defun my-dired-open-with-system (file)
+  "Open FILE with the system's default application."
+  (cond
+   ((eq system-type 'darwin)
+      ;; macOS
+    (start-process "open" nil "open" file)
+    )
+   ((eq system-type 'windows-nt)
+    (w32-shell-execute "open" file))
+   )
+  )
+(defun my-dired-open ()
+  (interactive)
+  (let ((file (dired-get-file-for-visit)))
+    (if file
+        (my-dired-open-with-system file)
+      (message "No file selected."))))
+
+;; (evil-collection-define-key 'normal 'dired-mode-map (kbd "C-o") 'my-dired-open)
 (use-package dired-single
   :straight nil
   :commands (dired dired-jump))
@@ -26,29 +47,10 @@
 ;; https://github.com/Fuco1/dired-hacks
 (use-package dired-open
   :commands (dired dired-jump)
+  :bind ("C-o" . dired-open-functions)
   :config
-  ;; check with `app.el`
-  ;; (add-to-list 'dired-open-functions #'dired-open-xdg t)
-  (setq dired-open-extensions '(("gif" . "sxiv")
-                                ("jpg" . "sxiv")
-                                ("png" . "sxiv")
-                                ("mkv" . "mpv")
-                                ("mp4" . "mpv")
-                                )))
-
-;; TODO
-;; (use-package dired-narrow
-;;   :defer t
-;;   :hook (dired-mode . dired-narrow-mode)
-;;   :custom
-;;   (evil-define-key 'normal dired-mode-map (kbd "C-/") 'peep-dired)
-;;  )
-
-;; (use-package all-the-icons-dired
-;;   :straight t
-;;   :defer t
-;;   :hook (dired-mode . all-the-icons-dired-mode))
-
+  (add-to-list 'dired-open-functions #'my-dired-open t)
+)
 
 (setq dired-hide-dotfiles-mode -1)
 (use-package dired-hide-dotfiles
@@ -58,7 +60,6 @@
   (evil-collection-define-key 'normal 'dired-mode-map (kbd "H") 'dired-hide-dotfiles-mode)
   )
 
-
 (use-package dired-preview
   :straight t
   :after dired
@@ -66,12 +67,11 @@
   (evil-define-key 'normal dired-mode-map (kbd "C-p") 'dired-preview-mode)
   ;; (evil-define-key 'normal dired-preview-mode-map (kbd "h") 'dired-up-directory)
   ;; (evil-define-key 'normal dired-preview-mode-map (kbd "l") 'dired-open-file)
-
   ;; (evil-define-key 'normal dired-preview-mode-map (kbd "j") 'peep-dired-next-file)
   ;; (evil-define-key 'normal dired-preview-mode-map (kbd "k") 'peep-dired-prev-file)
 
   (setq dired-preview-delay 0.1)
-  (setq dired-preview-max-size (expt 2 20))
+  (setq dired-preview-max-size (* 100 1024 1024))
   (setq dired-preview-ignored-extensions-regexp
           (concat "\\."
                   "\\(gz\\|"
@@ -82,41 +82,38 @@
                   "zip\\|"
                   "iso\\|"
                   "epub"
-                  "\\)"))
-
-  ;; Enable `dired-preview-mode' in a given Dired buffer or do it
+                  "\\)")
+          )
   ;; globally:
   ;; (dired-preview-global-mode 1)
   )
 
-;; https://github.com/Fuco1/dired-hacks
-;; (setq peep-dired-mode 1)
-;; (use-package peep-dired
-;;   :straight t
-;;   :after dired
-;;   :config
-;;   )
-
 (use-package ibuffer
   :straight nil
   )
+(add-hook 'ibuffer-hook
+          (lambda ()
+            (persp-ibuffer-set-filter-groups)
+            (unless (eq ibuffer-sorting-mode 'alphabetic)
+              (ibuffer-do-sort-by-alphabetic))))
 
 ;; workspace
 (tab-bar-mode t)
 (set-face-attribute 'tab-bar nil
                     :font "RobotoMono Nerd Font"
+                    :weight 'bold
                     :background "black"
                     :foreground "#ffffff"
-                    :height 100)
+                    :height 120)
 
 ;; Customize the appearance of active tabs
-(set-face-attribute 'tab-bar-tab nil
+(set-face-attribute 'tab-bar-tab-inactive nil
                     :background "#61afef" ;; Background color for active tab
                     :foreground "#282c34" ;; Foreground color for active tab text
                     :weight 'bold) ;; Make active tab text bold
 
 ;; Customize the appearance of inactive tabs
-(set-face-attribute 'tab-bar-tab-inactive nil
+(set-face-attribute 'tab-bar-tab nil
                     :background "#3e4451" ;; Background color for inactive tabs
                     :foreground "#dcdfe4") ;; Foreground color for inactive tab text
 

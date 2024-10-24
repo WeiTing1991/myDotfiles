@@ -14,7 +14,6 @@
   )
 
 ;; custom-visual mode
-
 (custom-set-faces
  '(markdown-header-delimiter-face ((t (:foreground "#616161" :height 0.9))))
  '(markdown-header-face-1 ((t (:height 1.8 :foreground "#A3BE8C" :weight extra-bold :inherit markdown-header-face))))
@@ -57,18 +56,23 @@
   (font-lock-add-keywords nil '((wt/unhide-current-line)) t)
   (add-hook 'post-command-hook #'wt/refontify-on-linemove nil t))
 
-
 (defun markdown-view-mode-maybe ()
   (cond ((and (eq major-mode 'markdown-mode) buffer-read-only) (markdown-view-mode))
         ((and (eq major-mode 'markdown-view-mode) (not buffer-read-only)) (markdown-mode))))
 
-
 ;; (add-hook 'markdown-mode-hook #'wt/markdown-unhighlight)
 (add-hook 'read-only-mode-hook 'markdown-view-mode-maybe)
 
+;; keybinding
 (if (equal major-mode 'markdown-view-mode)
     (local-set-key (kbd "C-x C-q") 'markdown-mode))
 (if (equal major-mode 'markdown-mode)
     (local-set-key (kbd "C-x C-q") 'markdown-view-mode))
+
+;; (require 'general)
+;; (wt/leader-keys
+;;   "mr" '( :wk "fomating")
+;;   )
+
 
 ;;; md.el

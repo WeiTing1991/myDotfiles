@@ -137,14 +137,20 @@
 ;;   )
 
 ;; TODO
+;; https://github.com/minad/corfu
 (use-package corfu
   :straight t
   :bind
   (:map corfu-map
-        ("<tab>" . corfu-insert)   ;; Bind C-j to accept completion
+        ("TAB" . corfu-insert)
+        ("<tab>" . corfu-insert)
+        ("RET" . nil)
+        ;; ("TAB" . corfu-complete)
         ;; ("SPC" . corfu-insert-separator) ;; Insert a separator for multi-part completion
-        ("<escape>" . corfu-quit))    ;; Bind C-g to quit completion
+        ("<escape>" . corfu-quit))
   :custom
+  ;;  disable for Insert
+  ;; (define-key evil-insert-state-map (kbd "TAB") nil)
   (corfu-auto t)                 ;; Enable auto completion
   (corfu-auto-prefix 1)
   (corfu-auto-delay  0.05)
@@ -152,15 +158,15 @@
   ;; (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-min-width 1)
   (corfu-max-width 50)
-  (corfu-count 14)
+  (corfu-count 10)
   (corfu-scroll-margin 4)
   ;; Have Corfu wrap around when going up
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
   (corfu-preselect-first t)
-  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-  (corfu-preview-current 'insert)    ;; Disable current candidate preview
-  (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-preview-current 'insert)    ;; Disable current candidate preview
+  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
   ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
@@ -188,7 +194,7 @@
 
   ;; Enable indentation+completion using the TAB key.
   ;; `completion-at-point' is often bound to M-TAB.
-  (tab-always-indent 'complete)
+  ;; (tab-always-indent 'complete)
 
   ;; Emacs 30 and newer: Disable Ispell completion function. As an alternative,
   ;; try `cape-dict'.
@@ -200,17 +206,17 @@
   (read-extended-command-predicate #'command-completion-default-include-p))
 
 (use-package corfu-popupinfo
+  :defer t
   :after corfu
   :straight nil
   :hook (corfu-mode . corfu-popupinfo-mode)
   :custom
   (corfu-popupinfo-delay '(0.25 . 0.1))
   (corfu-popupinfo-hide nil)
-  :config
-  (corfu-popupinfo-mode)
   )
 
 ;; TODO
+;;https://github.com/minad/cape
 (use-package cape
   :straight t
   ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
@@ -223,6 +229,24 @@
   ;;        ...)
   :init
 
+  ;; "p" #'completion-at-point
+  ;; "t" #'complete-tag
+  ;; "d" #'cape-dabbrev
+  ;; "h" #'cape-history
+  ;; "f" #'cape-file
+  ;; "s" #'cape-elisp-symbol
+  ;; "e" #'cape-elisp-block
+  ;; "a" #'cape-abbrev
+  ;; "l" #'cape-line
+  ;; "w" #'cape-dict
+  ;; "k"  'cape-keyword
+  ;; ":"  'cape-emoji
+  ;; "\\" 'cape-tex
+  ;; "_"  'cape-tex
+  ;; "^"  'cape-tex
+  ;; "&"  'cape-sgml
+  ;; "r"  'cape-rfc1345)
+
   ;; Add to the global default value of `completion-at-point-functions' which is
   ;; used by `completion-at-point'.  The order of the functions matters, the
   ;; first function returning a result wins.  Note that the list of buffer-local
@@ -232,19 +256,18 @@
   (add-hook 'completion-at-point-functions #'cape-abbrev)
   (add-hook 'completion-at-point-functions #'cape-elisp-block)
   (add-hook 'completion-at-point-functions #'cape-history)
-  )
+)
 
+;; (use-package lsp-treemacs
+;;   :straight t
+;;   :defer t
+;;   :after lsp-mode
+;;   )
 
-(use-package lsp-treemacs
-  :straight t
-  :defer t
-  :after lsp-mode
-  )
-
-;; Syntax check as linter
 ;; https://www.flycheck.org/en/latest/user/installation.html
 (use-package flycheck
   :straight (:build t)
+  :defer t
   :config
   (add-hook 'prog-mode-hook #'global-flycheck-mode)
   (setq flycheck-display-errors-delay 0.1)
@@ -257,27 +280,33 @@
   )
 
 ;; TODO
+;; check if this is working or not
 (use-package yasnippet-snippets
+  :straight t
   :defer t
   :after yasnippet
-  :straight t
   )
 
 (use-package yasnippet
   :straight t
   :defer t
-  ;; :init
-  ;; (yas-global-mode 1)
+  ;; :init (yas-global-mode 1)
   :hook ((prog-mode . yas-minor-mode)
-         (text-mode . yas-minor-mode))
+         (org-mode . yas-minor-mode))
   :config
   (yas-reload-all)
-  (setq yas-snippet-dirs
-        '("~/.emacs.d/snippets"                    ;; personal snippets
-          ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
-          ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
-          ))
+  ;; (setq yas-snippet-dirs
+  ;;       '("~/.emacs.d/snippets"                    ;; personal snippets
+  ;;         ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection
+  ;;         ;; "/path/to/yasnippet/yasmate/snippets" ;; the yasmate collection
+  ;;         ))
   )
+
+(use-package yasnippet-capf
+  :after cape
+  :defer t
+  :config
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
 
 (use-package editorconfig
   :straight t
@@ -286,6 +315,8 @@
   )
 
 (use-package format-all
+  :straight t
+  :defer t
   :preface
   (defun wt/format-code ()
     "Auto-format whole buffer."
@@ -294,12 +325,12 @@
         (prolog-indent-buffer)
       (format-all-buffer)))
   :config
-  (setq-default format-all-formatters
-                '(
-                  ("Python"     (ruff-format))
-                  )
-                )
-  ;; (define-key evil-motion-state-map (kbd "SPC m") #'wt/format-code)
+  ;;TODO
+  ;; (setq-default format-all-formatters
+  ;;               '(
+  ;;                 ("Python"     (ruff-format))
+  ;;                 )
+  ;;               )
   (require 'general)
   (wt/leader-keys
     "m" '(wt/format-code :wk "fomating")
@@ -309,6 +340,8 @@
 
 ;; lsp server setting
 (load-file (expand-file-name "./config/lsp-config/md.el" user-emacs-directory))
+;; (load-file (expand-file-name "./config/lsp-config/cpplsp.el" user-emacs-directory))
+;; (load-file (expand-file-name "./config/lsp-config/pythonlsp.el" user-emacs-directory))
 
 ;; lua
 (use-package lua-mode
@@ -347,47 +380,46 @@
                                         ;)
 
 ;; python
-(use-package python-mode
-  :straight nil
-  :defer t
-  :hook (python-mode . lsp-deferred)
-  ;; :custom
-  ;; (python-shell-interpreter "python3")
-  )
+;; (use-package python-mode
+;;   :straight nil
+;;   :defer t
+;;   :hook (python-mode . lsp-deferred)
+;;   ;; :custom
+;;   ;; (python-shell-interpreter "python3")
+;;   )
 
-(use-package python-ts-mode
-  :straight nil
-  :defer t
-  :hook (python-ts-mode . lsp-deferred)
-  :custom
-  (python-shell-interpreter "python3")
-  ;; (when (eq system-type 'windows-nt)
-  ;;   (setq python-shell-interpreter "C://Users//weitingche//anaconda//python.exe")
-  ;;   )
-  )
+;; (use-package python-ts-mode
+;;   :straight nil
+;;   :defer t
+;;   :hook (python-ts-mode . lsp-deferred)
+;;   :custom
+;;   (python-shell-interpreter "python3")
+;;   ;; (when (eq system-type 'windows-nt)
+;;   ;;   (setq python-shell-interpreter "C://Users//weitingche//anaconda//python.exe")
+;;   ;;   )
+;;   )
 
-(use-package lsp-pyright
-  :straight t
-  :defer t
-  :custom (lsp-pyright-langserver-command "pyright")
-  :hook (python-ts-mode . (lambda ()
-                            (require 'lsp-pyright)
-                            (lsp-deferred))))
+;; (use-package lsp-pyright
+;;   :straight t
+;;   :defer t
+;;   :custom (lsp-pyright-langserver-command "pyright")
+;;   :hook (python-ts-mode . (lambda ()
+;;                             (require 'lsp-pyright)
+;;                             (lsp-deferred))))
 
-(use-package conda
-  :straight t
-  :defer t
-  :hook(python-ts-mode . conda-env-autoactivate-mode)
-  :config
-  (conda-env-initialize-interactive-shells)
-  (conda-env-initialize-eshell))
+;; (use-package conda
+;;   :straight t
+;;   :defer t
+;;   :hook(python-ts-mode . conda-env-autoactivate-mode)
+;;   :config
+;;   (conda-env-initialize-interactive-shells)
+;;   (conda-env-initialize-eshell))
 
 ;; (use-package pyenv-mode
 ;;   :straight t
 ;;   :defer t
 ;;   :hook (python-mode .pyenv-mode)
 ;;   )
-
 
 ;; https://github.com/copilot-emacs/copilot.el
 
