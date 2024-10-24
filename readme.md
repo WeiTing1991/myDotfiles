@@ -105,5 +105,8 @@ cd YOURGITREPO
 mv wezterm ~/.config
 ```
 
+## Emacs
+please find more infomation [here](./Emacs.org).
+
 ## Zed
 please find more infomation [here]().

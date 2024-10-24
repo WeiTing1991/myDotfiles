@@ -153,7 +153,7 @@
   (define-key wt/window-map (kbd "s") 'persp-switch)
   (define-key wt/window-map (kbd "n") 'persp-next)
   (define-key wt/window-map (kbd "p") 'persp-prev)
-  (define-key wt/window-map (kbd "k") 'persp-kill-other-buffer)
+  (define-key wt/window-map (kbd "k") 'persp-kill-other-buffers)
   ;; (define-key wt/window-map (kbd "K") 'persp-kill-others)
 
   (with-eval-after-load 'which-key
@@ -194,6 +194,11 @@
     :keymaps 'override
     :prefix "SPC" ;; set leader
     :global-prefix "M-SPC") ;; access leader in insert mode
+
+  (wt/window-map
+    "o" '(:ignore :wk "Notes")
+    "ob" (lambda  () (interactive) (dired "~/iCloudDrive/iCloud~md~obsidian/weitingchen/" :wk "cd obsiden folder")
+    )
 
   ;; main kyes
   (wt/leader-keys

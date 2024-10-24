@@ -53,17 +53,26 @@
 
 (set-face-attribute 'mode-line nil :weight 'bold)
 (set-face-attribute 'mode-line-inactive nil :weight 'bold)
-
 ;; Hook into all programming modes
 (add-hook 'prog-mode-hook 'enable-mode-line)
 
-;; Optionally disable mode line in other modes
-(defun disable-mode-line ()
-  "Disable the mode line."
-  (setq mode-line-format nil))
+;; (set-face-attribute 'mode-line nil
+;;                     :height 1.1
+;;                     ;; :background "#0D0907"
+;;                     :box nil
+;;                     )
+;; (set-face-attribute 'mode-line-inactive nil
+;;                     ;; :background "#0D0907"
+;;                     :height 1.1
+;;                     :box nil)
 
-;; Example: disable mode line in text mode
-(add-hook 'text-mode-hook 'disable-mode-line)
+;; ;; Optionally disable mode line in other modes
+;; (defun disable-mode-line ()
+;;   "Disable the mode line."
+;;   (setq mode-line-format nil))
+
+;; ;; Example: disable mode line in text mode
+;; (add-hook 'text-mode-hook 'disable-mode-line)
 
 (use-package minions
   :straight t
@@ -71,16 +80,6 @@
   :config
   (minions-mode 1)
   )
-
-(set-face-attribute 'mode-line nil
-                    :height 1.1
-                    ;; :background "#0D0907"
-                    :box nil
-                    )
-(set-face-attribute 'mode-line-inactive nil
-                    ;; :background "#0D0907"
-                    :height 1.1
-                    :box nil)
 
 ;; cursor
 (custom-set-faces

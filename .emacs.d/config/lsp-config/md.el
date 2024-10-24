@@ -1,8 +1,8 @@
 ;;; markdown
 
 (use-package markdown-mode
-  :defer t
   :straight t
+  :defer t
   :mode (("README\\.md\\'" . markdon-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
@@ -13,6 +13,19 @@
   (markdown-fontify-code-blocks-natively t)
   )
 
+(use-package markdown-preview-mode
+  :straight t
+  :after markdown-mode
+  :config
+  ;; set stylesheets
+  ;; (setq markdown-preview-stylesheets (list "http://thomasf.github.io/solarized-css/solarized-light.min.css"))
+  ;; (setq markdown-preview-stylesheets (list "https://sindresorhus.com/github-markdown-css/github-markdown-light.css"))
+  (setq markdown-preview-stylesheets (list "https://sindresorhus.com/github-markdown-css/github-markdown-dark.css"))
+  ;; :hook (markdown-mode . markdown-preview-mode)
+  )
+
+;;NOTE check this for live preview
+;; https://github.com/skeeto/impatient-mode
 ;; custom-visual mode
 (custom-set-faces
  '(markdown-header-delimiter-face ((t (:foreground "#616161" :height 0.9))))
@@ -65,14 +78,14 @@
 
 ;; keybinding
 (if (equal major-mode 'markdown-view-mode)
-    (local-set-key (kbd "C-x C-q") 'markdown-mode))
+    (local-set-key (kbd "C-c C-q") 'markdown-mode))
 (if (equal major-mode 'markdown-mode)
-    (local-set-key (kbd "C-x C-q") 'markdown-view-mode))
+    (local-set-key (kbd "C-c C-q") 'markdown-view-mode))
 
-;; (require 'general)
-;; (wt/leader-keys
-;;   "mr" '( :wk "fomating")
-;;   )
-
-
+(require 'general)
+(wt/leader-keys
+  "mr" '(markdown-preview-mode :wk "markdown preview on browser")
+  "mk" '(markdown-preview-cleanup :wk "markdown preview on browser")
+  )
+(provide 'md)
 ;;; md.el

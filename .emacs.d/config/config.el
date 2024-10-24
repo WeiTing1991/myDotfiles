@@ -97,11 +97,11 @@
 
   ;; Relative line numbers
   (setq display-line-numbers-type 'relative)
-  (setq-default display-line-numbers-width 6)
+  (setq-default display-line-numbers-width 5)
 
 
   ;; (fringe-mode 0)
-  (set-fringe-mode '(8 . 8))
+  (set-fringe-mode '(5 . 5))
   (set-default 'truncate-lines t)
 
   ;; default editorconfig
