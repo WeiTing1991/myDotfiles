@@ -1,4 +1,4 @@
-;;; core.el
+;;; Core.el
 
 ;; (defun ian/maybe-set-default-browser ()
 ;;   "When in WSL Emacs, open links in default Windows 11 browser."
@@ -29,6 +29,11 @@
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+;; Bindings for copy and paste
+(global-set-key (kbd "M-v") 'clipboard-yank)  ;; Paste
+(global-set-key (kbd "M-c") 'kill-ring-save)   ;; Copy
+
 
 (define-key global-map (kbd "C-k") nil)
 (define-key global-map (kbd "C-j") nil)
@@ -106,7 +111,7 @@
 
   :config
   (evil-mode 1)
-
+  (setq x-select-enable-clipboard t)
   ;; https://evil.readthedocs.io/en/latest/faq.html#underscore-is-not-a-word-character
   (define-key evil-outer-text-objects-map "w" 'evil-a-symbol)
   (define-key evil-inner-text-objects-map "w" 'evil-inner-symbol)

@@ -221,7 +221,7 @@
   :straight t
   ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
   ;; Press C-c p ? to for help.
-  :bind ("C-c p" . cape-prefix-map) ;; Alternative keys: M-p, M-+, ...
+  :bind ("M-p" . cape-prefix-map) ;; Alternative keys: M-p, M-+, ...
   ;; Alternatively bind Cape commands individually.
   ;; :bind (("C-c p d" . cape-dabbrev)
   ;;        ("C-c p h" . cape-history)
@@ -294,7 +294,7 @@
   :hook ((prog-mode . yas-minor-mode)
          (org-mode . yas-minor-mode))
   :config
-  (yas-reload-all)
+  ;; (yas-reload-all)
   ;; (setq yas-snippet-dirs
   ;;       '("~/.emacs.d/snippets"                    ;; personal snippets
   ;;         ;; "/path/to/some/collection/"           ;; foo-mode and bar-mode snippet collection

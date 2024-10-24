@@ -21,17 +21,17 @@
   (setq highlight-indent-guides-delay 0)
   )
 
+;; https://github.com/domtronn/all-the-icons.el/tree/svg
+
 ;; modeline
 ;; Hide the mode line globally
+;; https://www.reddit.com/r/emacs/comments/6ftm3x/share_your_modeline_customization/
 (setq-default mode-line-format nil)
 
 ;; Enable the mode line in programming modes
 (defun enable-mode-line ()
   "Enable the mode line in programming modes."
   (setq mode-line-format (default-value 'mode-line-format)))
-
-;; Hook into all programming modes
-(add-hook 'prog-mode-hook 'enable-mode-line)
 
 (setq-default mode-line-format
               '("%e" "  "
@@ -54,6 +54,17 @@
 (set-face-attribute 'mode-line nil :weight 'bold)
 (set-face-attribute 'mode-line-inactive nil :weight 'bold)
 
+;; Hook into all programming modes
+(add-hook 'prog-mode-hook 'enable-mode-line)
+
+;; Optionally disable mode line in other modes
+(defun disable-mode-line ()
+  "Disable the mode line."
+  (setq mode-line-format nil))
+
+;; Example: disable mode line in text mode
+(add-hook 'text-mode-hook 'disable-mode-line)
+
 (use-package minions
   :straight t
   :demand t
@@ -61,12 +72,15 @@
   (minions-mode 1)
   )
 
-;; (set-face-attribute 'mode-line nil
-;;                     :background "#0D0907"  ;; Background color
-;;                     :box nil)              ;; Remove box around the mode line
-;; (set-face-attribute 'mode-line-inactive nil
-;;                     :background "#0D0907"  ;; Inactive background color
-;;                     :box nil)              ;; Remove box around the inactive mode line
+(set-face-attribute 'mode-line nil
+                    :height 1.1
+                    ;; :background "#0D0907"
+                    :box nil
+                    )
+(set-face-attribute 'mode-line-inactive nil
+                    ;; :background "#0D0907"
+                    :height 1.1
+                    :box nil)
 
 ;; cursor
 (custom-set-faces

@@ -98,13 +98,24 @@
               (ibuffer-do-sort-by-alphabetic))))
 
 ;; workspace
+(cond
+ ;; macOS configuration
+ ((eq system-type 'darwin)  ;; 'darwin' is for macOS
+  (defvar wt/tab-font-size 120)
+  )
+ ;; Windows configuration
+ ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
+  (defvar wt/tab-font-size 100)
+  )
+ )
+
 (tab-bar-mode t)
 (set-face-attribute 'tab-bar nil
                     :font "RobotoMono Nerd Font"
                     :weight 'bold
                     :background "black"
                     :foreground "#ffffff"
-                    :height 120)
+                    :height wt/tab-font-size)
 
 ;; Customize the appearance of active tabs
 (set-face-attribute 'tab-bar-tab-inactive nil

@@ -14,6 +14,9 @@
   :config
   (when (eq system-type 'windows-nt)
     (setq explicit-shell-file-name "C:/Program Files/PowerShell/7/pwsh.exe")
+    ;; (setq explicit-shell-file-name "C:/msys64/usr/bin/bash.exe")
+    ;; (setq explicit-shell-file-name "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe")
+    (setq explicit-pwsh.exe-args '())
     (setq shell-file-name explicit-shell-file-name)
     )
   (when (eq system-type 'darwin)
@@ -94,9 +97,9 @@
 (defun wt/eshell-configure ()
 
   (setq eshell-terminal-type nil)
-  ;; (push 'eshell-tramp eshell-modules-list)
-  ;; (push 'xterm-color-filter eshell-preoutput-filter-functions)
-  ;; (delq 'eshell-handle-ansi-color eshell-output-filter-functions)
+  (push 'eshell-tramp eshell-modules-list)
+  (push 'xterm-color-filter eshell-preoutput-filter-functions)
+  (delq 'eshell-handle-ansi-color eshell-output-filter-functions)
 
   ;; Save command history when commands are entered
   ;; (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
@@ -113,8 +116,8 @@
   ;; a shell command to gather its output.
   (add-hook 'eshell-pre-command-hook
             (lambda () (setenv "TERM" "xterm-256color")))
-  (add-hook 'eshell-post-command-hook
-            (lambda () (setenv "TERM" "dumb")))
+  ;; (add-hook 'eshell-post-command-hook
+  ;;           (lambda () (setenv "TERM" "dumb")))
 
   (corfu-mode 0)
   (setq completion-in-region-function #'consult-completion-in-region)
