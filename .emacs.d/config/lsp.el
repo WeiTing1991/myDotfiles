@@ -316,7 +316,6 @@
 
 (use-package format-all
   :straight t
-  :defer t
   :preface
   (defun wt/format-code ()
     "Auto-format whole buffer."
@@ -326,20 +325,16 @@
       (format-all-buffer)))
   :config
   ;;TODO
-  ;; (setq-default format-all-formatters
-  ;;               '(
-  ;;                 ("Python"     (ruff-format))
-  ;;                 )
-  ;;               )
-  (require 'general)
-  (wt/leader-keys
-    "m" '(wt/format-code :wk "fomating")
-    )
+  (setq-default format-all-formatters
+                '(
+                  ("Python"     (ruff-format))
+                  )
+                )
+  (define-key evil-normal-state-map (kbd "M-m") 'wt/format-code)
   (add-hook 'prog-mode-hook #'format-all-ensure-formatter)
   )
 
 ;; lsp server setting
-(load-file (expand-file-name "./config/lsp-config/md.el" user-emacs-directory))
 ;; (load-file (expand-file-name "./config/lsp-config/cpplsp.el" user-emacs-directory))
 ;; (load-file (expand-file-name "./config/lsp-config/pythonlsp.el" user-emacs-directory))
 

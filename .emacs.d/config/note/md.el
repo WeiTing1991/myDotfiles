@@ -13,6 +13,7 @@
   (markdown-fontify-code-blocks-natively t)
   )
 
+;; live preview
 (use-package markdown-preview-mode
   :straight t
   :after markdown-mode
@@ -21,23 +22,7 @@
   ;; (setq markdown-preview-stylesheets (list "http://thomasf.github.io/solarized-css/solarized-light.min.css"))
   ;; (setq markdown-preview-stylesheets (list "https://sindresorhus.com/github-markdown-css/github-markdown-light.css"))
   (setq markdown-preview-stylesheets (list "https://sindresorhus.com/github-markdown-css/github-markdown-dark.css"))
-  ;; :hook (markdown-mode . markdown-preview-mode)
   )
-
-;;NOTE check this for live preview
-;; https://github.com/skeeto/impatient-mode
-;; custom-visual mode
-(custom-set-faces
- '(markdown-header-delimiter-face ((t (:foreground "#616161" :height 0.9))))
- '(markdown-header-face-1 ((t (:height 1.8 :foreground "#A3BE8C" :weight extra-bold :inherit markdown-header-face))))
- '(markdown-header-face-2 ((t (:height 1.4 :foreground "#EBCB8B" :weight extra-bold :inherit markdown-header-face))))
- '(markdown-header-face-3 ((t (:height 1.2 :foreground "#D08770" :weight extra-bold :inherit markdown-header-face))))
- '(markdown-header-face-4 ((t (:height 1.15 :foreground "#BF616A" :weight bold :inherit markdown-header-face))))
- '(markdown-header-face-5 ((t (:height 1.1 :foreground "#b48ead" :weight bold :inherit markdown-header-face))))
- '(markdown-header-face-6 ((t (:height 1.05 :foreground "#5e81ac" :weight semi-bold :inherit markdown-header-face))))
- '(markdown-code-face ((t (:background "#2E2E2E" :foreground "#FFFFFF"))))  ;; Change colors as needed
- ;; '(markdown-inline-code-face ((t (:background "#2E2E2E" :foreground "#FFFFFF" :weight bold))))  ;; Inline code
- )
 
 (defvar wt/current-line '(0 . 0)
   "(start . end) of current line in current buffer")
@@ -73,19 +58,35 @@
   (cond ((and (eq major-mode 'markdown-mode) buffer-read-only) (markdown-view-mode))
         ((and (eq major-mode 'markdown-view-mode) (not buffer-read-only)) (markdown-mode))))
 
-;; (add-hook 'markdown-mode-hook #'wt/markdown-unhighlight)
-(add-hook 'read-only-mode-hook 'markdown-view-mode-maybe)
+(defun md-custom-font-and-color ()
+  "Set custom font and color for Org and Markdown modes."
+  ;; custom-visual mode
+  (custom-set-faces
+   '(markdown-header-delimiter-face ((t (:foreground "#616161" :height 0.9))))
+   '(markdown-header-face-1 ((t (:height 1.8 :foreground "#A3BE8C" :weight extra-bold :inherit markdown-header-face))))
+   '(markdown-header-face-2 ((t (:height 1.4 :foreground "#EBCB8B" :weight extra-bold :inherit markdown-header-face))))
+   '(markdown-header-face-3 ((t (:height 1.2 :foreground "#D08770" :weight extra-bold :inherit markdown-header-face))))
+   '(markdown-header-face-4 ((t (:height 1.15 :foreground "#BF616A" :weight bold :inherit markdown-header-face))))
+   '(markdown-header-face-5 ((t (:height 1.1 :foreground "#b48ead" :weight bold :inherit markdown-header-face))))
+   '(markdown-header-face-6 ((t (:height 1.05 :foreground "#5e81ac" :weight semi-bold :inherit markdown-header-face))))
+   '(markdown-inline-code-face ((t (:background "#2E2E2E" :foreground "#FFFFFF"))))
+   )
+  )
 
 ;; keybinding
-(if (equal major-mode 'markdown-view-mode)
-    (local-set-key (kbd "C-c C-q") 'markdown-mode))
-(if (equal major-mode 'markdown-mode)
-    (local-set-key (kbd "C-c C-q") 'markdown-view-mode))
-
-(require 'general)
-(wt/leader-keys
-  "mr" '(markdown-preview-mode :wk "markdown preview on browser")
-  "mk" '(markdown-preview-cleanup :wk "markdown preview on browser")
+(with-eval-after-load 'markdown-mode
+  (if (equal major-mode 'markdown-view-mode)
+      (local-set-key (kbd "C-c C-q") 'markdown-mode))
+  (if (equal major-mode 'markdown-mode)
+      (local-set-key (kbd "C-c C-q") 'markdown-view-mode))
+    (wt/leader-keys
+      "mr" '(markdown-preview-mode :wk "markdown preview on browser")
+      "mk" '(markdown-preview-cleanup :wk "markdown preview on browser")
+      "mp" '(markdown-toggle-inline-images :wk "markdown image view")
+    )
+  (add-hook 'read-only-mode-hook 'markdown-view-mode-maybe)
+  (add-hook 'markdown-mode-hook 'md-custom-font-and-color)
   )
+
 (provide 'md)
 ;;; md.el

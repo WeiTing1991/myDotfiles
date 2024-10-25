@@ -74,11 +74,13 @@
   )
 
 ;; https://github.com/tumashu/vertico-posframe
+;; https://github.com/tumashu/vertico-posframe/blob/main/vertico-posframe.el
 (use-package vertico-posframe
   :after vertico
   :straight t
   :config
   (vertico-posframe-mode 1)
+  (setq vertico-posframe-border-width 1)
 )
 
 ;; Enable vertico-multiform

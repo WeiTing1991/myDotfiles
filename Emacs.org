@@ -1,14 +1,18 @@
 #+title: My Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
-
 
 * Intro!
 
 * Welcome!
-
 to be continue!
 
 * Package
+
+** Org Mode
+  - list
+  - list
+  - list
+    * list
+        + list
 
 * Startup Performance
 

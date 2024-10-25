@@ -65,16 +65,18 @@
       (apply orig-fun args)
     (message "Cancelled exit.")))
 
-(advice-add 'kill-emacs :around #'wt/advice-kill-emacs)
-
-;;TODO not working properly
-(defun paste-from-clipboard (count &optional register)
-  "Insert the latest clipboard content after the cursor without clearing it."
-  (interactive "p")
-  (let ((clip (current-kill 0)))  ;; Store the clipboard content
-    (evil-paste-after count register)  ;; Paste in Evil mode
-    (if (and selection (not (string= selection (current-kill 0))))
-        (set-selection 'clipboard selection))))  ;; Restore the clipboard if changed
+(defun wt/open-note-in-dired ()
+  "Set the note dir by system"
+  (interactive)
+  (cond
+  ((eq system-type 'darwin)
+    (setq  wt/note-dir "/Users/weitingchen/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen")
+    )
+  ((eq system-type 'windows-nt)
+    (setq  wt/note-dir "~/iCloudDrive/iCloud~md~obsidian/weitingchen/"))
+    )
+    (dired wt/note-dir)
+  )
 
 ;; (defun wt/find-file-preview ()
 ;;   (interactive)
@@ -137,30 +139,8 @@
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal)
+  ;; (evil-set-initial-state 'dashboard-mode 'normal)
 
-  ;; Keybind
-  ;; Define a prefix key and bind it in one line
-  (define-prefix-command 'wt/window-map)
-  (global-set-key (kbd "C-b") 'wt/window-map)
-
-  (define-key evil-normal-state-map (kbd "C-b") 'wt/window-map)
-  (define-key evil-visual-state-map (kbd "C-b") 'wt/window-map)
-
-  (define-key wt/window-map (kbd "v") #'wt/split-and-follow-vertically)
-  (define-key wt/window-map (kbd "h") #'wt/split-and-follow-horizontally)
-
-  (define-key wt/window-map (kbd "r") 'eval-buffer)
-  (define-key wt/window-map (kbd "s") 'persp-switch)
-  (define-key wt/window-map (kbd "n") 'persp-next)
-  (define-key wt/window-map (kbd "p") 'persp-prev)
-  (define-key wt/window-map (kbd "k") 'persp-kill-other-buffers)
-  ;; (define-key wt/window-map (kbd "K") 'persp-kill-others)
-
-  (with-eval-after-load 'which-key
-  (which-key-add-key-based-replacements
-      "C-b r" "Reload the buffer"
-      "C-b v" "Split window Vertically"
-      "C-b h" "Split window Horizontally"))
 
 )
 
@@ -170,6 +150,7 @@
   :config
   (evil-collection-init))
 
+;; TODO how to use it
 (use-package evil-mc
   :straight t
   :after evil
@@ -188,6 +169,30 @@
   :config
   (general-evil-setup)
 
+  ;; Keybind
+  ;; set up 'Ctrl b' as the global systemh key
+  (general-create-definer wt/system-key
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "C-b" ;; set leader
+    :global-prefix "M-C-b") ;; access leader in insert mode
+
+  (wt/system-key
+    "v" #'(wt/split-and-follow-vertically :wk "split and follow vertically")
+    "h" #'(wt/split-and-follow-horizontally :wk "split and follow horizontally")
+    "r" '(eval-buffer :wk "eval-buffer")
+    "s" '(persp-switch :wk "persp-switch")
+    "n" '(persp-next :wk "persp-next")
+    "p" '(persp-prev :wk "persp-next")
+    "k" '(persp-kill-other-buffers :wk "kill alll buffers")
+    "K" '(persp-kill-others :wk "persp-kill-others")
+    )
+
+  (wt/system-key
+    "o" '(:ignore :wk "Notes")
+    "ob" #'(wt/open-note-in-dired :wk "cd obsiden folder")
+    )
+
   ;; set up 'SPC' as the global leader key
   (general-create-definer wt/leader-keys
     :states '(normal insert visual emacs)
@@ -195,18 +200,13 @@
     :prefix "SPC" ;; set leader
     :global-prefix "M-SPC") ;; access leader in insert mode
 
-  (wt/window-map
-    "o" '(:ignore :wk "Notes")
-    "ob" (lambda  () (interactive) (dired "~/iCloudDrive/iCloud~md~obsidian/weitingchen/" :wk "cd obsiden folder")
-    )
-
   ;; main kyes
   (wt/leader-keys
     "/" '(execute-extended-command :wk "consult-M-x")
     "'" '(project-eshell :wk "run eshell")
     "C-'" '(term :wk "run term")
-    "c f" (lambda () (interactive) (dired "~/.emacs.d/"))
-    "p" #'(paste-from-clipboard :wk "leader p")
+    "c f" (lambda () (interactive) (dired "~/.dotfiles/.emacs.d/"))
+    ;; "p" #'(paste-from-clipboard :wk "leader p")
     )
 
   ;; find file

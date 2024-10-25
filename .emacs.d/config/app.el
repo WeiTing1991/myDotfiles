@@ -14,45 +14,36 @@
   :defer t
   :config
   ;; (add-hook 'prog-mode-hook #'wucuo-start)
-  (add-hook 'org-mode-hook #'wucuo-start)
   (add-hook 'markdon-mode-hook #'wucuo-start)
+  (add-hook 'markdon-mode-hook 'flycheck-mode-hook)
+  (add-hook 'org-mode-hook 'wucuo-start)
+  (add-hook 'org-mode-hook 'flycheck-mode-hook)
+  )
+
+(use-package olivetti
+  :straight t
+  :defer t
+  )
+(declare-function olivetti-mode "olivetti")
+(wt/leader-keys
+  "mo" '(olivetti-mode :wk "writing focus mode")
   )
 
 ;; pandoc
 (cond
  ((eq system-type 'darwin)  ;; 'darwin' is for macOS
-   (setq pandoc-binary "/opt/homebrew/bin/pandoc")
+  (setq pandoc-binary "/opt/homebrew/bin/pandoc")
   )
  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-   (setq pandoc-binary "/AppData/Local/Pandoc/pandoc.exe")
+  (setq pandoc-binary "/AppData/Local/Pandoc/pandoc.exe")
   )
  )
 
-;; org mode
-;; https://doc.norang.ca/org-mode.html
-(use-package org
-  :straight t
-  :config
-  (setq org-ellipsis " ▾")
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-  )
 
-;; ;; custom-visual mode
-;; (custom-set-faces
-;;  '(markdown-header-delimiter-face ((t (:foreground "#616161" :height 0.9))))
-;;  '(markdown-header-face-1 ((t (:height 1.8 :foreground "#A3BE8C" :weight extra-bold :inherit markdown-header-face))))
-;;  '(markdown-header-face-2 ((t (:height 1.4 :foreground "#EBCB8B" :weight extra-bold :inherit markdown-header-face))))
-;;  '(markdown-header-face-3 ((t (:height 1.2 :foreground "#D08770" :weight extra-bold :inherit markdown-header-face))))
-;;  '(markdown-header-face-4 ((t (:height 1.15 :foreground "#BF616A" :weight bold :inherit markdown-header-face))))
-;;  '(markdown-header-face-5 ((t (:height 1.1 :foreground "#b48ead" :weight bold :inherit markdown-header-face))))
-;;  '(markdown-header-face-6 ((t (:height 1.05 :foreground "#5e81ac" :weight semi-bold :inherit markdown-header-face))))
-;;  '(markdown-code-face ((t (:background "#2E2E2E" :foreground "#FFFFFF"))))  ;; Change colors as needed
-;;  ;; '(markdown-inline-code-face ((t (:background "#2E2E2E" :foreground "#FFFFFF" :weight bold))))  ;; Inline code
-;;  )
+;; load the config for markdown and org
+(load-file (expand-file-name "./config/note/md.el" user-emacs-directory))
+(load-file (expand-file-name "./config/note/org.el" user-emacs-directory))
 
-;; (setq org-agenda-files '("~/org"))
 
 
 

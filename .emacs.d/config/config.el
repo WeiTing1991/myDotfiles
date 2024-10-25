@@ -108,7 +108,7 @@
   (show-paren-mode 1)
 
   (electric-pair-mode 1)
-  (setq electric-pair-preserve-balance nil)
+  ;; (setq electric-pair-preserve-balance nil)
 
   (setq comment-style 'indent)
   (setq-default indent-tabs-mode nil)

@@ -36,13 +36,13 @@
  ;; macOS configuration
  ((eq system-type 'darwin)  ;; 'darwin' is for macOS
   (defvar wt/default-font-size 140)
-  (defvar wt/default-variable-font-size 120)
+  (defvar wt/default-variable-font-size 140)
   (defvar wt/frame-transparency '(95 . 90))
   )
  ;; Windows configuration
  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
   (defvar  wt/default-font-size 100)
-  (defvar  wt/default-variable-font-size 80)
+  (defvar  wt/default-variable-font-size 100)
   (defvar  wt/frame-transparency '(95 . 90))
   )
  )
@@ -52,21 +52,21 @@
   (set-frame-font "RobotoMono Nerd Font" nil t))
 
 (cond
- ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
+ ((eq system-type 'windows-nt)
   (progn
     (setq inhibit-compacting-font-caches 1)
-    (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'regular)
-    (set-face-attribute 'fixed-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
-    (set-face-attribute 'variable-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
-    )))
+    (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
+    (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+    (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+    ))
+ ((eq system-type 'darwin)
+  (progn
+    (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
+    (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+    (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+    ))
+  )
 
-(set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
-(set-face-attribute 'fixed-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
-(set-face-attribute 'variable-pitch nil :font "RobotoMono Nerd Font" :height wt/default-variable-font-size :weight 'bold)
-
-;; (set-face-attribute 'default nil :font "SauceCodePro Nerd Font" :height wt/default-font-size :weight 'regular)
-;; (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
-;; (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'bold)
 
 ;; Set frame transparency
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
@@ -152,7 +152,7 @@
 
 ;; set title
 (setq frame-title-format
-      '("WeiTingEmacs v" emacs-version "     "
+      '("Emacs v" emacs-version "     "
         (:eval (if (fboundp 'persp-name) ;; Check if perspective package is loaded
                    (format "@ | %s | " (persp-name (persp-curr)))
                  "No workspace")))) ;; Fallback if no perspective is active

@@ -1,13 +1,22 @@
 ;;; file sytsem
 
 ;; code:
-(setq dired-kill-when-opening-new-dired-buffer t)
-
 (use-package dired
   :straight nil
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
-  ;; :custom ((dired-listing-switches "-al --group-directories-first"))
+  :config
+  (setq dired-kill-when-opening-new-dired-buffer t)
+  ;;keybinding
+  (evil-collection-define-key 'normal 'dired-mode-map (kbd "n") 'dired-create-empty-file)
+  (evil-collection-define-key 'normal 'dired-mode-map (kbd "N") 'dired-create-directory)
+  (evil-collection-define-key 'normal 'dired-mode-map (kbd "D") 'dired-do-delete)
+  (evil-collection-define-key 'normal 'dired-mode-map (kbd "r") 'dired-do-rename)
+  (evil-collection-define-key 'normal 'dired-mode-map (kbd "y") 'dired-do-copy)
+
+  ;; :custom
+  ;; (setq variable-pitch-mode t)
+  ;; ((dired-listing-switches "-al --group-directories-first"))
   ;; (setq-default dired-listing-switches "-alh")
   )
 
@@ -70,6 +79,7 @@
   ;; (evil-define-key 'normal dired-preview-mode-map (kbd "j") 'peep-dired-next-file)
   ;; (evil-define-key 'normal dired-preview-mode-map (kbd "k") 'peep-dired-prev-file)
 
+  (setq dired-kill-when-opening-new-dired-buffer t)
   (setq dired-preview-delay 0.1)
   (setq dired-preview-max-size (* 100 1024 1024))
   (setq dired-preview-ignored-extensions-regexp
