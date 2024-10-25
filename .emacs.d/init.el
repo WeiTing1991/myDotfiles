@@ -56,8 +56,9 @@
   (progn
     (setq inhibit-compacting-font-caches 1)
     (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
-    (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
-    (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+    ;; Cant read it
+    ;; (set-face-attribute 'fixed-pitch nil :font "SauceCodePro" :height wt/default-variable-font-size :weight 'regular)
+    ;; (set-face-attribute 'variable-pitch nil :font "SauceCodePro" :height wt/default-variable-font-size :weight 'regular)
     ))
  ((eq system-type 'darwin)
   (progn
@@ -65,7 +66,7 @@
     (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
     (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
     ))
-  )
+ )
 
 
 ;; Set frame transparency
@@ -129,6 +130,8 @@
   :defer t
   )
 
+(setq frame-background-mode 'dark)
+
 ;; (load-theme 'zenburn t)
 (load-theme 'nord t)
 ;; (load-theme 'base16-onedark t)
@@ -139,6 +142,7 @@
 (set-face-attribute 'line-number-current-line nil :foreground "light grey" )
 
 (add-to-list 'load-path "~/.emacs.d/config/")
+(add-to-list 'load-path "~/.emacs.d/theme/")
 
 (require 'config)
 
