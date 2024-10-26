@@ -78,5 +78,4 @@
 (bella-color-set)
 
 (provide 'bella-base-color)
-
-;;;
+;;; bella-base-collor.el ends here

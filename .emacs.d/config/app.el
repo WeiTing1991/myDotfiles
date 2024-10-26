@@ -20,14 +20,14 @@
   (add-hook 'org-mode-hook 'flycheck-mode-hook)
   )
 
-(use-package olivetti
-  :straight t
-  :defer t
-  )
-(declare-function olivetti-mode "olivetti")
-(wt/leader-keys
-  "mo" '(olivetti-mode :wk "writing focus mode")
-  )
+;; (use-package olivetti
+;;   :straight t
+;;   :defer t
+;;   )
+;; (declare-function olivetti-mode "olivetti")
+;; (wt/leader-keys
+;;   "mo" '(olivetti-mode :wk "writing focus mode")
+;;   )
 
 ;; pandoc
 (cond
@@ -42,9 +42,7 @@
 
 ;; load the config for markdown and org
 (load-file (expand-file-name "./config/note/md.el" user-emacs-directory))
-(load-file (expand-file-name "./config/note/org.el" user-emacs-directory))
-
-
+;; (load-file (expand-file-name "./config/note/org.el" user-emacs-directory))
 
 
 (provide 'app)

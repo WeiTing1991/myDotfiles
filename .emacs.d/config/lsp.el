@@ -48,6 +48,26 @@
           (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
   )
 
+(use-package emacs
+  :config
+  ;; Treesitter config
+
+  ;; Tell Emacs to prefer the treesitter mode
+  ;; You'll want to run the command `M-x treesit-install-language-grammar' before editing.
+  (setq major-mode-remap-alist
+        '((yaml-mode . yaml-ts-mode)
+          (bash-mode . bash-ts-mode)
+          ;; (js2-mode . js-ts-mode)
+          ;; (typescript-mode . typescript-ts-mode)
+          (json-mode . json-ts-mode)
+          ;; (css-mode . css-ts-mode)
+          (python-mode . python-ts-mode)
+          (cc-mode . c-ts-mode)
+          (cc-mode . c++-ts-mode)
+
+          )
+        )
+  )
 ;; https://emacs-lsp.github.io/lsp-mode/page/installation/
 ;; lsp server
 (use-package lsp-mode

@@ -17,8 +17,6 @@
 
 ;;; Commentary:
 
-;;
-
 ;;; Code:
 (setq package-enable-at-startup nil)
 
@@ -32,11 +30,14 @@
   (setq gc-cons-threshold most-positive-fixnum))
 
 (add-hook 'emacs-startup-hook
-          (lambda ()
-            (setq gc-cons-threshold (* 256 1024 1024)
-                  gc-cons-percentage 0.1)))
+    (lambda ()
+      (setq gc-cons-threshold (* 256 1024 1024)
+      gc-cons-percentage 0.1)))
 
 (setq idle-update-delay 1.0)
+
+;; (setq byte-compile-warnings '(not obsolete))
+;; (setq warning-suppress-log-types '((comp) (bytecomp)))
 
 (setq native-comp-async-report-warnings-errors 'silent)
 
@@ -50,6 +51,8 @@
 (menu-bar-mode -1) ;; disables menubar
 (tool-bar-mode -1) ;; disables toolbar
 (scroll-bar-mode -1) ;; disables scrollbar
+
+(setq frame-resize-pixelwise t)
 (pixel-scroll-precision-mode 1) ;; enable smooth scrolling
 
 (setq inhibit-splash-screen t ;; no thanks
@@ -63,6 +66,29 @@
       inhibit-startup-echo-area-message t
       initial-scratch-message nil)
 
+
+;; (set-face-background 'default "#0D0907")
+;; (set-face-background 'fringe "#0D0907")
+
+(setq default-frame-alist
+      (append (list
+         '(min-height . 1)
+         '(height     . 50)
+         '(min-width  . 1)
+         '(width      . 100)
+         '(vertical-scroll-bars . nil)
+         '(horizontal-scroll-bars . nil)
+         '(internal-border-width . 24)
+
+         '(ns-appearance . dark)
+         '(ns-transparent-titlebar . t)
+
+         '(left-fringe    . 1)
+         '(right-fringe   . 1)
+         '(tool-bar-lines . -1)
+         '(menu-bar-lines . -1))
+        )
+      )
 
 (provide 'early-init)
 ;;; early-init.el ends here

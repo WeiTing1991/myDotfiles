@@ -48,6 +48,8 @@
   (setq initial-buffer-choice nil)
   ;; No frame title
   (setq frame-title-format nil)
+  ;; for osx
+  (setq frame-resize-pixelwise t)
 
   ;; No popup windows
   (setq pop-up-windows nil)

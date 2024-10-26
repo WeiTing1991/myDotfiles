@@ -13,7 +13,9 @@
   "Custom org setttings"
   (setq tab-width 8)
   (org-indent-mode)
+  ;; it a bit slow in windows
   ;; (variable-pitch-mode 1)
+
   (auto-fill-mode 0)
   (visual-line-mode 1)
   (setq evil-auto-indent nil)
@@ -39,51 +41,21 @@
 
 (defun org-bella-style ()
   "custom style mode"
-
   ;; Set faces for heading levels
-  ;; (dolist (face '((org-level-1 . 1.2)
-  ;;                 (org-level-2 . 1.1)
-  ;;                 (org-level-3 . 1.05)
-  ;;                 (org-level-4 . 1.0)
-  ;;                 (org-level-5 . 1.0)
-  ;;                 (org-level-6 . 1.0)
-  ;;                 (org-level-7 . 1.0)
-  ;;                 (org-level-8 . 1.0)))
-  ;;   (set-face-attribute (car face) nil :weight 'regular :height (cdr face))
-  ;;   )
+  (dolist (face '((org-level-1 . 1.4)
+                  (org-level-2 . 1.2)
+                  (org-level-3 . 1.0)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.0)
+                  (org-level-6 . 1.0)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (face-remap-add-relative (car face) :height (cdr face) :weight 'regular :foreground bella-color-black))
 
-  (face-remap-add-relative 'default :background bella-color-text-light)
-
-  (face-remap-add-relative 'org-level-1
-                           :height 1.4
-                           :foreground bella-color-black)
-
-
+  (face-remap-add-relative 'default :foreground bella-color-black :background bella-color-text-light)
   (face-remap-add-relative 'org-indent :background bella-color-text-light)
-  ;; disable indent background
-  ;; (font-lock-add-keywords 'org-mode (org-bella-bullet-keywords))
-
-  ;; (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
-  ;; (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
-  ;; (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  ;; (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  ;; (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  ;; (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  ;; (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  ;; (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-  ;; (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
-  ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
-  ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
-
+  ;; (load-theme 'modus-operandi)
   )
-
-;; hide title / author ... keywords
-;; (setq-local org-hidden-keywords '(title author date startup))
-
-;; Define a custom face
-;; (defface my-buffer-face
-;;   '((t (:foreground "black" :background "white" :height 1.2)))
-;; "A custom face for buffer display.")
 
 (use-package org
   :straight t
