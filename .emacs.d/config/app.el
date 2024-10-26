@@ -42,7 +42,7 @@
 
 ;; load the config for markdown and org
 (load-file (expand-file-name "./config/note/md.el" user-emacs-directory))
-;; (load-file (expand-file-name "./config/note/org.el" user-emacs-directory))
+(load-file (expand-file-name "./config/note/org.el" user-emacs-directory))
 
 
 (provide 'app)

@@ -32,24 +32,27 @@
 
 ;; (add-to-list 'default-frame-alist '(undecorated-round . t))
 
-(use-package base16-theme
-  :straight t
-  :defer t
-  )
+;; (set-face-background 'default "#0D0907")
+;; (set-face-background 'fringe "#0D0907")
 
-(use-package zenburn-theme
-  :straight t
-  :defer t
-  )
+ (use-package base16-theme
+   :straight t
+   :defer t
+   )
 
-(use-package nord-theme
-  :straight t
-  :defer t
-  )
+ (use-package zenburn-theme
+   :straight t
+   :defer t
+   )
 
-;; (load-theme 'zenburn t)
-;; (load-theme 'base16-onedark t)
-(load-theme 'nord t)
+ (use-package nord-theme
+   :straight t
+   :defer t
+   )
+
+ ;(load-theme 'zenburn t)
+ ;(load-theme 'base16-onedark t)
+ (load-theme 'nord t)
 
 ;; Font and background
 (cond
@@ -120,7 +123,7 @@
 (set-face-attribute 'line-number-current-line nil :foreground "light grey" )
 
 (add-to-list 'load-path "~/.emacs.d/config/")
-;; (add-to-list 'load-path "~/.emacs.d/theme/")
+(add-to-list 'load-path "~/.emacs.d/theme/")
 
 (require 'config)
 

@@ -70,7 +70,6 @@
   )
 
 
-
 ;; (setq org-agenda-files '("~/org"))
 
 (provide 'org)

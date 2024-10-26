@@ -67,9 +67,6 @@
       initial-scratch-message nil)
 
 
-;; (set-face-background 'default "#0D0907")
-;; (set-face-background 'fringe "#0D0907")
-
 (setq default-frame-alist
       (append (list
          '(min-height . 1)
@@ -89,6 +86,9 @@
          '(menu-bar-lines . -1))
         )
       )
+
+(set-face-background 'default "#0D0907")
+(set-face-background 'fringe "#0D0907")
 
 (provide 'early-init)
 ;;; early-init.el ends here
