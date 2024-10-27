@@ -5,15 +5,15 @@
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name
-  "straight/repos/straight.el/bootstrap.el"
-  (or (bound-and-true-p straight-base-dir)
-      user-emacs-directory)))
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
       (bootstrap-version 7))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-  (url-retrieve-synchronously
-   "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-   'silent 'inhibit-cookies)
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -32,31 +32,32 @@
 
 ;; (add-to-list 'default-frame-alist '(undecorated-round . t))
 
-;; (set-face-background 'default "#0D0907")
-;; (set-face-background 'fringe "#0D0907")
+(use-package base16-theme
+  :straight t
+  :defer t
+  )
 
- (use-package base16-theme
-   :straight t
-   :defer t
-   )
+(use-package zenburn-theme
+  :straight t
+  :defer t
+  )
 
- (use-package zenburn-theme
-   :straight t
-   :defer t
-   )
+(use-package nord-theme
+  :straight t
+  :demand t
+  :config
+  (load-theme 'nord t)
+  ;; (set-face-background 'default "#0D0907")
+  ;; (set-face-background 'fringe "#0D0907")
+  )
 
- (use-package nord-theme
-   :straight t
-   :defer t
-   )
-
- ;(load-theme 'zenburn t)
- ;(load-theme 'base16-onedark t)
- (load-theme 'nord t)
+(set-face-background 'default "#0D0907")
+(set-face-background 'fringe "#0D0907")
+;;(load-theme 'zenburn t)
+;;(load-theme 'base16-onedark t)
 
 ;; Font and background
-(cond
- ;; macOS configuration
+(cond ;; macOS configuration
  ((eq system-type 'darwin)  ;; 'darwin' is for macOS
   (defvar wt/default-font-size 140)
   (defvar wt/default-variable-font-size 140)
@@ -76,32 +77,33 @@
 
 (cond
  ((eq system-type 'windows-nt)
-    (setq inhibit-compacting-font-caches 1)
-    (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
-    ;;  windows system Can`t read it
-    ;; (set-face-attribute 'fixed-pitch nil :font "SauceCodePro" :height wt/default-variable-font-size :weight 'regular)
-    ;; (set-face-attribute 'variable-pitch nil :font "SauceCodePro" :height wt/default-variable-font-size :weight 'regular)
-    )
+  (setq inhibit-compacting-font-caches 1)
+  (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
+  ;;  windows system Can`t read it
+  ;; (set-face-attribute 'fixed-pitch nil :font "SauceCodePro" :height wt/default-variable-font-size :weight 'regular)
+  ;; (set-face-attribute 'variable-pitch nil :font "SauceCodePro" :height wt/default-variable-font-size :weight 'regular)
+  )
  ((eq system-type 'darwin)
-    (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
-    (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
-    (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
-    )
+  (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
+  (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+  )
  )
 
 (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
 (add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
 
 ;; (add-to-list 'load-path "~/.emacs.d/nano/")
+;; check ?
 (require 'disp-table)
 
 ;; Fall back font for glyph missing in Roboto
 (defface fallback '((t :family "Roboto"
-           :inherit 'nano-face-faded)) "Fallback")
+                       :inherit 'nano-face-faded)) "Fallback")
 (set-display-table-slot standard-display-table 'truncation
-      (make-glyph-code ?… 'fallback))
+                        (make-glyph-code ?… 'fallback))
 (set-display-table-slot standard-display-table 'wrap
-      (make-glyph-code ?↩ 'fallback))
+                        (make-glyph-code ?↩ 'fallback))
 
 ;; Fix bug on OSX in term mode & zsh (spurious % after each command)
 ;; (add-hook 'term-mode-hook
@@ -116,9 +118,6 @@
 ;; No ugly button for checkboxes
 (setq widget-image-enable nil)
 
-
-(set-face-background 'default "#0D0907")
-(set-face-background 'fringe "#0D0907")
 (set-face-attribute 'line-number nil :background "#0D0907" )
 (set-face-attribute 'line-number-current-line nil :foreground "light grey" )
 
@@ -138,10 +137,10 @@
 
 ;; set title
 (setq frame-title-format
-     '("Emacs v" emacs-version "     "
-       (:eval (if (fboundp 'persp-name) ;; Check if perspective package is loaded
-      (format "@ | %s | " (persp-name (persp-curr)))
-    "No workspace")))) ;; Fallback if no perspective is active
+      '("Emacs v" emacs-version "     "
+        (:eval (if (fboundp 'persp-name) ;; Check if perspective package is loaded
+                   (format "@ | %s | " (persp-name (persp-curr)))
+                 "No workspace")))) ;; Fallback if no perspective is active
 
 ;; (setq garbage-collection-messages t) ; for debug
 (defun my-cleanup-gc ()
@@ -154,10 +153,10 @@
 
 (defun wt/display-startup-time ()
   (message "Emacs loaded in %s with %d garbage collections."
-     (format "%.2f seconds"
-       (float-time
-        (time-subtract after-init-time before-init-time)))
-     gcs-done))
+           (format "%.2f seconds"
+                   (float-time
+                    (time-subtract after-init-time before-init-time)))
+           gcs-done))
 (add-hook 'emacs-startup-hook #'wt/display-startup-time)
 
 ;; Disable backup files

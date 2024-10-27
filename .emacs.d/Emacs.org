@@ -1,7 +1,8 @@
 #+title: My Emacs Configuration
 #
 
-* Intro!
+* Intro
+I switch to Emacs from Neovima as main editor, I am trying to build my own configuration from scratch. This is a note for my configuration.
 
 * Welcome!
         to be continue!
@@ -28,5 +29,6 @@
 * Package System Setup
 
 #+begin_src emacs-lisp
+  (use-package )
 
 #+end_src

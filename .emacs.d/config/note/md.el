@@ -16,20 +16,20 @@
   (add-hook 'read-only-mode-hook 'markdown-view-mode-maybe)
   (add-hook 'markdown-mode-hook 'md-custom-font-and-color)
   (add-hook 'markdown-mode-hook
-    (lambda ()
-      (if (equal major-mode 'markdown-view-mode)
-        (local-set-key (kbd "C-c C-q") 'markdown-mode)
-        )
-      (if (equal major-mode 'markdown-mode)
-        (local-set-key (kbd "C-c C-q") 'markdown-view-mode)
-        )
-      (wt/leader-keys
-        "mr" '(markdown-preview-mode :wk "markdown preview on browser")
-        "mk" '(markdown-preview-cleanup :wk "markdown preview kill")
-        "mp" '(markdown-toggle-inline-images :wk "markdown image view")
-        )
-      )
-    )
+            (lambda ()
+              (if (equal major-mode 'markdown-view-mode)
+                  (local-set-key (kbd "C-c C-q") 'markdown-mode)
+                )
+              (if (equal major-mode 'markdown-mode)
+                  (local-set-key (kbd "C-c C-q") 'markdown-view-mode)
+                )
+              (wt/leader-keys
+                "mr" '(markdown-preview-mode :wk "markdown preview on browser")
+                "mk" '(markdown-preview-cleanup :wk "markdown preview kill")
+                "mp" '(markdown-toggle-inline-images :wk "markdown image view")
+                )
+              )
+            )
   )
 
 ;; live preview
@@ -92,8 +92,6 @@
    '(markdown-inline-code-face ((t (:background "#2E2E2E" :foreground "#FFFFFF"))))
    )
   )
-
-
 
 (provide 'md)
 ;;; md.el

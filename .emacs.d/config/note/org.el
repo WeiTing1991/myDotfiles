@@ -13,6 +13,7 @@
   "Custom org setttings"
   (setq tab-width 8)
   (org-indent-mode)
+
   ;; it a bit slow in windows
   ;; (variable-pitch-mode 1)
 
@@ -39,7 +40,8 @@
      `((,(format "^[ \t]*\\(*\\)[ \t]") 1 '(face nil display ,bullet)))))
   )
 
-(defun org-bella-style ()
+;; set the font and size
+(defun org-style-dark ()
   "custom style mode"
   ;; Set faces for heading levels
   (dolist (face '((org-level-1 . 1.4)
@@ -50,12 +52,18 @@
                   (org-level-6 . 1.0)
                   (org-level-7 . 1.0)
                   (org-level-8 . 1.0)))
-    (face-remap-add-relative (car face) :height (cdr face) :weight 'regular :foreground bella-color-black))
-
-  (face-remap-add-relative 'default :foreground bella-color-black :background bella-color-text-light)
-  (face-remap-add-relative 'org-indent :background bella-color-text-light)
+    (face-remap-add-relative (car face) :height (cdr face) :weight 'regular))
+  (face-remap-add-relative 'org-indent :background nil)
+  ;; (face-remap-add-relative 'default :foreground bella-color-black :background bella-color-text-light)
   ;; (load-theme 'modus-operandi)
   )
+
+;; nice bullets
+(use-package org-bullets
+  :straight
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
 (use-package org
   :straight t
@@ -66,11 +74,21 @@
   ;; (setq org-log-done 'time)
   ;; (setq org-log-into-drawer t)
   (add-hook 'org-mode-hook #'org-custom-setting)
-  (add-hook 'org-mode-hook #'org-bella-style)
+  (add-hook 'org-mode-hook #'org-style-dark)
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (wt/leader-keys
+                "mr" '(markdown-preview-mode :wk "markdown preview on browser")
+                "mk" '(markdown-preview-cleanup :wk "markdown preview kill")
+                "mp" '(markdown-toggle-inline-images :wk "markdown image view")
+                )
+              )
+            )
   )
 
 
 ;; (setq org-agenda-files '("~/org"))
 
 (provide 'org)
-;;;
+
+;;; org.el ends here

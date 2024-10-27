@@ -79,8 +79,8 @@
   :after vertico
   :straight t
   :config
+  (setq vertico-posframe-border-width 3)
   (vertico-posframe-mode 1)
-  (setq vertico-posframe-border-width 1)
 )
 
 ;; Enable vertico-multiform

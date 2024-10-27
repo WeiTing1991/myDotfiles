@@ -66,6 +66,8 @@
       inhibit-startup-echo-area-message t
       initial-scratch-message nil)
 
+(set-face-background 'default "#0D0907")
+(set-face-background 'fringe "#0D0907")
 
 (setq default-frame-alist
       (append (list
@@ -87,8 +89,6 @@
         )
       )
 
-(set-face-background 'default "#0D0907")
-(set-face-background 'fringe "#0D0907")
 
 (provide 'early-init)
 ;;; early-init.el ends here

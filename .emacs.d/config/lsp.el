@@ -167,7 +167,8 @@
         ("RET" . nil)
         ;; ("TAB" . corfu-complete)
         ;; ("SPC" . corfu-insert-separator) ;; Insert a separator for multi-part completion
-        ("<escape>" . corfu-quit))
+        ("<escape>" . corfu-quit)
+        ("C-c" . corfu-quit))
   :custom
   ;;  disable for Insert
   ;; (define-key evil-insert-state-map (kbd "TAB") nil)
@@ -436,7 +437,6 @@
 ;;   :hook (python-mode .pyenv-mode)
 ;;   )
 
-;; https://github.com/copilot-emacs/copilot.el
 
 (provide 'lsp)
 
