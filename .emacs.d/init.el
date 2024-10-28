@@ -45,16 +45,19 @@
 (use-package nord-theme
   :straight t
   :demand t
-  :config
-  (load-theme 'nord t)
-  ;; (set-face-background 'default "#0D0907")
-  ;; (set-face-background 'fringe "#0D0907")
   )
 
-(set-face-background 'default "#0D0907")
-(set-face-background 'fringe "#0D0907")
+(defun wt/set-custom-theme ()
+  "set my theme"
 ;;(load-theme 'zenburn t)
 ;;(load-theme 'base16-onedark t)
+  (load-theme 'nord t)
+  (set-face-background 'default "#0D0907")
+  (set-face-background 'fringe "#0D0907")
+  )
+
+(wt/set-custom-theme)
+
 
 ;; Font and background
 (cond ;; macOS configuration
@@ -137,7 +140,7 @@
 
 ;; set title
 (setq frame-title-format
-      '("Emacs v" emacs-version "     "
+      '("Emacs v" emacs-version "  "
         (:eval (if (fboundp 'persp-name) ;; Check if perspective package is loaded
                    (format "@ | %s | " (persp-name (persp-curr)))
                  "No workspace")))) ;; Fallback if no perspective is active

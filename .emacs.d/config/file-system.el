@@ -14,6 +14,8 @@
   (evil-collection-define-key 'normal 'dired-mode-map (kbd "r") 'dired-do-rename)
   (evil-collection-define-key 'normal 'dired-mode-map (kbd "y") 'dired-do-copy)
 
+  (setq insert-directory-program "gls")
+
   ;; :custom
   ;; (setq variable-pitch-mode t)
   ;; ((dired-listing-switches "-al --group-directories-first"))

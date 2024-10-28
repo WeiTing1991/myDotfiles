@@ -68,6 +68,7 @@
 
 (set-face-background 'default "#0D0907")
 (set-face-background 'fringe "#0D0907")
+(set-face-foreground 'default "white")
 
 (setq default-frame-alist
       (append (list

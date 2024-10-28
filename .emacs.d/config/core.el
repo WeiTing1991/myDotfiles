@@ -222,10 +222,11 @@
     )
 
   ;; buffer move
+  ;; BUG when change buffer it will move to next workspace
   (wt/leader-keys
     "b" '(:ignore t :wk "Bookmarks/Buffers")
     "bl" '(persp-ibuffer ibu :wk "List buffers")
-    "bb" '(consult-buffer :wk "Switch buffer")
+    "SPC" '(consult-buffer :wk "Switch buffer")
     "q" '(kill-buffer-and-window :wk "Kill this buffer")
     "o" '(next-buffer  :wk "Next buffer")
     "i" '(previous-buffer :wk "Previous buffer")

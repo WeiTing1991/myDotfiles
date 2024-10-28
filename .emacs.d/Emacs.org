@@ -3,13 +3,20 @@
 
 * Intro
 I switch to Emacs from Neovima as main editor, I am trying to build my own configuration from scratch. This is a note for my configuration.
+...
 
 * Welcome!
         to be continue!
 
 * Package
 
-** Placeholder
+** package mangerment
+- list
+- list
+        *
+        +
+
+
 
 ** Org Mode
   - list
@@ -21,7 +28,7 @@ I switch to Emacs from Neovima as main editor, I am trying to build my own confi
 * Startup Performance
 
 #+begin_src emacs-lisp
-  (use-package org
+  (use-package
     )
 
 #+end_src
@@ -29,6 +36,8 @@ I switch to Emacs from Neovima as main editor, I am trying to build my own confi
 * Package System Setup
 
 #+begin_src emacs-lisp
-  (use-package )
+    (use-package
+
+      )
 
 #+end_src

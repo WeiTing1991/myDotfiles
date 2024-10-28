@@ -56,6 +56,8 @@ Setup copilot.el as described in the next section.
 Install the copilot server by M-x copilot-install-server.
 Login to Copilot by M-x copilot-login. You can also check the status by M-x copilot-diagnose (NotAuthorized means you don't have a valid subscription).
 "
+;; NOTE https://systemcrafters.net/live-streams/march-31-2023/
+;; https://github.com/s-kostyaev/ellama
 (use-package copilot
   :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
   :straight t
@@ -77,8 +79,8 @@ Login to Copilot by M-x copilot-login. You can also check the status by M-x copi
   )
 
 ;; load the config for markdown and org
-(load-file (expand-file-name "./config/note/md.el" user-emacs-directory))
-(load-file (expand-file-name "./config/note/org.el" user-emacs-directory))
+;(load-file (expand-file-name "./config/note/md.el" user-emacs-directory))
+;(load-file (expand-file-name "./config/note/org.el" user-emacs-directory))
 
 
 (provide 'app)
