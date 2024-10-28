@@ -58,13 +58,12 @@
 
 (wt/set-custom-theme)
 
-
 ;; Font and background
 (cond ;; macOS configuration
  ((eq system-type 'darwin)  ;; 'darwin' is for macOS
   (defvar wt/default-font-size 140)
   (defvar wt/default-variable-font-size 140)
-  (defvar wt/frame-transparency '(95 . 90))
+  (defvar wt/frame-transparency '(98 . 90))
   )
  ;; Windows configuration
  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
@@ -121,8 +120,8 @@
 ;; No ugly button for checkboxes
 (setq widget-image-enable nil)
 
-(set-face-attribute 'line-number nil :background "#0D0907" )
-(set-face-attribute 'line-number-current-line nil :foreground "light grey" )
+;; (set-face-attribute 'line-number nil :background "#0D0907" )
+;; (set-face-attribute 'line-number-current-line nil :foreground "light grey" )
 
 (add-to-list 'load-path "~/.emacs.d/config/")
 (add-to-list 'load-path "~/.emacs.d/theme/")

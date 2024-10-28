@@ -70,6 +70,7 @@
 (set-face-background 'fringe "#0D0907")
 (set-face-foreground 'default "white")
 
+
 (setq default-frame-alist
       (append (list
          '(min-height . 1)
