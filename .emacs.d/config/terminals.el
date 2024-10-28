@@ -200,18 +200,12 @@
   ;; (setq eshell-visual-commands nil)
 )
 
-
-
-
-
-
-
-;; (add-hook 'eshell-mode-hook
-;;           (lambda ()
-;;             (require 'eshell)
-;;             (eshell/alias "la" "ls -al")  ; Set alias for git
-;;             (eshell/alias "clear" "clear 1")  ; Set alias for git
-;;             ))
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (require 'eshell)
+            (eshejl/alias "la" "ls -al")  ; Set alias for git
+            (eshell/alias "clear" "clear 1")  ; Set alias for git
+            ))
 
 ;; (defun wt/switch-to-eshell ()
 ;;   (interactive)

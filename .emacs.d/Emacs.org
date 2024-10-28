@@ -3,20 +3,17 @@
 
 * Intro
 I switch to Emacs from Neovima as main editor, I am trying to build my own configuration from scratch. This is a note for my configuration.
-...
 
 * Welcome!
         to be continue!
-
 * Package
+
 
 ** package mangerment
 - list
 - list
-        *
-        +
-
-
+  + sublist
+  * sublist
 
 ** Org Mode
   - list
@@ -39,5 +36,4 @@ I switch to Emacs from Neovima as main editor, I am trying to build my own confi
     (use-package
 
       )
-
 #+end_src

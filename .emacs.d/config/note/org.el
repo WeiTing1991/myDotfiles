@@ -7,10 +7,10 @@
 ;; TODO
 (require 'bella-base-color)
 
-(setq editorconfig-exclude-modes '(org-mode))
 
 (defun org-custom-setting ()
   "Custom org setttings"
+  (setq editorconfig-exclude-modes '(org-mode))
   (setq tab-width 8)
   (org-indent-mode)
 
@@ -61,17 +61,18 @@
     (face-remap-add-relative (car face) :height (cdr face) :weight 'regular))
   (face-remap-add-relative 'org-indent :background bella-color-black)
   ;; (face-remap-add-relative 'default :foreground bella-color-black :background bella-color-text-light)
-  (face-remap-add-relative 'org-block :background bella-color-base :inherit 'fixed-pitch)
+  ;; (face-remap-add-relative 'org-block :background bella-color-base :inherit 'fixed-pitch)
 
-  ;; (set-face-attribute 'org-block-end-line nil
-  ;;                     ;; :foreground
-  ;;                     ;; :background bella-color-base
-  ;;                     :weight 'bold
-  ;;                     )
-  ;; (set-face-attribute 'org-block-begin-line nil
-  ;;                     ;; :background bella-color-base
-  ;;                     :weight 'bold
-  ;;                     )
+  (set-face-attribute 'org-block-end-line nil
+                      ;; :foreground
+                      :background bella-color-base
+                      :weight 'bold
+                      )
+  (set-face-attribute 'org-block-begin-line nil
+                      ;; :foreground
+                      :background bella-color-base
+                      :weight 'bold
+                      )
 
   )
 
@@ -94,7 +95,7 @@
 
   (add-hook 'org-mode-hook #'org-custom-setting)
   (add-hook 'org-mode-hook #'org-style-dark)
-  (add-hook 'org-mode-hook #'org-bella-bullet-keywords)
+  ;; (add-hook 'org-mode-hook #'org-bella-bullet-keywords)
 
   (cond
    ((eq system-type 'darwin)
@@ -102,6 +103,7 @@
    ((eq system-type 'windows-nt)
     (setq org-directory  "~/iCloudDrive/iCloud~md~obsidian/weitingchen/"))
    )
+
   (setq org-agenda-files (directory-files-recursively org-directory "\\.org$"))
   ;; (add-hook 'org-mode-hook
   ;;           (lambda ()
@@ -111,10 +113,11 @@
   ;;             )
   ;;           )
   )
-(add-hook 'org-mode-hook
-          (lambda ()
-            (#'wt/set-org-theme)
-            ))
+
+;; (add-hook 'org-mode-hook
+;;           (lambda ()
+;;             ('wt/set-org-theme)
+;;             ))
 
 ;; set keybinding
 (wt/system-key
@@ -125,7 +128,7 @@
 ;; TODO check those link
 ;;https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org
 (use-package org-roam
-  :ensure t
+  :straight t
   :custom
   ;; (cond
   ;;  ((eq system-type 'darwin)
@@ -148,7 +151,6 @@
   ;; If using org-roam-protocol
   ;; (require 'org-roam-protocol)
   )
-
 
 
 (provide 'org)

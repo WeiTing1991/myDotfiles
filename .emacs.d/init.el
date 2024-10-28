@@ -21,7 +21,7 @@
 (setq straight-use-package-by-default t)
 
 (use-package no-littering)
-;; no-littering doesn't set this by default so we must place
+;; no-littering doesn't set this by default so we must plac
 ;; auto save files in the same path as it uses for sessions
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
@@ -82,8 +82,8 @@
   (setq inhibit-compacting-font-caches 1)
   (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
   ;;  windows system Can`t read it
-  ;; (set-face-attribute 'fixed-pitch nil :font "SauceCodePro" :height wt/default-variable-font-size :weight 'regular)
-  ;; (set-face-attribute 'variable-pitch nil :font "SauceCodePro" :height wt/default-variable-font-size :weight 'regular)
+  (set-face-attribute 'fixed-pitch nil :font "SauceCodePro NF" :height wt/default-variable-font-size :weight 'regular)
+  (set-face-attribute 'variable-pitch nil :font "SauceCodePro NF" :height wt/default-variable-font-size :weight 'regular)
   )
  ((eq system-type 'darwin)
   (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
