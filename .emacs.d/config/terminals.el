@@ -101,6 +101,8 @@
   (push 'xterm-color-filter eshell-preoutput-filter-functions)
   (delq 'eshell-handle-ansi-color eshell-output-filter-functions)
 
+  (setq comint-prompt-read-only t)
+
   ;; Save command history when commands are entered
   ;; (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
 
@@ -136,7 +138,7 @@
   ;;       (evil-normalize-keymaps))
   ;;   (define-key eshell-mode-map (kbd "C-r") 'consult-history))
 
- ;; (setenv "PAGER" "cat")
+  ;; (setenv "PAGER" "cat")
 
   (setq
    ;; eshell-prompt-function      'wt/eshell-prompt
@@ -150,7 +152,7 @@
    ;; eshell-scroll-to-bottom-on-input t
    ;; eshell-prefer-lisp-functions nil
    )
-)
+  )
 
 ;; (defun corfu-send-shell (&rest _)
 ;;   "Send completion candidate when inside comint/eshell."
@@ -162,10 +164,9 @@
 ;; (advice-add #'corfu-insert :after #'corfu-send-shell)
 
 (use-package eshell-syntax-highlighting
+  :straight t
   :defer t
-  :after eshell
   :hook(eshell-mode . eshell-syntax-highlighting-mode)
-  ;; :demand t
   )
 
 (use-package esh-autosuggest
@@ -198,12 +199,12 @@
   (setq eshell-destroy-buffer-when-process-dies t)
   ;; (setq eshell-visual-commands '("htop" "zsh" "vim"))
   ;; (setq eshell-visual-commands nil)
-)
+  )
 
-(add-hook 'eshell-mode-hook
+(add-hook 'eshell-first-time-mode-hook
           (lambda ()
             (require 'eshell)
-            (eshejl/alias "la" "ls -al")  ; Set alias for git
+            (eshell/alias "la" "ls -al")  ; Set alias for git
             (eshell/alias "clear" "clear 1")  ; Set alias for git
             ))
 

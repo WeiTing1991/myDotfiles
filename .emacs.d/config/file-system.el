@@ -14,7 +14,7 @@
   (evil-collection-define-key 'normal 'dired-mode-map (kbd "r") 'dired-do-rename)
   (evil-collection-define-key 'normal 'dired-mode-map (kbd "y") 'dired-do-copy)
 
-  (setq insert-directory-program "gls")
+  ;; (setq insert-directory-program "gls")
 
   ;; :custom
   ;; (setq variable-pitch-mode t)
@@ -43,6 +43,7 @@
     (w32-shell-execute "open" file))
    )
   )
+
 (defun my-dired-open ()
   (interactive)
   (let ((file (dired-get-file-for-visit)))
@@ -50,7 +51,8 @@
         (my-dired-open-with-system file)
       (message "No file selected."))))
 
-;; (evil-collection-define-key 'normal 'dired-mode-map (kbd "C-o") 'my-dired-open)
+
+(evil-collection-define-key 'normal 'dired-mode-map (kbd "C-o") 'my-dired-open)
 (use-package dired-single
   :straight nil
   :commands (dired dired-jump))
@@ -58,9 +60,10 @@
 ;; https://github.com/Fuco1/dired-hacks
 (use-package dired-open
   :commands (dired dired-jump)
-  :bind ("C-o" . dired-open-functions)
-  :config
-  (add-to-list 'dired-open-functions #'my-dired-open t)
+  ;; :bind ("C-o" . dired-open-functions)
+  ;; :config
+  ;; (add-to-list 'dired-open-functions #'my-dired-open t)
+  ;; (evil-collection-define-key 'normal 'dired-mode-map (kbd "C-o") #'my-dired-open)
   )
 
 (setq dired-hide-dotfiles-mode -1)
@@ -133,15 +136,16 @@
                     :height wt/tab-font-size)
 
 ;; Customize the appearance of active tabs
-(set-face-attribute 'tab-bar-tab-inactive nil
-                    :background bella-color-high;; Background color for active tab
-                    :foreground bella-color-base;; Foreground color for active tab text
-                    :weight 'bold) ;; Make active tab text bold
+(set-face-attribute 'tab-bar-tab nil
+                    :background bella-color-black
+                    :foreground "#ffffff"
+                    :weight 'bold)
 
 ;; Customize the appearance of inactive tabs
-(set-face-attribute 'tab-bar-tab nil
-                    :background bella-color-base ;; Background color for inactive tabs
-                    :foreground "#dcdfe4") ;; Foreground color for inactive tab text
+(set-face-attribute 'tab-bar-tab-inactive nil
+                    :background bella-color-high
+                    :foreground "#ffffff"
+                    )
 
 
 ;; NOTE https://github.com/nex3/perspective-el
@@ -155,6 +159,9 @@
 ;;   (persp-mode)
 ;;   )
 
+;; TODO check more function
+;; https://github.com/mclear-tools/tabspaces
+
 (use-package tabspaces
   ;; use this next line only if you also use straight, otherwise ignore it.
   :straight (:type git :host github :repo "mclear-tools/tabspaces")
@@ -164,13 +171,13 @@
   :custom
   (tabspaces-use-filtered-buffers-as-default t)
   (tabspaces-default-tab "Main")
-  (tabspaces-remove-to-default t)
+  ;; (tabspaces-remove-to-default t)
   (tabspaces-include-buffers '("*scratch*"))
   (tabspaces-initialize-project-with-todo t)
   ;; (tabspaces-todo-file-name "project-todo.org")
   ;; sessions
-  (tabspaces-session t)
-  (tabspaces-session-auto-restore t)
+  ;; (tabspaces-session t)
+  ;; (tabspaces-session-auto-restore t)
   (tab-bar-new-tab-choice "*scratch*"))
 
 ;; TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file

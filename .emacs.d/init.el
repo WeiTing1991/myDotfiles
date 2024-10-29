@@ -67,8 +67,8 @@
   )
  ;; Windows configuration
  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-  (defvar  wt/default-font-size 120)
-  (defvar  wt/default-variable-font-size 120)
+  (defvar  wt/default-font-size 100)
+  (defvar  wt/default-variable-font-size 100)
   (defvar  wt/frame-transparency '(95 . 90))
   )
  )

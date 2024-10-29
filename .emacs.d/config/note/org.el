@@ -7,7 +7,6 @@
 ;; TODO
 (require 'bella-base-color)
 
-
 (defun org-custom-setting ()
   "Custom org setttings"
   (setq editorconfig-exclude-modes '(org-mode))
@@ -86,14 +85,14 @@
 (use-package org
   :straight t
   :config
-  (setq org-ellipsis " ▾")
+  (add-hook 'org-mode-hook #'org-custom-setting)
 
+  (setq org-ellipsis " ▾")
   (setq org-hide-emphasis-markers t)
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
 
-  (add-hook 'org-mode-hook #'org-custom-setting)
   (add-hook 'org-mode-hook #'org-style-dark)
   ;; (add-hook 'org-mode-hook #'org-bella-bullet-keywords)
 
