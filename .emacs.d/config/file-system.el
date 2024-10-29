@@ -36,7 +36,7 @@
   "Open FILE with the system's default application."
   (cond
    ((eq system-type 'darwin)
-      ;; macOS
+    ;; macOS
     (start-process "open" nil "open" file)
     )
    ((eq system-type 'windows-nt)
@@ -61,7 +61,7 @@
   :bind ("C-o" . dired-open-functions)
   :config
   (add-to-list 'dired-open-functions #'my-dired-open t)
-)
+  )
 
 (setq dired-hide-dotfiles-mode -1)
 (use-package dired-hide-dotfiles
@@ -85,29 +85,31 @@
   (setq dired-preview-delay 0.1)
   (setq dired-preview-max-size (* 100 1024 1024))
   (setq dired-preview-ignored-extensions-regexp
-          (concat "\\."
-                  "\\(gz\\|"
-                  "zst\\|"
-                  "tar\\|"
-                  "xz\\|"
-                  "rar\\|"
-                  "zip\\|"
-                  "iso\\|"
-                  "epub"
-                  "\\)")
-          )
+        (concat "\\."
+                "\\(gz\\|"
+                "zst\\|"
+                "tar\\|"
+                "xz\\|"
+                "rar\\|"
+                "zip\\|"
+                "iso\\|"
+                "epub"
+                "\\)")
+        )
   ;; globally:
   ;; (dired-preview-global-mode 1)
   )
 
 (use-package ibuffer
   :straight nil
+  :config
   )
-(add-hook 'ibuffer-hook
-          (lambda ()
-            (persp-ibuffer-set-filter-groups)
-            (unless (eq ibuffer-sorting-mode 'alphabetic)
-              (ibuffer-do-sort-by-alphabetic))))
+
+;; (add-hook 'ibuffer-hook
+;;           (lambda ()
+;;             (persp-ibuffer-set-filter-groups)
+;;             (unless (eq ibuffer-sorting-mode 'alphabetic)
+;;               (ibuffer-do-sort-by-alphabetic))))
 
 ;; workspace
 (cond
@@ -122,6 +124,7 @@
  )
 
 (tab-bar-mode t)
+(require 'bella-base-color)
 (set-face-attribute 'tab-bar nil
                     :font "RobotoMono Nerd Font"
                     :weight 'bold
@@ -131,26 +134,44 @@
 
 ;; Customize the appearance of active tabs
 (set-face-attribute 'tab-bar-tab-inactive nil
-                    :background "#61afef" ;; Background color for active tab
-                    :foreground "#282c34" ;; Foreground color for active tab text
+                    :background bella-color-high;; Background color for active tab
+                    :foreground bella-color-base;; Foreground color for active tab text
                     :weight 'bold) ;; Make active tab text bold
 
 ;; Customize the appearance of inactive tabs
 (set-face-attribute 'tab-bar-tab nil
-                    :background "#3e4451" ;; Background color for inactive tabs
+                    :background bella-color-base ;; Background color for inactive tabs
                     :foreground "#dcdfe4") ;; Foreground color for inactive tab text
 
 
 ;; NOTE https://github.com/nex3/perspective-el
-(use-package perspective
-  :straight t
-  :bind
-  ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
+;; (use-package perspective
+;;   :straight nil
+;;   :bind
+;;   ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
+;;   :custom
+;;   (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
+;;   :init
+;;   (persp-mode)
+;;   )
+
+(use-package tabspaces
+  ;; use this next line only if you also use straight, otherwise ignore it.
+  :straight (:type git :host github :repo "mclear-tools/tabspaces")
+  :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup.
+  :commands (tabspaces-switch-or-create-workspace
+             tabspaces-open-or-create-project-and-workspace)
   :custom
-  (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
-  :init
-  (persp-mode)
-  )
+  (tabspaces-use-filtered-buffers-as-default t)
+  (tabspaces-default-tab "Main")
+  (tabspaces-remove-to-default t)
+  (tabspaces-include-buffers '("*scratch*"))
+  (tabspaces-initialize-project-with-todo t)
+  ;; (tabspaces-todo-file-name "project-todo.org")
+  ;; sessions
+  (tabspaces-session t)
+  (tabspaces-session-auto-restore t)
+  (tab-bar-new-tab-choice "*scratch*"))
 
 ;; TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file
 ;; https://docs.projectile.mx/projectile/projects.html

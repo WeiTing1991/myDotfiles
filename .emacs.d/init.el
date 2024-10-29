@@ -140,9 +140,10 @@
 ;; set title
 (setq frame-title-format
       '("Emacs v" emacs-version "  "
-        (:eval (if (fboundp 'persp-name) ;; Check if perspective package is loaded
-                   (format "@ | %s | " (persp-name (persp-curr)))
-                 "No workspace")))) ;; Fallback if no perspective is active
+        (:eval (if (and (bound-and-true-p persp-mode) ;; Check if perspective mode is enabled
+                        (persp-curr))                 ;; Check if there's a current perspective
+                   (format "Workspace: %s" (persp-name (persp-curr)))
+                 "No workspace"))))
 
 ;; (setq garbage-collection-messages t) ; for debug
 (defun my-cleanup-gc ()

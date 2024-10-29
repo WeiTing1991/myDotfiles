@@ -53,8 +53,8 @@
               )
 
 (setq nord-uniform-mode-lines t)
-(set-face-attribute 'mode-line nil :weight 'bold)
-(set-face-attribute 'mode-line-inactive nil :weight 'bold)
+;; (set-face-attribute 'mode-line nil :weight 'bold)
+;; (set-face-attribute 'mode-line-inactive nil :weight 'bold)
 ;; Hook into all programming modes
 ;; (add-hook 'prog-mode-hook 'enable-mode-line)
 

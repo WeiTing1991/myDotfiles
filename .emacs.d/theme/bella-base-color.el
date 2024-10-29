@@ -31,6 +31,7 @@
   (defvar bella-color-black "#0D0907")
   (defvar bella-color-text-light "#ECEFF4")
   (defvar bella-color-base "#232136")
+  (defvar bella-color-high "#393552")
 
   ;; Rose Pine Moon
   ;; (text       "#e0def4")  ;; foreground

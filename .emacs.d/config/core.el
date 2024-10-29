@@ -181,11 +181,11 @@
     "v" #'(wt/split-and-follow-vertically :wk "split and follow vertically")
     "h" #'(wt/split-and-follow-horizontally :wk "split and follow horizontally")
     "r" '(eval-buffer :wk "eval-buffer")
-    "s" '(persp-switch :wk "persp-switch")
-    "n" '(persp-next :wk "persp-next")
-    "p" '(persp-prev :wk "persp-next")
-    "k" '(persp-kill-other-buffers :wk "kill alll buffers")
-    "K" '(persp-kill-others :wk "persp-kill-others")
+    "s" '(tabspaces-switch-or-create-workspace :wk "switch")
+    "n" '(tabspaces-switch-buffer-and-tab :wk "buffer next")
+    ;; "p" '(pervious-buffer:wk "buffer pervious")
+    "k" '(tabspaces-clear-buffers :wk "kill alll buffers")
+    "K" '(tabspaces-kill-buffers-close-workspace :wk "kill others")
     )
 
   (wt/system-key
@@ -225,11 +225,11 @@
   ;; BUG when change buffer it will move to next workspace
   (wt/leader-keys
     "b" '(:ignore t :wk "Bookmarks/Buffers")
-    "bl" '(persp-ibuffer ibu :wk "List buffers")
+    "bl" '(ibuffer ibu :wk "List buffers")
     "SPC" '(consult-buffer :wk "Switch buffer")
     "q" '(kill-buffer-and-window :wk "Kill this buffer")
-    "o" '(next-buffer  :wk "Next buffer")
-    "i" '(previous-buffer :wk "Previous buffer")
+    "i" '(switch-to-next-buffer  :wk "Next buffer")
+    "o" '(switch-to-prev-buffer :wk "Previous buffer")
     "br" '(revert-buffer :wk "Reload buffer")
     "bq" '(kill-buffer :wk "Kill buffer")
     )
