@@ -43,6 +43,7 @@
 ;; NOTE
 ;; https://github.com/manateelazycat/aweshell
 (use-package aweshell
+  :if (eq system-type 'darwin)
   :straight (aweshell :type git :host github :repo "manateelazycat/aweshell")
   :after eshell
   )
