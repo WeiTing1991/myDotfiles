@@ -34,16 +34,17 @@
 (global-set-key (kbd "M-v") 'clipboard-yank)  ;; Paste
 (global-set-key (kbd "M-c") 'kill-ring-save)   ;; Copy
 
-
 (define-key global-map (kbd "C-k") nil)
 (define-key global-map (kbd "C-j") nil)
 
-;(defun open-all-recent-files ()
-;  "Open all recent files."
-;  (interactive)
-;  (dolist (file  recentf-list) (find-file file)))
-;
-;(define-key global-map (kbd "C-w") 'open-all-recent-files)
+
+
+                                        ;(defun open-all-recent-files ()
+                                        ;  "Open all recent files."
+                                        ;  (interactive)
+                                        ;  (dolist (file  recentf-list) (find-file file)))
+                                        ;
+                                        ;(define-key global-map (kbd "C-w") 'open-all-recent-files)
 
 ;; Toggle between split windows and a single window
 (defun toggle-windows-split()
@@ -69,13 +70,13 @@
   "Set the note dir by system"
   (interactive)
   (cond
-  ((eq system-type 'darwin)
+   ((eq system-type 'darwin)
     (setq  wt/note-dir "/Users/weitingchen/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen")
     )
-  ((eq system-type 'windows-nt)
+   ((eq system-type 'windows-nt)
     (setq  wt/note-dir "~/iCloudDrive/iCloud~md~obsidian/weitingchen/"))
-    )
-    (dired wt/note-dir)
+   )
+  (dired wt/note-dir)
   )
 
 ;; (defun wt/find-file-preview ()
@@ -92,7 +93,7 @@
   :after evil
   :init
   (drag-stuff-mode t)
-)
+  )
 
 (use-package evil
   :straight t
@@ -141,8 +142,11 @@
   (evil-set-initial-state 'dashboard-mode 'normal)
   ;; (evil-set-initial-state 'dashboard-mode 'normal)
 
-
-)
+  ;; folde mode
+  (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+  (add-hook 'prog-mode-hook 'hs-minor-mode)
+  (define-key evil-normal-state-map (kbd "TAB") 'evil-toggle-fold)
+  )
 
 (use-package evil-collection
   :straight t
@@ -225,11 +229,12 @@
   ;; BUG when change buffer it will move to next workspace
   (wt/leader-keys
     "b" '(:ignore t :wk "Bookmarks/Buffers")
+    "bb" '(consult-buffer-other-window :wk "Switch buffer")
     "bl" '(ibuffer ibu :wk "List buffers")
     "SPC" '(consult-buffer :wk "Switch buffer")
     "q" '(kill-buffer-and-window :wk "Kill this buffer")
-    "i" '(switch-to-next-buffer  :wk "Next buffer")
-    "o" '(switch-to-prev-buffer :wk "Previous buffer")
+    "o" '(switch-to-next-buffer  :wk "Next buffer")
+    "i" '(switch-to-prev-buffer :wk "Previous buffer")
     "br" '(revert-buffer :wk "Reload buffer")
     "bq" '(kill-buffer :wk "Kill buffer")
     )
@@ -248,10 +253,10 @@
     "w w" '(evil-window-next :wk "Goto next window")
 
     ;; Move Windows
-    "H" '(buf-move-left :wk "Buffer move left")
+    ;; "H" '(buf-move-left :wk "Buffer move left")
     ;; "J" '(buf-move-down :wk "Buffer move down")
     ;; "w K" '(buf-move-up :wk "Buffer move up")
-    "L" '(buf-move-right :wk "Buffer move right")
+    ;; "L" '(buf-move-right :wk "Buffer move right")
     )
 
   ;; dir
@@ -279,7 +284,7 @@
   ;;             :wk "Reload emacs config")
   ;;   )
 
-)
+  )
 
 ;; hightlight yank
 (use-package evil-goggles
@@ -301,22 +306,22 @@
 
 
 ;; ;; maybe check this https://github.com/casouri/vundo
-;(use-package undo-tree
-;  :straight t
-;  :config
-;  (global-undo-tree-mode)
-;  :custom
-;  ;; on windows is really slow
-;  (setq undo-tree-history-directory "~/.emacs.d/undo")
-;  (setq undo-tree-auto-save-history t)
-;)
-;
-;(with-eval-after-load 'evil
-;  (when (bound-and-true-p global-undo-tree-mode)
-;    (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo)
-;    (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo))
-;  ;; (global-set-key (kbd "C-x u") 'undo-tree-visualize)
-;)
+                                        ;(use-package undo-tree
+                                        ;  :straight t
+                                        ;  :config
+                                        ;  (global-undo-tree-mode)
+                                        ;  :custom
+                                        ;  ;; on windows is really slow
+                                        ;  (setq undo-tree-history-directory "~/.emacs.d/undo")
+                                        ;  (setq undo-tree-auto-save-history t)
+                                        ;)
+                                        ;
+                                        ;(with-eval-after-load 'evil
+                                        ;  (when (bound-and-true-p global-undo-tree-mode)
+                                        ;    (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo)
+                                        ;    (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo))
+                                        ;  ;; (global-set-key (kbd "C-x u") 'undo-tree-visualize)
+                                        ;)
 
 (use-package diminish
   :straight t

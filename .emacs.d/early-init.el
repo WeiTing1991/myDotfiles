@@ -34,7 +34,7 @@
       (setq gc-cons-threshold (* 256 1024 1024)
       gc-cons-percentage 0.1)))
 
-(setq idle-update-delay 1.0)
+(setq idle-update-delay 0.500)
 
 ;; (setq byte-compile-warnings '(not obsolete))
 ;; (setq warning-suppress-log-types '((comp) (bytecomp)))
@@ -69,7 +69,6 @@
 (set-face-background 'default "#0D0907")
 (set-face-background 'fringe "#0D0907")
 (set-face-foreground 'default "white")
-
 
 (setq default-frame-alist
       (append (list

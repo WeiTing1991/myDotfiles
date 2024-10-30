@@ -2,6 +2,8 @@
 
 ;;; code:
 
+;; NOTE
+;; https://symbl.cc/en/2022/
 ;; indent mode and highlight
 ;; check https://github.com/DarthFennec/highlight-indent-guides
 (use-package highlight-indent-guides
@@ -21,52 +23,71 @@
   (setq highlight-indent-guides-delay 0)
   )
 
-;; https://github.com/domtronn/all-the-icons.el/tree/svg
 
-;; modeline
-;; TODO check the right align
+;; Modeline
+;; https://github.com/domtronn/all-the-icons.el/tree/svg
 ;; Hide the mode line globally
 ;; https://www.reddit.com/r/emacs/comments/6ftm3x/share_your_modeline_customization/
+
 (setq-default mode-line-format nil)
 
+(set-face-attribute 'mode-line nil
+                    ;; :height 1.5
+                    ;; :background "#0D0907"
+                    :box t
+                    )
+(set-face-attribute 'mode-line-inactive nil
+                    ;; :background "#0D0907"
+                    ;; :height 1.5
+                    :box t)
+
+(defun simple-mode-line-render (left right)
+  "Return a string of `window-width' length.
+Containing LEFT, and RIGHT aligned respectively."
+  (let ((available-width
+         (- (window-total-width)
+            (+ (length (format-mode-line left))
+               (length (format-mode-line right))))))
+    (append left
+            (list (format (format "%%%ds" available-width) ""))
+            right)))
+
+;; (set-face-attribute 'mode-line-active nil :height 100)
+;; (set-face-attribute 'mode-line-inactive nil :height 100)
+
 (setq-default mode-line-format
-              '("%e" "  "
-                (:propertize
-                 ("" mode-line-mule-info mode-line-client mode-line-modified mode-line-remote))
-                "   "
-                mode-line-position
-                (vc-mode vc-mode)
-                mode-line-frame-identification
-                mode-line-buffer-identification
-                "   "
-                "   "
-                "   "
-                "   "
-                mode-line-format-right-align
-                (:eval (format " Tab (%d) " tab-width))
-                mode-line-modes
-                mode-line-misc-info
-                "   ")
-              ;; mode-line-percent-position nil
-              ;; mode-line-buffer-identification '(" %b")
-              ;; mode-line-position-column-line-format '(" %l:%c")
+              '((:eval
+                 (simple-mode-line-render
+                  ;; Left.
+                  (quote ("%e "
+                          evil-mode-line-tag
+                          "[%*]"
+                          " "
+                          (:propertize
+                           ("" mode-line-mule-info mode-line-client mode-line-modified mode-line-remote))
+                          " "
+                          " %l : %c"
+                          " "
+                          (vc-mode vc-mode)
+                          mode-line-frame-identification '(" %b")
+                          mode-line-buffer-identification
+                          )
+                         )
+                  ;; Right.
+                  (quote ("%p "
+                          ;; mode-line-format-right-align
+                          (:eval (format " Tab (%d) " tab-width))
+                          mode-line-frame-identification
+                          mode-line-modes
+                          mode-line-misc-info)))
+                 )
+                )
               )
 
-(setq nord-uniform-mode-lines t)
-;; (set-face-attribute 'mode-line nil :weight 'bold)
-;; (set-face-attribute 'mode-line-inactive nil :weight 'bold)
+
 ;; Hook into all programming modes
 ;; (add-hook 'prog-mode-hook 'enable-mode-line)
 
-;; (set-face-attribute 'mode-line nil
-;;                     :height 1.1
-;;                     ;; :background "#0D0907"
-;;                     :box nil
-;;                     )
-;; (set-face-attribute 'mode-line-inactive nil
-;;                     ;; :background "#0D0907"
-;;                     :height 1.1
-;;                     :box nil)
 
 ;; ;; Optionally disable mode line in other modes
 ;; (defun disable-mode-line ()

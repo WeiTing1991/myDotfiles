@@ -7,18 +7,20 @@
 ;; TODO
 (require 'bella-base-color)
 
-(defun org-custom-setting ()
-  "Custom org setttings"
-  (setq editorconfig-exclude-modes '(org-mode))
-  (setq tab-width 8)
-  (org-indent-mode)
+;; NOTE
+;; https://github.com/minad/org-modern?tab=readme-ov-file
+(defun wt/set-org-theme ()
+  "Load the nano theme."
+  (load-theme 'modus-operandi)
+  (face-remap-add-relative 'org-indent :background "white")
+  )
 
+(defun wt/org-mode-setting ()
+  "Custom org setttings"
   ;; it a bit slow in windows
   (variable-pitch-mode 1)
-
-  (auto-fill-mode 0)
   (visual-line-mode 1)
-  (setq evil-auto-indent nil)
+  (auto-fill-mode 0)
   )
 
 (defcustom org-bella-list
@@ -39,11 +41,6 @@
      `((,(format "^[ \t]*\\(*\\)[ \t]") 1 '(face nil display ,bullet)))))
   )
 
-(defun wt/set-org-theme ()
-  "Load the nano theme."
-  (load-theme 'modus-operandi)
-  (face-remap-add-relative 'org-indent :background "white")
-  )
 
 ;; set the font and size
 (defun org-style-dark ()
@@ -62,22 +59,52 @@
   ;; (face-remap-add-relative 'default :foreground bella-color-black :background bella-color-text-light)
   ;; (face-remap-add-relative 'org-block :background bella-color-base :inherit 'fixed-pitch)
 
+  ;; (defvar bella-color-base "#232136")
+  ;; (defvar bella-color-high "#393552")
+  ;; (defvar bella-color-grey"#D8DEE9")
+
   (set-face-attribute 'org-block-end-line nil
-                      ;; :foreground
+                      :foreground bella-color-grey
                       :background bella-color-base
                       :weight 'bold
                       )
   (set-face-attribute 'org-block-begin-line nil
-                      ;; :foreground
+                      :foreground bella-color-grey
                       :background bella-color-base
                       :weight 'bold
                       )
-
+  (set-face-attribute 'org-block nil :background bella-color-base   :inherit 'fixed-pitch)
+  ;; (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+  ;; (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+  ;; (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+  ;; (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
+  ;; (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  ;; (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+  ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
+
+(defun wt/toggle-org-emphasis-markers ()
+  "Toggle markers"
+  (interactive)
+  (if org-hide-emphasis-markers
+      (progn
+        (setq org-hide-emphasis-markers nil)
+        (revert-buffer t t)
+        (message "emphasis markers VISIBLE"))
+    (progn
+      (setq org-hide-emphasis-markers t))
+    (message "emphasis markers HIDDEN"))
+  (revert-buffer t t)
+  )
+
 
 ;; nice bullets
 (use-package org-bullets
   :straight t
+  :defer t
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
@@ -85,15 +112,27 @@
 (use-package org
   :straight t
   :config
-  (add-hook 'org-mode-hook #'org-custom-setting)
 
-  (setq org-ellipsis " ▾")
-  (setq org-hide-emphasis-markers t)
+  ;; indent tab-width
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (setq-default tab-width 8)
+              (setq-default indent-tabs-mode nil)
+              (setq-local evil-auto-indent nil)
+              (org-indent-mode)
+              )
+            )
+
+  (setq org-ellipsis " ... ")
+  (setq org-hide-emphasis-markers nil)
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
 
-  (add-hook 'org-mode-hook #'org-style-dark)
+
+  (add-hook 'org-mode-hook 'wt/org-mode-setting)
+  (add-hook 'org-mode-hook 'org-style-dark)
+
   ;; (add-hook 'org-mode-hook #'org-bella-bullet-keywords)
 
   (cond
@@ -104,30 +143,25 @@
    )
 
   (setq org-agenda-files (directory-files-recursively org-directory "\\.org$"))
-  ;; (add-hook 'org-mode-hook
-  ;;           (lambda ()
-  ;;             (wt/system-key
-  ;;               "oo" '(org-agenda :wk "org agenda")
-  ;;               )
-  ;;             )
-  ;;           )
   )
 
-;; (add-hook 'org-mode-hook
-;;           (lambda ()
-;;             ('wt/set-org-theme)
-;;             ))
-
+;;https://www.youtube.com/watch?v=zqAYHWv36X0
 ;; set keybinding
-(wt/system-key
-  "oo" '(org-agenda :wk "org agenda")
-  ;; "ot" '(org-hide-emphasis-markers :wk "org market toggle")
-  )
+(add-hook 'org-mode-hook
+          (lambda ()
+            (wt/leader-keys
+              "m" '(:ignore :wk "org")
+              "me" #'(wt/toggle-org-emphasis-markers :wk "org toggle markers")
+              )
+            )
+          )
+
 
 ;; TODO check those link
 ;;https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org
 (use-package org-roam
   :straight t
+  :defer t
   :custom
   ;; (cond
   ;;  ((eq system-type 'darwin)

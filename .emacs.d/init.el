@@ -48,9 +48,9 @@
   )
 
 (defun wt/set-custom-theme ()
-  "set my theme"
-;;(load-theme 'zenburn t)
-;;(load-theme 'base16-onedark t)
+  "Set my theme."
+  ;;(load-theme 'zenburn t)
+  ;;(load-theme 'base16-onedark t)
   (load-theme 'nord t)
   (set-face-background 'default "#0D0907")
   (set-face-background 'fringe "#0D0907")
@@ -139,11 +139,9 @@
 
 ;; set title
 (setq frame-title-format
-      '("Emacs v" emacs-version "  "
-        (:eval (if (and (bound-and-true-p persp-mode) ;; Check if perspective mode is enabled
-                        (persp-curr))                 ;; Check if there's a current perspective
-                   (format "Workspace: %s" (persp-name (persp-curr)))
-                 "No workspace"))))
+      '("Emacs v" emacs-version "  " "%b"
+        )
+      )
 
 ;; (setq garbage-collection-messages t) ; for debug
 (defun my-cleanup-gc ()

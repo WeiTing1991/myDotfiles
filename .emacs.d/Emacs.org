@@ -6,17 +6,17 @@ I switch to Emacs from Neovima as main editor, I am trying to build my own confi
 
 * Welcome!
         to be continue!
+
 * Package
 
-
 ** package mangerment
-- list
-- list
-  + sublist
+- *list*
+- /list/
+  + _sublist_
   * sublist
 
 ** Org Mode
-  - list
+  - *list*
   - list
   - list
     * list
@@ -27,7 +27,6 @@ I switch to Emacs from Neovima as main editor, I am trying to build my own confi
 #+begin_src emacs-lisp
   (use-package
     )
-
 #+end_src
 
 * Package System Setup

@@ -108,21 +108,15 @@
   :config
   )
 
-;; (add-hook 'ibuffer-hook
-;;           (lambda ()
-;;             (persp-ibuffer-set-filter-groups)
-;;             (unless (eq ibuffer-sorting-mode 'alphabetic)
-;;               (ibuffer-do-sort-by-alphabetic))))
-
 ;; workspace
 (cond
  ;; macOS configuration
  ((eq system-type 'darwin)  ;; 'darwin' is for macOS
-  (defvar wt/tab-font-size 120)
+  (defvar wt/tab-font-size 140)
   )
  ;; Windows configuration
  ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-  (defvar wt/tab-font-size 100)
+  (defvar wt/tab-font-size 120)
   )
  )
 
@@ -139,12 +133,15 @@
 (set-face-attribute 'tab-bar-tab nil
                     :background bella-color-black
                     :foreground "#ffffff"
-                    :weight 'bold)
+                    :weight 'bold
+                    :box nil
+                    )
 
 ;; Customize the appearance of inactive tabs
 (set-face-attribute 'tab-bar-tab-inactive nil
-                    :background bella-color-high
+                    :background bella-color-base
                     :foreground "#ffffff"
+                    :box nil
                     )
 
 
@@ -172,13 +169,14 @@
   (tabspaces-use-filtered-buffers-as-default t)
   (tabspaces-default-tab "Main")
   ;; (tabspaces-remove-to-default t)
-  (tabspaces-include-buffers '("*scratch*"))
+  ;; (tabspaces-include-buffers '("*scratch*"))
   (tabspaces-initialize-project-with-todo t)
   ;; (tabspaces-todo-file-name "project-todo.org")
   ;; sessions
   ;; (tabspaces-session t)
   ;; (tabspaces-session-auto-restore t)
-  (tab-bar-new-tab-choice "*scratch*"))
+  (tab-bar-new-tab-choice "*scratch*")
+  )
 
 ;; TODO https://github.com/mclear-tools/tabspaces?tab=readme-ov-file
 ;; https://docs.projectile.mx/projectile/projects.html

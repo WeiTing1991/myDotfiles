@@ -33,6 +33,7 @@
    olivetti-margin-width 8)
   ;; (set-face-background 'fringe bella-color-base)
   )
+
 (wt/leader-keys
   "mo" '(olivetti-mode :wk "writing focus mode")
   )

@@ -110,6 +110,7 @@
   (show-paren-mode 1)
 
   (electric-pair-mode 1)
+  (electric-indent-mode 0)
   ;; (setq electric-pair-preserve-balance nil)
 
   (setq comment-style 'indent)
@@ -118,8 +119,8 @@
   (setq-default indent-width #'wt/indent-width)
   (setq-default standard-indent 2)        ;; Set standard indentation to 2 spaces
 
-  (setq-default split-height-threshold  4
-                split-width-threshold   160) ; the reasonable limit for horizontal splits
+  (setq-default split-height-threshold  160
+                split-width-threshold   5) ; the reasonable limit for horizontal splits
 
   (setq jit-lock-stealth-time nil)
   (setq jit-lock-defer-time nil)
