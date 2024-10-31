@@ -36,7 +36,6 @@
      `((,(format "^[ \t]*\\(*\\)[ \t]") 1 '(face nil display ,bullet)))))
   )
 
-
 ;; set the font and size
 (defun org-style-dark ()
   "custom style mode."
@@ -50,6 +49,7 @@
                   (org-level-7 . 1.0)
                   (org-level-8 . 1.0)))
     (face-remap-add-relative (car face) :height (cdr face) :weight 'regular))
+
   ;; BUG
   ;; (cond
   ;;  ((eq system-type 'darwin)
@@ -57,7 +57,7 @@
   ;;   (setq org-directory  "~/iCloudDrive/iCloud~md~obsidian/weitingchen/"))
   ;;  )
 
-  ;; (face-remap-add-relative 'org-indent :background bella-color-black)
+  (face-remap-add-relative 'org-indent :background nil)
   ;; (face-remap-add-relative 'default :foreground bella-color-black :background bella-color-text-light)
   ;; (face-remap-add-relative 'org-block :background bella-color-base :inherit 'fixed-pitch)
 
@@ -106,11 +106,41 @@
 
 ;; nice bullets
 (use-package org-bullets
-  :straight t
+  :straight nil
   :defer t
-  :hook (org-mode . org-bullets-mode)
+  ;; :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+
+(use-package org-superstar
+  :straight t
+  :defer t
+  :hook (org-mode . org-superstar-mode)
+  :config
+  (setq org-superstar-leading-bullet " ")
+  (setq org-superstar-special-todo-items t) ;; Makes TODO header bullets into boxes
+  (setq org-superstar-todo-bullet-alist '(("TODO" . 9744)
+                                          ("INPROG-TODO" . 9744)
+                                          ("WORK" . 9744)
+                                          ("STUDY" . 9744)
+                                          ("SOMEDAY" . 9744)
+                                          ("READ" . 9744)
+                                          ("PROJ" . 9744)
+                                          ("CONTACT" . 9744)
+                                          ("DONE" . 9745)))
+  )
+;; Removes gap when you add a new heading
+(setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+
+(use-package org-download
+  :straight t
+  :after org
+  :config
+  (setq org-download-method 'attach)
+  (setq org-download-screenshot-method "convert clipboard: %s")
+
+  ;; (advice-add 'org-download-yank :before 'jib/system-clipboard-to-emacs-clipboard)
+)
 
 (use-package org
   :straight t
@@ -131,7 +161,8 @@
   (setq org-agenda-start-with-log-mode t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-
+  (setq org-startup-indented t)
+  ;; (setq org-startup-with-inline-images t)
 
   (add-hook 'org-mode-hook 'wt/org-mode-setting)
   (add-hook 'org-mode-hook 'org-style-dark)
@@ -154,12 +185,15 @@
             (wt/leader-keys
               "m" '(:ignore :wk "org")
               "mm" '(org-emphasize :wk "org markers")
+              "mp" '(org-download-clipboard :wk "org paste form clipboard")
               "mte" #'(wt/toggle-org-markers :wk "org toggle markers")
               "mtl" '(org-toggle-link-display :wk "org toggle link")
+              "mti" '(org-display-inline-images :wk "org display image")
               "RET" '(org-open-at-point :wk "org open link")
               )
             )
           )
+
 
 ;; TODO check those link
 ;;https://github.com/daviwil/emacs-from-scratch/blob/master/Emacs.org

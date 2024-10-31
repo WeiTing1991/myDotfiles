@@ -72,10 +72,10 @@
 
 
 ;; Removes *scratch* from buffer after the mode has been set.
-(defun remove-scratch-buffer ()
-  (if (get-buffer "*scratch*")
-      (kill-buffer "*scratch*")))
-(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+;; (defun remove-scratch-buffer ()
+;;   (if (get-buffer "*scratch*")
+;;       (kill-buffer "*scratch*")))
+;; (add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
 
 ;; Removes *messages* from the buffer.
 ;; (setq-default message-log-max nil)
@@ -85,9 +85,9 @@
 (setq default-frame-alist
       (append (list
          '(min-height . 1)
-         '(height     . 50)
+         '(height     . 20)
          '(min-width  . 1)
-         '(width      . 100)
+         '(width      . 50)
          '(vertical-scroll-bars . nil)
          '(horizontal-scroll-bars . nil)
          '(internal-border-width . 24)
