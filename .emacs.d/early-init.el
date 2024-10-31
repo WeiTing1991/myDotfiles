@@ -62,13 +62,25 @@
       tab-line-close-button-show nil) ;; don't show tab close button
 
 (setq inhibit-startup-screen t
-      inhibit-startup-message t
+      inhibit-startup-message ""
       inhibit-startup-echo-area-message t
       initial-scratch-message nil)
 
 (set-face-background 'default "#0D0907")
 (set-face-background 'fringe "#0D0907")
 (set-face-foreground 'default "white")
+
+
+;; Removes *scratch* from buffer after the mode has been set.
+(defun remove-scratch-buffer ()
+  (if (get-buffer "*scratch*")
+      (kill-buffer "*scratch*")))
+(add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
+
+;; Removes *messages* from the buffer.
+;; (setq-default message-log-max nil)
+;; (kill-buffer "*Messages*")
+;; (kill-buffer "*straight-process*")
 
 (setq default-frame-alist
       (append (list
@@ -90,6 +102,6 @@
         )
       )
 
-
 (provide 'early-init)
+
 ;;; early-init.el ends here

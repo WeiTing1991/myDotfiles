@@ -38,13 +38,13 @@
 (define-key global-map (kbd "C-j") nil)
 
 
+;;(defun open-all-recent-files ()
+;;  "Open all recent files."
+;;  (interactive)
+;;  (dolist (file  recentf-list) (find-file file)))
+;;
+;;(define-key global-map (kbd "C-w") 'open-all-recent-files)
 
-                                        ;(defun open-all-recent-files ()
-                                        ;  "Open all recent files."
-                                        ;  (interactive)
-                                        ;  (dolist (file  recentf-list) (find-file file)))
-                                        ;
-                                        ;(define-key global-map (kbd "C-w") 'open-all-recent-files)
 
 ;; Toggle between split windows and a single window
 (defun toggle-windows-split()
@@ -209,7 +209,7 @@
     "/" '(execute-extended-command :wk "consult-M-x")
     "'" '(project-eshell :wk "run eshell")
     "C-'" '(term :wk "run term")
-    "c f" (lambda () (interactive) (dired "~/.dotfiles/.emacs.d/"))
+    "c f" (lambda () (interactive) (dired "~/.dotfiles/"))
     ;; "p" #'(paste-from-clipboard :wk "leader p")
     )
 
@@ -218,10 +218,12 @@
     "f"  '(:ignore t :wk "Files")
     "ff" '(consult-fd :wk "fd Find Files")
     "fd" '(find-file :wk "Find Files in current DIR")
+    "fo" '(find-file-other-window :wk "Find Files in current DIR with other frame")
+
     "fg" '(consult-grep :wk "Search for string in files in DIR")
     "fl" '(consult-ripgrep :wk "Search for string current file")
 
-    "fp" '(wt/find-file-preview :wk "Search for string current file")
+    ;; "fp" '(wt/find-file-preview :wk "Search for string current file")
     ;; "fn" '(counsel-recentf :wk "Find recent files")
     )
 

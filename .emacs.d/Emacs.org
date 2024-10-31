@@ -1,5 +1,6 @@
-#+title: My Emacs Configuration
-#
+:PROPERTIES:
+:title: My Emacs Configuration
+:END:
 
 * Intro
 I switch to Emacs from Neovima as main editor, I am trying to build my own configuration from scratch. This is a note for my configuration.

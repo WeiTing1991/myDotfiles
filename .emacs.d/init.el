@@ -30,8 +30,8 @@
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
-;; (add-to-list 'default-frame-alist '(undecorated-round . t))
 
+;; theme
 (use-package base16-theme
   :straight t
   :defer t
@@ -45,6 +45,7 @@
 (use-package nord-theme
   :straight t
   :demand t
+  :config
   )
 
 (defun wt/set-custom-theme ()
@@ -54,9 +55,33 @@
   (load-theme 'nord t)
   (set-face-background 'default "#0D0907")
   (set-face-background 'fringe "#0D0907")
+  (face-remap-add-relative 'org-indent :background "black")
   )
 
 (wt/set-custom-theme)
+
+(defun wt/set-org-theme ()
+  "Load the nano theme."
+  (load-theme 'modus-operandi)
+  (face-remap-add-relative 'org-indent :background "white")
+  )
+
+(defun toggle-theme ()
+  "Toggle the theme."
+  (interactive)
+  (cond ((eq (car custom-enabled-themes) 'nord)
+         (mapc #'disable-theme custom-enabled-themes)
+         (wt/set-org-theme)
+         )
+        ((eq (car custom-enabled-themes) 'modus-operandi)
+         (mapc #'disable-theme custom-enabled-themes)
+         (wt/set-custom-theme)
+         )
+        )
+  )
+
+;; toggle theme
+(global-set-key (kbd "C-c t") 'toggle-theme)
 
 ;; Font and background
 (cond ;; macOS configuration
