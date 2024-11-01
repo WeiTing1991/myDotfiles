@@ -57,7 +57,7 @@
               (delete-other-windows))
           (jump-to-register ?u))))
   (my-iswitchb-close))
-(define-key global-map (kbd "C-'") 'toggle-windows-split)
+
 
 ;; Advise `kill-emacs`
 (defun wt/advice-kill-emacs (orig-fun &rest args)
@@ -146,6 +146,8 @@
   (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
   (add-hook 'prog-mode-hook 'hs-minor-mode)
   (define-key evil-normal-state-map (kbd "TAB") 'evil-toggle-fold)
+
+  (define-key evil-normal-state-map (kbd "C-'") #'toggle-windows-split)
   )
 
 (use-package evil-collection

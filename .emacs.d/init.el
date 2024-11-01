@@ -1,5 +1,6 @@
 ;;; init.el ---   -*- lexical-binding: t -*-
 
+
 ;;; code
 ;; straight package manager
 (defvar bootstrap-version)
@@ -30,7 +31,6 @@
 (setq custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
-
 ;; theme
 (use-package base16-theme
   :straight t
@@ -48,6 +48,44 @@
   :config
   )
 
+(defun wt/set-font-and-background ()
+  ;; Font and background
+  (cond ;; macOS configuration
+   ((eq system-type 'darwin)  ;; 'darwin' is for macOS
+    (defvar wt/default-font-size 140)
+    (defvar wt/default-variable-font-size 140)
+    (defvar wt/frame-transparency '(95 . 90))
+    )
+   ;; Windows configuration
+   ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
+    (defvar  wt/default-font-size 100)
+    (defvar  wt/default-variable-font-size 100)
+    (defvar  wt/frame-transparency '(95 . 90))
+    )
+   )
+
+  ;; Set the font
+  (when (display-graphic-p)
+    (set-frame-font "RobotoMono Nerd Font" nil t))
+
+  (cond
+   ((eq system-type 'windows-nt)
+    (setq inhibit-compacting-font-caches 1)
+    (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
+    (set-face-attribute 'fixed-pitch nil :font "SauceCodePro NF" :height wt/default-variable-font-size :weight 'regular)
+    (set-face-attribute 'variable-pitch nil :font "SauceCodePro NF" :height wt/default-variable-font-size :weight 'regular)
+    )
+   ((eq system-type 'darwin)
+    (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
+    (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+    (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
+    )
+   )
+
+  (set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
+  (add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
+  )
+
 (defun wt/set-custom-theme ()
   "Set my theme."
   ;;(load-theme 'zenburn t)
@@ -55,18 +93,23 @@
   (load-theme 'nord t)
   (set-face-background 'default "#0D0907")
   (set-face-background 'fringe "#0D0907")
-  (face-remap-add-relative 'org-indent :background "black")
-  )
 
-(wt/set-custom-theme)
+  (set-face-attribute 'line-number nil :background "#0D0907" )
+  (set-face-attribute 'line-number-current-line nil :foreground "light grey" )
+  (wt/set-font-and-background)
+  )
 
 (defun wt/set-org-theme ()
   "Load the nano theme."
   (load-theme 'modus-operandi)
-  (face-remap-add-relative 'org-indent :background "white")
+  (set-face-background 'fringe "white")
+
+  ;; (set-face-attribute 'line-number nil :background "#0D0907" )
+  ;; (set-face-attribute 'line-number-current-line nil :foreground "light grey" )
+  (wt/set-font-and-background)
   )
 
-(defun toggle-theme ()
+(defun wt/toggle-theme ()
   "Toggle the theme."
   (interactive)
   (cond ((eq (car custom-enabled-themes) 'nord)
@@ -78,49 +121,17 @@
          (wt/set-custom-theme)
          )
         )
+  (save-buffer)
+  (revert-buffer t t)
   )
+
+;; load theme and font
+(wt/set-font-and-background)
+(wt/set-custom-theme)
 
 ;; toggle theme
-(global-set-key (kbd "C-c t") 'toggle-theme)
+(global-set-key (kbd "C-c t") 'wt/toggle-theme)
 
-;; Font and background
-(cond ;; macOS configuration
- ((eq system-type 'darwin)  ;; 'darwin' is for macOS
-  (defvar wt/default-font-size 140)
-  (defvar wt/default-variable-font-size 140)
-  (defvar wt/frame-transparency '(98 . 90))
-  )
- ;; Windows configuration
- ((eq system-type 'windows-nt)  ;; 'windows-nt' is for Windows
-  (defvar  wt/default-font-size 100)
-  (defvar  wt/default-variable-font-size 100)
-  (defvar  wt/frame-transparency '(95 . 90))
-  )
- )
-
-;; Set the font
-(when (display-graphic-p)
-  (set-frame-font "RobotoMono Nerd Font" nil t))
-
-(cond
- ((eq system-type 'windows-nt)
-  (setq inhibit-compacting-font-caches 1)
-  (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
-  ;;  windows system Can`t read it
-  (set-face-attribute 'fixed-pitch nil :font "SauceCodePro NF" :height wt/default-variable-font-size :weight 'regular)
-  (set-face-attribute 'variable-pitch nil :font "SauceCodePro NF" :height wt/default-variable-font-size :weight 'regular)
-  )
- ((eq system-type 'darwin)
-  (set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height wt/default-font-size :weight 'medium)
-  (set-face-attribute 'fixed-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
-  (set-face-attribute 'variable-pitch nil :font "SauceCodePro Nerd Font" :height wt/default-variable-font-size :weight 'regular)
-  )
- )
-
-(set-frame-parameter (selected-frame) 'alpha wt/frame-transparency)
-(add-to-list 'default-frame-alist `(alpha . ,wt/frame-transparency))
-
-;; (add-to-list 'load-path "~/.emacs.d/nano/")
 ;; check ?
 (require 'disp-table)
 
@@ -145,8 +156,6 @@
 ;; No ugly button for checkboxes
 (setq widget-image-enable nil)
 
-;; (set-face-attribute 'line-number nil :background "#0D0907" )
-;; (set-face-attribute 'line-number-current-line nil :foreground "light grey" )
 
 (add-to-list 'load-path "~/.emacs.d/config/")
 (add-to-list 'load-path "~/.emacs.d/theme/")

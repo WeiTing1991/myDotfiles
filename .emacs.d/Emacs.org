@@ -1,39 +1,45 @@
-:PROPERTIES:
 :title: My Emacs Configuration
-:END:
 
-* Intro
+
+* *Intro*
 I switch to Emacs from Neovima as main editor, I am trying to build my own configuration from scratch. This is a note for my configuration.
 
-* Welcome!
-        to be continue!
+* *Welcome*
+to be continue!
 
-* Package
+* *Package*
 
-** package mangerment
-- *list*
-- /list/
-  + _sublist_
-  * sublist
+** Package mangerment
+- straight
 
-** Org Mode
-  - *list*
-  - list
-  - list
-    * list
-        + list
+** *Org Mode*
+
+[[./theme/bella-base-color.el]]
+
+** Label
+
+** TODO
+** DONE
+** WORK
+** NOTE
+
+
 
 * Startup Performance
 
 #+begin_src emacs-lisp
+
   (use-package
+
     )
+
 #+end_src
 
 * Package System Setup
 
 #+begin_src emacs-lisp
-    (use-package
 
+    (use-package
       )
+
 #+end_src

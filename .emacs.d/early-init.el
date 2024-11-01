@@ -85,9 +85,9 @@
 (setq default-frame-alist
       (append (list
          '(min-height . 1)
-         '(height     . 20)
+         '(height     . 50)
          '(min-width  . 1)
-         '(width      . 50)
+         '(width      . 80)
          '(vertical-scroll-bars . nil)
          '(horizontal-scroll-bars . nil)
          '(internal-border-width . 24)
