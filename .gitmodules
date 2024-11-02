@@ -1,0 +1,3 @@
+[submodule "wtemacs"]
+	path = .emacs.d
+	url = https://github.com/WeiTing1991/wtemacs.git
