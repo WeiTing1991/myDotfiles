@@ -12,7 +12,17 @@ stow .
 
 ## Emacs
 
-please find more infomation [here](./Emacs.org).
+```bash
+# add the submodule
+git submodule add https://github.com/WeiTing1991/wtemacs.git .emacs.d
+
+git submodule update --init --recursive
+
+git submodule update --remote --merge
+
+```
+Please find more information [here](./Emacs.org).
+
 
 ## Neovim
 
