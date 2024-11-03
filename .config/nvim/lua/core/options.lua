@@ -13,6 +13,7 @@ end
 
 local spelldir = ""
 
+
 if vim.loop.os_uname().sysname == "Darwin" then
   spelldir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
 elseif vim.fn.has "Win32" then
