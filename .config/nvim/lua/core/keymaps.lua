@@ -37,8 +37,8 @@ end, { desc = "cd" })
 vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Tree" })
 vim.keymap.set("n", "q", "<cmd>NvimTreeClose<CR>", { desc = "Close File Tree" })
 
-vim.keymap.set("n", "<leader>ef", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle File Tree" })
-vim.keymap.set("n", "<leader>e", function()
+vim.keymap.set("n", "<leader>df", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle File Tree" })
+vim.keymap.set("n", "<leader>d", function()
   require("oil").open_float()
 end, { desc = "Collapse file explorer" })
 
