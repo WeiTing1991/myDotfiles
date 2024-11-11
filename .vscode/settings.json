@@ -1,511 +1,549 @@
 {
-  /** system **************************************************************************************/
-  "telemetry.telemetryLevel": "off",
-  "telemetry.enableTelemetry": false,
+    /** system **************************************************************************************/
+    "telemetry.telemetryLevel": "off",
+    "telemetry.enableTelemetry": false,
 
-  /** ui **/
-  "window.titleBarStyle": "custom",
-  "window.commandCenter": false,
-  "window.zoomLevel": 0,
-  "workbench.statusBar.visible": true,
-  "workbench.sideBar.location": "right",
-  "workbench.layoutControl.enabled": false,
-  "workbench.activityBar.location": "bottom",
-  "workbench.editor.showTabs": "none",
-  "workbench.tree.enableStickyScroll": false,
-  "workbench.startupEditor": "none",
-  "workbench.tree.indent": 15,
-  "workbench.panel.showLabels": false,
+    /** ui **/
+    "window.titleBarStyle": "custom",
+    "window.commandCenter": false,
+    "window.zoomLevel": 0,
+    "workbench.statusBar.visible": true,
+    "workbench.sideBar.location": "right",
+    "workbench.layoutControl.enabled": false,
+    "workbench.activityBar.location": "bottom",
+    "workbench.editor.showTabs": "none",
+    "workbench.tree.enableStickyScroll": false,
+    "workbench.startupEditor": "none",
+    "workbench.tree.indent": 15,
+    "workbench.panel.showLabels": false,
 
-  /** editor *************************************************************************************/
-  //"editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
-  "editor.fontFamily": "SauceCodePro Nerd Font, RobotoMono Nerd Font, Roboto, SauceCodePro NF",
-  "editor.fontSize": 14,
-  "editor.rulers": [
-    {
-      "column": 100,
-      "color": "#2b2b2b"
-    }
-  ],
+    /** editor *************************************************************************************/
+    //"editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'",
+    "editor.fontFamily": "SauceCodePro Nerd Font, SauceCodePro NF, RobotoMono Nerd Font, Roboto ",
+    "editor.fontSize": 14,
+    "editor.rulers": [
+        {
+            "column": 100,
+            "color": "#2b2b2b"
+        }
+    ],
 
-  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
-  "editor.cursorBlinking": "phase",
-  "editor.cursorSmoothCaretAnimation": "off",
-  "editor.renderLineHighlight": "none",
-  "editor.hover.delay": 50,
-  "editor.minimap.enabled": false,
+    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+    "editor.cursorBlinking": "phase",
+    "editor.cursorSmoothCaretAnimation": "off",
+    "editor.renderLineHighlight": "none",
+    "editor.hover.delay": 50,
+    "editor.minimap.enabled": false,
 
-  // scroll bar
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.scrollbar.vertical": "hidden",
-  "workbench.list.smoothScrolling": false,
+    // scroll bar
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "workbench.list.smoothScrolling": false,
 
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.overviewRulerBorder": false,
-  "editor.insertSpaces": true, // or false for tabs
-  "editor.tabSize": 2,
-  "editor.occurrencesHighlight": "off",
-  "editor.lightbulb.enabled": "off",
-  "editor.selectionHighlight": false,
-  "editor.copyWithSyntaxHighlighting": false,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "editor.emptySelectionClipboard": false,
-  "workbench.editor.enablePreview": false,
-  // "window.newWindowDimensions": "inherit",
-  // "editor.multiCursorModifier": "ctrlCmd",
-  "diffEditor.renderSideBySide": false,
-  "editor.snippetSuggestions": "top",
-  "editor.detectIndentation": true,
-  // "window.nativeFullScreen": true,
-  "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
-  "editor.guides.indentation": true,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.overviewRulerBorder": false,
+    "editor.insertSpaces": true, // or false for tabs
+    "editor.tabSize": 2,
+    "editor.occurrencesHighlight": "off",
+    "editor.lightbulb.enabled": "off",
+    "editor.selectionHighlight": false,
+    "editor.copyWithSyntaxHighlighting": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.emptySelectionClipboard": false,
+    "workbench.editor.enablePreview": false,
+    // "window.newWindowDimensions": "inherit",
+    // "editor.multiCursorModifier": "ctrlCmd",
+    "diffEditor.renderSideBySide": false,
+    "editor.snippetSuggestions": "top",
+    "editor.detectIndentation": true,
+    // "window.nativeFullScreen": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.guides.indentation": true,
 
-  // trim whitespace
-  "files.trimTrailingWhitespace": true,
-  "editor.renderWhitespace": "none",
-  "editor.renderControlCharacters": false,
+    // trim whitespace
+    "files.trimTrailingWhitespace": true,
+    "editor.renderWhitespace": "none",
+    "editor.renderControlCharacters": false,
 
-  "editor.formatOnSave": false,
-  "editor.suggest.insertMode": "replace",
-  "editor.linkedEditing": true,
-  "editor.semanticHighlighting.enabled": false,
-  "editor.accessibilitySupport": "off",
-  "scm.diffDecorations": "none",
-  "editor.hover.enabled": true,
-  "editor.matchBrackets": "never",
-  "workbench.tips.enabled": false,
-  "editor.colorDecorators": false,
-  "git.decorations.enabled": false,
-  "problems.decorations.enabled": false,
+    "editor.formatOnSave": false,
+    "editor.suggest.insertMode": "replace",
+    "editor.linkedEditing": true,
+    "editor.semanticHighlighting.enabled": false,
+    "editor.accessibilitySupport": "off",
+    "scm.diffDecorations": "none",
+    "editor.hover.enabled": true,
+    "editor.matchBrackets": "never",
+    "workbench.tips.enabled": false,
+    "editor.colorDecorators": false,
+    "git.decorations.enabled": false,
+    "problems.decorations.enabled": false,
 
-  // "editor.gotoLocation.multipleReferences": "goto",
-  // "editor.gotoLocation.multipleDefinitions": "goto",
-  // "editor.gotoLocation.multipleDeclarations": "goto",
-  // "workbench.editor.enablePreviewFromQuickOpen": false,
-  // "editor.gotoLocation.multipleImplementations": "goto",
-  // "editor.gotoLocation.multipleTypeDefinitions": "goto",
+    // "editor.gotoLocation.multipleReferences": "goto",
+    // "editor.gotoLocation.multipleDefinitions": "goto",
+    // "editor.gotoLocation.multipleDeclarations": "goto",
+    // "workbench.editor.enablePreviewFromQuickOpen": false,
+    // "editor.gotoLocation.multipleImplementations": "goto",
+    // "editor.gotoLocation.multipleTypeDefinitions": "goto",
 
-  // error
-  "errorLens.enabled": true,
-  "errorLens.delay": 1000,
-  "errorLens.followCursor": "activeLine",
-  "errorLens.gutterIconsEnabled": true,
-  "errorLens.messageBackgroundMode": "message",
-  //   "errorLens.exclude": ["**/*.txt", "**/dist/**"],
+    // error
+    "errorLens.enabled": true,
+    "errorLens.delay": 1000,
+    "errorLens.followCursor": "activeLine",
+    "errorLens.gutterIconsEnabled": true,
+    "errorLens.messageBackgroundMode": "message",
+    //   "errorLens.exclude": ["**/*.txt", "**/dist/**"],
 
-  // wrap
-  "editor.wordWrap": "on",
-  "editor.wordWrapColumn": 150,
-  "editor.wrappingIndent": "none",
+    // wrap
+    "editor.wordWrap": "on",
+    "editor.wordWrapColumn": 150,
+    "editor.wrappingIndent": "none",
 
-  /** explorer ***********************************************************************************/
-  "explorer.compactFolders": true,
-  "explorer.sortOrder": "type",
-  //"explorer.decorations.colors": false,
+    /** explorer ***********************************************************************************/
+    "explorer.compactFolders": true,
+    "explorer.sortOrder": "type",
+    //"explorer.decorations.colors": false,
 
-  /** misc     **********************************************************************************/
-  "extensions.ignoreRecommendations": true,
-  "terminal.integrated.gpuAcceleration": "auto",
-  "find-it-faster.general.killTerminalAfterUse": true,
-  "find-it-faster.general.useTerminalInEditor": false,
+    /** misc     **********************************************************************************/
+    "extensions.ignoreRecommendations": true,
+    "terminal.integrated.gpuAcceleration": "auto",
+    "find-it-faster.general.killTerminalAfterUse": true,
+    "find-it-faster.general.useTerminalInEditor": false,
 
-  "breadcrumbs.enabled": true,
-  "breadcrumbs.icons": false,
-  // "update.showReleaseNotes": false,
+    "breadcrumbs.enabled": true,
+    "breadcrumbs.icons": false,
+    // "update.showReleaseNotes": false,
 
-  "explorer.autoReveal": false,
-  "workbench.tree.renderIndentGuides": "none",
+    "explorer.autoReveal": false,
+    "workbench.tree.renderIndentGuides": "none",
 
-  "zenMode.centerLayout": false,
-  "zenMode.hideLineNumbers": false,
+    "zenMode.centerLayout": false,
+    "zenMode.hideLineNumbers": false,
 
-  /** ai and autocmp ****************************************************************************/
-  "workbench.panel.defaultLocation": "right",
-  "github.copilot.editor.enableAutoCompletions": false,
-  "github.copilot.editor.enableCodeActions": true,
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": true,
-    "scminput": false
-  },
+    /** ai and autocmp ****************************************************************************/
+    "workbench.panel.defaultLocation": "right",
+    "github.copilot.editor.enableAutoCompletions": false,
+    "github.copilot.editor.enableCodeActions": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false
+    },
 
-  /** color theme *******************************************************************************/
-  "workbench.colorTheme": "Nord",
-  "workbench.colorCustomizations": {
-    "editor.background": "#090a0c",
-    "editorGutter.background": "#090a0c",
-    "editorGroupHeader.tabsBackground": "#090a0c",
-    "tab.activeBackground": "#090a0c",
-    "tab.inactiveBackground": "#2E3440",
-    "titleBar.activeBackground": "#090a0c",
-    "activityBar.background": "#090a0c",
-    "sideBar.background": "#090a0c",
-    "terminal.background": "#090a0c",
-    "panel.background": "#090a0c"
-  },
+    // auto suggestion
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
 
-  "[windows]": {},
-  // Absolute file paths for your css/js files
-  // For Windows
-  // "file:///C:/path-of-custom-css/custom-vscode.css",
-  // "file:///C:/path-of-custom-css/custom-vscode-script.js"
-  "[mac]": {},
-  "vscode_custom_css.imports": [
+    "editor.acceptSuggestionOnCommitCharacter": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.quickSuggestionsDelay": 5,
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.tabCompletion": "off",
+    "editor.suggest.localityBonus": true,
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.wordBasedSuggestions": "matchingDocuments",
+    "editor.parameterHints.enabled": false,
+
+    /** color theme *******************************************************************************/
+    "workbench.colorTheme": "Nord",
+    "workbench.colorCustomizations": {
+        "editor.background": "#090a0c",
+        "editorGutter.background": "#090a0c",
+        "editorGroupHeader.tabsBackground": "#090a0c",
+        "tab.activeBackground": "#090a0c",
+        "tab.inactiveBackground": "#2E3440",
+        "titleBar.activeBackground": "#090a0c",
+        "activityBar.background": "#090a0c",
+        "sideBar.background": "#090a0c",
+        "terminal.background": "#090a0c",
+        "panel.background": "#090a0c"
+    },
+
+    "[windows]": {},
     // Absolute file paths for your css/js files
-    // For Mac or Linux
-    "file://${userHome}/.dotfiles/.vscode/wt-vscode.css"
-    // "file:///Users/your-user-name/custom-vscode-script.js"
-  ],
+    // For Windows
+    // "file:///C:/path-of-custom-css/custom-vscode.css",
+    // "file:///C:/path-of-custom-css/custom-vscode-script.js"
+    "[mac]": {},
+    "vscode_custom_css.imports": [
+        // Absolute file paths for your css/js files
+        // For Mac or Linux
+        "file://${userHome}/.dotfiles/.vscode/wt-vscode.css"
+        // "file:///Users/your-user-name/custom-vscode-script.js"
+    ],
 
-  /** LSP Settings *******************************************************************************/
-  "editorconfig.generateAuto": false,
-  "editorconfig.template": "~/.editorconfig",
-  // json
-  "[jsonc]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "prettier.tabWidth": 4,
-  // "prettier.requireConfig": true,
-  // "prettier.useEditorConfig": false,
-
-  /** termainl settings **************************************************************************/
-  //"terminal.integrated.fontFamily": "RobotMono Nerd Font",
-
-  /** vim settings   *****************************************************************************/
-  /* https://marketplace.visualstudio.com/items?itemName=vscodevim.vim */
-  "vim.leader": "space",
-  "vim.history": 9999,
-  //"vim.vimrc.enable": true,
-  //"vim.vimrc.path": "$HOME/.vim/.vimrc",
-  "vim.statusBarColorControl": false,
-  "vim.useSystemClipboard": true,
-  "vim.showcmd": true,
-  "vim.useCtrlKeys": true,
-  "editor.lineNumbers": "relative",
-  "vim.smartRelativeLine": true,
-  "vim.highlightedyank.enable": true,
-  "vim.highlightedyank.color": "#f6c177",
-  "vim.highlightedyank.duration": 120,
-  "editor.cursorSurroundingLines": 10,
-  "vim.replaceWithRegister": true,
-  "vim.sneakUseIgnorecaseAndSmartcase": true,
-  // "vim.easymotion": true,
-  // "vim.sneak": true,
-  "vim.incsearch": true,
-  "vim.hlsearch": true,
-  "vim.handleKeys": {
-    "<_>": false,
-    // "<C-space>": false,
-    "<C-e>": false,
-    "<C-h>": false,
-    "<C-j>": false,
-    "<C-k>": false,
-    "<C-l>": false,
-    "<C-y>": false,
-    "<C-s>": false,
-    // "<C-w>": false,
-    // "<C-d>": true
-  },
-
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
-  },
-
-  // keybindings
-  "vim.normalModeKeyBindingsNonRecursive": [
-    // show whichkey
-    {
-      "before": ["<space>"],
-      "commands": ["whichkey.show"]
+    /** LSP Settings *******************************************************************************/
+    "editorconfig.generateAuto": false,
+    "editorconfig.template": "~/.editorconfig",
+    // json
+    "[jsonc]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    {
-      "before": ["<Esc>"],
-      "commands": [":nohl"]
+    "[json]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    {
-      "before": ["<C-c>"],
-      "commands": [":nohl"]
+    "prettier.tabWidth": 4,
+    // "prettier.requireConfig": true,
+    // "prettier.useEditorConfig": false,
+
+    /** termainl settings **************************************************************************/
+    //"terminal.integrated.fontFamily": "RobotMono Nerd Font",
+
+    /** vim settings   *****************************************************************************/
+    /* https://marketplace.visualstudio.com/items?itemName=vscodevim.vim */
+    "vim.leader": "space",
+    "vim.history": 9999,
+    //"vim.vimrc.enable": true,
+    //"vim.vimrc.path": "$HOME/.vim/.vimrc",
+    "vim.statusBarColorControl": false,
+    "vim.useSystemClipboard": true,
+    "vim.showcmd": true,
+    "vim.useCtrlKeys": true,
+    "editor.lineNumbers": "relative",
+    "vim.smartRelativeLine": true,
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.color": "#f6c177",
+    "vim.highlightedyank.duration": 120,
+    "editor.cursorSurroundingLines": 10,
+    "vim.replaceWithRegister": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    // "vim.easymotion": true,
+    // "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.hlsearch": true,
+    "vim.handleKeys": {
+        "<_>": false,
+        // "<C-space>": false,
+        "<C-e>": false,
+        "<C-h>": false,
+        "<C-j>": false,
+        "<C-k>": false,
+        // "<C-l>": false,
+        "<C-y>": false,
+        "<C-s>": false
+        // "<C-w>": false,
+        // "<C-d>": true
     },
 
-    // formating
-    {
-      "before": ["<C-m>"],
-      "commands": ["editor.action.formatDocument"]
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
     },
 
-    // fold
-    {
-      "before": ["<Tab>"],
-      "after": ["z", "a"]
-    },
-
-    // center the cursor when using C-d and C-u
-    {
-      "before": ["<C-d>"],
-      "after": ["<C-d>", "z", "z"]
-    },
-    {
-      "before": ["<C-u>"],
-      "after": ["<C-u>", "z", "z"]
-    },
-
-    // toggle comment selection
-    {
-      "before": ["-"],
-      "after": ["g", "c", "c", "<C-c>"]
-    },
-    {
-      "before": ["_"],
-      "after": ["g", "C", "<C-c>"]
-    }
-  ],
-
-  "vim.normalModeKeyBindings": [
-    // lsp keybinding
-    {
-      "before": ["K"],
-      "commands": ["editor.action.showDefinitionPreviewHover"]
-    },
-    {
-      "before": ["K"],
-      "commands": ["editor.action.showHover"]
-    },
-    {
-      "before": ["g", "D"],
-      "commands": ["editor.action.goToTypeDefinition"]
-    },
-    {
-      "before": ["g", "d"],
-      "commands": ["editor.action.peekDefinition"]
-    },
-    {
-      "before": ["g", "k"],
-      "commands": ["editor.action.peekTypeDefinition"]
-    },
-    {
-      "before": ["g", "I"],
-      "commands": ["editor.action.goToImplementation"]
-    },
-    {
-      "before": ["g", "i"],
-      "commands": ["editor.action.peekImplementation"]
-    },
-    {
-      "before": ["g", "."],
-      "commands": ["editor.action.quickFix"]
-    },
-    {
-      "before": ["g", "r"],
-      "commands": ["editor.action.referenceSearch.trigger"]
-    },
-    {
-      "key": "gs",
-      "command": "workbench.action.gotoSymbol",
-      "when": "editorTextFocus"
-    }
-    // {
-    //   "key": "gf",
-    //   "command": "workbench.action.quickOpen",
-    //   "when": "editorTextFocus"
-    // }
-  ],
-
-  "vim.visualModeKeyBindingsNonRecursive": [
-    // Stay in visual mode while indenting
-    {
-      "before": ["<"],
-      "after": ["<", "g", "v", "^"]
-    },
-    {
-      "before": [">"],
-      "after": [">", "g", "v", "^"]
-    },
-
-    // Move selected lines while staying in visual mode
-    {
-      "before": ["J"],
-      "commands": ["editor.action.moveLinesDownAction"]
-    },
-    {
-      "before": ["K"],
-      "commands": ["editor.action.moveLinesUpAction"]
-    },
-
-    // toggle comment selection
-    {
-      "before": ["-"],
-      "after": ["g", "c", "c", "<C-c>"]
-    },
-    {
-      "before": ["_"],
-      "after": ["g", "C", "<C-c>"]
-    }
-  ],
-  //keybinding
-  "whichkey.delay": 0,
-  "whichkey.bindings": [
-    // Panel nav
-    {
-      "key": "h",
-      "name": "Focus left group",
-      "type": "command",
-      "command": "workbench.action.navigateLeft",
-      "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    },
-    {
-      "key": "j",
-      "name": "Focus blow group",
-      "type": "command",
-      "command": "workbench.action.navigateDown",
-      "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    },
-    {
-      "key": "k",
-      "name": "Focus above group",
-      "type": "command",
-      "command": "workbench.action.navigateUp",
-      "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    },
-    {
-      "key": "l",
-      "name": "Focus right group",
-      "type": "command",
-      "command": "workbench.action.navigateRight",
-      "when": "terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    },
-
-    // lsp setting
-    {
-      "key": "r",
-      "name": "refactor",
-      "command": "editor.action.refactor",
-      "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
-    },
-
-    // file tree
-    {
-      "key": "e",
-      "name": "toogle file tree",
-      "type": "command",
-      "command": "workbench.files.action.focusFilesExplorer"
-    },
-
-    // finde file
-    {
-      "key": "f",
-      "name": "find files",
-      "type": "bindings",
-      "bindings": [
+    // TODO: check if the keybindings is working?
+    "vim.insertModeKeyBindingsNonRecursive": [
         {
-          "key": "f",
-          "name": "find file",
-          "type": "command",
-          "command": "workbench.action.quickOpen"
+            "before": ["<C-l>"],
+            "commands": ["editor.action.triggerSuggest"],
+            "when": ["editorHasCompletionItemProvider && editorTextFocus && !editorReadonly"]
+        },
+
+        // {
+        //     "before": ["<l>"],
+        //     "commands": ["toggleSuggestionDetails"],
+        //     "when": ["editorTextFocus && suggestWidgetVisible"]
+        // },
+
+        {
+            "key": ["C-S-l"],
+            "commands": ["toggleSuggestionFocus"],
+            "when": ["editorTextFocus && suggestWidgetVisible"]
+        }
+    ],
+
+    // keybindings
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // show whichkey
+        {
+            "before": ["<space>"],
+            "commands": ["whichkey.show"]
         },
         {
-          "key": "p",
-          "name": "fzf find file with preview",
-          "type": "command",
-          "command": "find-it-faster.findFiles"
+            "before": ["<Esc>"],
+            "commands": [":nohl"]
         },
         {
-          "key": "l",
-          "name": "live rigrep in project",
-          "type": "command",
-          "command": "find-it-faster.findWithinFiles"
-        }
-      ]
-    },
+            "before": ["<C-c>"],
+            "commands": [":nohl"]
+        },
 
-    // dir
-    {
-      "key": "d",
-      "name": "open netrew",
-      "type": "bindings",
-      "bindings": [
+        // formating
         {
-          "key": "d",
-          "name": "open netrw",
-          "type": "command",
-          "command": "vsnetrw.open",
-          "when": "!activeEditor"
-        }
-      ]
-    },
+            "before": ["<C-m>"],
+            "commands": ["editor.action.formatDocument"]
+        },
 
-    // Buffer
-    {
-      "key": "q",
-      "name": "Close current buffer",
-      "type": "commands",
-      "command": "workbench.action.closeActiveEditor"
-    },
-    {
-      "key": "b",
-      "name": "Buffer/Bookmarks",
-      "type": "bindings",
-      "bindings": [
+        // fold
         {
-          "key": "b",
-          "name": "Show all buffers",
-          "type": "commands",
-          "command": "workbench.action.showAllEditors"
+            "before": ["<Tab>"],
+            "after": ["z", "a"]
+        },
+
+        // center the cursor when using C-d and C-u
+        {
+            "before": ["<C-d>"],
+            "after": ["<C-d>", "z", "z"]
         },
         {
-          "key": "K",
-          "name": "Close all other buffer",
-          "type": "commands",
-          "command": "workbench.action.closeOtherEditors"
+            "before": ["<C-u>"],
+            "after": ["<C-u>", "z", "z"]
+        },
+
+        // toggle comment selection
+        {
+            "before": ["-"],
+            "after": ["g", "c", "c", "<C-c>"]
+        },
+        {
+            "before": ["_"],
+            "after": ["g", "C", "<C-c>"]
         }
-      ]
-    },
-    // System
-    {
-      "key": "/",
-      "name": "show command",
-      "type": "command",
-      "command": "workbench.action.showCommands"
-    },
+    ],
 
-    // terminal
-    {
-      "key": "'",
-      "name": "new termainal",
-      "type": "command",
-      "command": "workbench.action.terminal.toggleTerminal",
-      "when": "terminal.active"
-    },
+    "vim.normalModeKeyBindings": [
+        // lsp keybinding
+        {
+            "before": ["K"],
+            "commands": ["editor.action.showDefinitionPreviewHover"]
+        },
+        {
+            "before": ["K"],
+            "commands": ["editor.action.showHover"]
+        },
+        {
+            "before": ["g", "D"],
+            "commands": ["editor.action.goToTypeDefinition"]
+        },
+        {
+            "before": ["g", "d"],
+            "commands": ["editor.action.peekDefinition"]
+        },
+        {
+            "before": ["g", "k"],
+            "commands": ["editor.action.peekTypeDefinition"]
+        },
+        {
+            "before": ["g", "I"],
+            "commands": ["editor.action.goToImplementation"]
+        },
+        {
+            "before": ["g", "i"],
+            "commands": ["editor.action.peekImplementation"]
+        },
+        {
+            "before": ["g", "."],
+            "commands": ["editor.action.quickFix"]
+        },
+        {
+            "before": ["g", "r"],
+            "commands": ["editor.action.referenceSearch.trigger"]
+        },
+        {
+            "key": "gs",
+            "command": "workbench.action.gotoSymbol",
+            "when": "editorTextFocus"
+        }
+        // {
+        //   "key": "gf",
+        //   "command": "workbench.action.quickOpen",
+        //   "when": "editorTextFocus"
+        // }
+    ],
 
-    // Quick fixlist
-    {
-      "key": "t",
-      "name": "open problems list",
-      "type": "commands",
-      "command": "workbench.actions.view.problems",
-      "when": "workbench.panel.markers.view.active"
-    },
+    "vim.visualModeKeyBindingsNonRecursive": [
+        // Stay in visual mode while indenting
+        {
+            "before": ["<"],
+            "after": ["<", "g", "v", "^"]
+        },
+        {
+            "before": [">"],
+            "after": [">", "g", "v", "^"]
+        },
 
-    // misc
-    {
-      "key": "z",
-      "name": "toggle center mode",
-      "type": "command",
-      "command": "workbench.action.toggleCenteredLayout"
-    }
-  ],
+        // Move selected lines while staying in visual mode
+        {
+            "before": ["J"],
+            "commands": ["editor.action.moveLinesDownAction"]
+        },
+        {
+            "before": ["K"],
+            "commands": ["editor.action.moveLinesUpAction"]
+        },
 
-  /* extra  *************************************************************************************/
+        // toggle comment selection
+        {
+            "before": ["-"],
+            "after": ["g", "c", "c", "<C-c>"]
+        },
+        {
+            "before": ["_"],
+            "after": ["g", "C", "<C-c>"]
+        }
+    ],
+    //keybinding
+    "whichkey.delay": 0,
+    "whichkey.bindings": [
+        // Panel nav
+        {
+            "key": "h",
+            "name": "Focus left group",
+            "type": "command",
+            "command": "workbench.action.navigateLeft",
+            "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
+        },
+        {
+            "key": "j",
+            "name": "Focus blow group",
+            "type": "command",
+            "command": "workbench.action.navigateDown",
+            "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
+        },
+        {
+            "key": "k",
+            "name": "Focus above group",
+            "type": "command",
+            "command": "workbench.action.navigateUp",
+            "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
+        },
+        {
+            "key": "l",
+            "name": "Focus right group",
+            "type": "command",
+            "command": "workbench.action.navigateRight",
+            "when": "terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
+        },
 
-  /*   ;; (text       "#e0def4")  ;; foreground
+        // lsp setting
+        {
+            "key": "r",
+            "name": "refactor",
+            "command": "editor.action.refactor",
+            "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+        },
+
+        // file tree
+        {
+            "key": "e",
+            "name": "toogle file tree",
+            "type": "command",
+            "command": "workbench.files.action.focusFilesExplorer"
+        },
+
+        // finde file
+        {
+            "key": "f",
+            "name": "find files",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "f",
+                    "name": "find file",
+                    "type": "command",
+                    "command": "workbench.action.quickOpen"
+                },
+                {
+                    "key": "p",
+                    "name": "fzf find file with preview",
+                    "type": "command",
+                    "command": "find-it-faster.findFiles"
+                },
+                {
+                    "key": "l",
+                    "name": "live rigrep in project",
+                    "type": "command",
+                    "command": "find-it-faster.findWithinFiles"
+                }
+            ]
+        },
+
+        // dir
+        {
+            "key": "d",
+            "name": "open netrew",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "d",
+                    "name": "open netrw",
+                    "type": "command",
+                    "command": "vsnetrw.open",
+                    "when": "!activeEditor"
+                }
+            ]
+        },
+
+        // Buffer
+        {
+            "key": "q",
+            "name": "Close current buffer",
+            "type": "commands",
+            "command": "workbench.action.closeActiveEditor"
+        },
+        {
+            "key": "b",
+            "name": "Buffer/Bookmarks",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "b",
+                    "name": "Show all buffers",
+                    "type": "commands",
+                    "command": "workbench.action.showAllEditors"
+                },
+                {
+                    "key": "K",
+                    "name": "Close all other buffer",
+                    "type": "commands",
+                    "command": "workbench.action.closeOtherEditors"
+                }
+            ]
+        },
+        // System
+        {
+            "key": "/",
+            "name": "show command",
+            "type": "command",
+            "command": "workbench.action.showCommands"
+        },
+
+        // terminal
+        {
+            "key": "'",
+            "name": "new termainal",
+            "type": "command",
+            "command": "workbench.action.terminal.toggleTerminal",
+            "when": "terminal.active"
+        },
+
+        // Quick fixlist
+        {
+            "key": "t",
+            "name": "open problems list",
+            "type": "commands",
+            "command": "workbench.actions.view.problems",
+            "when": "workbench.panel.markers.view.active"
+        },
+
+        // misc
+        {
+            "key": "z",
+            "name": "toggle center mode",
+            "type": "command",
+            "command": "workbench.action.toggleCenteredLayout"
+        }
+    ],
+
+    /* extra  *************************************************************************************/
+
+    /*   ;; (text       "#e0def4")  ;; foreground
   ;; (base       "#232136")  ;; background
   ;; (high       "#393552")  ;; highlight
   ;; (gold       "#f6c177")  ;; critical
@@ -516,62 +554,62 @@
   ;; (faded      "#6e6a86")  ;; faded
   ;; (cursor     "#c4a7e7")) ;; cursor */
 
-  // TODO: change the color
-  // https://marketplace.visualstudio.com/items?itemName=jgclark.vscode-todo-highlight
-  "todohighlight.isEnable": true,
-  // "todohighlight.enableDiagnostics": true,
-  "todohighlight.isCaseSensitive": true,
-  "todohighlight.keywords": [
-    "REVIEW:",
-    {
-      "text": "FIXME:",
-      "color": "black",
-      "backgroundColor": "#eb6f92",
-      "border": "none",
-      "isWholeLine": false
-    },
-    {
-      "text": "NOTE:", // without a defined regex pattern this is the string that will be matched
-      "color": "white",
-      "border": "1px solid white",
-      "borderRadius": "2px",
-      "regex": {
-        "pattern": "(?<=^|\"|\\s)NOTE[:]?(?!\\w)" // in this example, highlight `NOTE:` with or without the `:` and that's not part of another word.  (I.e.: The above will highlight 'NOTE' but not the "note" in 'SIDENOTE').
-      },
-      "backgroundColor": "rgba(0,0,0,.5)",
-      "isWholeLine": false
-    },
-    {
-      "text": "TODO:", // with a regex pattern defined, this setting isn't used, but is useful as a name for this section
-      // "regex": {
-      //   "pattern": "(?<=^|\"|\\s)TODO(\\(\\w+\\))?:" // this allows for TODO: or TODO(Bob): etc.
-      // },
-      "color": "#f6c177",
-      "border": "1px solid",
-      "borderRadius": "2px", //NOTE: use borderRadius along with `border` or you will see nothing change
-      "backgroundColor": "rgba(0,0,0,.2)",
-      "isWholeLine": false
-    },
-    {
-      "text": "CHECK:", // with a regex pattern defined, this setting isn't used, but is useful as a name for this section
-      "color": "white",
-      "backgroundColor": "#393552",
-      "isWholeLine": false
-    }
-  ],
-  "todohighlight.include": [
-    "**/*.js",
-    "**/*.jsx",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.html",
-    "**/*.css",
-    "**/*.php",
-    "**/*.rb",
-    "**/*.txt",
-    "**/*.mdown",
-    "**/*.md",
-    "**/*.json",
-    "**/*.org"
-  ],
+    // TODO: change the color
+    // https://marketplace.visualstudio.com/items?itemName=jgclark.vscode-todo-highlight
+    "todohighlight.isEnable": true,
+    // "todohighlight.enableDiagnostics": true,
+    "todohighlight.isCaseSensitive": true,
+    "todohighlight.keywords": [
+        "REVIEW:",
+        {
+            "text": "FIXME:",
+            "color": "black",
+            "backgroundColor": "#eb6f92",
+            "border": "none",
+            "isWholeLine": false
+        },
+        {
+            "text": "NOTE:", // without a defined regex pattern this is the string that will be matched
+            "color": "white",
+            "border": "1px solid white",
+            "borderRadius": "2px",
+            "regex": {
+                "pattern": "(?<=^|\"|\\s)NOTE[:]?(?!\\w)" // in this example, highlight `NOTE:` with or without the `:` and that's not part of another word.  (I.e.: The above will highlight 'NOTE' but not the "note" in 'SIDENOTE').
+            },
+            "backgroundColor": "rgba(0,0,0,.5)",
+            "isWholeLine": false
+        },
+        {
+            "text": "TODO:", // with a regex pattern defined, this setting isn't used, but is useful as a name for this section
+            // "regex": {
+            //   "pattern": "(?<=^|\"|\\s)TODO(\\(\\w+\\))?:" // this allows for TODO: or TODO(Bob): etc.
+            // },
+            "color": "#f6c177",
+            "border": "1px solid",
+            "borderRadius": "2px", //NOTE: use borderRadius along with `border` or you will see nothing change
+            "backgroundColor": "rgba(0,0,0,.2)",
+            "isWholeLine": false
+        },
+        {
+            "text": "CHECK:", // with a regex pattern defined, this setting isn't used, but is useful as a name for this section
+            "color": "white",
+            "backgroundColor": "#393552",
+            "isWholeLine": false
+        }
+    ],
+    "todohighlight.include": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.html",
+        "**/*.css",
+        "**/*.php",
+        "**/*.rb",
+        "**/*.txt",
+        "**/*.mdown",
+        "**/*.md",
+        "**/*.json",
+        "**/*.org"
+    ]
 }

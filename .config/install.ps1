@@ -33,3 +33,10 @@ New-Item -Path $env:USERPROFILE\.config\whkdrc -ItemType SymbolicLink -Value $en
 New-Item -Path $env:USERPROFILE\.config\powershell\weitingchen.ps1 -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.config\powershell\weitingchen.ps1 -Force
 
 # New-Item -Path $env:USERPROFILE\.vim\.vimrc -ItemType SymbolicLink -Value $env:USERPROFILE\myDotfiles\.vimrc -Force
+
+
+# vscode
+
+New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\settings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\settings.json -Force
+New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\keybindings.json -Force
+
