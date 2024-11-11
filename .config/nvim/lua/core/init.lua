@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  require("core.globals")
+end
+
 require("core.globals")
 require("core.options")
 require("core.keymaps")

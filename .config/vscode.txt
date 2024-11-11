@@ -1,0 +1,171 @@
+{
+  
+ d
+
+d  
+
+
+"explorer.autoReveal": false,
+  "window.zoomLevel": 0.8,
+  "editor.minimap.enabled": false,
+  "workbench.tree.renderIndentGuides": "none",
+  "workbench.layoutControl.enabled": false,
+
+  "editor.formatOnSave": true,
+  "editor.suggest.insertMode": "replace",
+  "editor.linkedEditing": true,
+  "editor.lightbulb.enabled": "off",
+
+  "editor.semanticHighlighting.enabled": false,
+  "editor.accessibilitySupport": "off",
+
+  "terminal.integrated.fontFamily": "RobotMono Nerd Font",
+  "editor.fontFamily": "Hack Nerd Font",
+
+  // vim settings
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "$HOME/.vim/.vimrc",
+  "vim.showcmd": true,
+  "editor.lineNumbers": "relative",
+  "vim.smartRelativeLine": true,
+  "vim.leader": "<Space>",
+
+  "vim.history": 9999,
+  "vim.hlsearch": true,
+  "workbench.statusBar.visible": true,
+  "breadcrumbs.enabled": true,
+  "update.showReleaseNotes": false,
+  "zenMode.centerLayout": false,
+  "zenMode.hideLineNumbers": false,
+  "vim.useSystemClipboard": true,
+
+
+  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+  "terminal.integrated.gpuAcceleration": "auto",
+  "vim.statusBarColorControl": true,
+
+  // https://dev.to/ansonh/10-vs-code-vim-tricks-to-boost-your-productivity-1b0n
+
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // nav
+    {
+      "before": ["ctrl", "o"],
+      "commands": ["workbench.action.nextEditorInGroup"]
+    },
+    {
+      "before": ["ctrl", "i"],
+      "commands": ["workbench.action.previousEditorInGroup"]
+    },
+
+    // panes
+    {
+      "before": ["leader", "h"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["leader", "j"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["leader", "k"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["leader", "l"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+
+    {
+      "before": ["leader", "e"],
+      "commands": ["workbench.files.action.focusFilesExplorer"]
+    },
+    {
+      "before": ["leader", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["leader", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+
+    { "before": ["leader", "q"], "commands": [":wq"] },
+    { "before": ["leader", "x"], "commands": [":x!"] }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["leader", "t"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["leader", "m"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showDefinitionPreviewHover"]
+    },
+    {
+      "before": ["leader", "g", "d"],
+      "commands": ["editor.action.goToTypeDefinition"]
+    },
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.peekDefinition"]
+    },
+    {
+      "before": ["leader", "D"],
+      "commands": ["editor.action.peekTypeDefinition"]
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.action.showDefinitionPreviewHover"]
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    // {
+    //   "before": ["g", "p", "i"],
+    //   "commands": ["editor.action.peekImplementation"]
+    // },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"]
+    },
+    // toggle comment selection
+    { "before": ["-"], "commands": ["editor.action.commentLine"] }
+  ],
+  "vim.visualModeKeyBindings": [
+    // Stay in visual mode while indenting
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    // Move selected lines while staying in visual mode
+    { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
+    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
+    // toggle comment selection
+    { "before": ["-"], "commands": ["editor.action.commentLine"] }
+  ],
+  "workbench.startupEditor": "none",
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#5f00af",
+    "statusBar.noFolderBackground": "#5f00af",
+    "statusBar.debuggingBackground": "#5f00af",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff"
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "workbench.iconTheme": "vscode-icons",
+  "update.mode": "manual",
+  "cmake.showOptionsMovedNotification": false,
+  "notebook.lineNumbers": "on",
+  "workbench.sideBar.location": "right",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

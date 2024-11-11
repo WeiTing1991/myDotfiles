@@ -10,6 +10,35 @@ stow .
 
 ```
 
+## vscode
+
+```
+cd ~/.dotfiles/
+stow -t ~/Library/Application\ Support/Code/User ./vscode
+
+```
+
+Plugins:
+vim
+
+editorConfig
+Error Lens
+
+custom CSS and JS
+nord theme
+TODO V2
+WhichKey
+
+vsnetrew
+FindInFaster
+OpenInExternalApp
+
+Prettier
+
+
+
+
+
 ## Emacs
 
 ```bash

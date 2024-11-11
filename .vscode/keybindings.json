@@ -1,0 +1,352 @@
+[
+  /*   Not https://github.com/VSpaceCode/vscode-which-key/blob/master/package.json */
+  /* system **************************************************************************************/
+  // Enable to use leader key everywhere
+  {
+    "key": "space",
+    "command": "whichkey.show",
+    "when": "(sideBarFocus && sideBarVisible && !inputFocus) || (editorTextFocus && vim.mode == 'Normal')"
+  },
+  {
+    "key": "shift+space",
+    "command": "whichkey.show"
+  },
+
+  // close the active editor
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "!sideBarFocus"
+  },
+
+  // show commands
+  {
+    "key": "ctrl-b p",
+    "command": "workbench.action.showCommands"
+  },
+
+  /* Nav and window move/split *******************************************************************/
+  // window split
+  {
+    "key": "ctrl-b '",
+    "command": "workbench.action.splitEditor"
+  },
+  {
+    "key": "ctrl-b 5",
+    "command": "workbench.action.splitEditorDown"
+  },
+  {
+    "key": "ctrl-'",
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+  },
+  {
+    "key": "ctrl-'",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "terminalFocus"
+  },
+
+  // nav buffer
+  {
+    "key": "ctrl+o",
+    "command": "workbench.action.nextEditorInGroup"
+    // "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "workbench.action.previousEditorInGroup"
+    // "when": "editorTextFocus"
+  },
+
+  /* termainal  **********************************************************************************/
+  {
+    "key": "ctrl+b t",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus && !editorTextFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus && !editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+n",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalFocus && !editorTextFocus"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus && !editorTextFocus"
+  },
+
+  /* Side panel **********************************************************************************/
+
+  // Close sidebar
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus"
+  },
+  {
+    "key": "ctrl+b q",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+
+  // Extensions
+  {
+    "key": "ctrl+b p",
+    "command": "workbench.view.extensions",
+    "when": "viewContainer.workbench.view.extensions.enabled"
+  },
+
+  // File tree
+  {
+    "key": "ctrl+b e",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+
+  // open
+  {
+    "key": "o",
+    "command": "explorer.openToSide",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
+    "key": "shift+o",
+    "command": "explorer.openAndPassFocus",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "openInExternalApp.open",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus && resourceScheme == 'file'"
+  },
+  {
+    "key": "ctrl+shift+o",
+    "command": "revealFileInOS",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+
+  // create/rename/copy/paste/delete the file/dir
+  {
+    "key": "n",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "shift+n",
+    "command": "explorer.newFolder",
+    "when": "explorerViewletFocus"
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "d",
+    "command": "deleteFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+  },
+  {
+    "key": "x",
+    "command": "filesExplorer.cut",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+
+  // nav folder/file
+  {
+    "key": "h",
+    "command": "list.collapse",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "listFocus && explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "listFocus && explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  // TODO:how to fix the open
+  {
+    "key": "l",
+    "command": "list.toggleExpand",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+
+  /** netrew **/
+  {
+    "key": "n",
+    "command": "vsnetrw.create",
+    "when": "editorTextFocus && editorLangId == 'vsnetrw' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "shift+5",
+    "command": "-vsnetrw.create",
+    "when": "editorTextFocus && editorLangId == 'vsnetrw' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "shift+n",
+    "command": "vsnetrw.createDir",
+    "when": "editorTextFocus && editorLangId == 'vsnetrw' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "d",
+    "command": "-vsnetrw.createDir",
+    "when": "editorTextFocus && editorLangId == 'vsnetrw' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+
+  /* Misc ****************************************************************************************/
+  // reload
+  {
+    "key": "ctrl+b r",
+    "command": "workbench.action.reloadWindow"
+  },
+
+  // adjust font size
+  {
+    "key": "ctrl+-",
+    "command": "workbench.action.zoomOut"
+  },
+  {
+    "key": "ctrl+=",
+    "command": "workbench.action.zoomIn"
+  },
+  {
+    "key": "ctrl+0",
+    "command": "workbench.action.zoomReset"
+  },
+
+  // increase/decrease the view size
+  // TODO: try to find the foucse group
+  {
+    "key": "ctrl+shift+h",
+    "command": "workbench.action.increaseViewWidth",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "workbench.action.decreaseViewWidth",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.increaseViewHeight",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.decreaseViewHeight",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus"
+  },
+
+  // NOTE: DO I need this?
+  // select move
+  {
+    "key": "ctrl+n",
+    "command": "selectNextSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "acceptSelectedSuggestion",
+    "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "acceptSelectedCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.quickOpenNavigateNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenNavigatePrevious",
+    "when": "inQuickOpen"
+  },
+
+  // open keyboard settings
+  {
+    "key": "ctrl+b ctrl+k",
+    "command": "workbench.action.openGlobalKeybindings"
+  },
+  {
+    "key": "cmd+k cmd+s",
+    "command": "-workbench.action.openGlobalKeybindings"
+  },
+
+  // unbinding
+  {
+    "key": "shift+cmd+m",
+    "command": "-workbench.actions.view.problems",
+    "when": "workbench.panel.markers.view.active"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+
+  // copilot
+  {
+    "key": "ctrl+b c",
+    "command": "workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active"
+  },
+  {
+    "key": "ctrl+b shift+c",
+    "command": "workbench.action.chat.openEditSession",
+    "when": "chatEditingParticipantRegistered && chatIsEnabled && view != 'workbench.panel.chat.view.edits'"
+  },
+  {
+    "key": "ctrl+cmd+i",
+    "command": "-workbench.panel.chat",
+    "when": "workbench.panel.chat.view.copilot.active"
+  },
+  {
+    "key": "shift+cmd+i",
+    "command": "-workbench.action.chat.openEditSession",
+    "when": "chatEditingParticipantRegistered && chatIsEnabled && view != 'workbench.panel.chat.view.edits'"
+  },
+  {
+    "key": "ctrl+b ctrl+t",
+    "command": "github.copilot.toggleCopilot"
+  },
+
+]

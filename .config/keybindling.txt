@@ -1,0 +1,72 @@
+
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+w ctrl+'",
+    "command": "workbench.action.splitEditorRight",
+    "when": "inputFocus"
+  },
+
+  // NAVIGATION
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+b t",
+    "command": "workbench.action.togglePanel"
+  },
+  {
+    "key": "ctrl+b n",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalFocus"
+  },
+
+  {
+    "key": "ctrl+b q",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+
+  // FILE TREE
+  {
+    "key": "space e",kkkkkkkkkkk
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "Enter",
+    "command": "explorer.openAndPassFocus",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "n",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "renameFile",
+    "key": "r",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "shift+n",
+    "command": "explorer.newFolder",
+    "when": "explorerViewletFocus"
+  },
+  {
+    "command": "deleteFile",
+    "key": "d",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+z",
+    "command": "workbench.action.toggleZenMode"
+  }
+]
