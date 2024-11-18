@@ -12,6 +12,10 @@
     font-size: 12px !important;
     opacity: .8;
 }
+.monaco-editor .scroll-decoration {
+  box-shadow: 0px 0px 20px rgba(0,0,0,.75) !important;
+  top: -6px !important;
+}
 
 /* File explorer action buttons */
 .monaco-workbench .part.sidebar .title-actions .actions-container {

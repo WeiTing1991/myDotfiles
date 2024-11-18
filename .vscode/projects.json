@@ -1,0 +1,23 @@
+[
+	{
+		"name": "Root",
+		"rootPath": "~",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "Note",
+		"rootPath": "/Users/weitingchen/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "Dotfiles",
+		"rootPath": "~/.dotfiles",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	}
+]
