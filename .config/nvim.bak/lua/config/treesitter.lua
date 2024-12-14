@@ -1,6 +1,6 @@
 local treesitter = require "nvim-treesitter.configs"
 
-treesitter.setup ({
+treesitter.setup {
   ensure_installed = {
     "vim",
     "vimdoc",
@@ -8,7 +8,6 @@ treesitter.setup ({
     "bash",
     "c",
     "cpp",
-    "diff",
     "make",
     "cmake",
     "lua",
@@ -28,22 +27,21 @@ treesitter.setup ({
     "json",
     "markdown",
     "markdown_inline",
-    "latex",
 
     "xml",
     "html",
     "css",
     "templ",
-
   },
-  auto_install = true,
-  -- ignore_install = {},
+  ignore_install = {},
   sync_install = false,
+  auto_install = true,
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
 
-  highlight = {
+  highight = {
     enable = true,
-    additional_vim_regex_highlighting = false
+    additional_vim_regex_highlighting = { "markdown" },
   },
-
   indent = { enable = true },
-})
+}

@@ -1,6 +1,4 @@
--- https://github.com/stevearc/oil.nvim
-
-require("oil").setup ({
+require("oil").setup {
   default_file_explorer = false,
   delete_to_trash = true,
   skip_confirm_for_simple_edits = true,
@@ -25,4 +23,4 @@ require("oil").setup ({
     ["<C-c>"] = false,
     ["q"] = "actions.close",
   },
-})
+}

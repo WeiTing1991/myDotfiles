@@ -1,69 +1,101 @@
-local options = {
+local M = {
 
   base46 = {
-    theme = "poimandres", -- default theme
+    theme = "nord", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},
     changed_themes = {},
     transparency = true,
-    theme_toggle = { "monochrome", "poimandres" },
+    theme_toggle = { "nord", "Nano_Light" },
   },
 
   ui = {
     cmp = {
-      icons = true,
+      icons_left = false, -- only for non-atom styles!
       lspkind_text = true,
       style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+      format_colors = {
+        tailwind = false, -- will work for css lsp too
+        icon = "󱓻",
+      },
     },
 
-    telscope = { style = "borderless" }, -- borderless / bordered
+    telescope = { style = "borderless" }, -- borderless / bordered
 
     statusline = {
-      theme = "default", -- default/vscode/vscode_colored/minimal
+      enabled = true,
+      theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
       -- default/round/block/arrow separators work only for default statusline theme
       -- round and block will work for minimal theme only
       separator_style = "default",
-      order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "lsp", "cwd", "xyz", "spell_check", "abc" }, -- Add spell_check to the order
+      -- order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
+      order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "lsp", "spell_check", "cursor", "cwd"},
       modules = {
-        abc = function()
-          return ""
-        end,
-
-        xyz = "",
-        f = "%F",
+        -- f = "%F",
 
         spell_check = function()
           if vim.wo.spell then
-            return "spell [" .. vim.opt.spelllang:get()[1] .. "]"
+            return "SP: [" .. vim.opt.spelllang:get()[1] .. "]"
           else
-            return "spell:Off"
+            return "SP: Off"
           end
         end,
       },
     },
+
+    -- lazyload it when there are 1+ buffers
     tabufline = {
       enabled = false,
       lazyload = true,
       order = { "treeOffset", "buffers", "tabs", "btns" },
       modules = nil,
     },
+  },
 
-    nvdash = {
-      load_on_startup = false,
-      header = {
-        "                            ",
-        "     Powered By  eovim    ",
-        "                            ",
+  nvdash = {
+    load_on_startup = true,
+    header = {
+
+      "                          ",
+      "    ██╗    ██╗████████╗   ",
+      "    ██║    ██║╚══██╔══╝   ",
+      "    ██║ █╗ ██║   ██║      ",
+      "    ██║███╗██║   ██║      ",
+      "    ╚███╔███╔╝   ██║      ",
+      "     ╚══╝╚══╝    ╚═╝      ",
+      "                          ",
+      "    Powered By  eovim   ",
+      "                          ",
+    },
+
+    buttons = {
+      { txt = "  Find File", keys = "Space f", cmd = "Telescope find_files" },
+      { txt = "  Recent Files", keys = "Space fo", cmd = "Telescope oldfiles" },
+      { txt = "󰈭  Find Word", keys = "Space fw", cmd = "Telescope live_grep" },
+      -- { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
+      { txt = "  Mappings", keys = "Space fk", cmd = "NvCheatsheet" },
+
+      { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
+      {
+        txt = function()
+          local stats = require("lazy").stats()
+          local ms = math.floor(stats.startuptime) .. " ms"
+          return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
+        end,
+        hl = "NvDashFooter",
+        no_gap = true,
       },
-      buttons = {
-        { "  Find File", "Spc f f", "Telescope find_files" },
-        { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-        { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
-        { "  Bookmarks", "Spc m a", "Telescope marks" },
-        { "  Themes", "Spc t h", "Telescope themes" },
-        { "  Mappings", "Spc c h", "NvCheatsheet" },
-      },
+      { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
+
+      -- {
+      --   txt = function()
+      --     local dir = vim.loop.cwd()
+      --     return dir
+      --   end,
+      --   no_gap = true,
+      -- },
+
     },
   },
 
@@ -72,10 +104,10 @@ local options = {
     sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
     float = {
       relative = "editor",
-      row = 0.3,
-      col = 0.25,
-      width = 0.5,
-      height = 0.4,
+      row = 0.1,
+      col = 0.1,
+      width = 0.8,
+      height = 0.6,
       border = "single",
     },
   },
@@ -83,11 +115,18 @@ local options = {
   lsp = { signature = true },
 
   cheatsheet = {
-    theme = "gird", -- simple/grid
+    theme = "grid", -- simple/grid
     excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" }, -- can add group name or with mode
   },
-  mason = { cmd = true, pkgs = {} },
+
+  mason = { pkgs = {}, skip = {} },
+
+  colorify = {
+    enabled = true,
+    mode = "virtual", -- fg, bg, virtual
+    virt_text = "󱓻 ",
+    highlight = { hex = true, lspvars = true },
+  },
 }
 
-local status, chadrc = pcall(require, "chadrc")
-return vim.tbl_deep_extend("force", options, status and chadrc or {})
+return M

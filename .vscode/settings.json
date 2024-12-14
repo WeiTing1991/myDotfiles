@@ -165,9 +165,6 @@
   "editor.suggestSelection": "first",
   "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.parameterHints.enabled": true,
-
-  /** color theme *******************************************************************************/
-  "cSpell.enabled": false,
   "workbench.colorTheme": "Nord",
   "workbench.preferredDarkColorTheme": "Nord",
   "workbench.preferredLightColorTheme": "Default Light Modern",
@@ -945,5 +942,7 @@
     // "**/*.php",
     // "**/*.rb",
     // "**/*.org"
-  ]
+  ],
+  "cSpell.enabled": false,
+  "git.openRepositoryInParentFolders": "never"
 }

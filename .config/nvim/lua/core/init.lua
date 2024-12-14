@@ -1,29 +1,38 @@
-if vim.g.vscode then
-  require("core.globals")
-end
 
-require("core.globals")
-require("core.options")
+-- load UI
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
+
+require("core.config")
 require("core.keymaps")
 require("core.autocmds")
 
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
-
+-- load plugin manager
 require("core.lazy")
 
- -- put this after lazy setup
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-dofile(vim.g.base46_cache .. "treesitter")
-dofile(vim.g.base46_cache .. "syntax")
+for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+  dofile(vim.g.base46_cache .. v)
+end
 
-dofile(vim.g.base46_cache .. "telescope")
+-- for image preview
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
 
--- To load all integrations at once
--- for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
---   dofile(vim.g.base46_cache .. v)
--- end
-
-vim.opt.guicursor = "n-v-c:block-Cursor,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
-vim.api.nvim_set_hl(0, "cursor", { background = "#eb6f92", foreground = "white"})
-
+-- list of basd46
+-- dofile(vim.g.base46_cache .. "defaults")
+-- blankline
+-- cmp
+-- colors
+-- defaults
+-- devicons
+-- git
+-- lsp
+-- mason
+-- nvcheatsheet
+-- nvimtree
+-- statusline
+-- syntax
+-- tbline
+-- telescope
+-- term
+-- treesitter
+-- whichkey
