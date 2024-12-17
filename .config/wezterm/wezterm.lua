@@ -6,8 +6,24 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+-- Detect the operating system
+local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
+local is_macos = wezterm.target_triple == "x86_64-apple-darwin"
+
+local default_prog
+local font_size
+if is_windows then
+  default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoLogo" }
+  font_size = 12.0
+elseif is_macos then
+  default_prog = { "/usr/bin/zsh", "-l" } -- Example: Zsh for macOS
+  font_size = 16.0
+end
+
+
 -- config settings
 config = {
+  default_prog = default_prog,
   -- GUI
   max_fps = 120,
 	-- animation_fps = 120,
@@ -35,15 +51,15 @@ config = {
   },
 
   -- font settings
-  font_size = 16.0,
+  font_size = font_size,
   font = wezterm.font(
 	 "Hack Nerd Font", {weight = "Regular", italic = false }
   ),
 
 
 -- Windows
-initial_cols = 120,
-initial_rows = 40,
+--initial_cols = 120,
+--initial_rows = 40,
 inactive_pane_hsb = {
 	saturation = 0.5,
 	brightness = 0.8,
@@ -57,7 +73,7 @@ window_padding = {
 },
 
 adjust_window_size_when_changing_font_size = true,
-window_background_opacity = 0.85,
+window_background_opacity = 0.95,
 macos_window_background_blur = 100,
 window_close_confirmation = "AlwaysPrompt",
 default_cursor_style = "BlinkingBlock",
@@ -122,9 +138,9 @@ keys = {
 	{ key = "t", mods = "LEADER", action = act.TogglePaneZoomState },
 
 	{ key = "T", mods = "SUPER", action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
-	{ key = "T", mods = "CTRL", action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
+	{ key = "T", mods = "ALT", action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
 	{ key = "t", mods = "SUPER", action = act.SpawnCommandInNewTab({ domain = "CurrentPaneDomain" }) },
-	{ key = "t", mods = "CTRL", action = act.SpawnCommandInNewTab({ domain = "CurrentPaneDomain" }) },
+	{ key = "t", mods = "ALT", action = act.SpawnCommandInNewTab({ domain = "CurrentPaneDomain" }) },
 
   {
       key = "p",
@@ -137,9 +153,9 @@ keys = {
       action = wezterm.action.ActivateTabRelative(1)
   },
 
-	{ key = "1", mods = "SHIFT|CTRL", action = act.ActivateTab(0) },
+	{ key = "1", mods = "ALT", action = act.ActivateTab(0) },
 	{ key = "1", mods = "SUPER", action = act.ActivateTab(0) },
-	{ key = "2", mods = "SHIFT|CTRL", action = act.ActivateTab(1) },
+	{ key = "2", mods = "ALT", action = act.ActivateTab(1) },
 	{ key = "2", mods = "SUPER", action = act.ActivateTab(1) },
 	{ key = "3", mods = "SHIFT|CTRL", action = act.ActivateTab(2) },
 	{ key = "3", mods = "SUPER", action = act.ActivateTab(2) },
@@ -173,6 +189,8 @@ keys = {
 
   -- mode
 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
+	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
+	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 },
 
 key_tables = {

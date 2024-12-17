@@ -80,7 +80,7 @@ local options = {
   signcolumn = "yes",
 
   -- Show which line your cursor is on
-  cursorline = false,
+  cursorline = true,
 
   -- colorcolumn = "120",
   textwidth = 120,

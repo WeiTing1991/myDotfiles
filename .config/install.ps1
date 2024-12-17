@@ -1,20 +1,23 @@
 # install neovim and wezterm
+winget install --id Microsoft.Powershell --source winget
 winget install neovim
 winget install wez.wezterm
-winget install --id Microsoft.Powershell --source winget
 
 # for telescope (fzf)
 # winget install BurntSushi.ripgrep.MSVC
 # winget install sharkdp.fd
 # winget install --id=junegunn.fzf  -e
 
+
+# link config file to user dir
+# weterm
+New-Item -Path "C:\Program Files\WezTerm\wezterm.lua" -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.config\wezterm\wezterm.lua -Force
+
+# neovim and wezterm
 Remove-Item $env:USERPROFILE\AppData\Local\nvim -Recurse -Force
 Remove-Item $env:USERPROFILE\AppData\Local\nvim-data -Recurse -Force
 
-# link config file to user dir
-# neovim and wezterm
 New-Item -Path $env:USERPROFILE\AppData\Local\nvim\ -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.config\nvim\ -Force
-New-Item -Path "C:\Program Files\WezTerm\wezterm.lua" -ItemType SymbolicLink -Value $env:USERPROFILE\.mydotfiles\.config\wezterm_win\wezterm.lua -Force
 
 # emacs
 New-Item -Path $env:USERPROFILE\.emacs.d\ -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.emacs.d\ -Force
@@ -36,7 +39,6 @@ New-Item -Path $env:USERPROFILE\.config\powershell\weitingchen.ps1 -ItemType Sym
 
 
 # vscode
-
 New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\settings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\settings.json -Force
 New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\keybindings.json -Force
 
