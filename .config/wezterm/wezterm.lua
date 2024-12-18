@@ -15,6 +15,7 @@ local font_size
 if is_windows then
   default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoLogo" }
   font_size = 12.0
+  front_end = "OpenGL"
 elseif is_macos then
   default_prog = { "/usr/bin/zsh", "-l" } -- Example: Zsh for macOS
   font_size = 16.0
@@ -25,7 +26,7 @@ end
 config = {
   default_prog = default_prog,
   -- GUI
-  max_fps = 120,
+  max_fps = 144,
 	-- animation_fps = 120,
   -- color
   color_scheme = "rose-pine",
@@ -190,7 +191,9 @@ keys = {
   -- mode
 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
 	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
+	{ key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
 	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
+	{ key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
 },
 
 key_tables = {

@@ -1,12 +1,18 @@
 # Welcome to my dotfiles
 
+## Installation
+stow
+neovim
+
 ## stow
 
 This repository is my dotfiles (for now) for my windows and mac via [GNU stow].
 
+
 ```bash
 stow .
 ```
+
 ## Neovim
 I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and let me know if these is any issue.
 
