@@ -8,7 +8,7 @@ end
 
 -- Detect the operating system
 local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
-local is_macos = wezterm.target_triple == "x86_64-apple-darwin"
+local is_macos = wezterm.target_triple == "aarch64-apple-darwin"
 
 local default_prog
 local font_size
@@ -17,7 +17,7 @@ if is_windows then
   font_size = 12.0
   front_end = "OpenGL"
 elseif is_macos then
-  default_prog = { "/usr/bin/zsh", "-l" } -- Example: Zsh for macOS
+  default_prog = { "/bin/zsh" } -- Example: Zsh for macOS
   font_size = 16.0
 end
 
