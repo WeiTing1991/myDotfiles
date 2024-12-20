@@ -18,7 +18,7 @@ local undoDir = ""
 if vim.loop.os_uname().sysname == "Darwin" then
   undoDir = os.getenv "HOME" .. "/.vim/undodir"
 elseif vim.fn.has "Win32" then
-  undoDir = os.getenv "USERPROFILE" .. "\\.vim\\undodir"
+  undoDir = os.getenv "HOME" .. "/.vim/undodir"
 else
   undoDir = os.getenv "HOME" .. "/.vim/undodir"
 end
@@ -27,7 +27,7 @@ local spelldir = ""
 if vim.loop.os_uname().sysname == "Darwin" then
   spelldir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
 elseif vim.fn.has "Win32" then
-  spelldir = os.getenv "USERPROFILE" .. "/spell/en.utf-8.add"
+  spelldir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 else
   spelldir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 end

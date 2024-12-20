@@ -119,11 +119,11 @@ end),
 
 -- Disable default keybindings
 disable_default_key_bindings = true,
-leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
+leader = { key = "x", mods = "CTRL", timeout_milliseconds = 1000 },
 
 keys = {
 	-- mode
-	-- { key = "b", mods = "LEADER|CTRL", action = act.SendKey({ key = "b", mods = "CTRL" }) },
+	-- { key = "x", mods = "LEADER|CTRL", action = act.SendKey({ key = "x", mods = "CTRL" }) },
 
 	-- split windows
   { key = "'", mods = "LEADER", action = act.SplitVertical({ domain = "DefaultDomain" }) },
