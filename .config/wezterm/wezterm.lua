@@ -153,7 +153,7 @@ keys = {
       action = wezterm.action.ActivateTabRelative(1)
   },
 
-	{ key = "1", mods = "ALT", action = act.ActivateTab(0) },
+	{ key = "1", mods = "ALT", action = act.ActivateTab(0) }
 	{ key = "1", mods = "SUPER", action = act.ActivateTab(0) },
 	{ key = "2", mods = "ALT", action = act.ActivateTab(1) },
 	{ key = "2", mods = "SUPER", action = act.ActivateTab(1) },
