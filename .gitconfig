@@ -1,9 +1,5 @@
 [user]
 	name = WeiTing Chen
-	email = 
+	email = weitingchen0502@gmail.com
 [init]
 	defaultBranch = main
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-[url "ssh://git@github.bath.ac.uk/"]
-	insteadOf = https://github.bath.ac.uk
