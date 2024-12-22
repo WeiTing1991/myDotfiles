@@ -8,6 +8,7 @@ end
 
 -- Detect the operating system
 local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
+-- aarch special for m-series mac
 local is_macos = wezterm.target_triple == "aarch64-apple-darwin"
 
 local default_prog
@@ -17,17 +18,18 @@ if is_windows then
   font_size = 12.0
   front_end = "OpenGL"
 elseif is_macos then
-  default_prog = { "/bin/zsh" } -- Example: Zsh for macOS
+  default_prog = { "/bin/zsh" , "-l"}
   font_size = 16.0
 end
 
-
--- config settings
+-- main config
 config = {
   default_prog = default_prog,
+
   -- GUI
   max_fps = 144,
-	-- animation_fps = 120,
+  -- animation_fps = 120,
+
   -- color
   color_scheme = "rose-pine",
 
@@ -54,70 +56,66 @@ config = {
   -- font settings
   font_size = font_size,
   font = wezterm.font(
-	 "Hack Nerd Font", {weight = "Regular", italic = false }
+	 "Hack Nerd Font", { weight = "Regular", italic = false }
   ),
 
+  -- Windows
+  inactive_pane_hsb = {
+    saturation = 0.5,
+    brightness = 0.8,
+  },
+  window_decorations = "RESIZE",
+  window_padding = {
+    left = 5,
+    right = 5,
+    top = 10,
+    bottom = 10,
+  },
 
--- Windows
---initial_cols = 120,
---initial_rows = 40,
-inactive_pane_hsb = {
-	saturation = 0.5,
-	brightness = 0.8,
-},
-window_decorations = "RESIZE",
-window_padding = {
-	left = 8,
-	right = 8,
-	top = 8,
-	bottom = 8,
-},
+  adjust_window_size_when_changing_font_size = true,
+  window_background_opacity = 0.95,
+  macos_window_background_blur = 80,
+  window_close_confirmation = "AlwaysPrompt",
+  default_cursor_style = "BlinkingBlock",
 
-adjust_window_size_when_changing_font_size = true,
-window_background_opacity = 0.95,
-macos_window_background_blur = 100,
-window_close_confirmation = "AlwaysPrompt",
-default_cursor_style = "BlinkingBlock",
+  -- tab bar
+  hide_tab_bar_if_only_one_tab = false,
+  -- tab_bar_at_bottom = true,
+  use_fancy_tab_bar = false,
+  tab_and_split_indices_are_zero_based = true,
+  --
+  wezterm.on("update-status", function(window, pane)
+    -- Workspace name
+    local stat = window:active_workspace()
+    local stat_color = "#eb6f92"
 
--- tab bar
-hide_tab_bar_if_only_one_tab = false,
-tab_bar_at_bottom = true,
-use_fancy_tab_bar = false,
-tab_and_split_indices_are_zero_based = true,
+    -- mode color/status
+    if window:active_key_table() then
+      stat = window:active_key_table()
+      stat_color = "#e0def4"
+    end
+    if window:leader_is_active() then
+      stat = "TERMINAL"
+      stat_color = "#31748f"
+    end
 
-wezterm.on("update-status", function(window, pane)
-	-- Workspace name
-	local stat = window:active_workspace()
-	local stat_color = "#eb6f92"
+    -- Left status
+    window:set_left_status(wezterm.format({
+      { Text = "  " },
+    }))
 
-	if window:active_key_table() then
-		stat = window:active_key_table()
-		stat_color = "#e0def4"
-	end
-	if window:leader_is_active() then
-		stat = "TERMINAL"
-		stat_color = "#31748f"
-	end
-
-	-- Left status
-	window:set_left_status(wezterm.format({
-		{ Text = "" },
-	}))
-
-	-- Right status
-	window:set_right_status(wezterm.format({
-		{ Foreground = { Color = stat_color } },
-		-- { background = { Color = "#0D0907" - },
-		{ Text = "  " },
-		{ Text = stat .. "  " .. window:window_id() },
-		-- { Text = " | " },
-		-- { Foreground = { Color = "#f6c177" } },
-		-- { Text = cwd },
-		-- "ResetAttributes",
-	}))
-end),
-
--- Disable default keybindings
+    -- Right status
+    window:set_right_status(wezterm.format({
+      { Foreground = { Color = stat_color } },
+      { Text = "  " },
+      { Text = stat .. "  " .. window:window_id() },
+      { Text = " " },
+      -- { Foreground = { Color = "#f6c177" } },
+      -- { Text = cwd },
+      -- "ResetAttributes",
+    }))
+  end),
+  -- Disable default keybindings
 disable_default_key_bindings = true,
 leader = { key = "x", mods = "CTRL", timeout_milliseconds = 1000 },
 
@@ -154,26 +152,24 @@ keys = {
       action = wezterm.action.ActivateTabRelative(1)
   },
 
-	{ key = "1", mods = "ALT", action = act.ActivateTab(0) },
-	{ key = "1", mods = "SUPER", action = act.ActivateTab(0) },
-	{ key = "2", mods = "ALT", action = act.ActivateTab(1) },
-	{ key = "2", mods = "SUPER", action = act.ActivateTab(1) },
-	{ key = "3", mods = "SHIFT|CTRL", action = act.ActivateTab(2) },
-	{ key = "3", mods = "SUPER", action = act.ActivateTab(2) },
-	{ key = "4", mods = "SHIFT|CTRL", action = act.ActivateTab(3) },
-	{ key = "4", mods = "SUPER", action = act.ActivateTab(3) },
-	{ key = "5", mods = "SHIFT|CTRL", action = act.ActivateTab(4) },
-	{ key = "5", mods = "SUPER", action = act.ActivateTab(4) },
-	{ key = "6", mods = "SHIFT|CTRL", action = act.ActivateTab(5) },
-	{ key = "6", mods = "SUPER", action = act.ActivateTab(5) },
-	{ key = "7", mods = "SHIFT|CTRL", action = act.ActivateTab(6) },
-	{ key = "7", mods = "SUPER", action = act.ActivateTab(6) },
-	{ key = "8", mods = "SHIFT|CTRL", action = act.ActivateTab(7) },
-	{ key = "8", mods = "SUPER", action = act.ActivateTab(7) },
-	{ key = "9", mods = "SHIFT|CTRL", action = act.ActivateTab(-1) },
-	{ key = "9", mods = "SUPER", action = act.ActivateTab(-1) },
-
-	-- { key = "w", mods = "SHIFT|CTRL", action = act.CloseCurrentTab({ confirm = true }) },
+	-- { key = "1", mods = "ALT", action = act.ActivateTab(0) },
+	-- { key = "1", mods = "SUPER", action = act.ActivateTab(0) },
+	-- { key = "2", mods = "ALT", action = act.ActivateTab(1) },
+	-- { key = "2", mods = "SUPER", action = act.ActivateTab(1) },
+	-- { key = "3", mods = "SHIFT|CTRL", action = act.ActivateTab(2) },
+	-- { key = "3", mods = "SUPER", action = act.ActivateTab(2) },
+	-- { key = "4", mods = "SHIFT|CTRL", action = act.ActivateTab(3) },
+	-- { key = "4", mods = "SUPER", action = act.ActivateTab(3) },
+	-- { key = "5", mods = "SHIFT|CTRL", action = act.ActivateTab(4) },
+	-- { key = "5", mods = "SUPER", action = act.ActivateTab(4) },
+	-- { key = "6", mods = "SHIFT|CTRL", action = act.ActivateTab(5) },
+	-- { key = "6", mods = "SUPER", action = act.ActivateTab(5) },
+	-- { key = "7", mods = "SHIFT|CTRL", action = act.ActivateTab(6) },
+	-- { key = "7", mods = "SUPER", action = act.ActivateTab(6) },
+	-- { key = "8", mods = "SHIFT|CTRL", action = act.ActivateTab(7) },
+	-- { key = "8", mods = "SUPER", action = act.ActivateTab(7) },
+	-- { key = "9", mods = "SHIFT|CTRL", action = act.ActivateTab(-1) },
+	-- { key = "9", mods = "SUPER", action = act.ActivateTab(-1) },
 
   -- close tab
 	{ key = "w", mods = "ALT", action = act.CloseCurrentTab({ confirm = true }) },
@@ -190,10 +186,12 @@ keys = {
 
   -- mode
 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
-	{ key = "Copy", mods = "NONE", action = act.CopyTo("Clipboard") },
 	{ key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
-	{ key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
+	{ key = "c", mods = "SHIFT|SUPER", action = act.CopyTo("Clipboard") },
+	-- { key = "COPY", mods = "NONE", action = act.CopyTo("Clipboard") },
 	{ key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
+	{ key = "v", mods = "SHIFT|SUPER", action = act.PasteFrom("Clipboard") },
+	-- { key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 },
 
 key_tables = {
