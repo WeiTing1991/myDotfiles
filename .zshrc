@@ -2,6 +2,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -10,21 +11,31 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(
-  git
-  zsh-syntax-highlighting
-)
-
-source $ZSH/oh-my-zsh.sh
-
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
+
+source $ZSH/oh-my-zsh.sh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # enable fzf keybinding
 [ -f /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# combine preview with bat and eza
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 # keybindings
 bindkey -e
@@ -55,10 +66,7 @@ export LANG=en_US.UTF-8
 #   export EDITOR='nvim'
 # fi
 #
-# Start skhd when opening a new terminal
-if ! pgrep -x "skhd" > /dev/null; then
-    skhd --start-service &
-fi
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -69,13 +77,16 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
 alias n="nvim"
 alias e="exit"
 
+alias ls="eza"
+alias tree="eza --tree"
+
+# git tools
+alias gd="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
 
 
-
-
-
-
+setopt ignoreeof
 

@@ -185,7 +185,9 @@ keys = {
 	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
 
   -- mode
-	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
+	-- { key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
+	{ key = "r", mods = "LEADER", action = act.ActivateCopyMode },
+
 	{ key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
 	{ key = "c", mods = "SHIFT|SUPER", action = act.CopyTo("Clipboard") },
 	-- { key = "COPY", mods = "NONE", action = act.CopyTo("Clipboard") },
@@ -195,15 +197,39 @@ keys = {
 },
 
 key_tables = {
-	RESIZE_PANE = {
-		{ key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
-		{ key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
-		{ key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
-		{ key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
-		{ key = "Escape", action = "PopKeyTable" },
-		{ key = "Enter", action = "PopKeyTable" },
-		{ key = "=", action = act.IncreaseFontSize },
-		{ key = "-", action = act.DecreaseFontSize },
+	copy_mode = {
+
+  { key = 'h', mods = 'NONE', action = act.CopyMode 'MoveLeft' },
+  { key = 'j', mods = 'NONE', action = act.CopyMode 'MoveDown' },
+  { key = 'k', mods = 'NONE', action = act.CopyMode 'MoveUp' },
+  { key = 'l', mods = 'NONE', action = act.CopyMode 'MoveRight' },
+
+  { key = "Escape", mods = 'NONE', action = act.CopyMode 'Close' },
+  { key = 'q', mods = 'NONE', action = act.CopyMode 'Close' },
+
+  { key = 'v', mods = 'NONE', action = act.CopyMode{ SetSelectionMode =  'Cell' } },
+  { key = 'v', mods = 'CTRL', action = act.CopyMode{ SetSelectionMode =  'Block' } },
+
+  { key = "=", action = act.IncreaseFontSize },
+  { key = "-", action = act.DecreaseFontSize },
+
+  {
+    key = 'y',
+    mods = 'NONE',
+    action = act.Multiple {
+      { CopyTo = 'ClipboardAndPrimarySelection' },
+      { CopyMode = 'Close' },
+    },
+  },
+
+  -- Scroll up and down by line
+  -- { key = 'u', action = act.ScrollByLine(-1) },
+  -- { key = 'd', action = act.ScrollByLine(1) },
+
+  -- Scroll up and down by page
+  { key = 'u', action = act.ScrollByPage(-1) },
+  { key = 'd', action = act.ScrollByPage(1) },
+
 	},
 },
 
