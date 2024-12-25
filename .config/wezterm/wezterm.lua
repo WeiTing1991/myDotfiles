@@ -204,6 +204,9 @@ key_tables = {
   { key = 'k', mods = 'NONE', action = act.CopyMode 'MoveUp' },
   { key = 'l', mods = 'NONE', action = act.CopyMode 'MoveRight' },
 
+  { key = '0', mods = 'NONE', action = act.CopyMode 'MoveToStartOfLineContent' },
+  { key = '5', mods = 'NONE', action = act.CopyMode 'MoveToEndOfLineContent' },
+
   { key = "Escape", mods = 'NONE', action = act.CopyMode 'Close' },
   { key = 'q', mods = 'NONE', action = act.CopyMode 'Close' },
 
@@ -227,8 +230,8 @@ key_tables = {
   -- { key = 'd', action = act.ScrollByLine(1) },
 
   -- Scroll up and down by page
-  { key = 'u', action = act.ScrollByPage(-1) },
-  { key = 'd', action = act.ScrollByPage(1) },
+  { key = 'u', action = act.ScrollByPage(-0.5) },
+  { key = 'd', action = act.ScrollByPage(0.5) },
 
 	},
 },
