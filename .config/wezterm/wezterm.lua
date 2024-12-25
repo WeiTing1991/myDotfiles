@@ -117,7 +117,7 @@ config = {
   end),
   -- Disable default keybindings
 disable_default_key_bindings = true,
-leader = { key = "x", mods = "CTRL", timeout_milliseconds = 1000 },
+leader = { key = "x", mods = "CTRL", timeout_milliseconds = 500 },
 
 keys = {
 	-- mode

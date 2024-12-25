@@ -2,8 +2,8 @@ local M = {
 
   base46 = {
     theme = "nord", -- default theme
-    hl_add = {},
-    hl_override = {},
+    hl_add = { },
+    h1_override ={},
     integrations = {},
     changed_themes = {},
     transparency = true,

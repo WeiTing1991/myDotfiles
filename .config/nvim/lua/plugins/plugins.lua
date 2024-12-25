@@ -63,14 +63,14 @@ return {
     end,
   },
 
-  -- image
-  {
-    "3rd/image.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      require "config.image"
-    end,
-  }
+  -- -- image
+  -- {
+  --   "3rd/image.nvim",
+  --   enabled = false,
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require "config.image"
+  --   end,
+  -- }
 
 }

@@ -2,7 +2,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
+# -------------- Environment Variables -----------------------------------
+#
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -71,6 +72,9 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
+
+# -------------- Alias -----------------------------------
+
 #aliases
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
@@ -87,6 +91,13 @@ alias tree="eza --tree"
 # git tools
 alias gd="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
 
-
+# disable ctrl-D
 setopt ignoreeof
 
+
+# -------------- PATH -----------------------------------
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
