@@ -28,7 +28,7 @@ config = {
 
   -- GUI
   max_fps = 144,
-  -- animation_fps = 120,
+  animation_fps = 144,
 
   -- color
   color_scheme = "rose-pine",

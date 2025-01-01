@@ -1,10 +1,11 @@
-# My Neovim config
+# Neovim Configuration
 
 ## Neovim
 
 I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and let me know if these is any issue.
 
 ```bash
+
 # remove the old nvim configuration
 rm -rf ~/.config/nvim
 rm -rf ~/.local/state/nvim
@@ -12,9 +13,16 @@ rm -rf ~/.local/share/nvim
 
 ```
 
-![image](/Users/weitingchen/neovim.png)
-
 ### Usage
+
+```bash
+
+# install and clone
+
+
+```
+
+### Config
 
 <details>
 <summary>List<p></summary>
@@ -40,14 +48,10 @@ rm -rf ~/.local/share/nvim
   - [markdown-preview](https://github.com/iamcco/markdown-preview.nvim)
 
 - UI
-
   - [NvchardUI]()
   <!--- [lualine](https://github.com/nvim-lualine/lualine.nvim)-->
-
   - [mini-indentscope](https://github.com/echasnovski/mini.indentscop)
-
   - [virt-column](https://github.com/echasnovski/mini.indentscop)
-
   - [auto-session](https://github.com/echasnovski/mini.indentscop)
 
 </details>

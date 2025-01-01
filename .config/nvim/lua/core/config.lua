@@ -4,6 +4,7 @@ local globals = {
   prev_buffer = nil,
   next_buffer = nil,
   have_nerd_font = true,
+  -- editorconfig = true,
 }
 
 for k, v in pairs(globals) do
@@ -24,6 +25,7 @@ else
 end
 
 local spelldir = ""
+local spell_word = {}
 if vim.loop.os_uname().sysname == "Darwin" then
   spelldir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
 elseif vim.fn.has "Win32" then
@@ -49,7 +51,8 @@ local options = {
   softtabstop = 4,
   shiftwidth = 4,
   expandtab = true,
-  smartindent = true,
+  smartindent = false,
+  cindent = false,
   wrap = true,
 
   -- Save undo history
@@ -62,7 +65,7 @@ local options = {
   smartcase = false,
 
   -- Decrease update time
-  updatetime = 50,
+  updatetime = 30,
   timeoutlen = 300,
 
   -- Configure how new splits should be opened
@@ -77,7 +80,8 @@ local options = {
 
   -- Preview substitutions live, as you type!
   inccommand = "split",
-  signcolumn = "yes",
+  signcolumn = "yes:2",
+  -- foldcolumn = "1",
 
   -- Show which line your cursor is on
   cursorline = true,
@@ -129,4 +133,6 @@ local options = {
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+
 

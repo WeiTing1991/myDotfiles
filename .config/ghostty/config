@@ -1,0 +1,65 @@
+# NOTE:
+# docs:
+# ghostty +show-config --default --docs | nvim
+# https://ghostty.org/docs/config/reference#keybind
+
+# apparence
+font-family = "Hack Nerd Font"
+font-size = 16
+background = "0D0907"
+theme = rose-pine
+window-inherit-font-size=true
+
+# cursor
+# cursor-style = block
+shell-integration-features = no-cursor,sudo,title
+
+background-opacity = 0.95
+background-blur-radius = 20
+
+# macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+macos-option-as-alt = true
+# window-save-state = never
+unfocused-split-opacity = 0.3
+window-padding-x = 8
+window-padding-y = 8
+
+window-colorspace = "display-p3"
+window-title-font-family = "Hack Nerd Fontj
+
+# keybindings
+keybind=clear
+
+keybind = all:cmd+shift+,=reload_config
+
+# windows
+keybind = cmd+n=new_window
+keybind = cmd+q=close_window
+
+# tabs
+keybind = cmd+t=new_tab
+keybind = cmd+w=close_surface
+keybind = ctrl+x>n=next_tab
+keybind = ctrl+x>p=previous_tab
+
+# copy and move
+keybind = cmd+shift+c=copy_to_clipboard
+keybind = cmd+shift+v=paste_from_clipboard
+
+keybind = ctrl+x>'=new_split:right
+keybind = ctrl+x>5=new_split:down
+keybind = ctrl+x>l=goto_split:right
+keybind = ctrl+x>h=goto_split:left
+keybind = ctrl+x>k=goto_split:top
+keybind = ctrl+x>j=goto_split:bottom
+keybind = ctrl+x>m=toggle_split_zoom
+
+keybind = ctrl+x>m=toggle_split_zoom
+
+# resize
+keybind = cmd+shift+equal=reset_font_size
+keybind = cmd+equal=increase_font_size:-1
+keybind = cmd+minus=decrease_font_size:1
+
+

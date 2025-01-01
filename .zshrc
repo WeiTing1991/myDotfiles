@@ -1,4 +1,4 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p11k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -91,9 +91,19 @@ alias tree="eza --tree"
 # git tools
 alias gd="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
 
+# path
+alias ob="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen"
+
 # disable ctrl-D
 setopt ignoreeof
 
+# -------------- TERM -----------------------------------
+# bash and zsh
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+    # Unsupported plugin/prompt code here, i.e.
+    # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && "/usr/local/etc/profile.d/bash_completion.sh"
+fi
 
 # -------------- PATH -----------------------------------
 
@@ -101,3 +111,7 @@ setopt ignoreeof
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# magick
+# export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+# set DYLD_LIBRARY_PATH to "(brew --prefix)/lib"

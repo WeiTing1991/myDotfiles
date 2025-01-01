@@ -1,33 +1,33 @@
 # Welcome to my dotfiles
 
 ## Installation
-stow
-neovim
 
 ## stow
 
-This repository is my dotfiles (for now) for my windows and mac via [GNU stow].
-
+This repository is my dotfile (for now) for my windows and mac via [GNU stow].
 
 ```bash
 stow .
+
 ```
 
 ## Neovim
 I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and let me know if these is any issue.
 
+**More information** find [here](/.config/nvim/readme.md)
+
 ### Usage
 ## Terminal
 I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations, which make it similar to tumx. It is an amazing GPU terminal emulator for cross-platform system.
 
-MacOS
+**_Mac OS_**
 
 ```bash
 cd YOURGITREPO
 mv wezterm ~/.config
 ```
 
-Windows 11
+_**Windows 10 11**_
 
 ```bash
 cd YOURGITREPO
@@ -41,6 +41,9 @@ cd ~/.dotfiles/
 stow -t ~/Library/Application\ Support/Code/User ./vscode
 
 ```
+
+![](~/Desktop/01.png)
+
 
 <!-- Plugins:
 vim
@@ -57,7 +60,6 @@ FindInFaster
 OpenInExternalApp
 
 Prettier -->
-
 
 
 <!-- ## Emacs
