@@ -1,15 +1,17 @@
 local M = {
 
   base46 = {
-    theme = "nord", -- default theme
+    -- theme = "nord", -- default theme
+    -- theme = "onenord", -- default theme
+    -- theme = "rosepine",
+    theme = "monochrome",
+    -- theme = "poimandres",
     hl_add = {},
     h1_override = {},
-    integrations = {
-      "whichkey",
-    },
+    integrations = {},
     changed_themes = {},
     transparency = true,
-    theme_toggle = { "nord", "Nano_Light" },
+    -- theme_toggle = { "nord", "Nano_Light" },
   },
 
   ui = {
@@ -26,20 +28,19 @@ local M = {
     telescope = { style = "borderless" }, -- borderless / bordered
 
     statusline = {
-      enabled = true,
+      enabled = false,
       theme = "default", -- default/vscode/vscode_colored/minimal
       -- default/round/block/arrow separators work only for default statusline theme
       -- round and block will work for minimal theme only
       separator_style = "block",
       -- order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "lsp", "cwd", "xyz", "abc" },
-      order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "spell_check", "cursor", "cwd" },
+      order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "spell_check", "cwd", "cursor" },
       modules = {
-        -- f = "%F",
         spell_check = function()
           if vim.wo.spell then
-            return "SP: [" .. vim.opt.spelllang:get()[1] .. "] "
+            return "| SP: [" .. vim.opt.spelllang:get()[1] .. "] "
           else
-            return "SP: "
+            return "| SP: "
           end
         end,
       },
@@ -67,7 +68,7 @@ local M = {
       " ███ ███    ██   ██   ████  ████  ████      ██",
       "                                              ",
       "                                              ",
-      "            Powered By  eovim               ",
+      -- "            Powered By  eovim               ",
       "                                              ",
 
     },
@@ -101,6 +102,12 @@ local M = {
       -- },
     },
   },
+  colorify = {
+    enabled = true,
+    mode = "virtual", -- fg, bg, virtual
+    virt_text = "󱓻 ",
+    highlight = { hex = true, lspvars = true },
+  },
 
   term = {
     winopts = { number = false, relativenumber = false },
@@ -124,12 +131,6 @@ local M = {
   lsp = { signature = false },
   mason = { pkgs = {}, skip = {} },
 
-  colorify = {
-    enabled = true,
-    mode = "virtual", -- fg, bg, virtual
-    virt_text = "󱓻 ",
-    highlight = { hex = true, lspvars = true },
-  },
 }
 
 return M

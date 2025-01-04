@@ -1,6 +1,6 @@
 -- Note: https://github.com/stevearc/oil.nvim?tab=readme-ov-file#quick-start
 
-require("oil").setup ({
+require("oil").setup {
   default_file_explorer = false,
   delete_to_trash = true,
   skip_confirm_for_simple_edits = true,
@@ -31,10 +31,19 @@ require("oil").setup ({
     },
     preview_split = "below",
   },
+  preview_win = {
+    update_on_cursor_moved = true,
+    -- How to open the preview window "load"|"scratch"|"fast_scratch"
+    preview_method = "fast_scratch",
+    disable_preview = function(filename)
+      return false
+    end,
+    win_options = {},
+  },
   keymaps = {
     ["g?"] = { "actions.show_help", mode = "n" },
     ["<C-c>"] = false,
     ["<C-p>"] = "actions.preview",
     ["q"] = "actions.close",
   },
-})
+}

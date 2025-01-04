@@ -23,7 +23,6 @@ indent_style = space
 indent_size = 2
 indent_style = space
 
-
 # Python-specific settings
 [*.org]
 indent_size = 8

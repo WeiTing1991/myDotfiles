@@ -19,7 +19,6 @@ rm -rf ~/.local/share/nvim
 
 # install and clone
 
-
 ```
 
 ### Config
@@ -44,15 +43,25 @@ rm -rf ~/.local/share/nvim
   - [trouble](https://github.com/folke/trouble.nvim)
 
 - **Note taking**
+
   - [render markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
   - [markdown-preview](https://github.com/iamcco/markdown-preview.nvim)
 
 - UI
+
   - [NvchardUI]()
-  <!--- [lualine](https://github.com/nvim-lualine/lualine.nvim)-->
   - [mini-indentscope](https://github.com/echasnovski/mini.indentscop)
   - [virt-column](https://github.com/echasnovski/mini.indentscop)
   - [auto-session](https://github.com/echasnovski/mini.indentscop)
+
+
+Language: python, go
+go
+pre
+install go ()
+c/cpp
+
+javascript/typescript
 
 </details>
 

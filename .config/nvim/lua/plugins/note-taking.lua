@@ -1,4 +1,5 @@
 return {
+
   -- Markdwon preview
   -- NOTE: https://github.com/iamcco/markdown-preview.nvim
   {
@@ -22,7 +23,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
-      modes = { "n", "nc", "no", "c", "i", "t" },
+      modes = { "n", "nc", "no", "c", "t", "i"},
       hybrid_modes = { "i", "v" },
       headings = {
         shift_width = 2,
@@ -39,17 +40,45 @@ return {
           style = "simple",
         },
       },
+      code_blocks = {
+        sign = false,
+
+      }
+
     },
     -- config = function ()
     --   require("markview").setup()
     -- end
   },
+
+  -- Markdown image
   {
     "3rd/image.nvim",
-    event = "BufEnter",
+    event = "VeryLazy",
     opts = {},
     config = function()
       require("config.image")
     end,
   },
+
+  -- -- Image pasting
+  -- -- NOTE https://github.com/HakonHarnes/img-clip.nvim
+  -- {
+  --   "HakonHarnes/img-clip.nvim",
+  --   enabled = false,
+  --   event = "VeryLazy",
+  --   ft = { "markdown" },
+  --   opts = {
+  --     -- recommended settings
+  --     default = {
+  --       embed_image_as_base64 = false,
+  --       prompt_for_file_name = false,
+  --       drag_and_drop = {
+  --         insert_mode = true,
+  --       },
+  --       -- required for Windows users
+  --       use_absolute_path = true,
+  --     },
+  --   },
+  -- },
 }

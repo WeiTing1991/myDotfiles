@@ -1,9 +1,9 @@
 return {
-  -- --------------------------- Base UI ---------------------------------
-
+  -- --------------------------------- Base UI ----------------------------------------------------
   { "nvim-lua/plenary.nvim" },
   {
     "nvchad/ui",
+    lazy = false,
     config = function()
       require "nvchad"
     end,
@@ -15,10 +15,16 @@ return {
       require("base46").load_all_highlights()
     end,
   },
+  {
+    "tamton-aquib/staline.nvim",
+    lazy = false,
+    config = function()
+      require "config.staline"
+    end,
+  },
 
-  -- --------------------------- Core   ---------------------------------
+  -- -------------------------------- CORE  -------------------------------------------------------
   -- fzf/telescope
-
   {
     "nvim-telescope/telescope.nvim",
     event = "VimEnter",
@@ -69,8 +75,7 @@ return {
     end,
   },
 
-  -- ---------------------------- EDITOR ------------------------------
-
+  -- -------------------------------- EDITOR  -----------------------------------------------------
   -- todo highlight
   {
     "folke/todo-comments.nvim",
@@ -80,10 +85,11 @@ return {
       require "config.todo"
     end,
   },
+
   -- indentscope
   {
     "tpope/vim-sleuth",
-    event = "VimEnter",
+    event = "BufRead",
   },
   {
     "echasnovski/mini.indentscope",
@@ -111,19 +117,82 @@ return {
       }
     end,
   },
+
+  -- column line
   {
     "lukas-reineke/virt-column.nvim",
     event = "BufEnter",
     opts = {
       char = { "┆" },
-      virtcolumn = "120",
+      virtcolumn = "100",
       highlight = { "NonText" },
+      exclude = { filetypes = { "oil" } },
     },
   },
 
-  -- ---------------------------- TOOL ------------------------------
-  --
-  -- show keymaps
+  -- Better Comment
+  {
+    "numToStr/Comment.nvim",
+    event = "InsertEnter",
+    opts = {},
+  },
+
+  -- Autopair
+  {
+    "echasnovski/mini.pairs",
+    event = "InsertEnter",
+    version = "*",
+    config = function()
+      require("mini.pairs").setup()
+    end,
+  },
+
+  -- -------------------------------- TOOL  -------------------------------------------------------
+  -- Zen mode
+  {
+    "folke/zen-mode.nvim",
+    event = "BufEnter",
+    opts = {},
+  },
+
+  -- NOTE: https://github.com/folke/trouble.nvim?tab=readme-ov-file
+  {
+    "folke/trouble.nvim",
+    opts = {},
+    cmd = "Trouble",
+  },
+
+  -- git tools
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "VimEnter",
+    config = function()
+      require("gitsigns").setup {
+        signs = {
+          -- add = { text = "+" },
+          -- change = { text = "~" },
+          -- delete = { text = "_" },
+          -- topdelete = { text = "‾" },
+          -- changedelete = { text = "│" },
+          -- untracked    = { text = '┆' },
+        },
+        current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d>-<summary>",
+      }
+    end,
+  },
+
+  -- ai tools
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require "config.copilot"
+    end,
+  },
+
+  --keymaps
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md
   {
     "echasnovski/mini.clue",
@@ -133,30 +202,4 @@ return {
       require "config.custom-keymaps"
     end,
   },
-
-  -- which-key
-  -- {
-  --   "folke/which-key.nvim",
-  --   enabled = false,
-  --   event = "VeryLazy",
-  --   opts = {
-  --   },
-  --   keys = {
-  --     {
-  --       "<leader>?",
-  --       function()
-  --         require("which-key").show { global = false }
-  --       end,
-  --       desc = "Buffer Local Keymaps (which-key)",
-  --     },
-  --   },
-  -- },
-
-  {
-    "folke/zen-mode.nvim",
-    event = "BufEnter",
-    opts = {
-    },
-  },
-
 }

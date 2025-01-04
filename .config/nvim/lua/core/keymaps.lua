@@ -3,6 +3,19 @@
 -- disable the key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
+-- toggle spelling
+function ToggleSpellCheck()
+  if vim.o.spell then
+    vim.o.spell = false
+    print "Spell check OFF"
+  else
+    vim.o.spell = true
+    print "Spell check ON"
+  end
+end
+
+vim.keymap.set("n", "<leader>tp", ToggleSpellCheck, { desc = "Spell check" })
+
 -- fold
 vim.keymap.set("n", "<Tab>", function()
   -- Get the current line number
@@ -55,6 +68,9 @@ vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "move to down buffer" })
 vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
 vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
 
+vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment" })
+vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment" })
+
 -- open term
 vim.keymap.set({ "n", "t" }, "<C-/>", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
@@ -67,7 +83,6 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set( "n", "<C-'>", function ()
     require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
   end, { desc = "Toggle maximize window" })
-
 
 
 

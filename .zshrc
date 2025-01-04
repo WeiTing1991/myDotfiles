@@ -2,7 +2,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p11k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# -------------- Environment Variables -----------------------------------
+# ----------------------------------- Environment Variables -----------------------------------
 #
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
@@ -85,7 +85,7 @@ export LANG=en_US.UTF-8
 alias n="nvim"
 alias e="exit"
 
-alias ls="eza"
+alias ls="eza --sort=type"
 alias tree="eza --tree"
 
 # git tools
@@ -97,7 +97,7 @@ alias ob="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingche
 # disable ctrl-D
 setopt ignoreeof
 
-# -------------- TERM -----------------------------------
+# ----------------------------------- TERM -----------------------------------
 # bash and zsh
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
     # Unsupported plugin/prompt code here, i.e.
@@ -105,7 +105,7 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && "/usr/local/etc/profile.d/bash_completion.sh"
 fi
 
-# -------------- PATH -----------------------------------
+# ----------------------------------- PATH -----------------------------------
 
 # nvm
 export NVM_DIR="$HOME/.nvm"

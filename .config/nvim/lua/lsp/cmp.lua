@@ -1,6 +1,9 @@
+-- NOTE: https://github.com/linkarzu/dotfiles-latest/blob/main/neovim/neobean/lua/plugins/blink-cmp.lua
+-- NOTE: https://cmp.saghen.dev/configuration/keymap.html
+
+
 require("blink.cmp").setup {
 
-  -- NOTE: https://cmp.saghen.dev/configuration/keymap.html
   keymap = {
     preset = "default",
 
@@ -36,7 +39,7 @@ require("blink.cmp").setup {
   },
 
   appearance = {
-    use_nvim_cmp_as_default = true,
+    use_nvim_cmp_as_default = false,
     nerd_font_variant = "mono",
   },
 
@@ -48,29 +51,73 @@ require("blink.cmp").setup {
         name = "LazyDev",
         enabled = true,
         module = "lazydev.integrations.blink",
-        score_offset = 100,
+        score_offset = 10,
       },
-
       lsp = {
         name = "lsp",
         enabled = true,
         module = "blink.cmp.sources.lsp",
-        score_offset = 1000,
+        score_offset = 99,
       },
+      path = {
+        name = "Path",
+        module = "blink.cmp.sources.path",
+        opts = {
+          trailing_slash = false,
+          label_trailing_slash = true,
+          get_cwd = function(context)
+            return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
+          end,
+          show_hidden_files_by_default = true,
+        },
+        score_offset = 3,
+      },
+      buffer = {
+        name = "Buffer",
+        enabled = true,
+        max_items = 3,
+        module = "blink.cmp.sources.buffer",
+        min_keyword_length = 4,
+      },
+      snippets = {
+        name = "snippets",
+        enabled = true,
+        max_items = 3,
+        module = "blink.cmp.sources.snippets",
+        min_keyword_length = 4,
+        score_offset = 80,
+      },
+      -- copilot = {
+        --   name = "copilot",
+        --   enabled = true,
+        --   module = "blink-cmp-copilot",
+        --   kind = "Copilot",
+        --   min_keyword_length = 6,
+        --   score_offset = -100, -- the higher the number, the higher the priority
+        --   async = true,
+        -- },
     },
   },
+
   completion = {
     menu = {
+      draw = {
+        treesitter = { "lsp" },
+      },
       border = "rounded",
       auto_show = function(ctx)
         return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
       end,
     },
     trigger = { show_on_keyword = true },
-    documentation = { window = { border = "rounded" } },
+    documentation = { auto_show = true, auto_show_delay_ms = 200, window = { border = "rounded" } },
+    ghost_text = {
+      enabled = vim.g.ai_cmp,
+    },
   },
   signature = { enabled = true },
 }
+
 -- set scroll bar appearance
 vim.api.nvim_set_hl(0, "BlinkCmpScrollBarThumb", { bg = "#000000" })
 vim.api.nvim_set_hl(0, "BlinkCmpScrollBarGutter", { bg = "#000000" })

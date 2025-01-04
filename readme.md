@@ -23,20 +23,25 @@ I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some c
 **_Mac OS_**
 
 ```bash
+
 cd YOURGITREPO
 mv wezterm ~/.config
+
 ```
 
 _**Windows 10 11**_
 
 ```bash
+
 cd YOURGITREPO
 mv wezterm ~/.config
+
 ```
 
 ## Vscode
 
 ```bash
+
 cd ~/.dotfiles/
 stow -t ~/Library/Application\ Support/Code/User ./vscode
 

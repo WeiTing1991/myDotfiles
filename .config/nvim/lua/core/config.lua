@@ -44,7 +44,7 @@ local options = {
   clipboard = "unnamedplus",
 
   -- Enable break indent
-  breakindent = false,
+  breakindent = true,
 
   -- set tab to 2 spaces
   tabstop = 4,

@@ -2,19 +2,15 @@ require("mason").setup()
 -- require("fidget").setup { notification = { window = { winblend = 0 } } }
 
 local lsp_server = vim.tbl_keys(require "lsp.config.lsp-server" or {})
-local formatter = vim.tbl_values(require "lsp.config.lsp-format")
+local lsp_lint_fomater = vim.tbl_values(require "lsp.config.lsp-extra")
 -- local linter = vim.tbl_values(require "lsp.lsp-linter")
 -- local dap_server = vim.tbl_values(require "lsp.dap-server")
 local ensure_installed = {}
 
-for _, value in ipairs(formatter) do
+for _, value in ipairs(lsp_lint_fomater) do
   table.insert(ensure_installed, value)
 end
---
--- for _, value in ipairs(linter) do
---   table.insert(ensure_installed, value)
--- end
---
+
 -- for _, value in ipairs(dap_server) do
 --   table.insert(ensure_installed, value)
 -- end
@@ -37,15 +33,13 @@ require("mason-lspconfig").setup {
         -- Useful when disabling
         -- certain features of an LSP (for example, turning off formatting for tsserver)
         server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
+
+        -- disable pyright
+        if server_name == "ruff_lsp" then
+          server.server_capabilities.hoverProvider = false
+        end
+
         lspconfig[server_name].setup(server)
-        -- if server_name == 'gopls' and not server.server_capabilities.semanticTokensProvider then
-        --   local semantic = server.config.capabilities.textDocument.semanticTokens
-        --   server.server_capabilities.semanticTokensProvider = {
-        --     full = true,
-        --     legend = {tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes},
-        --     range = true,
-        --   }
-        -- end
       end
     end,
   },
@@ -60,6 +54,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       desc = desc or "No description"
       vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
     end
+
     map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
     map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type [D]efinition")
     map("<leader>gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
@@ -67,24 +62,42 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     map("<C-j>", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
     map("<C-k>", vim.lsp.buf.signature_help, "Buffer singture help")
+    map("<C-o>", "<cmd>Lspsaga outline<CR>", "Buffer outline")
 
     map("gi", require("telescope.builtin").lsp_implementations, "Goto Implementation")
-    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+    -- map("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "")
 
     map("<leader>rn", vim.lsp.buf.rename, "rename")
 
     map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-    map("<leader>ck", vim.lsp.buf.type_definition, "type defintion")
+    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+    map("<leader>ck", vim.lsp.buf.type_definition, "Type defintion")
     map("<leader>,", vim.lsp.buf.format, "formatting")
 
     -- For example, in C this would take you to the header
     map("gD", vim.lsp.buf.declaration, "Goto Declaration")
 
     -- map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-    -- map("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "")
     -- map("<leader>cp", "<cmd>Lspsaga diagnostic_jump_next<CR>", "")
     -- map("<leader>cn", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "")
     -- map("<leader>dl", "<cmd>Telescope diagnostics<cr>", "Diagnostics")
+
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    -- disable gopls semanticTokensProvider
+    -- if client and client.name == "gopls" then
+    --   if not client.server_capabilities.semanticTokensProvider then
+    --     local semantic = client.config.capabilities.textDocument.semanticTokens
+    --     client.server_capabilities.semanticTokensProvider = {
+    --       full = true,
+    --       legend = {
+    --         tokenTypes = semantic.tokenTypes,
+    --         tokenModifiers = semantic.tokenModifiers,
+    --       },
+    --       range = true,
+    --     }
+    --   end
+    -- end
 
     -- Highlight the under cursor
     -- local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -122,10 +135,30 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- end
   end,
 })
--- -- extra register
+
+-- extra register
 vim.diagnostic.config {
   virtual_text = false,
-  -- update_in_insert = true,
+  update_in_insert = false,
+  -- sings = true,
   --   float = {
   --   }
 }
+
+local signs = {
+  -- Error = "",
+  -- Warn = "",
+  -- Info = "",
+  -- Hint = "",
+  Error = " ",
+  Warn = " ",
+  Info = " ",
+  Hint = " ",
+}
+
+for type, icon in pairs(signs) do
+  vim.fn.sign_define(
+    "DiagnosticSign" .. type,
+    { text = icon, texthl = "DiagnosticSign" .. type, numhl = "DiagnosticSign" .. type }
+  )
+end

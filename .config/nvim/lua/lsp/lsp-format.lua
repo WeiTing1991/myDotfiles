@@ -9,38 +9,63 @@ require("null-ls").setup {
   --   new_client.offset_encoding = "utf-16"
   -- end,
   sources = {
+
+    null_ls.builtins.completion.spell,
+
     -- lua
     -- formating
     formatting.stylua,
 
-  --   formatting.prettier.with {
-  --     filetyes = {
-  --       -- "javascript",
-  --       -- "typescript",
-  --       "css",
-  --       "html",
-  --       "json",
-  --       "jsonc",
-  --       -- "yaml",
-  --       "markdown",
-  --       -- "toml"
-  --     },
-  --     extra_filetypes = { "toml" },
-  --   },
-  --
-  --   -- python
-  --   -- formating
-  --   require("none-ls.diagnostics.ruff").with {
-  --     filetypes = { "python" },
-  --   },
-  --
-  --   formatting.isort.with {
-  --     filetypes = { "python" },
-  --   },
-  --
-  --   formatting.black.with {
-  --     filetypes = { "python" },
-  --     extra_arges = { "--fast" },
-  --   },
+    formatting.prettierd.with {
+      command = "prettierd",
+      filetyes = {
+        "javascript",
+        "typescript",
+        "css",
+        "html",
+        -- "json",
+        -- "jsonc",
+        -- "yaml",
+        "markdown",
+        -- "toml"
+      },
+      -- extra_filetypes = { "toml" },
+    },
+
+    -- js/ts
+    require("none-ls.diagnostics.eslint_d").with {
+      args = {
+        "--no-warn-ignored", -- <-- this is the key argument
+        "--format",
+        "json",
+        "--stdin",
+        "--stdin-filename",
+        function()
+          return vim.api.nvim_buf_get_name(0)
+        end,
+      },
+      filetypes = {
+        "javascript",
+        "typescript",
+      },
+    },
+
+    -- python
+    -- formating
+    require("none-ls.diagnostics.ruff").with {
+      filetypes = { "python" },
+    },
+
+    require("none-ls.formatting.ruff").with {
+      filetypes = { "python" },
+    },
+    -- formatting.isort.with {
+    --   filetypes = { "python" },
+    -- },
+
+    formatting.black.with {
+      filetypes = { "python" },
+      extra_arges = { "--fast" },
+    },
   },
 }
