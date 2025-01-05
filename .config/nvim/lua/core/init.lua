@@ -9,32 +9,32 @@ require "core.autocmds"
 -- load plugin manager
 require "core.lazy"
 
--- list of basd46
+-- loading list from basd46
 local packages = {
   "defaults",
   "syntax",
   "telescope",
   "treesitter",
-  -- "cmp",
+  "cmp",
+  "nvcheatsheet",
+  "colors"
   -- "lsp",
-  -- "mason",
-
   -- "git",
+  -- "mason",
   -- "statusline",
-  -- "nvcheatsheet",
   -- "whichkey"
-  -- blankline
-  -- colors
-  -- devicons
-  -- nvimtree
-  -- tbline
-  -- term
+  -- "blankline"
+  -- "devicons"
+  -- "nvimtree"
+  -- "tbline"
+  -- "term"
 }
 
 -- load base46 UI
 for _, v in ipairs(packages) do
   dofile(vim.g.base46_cache .. v)
 end
+
 -- load basd46 UI all
 -- for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
 --   dofile(vim.g.base46_cache .. v)

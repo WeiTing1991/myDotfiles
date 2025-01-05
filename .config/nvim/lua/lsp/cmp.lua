@@ -1,6 +1,7 @@
 -- NOTE: https://github.com/linkarzu/dotfiles-latest/blob/main/neovim/neobean/lua/plugins/blink-cmp.lua
 -- NOTE: https://cmp.saghen.dev/configuration/keymap.html
 
+-- NOTE: check the https://github.com/honza/vim-snippets/tree/master/snippets
 
 require("blink.cmp").setup {
 
@@ -34,7 +35,7 @@ require("blink.cmp").setup {
     ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
     cmdline = {
-      preset = "super-tab",
+      preset = "default",
     },
   },
 
@@ -42,60 +43,83 @@ require("blink.cmp").setup {
     use_nvim_cmp_as_default = false,
     nerd_font_variant = "mono",
   },
+  snippets = {
+    expand = function(snippet)
+      require("luasnip").lsp_expand(snippet)
+    end,
+    active = function(filter)
+      if filter and filter.direction then
+        return require("luasnip").jumpable(filter.direction)
+      end
+      return require("luasnip").in_snippet()
+    end,
+    jump = function(direction)
+      require("luasnip").jump(direction)
+    end,
+  },
 
   sources = {
-    default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-    -- cmdline = {},
+    default = { "lazydev", "lsp", "path", "luasnip", "snippets", "buffer" },
+    cmdline = {},
     providers = {
       lazydev = {
         name = "LazyDev",
         enabled = true,
         module = "lazydev.integrations.blink",
-        score_offset = 10,
+        score_offset = 50,
       },
       lsp = {
         name = "lsp",
         enabled = true,
         module = "blink.cmp.sources.lsp",
-        score_offset = 99,
+        score_offset = 100,
       },
       path = {
         name = "Path",
         module = "blink.cmp.sources.path",
-        opts = {
-          trailing_slash = false,
-          label_trailing_slash = true,
-          get_cwd = function(context)
-            return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
-          end,
-          show_hidden_files_by_default = true,
-        },
-        score_offset = 3,
+        -- opts = {
+        --   trailing_slash = false,
+        --   label_trailing_slash = true,
+        --   get_cwd = function(context)
+        --     return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
+        --   end,
+        --   show_hidden_files_by_default = true,
+        -- },
+        score_offset = 80,
+      },
+      luasnip = {
+        name = "luasnip",
+        enabled = true,
+        module = "blink.cmp.sources.luasnip",
+        fallbacks = { "snippets" },
+        -- min_keyword_length = 4,
+        score_offset = 80,
       },
       buffer = {
         name = "Buffer",
         enabled = true,
-        max_items = 3,
         module = "blink.cmp.sources.buffer",
-        min_keyword_length = 4,
+        -- min_keyword_length = 4,
+        score_offset = 70,
       },
       snippets = {
         name = "snippets",
         enabled = true,
-        max_items = 3,
         module = "blink.cmp.sources.snippets",
-        min_keyword_length = 4,
+        -- min_keyword_length = 4,
         score_offset = 80,
       },
+
       -- copilot = {
-        --   name = "copilot",
-        --   enabled = true,
-        --   module = "blink-cmp-copilot",
-        --   kind = "Copilot",
-        --   min_keyword_length = 6,
-        --   score_offset = -100, -- the higher the number, the higher the priority
-        --   async = true,
-        -- },
+      --   name = "copilot",
+      --   enabled = true,
+      --   module = "blink-cmp-copilot",
+      --   kind = "Copilot",
+      --   min_keyword_length = 6,
+      --   score_offset = -100, -- the higher the number, the higher the priority
+      --   async = true,
+      -- },
+
     },
   },
 
@@ -103,6 +127,7 @@ require("blink.cmp").setup {
     menu = {
       draw = {
         treesitter = { "lsp" },
+        -- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
       },
       border = "rounded",
       auto_show = function(ctx)
@@ -111,9 +136,9 @@ require("blink.cmp").setup {
     },
     trigger = { show_on_keyword = true },
     documentation = { auto_show = true, auto_show_delay_ms = 200, window = { border = "rounded" } },
-    ghost_text = {
-      enabled = vim.g.ai_cmp,
-    },
+    -- ghost_text = {
+    --   enabled = vim.g.ai_cmp,
+    -- },
   },
   signature = { enabled = true },
 }

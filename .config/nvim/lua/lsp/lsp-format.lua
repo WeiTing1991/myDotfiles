@@ -19,7 +19,7 @@ require("null-ls").setup {
     formatting.prettierd.with {
       command = "prettierd",
       filetyes = {
-        "javascript",
+        "javascript", -- check also ;
         "typescript",
         "css",
         "html",

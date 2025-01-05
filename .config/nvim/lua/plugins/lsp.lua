@@ -10,6 +10,22 @@ return {
       require "lsp.cmp"
     end,
   },
+  {
+    "L3MON4D3/LuaSnip",
+    event = "InsertEnter",
+    dependencies = "rafamadriz/friendly-snippets",
+    version = "v2.*",
+    build = (function()
+      if vim.fn.has "win32" == 1 or vim.fn.executable "make" == 0 then
+        return
+      end
+      return "make install_jsregexp"
+    end)(),
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+  },
 
   -- --------------------------- LSP config -------------------------------------------------------
   {
@@ -31,7 +47,7 @@ return {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim", opt = {} },
+      { "j-hui/fidget.nvim",       opt = {} },
 
       -- cmp
       { "saghen/blink.cmp" },
@@ -67,21 +83,31 @@ return {
     end,
   },
 
+
   -- other lsp tool
   {
+    "danymat/neogen",
+    event = "BufEnter",
+    config = function()
+      require("neogen").setup { snippet_engine = "luasnip" }
+    end,
+    -- version = "*"
+  },
+  {
     "windwp/nvim-ts-autotag",
-    -- event = "VeryLazy",
+    event = "BufRead",
     -- ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
       require("nvim-ts-autotag").setup {
         opts = {
-          enable_close = true, -- Auto close tags
-          enable_rename = true, -- Auto rename pairs of tags
+          enable_close = true,           -- Auto close tags
+          enable_rename = true,          -- Auto rename pairs of tags
           enable_close_on_slash = false, -- Auto close on trailing </
         },
       }
     end,
   },
+
 
   -- -- debugger
   -- {
@@ -109,6 +135,5 @@ return {
   --     },
   --   },
   -- },
-
-
+  --
 }

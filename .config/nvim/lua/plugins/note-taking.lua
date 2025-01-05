@@ -4,7 +4,7 @@ return {
   -- NOTE: https://github.com/iamcco/markdown-preview.nvim
   {
     "iamcco/markdown-preview.nvim",
-    event = "BufEnter",
+    event = "VeryLazy",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown", ".md" },
     build = "cd app && npm install",
@@ -13,8 +13,7 @@ return {
     end,
   },
 
-  -- Markdown pretty render
-  -- NOTE: https://github.com/OXY2DEV/markview.nvim/wiki
+  -- Markdown pretty render NOTE: https://github.com/OXY2DEV/markview.nvim/wiki
   {
     "OXY2DEV/markview.nvim",
     lazy = false, -- Recommended
@@ -23,7 +22,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
-      modes = { "n", "nc", "no", "c", "t", "i"},
+      modes = { "n", "nc", "no", "c", "t", "i" },
       hybrid_modes = { "i", "v" },
       headings = {
         shift_width = 2,
@@ -41,10 +40,14 @@ return {
         },
       },
       code_blocks = {
+        enable = true,
+        style = "simple",
+        hl = "MarkviewCode",
         sign = false,
-
-      }
-
+      },
+      html = {
+        enable = false,
+      },
     },
     -- config = function ()
     --   require("markview").setup()
@@ -57,7 +60,7 @@ return {
     event = "VeryLazy",
     opts = {},
     config = function()
-      require("config.image")
+      require "config.image"
     end,
   },
 

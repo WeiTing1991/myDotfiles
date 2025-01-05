@@ -1,6 +1,6 @@
 require('copilot').setup({
   panel = {
-    enabled = true,
+    enabled = false,
     auto_refresh = false,
     keymap = {
       jump_prev = "[[",
@@ -10,15 +10,16 @@ require('copilot').setup({
       open = "<M-CR>"
     },
     layout = {
-      position = "horizontal", -- | top | left | right | horizontal | vertical
+      position = "vertical", -- | top | left | right | horizontal | vertical
       ratio = 0.4
     },
   },
+
   suggestion = {
     enabled = true,
     auto_trigger = false,
     hide_during_completion = true,
-    debounce = 75,
+    debounce = 10,
     keymap = {
       accept = "<C-l>",
       accept_word = false,
@@ -26,6 +27,7 @@ require('copilot').setup({
       next = "<C-]>",
       prev = "<C-[>",
       dismiss = "<Esc>",
+      -- dismiss = "<C-c>",
     },
   },
   filetypes = {
@@ -42,3 +44,4 @@ require('copilot').setup({
   -- copilot_node_command = 'node', -- Node.js version must be > 18.x
   server_opts_overrides = {},
 })
+

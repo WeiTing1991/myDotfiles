@@ -3,7 +3,6 @@ return {
   { "nvim-lua/plenary.nvim" },
   {
     "nvchad/ui",
-    lazy = false,
     config = function()
       require "nvchad"
     end,
@@ -85,12 +84,17 @@ return {
       require "config.todo"
     end,
   },
-
-  -- indentscope
   {
     "tpope/vim-sleuth",
     event = "BufRead",
   },
+
+  -- {
+  --   "tpope/vim-surround",
+  --   event = "BufRead",
+  -- },
+
+  -- indentscope
   {
     "echasnovski/mini.indentscope",
     version = false,
@@ -124,9 +128,9 @@ return {
     event = "BufEnter",
     opts = {
       char = { "┆" },
-      virtcolumn = "100",
+      virtcolumn = "105",
       highlight = { "NonText" },
-      exclude = { filetypes = { "oil" } },
+      exclude = { filetypes = { "oil" , "markdown"} },
     },
   },
 
@@ -144,6 +148,17 @@ return {
     version = "*",
     config = function()
       require("mini.pairs").setup()
+    end,
+  },
+
+  -- Better sellect with a i
+  -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
+  {
+    "echasnovski/mini.ai",
+    event = "InsertEnter",
+    version = "*",
+    config = function()
+      require("mini.ai").setup()
     end,
   },
 
@@ -170,10 +185,10 @@ return {
       require("gitsigns").setup {
         signs = {
           -- add = { text = "+" },
-          -- change = { text = "~" },
+          change = { text = "~" },
           -- delete = { text = "_" },
           -- topdelete = { text = "‾" },
-          -- changedelete = { text = "│" },
+          changedelete = { text = "│" },
           -- untracked    = { text = '┆' },
         },
         current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
@@ -202,4 +217,5 @@ return {
       require "config.custom-keymaps"
     end,
   },
+
 }

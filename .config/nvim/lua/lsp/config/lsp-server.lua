@@ -21,13 +21,7 @@ M = {
       },
     },
   },
-  marksman = {
-    settings = {
-      marksman = {
-        filetypes = { "markdown", "markdown.mdx" },
-      },
-    },
-  },
+  marksman = {},
 
   -- go
   gopls = {
@@ -115,18 +109,18 @@ M = {
   ts_ls = {
     settings = {
       typescript = {
-          suggest = {
-            completeFunctionCalls = true,
-          },
-      }
-    }
+        suggest = {
+          completeFunctionCalls = true,
+        },
+      },
+    },
   },
   -- eslint = {},
   cssls = {},
   tailwindcss = {},
   html = {},
 
-  -- jsonls = {},
+  jsonls = {},
 }
 
 return M

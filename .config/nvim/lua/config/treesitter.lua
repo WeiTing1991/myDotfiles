@@ -1,5 +1,9 @@
 local treesitter = require "nvim-treesitter.configs"
 
+local function test()
+  print("test")
+end
+
 treesitter.setup {
   modules = {},
   ensure_installed = {
@@ -64,3 +68,4 @@ treesitter.setup {
   },
   -- indent = { enable = true },
 }
+
