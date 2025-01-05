@@ -50,9 +50,12 @@ stow -t wezterm ~/.config
 Sometimes I use VSCode for just for quick edit(the language i don't use daily such Jupbter). I have make it similar to my Neovim workflow.
 
 - Setup with my config
-
+# only windows
+cd ~/.dotfiles/
+New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\settings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\settings.json -Force
+New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\keybindings.json -Force
 ```bash
-# only for mac
+# only 
 cd ~/.dotfiles/
 stow -t ~/Library/Application\ Support/Code/User ./vscode
 
