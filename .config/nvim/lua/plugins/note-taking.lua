@@ -13,7 +13,8 @@ return {
     end,
   },
 
-  -- Markdown pretty render NOTE: https://github.com/OXY2DEV/markview.nvim/wiki
+  -- Markdown pretty render
+  -- NOTE: https://github.com/OXY2DEV/markview.nvim/wiki
   {
     "OXY2DEV/markview.nvim",
     lazy = false, -- Recommended

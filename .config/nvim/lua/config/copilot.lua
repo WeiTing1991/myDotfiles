@@ -14,7 +14,6 @@ require('copilot').setup({
       ratio = 0.4
     },
   },
-
   suggestion = {
     enabled = true,
     auto_trigger = false,

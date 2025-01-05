@@ -27,23 +27,15 @@ git clone  URL ~/.config/nvim
 
 ## Config
 
-**Core**
+>[!NOTE]
+> still under processing
 
-├── after
-│   └── ftplugin
-├── init.lua
-├── lazy-lock.json
-├── lua
-│   ├── chadrc.lua
-│   ├── config
-│   ├── core
-│   ├── custom_plugins
-│   ├── lsp
-│   └── plugins
-├── readme.md
-├── snippets
-│   └── markdown.snippets
-└── spell
+**Core**
+    `autocmds.lua`
+    `config.lua`
+    `init.lua`
+    `keymaps.lua`
+    `lazy.lua`
 
 **UI**
 - [Nvchard](https://github.com/NvChad/ui) - better ui, theme, transparent integration.
@@ -80,9 +72,9 @@ git clone  URL ~/.config/nvim
 **Support Language**
 
   - [ ]  C/C++ `- extra plugins`
-  - [ ]  Python
+  - [x]  Python
   - [ ]  Go
-  - [ ]  JavaScript/Typescript
+  - [x]  JavaScript/Typescript
   - [ ]  Java
 
   <!-- - [x] list -->

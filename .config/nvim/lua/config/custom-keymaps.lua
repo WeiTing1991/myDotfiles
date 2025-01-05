@@ -1,4 +1,4 @@
--- --------------------------- Pluglins keymaps ---------------------------------
+--------------------------- Pluglins keymaps ---------------------------------
 -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/doc/mini-clue.txt
 
 local miniclue = require "mini.clue"
@@ -9,27 +9,27 @@ miniclue.setup {
     { mode = "x", keys = "<Leader>" },
 
     -- Leader 2 triggers
-    -- { mode = "n", keys = "<C-l>" },
-    -- { mode = "x", keys = "<C-l>" },
+    { mode = "n", keys = "<C-l>" },
+    { mode = "x", keys = "<C-l>" },
 
     -- Built-in completion
     -- { mode = "i", keys = "<C-x>" },
 
     -- `g` key
-    { mode = "n", keys = "g" },
-    { mode = "x", keys = "g" },
+    -- { mode = "n", keys = "g" },
+    -- { mode = "x", keys = "g" },
 
     -- Marks
-    { mode = "n", keys = "'" },
-    { mode = "n", keys = "`" },
-    { mode = "x", keys = "'" },
-    { mode = "x", keys = "`" },
-
+    -- { mode = "n", keys = "'" },
+    -- { mode = "n", keys = "`" },
+    -- { mode = "x", keys = "'" },
+    -- { mode = "x", keys = "`" },
+    --
     -- Registers
-    { mode = "n", keys = "\"" },
-    { mode = "x", keys = "\"" },
-    { mode = "i", keys = "<C-r>" },
-    { mode = "c", keys = "<C-r>" },
+    -- { mode = "n", keys = "\"" },
+    -- { mode = "x", keys = "\"" },
+    -- { mode = "i", keys = "<C-r>" },
+    -- { mode = "c", keys = "<C-r>" },
 
     -- Window commands
     { mode = "n", keys = "<C-w>" },
@@ -48,7 +48,6 @@ miniclue.setup {
     miniclue.gen_clues.windows(),
     miniclue.gen_clues.z(),
 
-    -- { mode = "n", keys = "<C-l>", desc = " " },
   },
   window = {
     delay = 0,
@@ -89,5 +88,10 @@ vim.keymap.set("n", "<leader>tc", function()
   end
 end, { desc = "Copilot" })
 
+-- vim.keymap.set("n", "<leader>td", vim.diagnostic.hide, { desc = "Hide diagnostics" })
+
 -- trouble
 vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+
+-- undotree
+-- vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })

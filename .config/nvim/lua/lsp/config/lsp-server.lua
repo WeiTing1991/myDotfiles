@@ -9,6 +9,12 @@ end
 M = {
   -- lua
   lua_ls = {
+    workspace = {
+      checkThirdParty = false,
+      library = {
+        vim.env.VIMRUNTIME,
+      },
+    },
     settings = {
       Lua = {
         diagnostics = {

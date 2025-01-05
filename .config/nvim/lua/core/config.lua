@@ -1,9 +1,15 @@
--- globals settings
+------------------------------------ GLOBALS SETTINGS ------------------------------------
+
 local globals = {
   mapleader = " ",
   prev_buffer = nil,
   next_buffer = nil,
   have_nerd_font = true,
+
+  -- netrw
+  netrw_browse_split = 4,
+  netrw_liststyle = 3,
+  netrw_winsize = 30,
   -- editorconfig = true,
 }
 
@@ -11,10 +17,7 @@ for k, v in pairs(globals) do
   vim.g[k] = v
 end
 
--- options
--- vim.opt.isfname:append "@-@"
--- vim.opt.iskeyword:append "-"
-
+-- undo folder
 local undoDir = ""
 if vim.loop.os_uname().sysname == "Darwin" then
   undoDir = os.getenv "HOME" .. "/.vim/undodir"
@@ -24,15 +27,18 @@ else
   undoDir = os.getenv "HOME" .. "/.vim/undodir"
 end
 
-local spelldir = ""
+-- spell folder
+local spellDir = ""
 local spell_word = {}
 if vim.loop.os_uname().sysname == "Darwin" then
-  spelldir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
+  spellDir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
 elseif vim.fn.has "Win32" then
-  spelldir = os.getenv "HOME" .. "/spell/en.utf-8.add"
+  spellDir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 else
-  spelldir = os.getenv "HOME" .. "/spell/en.utf-8.add"
+  spellDir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 end
+
+------------------------------------ DEFAULT OPTION ------------------------------------
 
 local options = {
   -- See :h
@@ -43,10 +49,7 @@ local options = {
   --  See `:help 'clipboard'`
   clipboard = "unnamedplus",
 
-  -- Enable break indent
-  breakindent = true,
-
-  -- set tab to 2 spaces
+  -- set tab to 4 spaces
   tabstop = 4,
   softtabstop = 4,
   shiftwidth = 4,
@@ -78,6 +81,10 @@ local options = {
   listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" },
   fillchars = { eob = " " },
 
+  -- Enable break indent
+  breakindent = true,
+  showbreak = "↪ ",
+
   -- Preview substitutions live, as you type!
   inccommand = "split",
   signcolumn = "yes:2",
@@ -86,8 +93,11 @@ local options = {
   -- Show which line your cursor is on
   cursorline = true,
 
+  -- tabline
+  showtabline = 0,
+
   -- colorcolumn = "120",
-  textwidth = 120,
+  textwidth = 105, -- virt column set to 105
   linebreak = true,
 
   -- Minimal number of screen lines to keep above and below the cursor.
@@ -126,13 +136,13 @@ local options = {
   -- spell check
   spelllang = "en_us",
   spell = false,
-  spellfile = spelldir,
+  spellfile = spellDir,
   --titlestring = string.sub('%{&pvw} - %F', 0, 10),
 }
+-- vim.opt.isfname:append "@-@"
+-- vim.opt.iskeyword:append "-"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
-
 

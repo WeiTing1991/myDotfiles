@@ -36,7 +36,7 @@ return {
         -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
-    },
+   },
   },
   { "Bilal2453/luvit-meta", lazy = true },
   {
@@ -65,7 +65,8 @@ return {
   -- LSP saga
   {
     "nvimdev/lspsaga.nvim",
-    event = "BufEnter",
+    -- enabled = false,
+    event = "VimEnter",
     config = function()
       require "lsp.lsp-ui"
     end,

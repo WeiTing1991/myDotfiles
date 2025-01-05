@@ -17,7 +17,8 @@ local packages = {
   "treesitter",
   "cmp",
   "nvcheatsheet",
-  "colors"
+  -- "colors"
+
   -- "lsp",
   -- "git",
   -- "mason",

@@ -1,16 +1,17 @@
--- ------------------------- default keymap -------------------------------------
+-- --------------------------------- default keymap -------------------------------------
 
--- disable the key
+-- disable space key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
 
 -- toggle spelling
 function ToggleSpellCheck()
   if vim.o.spell then
     vim.o.spell = false
-    print "Spell check OFF"
+    print "Spelling check OFF."
   else
     vim.o.spell = true
-    print "Spell check ON"
+    print "Spelling check ON."
   end
 end
 
@@ -37,6 +38,9 @@ vim.keymap.set("n", "<leader>q", function()
   vim.cmd ":bw"
 end, { desc = "Close current buffer and window" })
 
+-- defult file tree
+vim.keymap.set("n", "<C-e>", "<cmd>Lexplore<cr>", { desc = "File tree" })
+
 -- clear search highlights
 vim.keymap.set("n", "zz", ":nohl<CR>", { desc = "Clear highlights" })
 
@@ -51,38 +55,65 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines" })
 -- Keep cursor centered when scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll half page down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll half page up" })
-
-vim.keymap.set("n", "G", "Gzz", { desc = "Scroll half page up" })
+vim.keymap.set("n", "G", "Gzz", { desc = "Scroll to bottom" })
 
 -- Keep cursor centered when jumping with 'n' and 'N'
 vim.keymap.set("n", "n", "nzzzv", { desc = "Jump to next match" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Jump to previous match" })
 
--- move between neovim buffers
+-- move and split between neovim buffers
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "move to left buffer" })
 vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "move to right buffer" })
 vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "move to up buffer" })
 vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "move to down buffer" })
 
+-- windows
+vim.keymap.set("n", "<C-'>", function()
+  require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
+end, { desc = "Toggle maximize buffer" })
+
+vim.keymap.set("n", "<C-w>5", "<C-w>v", { desc = "split vertically" })
+vim.keymap.set("n", "<C-w>'", "<C-w>s", { desc = "split horizontally" })
+
 -- comment
 vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
 vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
 
-vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment" })
-vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment" })
-
--- open term
-vim.keymap.set({ "n", "t" }, "<C-/>", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
-end, { desc = "open the term" })
+vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
+vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise" })
 
 -- Leave insert mode by pressing leader followed by backspace
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- windows
-vim.keymap.set( "n", "<C-'>", function ()
-    require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
-  end, { desc = "Toggle maximize window" })
+-- indenting
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
+-- Replace the word throughout the file
+vim.keymap.set(
+  "n",
+  "<leader>ss",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Replace word throughout file" }
+)
 
+-- cd to current file directory
+vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 
+-- Optional
+-- -- Parser info
+-- vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })
+--
+-- open term
+-- vim.keymap.set({ "n", "t" }, "<C-/>", function()
+--   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+-- end, { desc = "open the term" })
+--
+-- -- Delete selected text and replace with text from system clipboard
+-- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection with system clipboard content" })
+--
+-- -- Yank selected text to system clipboard
+-- vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+--
+-- -- Yank current line to system clipboard
+-- vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank current line to system clipboard" })

@@ -55,35 +55,44 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
     end
 
+    -- map("K", vim.lsp.buf.hover, "Hover Documentation")
     map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-    map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type [D]efinition")
+
+    -- map("gd", vim.lsp.peek_definition, "Type Definition")
+    map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type Definition")
     map("<leader>gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
+    -- For example, in C this would take you to the header
+    map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+
     map("gr", require("telescope.builtin").lsp_references, "Goto References")
 
     map("<C-j>", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
     map("<C-k>", vim.lsp.buf.signature_help, "Buffer singture help")
-    map("<C-o>", "<cmd>Lspsaga outline<CR>", "Buffer outline")
 
-    map("gi", require("telescope.builtin").lsp_implementations, "Goto Implementation")
-    -- map("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "")
+    map("gi", "<cmd>Lspsaga finder imp<CR>", "Peek Implementation")
+    map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
 
-    map("<leader>rn", vim.lsp.buf.rename, "rename")
+    -- extra
+    map("<C-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
+    map("<C-l>rb", "<cmd>Lspsaga rename<CR>", "Rename in buffer")
+    map("<C-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")
+    map("<C-l>rr", "<cmdrqspRestart<CR>", "Lsp restart")
 
-    map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-    map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type Definition")
-    map("<leader>ck", vim.lsp.buf.type_definition, "Type defintion")
+    map("<C-l>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
+    -- map("<C-l>ca", vim.lsp.buf.code_action, "Code Action")
+    map("<C-l>ck", vim.lsp.buf.type_definition, "Type defintion")
+    -- map("<C-l>ck", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+
     map("<leader>,", vim.lsp.buf.format, "formatting")
 
-    -- For example, in C this would take you to the header
-    map("gD", vim.lsp.buf.declaration, "Goto Declaration")
-
-    -- map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-    -- map("<leader>cp", "<cmd>Lspsaga diagnostic_jump_next<CR>", "")
-    -- map("<leader>cn", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "")
+    map("<C-l>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic")
+    map("<C-l>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev diagnostic")
     -- map("<leader>dl", "<cmd>Telescope diagnostics<cr>", "Diagnostics")
+    -- map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
+    -- BUG:
     -- disable gopls semanticTokensProvider
     -- if client and client.name == "gopls" then
     --   if not client.server_capabilities.semanticTokensProvider then
@@ -124,36 +133,79 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --   })
     -- end
 
+    -- Hover diagnostic
+    local highlight_augroup = vim.api.nvim_create_augroup("diagnostic-hover", { clear = false })
+    local ns = vim.api.nvim_create_namespace "CurlineDiag"
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args2)
+        vim.api.nvim_create_autocmd("CursorHold", {
+          group = highlight_augroup,
+          buffer = args2.buf,
+          callback = function()
+            pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
+            local hi = { "Error", "Warn", "Info", "Hint" }
+            local curline = vim.api.nvim_win_get_cursor(0)[1]
+            local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
+            local virt_texts = { { (" "):rep(4) } }
+            for _, diag in ipairs(diagnostics) do
+              virt_texts[#virt_texts + 1] = { diag.message, " " .. hi[diag.severity] }
+            end
+
+            -- inline
+            -- vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0,{
+            --   virt_text = virt_texts,
+            --   hl_mode = 'combine'
+            -- })
+
+            -- float win
+            vim.diagnostic.open_float(nil, {
+              focus = false,
+              -- scope = "line",
+              scope = "cursor",
+              border = "rounded",
+              header = "",
+              prefix = "󱓻 ",
+              source = virt_texts,
+            })
+
+          end,
+        })
+      end,
+    })
+    --   vim.api.nvim_create_autocmd({ "LspDetach" }, {
+    --     group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+    --     callback = function(args2)
+    --       vim.api.nvim_clear_autocmds { group = "diagnostic-hover", buffer = args2.buf }
+    --     end,
+    --   })
+    -- end
+
     -- Toggle Inlay Hints
     -- The following code creates a keymap to toggle inlay hints in your
     -- code, if the language server you are using supports them
     -- This may be unwanted, since they displace some of your code
     -- if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-    --   map('<leader>th', function()
+    --   map('', function()
     --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
     --   end, 'Toggle Inlay Hints')
     -- end
   end,
 })
 
--- extra register
+-- diagnostic
 vim.diagnostic.config {
   virtual_text = false,
+  underline = true,
   update_in_insert = false,
-  -- sings = true,
-  --   float = {
-  --   }
+  sings = true,
 }
 
+-- Change signs for LSP diagnostics
 local signs = {
-  -- Error = "",
-  -- Warn = "",
-  -- Info = "",
-  -- Hint = "",
   Error = " ",
   Warn = " ",
   Info = " ",
-  Hint = " ",
+  Hint = "󰠠 ",
 }
 
 for type, icon in pairs(signs) do

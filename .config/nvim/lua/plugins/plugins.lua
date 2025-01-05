@@ -1,5 +1,5 @@
 return {
-  -- --------------------------------- Base UI ----------------------------------------------------
+  ---------------------------------------- Base UI ----------------------------------------------------
   { "nvim-lua/plenary.nvim" },
   {
     "nvchad/ui",
@@ -14,15 +14,17 @@ return {
       require("base46").load_all_highlights()
     end,
   },
+
+  -- statusline
   {
-    "tamton-aquib/staline.nvim",
+    "WeiTing1991/staline.nvim",
     lazy = false,
     config = function()
       require "config.staline"
     end,
   },
 
-  -- -------------------------------- CORE  -------------------------------------------------------
+  --------------------------------------- CORE  -------------------------------------------------------
   -- fzf/telescope
   {
     "nvim-telescope/telescope.nvim",
@@ -84,15 +86,11 @@ return {
       require "config.todo"
     end,
   },
+
   {
     "tpope/vim-sleuth",
     event = "BufRead",
   },
-
-  -- {
-  --   "tpope/vim-surround",
-  --   event = "BufRead",
-  -- },
 
   -- indentscope
   {
@@ -130,7 +128,7 @@ return {
       char = { "┆" },
       virtcolumn = "105",
       highlight = { "NonText" },
-      exclude = { filetypes = { "oil" , "markdown"} },
+      exclude = { filetypes = { "oil", "markdown" } },
     },
   },
 
@@ -211,11 +209,10 @@ return {
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md
   {
     "echasnovski/mini.clue",
-    version = "*",
+    version = false,
     event = "VeryLazy",
     config = function()
       require "config.custom-keymaps"
     end,
   },
-
 }

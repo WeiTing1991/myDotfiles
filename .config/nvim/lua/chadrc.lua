@@ -59,6 +59,8 @@ local M = {
 
       "                                              ",
       "                                              ",
+      "                                              ",
+      "                                              ",
       "██     █████████████    ████    ███████    ███",
       "██     ██   ██   ████   ████    ████████  ████",
       "██  █  ██   ██   ██ ██  ████    ██████ ████ ██",
@@ -74,7 +76,8 @@ local M = {
       { txt = "  Find File", keys = "Space ff", cmd = "Telescope find_files" },
       { txt = "  Recent Files", keys = "Space fo", cmd = "Telescope oldfiles" },
       { txt = "󰈭  Find Word", keys = "Space fl", cmd = "Telescope live_grep" },
-      { txt = "  Mappings", keys = "Space fk", cmd = "Telescope keymaps" },
+      { txt = "󱥚  Dired", keys = "Space d", cmd = "" },
+      -- { txt = "  Mappings", keys = "Space fk", cmd = "Telescope keymaps" },
       -- { txt = "  Mappings", keys = "Space fk", cmd = "NvCheatsheet" },
       -- { txt = "󱥚  Themes", keys = "Space th", cmd = ":lua require('nvchad.themes').open()" },
       -- { txt = "󱥚  Themes", keys = "Space th", cmd = "Telescope themes" },
@@ -103,8 +106,10 @@ local M = {
 
   colorify = {
     enabled = true,
-    mode = "bg", -- fg, bg, virtual
-    virt_text = "󱓻 ",
+    mode = "virtual", -- fg, bg, virtual
+    virt_text = " ",
+    -- virt_text = "󱓻 ",
+    -- virt_text = " ",
     highlight = { hex = true, lspvars = true },
   },
 
