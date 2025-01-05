@@ -5,7 +5,7 @@ local set = vim.opt_local
 set.shiftwidth = 2
 set.tabstop = 2
 set.softtabstop = 2
-set.textwidth = 150
+set.textwidth = 200
 
 set.wrap = true
 set.spell = true

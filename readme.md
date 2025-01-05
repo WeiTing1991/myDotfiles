@@ -34,9 +34,9 @@ stow -t ghostty ~/.config
 
 ```
 
-- WezTerm
+  - WezTerm
 
-  On Windows I use [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with person configurations, which makes it similar to Tumx. It is an amazing GPU terminal emulator for cross-platform system.
+    On Windows I use [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with person configurations, which makes it similar to Tumx. It is an amazing GPU terminal emulator for cross-platform system.
 
 ```bash
 
@@ -47,15 +47,19 @@ stow -t wezterm ~/.config
 
 ### VSCode
 
-Sometimes I use VSCode for just for quick edit(the language i don't use daily such Jupbter). I have make it similar to my Neovim workflow.
+Sometimes I use VSCode for just for quick edit on Window (the language i don't use daily such Jupbter). I have make it similar to my Neovim workflow.
 
 - Setup with my config
-# only windows
-cd ~/.dotfiles/
+
+```bash
+# only for window
 New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\settings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\settings.json -Force
 New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\keybindings.json -Force
+
+```
+
 ```bash
-# only 
+# only mac
 cd ~/.dotfiles/
 stow -t ~/Library/Application\ Support/Code/User ./vscode
 

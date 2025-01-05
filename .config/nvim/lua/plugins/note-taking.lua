@@ -42,7 +42,7 @@ return {
       },
       code_blocks = {
         enable = true,
-        style = "simple",
+        -- style = "simple",
         hl = "MarkviewCode",
         sign = false,
       },
