@@ -2,6 +2,8 @@
 .config/nvim/lazy-lock.json
 ..vimrc.*
 
+.config/github-copilot/
+
 .emacs.d/auto-save-list/
 .emacs.d/eln/
 .emacs.d/eln-cache/
