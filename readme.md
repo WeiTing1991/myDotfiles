@@ -1,84 +1,87 @@
-# Welcome to my dotfiles
+# Welcome to My Dotfiles
+
+This repository is my dotfiles (always updating) via [GNU stow].
 
 ## Installation
 
-## stow
-
-This repository is my dotfile (for now) for my windows and mac via [GNU stow].
+Please find the installation guide for [GNU stow].
 
 ```bash
-stow .
+
+git clone https://github.com/WeiTing1991/myDotfiles.git .dotfiles
+cd .dotfiles && stow .
 
 ```
 
-## Neovim
+## Tools
+
+### Neovim
+
 I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and let me know if these is any issue.
 
 **More information** find [here](/.config/nvim/readme.md)
 
-### Usage
-## Terminal
-I am using [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with some configurations, which make it similar to tumx. It is an amazing GPU terminal emulator for cross-platform system.
 
-**_Mac OS_**
+### Terminal and shell
+  - Ghostty
 
-```bash
-
-cd YOURGITREPO
-mv wezterm ~/.config
-
-```
-
-_**Windows 10 11**_
-
-```bash
-
-cd YOURGITREPO
-mv wezterm ~/.config
-
-```
-
-## Vscode
+    I am using [Ghostty](https://github.com/ghostty-org/ghostty) as my terminal align with Tmux, which is a faster terminal specially when it renders images. And no lag time and fast refresh, the main reason I use switch to it.
 
 ```bash
 
 cd ~/.dotfiles/
+stow -t ghostty ~/.config
+
+```
+
+- WezTerm
+
+  On Windows I use [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with person configurations, which makes it similar to Tumx. It is an amazing GPU terminal emulator for cross-platform system.
+
+```bash
+
+cd ~/.dotfiles/
+stow -t wezterm ~/.config
+
+```
+
+### VSCode
+
+Sometimes I use VSCode for just for quick edit(the language i don't use daily such Jupbter). I have make it similar to my Neovim workflow.
+
+- Setup with my config
+
+```bash
+# only for mac
+cd ~/.dotfiles/
 stow -t ~/Library/Application\ Support/Code/User ./vscode
 
 ```
+- Plugins
+...coming soon
 
-![](~/Desktop/01.png)
+<!-- vim -->
+<!-- editorConfig -->
+<!-- Error Lens -->
+<!---->
+<!-- custom CSS and JS -->
+<!-- nord theme -->
+<!-- TODO V2 -->
+<!-- WhichKey -->
+<!---->
+<!-- vsnetrew -->
+<!-- FindInFaster -->
+<!-- OpenInExternalApp -->
+<!-- Prettier -->
 
+### Emacs (Deprecated) just for storing my old configuration.
 
-<!-- Plugins:
-vim
-editorConfig
-Error Lens
-
-custom CSS and JS
-nord theme
-TODO V2
-WhichKey
-
-vsnetrew
-FindInFaster
-OpenInExternalApp
-
-Prettier -->
-
-
-<!-- ## Emacs
-
-```bash
-# add the submodule
-git submodule add https://github.com/WeiTing1991/wtemacs.git .emacs.d
-
-git submodule update --init --recursive
-
-git submodule update --remote --merge
-
-```
 Please find more information [here](./Emacs.org).
 
-## Zed
-please find more infomation [here](). -->
+<!-- ## Zed -->
+<!-- please find more infomation [here](). -->
+
+<!-- link -->
+[kickstart]: https://github.com/nvim-lua/kickstart.nvim
+[Neovim]: https://neovim.io/
+[GNU stow]: https://www.gnu.org/software/stow/manual/stow.html

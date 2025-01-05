@@ -25,6 +25,16 @@ git clone  URL ~/.config/nvim
 
 ```
 
+<!-- ```bash -->
+<!-- # add the submodule -->
+<!-- git submodule add https://github.com/WeiTing1991/wtemacs.git .emacs.d -->
+<!---->
+<!-- git submodule update --init --recursive -->
+<!---->
+<!-- git submodule update --remote --merge -->
+<!---->
+<!-- ``` -->
+
 ## Config
 
 >[!NOTE]
@@ -95,3 +105,4 @@ More information you can find [here](https://weiting1991.github.io/weitingworks/
 [GNU stow]: https://www.gnu.org/software/stow/manual/stow.html
 [ripgrep]:
 [fd]:
+
