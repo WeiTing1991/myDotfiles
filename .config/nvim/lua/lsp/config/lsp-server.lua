@@ -1,4 +1,3 @@
--- lsp server
 local M = {}
 
 local spell_words = {}
@@ -17,12 +16,12 @@ M = {
     },
     settings = {
       Lua = {
+        completion = {
+          callSnippet = "Replace",
+        },
         diagnostics = {
           globals = { "vim", "it", "describe", "before_each", "after_each" },
           disable = { "missing-fields" },
-        },
-        completion = {
-          callSnippet = "Replace",
         },
       },
     },
@@ -126,7 +125,14 @@ M = {
   tailwindcss = {},
   html = {},
 
-  jsonls = {},
+  jsonls = {
+    settings = {
+      json = {
+        -- schemas = require("schemastore").json.schemas(),
+        validate = { enable = true },
+      },
+    },
+  },
 }
 
 return M

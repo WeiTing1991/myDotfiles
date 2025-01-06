@@ -36,6 +36,8 @@ treesitter.setup {
 
     "toml",
     "json",
+    "json5",
+    "jsonc",
     "markdown",
     "markdown_inline",
     "latex",

@@ -4,6 +4,7 @@
   // "telemetry.enableTelemetry": false,
 
   /** ui **/
+
   "workbench.startupEditor": "none",
   "window.titleBarStyle": "custom",
   "window.commandCenter": false,
@@ -90,6 +91,7 @@
 
   "editor.matchBrackets": "near",
   "editor.bracketPairColorization.enabled": true,
+
   // "editor.guides.bracketPairs":"active",
 
   // "editor.gotoLocation.multipleReferences": "goto",

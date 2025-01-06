@@ -142,6 +142,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
           group = highlight_augroup,
           buffer = args2.buf,
           callback = function()
+            -- Ensure the buffer exists and has diagnostics
+            if vim.api.nvim_buf_is_valid(args2.buf) then
+              -- Check if the buffer is of a specific type (e.g., 'oil') and skip it if necessary
+              if vim.bo[args2.buf].filetype == "oil" then
+                return
+              end
+            end
             pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
             local hi = { "Error", "Warn", "Info", "Hint" }
             local curline = vim.api.nvim_win_get_cursor(0)[1]
@@ -167,7 +174,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
               prefix = "󱓻 ",
               source = virt_texts,
             })
-
           end,
         })
       end,

@@ -55,7 +55,7 @@ return {
       -- {"jay-babu/mason-nvim-dap.nvim"},
     },
     config = function()
-      require "lsp.lsp-init" -- lsp engine
+      require ("lsp.lsp-init") -- lsp engine
 
       --only if load with lspconfig and mason
       -- require "lsp.dap-init"
@@ -99,16 +99,26 @@ return {
     event = "BufRead",
     -- ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
-      require("nvim-ts-autotag").setup {
+      require("nvim-ts-autotag").setup({
         opts = {
-          enable_close = true,           -- Auto close tags
-          enable_rename = true,          -- Auto rename pairs of tags
-          enable_close_on_slash = false, -- Auto close on trailing </
+          enable_close = true, -- Auto close tags
+          enable_rename = true, -- Auto rename pairs of tags
+          enable_close_on_slash = false -- Auto close on trailing </
         },
-      }
+        per_filetype = {
+          ["html"] = {
+            enable_close = false
+          }
+        }
+      })
     end,
   },
-
+  -- json and yaml
+  -- {
+  --   "b0o/SchemaStore.nvim",
+  --   event = "VeryLazy",
+  --   version = false, -- last release is way too old
+  -- },
 
   -- -- debugger
   -- {

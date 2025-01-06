@@ -53,15 +53,17 @@ Sometimes I use VSCode for just for quick edit on Window (the language i don't u
 
 ```bash
 # only for window
+
 New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\settings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\settings.json -Force
 New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\keybindings.json -Force
 
 ```
 
 ```bash
-# only mac
-cd ~/.dotfiles/
-stow -t ~/Library/Application\ Support/Code/User ./vscode
+# only for mac
+
+rm ~/Library/Application\ Support/Code/User/keybindings.json
+stow -t "$(echo ~/Library/Application\ Support/Code/User)" .vscode
 
 ```
 - Plugins
@@ -86,7 +88,7 @@ stow -t ~/Library/Application\ Support/Code/User ./vscode
 Please find more information [here](./Emacs.org).
 
 <!-- ## Zed -->
-<!-- please find more infomation [here](). -->
+<!-- please find more information [here](). -->
 
 <!-- link -->
 [kickstart]: https://github.com/nvim-lua/kickstart.nvim

@@ -49,8 +49,8 @@ keybind = ctrl+x>p=previous_tab
 keybind = cmd+shift+c=copy_to_clipboard
 keybind = cmd+shift+v=paste_from_clipboard
 
-keybind = ctrl+x>'=new_split:right
-keybind = ctrl+x>5=new_split:down
+keybind = ctrl+x>5=new_split:right
+keybind = ctrl+x>'=new_split:down
 
 keybind = ctrl+x>l=goto_split:right
 keybind = ctrl+x>h=goto_split:left

@@ -11,27 +11,23 @@
     "key": "shift+space",
     "command": "whichkey.show"
   },
-
   // close the active editor
   {
     "key": "ctrl+q",
     "command": "workbench.action.closeActiveEditor",
     "when": "!sideBarFocus"
   },
-
   // show commands
   {
     "key": "ctrl-shift-p",
     "command": "workbench.action.showCommands"
   },
-
   /* Nav and window move/split *******************************************************************/
   // swithc window
   {
     "key": "ctrl+b w",
     "command": "workbench.action.switchWindow"
   },
-
   // frame split
   {
     "key": "ctrl-b '",
@@ -51,7 +47,6 @@
     "command": "workbench.action.toggleMaximizedPanel",
     "when": "terminalFocus"
   },
-
   // nav buffer
   {
     "key": "ctrl+o",
@@ -63,7 +58,6 @@
     "command": "workbench.action.previousEditorInGroup"
     // "when": "editorTextFocus"
   },
-
   /* termainal  **********************************************************************************/
   {
     "key": "ctrl+b t",
@@ -89,21 +83,17 @@
     "command": "workbench.action.terminal.kill",
     "when": "terminalFocus && !editorTextFocus"
   },
-
   /* Side panel **********************************************************************************/
-
   // Close sidebar
   {
     "key": "ctrl+q",
     "command": "workbench.action.toggleSidebarVisibility",
     "when": "sideBarFocus"
   },
-
   {
     "key": "ctrl+b q",
     "command": "workbench.action.toggleSidebarVisibility"
   },
-
   // Extensions
   {
     "key": "ctrl+b e",
@@ -115,26 +105,22 @@
     "command": "workbench.action.closeSidebar",
     "when": "sideBarFocus "
   },
-
   // File tree
   {
     "key": "q",
     "command": "workbench.action.closeSidebar",
     "when": "explorerViewletFocus && !inputFocus"
   },
-
   {
     "key": "ctrl+b d",
     "command": "workbench.view.explorer",
     "when": "viewContainer.workbench.view.explorer.enabled"
   },
-
   {
     "key": "ctrl+b d",
     "command": "workbench.action.closeSidebar",
     "when": "explorerViewletFocus"
   },
-
   // File tree submenu
   {
     "key": "o",
@@ -156,7 +142,6 @@
     "command": "revealFileInOS",
     "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
   },
-
   // create/rename/copy/paste/delete the file/dir
   {
     "key": "n",
@@ -193,7 +178,6 @@
     "command": "filesExplorer.paste",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
   },
-
   // nav folder/file
   {
     "key": "h",
@@ -216,13 +200,11 @@
     "command": "list.toggleExpand",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
   },
-
   {
     "key": "Enter",
     "command": "list.toggleExpand",
     "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
   },
-
   /** netrew **/
   {
     "key": "n",
@@ -244,7 +226,6 @@
     "command": "-vsnetrw.createDir",
     "when": "editorTextFocus && editorLangId == 'vsnetrw' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
   },
-
   /* Misc ****************************************************************************************/
   // reload and clear
   {
@@ -255,7 +236,6 @@
     "key": "ctrl+b backspace",
     "command": "workbench.action.clearRecentFiles"
   },
-
   // adjust font size
   {
     "key": "ctrl+-",
@@ -269,7 +249,6 @@
     "key": "ctrl+0",
     "command": "workbench.action.zoomReset"
   },
-
   // increase/decrease the view size
   // TODO: try to find the foucse group
   {
@@ -292,7 +271,6 @@
     "command": "workbench.action.decreaseViewHeight",
     "when": "editorTextFocus || terminalFocus || sideBarFocus"
   },
-
   // NOTE: DO I need this?
   // select move
   {
@@ -335,7 +313,6 @@
   //   "command": "workbench.action.quickOpenNavigatePrevious",
   //   "when": "inQuickOpen"
   // },
-
   // open config ettings
   {
     "key": "ctrl+b ctrl+k",
@@ -355,7 +332,6 @@
     "command": "workbench.action.openSettingsJson",
     "when": "inSettingsEditor"
   },
-
   // copilot
   {
     "key": "ctrl+l",
@@ -393,14 +369,12 @@
     "command": "inlineChat.startWithCurrentLine",
     "when": "editorFocus && github.copilot.chat.editor.enableLineTrigger && inlineChatHasProvider && !editorReadonly && !inlineChatVisible"
   },
-
   /* note taking *****/
   /* project  *****/
   {
     "key": "ctrl+alt+p",
     "command": "projectManager.listProjects"
   },
-
   // some misc need to check
   {
     "key": "ctrl+n",
@@ -422,7 +396,6 @@
     "command": "list.scrollUp",
     "when": "listFocus && !inputFocus && !treestickyScrollFocused && listScrollAtBoundary != 'both' && listScrollAtBoundary != 'top'"
   },
-
   // unbinding
   {
     "key": "shift+cmd+m",
@@ -477,13 +450,11 @@
     "command": "-editor.action.scrollDownHover",
     "when": "editorHoverFocused"
   },
-
   {
     "key": "up",
     "command": "-editor.action.scrollUpHover",
     "when": "editorHoverFocused"
   },
-
   {
     "key": "ctrl+w",
     "command": "-workbench.action.switchWindow"

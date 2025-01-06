@@ -1,5 +1,7 @@
 ------------------------------------ highlight color ------------------------------------
 
+local set = vim.opt_local
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -19,7 +21,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     -- optional
     vim.opt.guicursor = "n-v-c:block-Cursor,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
     -- vim.api.nvim_set_hl(0, "cursor", { background = "#eb6f92", foreground = "white"})
-
   end,
 })
 
@@ -40,3 +41,42 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 --     vim.keymap.set("n", "<leader>h", "<cmd>ClangdSwitchSourceHeader<cr>", { desc = "Switch between source and header" })
 --   end,
 -- })
+--
+
+--[[ Markdwon ]]
+local mdgroup = vim.api.nvim_create_augroup("mdgroup", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = mdgroup,
+  pattern = "*.md",
+  callback = function()
+    set.shiftwidth = 2
+    set.tabstop = 2
+    set.softtabstop = 2
+    set.textwidth = 200
+
+    set.wrap = true
+    set.spell = true
+    set.number = false
+    set.relativenumber = false
+    -- set.conceallevel = 2
+    vim.g.markdown_fenced_languages = { "cpp", "python", "bash=sh", "json", "yaml", "vim", "lua"}
+  end,
+})
+
+-- vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste the image" })
+--[[ -- json ]]
+local jsongroup = vim.api.nvim_create_augroup("jsongroup", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = jsongroup,
+  pattern = "*.json",
+  callback = function()
+
+    set.conceallevel = 0
+    set.shiftwidth = 2
+    set.tabstop = 2
+    set.softtabstop = 2
+    set.textwidth = 180
+
+    vim.bo.filetype = "jsonc"
+  end,
+})
