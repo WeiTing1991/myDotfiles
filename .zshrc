@@ -30,7 +30,8 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # enable fzf keybinding
-[ -f /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
+# [ -f /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
+[ -f /home/linuxbrew/.linuxbrew/bin/fzf ] && source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
