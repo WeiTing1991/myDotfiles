@@ -1,0 +1,38 @@
+# Set the modifier key to Alt (Mod1)
+set $mod Mod1  # Alt key
+
+# floating
+for_window [class=".*"] floating enable
+
+# # Launch terminal with Alt+Return
+# bindsym $mod+Return exec i3-sensible-terminal
+#
+# # Launch Firefox with Alt+F
+# bindsym $mod+f exec firefox
+# # bindsym $mod+b exec google
+#
+# # Tile windows horizontally with Alt+Shift+H
+# # bindsym $mod+Shift+h split h  # Horizontal split
+#
+# # Tile windows vertically with Alt+Shift+V
+# # bindsym $mod+Shift+v split v  # Vertical split
+#
+# # Open dmenu with Alt+D (to search and launch applications)
+# bindsym $mod+space exec dmenu_run
+#
+# # Close focused window with Alt+Shift+Q
+# bindsym $mod+q kill
+#
+# # Window focus navigation with Alt+H/J/K/L
+# bindsym $mod+Shift+h move left
+# bindsym $mod+Shift+j move down
+# bindsym $mod+Shift+k move up
+# bindsym $mod+Shift+l move right
+#
+# # Go to workspaces 1, 2, 3 with Alt+1, Alt+2, Alt+3
+# # bindsym $mod+1 workspace 1
+# # bindsym $mod+2 workspace 2
+# # bindsym $mod+3 workspace 3
+#
+# # bindsym $mod+1 focus [class="google"]
+#
