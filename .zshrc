@@ -36,6 +36,7 @@ fi
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Standard plugins can be found in $ZSH/plugins/
@@ -136,3 +137,10 @@ export NVM_DIR="$HOME/.nvm"
 # magick
 # export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 # set DYLD_LIBRARY_PATH to "(brew --prefix)/lib"
+. "/home/weiting/.deno/env"
+# bun completions
+[ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
