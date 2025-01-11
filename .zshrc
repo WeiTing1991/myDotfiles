@@ -2,14 +2,38 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p11k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [[ "$OSTYPE" == "linux-gnu"* && -z "$WSL_DISTRO_NAME" ]]; then
+
+    # Linux-specific settings (native Linux, not WSL)
+    export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+    # export PATH="$PATH:/usr/local/bin"
+    [ -f /home/linuxbrew/.linuxbrew/bin/fzf ] && source <(fzf --zsh)
+
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS-specific settings
+
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # enable fzf keybinding
+    [ -f /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
+
+elif [[ "$WSL_DISTRO_NAME" != "" ]]; then
+
+    # WSL-specific settings (Windows Subsystem for Linux)
+    export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+    # export PATH="$PATH:/usr/local/bin"
+    [ -f /home/linuxbrew/.linuxbrew/bin/fzf ] && source <(fzf --zsh)
+
+fi
+
 # ----------------------------------- Environment Variables -----------------------------------
-#
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Standard plugins can be found in $ZSH/plugins/
@@ -24,11 +48,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# enable fzf keybinding
-[ -f /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
