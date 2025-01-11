@@ -2,11 +2,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p11k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ "$OSTYPE" == "linux-gnu"* && -z "$WSL_DISTRO_NAME" ]]; then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     # Linux-specific settings (native Linux, not WSL)
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
     export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-    # export PATH="$PATH:/usr/local/bin"
+    export PATH="$PATH:/usr/local/bin"
     [ -f /home/linuxbrew/.linuxbrew/bin/fzf ] && source <(fzf --zsh)
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
