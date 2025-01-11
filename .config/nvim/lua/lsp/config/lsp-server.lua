@@ -29,20 +29,20 @@ M = {
   marksman = {},
 
   -- go
-  gopls = {
-    settings = {
-      gopls = {
-        analyses = {
-          unusedparams = true,
-        },
-        staticcheck = true,
-        gofumpt = true,
-        semanticTokens = {
-          enable = true, -- Enable semantic tokens
-        },
-      },
-    },
-  },
+  -- gopls = {
+  --   settings = {
+  --     gopls = {
+  --       analyses = {
+  --         unusedparams = true,
+  --       },
+  --       staticcheck = true,
+  --       gofumpt = true,
+  --       semanticTokens = {
+  --         enable = true, -- Enable semantic tokens
+  --       },
+  --     },
+  --   },
+  -- },
 
   --ltex
   -- ltex = {
@@ -59,7 +59,7 @@ M = {
 
   -- bashls = {},
 
-  -- python
+  -- python ----------------------------------------------
   ruff = {
     cmd_env = { RUFF_TRACE = "messages" },
     init_options = {
@@ -68,7 +68,6 @@ M = {
       },
     },
   },
-
   pyright = {
     settings = {
       pyright = {
@@ -82,7 +81,8 @@ M = {
       },
     },
   },
-  -- ruff_lsp = {},
+  -- mason install ruff-lsp, beacuase the nameing is wired
+  -- ruff-lsp = {},
   -- basedpyright = {
   --   settings = {
   --     basedpyright = {
@@ -111,28 +111,28 @@ M = {
   },
 
   -- js/ts/css/html
-  ts_ls = {
-    settings = {
-      typescript = {
-        suggest = {
-          completeFunctionCalls = true,
-        },
-      },
-    },
-  },
-  -- eslint = {},
-  cssls = {},
-  tailwindcss = {},
-  html = {},
-
-  jsonls = {
-    settings = {
-      json = {
-        -- schemas = require("schemastore").json.schemas(),
-        validate = { enable = true },
-      },
-    },
-  },
+  -- ts_ls = {
+  --   settings = {
+  --     typescript = {
+  --       suggest = {
+  --         completeFunctionCalls = true,
+  --       },
+  --     },
+  --   },
+  -- },
+  -- -- eslint = {},
+  -- cssls = {},
+  -- tailwindcss = {},
+  -- html = {},
+  --
+  -- jsonls = {
+  --   settings = {
+  --     json = {
+  --       -- schemas = require("schemastore").json.schemas(),
+  --       validate = { enable = true },
+  --     },
+  --   },
+  -- },
 }
 
 return M

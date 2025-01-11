@@ -12,11 +12,11 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
   },
-
   -- Markdown pretty render
   -- NOTE: https://github.com/OXY2DEV/markview.nvim/wiki
   {
     "OXY2DEV/markview.nvim",
+    enabled = false,
     lazy = false, -- Recommended
     -- ft = "markdown" -- If you decide to lazy-load anyway
     dependencies = {
@@ -58,6 +58,7 @@ return {
   -- Markdown image
   {
     "3rd/image.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {},
     config = function()

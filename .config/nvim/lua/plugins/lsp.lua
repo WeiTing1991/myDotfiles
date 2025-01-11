@@ -75,8 +75,10 @@ return {
   -- formater and linter
   {
     "nvimtools/none-ls.nvim",
+    enabled = false,
     event = "BufEnter",
     dependencies = {
+      { "williamboman/mason.nvim", config = true },
       "nvimtools/none-ls-extras.nvim",
     },
     config = function()
@@ -88,6 +90,7 @@ return {
   -- other lsp tool
   {
     "danymat/neogen",
+    enabled = false,
     event = "BufEnter",
     config = function()
       require("neogen").setup { snippet_engine = "luasnip" }
