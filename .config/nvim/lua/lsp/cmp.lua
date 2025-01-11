@@ -44,22 +44,23 @@ require("blink.cmp").setup {
     nerd_font_variant = "mono",
   },
   snippets = {
-    expand = function(snippet)
-      require("luasnip").lsp_expand(snippet)
-    end,
-    active = function(filter)
-      if filter and filter.direction then
-        return require("luasnip").jumpable(filter.direction)
-      end
-      return require("luasnip").in_snippet()
-    end,
-    jump = function(direction)
-      require("luasnip").jump(direction)
-    end,
+    -- expand = function(snippet)
+    --   require("luasnip").lsp_expand(snippet)
+    -- end,
+    -- active = function(filter)
+    --   if filter and filter.direction then
+    --     return require("luasnip").jumpable(filter.direction)
+    --   end
+    --   return require("luasnip").in_snippet()
+    -- end,
+    -- jump = function(direction)
+    --   require("luasnip").jump(direction)
+    -- end,
   },
 
   sources = {
-    default = { "lazydev", "lsp", "path", "luasnip", "snippets", "buffer" },
+    -- default = { "lazydev", "lsp", "path", "luasnip", "snippets", "buffer" },
+    default = { "lazydev", "lsp", "path", "snippets", "buffer" },
     cmdline = {},
     providers = {
       lazydev = {
@@ -87,14 +88,14 @@ require("blink.cmp").setup {
         -- },
         score_offset = 80,
       },
-      luasnip = {
-        name = "luasnip",
-        enabled = true,
-        module = "blink.cmp.sources.luasnip",
-        fallbacks = { "snippets" },
-        -- min_keyword_length = 4,
-        score_offset = 80,
-      },
+      -- luasnip = {
+      --   name = "luasnip",
+      --   enabled = true,
+      --   module = "blink.cmp.sources.luasnip",
+      --   fallbacks = { "snippets" },
+      --   -- min_keyword_length = 4,
+      --   score_offset = 80,
+      -- },
       buffer = {
         name = "Buffer",
         enabled = true,

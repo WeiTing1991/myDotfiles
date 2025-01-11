@@ -9,7 +9,7 @@ local M = {
 
   --python
   -- "isort",
-  "black",
+  -- "black",
 
 }
 

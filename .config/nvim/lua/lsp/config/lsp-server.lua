@@ -28,6 +28,7 @@ M = {
   },
   marksman = {},
 
+  -- HAVE to install go global
   -- go
   gopls = {
     settings = {
@@ -69,19 +70,20 @@ M = {
     },
   },
 
-  pyright = {
-    settings = {
-      pyright = {
-        disableOrganizeImports = true,
-      },
-      python = {
-        analysis = {
-          ignore = { "*" },
-          -- typeCheckingMode = "basic",
-        },
-      },
-    },
-  },
+  -- pyright = {
+  --   settings = {
+  --     pyright = {
+  --       disableOrganizeImports = true,
+  --     },
+  --     python = {
+  --       analysis = {
+  --         ignore = { "*" },
+  --         -- typeCheckingMode = "basic",
+  --       },
+  --     },
+  --   },
+  -- },
+
   -- ruff_lsp = {},
   -- basedpyright = {
   --   settings = {
