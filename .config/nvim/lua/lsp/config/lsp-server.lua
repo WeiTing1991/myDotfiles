@@ -61,6 +61,7 @@ M = {
   -- bashls = {},
 
   -- python
+  -- Mason install ruff-lsp
   ruff = {
     cmd_env = { RUFF_TRACE = "messages" },
     init_options = {
@@ -70,19 +71,19 @@ M = {
     },
   },
 
-  -- pyright = {
-  --   settings = {
-  --     pyright = {
-  --       disableOrganizeImports = true,
-  --     },
-  --     python = {
-  --       analysis = {
-  --         ignore = { "*" },
-  --         -- typeCheckingMode = "basic",
-  --       },
-  --     },
-  --   },
-  -- },
+  pyright = {
+    settings = {
+      pyright = {
+        disableOrganizeImports = true,
+      },
+      python = {
+        analysis = {
+          ignore = { "*" },
+          -- typeCheckingMode = "basic",
+        },
+      },
+    },
+  },
 
   -- ruff_lsp = {},
   -- basedpyright = {

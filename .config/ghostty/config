@@ -28,7 +28,7 @@ window-padding-x = 8
 window-padding-y = 8
 
 window-colorspace = "display-p3"
-window-title-font-family = "Hack Nerd Fontj
+window-title-font-family = "Hack Nerd Font
 
 # keybindings
 keybind=clear
@@ -64,8 +64,8 @@ keybind = ctrl+x>m=toggle_split_zoom
 keybind = ctrl+x>,=toggle_split_zoom
 
 # resize
-keybind = cmd+shift+equal=reset_font_size
-keybind = cmd+equal=increase_font_size:-1
+keybind = ctrl+shift+equal=reset_font_size
+keybind = cmd+equal=increase_font_size:1
 keybind = cmd+minus=decrease_font_size:1
 
 
