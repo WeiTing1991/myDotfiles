@@ -106,9 +106,12 @@ export LANG=en_US.UTF-8
 #
 alias n="nvim"
 alias e="exit"
+alias pj="cd $HOME/project/"
 
 alias ls="eza --sort=type"
 alias tree="eza --tree"
+alias tree="eza --tree"
+
 
 # git tools
 alias gd="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
@@ -121,11 +124,11 @@ setopt ignoreeof
 
 # ----------------------------------- TERM -----------------------------------
 # bash and zsh
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-    # Unsupported plugin/prompt code here, i.e.
-    # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
-    [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && "/usr/local/etc/profile.d/bash_completion.sh"
-fi
+# if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+#     # Unsupported plugin/prompt code here, i.e.
+#     # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+#     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && "/usr/local/etc/profile.d/bash_completion.sh"
+# fi
 
 # ----------------------------------- PATH -----------------------------------
 
@@ -137,10 +140,15 @@ export NVM_DIR="$HOME/.nvm"
 # magick
 # export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 # set DYLD_LIBRARY_PATH to "(brew --prefix)/lib"
-. "/home/weiting/.deno/env"
-# bun completions
-[ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
+
+# Deno
+source $HOME/.local/bin/env
+source $HOME/.deno/env
+# . "/home/weiting/.deno/env"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+# bun completions
+[ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
+

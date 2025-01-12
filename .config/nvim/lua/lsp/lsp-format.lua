@@ -23,13 +23,12 @@ require("null-ls").setup {
         "typescript",
         "css",
         "html",
-        -- "json",
-        -- "jsonc",
-        -- "yaml",
+        "json",
+        "jsonc",
+        "yaml",
         "markdown",
-        -- "toml"
       },
-      -- extra_filetypes = { "toml" },
+      extra_filetypes = { "toml" },
     },
 
     -- js/ts
@@ -59,13 +58,13 @@ require("null-ls").setup {
     require("none-ls.formatting.ruff").with {
       filetypes = { "python" },
     },
-    -- formatting.isort.with {
-    --   filetypes = { "python" },
-    -- },
-
-    formatting.black.with {
+    formatting.isort.with {
       filetypes = { "python" },
-      extra_arges = { "--fast" },
     },
+
+    -- formatting.black.with {
+    --   filetypes = { "python" },
+    --   extra_arges = { "--fast" },
+    -- },
   },
 }
