@@ -132,52 +132,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --     end,
     --   })
     -- end
-
-    -- Hover diagnostic
-    local highlight_augroup = vim.api.nvim_create_augroup("diagnostic-hover", { clear = false })
-    local ns = vim.api.nvim_create_namespace "CurlineDiag"
-    vim.api.nvim_create_autocmd("LspAttach", {
-      callback = function(args2)
-        vim.api.nvim_create_autocmd("CursorHold", {
-          group = highlight_augroup,
-          buffer = args2.buf,
-          callback = function()
-            -- Ensure the buffer exists and has diagnostics
-            if vim.api.nvim_buf_is_valid(args2.buf) then
-              -- Check if the buffer is of a specific type (e.g., 'oil') and skip it if necessary
-              if vim.bo[args2.buf].filetype == "oil" then
-                return
-              end
-            end
-            pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
-            local hi = { "Error", "Warn", "Info", "Hint" }
-            local curline = vim.api.nvim_win_get_cursor(0)[1]
-            local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
-            local virt_texts = { { (" "):rep(4) } }
-            for _, diag in ipairs(diagnostics) do
-              virt_texts[#virt_texts + 1] = { diag.message, " " .. hi[diag.severity] }
-            end
-
-            -- inline
-            -- vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0,{
-            --   virt_text = virt_texts,
-            --   hl_mode = 'combine'
-            -- })
-
-            -- float win
-            vim.diagnostic.open_float(nil, {
-              focus = false,
-              -- scope = "line",
-              scope = "cursor",
-              border = "rounded",
-              header = "",
-              prefix = "󱓻 ",
-              source = virt_texts,
-            })
-          end,
-        })
-      end,
-    })
     --   vim.api.nvim_create_autocmd({ "LspDetach" }, {
     --     group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
     --     callback = function(args2)
@@ -195,6 +149,52 @@ vim.api.nvim_create_autocmd("LspAttach", {
     --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
     --   end, 'Toggle Inlay Hints')
     -- end
+  end,
+})
+
+-- Hover diagnostic
+local highlight_augroup = vim.api.nvim_create_augroup("diagnostic-hover", { clear = false })
+local ns = vim.api.nvim_create_namespace "CurlineDiag"
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = highlight_augroup,
+      buffer = args.buf,
+      callback = function()
+        -- Ensure the buffer exists and has diagnostics
+        if vim.api.nvim_buf_is_valid(args.buf) then
+          -- Check if the buffer is of a specific type (e.g., 'oil') and skip it if necessary
+          if vim.bo[args.buf].filetype == "oil" then
+            return
+          end
+        end
+        pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
+        local hi = { "Error", "Warn", "Info", "Hint" }
+        local curline = vim.api.nvim_win_get_cursor(0)[1]
+        local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
+        local virt_texts = { { (" "):rep(4) } }
+        for _, diag in ipairs(diagnostics) do
+          virt_texts[#virt_texts + 1] = { diag.message, " " .. hi[diag.severity] }
+        end
+
+        -- inline
+        -- vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0, {
+        --   virt_text = virt_texts,
+        --   hl_mode = 'combine'
+        -- })
+
+        -- float win
+        vim.diagnostic.open_float(nil, {
+          focus = false,
+          -- scope = "line",
+          scope = "cursor",
+          border = "rounded",
+          header = "",
+          prefix = "󱓻 ",
+          source = virt_texts,
+        })
+      end,
+    })
   end,
 })
 
