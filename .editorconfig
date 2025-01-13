@@ -12,7 +12,7 @@ insert_final_newline = true
 # Python-specific settings
 [*.py]
 indent_size = 4
-indent_style = tab
+indent_style = space
 
 # C++-specific settings
 [*.cpp]
