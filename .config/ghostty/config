@@ -5,7 +5,7 @@
 
 # apparence
 font-family = "Hack Nerd Font"
-font-size = 16
+font-size = 12
 background = "0D0907"
 theme = rose-pine
 window-inherit-font-size=true
