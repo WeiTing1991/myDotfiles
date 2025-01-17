@@ -149,6 +149,7 @@ source $HOME/.deno/env
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
 # bun completions
 [ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
 
