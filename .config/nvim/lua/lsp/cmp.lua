@@ -43,7 +43,7 @@ require("blink.cmp").setup {
     use_nvim_cmp_as_default = false,
     nerd_font_variant = "mono",
   },
-  snippets = {
+  -- snippets = {
     -- expand = function(snippet)
     --   require("luasnip").lsp_expand(snippet)
     -- end,
@@ -56,7 +56,8 @@ require("blink.cmp").setup {
     -- jump = function(direction)
     --   require("luasnip").jump(direction)
     -- end,
-  },
+  -- },
+  snippets = {preset = "luasnip"},
 
   sources = {
     -- default = { "lazydev", "lsp", "path", "luasnip", "snippets", "buffer" },
@@ -108,7 +109,7 @@ require("blink.cmp").setup {
         enabled = true,
         module = "blink.cmp.sources.snippets",
         -- min_keyword_length = 4,
-        score_offset = 80,
+        score_offset = 85,
       },
 
       -- copilot = {

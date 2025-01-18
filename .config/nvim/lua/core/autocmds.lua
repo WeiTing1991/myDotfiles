@@ -10,10 +10,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Cusor LinNr color
+-- some ui settings
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
+    -- Cusor LinNr color
     vim.api.nvim_set_hl(0, "NetrwDir", { ctermfg = "Blue", fg = "#698DDA" })
+
     -- vim.api.nvim_set_hl(0, "ShowBreak", { fg = "White", italic = true, underline = true })
     -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#4b515d" })
     -- vim.api.nvim_set_hl(0, "CursorLinNr", { fg = "#000000" })
@@ -21,6 +23,11 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     -- optional
     vim.opt.guicursor = "n-v-c:block-Cursor,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
     -- vim.api.nvim_set_hl(0, "cursor", { background = "#eb6f92", foreground = "white"})
+
+    --
+    -- vim.o.winbar = "%#WinBarPath#%{expand('%:p:h:t')}/%#WinBarFile#%{expand('%:t')}"
+    vim.o.winbar = "%f %m"
+
   end,
 })
 

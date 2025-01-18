@@ -6,9 +6,146 @@
 
     // "telemetry.enableTelemetry": false,
     "telemetry.telemetryLevel": "off",
+    // "telemetry.enableCrashReporter": false,
 
-    "editor.fontSize": 14,
+    //   /** UI *************************************************************************************/
     "terminal.integrated.defaultLocation": "view",
+    "workbench.startupEditor": "none",
+    "window.titleBarStyle": "custom",
+//   "window.commandCenter": false,
+    "workbench.statusBar.visible": true,
+    "workbench.sideBar.location": "right",
+    "workbench.activityBar.location": "bottom",
+
+// "workbench.editor.showTabs": "none",
+    "workbench.tree.enableStickyScroll": false,
+    "workbench.tree.renderIndentGuides": "none",
+    "workbench.tree.indent": 20,
+
+    "workbench.panel.showLabels": false,
+    "workbench.panel.defaultLocation": "right",
+    "workbench.editor.empty.hint": "hidden",
+
+    // "workbench.colorTheme": "Monochrome Dark Amplified",
+    "workbench.colorTheme": "Monochrome Dark",
+
+
+//   /** editor *************************************************************************************/
+    // "editor.fontFamily": "Roboto, SauceCodePro Nerd Font, SauceCodePro NF, RobotoMono Nerd Font ",
+
+    "editor.fontSize": 16,
+    "editor.rulers": [
+      {
+        "column": 120,
+        "color": "#2b2b2b"
+      }
+    ],
+    "editor.minimap.enabled": false,
+    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+
+    "editor.semanticHighlighting.enabled": "configuredByTheme",
+    "editor.cursorBlinking": "phase",
+    "editor.cursorSmoothCaretAnimation": "off",
+    "editor.renderLineHighlight": "none",
+    "editor.hover.delay": 50,
+
+
+//   // NOTE:https://github.com/alefragnani/vscode-project-manager/tree/master?tab=readme-ov-file
+//   "projectManager.projectsLocation": "~/.dotfiles/.vscode",
+
+  // scroll bar
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "workbench.list.smoothScrolling": false,
+
+  "editor.hideCursorInOverviewRuler": true,
+  // "editor.overviewRulerBorder": true,
+  // "editor.insertSpaces": true, // or false for tabs
+  "editor.tabSize": 2,
+  "editor.occurrencesHighlight": "off",
+  "editor.lightbulb.enabled": "off",
+
+//  "editor.selectionHighlight": false,
+//   "editor.copyWithSyntaxHighlighting": false,
+//   "diffEditor.ignoreTrimWhitespace": false,
+//   "editor.emptySelectionClipboard": false,
+//   "workbench.editor.enablePreview": false,
+//   // "window.newWindowDimensions": "inherit",
+//   // "editor.multiCursorModifier": "ctrlCmd",
+//   "diffEditor.renderSideBySide": false,
+//   "editor.snippetSuggestions": "top",
+//   "editor.detectIndentation": true,
+//   // "window.nativeFullScreen": true,
+//   "files.insertFinalNewline": true,
+//   "files.trimFinalNewlines": true,
+//   "editor.guides.indentation": true,
+//   "editor.stickyScroll.enabled": false,
+//   "editor.autoClosingBrackets": "never",
+//   "editor.autoClosingQuotes": "never",
+
+  // trim whitespace
+  "files.trimTrailingWhitespace": true,
+  // "editor.renderWhitespace": "none",
+  // "editor.renderControlCharacters": false,
+
+  "editor.formatOnSave": false,
+  "editor.accessibilitySupport": "off",
+  "workbench.tips.enabled": false,
+  // "scm.diffDecorations": "none",
+
+//   // color decorations
+  // "editor.colorDecorators": true,
+//   "git.decorations.enabled": false,
+//   "problems.decorations.enabled": false,
+
+//   "editor.matchBrackets": "near",
+//   "editor.bracketPairColorization.enabled": true,
+
+//   // "editor.guides.bracketPairs":"active",
+
+//   // "editor.gotoLocation.multipleReferences": "goto",
+//   // "editor.gotoLocation.multipleDefinitions": "goto",
+//   // "editor.gotoLocation.multipleDeclarations": "goto",
+//   // "workbench.editor.enablePreviewFromQuickOpen": false,
+//   // "editor.gotoLocation.multipleImplementations": "goto",
+//   // "editor.gotoLocation.multipleTypeDefinitions": "goto",
+
+//   // error
+//   "errorLens.enabled": true,
+//   "errorLens.delay": 1000,
+//   "errorLens.followCursor": "activeLine",
+//   "errorLens.gutterIconsEnabled": true,
+//   "errorLens.messageBackgroundMode": "message",
+//   //   "errorLens.exclude": ["**/*.txt", "**/dist/**"],
+
+//   // wrap
+//   "editor.wordWrap": "on",
+//   "editor.wordWrapColumn": 150,
+//   "editor.wrappingIndent": "none",
+
+  /** explorer ***********************************************************************************/
+  "explorer.compactFolders": true,
+  "explorer.sortOrder": "type",
+  "explorer.decorations.colors": false,
+
+
+  /** terminal settings **************************************************************************/
+  "terminal.integrated.gpuAcceleration": "auto",
+  "terminal.integrated.fontSize": 18,
+//   "terminal.integrated.allowChords": true,
+//   "terminal.integrated.defaultLocation": "view",
+//   "terminal.integrated.tabs.enabled": false,
+//   //"terminal.integrated.fontFamily": "RobotMono Nerd Font",
+
+
+//   /** misc     **********************************************************************************/
+  "extensions.ignoreRecommendations": true,
+  "extensions.autoUpdate": false,
+  "files.autoSave": "off",
+
+  "find-it-faster.general.killTerminalAfterUse": true,
+  "find-it-faster.general.useTerminalInEditor": false,
+
 
     // check here https://github.com/VSCodeVim/Vim
     // ***** vim settings *****
@@ -39,12 +176,6 @@
     "vim.whichwrap": "b,s",                // Allow cursor to wrap to the next/previous line with certain keys.
 
     "editor.lineNumbers": "relative",
-    // "editor.cursorSurroundingLines": 10,
-
-    // "vim.vimrc.enable": true,
-    // "vim.vimrc.path": "$HOME/.vim/.vimrc",
-
-
     "vim.smartRelativeLine": true,
     "vim.highlightedyank.enable": true,
     "vim.highlightedyank.color": "#f6c177",
@@ -74,6 +205,61 @@
 //     "<C-w>": false,
   },
 
+  // keybindings
+  // normal mode
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // show whichkey
+    {
+      "before": ["<space>"],
+      "commands": ["whichkey.show"]
+    },
+    {
+      "before": ["<Esc>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["<C-c>"],
+      "commands": [":nohl"]
+    },
+
+    // formatting
+    {
+      "before": ["<C-m>"],
+      "commands": ["editor.action.formatDocument"]
+    },
+
+    // fold
+    {
+      "before": ["<Tab>"],
+      "after": ["z", "a"]
+    },
+
+    // center the cursor when using C-d and C-u
+    {
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "z", "z"]
+    },
+
+    // toggle comment selection
+    {
+      "before": ["-"],
+      "after": ["g", "c", "c", "<C-c>"]
+    },
+    {
+      "before": ["_"],
+      "after": ["g", "C", "<C-c>"]
+    },
+    // spell suggestion
+    {
+      "before": ["z", "="],
+      "commands": ["cSpell.suggestSpellingCorrections"]
+    }
+  ],
+
   // Visual mode
   "vim.visualModeKeyBindingsNonRecursive": [
 
@@ -100,7 +286,7 @@
     // toggle comment selection
     {
       "before": ["-"],
-      "after": ["g", "c", "c", "<C-c>"]
+      "after": ["g", "c", "<C-c>"]
     },
     {
       "before": ["_"],
@@ -110,9 +296,12 @@
 
 }
 
-// {
 
-//   /** ui **/
+
+
+
+
+
 
 //   "workbench.startupEditor": "none",
 //   "window.titleBarStyle": "custom",
@@ -228,13 +417,6 @@
 //   "explorer.sortOrder": "type",
 //   //"explorer.decorations.colors": false,
 
-//   /** misc     **********************************************************************************/
-//   "extensions.ignoreRecommendations": true,
-//   "extensions.autoUpdate": false,
-//   "files.autoSave": "off",
-
-//   "find-it-faster.general.killTerminalAfterUse": true,
-//   "find-it-faster.general.useTerminalInEditor": false,
 
 //   "breadcrumbs.enabled": true,
 //   "breadcrumbs.icons": false,
@@ -276,9 +458,6 @@
 //   "editor.suggestSelection": "first",
 //   "editor.wordBasedSuggestions": "matchingDocuments",
 //   "editor.parameterHints.enabled": true,
-//   "workbench.colorTheme": "Nord",
-//   "workbench.preferredDarkColorTheme": "Nord",
-//   "workbench.preferredLightColorTheme": "Default Light Modern",
 //   "workbench.colorCustomizations": {
 //     "editor.background": "#090a0c",
 //     "editorGutter.background": "#090a0c",
@@ -481,14 +660,6 @@
 //   "markdown-preview-enhanced.previewMode": "Multiple Previews",
 //   "markdown-preview-enhanced.previewTheme": "one-light.css",
 
-//   /** terminal settings **************************************************************************/
-//   "terminal.integrated.gpuAcceleration": "auto",
-//   "terminal.integrated.fontSize": 14,
-//   "terminal.integrated.allowChords": true,
-//   "terminal.integrated.defaultLocation": "view",
-//   "terminal.integrated.tabs.enabled": false,
-//   //"terminal.integrated.fontFamily": "RobotMono Nerd Font",
-
 
 
 //   // TODO: check if the keybindings is working?
@@ -514,59 +685,6 @@
 //     }
 //   ],
 
-//   // keybindings
-//   "vim.normalModeKeyBindingsNonRecursive": [
-//     // show whichkey
-//     {
-//       "before": ["<space>"],
-//       "commands": ["whichkey.show"]
-//     },
-//     {
-//       "before": ["<Esc>"],
-//       "commands": [":nohl"]
-//     },
-//     {
-//       "before": ["<C-c>"],
-//       "commands": [":nohl"]
-//     },
-
-//     // formatting
-//     {
-//       "before": ["<C-m>"],
-//       "commands": ["editor.action.formatDocument"]
-//     },
-
-//     // fold
-//     {
-//       "before": ["<Tab>"],
-//       "after": ["z", "a"]
-//     },
-
-//     // center the cursor when using C-d and C-u
-//     {
-//       "before": ["<C-d>"],
-//       "after": ["<C-d>", "z", "z"]
-//     },
-//     {
-//       "before": ["<C-u>"],
-//       "after": ["<C-u>", "z", "z"]
-//     },
-
-//     // toggle comment selection
-//     {
-//       "before": ["-"],
-//       "after": ["g", "c", "c", "<C-c>"]
-//     },
-//     {
-//       "before": ["_"],
-//       "after": ["g", "C", "<C-c>"]
-//     },
-//     // spell suggestion
-//     {
-//       "before": ["z", "="],
-//       "commands": ["cSpell.suggestSpellingCorrections"]
-//     }
-//   ],
 
 //   "vim.normalModeKeyBindings": [
 //     // lsp keybinding

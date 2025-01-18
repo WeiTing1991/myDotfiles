@@ -163,6 +163,24 @@ return {
   -- -------------------------------- TOOL  -------------------------------------------------------
   -- Zen mode
   {
+    "christoomey/vim-tmux-navigator",
+    event = "BufEnter",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+  {
     "folke/zen-mode.nvim",
     event = "BufEnter",
     opts = {},
@@ -182,10 +200,10 @@ return {
     config = function()
       require("gitsigns").setup {
         signs = {
-          add = { text = "+" },
-          change = { text = "~" },
-          delete = { text = "_" },
-          topdelete = { text = "‾" },
+          add          = { text = "+" },
+          change       = { text = "~" },
+          delete       = { text = "_" },
+          topdelete    = { text = "‾" },
           changedelete = { text = "│" },
           untracked    = { text = '┆' },
         },

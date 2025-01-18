@@ -26,7 +26,6 @@ M = {
       },
     },
   },
-  marksman = {},
 
   -- HAVE to install go global
   -- go
@@ -57,8 +56,6 @@ M = {
   --     },
   --   },
   -- },
-
-  -- bashls = {},
 
   -- python
   -- Mason install ruff-lsp
@@ -117,8 +114,28 @@ M = {
   ts_ls = {
     settings = {
       typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = "literal",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
         suggest = {
           completeFunctionCalls = true,
+        },
+      },
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
         },
       },
     },
@@ -127,6 +144,9 @@ M = {
   cssls = {},
   tailwindcss = {},
   html = {},
+
+  -- bashls = {},
+  marksman = {},
 
   jsonls = {
     settings = {

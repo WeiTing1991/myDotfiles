@@ -2,9 +2,9 @@ local M = {
 
   base46 = {
     -- theme = "nord",
-    -- theme = "poimandres",
+    theme = "poimandres",
     -- theme = "monochrome",
-    theme = "monochrome",
+    -- theme = "monochrome",
     hl_add = {},
     h1_override = {},
     integrations = {},

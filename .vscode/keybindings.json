@@ -1,7 +1,25 @@
+
 [
   /* NOTE: https://github.com/VSpaceCode/vscode-which-key/blob/master/package.json */
   /* system **************************************************************************************/
   // Enable to use leader key everywhere
+  // Navigation
+  {
+    "key": "ctrl-h",
+    "command": "workbench.action.navigateLeft"
+  },
+  {
+    "key": "ctrl-l",
+    "command": "workbench.action.navigateRight"
+  },
+  {
+    "key": "ctrl-k",
+    "command": "workbench.action.navigateUp"
+  },
+  {
+    "key": "ctrl-j",
+    "command": "workbench.action.navigateDown"
+  },
   {
     "key": "space",
     "command": "whichkey.show",

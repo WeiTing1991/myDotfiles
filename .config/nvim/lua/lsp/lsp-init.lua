@@ -2,8 +2,7 @@ require("mason").setup()
 -- require("fidget").setup { notification = { window = { winblend = 0 } } }
 
 local lsp_server = vim.tbl_keys(require "lsp.config.lsp-server" or {})
-local lsp_lint_fomater = vim.tbl_values(require "lsp.config.lsp-extra")
--- local linter = vim.tbl_values(require "lsp.lsp-linter")
+local lsp_lint_fomater = vim.tbl_values(require "lsp.config.lsp-extra" or {})
 -- local dap_server = vim.tbl_values(require "lsp.dap-server")
 local ensure_installed = {}
 
@@ -66,27 +65,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     map("gr", require("telescope.builtin").lsp_references, "Goto References")
 
-    map("<C-j>", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
-    map("<C-k>", vim.lsp.buf.signature_help, "Buffer singture help")
 
     map("gi", "<cmd>Lspsaga finder imp<CR>", "Peek Implementation")
     map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
 
-    -- extra
-    map("<C-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
-    map("<C-l>rb", "<cmd>Lspsaga rename<CR>", "Rename in buffer")
-    map("<C-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")
-    map("<C-l>rr", "<cmdrqspRestart<CR>", "Lsp restart")
+    map("<S-l>j", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
+    map("<S-l>k", vim.lsp.buf.signature_help, "Buffer singture help")
 
-    map("<C-l>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
+    -- extra
+    map("<S-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
+    map("<S-l>rb", "<cmd>Lspsaga rename<CR>", "Rename in buffer")
+    map("<S-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")
+    map("<S-l>rr", "<cmdrqspRestart<CR>", "Lsp restart")
+
+    map("<S-l>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
     -- map("<C-l>ca", vim.lsp.buf.code_action, "Code Action")
-    map("<C-l>ck", vim.lsp.buf.type_definition, "Type defintion")
+    map("<S-l>ck", vim.lsp.buf.type_definition, "Type defintion")
     -- map("<C-l>ck", require("telescope.builtin").lsp_type_definitions, "Type Definition")
 
     map("<leader>,", vim.lsp.buf.format, "formatting")
 
-    map("<C-l>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic")
-    map("<C-l>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev diagnostic")
+    map("<S-l>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic")
+    map("<S-l>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev diagnostic")
     -- map("<leader>dl", "<cmd>Telescope diagnostics<cr>", "Diagnostics")
     -- map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 

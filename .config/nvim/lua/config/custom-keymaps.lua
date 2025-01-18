@@ -9,8 +9,8 @@ miniclue.setup {
     { mode = "x", keys = "<Leader>" },
 
     -- Leader 2 triggers
-    { mode = "n", keys = "<C-l>" },
-    { mode = "x", keys = "<C-l>" },
+    { mode = "n", keys = "<S-l>" },
+    { mode = "x", keys = "<S-l>" },
 
     -- Built-in completion
     -- { mode = "i", keys = "<C-x>" },
