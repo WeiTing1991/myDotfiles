@@ -63,6 +63,7 @@ M = {
   -- python
   -- Mason install ruff-lsp
   ruff = {
+    -- ruff_lsp = {},
     cmd_env = { RUFF_TRACE = "messages" },
     init_options = {
       settings = {
@@ -85,7 +86,6 @@ M = {
     },
   },
 
-  -- ruff_lsp = {},
   -- basedpyright = {
   --   settings = {
   --     basedpyright = {
