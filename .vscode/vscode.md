@@ -1,5 +1,0 @@
-# **Vscode settings**
-
-## Plugins
-
-## Keybindings
