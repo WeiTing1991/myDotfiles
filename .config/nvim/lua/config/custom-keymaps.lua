@@ -64,9 +64,8 @@ vim.keymap.set("n", "<leader>d", function()
 end, { desc = "Toggle file explorer" })
 
 -- Markdown
-vim.keymap.set("n", "<leader>mm", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown toggle" })
-vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<cr>", { desc = "markdown preview" })
-vim.keymap.set("n", "<leader>mk", "<cmd>MarkdownPreviewStop<cr>", { desc = "markdown stop" })
+vim.keymap.set("n", "<leader>mm", "<cmd>PeekOpen<cr>", { desc = "markdown preview" })
+vim.keymap.set("n", "<leader>mk", "<cmd>PeekClose<cr>", { desc = "markdown stop" })
 vim.keymap.set("n", "<leader>mr", "<cmd>Markview<cr>", { desc = "markdown render toggle" })
 
 -- Zen mode

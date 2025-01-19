@@ -4,12 +4,25 @@ return {
   -- NOTE: https://github.com/iamcco/markdown-preview.nvim
   {
     "iamcco/markdown-preview.nvim",
+    enabled = false,
     event = "VeryLazy",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown", ".md" },
     build = "cd app && npm install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
+    end,
+  },
+  {
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup {
+        filetype = { "markdown"},
+      }
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
   },
 
