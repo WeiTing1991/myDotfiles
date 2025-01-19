@@ -82,8 +82,8 @@ vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
 vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
 vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise" })
 
--- Leave insert mode by pressing leader followed by backspace
 vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("i", "jk", "<Esc>")
 
 -- indenting
 vim.keymap.set("v", "<", "<gv")
