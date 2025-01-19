@@ -17,7 +17,7 @@ require("lspsaga").setup {
   },
   beacon = {
     enable = true,
-    frequency = 7,
+    frequency = 10,
   },
   scroll_preview = {
     scroll_down = "<C-n>",
@@ -25,18 +25,18 @@ require("lspsaga").setup {
   },
   outline = {
     win_position = "right",
-    win_width = 50,
+    win_width = 40,
     auto_preview = true,
     detail = true,
-    auto_close = true,
+    auto_close = false,
     close_after_jump = false,
     layout = "normal",
     max_height = 0.5,
     left_width = 0.3,
     keys = {
-      toggle_or_jump = "o",
+      toggle_or_jump = "<Tab>",
       quit = "q",
-      jump = "e",
+      jump = "<CR>",
     },
   },
   diagnostic = {
@@ -174,7 +174,7 @@ require("lspsaga").setup {
   },
   -- breadcrumb
   symbol_in_winbar = {
-    enable = false,
+    enable = true,
     separator = "› ",
     hide_keyword = true,
     ignore_patterns = nil,

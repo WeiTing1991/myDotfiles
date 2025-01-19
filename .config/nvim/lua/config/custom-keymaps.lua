@@ -47,7 +47,6 @@ miniclue.setup {
     -- miniclue.gen_clues.registers(),
     miniclue.gen_clues.windows(),
     miniclue.gen_clues.z(),
-
   },
   window = {
     delay = 0,
@@ -91,6 +90,9 @@ end, { desc = "Copilot" })
 
 -- trouble
 vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+
+-- trouble
+vim.keymap.set("n", "<leader>ta", "<cmd>Neogen<cr>", { desc = "Add Annotation" })
 
 -- undotree
 -- vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })

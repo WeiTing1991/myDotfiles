@@ -1,3 +1,4 @@
+
 return {
 
   -- --------------------------- Autocompeletion --------------------------------------------------
@@ -83,8 +84,6 @@ return {
       require "lsp.lsp-format"
     end,
   },
-
-
   -- other lsp tool
   {
     "danymat/neogen",
