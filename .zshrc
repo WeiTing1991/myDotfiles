@@ -155,3 +155,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
 
+. "/home/weitingub24/.deno/env"
