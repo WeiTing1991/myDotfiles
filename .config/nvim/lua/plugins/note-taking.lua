@@ -16,7 +16,7 @@ return {
   {
     "toppair/peek.nvim",
     event = { "VeryLazy" },
-    build = "deno task --quiet build:fast",
+    build = "deno task --quiet build",
     config = function()
       require("peek").setup {
         filetype = { "markdown"},
