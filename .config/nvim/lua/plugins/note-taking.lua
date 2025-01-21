@@ -20,6 +20,7 @@ return {
     config = function()
       require("peek").setup {
         filetype = { "markdown"},
+        app = '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
       }
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
