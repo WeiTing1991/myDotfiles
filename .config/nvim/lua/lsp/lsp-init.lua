@@ -1,4 +1,13 @@
-require("mason").setup()
+require("mason").setup {
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗",
+    },
+  },
+}
+
 -- require("fidget").setup { notification = { window = { winblend = 0 } } }
 
 local lsp_server = vim.tbl_keys(require "lsp.config.lsp-server" or {})
@@ -64,7 +73,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gD", vim.lsp.buf.declaration, "Goto Declaration")
 
     map("gr", require("telescope.builtin").lsp_references, "Goto References")
-
 
     map("gi", "<cmd>Lspsaga finder imp<CR>", "Peek Implementation")
     map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
@@ -186,8 +194,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- float win
         vim.diagnostic.open_float(nil, {
           focus = false,
-          -- scope = "line",
-          scope = "cursor",
+          scope = "line",
+          -- scope = "cursor",
           border = "rounded",
           header = "",
           prefix = "󱓻 ",

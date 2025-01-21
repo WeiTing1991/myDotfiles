@@ -144,7 +144,7 @@ export NVM_DIR="$HOME/.nvm"
 # set DYLD_LIBRARY_PATH to "(brew --prefix)/lib"
 
 # Deno
-source $HOME/.local/bin/env
+# source $HOME/.local/bin/env
 source $HOME/.deno/env
 # . "/home/weiting/.deno/env"
 
