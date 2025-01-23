@@ -144,7 +144,6 @@ export NVM_DIR="$HOME/.nvm"
 # set DYLD_LIBRARY_PATH to "(brew --prefix)/lib"
 
 # Deno
-# source $HOME/.local/bin/env
 source $HOME/.deno/env
 # . "/home/weiting/.deno/env"
 
@@ -155,4 +154,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
 
-. "/home/weitingub24/.deno/env"
+# uv
+. "$HOME/.local/bin/env"
+

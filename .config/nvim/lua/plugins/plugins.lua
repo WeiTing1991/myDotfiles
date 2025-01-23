@@ -142,6 +142,7 @@ return {
   -- Autopair
   {
     "echasnovski/mini.pairs",
+    enabled = false,
     event = "InsertEnter",
     version = "*",
     config = function()

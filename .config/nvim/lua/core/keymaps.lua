@@ -97,6 +97,15 @@ vim.keymap.set(
   { desc = "Replace word throughout file" }
 )
 
+-- inoremap ( ()<Left>
+-- inoremap { {}<Left>
+-- inoremap [ []<Left>
+-- inoremap ' ''<Left>
+-- inoremap " ""<Left>
+-- vim.keymap.set("i", "(", "()<Left>")
+vim.keymap.set("i", "<C-e>", "<Del>")
+
+
 -- cd to current file directory
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 

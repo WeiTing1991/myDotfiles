@@ -18,9 +18,13 @@ return {
     event = { "VeryLazy" },
     build = "deno task --quiet build",
     config = function()
+      local app = 'webview'
+      if vim.fn.has "win32" == 1 then
+        app = '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
+      end
       require("peek").setup {
         filetype = { "markdown"},
-        app = '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
+          app = app
       }
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
