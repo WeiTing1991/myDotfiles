@@ -10,8 +10,9 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Python-specific settings
+# for work setup
 [*.py]
-indent_size = 4
+indent_size = 2
 indent_style = space
 
 # C++-specific settings
@@ -23,12 +24,17 @@ indent_style = space
 indent_size = 2
 indent_style = space
 
-# Python-specific settings
-[*.org]
-indent_size = 8
-indent_style = space
 
 # Makefile (use tabs instead of spaces)
 [Makefile]
 indent_size = 2
 indent_style = tab
+
+[*.org]
+indent_size = 8
+indent_style = space
+
+# js/ts specific settings
+[*.js]
+indent_size = 2
+indent_style = space

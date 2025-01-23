@@ -123,7 +123,17 @@ alias gca="git commit -am"
 alias ob="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen"
 
 # disable ctrl-D
-setopt ignoreeof
+# setopt ignoreeof
+
+# tmux
+tmux_two_pane() {
+    tmux new-session -d -s main
+    tmux split-window -v
+    tmux resize-pane -D 1500
+    tmux select-pane -t 0
+    tmux -2 attach-session -t main
+}
+alias t=tmux_two_pane
 
 # ----------------------------------- TERM -----------------------------------
 # bash and zsh
