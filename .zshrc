@@ -117,6 +117,7 @@ alias tree="eza --tree"
 
 # git tools
 alias gd="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
+alias gca="git commit -am"
 
 # path
 alias ob="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen"
