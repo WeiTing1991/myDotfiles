@@ -83,6 +83,7 @@ vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
 vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise" })
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("i", "<Esc>", "<C-c>")
 vim.keymap.set("i", "jk", "<Esc>")
 
 -- indenting

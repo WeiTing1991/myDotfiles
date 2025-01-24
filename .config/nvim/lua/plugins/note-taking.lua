@@ -35,6 +35,7 @@ return {
   -- NOTE: https://github.com/OXY2DEV/markview.nvim/wiki
   {
     "OXY2DEV/markview.nvim",
+    enabled = false,
     lazy = false, -- Recommended
     -- ft = "markdown" -- If you decide to lazy-load anyway
     dependencies = {

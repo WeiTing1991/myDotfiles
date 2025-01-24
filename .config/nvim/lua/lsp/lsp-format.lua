@@ -62,9 +62,9 @@ require("null-ls").setup {
       filetypes = { "python" },
     },
 
-    -- formatting.black.with {
-    --   filetypes = { "python" },
-    --   extra_arges = { "--fast" },
-    -- },
+    formatting.black.with {
+      filetypes = { "python" },
+      extra_arges = { "--fast" },
+    },
   },
 }

@@ -72,6 +72,10 @@ require("telescope").setup {
         ".git",
         "--exclude",
         ".github",
+        "--exclude",
+        "node_modules",
+        "--exclude",
+        ".venv"
       },
     },
     grep_string = {
@@ -119,6 +123,7 @@ pcall(require("telescope").load_extension, "frecency")
 -- pcall(require("telescope").load_extension "ui-select")
 
 -- keymaps
+vim.keymap.set("n", "<C-f>", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<space>fj", function()
   builtin.find_files { cwd = utils.buffer_dir() }
