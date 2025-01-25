@@ -97,20 +97,20 @@ local function lsp_formater()
     end
   end
 
-  if package.loaded["conform"] then
-    local has_conform, conform = pcall(require, "conform")
-    if has_conform then
-      vim.list_extend(
-        server_names,
-        vim.tbl_map(function(formatter)
-          return formatter.name
-        end, conform.list_formatters(0))
-      )
-      if has_null_ls then
-        server_names = vim.fn.uniq(server_names)
-      end
-    end
-  end
+  -- if package.loaded["conform"] then
+  --   local has_conform, conform = pcall(require, "conform")
+  --   if has_conform then
+  --     vim.list_extend(
+  --       server_names,
+  --       vim.tbl_map(function(formatter)
+  --         return formatter.name
+  --       end, conform.list_formatters(0))
+  --     )
+  --     if has_null_ls then
+  --       server_names = vim.fn.uniq(server_names)
+  --     end
+  --   end
+  -- end
 
   return #server_names > 0 and table.concat(server_names, ". ") or "NO LSP, FORMATTER  "
   -- condition = function() return vim.o.columns > 70 end,

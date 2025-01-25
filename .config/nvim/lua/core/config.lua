@@ -87,14 +87,13 @@ local options = {
 
   -- Preview substitutions live, as you type!
   inccommand = "split",
-  signcolumn = "yes:2",
-  -- foldcolumn = "1",
+  signcolumn = "yes:1",
 
   -- Show which line your cursor is on
   cursorline = true,
 
   -- tabline
-  showtabline = 0,
+  -- showtabline = 1,
 
   -- colorcolumn = "120",
   textwidth = 105, -- virt column set to 105
@@ -105,32 +104,15 @@ local options = {
   sidescrolloff = 1,
   conceallevel = 0,
 
-  -- search
-  -- enable incremental searching
-  incsearch = true,
-  hlsearch = false,
-
-  -- apperance
-  termguicolors = true,
-  background = "dark",
-  cmdheight = 1,
-
-  -- behavior
-  hidden = true,
-  errorbells = false,
-  swapfile = false,
-  backspace = "indent,eol,start",
-
-  autochdir = false,
-  selection = "exclusive",
-  modifiable = true,
-  encoding = "UTF-8",
-
-  -- folds
+  -- searcfolds
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()",
   foldtext = "",
   foldlevel = 99,
+  foldcolumn = "0",
+  foldlevelstart = 99,
+  --foldnextmax = 3,
+
   -- foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()",
 
   -- spell check

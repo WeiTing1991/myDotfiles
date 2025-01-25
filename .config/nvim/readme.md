@@ -37,7 +37,7 @@ git clone  URL ~/.config/nvim
 
 ## Config
 
->[!NOTE]
+> [!NOTE]
 > still under processing
 
 **Core**
@@ -98,6 +98,8 @@ More information you can find [here](https://weiting1991.github.io/weitingworks/
 ### LSP
 
 More information you can find [here](https://weiting1991.github.io/weitingworks/posts/240927_neovim_setup/).
+
+### Features
 
 <!-- link -->
 [kickstart]: https://github.com/nvim-lua/kickstart.nvim

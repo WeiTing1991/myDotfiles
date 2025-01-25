@@ -21,7 +21,7 @@ require("telescope").setup {
     --   "!**/.git/*",
     -- },
     -- path_display = { "smart" },
-    initial_mode = "normal",
+    initial_mode = "insert",
     layout_config = {
       horizontal = {
         prompt_position = "bottom",
@@ -79,7 +79,7 @@ require("telescope").setup {
       },
     },
     grep_string = {
-      theme = "ivy",
+      -- theme = "ivy",
       additional_args = {
         "-L",
         "--hidden",
@@ -90,7 +90,7 @@ require("telescope").setup {
       },
     },
     live_grep = {
-      theme = "ivy",
+      -- theme = "ivy",
       additional_args = {
         "-L",
         "--hidden",
@@ -125,20 +125,21 @@ pcall(require("telescope").load_extension, "frecency")
 -- keymaps
 vim.keymap.set("n", "<C-f>", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<space>fj", function()
+vim.keymap.set("n", "<leader><leader>", function()
   builtin.find_files { cwd = utils.buffer_dir() }
 end, { desc = "Finde file in current child dir" })
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Open recent file" })
 
-vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Find existing buffer" })
-
-
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find existing buffer" })
 vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Search keymaps" })
 
-vim.keymap.set("n", "<leader>fl", builtin.live_grep, { desc = "Find live grep" })
+-- vim.keymap.set("n", "<C-g>", builtin.git_files, { desc = "Find live grep" })
+
 vim.keymap.set("n", "<leader>fg", function()
   builtin.grep_string { search = vim.fn.input "Grep > " }
 end, { desc = "Grep search" })
+
+vim.keymap.set("n", "<leader>fl", builtin.live_grep, { desc = "Find live grep" })
 
 -- -- word search
 -- vim.keymap.set("n", "<leader>fw", function()

@@ -12,6 +12,10 @@ miniclue.setup {
     { mode = "n", keys = "<S-l>" },
     { mode = "x", keys = "<S-l>" },
 
+    -- Leader 2 triggers
+    { mode = "n", keys = "<C-g>" },
+    { mode = "x", keys = "<C-g>" },
+
     -- Built-in completion
     -- { mode = "i", keys = "<C-x>" },
 
@@ -57,6 +61,10 @@ miniclue.setup {
 }
 
 -- --------------------------- Pluglins keymaps ---------------------------------
+-- theme switcher
+vim.keymap.set("n", "<leader>th", ":lua require('base46').toggle_theme()<cr>",
+{ desc = "Themes" })
+
 -- File tree
 vim.keymap.set("n", "<leader>d", function()
   require("oil").open_float()
@@ -67,14 +75,15 @@ vim.keymap.set("n", "<leader>mm", "<cmd>PeekOpen<cr>", { desc = "markdown previe
 vim.keymap.set("n", "<leader>mk", "<cmd>PeekClose<cr>", { desc = "markdown stop" })
 vim.keymap.set("n", "<leader>mr", "<cmd>Markview<cr>", { desc = "markdown render toggle" })
 
--- Zen mode
-vim.keymap.set("n", "<leader>z", function()
-  require("zen-mode").toggle { window = { width = 0.85 } }
-end, { desc = "Zen mode" })
+-- Tree
+vim.keymap.set("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 
 -- gitsigns
-vim.keymap.set("n", "<leader>gh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
-vim.keymap.set("n", "<leader>gb", ":Gitsign toggle_current_line_blame<CR>", { desc = "currentt line blame" })
+-- https://www.youtube.com/watch?v=IyBAuDPzdFY&t=22s
+vim.keymap.set("n", "<C-g>h", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
+vim.keymap.set("n", "<C-g>s", ":Gitsign stage_hunk<CR>", { desc = "stage hunk" })
+vim.keymap.set("n", "<C-g>hr", ":Gitsign reset_hunk<CR>", { desc = "reset hunk" })
+vim.keymap.set("n", "<C-g>i", ":Gitsign toggle_current_line_blame<CR>", { desc = "currentt line blame" })
 
 -- toggle copilot
 vim.keymap.set("n", "<leader>tc", function()
@@ -87,6 +96,11 @@ vim.keymap.set("n", "<leader>tc", function()
 end, { desc = "Copilot" })
 
 -- vim.keymap.set("n", "<leader>td", vim.diagnostic.hide, { desc = "Hide diagnostics" })
+
+-- Zen mode
+vim.keymap.set("n", "<leader>tz", function()
+  require("zen-mode").toggle { window = { width = 0.85 } }
+end, { desc = "Zen mode" })
 
 -- trouble
 vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })

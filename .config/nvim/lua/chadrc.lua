@@ -1,17 +1,18 @@
 local M = {
-
   base46 = {
     -- theme = "nord",
     theme = "poimandres",
-    theme = "RosePine",
-    -- theme = "monochrome",
-    -- theme = "monochrome",
+    -- theme = "RosePine",
+    -- theme = "Monochrome",
     hl_add = {},
-    h1_override = {},
+    h1_override = {
+      Normal = { bg = "none" },
+      NormalFloat = { bg = "none" },
+    },
     integrations = {},
     changed_themes = {},
-    transparency = true,
-    theme_toggle = {},
+    transparency = false,
+    theme_toggle = {"poimandres", "Nano-light"},
   },
 
   ui = {
@@ -20,7 +21,7 @@ local M = {
       lspkind_text = true,
       style = "default",  -- default/flat_light/flat_dark/atom/atom_colored
       format_colors = {
-        tailwind = false, -- will work for css lsp too
+        tailwind = true, -- will work for css lsp too
         icon = "󱓻",
       },
     },
@@ -77,10 +78,10 @@ local M = {
       { txt = "  Find File", keys = "Space ff", cmd = "Telescope find_files" },
       { txt = "  Recent Files", keys = "Space fo", cmd = "Telescope oldfiles" },
       { txt = "󰈭  Find Word", keys = "Space fl", cmd = "Telescope live_grep" },
-      { txt = "󱥚  Dired", keys = "Space d", cmd = "" },
+      { txt = "󱥚  Dired", keys = "Space d", cmd = ":lua require('oil.open')"},
       -- { txt = "  Mappings", keys = "Space fk", cmd = "Telescope keymaps" },
       -- { txt = "  Mappings", keys = "Space fk", cmd = "NvCheatsheet" },
-      -- { txt = "󱥚  Themes", keys = "Space th", cmd = ":lua require('nvchad.themes').open()" },
+      { txt = "󱥚  Themes", keys = "Space th", cmd = ":lua require('nvchad.themes').open()"},
       -- { txt = "󱥚  Themes", keys = "Space th", cmd = "Telescope themes" },
 
       { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
@@ -115,7 +116,7 @@ local M = {
   },
 
   term = {
-    enabled = false,
+    enabled = true,
     winopts = { number = false, relativenumber = false },
     sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
     float = {
@@ -134,7 +135,7 @@ local M = {
     excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" }, -- can add group name or with mode
   },
 
-  lsp = { signature = false },
+  lsp = { signature = true },
   mason = { pkgs = {}, skip = {} },
 }
 

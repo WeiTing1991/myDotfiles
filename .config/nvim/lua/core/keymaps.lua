@@ -31,18 +31,15 @@ vim.keymap.set("n", "<Tab>", function()
 end, { desc = "Toggle fold" })
 
 -- buffer
-vim.keymap.set("n", "<leader>o", ":bn<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>i", ":bp<cr>", { desc = "Prevous buffer" })
+vim.keymap.set("n", "<leader>i", ":bn<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>o", ":bp<cr>", { desc = "Prevous buffer" })
 
 vim.keymap.set("n", "<leader>q", function()
   vim.cmd ":bw"
 end, { desc = "Close current buffer and window" })
 
--- defult file tree
-vim.keymap.set("n", "<C-e>", "<cmd>Lexplore<cr>", { desc = "File tree" })
-
 -- clear search highlights
-vim.keymap.set("n", "zz", ":nohl<CR>", { desc = "Clear highlights" })
+vim.keymap.set("n", "qq", ":nohl<CR>", { desc = "Clear highlights" })
 
 -- Move the highlighted line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
@@ -68,7 +65,7 @@ vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "move to up buffer" })
 vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "move to down buffer" })
 
 -- windows
-vim.keymap.set("n", "<leader>/", function()
+vim.keymap.set("n", "<C-'>", function()
   require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
 end, { desc = "Toggle maximize buffer" })
 
@@ -110,15 +107,15 @@ vim.keymap.set("i", "<C-e>", "<Del>")
 -- cd to current file directory
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 
+-- open term
+vim.keymap.set({ "n", "t" }, "<leader>/", function()
+  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+end, { desc = "open the term" })
+
+
 -- Optional
 -- -- Parser info
 -- vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })
---
--- open term
--- vim.keymap.set({ "n", "t" }, "<C-/>", function()
---   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
--- end, { desc = "open the term" })
---
 -- -- Delete selected text and replace with text from system clipboard
 -- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection with system clipboard content" })
 --

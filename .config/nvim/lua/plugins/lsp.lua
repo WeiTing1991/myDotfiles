@@ -1,7 +1,7 @@
 
 return {
 
-  -- --------------------------- Autocompeletion --------------------------------------------------
+  -- --------------------------- Autocompletion --------------------------------------------------
   {
     "saghen/blink.cmp",
     event = "InsertEnter",
@@ -24,7 +24,7 @@ return {
     end)(),
     opts = {
       history = true,
-      delete_check_events = "TextChanged",
+      -- delete_check_events = "TextChanged",
     },
   },
 
@@ -64,14 +64,14 @@ return {
   },
 
   -- LSP saga
-  {
-    "nvimdev/lspsaga.nvim",
-    -- enabled = false,
-    event = "VimEnter",
-    config = function()
-      require "lsp.lsp-ui"
-    end,
-  },
+  -- {
+  --   "nvimdev/lspsaga.nvim",
+  --   -- enabled = false,
+  --   event = "VimEnter",
+  --   config = function()
+  --     require "lsp.lsp-ui"
+  --   end,
+  -- },
 
   -- formater and linter
   {
@@ -85,14 +85,14 @@ return {
     end,
   },
   -- other lsp tool
-  {
-    "danymat/neogen",
-    event = "BufEnter",
-    config = function()
-      require("neogen").setup { snippet_engine = "luasnip" }
-    end,
-    -- version = "*"
-  },
+  -- {
+  --   "danymat/neogen",
+  --   event = "BufEnter",
+  --   config = function()
+  --     require("neogen").setup { snippet_engine = "luasnip" }
+  --   end,
+  --   -- version = "*"
+  -- },
   {
     "windwp/nvim-ts-autotag",
     event = "BufRead",
@@ -112,12 +112,6 @@ return {
       })
     end,
   },
-  -- json and yaml
-  -- {
-  --   "b0o/SchemaStore.nvim",
-  --   event = "VeryLazy",
-  --   version = false, -- last release is way too old
-  -- },
 
   -- -- debugger
   -- {

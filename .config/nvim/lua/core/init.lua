@@ -77,24 +77,24 @@ local packages = {
   "treesitter",
   "cmp",
   "nvcheatsheet",
-  -- "colors"
-
-  -- "lsp",
-  -- "git",
-  -- "mason",
+  "colors",
+  "lsp",
+  "git",
+  "mason",
+  "tbline",
+  "term"
   -- "statusline",
   -- "whichkey"
   -- "blankline"
   -- "devicons"
   -- "nvimtree"
-  -- "tbline"
-  -- "term"
 }
 
 -- load base46 UI
 for _, v in ipairs(packages) do
   dofile(vim.g.base46_cache .. v)
 end
+
 
 -- load basd46 UI all
 -- for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
