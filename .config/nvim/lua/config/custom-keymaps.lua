@@ -78,8 +78,9 @@ vim.keymap.set("n", "<leader>mr", "<cmd>Markview<cr>", { desc = "markdown render
 -- Tree
 vim.keymap.set("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 
--- gitsigns
+-- git tools
 -- https://www.youtube.com/watch?v=IyBAuDPzdFY&t=22s
+-- https://www.naseraleisa.com/posts/diff
 vim.keymap.set('v', '<C-g>s', function()
   require('gitsigns').stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
 end, { desc = 'git stage hunk' })
@@ -93,12 +94,14 @@ vim.keymap.set("n", "<C-g>s", ":Gitsign stage_hunk<CR>", { desc = "stage hunk" }
 vim.keymap.set("n", "<C-g>S", ":Gitsign stage_buffer<CR>", { desc = "stage hunk" })
 vim.keymap.set("n", "<C-g>r", ":Gitsign reset_hunk<CR>", { desc = "reset hunk" })
 vim.keymap.set("n", "<C-g>i", ":Gitsign toggle_current_line_blame<CR>", { desc = "currentt line blame" })
+
 -- vim.keymap.set("n", "<C-g>d", function()
 --   require('gitsigns').diffthis '@'
 -- end, { desc = "git diff last commit" })
 -- vim.keymap.set("n", "<C-g>d", function()
 --   require('gitsigns').diffthis()
 -- end, { desc = "git diff" })
+
 
 -- toggle copilot
 vim.keymap.set("n", "<leader>tc", function()
