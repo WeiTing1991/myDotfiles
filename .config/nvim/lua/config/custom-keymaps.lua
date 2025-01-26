@@ -62,8 +62,7 @@ miniclue.setup {
 
 -- --------------------------- Pluglins keymaps ---------------------------------
 -- theme switcher
-vim.keymap.set("n", "<leader>th", ":lua require('base46').toggle_theme()<cr>",
-  { desc = "Themes" })
+vim.keymap.set("n", "<leader>th", ":lua require('base46').toggle_theme()<cr>", { desc = "Themes" })
 
 -- File tree
 vim.keymap.set("n", "<leader>d", function()
@@ -81,12 +80,12 @@ vim.keymap.set("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 -- git tools
 -- https://www.youtube.com/watch?v=IyBAuDPzdFY&t=22s
 -- https://www.naseraleisa.com/posts/diff
-vim.keymap.set('v', '<C-g>s', function()
-  require('gitsigns').stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-end, { desc = 'git stage hunk' })
-vim.keymap.set('v', '<C-g>r', function()
-  require('gitsigns').reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-end, { desc = 'git reset hunk' })
+vim.keymap.set("v", "<C-g>s", function()
+  require("gitsigns").stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+end, { desc = "git stage hunk" })
+vim.keymap.set("v", "<C-g>r", function()
+  require("gitsigns").reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+end, { desc = "git reset hunk" })
 
 vim.keymap.set("n", "<C-g>h", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
 vim.keymap.set("n", "<C-g>s", ":Gitsign stage_hunk<CR>", { desc = "stage hunk" })
@@ -101,6 +100,26 @@ vim.keymap.set("n", "<C-g>i", ":Gitsign toggle_current_line_blame<CR>", { desc =
 -- vim.keymap.set("n", "<C-g>d", function()
 --   require('gitsigns').diffthis()
 -- end, { desc = "git diff" })
+
+vim.keymap.set("n", "<C-g>g", vim.cmd.Git, { desc = "Git" })
+vim.keymap.set("n", "<C-g>gp", function()
+  vim.cmd.Git ("push")
+end, { desc = "Git push" })
+vim.keymap.set("n", "<C-g>gP", function()
+  vim.cmd.Git ({"pull", "--rebase"})
+end, { desc = "Git push" })
+
+vim.keymap.set("n", "<C-g>gP", function()
+  vim.cmd.Git ({"pull", "--rebase"})
+end, { desc = "Git pull rebase " })
+
+local function commit_current_file()
+  local file = vim.fn.expand('%')
+  local message = vim.fn.input('Commit message: ')
+  vim.cmd('Git add ' .. file)
+  vim.cmd('Git commit -m "' .. message .. '"')
+end
+vim.keymap.set('n', '<C-g>ca', commit_current_file, { desc = "Git commit current file" })
 
 
 -- toggle copilot

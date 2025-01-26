@@ -191,10 +191,10 @@ return {
         buf_modified = true,
         buf_modified_symbol = "M",
         dim_inactive = {
-            enabled = true,
-            highlight = "WinbarNC",
-            icons = false,
-            name = true,
+          enabled = true,
+          highlight = "WinbarNC",
+          icons = false,
+          name = true,
         },
         show_file_path = true,
         exclude_filetype = {
@@ -272,6 +272,12 @@ return {
     lazy = true,
     event = "VimEnter",
   },
+  {
+    "sindrets/diffview.nvim",
+    lazy = true,
+    event = "VimEnter",
+  },
+
 
   -- ai tools
   {
