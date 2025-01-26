@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     set.tabstop = 2
     set.softtabstop = 2
     set.textwidth = 200
-    vim.opt.foldlevel = 1
+    vim.opt.foldlevel = 99
 
     set.wrap = true
     set.spell = true

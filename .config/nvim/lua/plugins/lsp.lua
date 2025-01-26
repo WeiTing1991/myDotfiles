@@ -64,14 +64,14 @@ return {
   },
 
   -- LSP saga
-  -- {
-  --   "nvimdev/lspsaga.nvim",
-  --   -- enabled = false,
-  --   event = "VimEnter",
-  --   config = function()
-  --     require "lsp.lsp-ui"
-  --   end,
-  -- },
+  {
+    "nvimdev/lspsaga.nvim",
+    -- enabled = false,
+    event = "VimEnter",
+    config = function()
+      require "lsp.lsp-ui"
+    end,
+  },
 
   -- formater and linter
   {
@@ -84,6 +84,7 @@ return {
       require "lsp.lsp-format"
     end,
   },
+
   -- other lsp tool
   -- {
   --   "danymat/neogen",
@@ -93,6 +94,7 @@ return {
   --   end,
   --   -- version = "*"
   -- },
+  --
   {
     "windwp/nvim-ts-autotag",
     event = "BufRead",

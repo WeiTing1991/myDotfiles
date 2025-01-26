@@ -262,7 +262,8 @@ return {
           untracked = { text = "┆" },
         },
         current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d>-<summary>",
+        -- current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d>-<summary>",
+        current_line_blame_formatter = "<summary>, <author_time:%Y-%m-%d>-<author>",
       }
     end,
   },

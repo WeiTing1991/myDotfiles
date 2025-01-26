@@ -1,12 +1,11 @@
-require("mason").setup {
-  ui = {
+require("mason").setup ({ ui = {
     icons = {
       package_installed = "✓",
       package_pending = "➜",
       package_uninstalled = "✗",
     },
   },
-}
+})
 
 -- require("fidget").setup { notification = { window = { winblend = 0 } } }
 
@@ -70,7 +69,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type Definition")
     map("<leader>gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
     -- For example, in C this would take you to the header
-    map("gD", vim.lsp.buf.declaration, "Goto Declaration")
+    map("gD", vim.lsp.buf.declaration, "Goto Declaratiokn")
 
     map("gr", require("telescope.builtin").lsp_references, "Goto References")
 
