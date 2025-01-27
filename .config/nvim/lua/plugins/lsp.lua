@@ -86,15 +86,15 @@ return {
   },
 
   -- other lsp tool
-  -- {
-  --   "danymat/neogen",
-  --   event = "BufEnter",
-  --   config = function()
-  --     require("neogen").setup { snippet_engine = "luasnip" }
-  --   end,
-  --   -- version = "*"
-  -- },
-  --
+  {
+    "danymat/neogen",
+    event = "BufEnter",
+    config = function()
+      require("neogen").setup { snippet_engine = "luasnip" }
+    end,
+    -- version = "*"
+  },
+
   {
     "windwp/nvim-ts-autotag",
     event = "BufRead",
