@@ -82,8 +82,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- extra
     map("<S-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
     map("<S-l>rb", "<cmd>Lspsaga rename<CR>", "Rename in buffer")
-    map("<S-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")
-    map("<S-l>rr", "<cmdrqspRestart<CR>", "Lsp restart")
+    -- map("<S-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")
+    map("<S-l>rr", "<cmd>LspRestart<CR>", "Lsp restart")
 
     map("<S-l>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
     -- map("<C-l>ca", vim.lsp.buf.code_action, "Code Action")
@@ -193,8 +193,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- float win
         vim.diagnostic.open_float(nil, {
           focus = false,
-          scope = "line",
-          -- scope = "cursor",
+          -- scope = "line",
+          scope = "cursor",
           border = "rounded",
           header = "",
           prefix = "󱓻 ",

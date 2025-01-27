@@ -278,7 +278,6 @@ return {
     event = "VimEnter",
   },
 
-
   -- ai tools
   {
     "zbirenbaum/copilot.lua",

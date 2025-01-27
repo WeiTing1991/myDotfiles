@@ -24,7 +24,7 @@ return {
     end)(),
     opts = {
       history = true,
-      -- delete_check_events = "TextChanged",
+      delete_check_events = "TextChanged",
     },
   },
 
@@ -94,11 +94,10 @@ return {
     end,
     -- version = "*"
   },
-
   {
     "windwp/nvim-ts-autotag",
     event = "BufRead",
-    -- ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+    ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
       require("nvim-ts-autotag").setup({
         opts = {
