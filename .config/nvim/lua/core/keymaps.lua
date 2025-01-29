@@ -65,7 +65,7 @@ vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "move to up buffer" })
 vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "move to down buffer" })
 
 -- windows
-vim.keymap.set("n", "<C-'>", function()
+vim.keymap.set("n", "<leader>'", function()
   require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
 end, { desc = "Toggle maximize buffer" })
 
