@@ -6,10 +6,16 @@ local globals = {
   next_buffer = nil,
   have_nerd_font = true,
 
+  -- disable some default providers
+  loaded_node_provider = 0,
+  loaded_python3_provider = 0,
+  loaded_perl_provider = 0,
+  loaded_ruby_provider = 0,
+
   -- netrw
-  netrw_browse_split = 4,
-  netrw_liststyle = 3,
-  netrw_winsize = 30,
+  -- netrw_browse_split = 4,
+  -- netrw_liststyle = 3,
+  -- netrw_winsize = 30,
   -- editorconfig = true,
 }
 
@@ -38,48 +44,54 @@ else
   spellDir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 end
 
------------------------------------- DEFAULT OPTION ------------------------------------
+------------------------------------ DEFAULT OPTIONS ------------------------------------
 
 local options = {
-  -- See :h
+
+  laststatus = 3,
+
+  --number
   number = true,
   relativenumber = true,
-  mouse = "a",
+  numberwidth = 2,
+
+  -- Show which line your cursor is on
+  cursorline = true,
+  cursorlineopt = "number",
 
   --  See `:help 'clipboard'`
   clipboard = "unnamedplus",
 
-  -- set tab to 4 spaces
-  tabstop = 4,
-  softtabstop = 4,
-  shiftwidth = 4,
+  -- indenting
   expandtab = true,
-  smartindent = false,
-  cindent = false,
-  wrap = true,
+  shiftwidth = 2,
+  smartindent = true,
+  tabstop = 2,
+  softtabstop = 2,
+
+  -- See `:help 'list'`
+  list = true,
+  listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" },
+  fillchars = { eob = " " },
+
+  -- Case-insensitive searching UNLESS \C or capital in search
+  ignorecase = true,
+  smartcase = true,
+  mouse = "a",
+
+  signcolumn = "yes:1",
+
+  -- Decrease update time
+  updatetime = 100,
+  timeoutlen = 400,
+  splitright = true,
+  splitbelow = true,
 
   -- Save undo history
   backup = false,
   undofile = true,
   undodir = undoDir,
 
-  -- Case-insensitive searching UNLESS \C or capital in search
-  ignorecase = true,
-  smartcase = false,
-
-  -- Decrease update time
-  updatetime = 30,
-  timeoutlen = 300,
-
-  -- Configure how new splits should be opened
-  splitright = true,
-  --splitbelow = true,
-
-  -- Sets how neovim will display certain whitespace in the editor.
-  -- See `:help 'list'`
-  list = true,
-  listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" },
-  fillchars = { eob = " " },
 
   -- Enable break indent
   breakindent = true,
@@ -87,10 +99,10 @@ local options = {
 
   -- Preview substitutions live, as you type!
   inccommand = "split",
-  signcolumn = "yes:1",
 
-  -- Show which line your cursor is on
-  cursorline = true,
+
+  -- cindent = false,
+  -- wrap = true,
 
   -- tabline
   -- showtabline = 1,
@@ -100,29 +112,32 @@ local options = {
   linebreak = true,
 
   -- Minimal number of screen lines to keep above and below the cursor.
-  scrolloff = 10,
-  sidescrolloff = 1,
-  conceallevel = 0,
+  -- scrolloff = 10,
+  -- sidescrolloff = 1,
+  -- conceallevel = 0,
 
   -- searcfolds
-  foldmethod = "expr",
-  foldexpr = "nvim_treesitter#foldexpr()",
-  foldtext = "",
-  foldlevel = 99,
-  foldcolumn = "0",
-  foldlevelstart = 99,
+  -- foldmethod = "expr",
+  -- foldexpr = "nvim_treesitter#foldexpr()",
+  -- foldtext = "",
+  -- foldlevel = 99,
+  -- foldcolumn = "0",
+  -- foldlevelstart = 99,
   --foldnextmax = 3,
 
   -- foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()",
 
   -- spell check
-  spelllang = "en_us",
-  spell = false,
-  spellfile = spellDir,
+  -- spelllang = "en_us",
+  -- spell = false,
+  -- spellfile = spellDir,
   --titlestring = string.sub('%{&pvw} - %F', 0, 10),
 }
 -- vim.opt.isfname:append "@-@"
 -- vim.opt.iskeyword:append "-"
+
+-- disable nvim intro
+vim.opt.shortmess:append "sI"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
