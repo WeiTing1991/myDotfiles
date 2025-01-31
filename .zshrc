@@ -116,7 +116,11 @@ alias tree="eza --tree"
 
 
 # git tools
-alias gd="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
+git_diff_bat() {
+  git diff --name-only --relative --diff-filter=d "$1"| xargs bat --diff
+}
+
+alias gd=git_diff_bat
 alias gca="git commit -am"
 
 # path

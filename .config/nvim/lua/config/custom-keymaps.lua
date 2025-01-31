@@ -70,9 +70,10 @@ vim.keymap.set("n", "<leader>d", function()
 end, { desc = "Toggle file explorer" })
 
 -- Markdown
-vim.keymap.set("n", "<leader>mm", "<cmd>PeekOpen<cr>", { desc = "markdown preview" })
+vim.keymap.set("n", "<leader>mm", "<cmd>PeekOpen<cr>", { desc = "markdown preview with deno" })
 vim.keymap.set("n", "<leader>mk", "<cmd>PeekClose<cr>", { desc = "markdown stop" })
 vim.keymap.set("n", "<leader>mr", "<cmd>Markview<cr>", { desc = "markdown render toggle" })
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview with node" })
 
 -- Tree
 vim.keymap.set("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })

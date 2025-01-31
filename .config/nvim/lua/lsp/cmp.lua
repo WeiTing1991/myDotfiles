@@ -57,6 +57,7 @@ require("blink.cmp").setup {
     --   require("luasnip").jump(direction)
     -- end,
   -- },
+
   snippets = {preset = "luasnip"},
 
   sources = {

@@ -4,7 +4,6 @@ return {
   -- NOTE: https://github.com/iamcco/markdown-preview.nvim
   {
     "iamcco/markdown-preview.nvim",
-    enabled = false,
     event = "VeryLazy",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown", ".md" },
@@ -15,7 +14,7 @@ return {
   },
   {
     "toppair/peek.nvim",
-    event = { "VeryLazy" },
+    event = "VeryLazy" ,
     build = "deno task --quiet build",
     config = function()
       local app = 'webview'
