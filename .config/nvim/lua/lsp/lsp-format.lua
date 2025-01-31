@@ -16,11 +16,27 @@ require("null-ls").setup {
     -- formating
     formatting.stylua,
 
-    formatting.prettierd.with {
-      command = "prettierd",
-      filetyes = {
-        "javascript", -- check also ;
+    -- js/ts
+    -- formatting.prettierd.with {
+    --   command = "prettierd",
+    --   filetyes = {
+    --     "javascript", -- check also ;
+    --     "typescript",
+    --     "css",
+    --     "html",
+    --     "json",
+    --     "jsonc",
+    --     "yaml",
+    --     "markdown",
+    --   },
+    --   extra_filetypes = { "toml" },
+    -- },
+    formatting.biome.with {
+      filetypes = {
+        "javascript",
         "typescript",
+        "javascriptreact",
+        "typescriptreact",
         "css",
         "html",
         "json",
@@ -28,10 +44,8 @@ require("null-ls").setup {
         "yaml",
         "markdown",
       },
-      extra_filetypes = { "toml" },
     },
 
-    -- js/ts
     require("none-ls.diagnostics.eslint_d").with {
       args = {
         "--no-warn-ignored", -- <-- this is the key argument
@@ -62,9 +76,12 @@ require("null-ls").setup {
       filetypes = { "python" },
     },
 
-    formatting.black.with {
-      filetypes = { "python" },
-      extra_arges = { "--fast" },
+    -- formatting.black.with {
+    --   filetypes = { "python" },
+    --   extra_arges = { "--fast" },
+    -- },
+    formatting.shfmt.with {
+      filetypes = { "sh", "bash" },
     },
   },
 }
