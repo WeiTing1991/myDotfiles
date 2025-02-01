@@ -145,8 +145,9 @@ M = {
   tailwindcss = {},
   html = {},
 
-  -- bashls = {},
+  bashls = {},
   marksman = {},
+  yamlls = {},
 
   jsonls = {
     settings = {

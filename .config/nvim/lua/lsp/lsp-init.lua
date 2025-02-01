@@ -104,24 +104,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- disable semanticTokensProvider
     if client and client.supports_method "textDocument/semanticTokens" then
       client.server_capabilities.semanticTokensProvider = nil
-      client.capabilities = vim.lsp.protocol.make_client_capabilities()
-      client.capabilities.textDocument.completion.completionItem = {
-        documentationFormat = { "markdown", "plaintext" },
-        snippetSupport = true,
-        preselectSupport = true,
-        insertReplaceSupport = true,
-        labelDetailsSupport = true,
-        deprecatedSupport = true,
-        commitCharactersSupport = true,
-        tagSupport = { valueSet = { 1 } },
-        resolveSupport = {
-          properties = {
-            "documentation",
-            "detail",
-            "additionalTextEdits",
-          },
-        },
-      }
+      -- client.capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- client.capabilities.textDocument.completion.completionItem = {
+      --   documentationFormat = { "markdown", "plaintext" },
+      --   snippetSupport = true,
+      --   preselectSupport = true,
+      --   insertReplaceSupport = true,
+      --   labelDetailsSupport = true,
+      --   deprecatedSupport = true,
+      --   commitCharactersSupport = true,
+      --   tagSupport = { valueSet = { 1 } },
+      --   resolveSupport = {
+      --     properties = {
+      --       "documentation",
+      --       "detail",
+      --       "additionalTextEdits",
+      --     },
+      --   },
+      -- }
     end
 
 

@@ -138,6 +138,8 @@ tmux_two_pane() {
     tmux -2 attach-session -t main
 }
 alias t=tmux_two_pane
+# zellij
+alias z="zellij"
 
 # ----------------------------------- TERM -----------------------------------
 # bash and zsh

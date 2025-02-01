@@ -20,8 +20,8 @@ require('copilot').setup({
     hide_during_completion = true,
     debounce = 10,
     keymap = {
-      accept = "<C-f>",
-      accept_word = false,
+      accept = "<C-l>",
+      accept_word = "<C-f>",
       accept_line = false,
       next = "<C-]>",
       prev = "<C-[>",

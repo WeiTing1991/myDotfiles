@@ -58,7 +58,7 @@ require("blink.cmp").setup {
     -- end,
   -- },
 
-  snippets = {preset = "luasnip"},
+  -- snippets = {preset = "luasnip"},
 
   sources = {
     -- default = { "lazydev", "lsp", "path", "luasnip", "snippets", "buffer" },
@@ -69,7 +69,7 @@ require("blink.cmp").setup {
         name = "LazyDev",
         enabled = true,
         module = "lazydev.integrations.blink",
-        score_offset = 50,
+        -- score_offset = 80,
       },
       lsp = {
         name = "lsp",
@@ -88,7 +88,7 @@ require("blink.cmp").setup {
         --   end,
         --   show_hidden_files_by_default = true,
         -- },
-        score_offset = 80,
+        -- score_offset = 80,
       },
       -- luasnip = {
       --   name = "luasnip",
@@ -103,14 +103,14 @@ require("blink.cmp").setup {
         enabled = true,
         module = "blink.cmp.sources.buffer",
         -- min_keyword_length = 4,
-        score_offset = 70,
+        -- score_offset = 70,
       },
       snippets = {
         name = "snippets",
         enabled = true,
         module = "blink.cmp.sources.snippets",
         -- min_keyword_length = 4,
-        score_offset = 85,
+        -- score_offset = 80,
       },
 
       -- copilot = {
@@ -132,7 +132,7 @@ require("blink.cmp").setup {
         treesitter = { "lsp" },
         -- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
       },
-      border = "rounded",
+      border = "single",
       auto_show = function(ctx)
         return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
       end,
@@ -147,5 +147,5 @@ require("blink.cmp").setup {
 }
 
 -- set scroll bar appearance
-vim.api.nvim_set_hl(0, "BlinkCmpScrollBarThumb", { bg = "#000000" })
-vim.api.nvim_set_hl(0, "BlinkCmpScrollBarGutter", { bg = "#000000" })
+-- vim.api.nvim_set_hl(0, "BlinkCmpScrollBarThumb", { bg = "#000000" })
+-- vim.api.nvim_set_hl(0, "BlinkCmpScrollBarGutter", { bg = "#000000" })

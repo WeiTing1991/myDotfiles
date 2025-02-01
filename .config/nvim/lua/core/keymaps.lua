@@ -34,8 +34,8 @@ vim.keymap.set("n", "<Tab>", function()
 end, { desc = "Toggle fold" })
 
 -- buffer
-vim.keymap.set("n", "<leader>i", ":bn<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>o", ":bp<cr>", { desc = "Prevous buffer" })
+vim.keymap.set("n", "<leader>o", ":bn<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>i", ":bp<cr>", { desc = "Prevous buffer" })
 
 vim.keymap.set("n", "<leader>q", function()
   vim.cmd ":bw"

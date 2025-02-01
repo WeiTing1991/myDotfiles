@@ -30,6 +30,8 @@ return {
     },
     config = function(_, opts)
       require("luasnip").config.set_config(opts)
+      -- require("luasnip.loaders.from_vscode").lazy_load { exclude = vim.g.vscode_snippets_exclude or {} }
+      -- require("luasnip.loaders.from_vscode").lazy_load { paths = vim.g.vscode_snippets_path or "" }
       -- require "nvchad.configs.luasnip"
     end,
   },

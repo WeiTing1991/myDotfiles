@@ -31,7 +31,9 @@ require("null-ls").setup {
     --   },
     --   extra_filetypes = { "toml" },
     -- },
+    --
     formatting.biome.with {
+      command = "biome",
       filetypes = {
         "javascript",
         "typescript",
@@ -80,8 +82,9 @@ require("null-ls").setup {
     --   filetypes = { "python" },
     --   extra_arges = { "--fast" },
     -- },
+
     formatting.shfmt.with {
-      filetypes = { "sh", "bash" },
+      filetypes = { "sh", "bash", "zsh" },
     },
   },
 }

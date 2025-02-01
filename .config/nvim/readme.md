@@ -24,7 +24,6 @@ rm -rf ~/.local/share/nvim
 git clone  URL ~/.config/nvim
 
 ```
-
 <!-- ```bash -->
 <!-- # add the submodule -->
 <!-- git submodule add https://github.com/WeiTing1991/wtemacs.git .emacs.d -->

@@ -87,7 +87,7 @@ local packages = {
   -- "statusline",
   -- "whichkey"
   -- "blankline"
-  -- "devicons"
+  "devicons"
 }
 
 -- load base46 UI
