@@ -1,0 +1,15 @@
+// check https://biomejs.dev/guides/configure-biome/
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space", // default is `tab`
+    "lineWidth": 120 // default is `80`
+  },
+  "linter": {
+    "enabled": false
+  },
+  "organizeImports": {
+    "enabled": true
+  }
+}
