@@ -23,6 +23,8 @@ for k, v in pairs(globals) do
   vim.g[k] = v
 end
 
+------------------------------------ DEFAULT OPTIONS ------------------------------------
+
 -- undo folder
 local undoDir = ""
 if vim.loop.os_uname().sysname == "Darwin" then
@@ -44,7 +46,6 @@ else
   spellDir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 end
 
------------------------------------- DEFAULT OPTIONS ------------------------------------
 
 local options = {
 
@@ -57,7 +58,7 @@ local options = {
 
   -- Show which line your cursor is on
   cursorline = true,
-  cursorlineopt = "number",
+  -- cursorlineopt = "",
 
   --  See `:help 'clipboard'`
   clipboard = "unnamedplus",
@@ -82,8 +83,8 @@ local options = {
   signcolumn = "yes:1",
 
   -- Decrease update time
-  updatetime = 100,
-  timeoutlen = 400,
+  updatetime = 10,
+  timeoutlen = 150,
   splitright = true,
   splitbelow = true,
 
@@ -99,7 +100,6 @@ local options = {
 
   -- Preview substitutions live, as you type!
   inccommand = "split",
-
 
   -- cindent = false,
   -- wrap = true,
@@ -117,22 +117,22 @@ local options = {
   -- conceallevel = 0,
 
   -- searcfolds
-  -- foldmethod = "expr",
-  -- foldexpr = "nvim_treesitter#foldexpr()",
-  -- foldtext = "",
-  -- foldlevel = 99,
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()",
+  -- foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()",
+  foldtext = "",
+  foldlevel = 99,
   -- foldcolumn = "0",
   -- foldlevelstart = 99,
-  --foldnextmax = 3,
-
-  -- foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()",
+  -- foldnextmax = 3,
 
   -- spell check
-  -- spelllang = "en_us",
-  -- spell = false,
-  -- spellfile = spellDir,
-  --titlestring = string.sub('%{&pvw} - %F', 0, 10),
+  spelllang = "en_us",
+  spell = false,
+  spellfile = spellDir,
+  -- titlestring = string.sub('%{&pvw} - %F', 0, 10),
 }
+
 -- vim.opt.isfname:append "@-@"
 -- vim.opt.iskeyword:append "-"
 

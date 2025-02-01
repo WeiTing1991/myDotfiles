@@ -2,6 +2,7 @@
 return {
 
   -- --------------------------- Autocompletion --------------------------------------------------
+
   {
     "saghen/blink.cmp",
     event = "InsertEnter",
@@ -25,7 +26,12 @@ return {
     opts = {
       history = true,
       delete_check_events = "TextChanged",
+      updateevents = "TextChanged,TextChangedI"
     },
+    config = function(_, opts)
+      require("luasnip").config.set_config(opts)
+      -- require "nvchad.configs.luasnip"
+    end,
   },
 
   -- --------------------------- LSP config -------------------------------------------------------
@@ -66,7 +72,7 @@ return {
   -- LSP saga
   {
     "nvimdev/lspsaga.nvim",
-    -- enabled = false,
+    enabled = false,
     event = "VimEnter",
     config = function()
       require "lsp.lsp-ui"

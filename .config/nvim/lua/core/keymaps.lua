@@ -3,6 +3,9 @@
 -- disable space key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "v" }, "<C-i>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "v" }, "<C-o>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
 
 -- toggle spelling
 function ToggleSpellCheck()
@@ -39,7 +42,7 @@ vim.keymap.set("n", "<leader>q", function()
 end, { desc = "Close current buffer and window" })
 
 -- clear search highlights
-vim.keymap.set("n", "qq", ":nohl<CR>", { desc = "Clear highlights" })
+vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear highlights" })
 
 -- Move the highlighted line down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
@@ -102,7 +105,6 @@ vim.keymap.set(
 -- inoremap " ""<Left>
 -- vim.keymap.set("i", "(", "()<Left>")
 vim.keymap.set("i", "<C-e>", "<Del>")
-
 
 -- cd to current file directory
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })

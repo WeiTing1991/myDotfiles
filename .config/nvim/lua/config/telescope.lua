@@ -20,8 +20,8 @@ require("telescope").setup {
     --   "--glob",
     --   "!**/.git/*",
     -- },
-    -- path_display = { "smart" },
-    initial_mode = "insert",
+    path_display = { "smart" },
+    initial_mode = "normal",
     layout_config = {
       horizontal = {
         prompt_position = "bottom",

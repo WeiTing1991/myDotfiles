@@ -1,9 +1,5 @@
 local treesitter = require "nvim-treesitter.configs"
 
-local function test()
-  print("test")
-end
-
 treesitter.setup {
   modules = {},
   ensure_installed = {
@@ -56,6 +52,7 @@ treesitter.setup {
 
   highlight = {
     enable = true,
+    use_languagetree = true,
 
     -- disable in bigger file
     disable = function(lang, buf)
@@ -68,6 +65,6 @@ treesitter.setup {
     -- additional_vim_regex_highlighting = { "markdown" },
     additional_vim_regex_highlighting = false,
   },
-  -- indent = { enable = true },
+  indent = { enable = true },
 }
 

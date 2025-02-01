@@ -7,7 +7,7 @@ require("mason").setup ({ ui = {
   },
 })
 
--- require("fidget").setup { notification = { window = { winblend = 0 } } }
+require("fidget").setup { notification = { window = { winblend = 0 } } }
 
 local lsp_server = vim.tbl_keys(require "lsp.config.lsp-server" or {})
 local lsp_lint_fomater = vim.tbl_values(require "lsp.config.lsp-extra" or {})
@@ -58,48 +58,73 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local map = function(keys, func, desc, mode)
       mode = mode or "n"
-      desc = desc or "No description"
+      -- desc = desc or "No description"
       vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
     end
 
-    -- map("K", vim.lsp.buf.hover, "Hover Documentation")
-    map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-
-    -- map("gd", vim.lsp.peek_definition, "Type Definition")
-    map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type Definition")
+    map("K", vim.lsp.buf.hover, "Hover Documentation")
+    map("gd", vim.lsp.buf.definition, "Type Definition")
     map("<leader>gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
     -- For example, in C this would take you to the header
     map("gD", vim.lsp.buf.declaration, "Goto Declaratiokn")
 
-    map("gr", require("telescope.builtin").lsp_references, "Goto References")
+    map("gr", vim.lsp.buf.references, "Goto References")
+    map("gR", require("telescope.builtin").lsp_references, "Goto References")
 
-    map("gi", "<cmd>Lspsaga finder imp<CR>", "Peek Implementation")
+    map("gi", vim.lsp.buf.implementation, "Peek Implementation")
     map("gI", require("telescope.builtin").lsp_implementations, "Goto Implementation")
 
     map("<S-l>j", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
     map("<S-l>k", vim.lsp.buf.signature_help, "Buffer singture help")
 
     -- extra
-    map("<S-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
-    map("<S-l>rb", "<cmd>Lspsaga rename<CR>", "Rename in buffer")
-    -- map("<S-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")
+    -- map("<S-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
+    map("<S-l>rb", require("nvchad.lsp.renamer"), "Rename in buffer")
     map("<S-l>rr", "<cmd>LspRestart<CR>", "Lsp restart")
 
-    map("<S-l>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
-    -- map("<C-l>ca", vim.lsp.buf.code_action, "Code Action")
-    map("<S-l>ck", vim.lsp.buf.type_definition, "Type defintion")
-    -- map("<C-l>ck", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+    map("<S-l>ca", vim.lsp.buf.code_action, "Code Action")
+    map("<S-l>d", vim.lsp.buf.type_definition, "Type defintion")
 
     map("<leader>,", vim.lsp.buf.format, "formatting")
 
-    map("<S-l>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic")
-    map("<S-l>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev diagnostic")
+    -- map("<S-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")
+    -- map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
+    -- map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type Definition")
+    -- map("<S-l>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
+    -- map("<C-l>ck", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+
+    -- map("<S-l>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next diagnostic")
+    -- map("<S-l>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev diagnostic")
     -- map("<leader>dl", "<cmd>Telescope diagnostics<cr>", "Diagnostics")
     -- map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-    -- BUG:
+
+    -- disable semanticTokensProvider
+    if client and client.supports_method "textDocument/semanticTokens" then
+      client.server_capabilities.semanticTokensProvider = nil
+      client.capabilities = vim.lsp.protocol.make_client_capabilities()
+      client.capabilities.textDocument.completion.completionItem = {
+        documentationFormat = { "markdown", "plaintext" },
+        snippetSupport = true,
+        preselectSupport = true,
+        insertReplaceSupport = true,
+        labelDetailsSupport = true,
+        deprecatedSupport = true,
+        commitCharactersSupport = true,
+        tagSupport = { valueSet = { 1 } },
+        resolveSupport = {
+          properties = {
+            "documentation",
+            "detail",
+            "additionalTextEdits",
+          },
+        },
+      }
+    end
+
+
     -- disable gopls semanticTokensProvider
     -- if client and client.name == "gopls" then
     --   if not client.server_capabilities.semanticTokensProvider then
@@ -209,7 +234,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.diagnostic.config {
   virtual_text = false,
   underline = true,
-  update_in_insert = false,
+  update_in_insert = true,
   sings = true,
 }
 

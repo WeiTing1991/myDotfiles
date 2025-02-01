@@ -34,7 +34,6 @@ return {
     event = "VimEnter",
     branch = "0.1.x",
     dependencies = {
-      "nvim-lua/plenary.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -96,7 +95,6 @@ return {
     "folke/todo-comments.nvim",
     lazy = true,
     event = "BufRead",
-    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require "config.todo"
     end,
@@ -129,7 +127,7 @@ return {
       require("ibl").setup {
         exclude = {
           filetypes = { "markdown" },
-          buftypes = { "terminal" },
+          buftypes = { "terminal" , "oil"},
         },
         indent = { char = "▏" },
         scope = { enabled = false },
@@ -144,7 +142,7 @@ return {
     event = "BufEnter",
     opts = {
       char = { "┆" },
-      virtcolumn = "105",
+      virtcolumn = "110",
       highlight = { "NonText" },
       exclude = { filetypes = { "oil", "markdown" } },
     },
@@ -160,12 +158,15 @@ return {
 
   -- Autopair
   {
-    "echasnovski/mini.pairs",
+    "windwp/nvim-autopairs",
     enabled = true,
     event = "InsertEnter",
-    version = "*",
-    config = function()
-      require("mini.pairs").setup()
+    opts = {
+      fast_wrap = {},
+      disable_filetype = { "TelescopePrompt", "vim" },
+    },
+    config = function(_, opts)
+      require("nvim-autopairs").setup(opts)
     end,
   },
 
@@ -213,7 +214,7 @@ return {
   },
 
   -- -------------------------------- TOOL  -------------------------------------------------------
-  -- Zen mode
+  -- tmux navigator
   {
     "christoomey/vim-tmux-navigator",
     lazy = true,
@@ -233,12 +234,13 @@ return {
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
-  {
-    "folke/zen-mode.nvim",
-    lazy = true,
-    event = "BufEnter",
-    opts = {},
-  },
+  -- zed mode
+  -- {
+  --   "folke/zen-mode.nvim",
+  --   lazy = true,
+  --   event = "BufEnter",
+  --   opts = {},
+  -- },
 
   -- NOTE: https://github.com/folke/trouble.nvim?tab=readme-ov-file
   -- {
@@ -277,7 +279,6 @@ return {
     lazy = true,
     event = "VimEnter",
   },
-
   -- ai tools
   {
     "zbirenbaum/copilot.lua",

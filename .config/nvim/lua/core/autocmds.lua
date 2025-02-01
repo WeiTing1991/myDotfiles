@@ -1,6 +1,32 @@
------------------------------------- highlight color ------------------------------------
+------------------------------------ highlight color ----------------------------------------:
 
 local set = vim.opt_local
+
+-- user event that loads after UIEnter + only if file buf is there
+vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
+  group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
+  callback = function(args)
+    local file = vim.api.nvim_buf_get_name(args.buf)
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+
+    if not vim.g.ui_entered and args.event == "UIEnter" then
+      vim.g.ui_entered = true
+    end
+
+    if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
+      vim.api.nvim_exec_autocmds("User", { pattern = "FilePost", modeline = false })
+      vim.api.nvim_del_augroup_by_name "NvFilePost"
+
+      vim.schedule(function()
+        vim.api.nvim_exec_autocmds("FileType", {})
+
+        -- if vim.g.editorconfig then
+        --   require("editorconfig").config(args.buf)
+        -- end
+      end)
+    end
+  end,
+})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
@@ -25,11 +51,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     -- vim.api.nvim_set_hl(0, "cursor", { background = "#eb6f92", foreground = "white"})
     -- vim.o.winbar = "%#WinBarPath#%{expand('%:p:h:t')}/%#WinBarFile#%{expand('%:t')}"
     -- vim.o.winbar = "%f %m"
-
   end,
 })
 
------------------------------------- Autocmd for specials file
+------------------------------------ Autocmd for file type ------------------------------------
 -- TODO:
 
 --[[ Markdwon ]]
@@ -38,10 +63,10 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = mdgroup,
   pattern = "*.md",
   callback = function()
-    set.shiftwidth = 2
-    set.tabstop = 2
-    set.softtabstop = 2
-    set.textwidth = 200
+    set.shiftwidth = 4
+    set.tabstop = 4
+    set.softtabstop = 4
+    set.textwidth = 150
     vim.opt.foldlevel = 99
 
     set.wrap = true
@@ -49,7 +74,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     set.number = false
     set.relativenumber = false
     -- set.conceallevel = 2
-    vim.g.markdown_fenced_languages = { "cpp", "python", "bash=sh", "json", "yaml", "vim", "lua"}
+    vim.g.markdown_fenced_languages = { "cpp", "python", "bash=sh", "javascript", "json", "yaml", "vim", "lua" }
     -- vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste the image" })
   end,
 })
@@ -60,16 +85,16 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = jsongroup,
   pattern = "*.json",
   callback = function()
-
     set.conceallevel = 0
     set.shiftwidth = 2
     set.tabstop = 2
     set.softtabstop = 2
-    set.textwidth = 180
+    set.textwidth = 150
 
     vim.bo.filetype = "jsonc"
   end,
 })
+
 
 
 -- local cppgroup = vim.api.nvim_create_augroup("cppgroup", { clear = true })
