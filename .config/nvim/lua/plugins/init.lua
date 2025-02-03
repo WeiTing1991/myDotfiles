@@ -41,4 +41,54 @@ return {
       require "configs.telescope"
     end,
   },
+
+  -- treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = true,
+    event = "VimEnter",
+    build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    -- -@param opts TSConfig
+    config = function()
+      require "configs.treesitter"
+    end,
+  },
+
+  -- file tree
+  {
+    "stevearc/oil.nvim",
+    lazy = true,
+    event = "VimEnter",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    config = function()
+      require "configs.oil"
+    end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = true,
+    event = "VimEnter",
+    config = function()
+      require "configs.nvimtree"
+    end,
+  },
+
+  -- clue keymaps
+  -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md
+  {
+    "echasnovski/mini.clue",
+    lazy = true,
+    version = "*",
+    event = "VeryLazy",
+    -- config = function()
+    --   require "mapping"
+    -- end,
+  },
+
 }

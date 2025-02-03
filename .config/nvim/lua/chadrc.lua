@@ -1,9 +1,9 @@
 local M = {
   base46 = {
     -- theme = "nord",
-    theme = "poimandres",
+    -- theme = "poimandres",
     -- theme = "RosePine",
-    -- theme = "Monochrome",
+    theme = "Monochrome",
     hl_add = {},
     h1_override = {
       Normal = { bg = "none" },
@@ -12,7 +12,7 @@ local M = {
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = {"poimandres", "Nano-light"},
+    theme_toggle = {"Monochrome", "Nano-light"},
   },
 
   ui = {
@@ -28,8 +28,8 @@ local M = {
 
     telescope = { style = "bordered" }, -- borderless / bordered
 
-    -- statusline = {
-      -- enabled = true,
+    statusline = {
+      enabled = true,
       -- theme = "default", -- default/vscode/vscode_colored/minimal
       -- -- default/round/block/arrow separators work only for default statusline theme
       -- -- round and block will work for minimal theme only
@@ -45,7 +45,7 @@ local M = {
       --     end
       --   end,
       -- },
-    -- },
+    },
 
     -- lazyload it when there are 1+ buffers
     tabufline = {

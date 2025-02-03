@@ -1,5 +1,5 @@
 ----------------------------------- default keymap -------------------------------------
-
+local map = vim.keymap.set
 
 -- disable space key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -94,7 +94,7 @@ vim.keymap.set("v", ">", ">gv")
 -- Replace the word throughout the file
 vim.keymap.set(
   "n",
-  "<leader>ss",
+  "<leader>s",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = "Replace word throughout file" }
 )

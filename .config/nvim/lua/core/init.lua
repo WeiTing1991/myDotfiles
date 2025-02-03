@@ -39,15 +39,16 @@ local packages = {
   "devicons",
   "colors",
   "syntax",
-  -- "treesitter",
+  "treesitter",
+  "nvcheatsheet",
+  "nvimtree",
+  -- "lspsaga",
   -- "cmp",
-  -- "nvcheatsheet",
   -- "lsp",
   -- "git",
   -- "mason",
   -- "tbline",
   -- "term",
-  -- "nvimtree",
   -- "whichkey"
   -- "blankline"
 }
