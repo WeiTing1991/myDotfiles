@@ -1,15 +1,15 @@
-vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', {fg = "#e5e9f0", default = true,})
+vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = "#e5e9f0", default = true, })
 vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbolOff', { default = true, link = 'MiniIndentscopeSymbol' })
 
 require('mini.indentscope').setup({
-    draw = {
-        delay = 0,
-        animation = function() return 0 end,
-        priority = 2,
-    },
+  draw = {
+    delay = 0,
+    animation = function() return 0 end,
+    priority = 2,
+  },
 
-    symbol = '▏',
-    options = { border = 'top', try_as_border = true },
+  symbol = '▏',
+  options = { border = 'top', try_as_border = true },
 })
 
 -- Disable for certain filetypes

@@ -18,12 +18,12 @@ M = {
           -- disable = { "missing-fields" },
         },
       },
-    workspace = {
-      checkThirdParty = false,
-      library = {
-        vim.env.VIMRUNTIME,
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+        },
       },
-    },
     },
   },
 

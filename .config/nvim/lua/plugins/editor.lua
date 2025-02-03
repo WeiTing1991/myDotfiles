@@ -1,5 +1,5 @@
 return {
- ---------------------------------- EDITOR  ---------------------------------------------
+  ---------------------------------- EDITOR  ---------------------------------------------
   -- todo highlight
   {
     "folke/todo-comments.nvim",
@@ -38,7 +38,7 @@ return {
       require("ibl").setup {
         exclude = {
           filetypes = { "markdown" },
-          buftypes = { "terminal" , "oil"},
+          buftypes = { "terminal", "oil" },
         },
         indent = { char = "▏" },
         scope = { enabled = false },

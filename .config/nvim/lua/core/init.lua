@@ -14,7 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -23,7 +23,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require ("core.lazy")
+local lazy_config = require("core.lazy")
 
 -- load plugins
 require("lazy").setup({
@@ -61,9 +61,9 @@ local packages = {
 -- end
 
 for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
- dofile(vim.g.base46_cache .. v)
+  dofile(vim.g.base46_cache .. v)
 end
 
 -- custom mapping
-require ("mapping")
+require("mapping")
 require "core.autocmds"

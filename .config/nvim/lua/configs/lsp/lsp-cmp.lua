@@ -1,4 +1,3 @@
-
 -- NOTE: https://github.com/linkarzu/dotfiles-latest/blob/main/neovim/neobean/lua/plugins/blink-cmp.lua
 -- NOTE: check the https://github.com/honza/vim-snippets/tree/master/snippets
 

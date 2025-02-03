@@ -3,7 +3,7 @@
 local builtin = require "telescope.builtin"
 local utils = require "telescope.utils"
 local actions = require "telescope.actions"
-local tele = require ("telescope")
+local tele = require("telescope")
 
 -- setup
 tele.setup {
@@ -67,7 +67,7 @@ tele.setup {
       find_command = {
         "fd",
         "--strip-cwd-prefix",
-        "--type","f", -- Only find files
+        "--type", "f", -- Only find files
         "--hidden",
         "--exclude",
         ".git",
@@ -104,15 +104,15 @@ tele.setup {
   },
   extensions = {
     fzf = {
-      fuzzy = true, -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
     },
     frecency = {
-      show_scores = true, -- Default: false
-      db_safe_mode = false, -- Default: true
-      auto_validate = true, -- Default: true
+      show_scores = true,         -- Default: false
+      db_safe_mode = false,       -- Default: true
+      auto_validate = true,       -- Default: true
       db_validate_threshold = 10, -- Default: 10
       show_filter_column = false, -- Default: true
     },
@@ -122,4 +122,3 @@ tele.setup {
 pcall(tele.load_extension, "fzf")
 pcall(tele.load_extension, "frecency")
 -- pcall(require("telescope").load_extension "ui-select")
-

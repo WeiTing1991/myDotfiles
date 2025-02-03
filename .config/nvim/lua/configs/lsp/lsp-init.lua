@@ -1,4 +1,5 @@
-require("mason").setup ({ ui = {
+require("mason").setup({
+  ui = {
     icons = {
       package_installed = "✓",
       package_pending = "➜",

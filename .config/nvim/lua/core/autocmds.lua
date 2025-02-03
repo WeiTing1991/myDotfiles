@@ -59,6 +59,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 -- TODO:
 ------------------------------------------- Autocmd for file type --0-00000----------------------------------
 
+local set = vim.opt
+
 --[[ Markdwon ]]
 local mdgroup = vim.api.nvim_create_augroup("mdgroup", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
@@ -96,7 +98,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.bo.filetype = "jsonc"
   end,
 })
-
 
 -- local cppgroup = vim.api.nvim_create_augroup("cppgroup", { clear = true })
 -- vim.api.nvim_create_autocmd("FileType", {

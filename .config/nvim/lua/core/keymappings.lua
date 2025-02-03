@@ -122,4 +122,3 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir
 --
 -- -- Yank current line to system clipboard
 -- vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank current line to system clipboard" })
-

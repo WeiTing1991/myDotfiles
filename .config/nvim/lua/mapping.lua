@@ -70,15 +70,15 @@ local builtin = require "telescope.builtin"
 map("n", "<C-f>", builtin.find_files, { desc = "Find files" })
 map("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 map("n", "<leader><leader>", function()
-  builtin.find_files {cwd = utils.buffer_dir()}
+  builtin.find_files { cwd = utils.buffer_dir() }
 end, { desc = "Finde file in current child dir" })
 map("n", "<leader>fo", builtin.oldfiles, { desc = "Open recent file" })
 --
 map("n", "<leader>fb", builtin.buffers, { desc = "Find existing buffer" })
 map("n", "<leader>fk", builtin.keymaps, { desc = "Search keymaps" })
 map("n", "<leader>fg", function()
-    builtin.grep_string { search = vim.fn.input "Grep > " }
-  end, { desc = "Grep search" })
+  builtin.grep_string { search = vim.fn.input "Grep > " }
+end, { desc = "Grep search" })
 
 map("n", "<leader>fl", builtin.live_grep, { desc = "Find live grep" })
 
@@ -130,14 +130,14 @@ map("n", "<C-g>i", ":Gitsign toggle_current_line_blame<CR>", { desc = "currentt 
 
 map("n", "<C-g>g", vim.cmd.Git, { desc = "Git" })
 map("n", "<C-g>gp", function()
-  vim.cmd.Git ("push")
+  vim.cmd.Git("push")
 end, { desc = "Git push" })
 map("n", "<C-g>gP", function()
-  vim.cmd.Git ({"pull", "--rebase"})
+  vim.cmd.Git({ "pull", "--rebase" })
 end, { desc = "Git push" })
 
 map("n", "<C-g>gP", function()
-  vim.cmd.Git ({"pull", "--rebase"})
+  vim.cmd.Git({ "pull", "--rebase" })
 end, { desc = "Git pull rebase " })
 
 local function commit_current_file()

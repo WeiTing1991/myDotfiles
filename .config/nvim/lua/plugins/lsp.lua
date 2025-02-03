@@ -7,7 +7,7 @@ return {
     dependencies = "rafamadriz/friendly-snippets",
     version = "*",
     config = function()
-      require ("configs.lsp.lsp-cmp")
+      require("configs.lsp.lsp-cmp")
     end,
   },
   {
@@ -45,7 +45,7 @@ return {
         -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
-   },
+    },
   },
   { "Bilal2453/luvit-meta", lazy = true },
   {
@@ -65,8 +65,8 @@ return {
       -- {"jay-babu/mason-nvim-dap.nvim"},
     },
     config = function()
-      require ("configs.lsp.lsp-init") -- lsp engine
-      require ("configs.lsp.configs.keymaps") -- lsp keymap
+      require("configs.lsp.lsp-init")         -- lsp engine
+      require("configs.lsp.configs.keymaps")  -- lsp keymap
       --only if load with lspconfig and mason
       -- require "lsp.dap-init"
     end,
@@ -79,7 +79,7 @@ return {
     enabled = false,
     event = "VimEnter",
     config = function()
-      require ("configs.lsp.lsp-ui")
+      require("configs.lsp.lsp-ui")
     end,
   },
 
@@ -114,8 +114,8 @@ return {
     config = function()
       require("nvim-ts-autotag").setup({
         opts = {
-          enable_close = true, -- Auto close tags
-          enable_rename = true, -- Auto rename pairs of tags
+          enable_close = true,          -- Auto close tags
+          enable_rename = true,         -- Auto rename pairs of tags
           enable_close_on_slash = false -- Auto close on trailing </
         },
         per_filetype = {
