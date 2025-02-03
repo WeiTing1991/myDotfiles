@@ -68,8 +68,8 @@ local map = vim.keymap.set
 local builtin = require "telescope.builtin"
 
 map("n", "<C-f>", builtin.find_files, { desc = "Find files" })
-map("n", "<leader>f", builtin.find_files, { desc = "Find files" })
-map("n", "<leader>b", function()
+map("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+map("n", "<leader><leader>", function()
   builtin.find_files {cwd = utils.buffer_dir()}
 end, { desc = "Finde file in current child dir" })
 map("n", "<leader>fo", builtin.oldfiles, { desc = "Open recent file" })
@@ -99,6 +99,10 @@ map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown prev
 -- Tree
 map("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 
+-- windows
+map("n", "<leader>'", function()
+  require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
+end, { desc = "Toggle maximize buffer" })
 
 -- git tools
 -- https://www.youtube.com/watch?v=IyBAuDPzdFY&t=22s
@@ -144,7 +148,6 @@ local function commit_current_file()
 end
 map('n', '<C-g>ca', commit_current_file, { desc = "Git commit current file" })
 
-
 -- toggle copilot
 map("n", "<leader>tc", function()
   require("copilot.suggestion").toggle_auto_trigger()
@@ -158,9 +161,9 @@ end, { desc = "Copilot" })
 -- map("n", "<leader>td", vim.diagnostic.hide, { desc = "Hide diagnostics" })
 
 -- Zen mode
-map("n", "<leader>tz", function()
-  require("zen-mode").toggle { window = { width = 0.85 } }
-end, { desc = "Zen mode" })
+-- map("n", "<leader>tz", function()
+--   require("zen-mode").toggle { window = { width = 0.85 } }
+-- end, { desc = "Zen mode" })
 
 -- trouble
 map("n", "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })

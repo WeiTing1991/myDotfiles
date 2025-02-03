@@ -4,7 +4,6 @@ vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 -- default
 require "core.options"
 require "core.keymappings"
-require "core.autocmds"
 
 -- plugin manager
 -- bootstrap lazy and all plugins
@@ -42,11 +41,13 @@ local packages = {
   "treesitter",
   "nvcheatsheet",
   "nvimtree",
-  -- "lspsaga",
+  "todo",
+  -- "mason",
   -- "cmp",
   -- "lsp",
+  -- "diffview",
+  -- "lspsaga",
   -- "git",
-  -- "mason",
   -- "tbline",
   -- "term",
   -- "whichkey"
@@ -65,3 +66,4 @@ end
 
 -- custom mapping
 require ("mapping")
+require "core.autocmds"

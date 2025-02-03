@@ -22,11 +22,11 @@ vim.api.nvim_create_autocmd("FileType", {
     "mason",
     "telescope",
     "markdown",
-    -- "neo-tree",
+    "nvimtree",
+    "oil",
     -- "toggleterm",
   },
   callback = function()
     vim.b.miniindentscope_disable = true
   end,
 })
-

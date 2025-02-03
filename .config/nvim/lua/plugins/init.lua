@@ -79,7 +79,7 @@ return {
     end,
   },
 
-  -- clue keymaps
+  -- emacs-like keymaps
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md
   {
     "echasnovski/mini.clue",
@@ -90,5 +90,4 @@ return {
     --   require "mapping"
     -- end,
   },
-
 }
