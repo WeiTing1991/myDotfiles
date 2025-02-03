@@ -28,8 +28,8 @@ local M = {
 
     telescope = { style = "bordered" }, -- borderless / bordered
 
-    statusline = {
-      enabled = false,
+    -- statusline = {
+      -- enabled = true,
       -- theme = "default", -- default/vscode/vscode_colored/minimal
       -- -- default/round/block/arrow separators work only for default statusline theme
       -- -- round and block will work for minimal theme only
@@ -45,7 +45,8 @@ local M = {
       --     end
       --   end,
       -- },
-    },
+    -- },
+
     -- lazyload it when there are 1+ buffers
     tabufline = {
       enabled = false,
@@ -116,7 +117,7 @@ local M = {
   },
 
   term = {
-    enabled = true,
+    enabled = false,
     winopts = { number = false, relativenumber = false },
     sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
     float = {

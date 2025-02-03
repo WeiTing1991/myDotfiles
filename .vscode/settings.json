@@ -26,9 +26,6 @@
     "workbench.panel.defaultLocation": "right",
     "workbench.editor.empty.hint": "hidden",
 
-    // "workbench.colorTheme": "Monochrome Dark Amplified",
-    "workbench.colorTheme": "Monochrome Dark",
-
 
 //   /** editor *************************************************************************************/
     // "editor.fontFamily": "Roboto, SauceCodePro Nerd Font, SauceCodePro NF, RobotoMono Nerd Font ",

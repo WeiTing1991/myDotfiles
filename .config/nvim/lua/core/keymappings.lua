@@ -1,4 +1,5 @@
--- --------------------------------- default keymap -------------------------------------
+----------------------------------- default keymap -------------------------------------
+
 
 -- disable space key
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -109,11 +110,6 @@ vim.keymap.set("i", "<C-e>", "<Del>")
 -- cd to current file directory
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 
--- open term
-vim.keymap.set({ "n", "t" }, "<leader>/", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
-end, { desc = "open the term" })
-
 
 -- Optional
 -- -- Parser info
@@ -126,3 +122,4 @@ end, { desc = "open the term" })
 --
 -- -- Yank current line to system clipboard
 -- vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank current line to system clipboard" })
+

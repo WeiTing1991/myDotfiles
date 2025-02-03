@@ -1,11 +1,12 @@
--- telescoper config
+-- telescope config
 
 local builtin = require "telescope.builtin"
 local utils = require "telescope.utils"
 local actions = require "telescope.actions"
+local tele = require ("telescope")
 
 -- setup
-require("telescope").setup {
+tele.setup {
   defaults = {
     -- vimgrep_arguments = {
     --   "rg",
@@ -118,36 +119,7 @@ require("telescope").setup {
   },
 }
 
-pcall(require("telescope").load_extension, "fzf")
-pcall(require("telescope").load_extension, "frecency")
+pcall(tele.load_extension, "fzf")
+pcall(tele.load_extension, "frecency")
 -- pcall(require("telescope").load_extension "ui-select")
 
--- keymaps
-vim.keymap.set("n", "<C-f>", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader><leader>", function()
-  builtin.find_files { cwd = utils.buffer_dir() }
-end, { desc = "Finde file in current child dir" })
-vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Open recent file" })
-
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find existing buffer" })
-vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Search keymaps" })
-
--- vim.keymap.set("n", "<C-g>", builtin.git_files, { desc = "Find live grep" })
-
-vim.keymap.set("n", "<leader>fg", function()
-  builtin.grep_string { search = vim.fn.input "Grep > " }
-end, { desc = "Grep search" })
-
-vim.keymap.set("n", "<leader>fl", builtin.live_grep, { desc = "Find live grep" })
-
--- -- word search
--- vim.keymap.set("n", "<leader>fw", function()
---   local word = vim.fn.expand "<cword>"
---   builtin.grep_string { search = word }
--- end, { desc = "word search" })
-
--- vim.keymap.set("n", "<leader>fW", function()
---   local word = vim.fn.expand "<cWORD>"
---   builtin.grep_string { search = word }
--- end, { desc = "cWord search" })

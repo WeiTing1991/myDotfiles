@@ -137,10 +137,8 @@ local options = {
 -- vim.opt.iskeyword:append "-"
 
 -- disable nvim intro
-vim.opt.shortmess:append "sI"
+-- vim.opt.shortmess:append "sI"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
-
