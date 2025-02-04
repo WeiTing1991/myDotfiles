@@ -2,7 +2,7 @@
 
 return {
   defaults = { lazy = false },
-  -- install = { colorscheme = { "nvchad" } },
+  install = { colorscheme = { "nvchad" } },
 
   ui = {
     border = "rounded",

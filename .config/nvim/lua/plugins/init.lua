@@ -4,6 +4,7 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "nvchad/ui",
+    -- lazy = true,
     config = function()
       require "nvchad"
     end
