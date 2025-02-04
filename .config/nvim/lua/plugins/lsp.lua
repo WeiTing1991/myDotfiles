@@ -91,9 +91,9 @@ return {
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
     },
-    -- config = function()
-    --   require ("configs.lsp.lsp-format")
-    -- end,
+    config = function()
+      require ("configs.lsp.lsp-format")
+    end,
   },
 
   -- others

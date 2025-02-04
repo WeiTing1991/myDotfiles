@@ -18,6 +18,15 @@ return {
   --theme switcher
   { "nvchad/volt" },
 
+  -- statusline
+  {
+    "WeiTing1991/staline.nvim",
+    lazy = false,
+    config = function()
+      require "configs.staline"
+    end,
+  },
+
   --------------------------------------- CORE  -------------------------------------------------------
   -- fzf/telescope
   {

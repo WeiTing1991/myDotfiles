@@ -51,7 +51,7 @@ require("blink.cmp").setup {
         name = "LazyDev",
         enabled = true,
         module = "lazydev.integrations.blink",
-        score_offset = 70,
+        -- score_offset = 70,
       },
       lsp = {
         name = "lsp",
@@ -70,7 +70,7 @@ require("blink.cmp").setup {
         --   end,
         --   show_hidden_files_by_default = true,
         -- },
-        score_offset = 80,
+        -- score_offset = 80,
       },
       -- luasnip = {
       --   name = "luasnip",
@@ -85,14 +85,14 @@ require("blink.cmp").setup {
         enabled = true,
         module = "blink.cmp.sources.buffer",
         -- min_keyword_length = 4,
-        score_offset = 70,
+        -- score_offset = 70,
       },
       snippets = {
         name = "snippets",
         enabled = true,
         module = "blink.cmp.sources.snippets",
         -- min_keyword_length = 4,
-        score_offset = 85,
+        -- score_offset = 85,
       },
 
       -- copilot = {

@@ -30,6 +30,7 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+
 -- loading list from basd46
 local packages = {
   "defaults",
@@ -41,10 +42,10 @@ local packages = {
   "treesitter",
   "nvcheatsheet",
   "nvimtree",
-  "todo",
-  -- "mason",
-  -- "cmp",
-  -- "lsp",
+  "todonvim",
+  "mason",
+  "cmp",
+  "lsp",
   -- "diffview",
   -- "lspsaga",
   -- "git",
@@ -66,4 +67,4 @@ end
 
 -- custom mapping
 require("mapping")
-require "core.autocmds"
+require("core.autocmds")
