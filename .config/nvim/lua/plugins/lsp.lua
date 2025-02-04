@@ -77,7 +77,7 @@ return {
     "nvimdev/lspsaga.nvim",
     lazy = true,
     enabled = false,
-    event = "VimEnter",
+    event = "BufEnter",
     config = function()
       require("configs.lsp.lsp-ui")
     end,

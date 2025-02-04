@@ -33,21 +33,21 @@ require("null-ls").setup {
     --   extra_filetypes = { "toml" },
     -- },
 
-    -- formatting.biome.with {
-    --   command = "biome",
-    --   filetypes = {
-    --     "javascript",
-    --     "typescript",
-    --     "javascriptreact",
-    --     "typescriptreact",
-    --     "css",
-    --     "html",
-    --     "json",
-    --     "jsonc",
-    --     "yaml",
-    --     "markdown",
-    --   },
-    -- },
+    formatting.biome.with {
+      command = "biome",
+      filetypes = {
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact",
+        "css",
+        "html",
+        "json",
+        "jsonc",
+        "yaml",
+        "markdown",
+      },
+    },
 
     -- require("none-ls.diagnostics.eslint_d").with {
     --   args = {
