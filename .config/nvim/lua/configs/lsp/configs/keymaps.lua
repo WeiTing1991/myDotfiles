@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<S-l>k", vim.lsp.buf.signature_help, "Buffer singture help")
 
     -- extra
-    -- map("<S-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
+    map("<S-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
     map("<S-l>rb", require("nvchad.lsp.renamer"), "Rename in buffer")
     map("<S-l>rp", vim.lsp.buf.rename, "Rename in project")
     map("<S-l>rr", "<cmd>LspRestart<CR>", "Lsp restart")
