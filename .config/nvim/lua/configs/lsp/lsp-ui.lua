@@ -103,8 +103,8 @@ require("lspsaga").setup {
     },
   },
   definition = {
-    width = 0.6,
-    height = 0.5,
+    width = 0.8,
+    height = 0.6,
     save_pos = false,
     number = vim.o.number,
     relativenumber = vim.o.relativenumber,
@@ -174,7 +174,7 @@ require("lspsaga").setup {
   },
   -- breadcrumb
   symbol_in_winbar = {
-    enable = true,
+    enable = false,
     separator = "› ",
     hide_keyword = true,
     ignore_patterns = nil,

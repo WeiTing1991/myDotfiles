@@ -8,8 +8,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
     end
 
-    map("K", vim.lsp.buf.hover, "Hover Documentation")
-    map("gd", vim.lsp.buf.definition, "Type Definition")
+    -- map("K", vim.lsp.buf.hover, "Hover Documentation")
+    -- map("gd", vim.lsp.buf.definition, "Type Definition")
+    map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
+    map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type Definition")
     map("<leader>gd", require("telescope.builtin").lsp_definitions, "Goto Definition")
     -- For example, in C this would take you to the header
     map("gD", vim.lsp.buf.declaration, "Goto Declaratiokn")
@@ -26,6 +28,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- extra
     -- map("<S-l>o", "<cmd>Lspsaga outline<CR>", "Buffer outline")
     map("<S-l>rb", require("nvchad.lsp.renamer"), "Rename in buffer")
+    map("<S-l>rp", vim.lsp.buf.rename, "Rename in project")
     map("<S-l>rr", "<cmd>LspRestart<CR>", "Lsp restart")
 
     map("<S-l>ca", vim.lsp.buf.code_action, "Code Action")
@@ -33,9 +36,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     map("<leader>,", vim.lsp.buf.format, "formatting")
 
+
     -- map("<S-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")
-    -- map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-    -- map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type Definition")
     -- map("<S-l>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
     -- map("<C-l>ck", require("telescope.builtin").lsp_type_definitions, "Type Definition")
 
