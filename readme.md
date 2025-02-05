@@ -1,4 +1,4 @@
-#Peek error: browser: Failed to spawn 'xdg-open': entity not found Welcome to My Dotfiles
+# Welcome to My Dotfiles
 
 This repository is my dotfiles (always updating) via [GNU stow].
 
