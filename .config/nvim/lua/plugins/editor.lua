@@ -65,6 +65,10 @@ return {
     lazy = true,
     event = "InsertEnter",
     opts = {},
+    -- config = function ()
+      -- local ft = require("Comment.ft")
+      -- ft.set('javascript', {'//%s', '/*%s*/'})
+    -- end
   },
 
   -- Autopair
