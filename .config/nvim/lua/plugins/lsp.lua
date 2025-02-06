@@ -106,6 +106,7 @@ return {
       require("neogen").setup { snippet_engine = "luasnip" }
     end,
   },
+  -- ts/js
   {
     "windwp/nvim-ts-autotag",
     lazy = true,
@@ -125,6 +126,12 @@ return {
         }
       })
     end,
+  },
+  {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
 
   -- -- debugger

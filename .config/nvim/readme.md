@@ -21,6 +21,7 @@ rm -rf ~/.local/share/nvim
 # install and clone
 git clone  URL ~/.config/nvim
 ```
+in Neovim run `:MasonToolInstall` to install the extra(linter and formater).
 <!-- ```bash -->
 <!-- # add the submodule -->
 <!-- git submodule add https://github.com/WeiTing1991/wtemacs.git .emacs.d -->
