@@ -13,27 +13,29 @@ LWin & Tab::AltTab
 
 !w::  ; Alt + W
 {
-    Send("!{F4}")  ; Sends Alt + F4 to close the current window
+    Send("!{F4}")
 }
 
-#+h::{
-; Left Half
-    WinMove(padding, padding, TileWidth - padding, A_ScreenHeight - padding, "A")
-    MouseMove(A_ScreenWidth / 4, A_ScreenHeight / 2)
+#+h::
+{
+    SendEvent("#{Left}") ; Sends Win + Left
 }
 
-#+k::{
-; Top Half
-    WinMove(padding, padding, A_ScreenWidth-padding, TileHeight-padding, "A")
+; Win + Shift + K -> Snap window to top half
+#+k::
+{
+    SendEvent("#{Up}") ; Sends Win + Up
 }
 
-#+j::{
-; Top bottom
-    WinMove(padding, TileHeight-padding, A_ScreenWidth-padding, TileHeight-padding, "A")
+; Win + Shift + L -> Snap window to right half
+#+l::
+{
+    SendEvent("#{Right}") ; Sends Win + Right
 }
 
-#+l::{
-    WinMove(TileWidth-padding, padding, TileWidth-padding, A_ScreenHeight-padding, "A")
+#+j::
+{
+    SendEvent("#{Down}") ; Sends Win + Down
 }
 
 #Enter::{
@@ -56,14 +58,6 @@ LWin & Tab::AltTab
 
 ;; app
 ;; not working good
-;#1::
-;{
-    ;Run('C:\Users\weitingchen\AppData\Local\Microsoft\WindowsApps\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\wt.exe')  ; Replace "Profile 1" with your desired profile name
-    ;Run("wt.exe")
-    ;WinWait("Terminal Preview")  ; Wait for Chrome to launch
-    ;WinActivate("PowerShell")  ; Focus the Chrome window
-    ;MouseMove(A_ScreenHeight/2, A_ScreenWidth/2)  ; Move the mouse to the top-left corner
-;}
 
 #2::
 {
@@ -74,7 +68,7 @@ LWin & Tab::AltTab
     MouseMove(A_ScreenHeight/2, A_ScreenWidth/2)  ; Move the mouse to the top-left corner
 }
 
-#2::
+#3::
 {
     ; Open Google Chrome with a specific profile
     Run('chrome.exe --profile-directory="mesh"')  ; Replace "Profile 1" with your desired profile name
@@ -83,6 +77,3 @@ LWin & Tab::AltTab
     MouseMove(A_ScreenHeight/2, A_ScreenWidth/2)  ; Move the mouse to the top-left corner
 }
 
-;#4::
-;{
-;}

@@ -109,20 +109,20 @@
     "when": "sideBarFocus"
   },
   {
-    "key": "ctrl+b q",
+    "key": "ctrl+b e",
     "command": "workbench.action.toggleSidebarVisibility"
   },
   // Extensions
-  {
-    "key": "ctrl+b e",
-    "command": "workbench.view.extensions",
-    "when": "viewContainer.workbench.view.extensions.enabled"
-  },
-  {
-    "key": "ctrl+b e",
-    "command": "workbench.action.closeSidebar",
-    "when": "sideBarFocus "
-  },
+  // {
+  //   "key": "ctrl+b e",
+  //   "command": "workbench.view.extensions",
+  //   "when": "viewContainer.workbench.view.extensions.enabled"
+  // },
+  // {
+  //   "key": "ctrl+b e",
+  //   "command": "workbench.action.closeSidebar",
+  //   "when": "sideBarFocus "
+  // },
   // File tree
   {
     "key": "q",
