@@ -1,19 +1,18 @@
-
 return {
-
-  -- --------------------------- Autocompletion --------------------------------------------------
-
+  -- -------------------------------------- Autocompletion --------------------------------------------------
   {
     "saghen/blink.cmp",
+    lazy = true,
     event = "InsertEnter",
     dependencies = "rafamadriz/friendly-snippets",
     version = "*",
     config = function()
-      require "lsp.cmp"
+      require("configs.lsp.lsp-cmp")
     end,
   },
   {
     "L3MON4D3/LuaSnip",
+    lazy = true,
     event = "InsertEnter",
     dependencies = "rafamadriz/friendly-snippets",
     version = "v2.*",
@@ -36,20 +35,22 @@ return {
     end,
   },
 
-  -- --------------------------- LSP config -------------------------------------------------------
+  -- ------------------------------------- LSP config -------------------------------------------------------
   {
     "folke/lazydev.nvim",
+    lazy = true,
     ft = "lua",
     opts = {
       library = {
         -- Load luvit types when the `vim.uv` word is found
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
-   },
+    },
   },
   { "Bilal2453/luvit-meta", lazy = true },
   {
     "neovim/nvim-lspconfig",
+    lazy = true,
     event = "VimEnter",
     dependencies = {
       -- NOTE: Must be loaded before dependants
@@ -64,8 +65,8 @@ return {
       -- {"jay-babu/mason-nvim-dap.nvim"},
     },
     config = function()
-      require ("lsp.lsp-init") -- lsp engine
-
+      require("configs.lsp.lsp-init")         -- lsp engine
+      require("configs.lsp.configs.keymaps")  -- lsp keymap
       --only if load with lspconfig and mason
       -- require "lsp.dap-init"
     end,
@@ -74,43 +75,48 @@ return {
   -- LSP saga
   {
     "nvimdev/lspsaga.nvim",
-    enabled = false,
-    event = "VimEnter",
+    lazy = true,
+    -- enabled = false,
+    event = "BufEnter",
     config = function()
-      require "lsp.lsp-ui"
+      require("configs.lsp.lsp-ui")
     end,
   },
 
   -- formater and linter
   {
     "nvimtools/none-ls.nvim",
+    lazy = true,
     event = "BufEnter",
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
     },
     config = function()
-      require "lsp.lsp-format"
+      require ("configs.lsp.lsp-format")
     end,
   },
 
-  -- other lsp tool
+  -- others
   {
     "danymat/neogen",
+    lazy = true,
     event = "BufEnter",
+    -- version = "*"
     config = function()
       require("neogen").setup { snippet_engine = "luasnip" }
     end,
-    -- version = "*"
   },
+  -- ts/js
   {
     "windwp/nvim-ts-autotag",
+    lazy = true,
     event = "BufRead",
     ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
       require("nvim-ts-autotag").setup({
         opts = {
-          enable_close = true, -- Auto close tags
-          enable_rename = true, -- Auto rename pairs of tags
+          enable_close = true,          -- Auto close tags
+          enable_rename = true,         -- Auto rename pairs of tags
           enable_close_on_slash = false -- Auto close on trailing </
         },
         per_filetype = {
@@ -120,6 +126,12 @@ return {
         }
       })
     end,
+  },
+  {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
 
   -- -- debugger

@@ -1,1 +1,2 @@
-require("core")
+vim.uv = vim.uv or vim.loop
+require("wtvim.core")

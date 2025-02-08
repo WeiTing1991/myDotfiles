@@ -67,7 +67,6 @@ stow -t "$(echo ~/Library/Application\ Support/Code/User)" .vscode
 - win+R > shell:startup put the`*.ahk into the startup folder`
 - [MAC](https://www.hammerspoon.org/faq/)
 
-
 ### Emacs (Deprecated) just for storing my old configuration.
 Please find more information [here](./Emacs.org).
 

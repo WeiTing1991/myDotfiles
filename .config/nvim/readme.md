@@ -5,37 +5,34 @@
 
 ## Info
 
-I start with [kickstart] and NvChad UI to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and make ths issue or PRs.
+I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and make ths issue or PRs.
 
 ## Setup
 
 **Requirements**
 - Neovim >= 0.10.2
 - git >= 2.47.1
+- curl
+- fzf
+- ripgrep
+- fd || fdfind
+- lazygit `option`
 
+**Getting Started**
 ```bash
 # remove the old Neovim configuration
 rm -rf ~/.config/nvim
 rm -rf ~/.local/state/nvim
 rm -rf ~/.local/share/nvim
 # install and clone
-git clone  URL ~/.config/nvim
+git clone  https://github.com/WeiTing1991/myDotfiles/tree/main/.config/nvim ~/.config/nvim
 ```
 in Neovim run `:MasonToolInstall` to install the extra(linter and formater).
-<!-- ```bash -->
-<!-- # add the submodule -->
-<!-- git submodule add https://github.com/WeiTing1991/wtemacs.git .emacs.d -->
-<!---->
-<!-- git submodule update --init --recursive -->
-<!---->
-<!-- git submodule update --remote --merge -->
-<!---->
-<!-- ``` -->
 
 ## Config
 
 > [!NOTE]
-> still under processing
+> still under documenting
 
 **Core**
     `autocmds.lua`

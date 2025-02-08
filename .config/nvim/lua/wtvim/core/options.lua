@@ -1,7 +1,7 @@
 ------------------------------------ GLOBALS SETTINGS ------------------------------------
 
 local globals = {
-  mapleader = " ",
+
   prev_buffer = nil,
   next_buffer = nil,
   have_nerd_font = true,
@@ -12,10 +12,6 @@ local globals = {
   loaded_perl_provider = 0,
   loaded_ruby_provider = 0,
 
-  -- netrw
-  -- netrw_browse_split = 4,
-  -- netrw_liststyle = 3,
-  -- netrw_winsize = 30,
   -- editorconfig = true,
 }
 

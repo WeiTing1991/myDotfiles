@@ -21,6 +21,7 @@ return {
     enabled = true,
     notify = false
   },
+
   performance = {
     reset_packpath = true,
     rtp = {
