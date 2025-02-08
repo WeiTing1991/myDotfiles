@@ -62,25 +62,35 @@ miniclue.setup({
 
 ---------------------------------- Pluglins keymaps ---------------------------------
 local map = vim.keymap.set
+local fzf = require("fzf-lua")
 
 -- fzf
--- check https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#pickers
-local builtin = require "telescope.builtin"
+map("n", "<C-f>", fzf.files, { desc = "Find files" })
+map("n", "<leader>ff", fzf.files, { desc = "Find files" })
 
-map("n", "<C-f>", builtin.find_files, { desc = "Find files" })
-map("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-map("n", "<leader><leader>", function()
-  builtin.find_files { cwd = utils.buffer_dir() }
+map("n", "<leader><leader>", function() require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h")})
 end, { desc = "Finde file in current child dir" })
-map("n", "<leader>fo", builtin.oldfiles, { desc = "Open recent file" })
---
-map("n", "<leader>fb", builtin.buffers, { desc = "Find existing buffer" })
-map("n", "<leader>fk", builtin.keymaps, { desc = "Search keymaps" })
-map("n", "<leader>fg", function()
-  builtin.grep_string { search = vim.fn.input "Grep > " }
-end, { desc = "Grep search" })
+map("n", "<leader>fo", fzf.oldfiles, { desc = "Open recent file" })
+map("n", "<leader>fb", fzf.buffers, { desc = "Finde file in current child dir" })
 
-map("n", "<leader>fl", builtin.live_grep, { desc = "Find live grep" })
+map("n", "<leader>fk", fzf.keymaps, { desc = "Search keymaps" })
+map("n", "<leader>fg", function() fzf.grep ({ search = vim.fn.input "Grep > "}) end, { desc = "Grep search" })
+--
+map("n", "<leader>fl", fzf.live_grep, { desc = "Find live grep" })
+
+
+-- telescope
+-- local builtin = require "telescope.builtin"
+-- map("n", "<C-f>", builtin.find_files, { desc = "Find files" })
+-- map("n", "<leader><leader>", function() builtin.find_files { cwd = utils.buffer_dir() }
+-- end, { desc = "Finde file in current child dir" })
+-- map("n", "<leader>fo", builtin.oldfiles, { desc = "Open recent file" })
+-- --
+-- map("n", "<leader>fb", builtin.buffers, { desc = "Find existing buffer" })
+-- map("n", "<leader>fk", builtin.keymaps, { desc = "Search keymaps" })
+-- map("n", "<leader>fg", function() builtin.grep_string { search = vim.fn.input "Grep > " } end, { desc = "Grep search" })
+--
+-- map("n", "<leader>fl", builtin.live_grep, { desc = "Find live grep" })
 
 -- theme switcher
 map("n", "<leader>th", ":lua require('base46').toggle_theme()<cr>", { desc = " Switch Themes" })
@@ -104,7 +114,6 @@ map("v", "<leader>mi", "c*<C-r>\"*<Esc>",{desc = "Italic"})
 map("v", "<leader>mc", "c`<C-r>\"`<Esc>",{desc = "Inline Code"})
 -- Strikethrough (Ctrl + s)
 map("v", "<leader>ms", "c~~<C-r>\"~~<Esc>",{desc = "Strikethrough"})
-
 
 -- Tree
 map("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })

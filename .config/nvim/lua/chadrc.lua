@@ -1,9 +1,9 @@
 local M = {
   base46 = {
     -- theme = "nord",
-    theme = "poimandres",
+    -- theme = "poimandres",
     -- theme = "RosePine",
-    -- theme = "Monochrome",
+    theme = "Monochrome",
     hl_add = {},
     h1_override = {
       Normal = { bg = "none" },
@@ -76,9 +76,9 @@ local M = {
     },
 
     buttons = {
-      { txt = "  Find File", keys = "Space ff", cmd = "Telescope find_files" },
-      { txt = "  Recent Files", keys = "Space fo", cmd = "Telescope oldfiles" },
-      { txt = "󰈭  Find Word", keys = "Space fl", cmd = "Telescope live_grep" },
+      { txt = "  Find File", keys = "Space ff", cmd = "FzfLua files " },
+      { txt = "  Recent Files", keys = "Space fo", cmd = "FzfLua oldfiles" },
+      { txt = "󰈭  Find Word", keys = "Space fl", cmd = "FzfLua live_grep" },
       { txt = "󱥚  Dired", keys = "Space d", cmd = ":lua require('oil.open')" },
       -- { txt = "  Mappings", keys = "Space fk", cmd = "Telescope keymaps" },
       -- { txt = "  Mappings", keys = "Space fk", cmd = "NvCheatsheet" },
