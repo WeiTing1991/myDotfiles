@@ -96,6 +96,16 @@ map("n", "<leader>mk", "<cmd>PeekClose<cr>", { desc = "markdown stop" })
 map("n", "<leader>mr", "<cmd>Markview<cr>", { desc = "markdown render toggle" })
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview with node" })
 
+-- Bold (Ctrl + b)
+map("v", "<leader>mb", "c**<C-r>\"**<Esc>",{desc = "Bold"})
+-- Italic (Ctrl + i)
+map("v", "<leader>mi", "c*<C-r>\"*<Esc>",{desc = "Italic"})
+-- Inline Code (Ctrl + `)
+map("v", "<leader>mc", "c`<C-r>\"`<Esc>",{desc = "Inline Code"})
+-- Strikethrough (Ctrl + s)
+map("v", "<leader>ms", "c~~<C-r>\"~~<Esc>",{desc = "Strikethrough"})
+
+
 -- Tree
 map("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 

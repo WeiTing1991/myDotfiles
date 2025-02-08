@@ -148,6 +148,7 @@ M = {
   ["bashls"] = {},
   ["marksman"] = {},
   ["yamlls"] = {},
+  ["taplo"] = {},
 
   ["jsonls"] = {
     settings = {
