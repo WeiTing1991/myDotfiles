@@ -1,8 +1,8 @@
 local M = {
   base46 = {
     -- theme = "nord",
-    theme = "RosePine",
-    -- theme = "RosePine",
+    theme = "poimandres",
+    -- theme = "poimandres",
     -- theme = "Monochrome",
     hl_add = {},
     h1_override = {
