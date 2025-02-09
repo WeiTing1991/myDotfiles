@@ -3,7 +3,7 @@ local M = {
     -- theme = "nord",
     theme = "poimandres",
     -- theme = "RosePine",
-    -- theme = "poimandres",
+    -- theme = "Monochrome",
     hl_add = {},
     h1_override = {
       Normal = { bg = "none" },
@@ -12,7 +12,7 @@ local M = {
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "poimandres", "Monochrome", "Nano-light" },
+    theme_toggle = { "poimandres", "RosePine", "Nano-light" },
   },
 
   ui = {

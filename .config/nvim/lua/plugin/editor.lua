@@ -55,7 +55,7 @@ return {
       char = { "┆" },
       virtcolumn = "110",
       highlight = { "NonText" },
-      exclude = { filetypes = { "oil", "markdown","fzf" } },
+      exclude = { filetypes = { "oil", "markdown", "fzf" } },
     },
   },
 
@@ -65,7 +65,7 @@ return {
     lazy = true,
     event = "VeryLazy",
     opts = {},
-    config = function ()
+    config = function()
       require('Comment').setup {
         pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
       }
@@ -121,11 +121,21 @@ return {
   {
     "echasnovski/mini.ai",
     lazy = true,
-    event = "InsertEnter",
+    event = "VeryLazy",
     version = "*",
     config = function()
       require("mini.ai").setup()
     end,
+  },
+
+  {
+    'echasnovski/mini.nvim',
+    version = '*',
+    lazy = true,
+    event = 'VeryLazy',
+    config = function()
+      require('mini').setup()
+    end
   },
 
   -- winbar
