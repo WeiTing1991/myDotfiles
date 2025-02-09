@@ -81,7 +81,7 @@ local options = {
 
   -- Decrease update time
   updatetime = 10,
-  timeoutlen = 150,
+  timeoutlen = 200,
   splitright = true,
   splitbelow = true,
 

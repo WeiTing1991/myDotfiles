@@ -128,11 +128,11 @@
 
   /** terminal settings **************************************************************************/
   "terminal.integrated.gpuAcceleration": "auto",
-  "terminal.integrated.fontSize": 18,
+  "terminal.integrated.fontSize": 16,
 //   "terminal.integrated.allowChords": true,
 //   "terminal.integrated.defaultLocation": "view",
 //   "terminal.integrated.tabs.enabled": false,
-//   //"terminal.integrated.fontFamily": "RobotMono Nerd Font",
+//   "terminal.integrated.fontFamily": "RobotMono Nerd Font",
 
 
 //   /** misc     **********************************************************************************/
@@ -294,6 +294,271 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "git.openRepositoryInParentFolders": "never",
+
+// Whichkey keybinding
+  "whichkey.delay": 0,
+  "whichkey.bindings": [
+//     // Panel nav
+//     {
+//       "key": "h",
+//       "name": "Focus left group",
+//       "type": "command",
+//       "command": "workbench.action.navigateLeft",
+//       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
+//     },
+//     {
+//       "key": "j",
+//       "name": "Focus blow group",
+//       "type": "command",
+//       "command": "workbench.action.navigateDown",
+//       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
+//     },
+//     {
+//       "key": "k",
+//       "name": "Focus above group",
+//       "type": "command",
+//       "command": "workbench.action.navigateUp",
+//       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
+//     },
+//     {
+//       "key": "l",
+//       "name": "Focus right group",
+//       "type": "command",
+//       "command": "workbench.action.navigateRight",
+//       "when": "terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
+//     },
+
+//     // lsp setting
+//     {
+//       "key": "r",
+//       "name": "refactor",
+//       "command": "editor.action.refactor",
+//       "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+//     },
+
+//     // file tree
+//     {
+//       "key": "e",
+//       "name": "toggle file tree",
+//       "type": "command",
+//       "command": "runCommands",
+//       "args": {
+//         "commands": [
+//           "workbench.action.toggleSidebarVisibility",
+//           "workbench.files.action.focusFilesExplorer"
+//         ],
+//         "when": "vim.mode == 'Normal' && !sideBarFocus && (editorTextFocus || !inputFocus)"
+//       }
+//     },
+
+    // find file
+    {
+      "key": "f",
+      "name": "find files",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "f",
+          "name": "find file",
+          "type": "command",
+          "command": "workbench.action.quickOpen"
+        },
+        {
+          "key": "p",
+          "name": "fzf find file with preview",
+          "type": "command",
+          "command": "find-it-faster.findFiles"
+        },
+        {
+          "key": "l",
+          "name": "live rigrep in project",
+          "type": "command",
+          "command": "find-it-faster.findWithinFiles"
+        }
+      ]
+    },
+
+//     {
+//       "key": "d",
+//       "name": "open netrew",
+//       "type": "bindings",
+//       "bindings": [
+//         {
+//           "key": "d",
+//           "name": "open netrw",
+//           "type": "command",
+//           "command": "vsnetrw.open",
+//           "when": "!activeEditor"
+//         }
+//       ]
+//     },
+
+//     // project/workspace
+//     {
+//       "key": "p",
+//       "name": "Project",
+//       "type": "bindings",
+//       "bindings": [
+//         {
+//           "key": "p",
+//           "name": "open project list",
+//           "type": "command",
+//           "command": "projectManager.listProjects"
+//         },
+//         {
+//           "key": "s",
+//           "name": "open project save",
+//           "type": "command",
+//           "command": "projectManager.saveProject"
+//         },
+//         {
+//           "key": "b",
+//           "name": "open project side bar",
+//           "type": "command",
+//           "command": "_projectManager.openSideBar"
+//         },
+//         {
+//           "key": "n",
+//           "name": "open project in new window",
+//           "type": "command",
+//           "command": "projectManager.listProjectsNewWindow"
+//         }
+//       ]
+//     },
+
+//     // Buffer
+//     {
+//       "key": "q",
+//       "name": "Close current buffer",
+//       "type": "commands",
+//       "command": "workbench.action.closeActiveEditor"
+//     },
+//     {
+//       "key": "b",
+//       "name": "Buffer/Bookmarks",
+//       "type": "bindings",
+//       "bindings": [
+//         {
+//           "key": "b",
+//           "name": "Show all buffers",
+//           "type": "commands",
+//           "command": "workbench.action.showAllEditors"
+//         },
+//         {
+//           "key": "K",
+//           "name": "Close all other buffer",
+//           "type": "commands",
+//           "command": "workbench.action.closeOtherEditors"
+//         }
+//       ]
+//     },
+
+//     // markdown
+//     // NOTE: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
+//     {
+//       "key": "m",
+//       "name": "Markdown",
+//       "type": "bindings",
+//       "bindings": [
+//         {
+//           "key": "p",
+//           "name": "preview to the side",
+//           "type": "command",
+//           "command": "markdown-preview-enhanced.openPreviewToTheSide",
+//           "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+//         },
+//         {
+//           "key": "g",
+//           "name": "github theme preview to the side",
+//           "type": "command",
+//           "command": "markdown.showPreviewToSide",
+//           "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+//         },
+//         // BUG:
+//         {
+//           "key": "k",
+//           "name": "kill the preview",
+//           "type": "command",
+//           "command": "runCommands",
+//           "args": {
+//             "commands": [
+//               "workbench.action.navigateLeft",
+//               "workbench.action.closeActiveEditor"
+//             ]
+//             // "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+//           }
+//         },
+//         {
+//           "key": "b",
+//           "name": "toggle bold",
+//           "type": "command",
+//           "command": "markdown.extension.editing.toggleBold",
+//           "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+//         },
+//         {
+//           "key": "i",
+//           "name": "toggle italic",
+//           "type": "command",
+//           "command": "markdown.extension.editing.toggleItalic",
+//           "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+//         },
+//         {
+//           "key": "s",
+//           "name": "toggle strikethrough",
+//           "type": "command",
+//           "command": "markdown.extension.editing.toggleStrikethrough",
+//           "when": "false"
+//         }
+//       ]
+//     },
+
+//     // System
+//     {
+//       "key": "/",
+//       "name": "show command",
+//       "type": "command",
+//       "command": "workbench.action.showCommands"
+//     },
+
+//     // terminal
+//     {
+//       "key": "'",
+//       "name": "new terminal",
+//       "type": "command",
+//       "command": "workbench.action.terminal.toggleTerminal",
+//       "when": "terminal.active"
+//     },
+
+//     // toggle some panel and mode
+//     {
+//       "key": "t",
+//       "name": "toggle mode",
+//       "type": "bindings",
+//       "bindings": [
+//         {
+//           "key": "p",
+//           "name": "open problems list",
+//           "type": "commands",
+//           "command": "workbench.actions.view.problems",
+//           "when": "workbench.panel.markers.view.active"
+//         },
+//         {
+//           "key": "s",
+//           "name": "toggle spell checker",
+//           "type": "command",
+//           "command": "cSpell.toggleEnableSpellChecker"
+//         }
+//       ]
+//     },
+
+//     // misc
+//     {
+//       "key": "z",
+//       "name": "toggle center mode",
+//       "type": "command",
+//       "command": "workbench.action.toggleCenteredLayout"
+//     }
+  ],
 
 }
 
@@ -741,7 +1006,7 @@
 
 
 
-//   // Whichkey keybinding
+// // Whichkey keybinding
 //   "whichkey.delay": 0,
 //   "whichkey.bindings": [
 //     // Panel nav

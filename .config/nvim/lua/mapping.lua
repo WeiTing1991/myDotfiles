@@ -84,7 +84,7 @@ map("n", "<leader>bt", fzf.tmux_buffers, { desc = "Find live grep" })
 map("n", "<leader>th", ":lua require('base46').toggle_theme()<cr>", { desc = " Switch Themes" })
 
 -- File tree
-map("n", "<leader>e", function() require("oil").open_float() end, { desc = "Toggle file explorer" })
+map("n", "<leader>d", function() require("oil").open_float() end, { desc = "Toggle file explorer" })
 
 -- Markdown
 map("n", "<leader>mm", "<cmd>PeekOpen<cr>", { desc = "markdown preview with deno" })
