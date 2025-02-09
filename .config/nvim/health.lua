@@ -6,7 +6,7 @@ local warn = vim.health.warn or vim.health.report_warn
 local error = vim.health.error or vim.health.report_error
 
 function M.check()
-  start("WTVim")
+  start("wtvim")
 
   if vim.fn.has("nvim-0.9.0") == 1 then
     ok("Using Neovim >= 0.9.0")

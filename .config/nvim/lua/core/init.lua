@@ -6,6 +6,7 @@ vim.g.maplocalleader = ','
 -- default
 require "core.options"
 require "core.keymappings"
+require("core.autocmds")
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
@@ -71,4 +72,3 @@ end
 -- custom mapping
 require("mapping")
 require("lsp_keymaps")
-require("core.autocmds")

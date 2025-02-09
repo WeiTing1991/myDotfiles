@@ -27,12 +27,56 @@ rm -rf ~/.local/share/nvim
 # install and clone
 git clone  https://github.com/WeiTing1991/myDotfiles/tree/main/.config/nvim ~/.config/nvim
 ```
-in Neovim run `:MasonToolInstall` to install the extra(linter and formater).
+> In Neovim run `:MasonToolInstall` to install the extra(linter and formater).
 
 ## Config
 
 > [!NOTE]
-> still under documenting
+> Still under documenting
+
+```sh
+├── init.lua
+├── lua
+│   ├── chadrc.lua
+│   ├── configs
+│   │   ├── achive
+│   │   │   └── telescope.lua
+│   │   ├── copilot.lua
+│   │   ├── fzf.lua
+│   │   ├── indentscope.lua
+│   │   ├── lsp
+│   │   │   ├── configs
+│   │   │   │   ├── extra.lua
+│   │   │   │   └── server.lua
+│   │   │   ├── lsp-cmp.lua
+│   │   │   ├── lsp-format.lua
+│   │   │   ├── lsp-init.lua
+│   │   │   └── lsp-ui.lua
+│   │   ├── nvimtree.lua
+│   │   ├── oil.lua
+│   │   ├── staline.lua
+│   │   ├── todo.lua
+│   │   └── treesitter.lua
+│   ├── core
+│   │   ├── autocmds.lua
+│   │   ├── init.lua
+│   │   ├── keymappings.lua
+│   │   ├── lazy.lua
+│   │   └── options.lua
+│   ├── custom_plugins
+│   │   └── toggle_maximize_window.lua
+│   ├── lsp_keymaps.lua
+│   ├── mapping.lua
+│   └── plugin
+│       ├── editor.lua
+│       ├── init.lua
+│       ├── lsp.lua
+│       ├── misc.lua
+│       ├── note_taking.lua
+│       └── tools.lua
+├── snippets
+└── spell
+```
 
 **Core**
     `autocmds.lua`

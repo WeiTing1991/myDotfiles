@@ -20,26 +20,22 @@ return {
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
-  -- zed mode
-  -- {
-  --   "folke/zen-mode.nvim",
-  --   lazy = true,
-  --   event = "BufEnter",
-  --   opts = {},
-  -- },
 
-  -- NOTE: https://github.com/folke/trouble.nvim?tab=readme-ov-file
-  -- {
-  --   "folke/trouble.nvim",
-  --   opts = {},
-  --   cmd = "Trouble",
-  -- },
+  -- NOTE: https://www.lazyvim.org/plugins/editor#troublenvim
+  {
+    "folke/trouble.nvim",
+    enabled = false,
+    lazy = true,
+    event = "VeryLazy",
+    opts = {},
+    cmd = "Trouble",
+  },
 
   -- git tools
   {
     "lewis6991/gitsigns.nvim",
     lazy = true,
-    event = "VimEnter",
+    event = "VeryLazy",
     config = function()
       require("gitsigns").setup {
         signs = {
@@ -63,11 +59,11 @@ return {
     event = "VimEnter",
   },
 
-  -- {
-  --   "sindrets/diffview.nvim",
-  --   lazy = true,
-  --   event = "VimEnter",
-  -- },
+  {
+    "sindrets/diffview.nvim",
+    lazy = true,
+    event = "VimEnter",
+  },
 
   -- ai tools
   {

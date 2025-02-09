@@ -17,6 +17,7 @@ require("blink.cmp").setup {
 
     ["<C-b>"] = { "scroll_documentation_up", "fallback" },
     ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+    -- ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
 
     ["<Tab>"] = {
       function(cmp)
@@ -31,9 +32,9 @@ require("blink.cmp").setup {
     },
     -- ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-    cmdline = {
-      preset = "default",
-    },
+    -- cmdline = {
+    --   preset = "default",
+    -- },
   },
 
   appearance = {
@@ -41,7 +42,8 @@ require("blink.cmp").setup {
     nerd_font_variant = "mono",
   },
 
-  -- snippets = {preset = "luasnip"},
+  snippets = { preset = 'default' },
+  -- snippets = { preset = 'luasnip'},
 
   sources = {
     default = { "lazydev", "lsp", "path", "snippets", "buffer" },
@@ -107,8 +109,15 @@ require("blink.cmp").setup {
 
     },
   },
+  enabled = function()
+    return not vim.tbl_contains({ "" }, vim.bo.filetype)
+        and vim.bo.buftype ~= "prompt"
+        and vim.b.completion ~= false
+  end,
 
   completion = {
+    keyword = { range = 'full' },
+    accept = { auto_brackets = { enabled = false }, },
     menu = {
       draw = {
         treesitter = { "lsp" },
@@ -120,7 +129,7 @@ require("blink.cmp").setup {
       end,
     },
     trigger = { show_on_keyword = true },
-    documentation = { auto_show = true, auto_show_delay_ms = 200, window = { border = "rounded" } },
+    documentation = { auto_show = true, auto_show_delay_ms = 300, window = { border = "rounded" } },
     -- ghost_text = {
     --   enabled = vim.g.ai_cmp,
     -- },

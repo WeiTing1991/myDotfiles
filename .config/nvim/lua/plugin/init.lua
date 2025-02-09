@@ -80,7 +80,6 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     version = false,
-    lazy = true,
     -- load treesitter early when opening a file from the cmdline
     lazy = vim.fn.argc(-1) == 0,
     event = "VeryLazy",
@@ -99,15 +98,15 @@ return {
     end,
   },
 
-  -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   version = "*",
-  --   lazy = true,
-  --   event = "VimEnter",
-  --   config = function()
-  --     require "configs.nvimtree"
-  --   end,
-  -- },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = true,
+    event = "VeryLazy",
+    config = function()
+      require "configs.nvimtree"
+    end,
+  },
 
   -- emacs-like keymaps
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md

@@ -2,6 +2,7 @@ local fzf = require("fzf-lua")
 local config = fzf.config
 local actions = fzf.actions
 
+
 -- NOTE: https://github.com/ibhagwan/fzf-lua?tab=readme-ov-file
 fzf.setup({
   -- MISC GLOBAL SETUP OPTIONS, SEE BELOW

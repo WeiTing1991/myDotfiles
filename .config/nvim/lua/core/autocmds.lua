@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 -- TODO:
 ------------------------------------------- Autocmd for file type ------------------------------------
 
-local set = vim.opt
+local set = vim.opt_local
 
 --[[ Markdwon ]]
 local mdgroup = vim.api.nvim_create_augroup("mdgroup", { clear = true })
