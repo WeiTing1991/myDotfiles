@@ -43,12 +43,12 @@ M = {
   --     },
   --   },
   -- },
-  --
+
   --ltex
   ["ltex"] = {
     settings = {
       ltex = {
-        enabled = false,
+        enabled = true,
         language = "en-US",
         dictionary = {
           ["en-US"] = spell_words,

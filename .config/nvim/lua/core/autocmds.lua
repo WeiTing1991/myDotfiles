@@ -1,7 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 -- CHECK: if this work or not?
-
 -- user event that loads after UIEnter + only if file buf is there
 autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
   group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
@@ -39,12 +38,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- some ui settings
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
-    -- Cusor LinNr color
-    -- vim.api.nvim_set_hl(0, "NetrwDir", { ctermfg = "Blue", fg = "#698DDA" })
-
-    -- vim.api.nvim_set_hl(0, "ShowBreak", { fg = "White", italic = true, underline = true })
-    -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#4b515d" })
-    -- vim.api.nvim_set_hl(0, "CursorLinNr", { fg = "#000000" })
 
     -- optional
     vim.opt.guicursor = "n-v-c:block-Cursor,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
@@ -57,7 +50,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 
 -- TODO:
-------------------------------------------- Autocmd for file type --0-00000----------------------------------
+------------------------------------------- Autocmd for file type ------------------------------------
 
 local set = vim.opt
 

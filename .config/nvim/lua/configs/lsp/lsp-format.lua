@@ -11,11 +11,16 @@ require("null-ls").setup {
   -- end,
   sources = {
 
+    -- spell
     null_ls.builtins.completion.spell,
 
     -- lua
     -- formating
     formatting.stylua,
+
+    formatting.shfmt.with {
+      filetypes = { "sh", "bash", "zsh" },
+    },
 
     -- js/ts
     -- formatting.prettierd.with {
@@ -85,8 +90,5 @@ require("null-ls").setup {
     --   extra_arges = { "--fast" },
     -- },
 
-    formatting.shfmt.with {
-      filetypes = { "sh", "bash", "zsh" },
-    },
   },
 }

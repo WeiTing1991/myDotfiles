@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "markdown",
     "nvimtree",
     "oil",
+    "fzf",
     -- "toggleterm",
   },
   callback = function()

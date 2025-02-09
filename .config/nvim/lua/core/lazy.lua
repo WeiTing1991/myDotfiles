@@ -1,5 +1,4 @@
 -- lazy settings.
-
 return {
   defaults = { lazy = false },
   install = { colorscheme = { "nvchad" } },
@@ -32,10 +31,10 @@ return {
         "getscriptPlugin",
         "gzip",
         "logipat",
-        -- "netrw",
-        -- "netrwPlugin",
-        -- "netrwSettings",
-        -- "netrwFileHandlers",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
         "matchit",
         "tar",
         "tarPlugin",

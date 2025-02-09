@@ -8,6 +8,8 @@
 -- https://github.com/tpope/vim-fugitive
 -- https://github.com/sontungexpt/sttusline/tree/table_version
 
+-- CHECK: https://github.com/folke/snacks.nvim/tree/main?tab=readme-ov-file
+--
 -- {
 --   "stevearc/dressing.nvim",
 --   enabled = false,

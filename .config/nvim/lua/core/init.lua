@@ -1,6 +1,7 @@
 -- init
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 vim.g.mapleader = " "
+vim.g.maplocalleader = ','
 
 -- default
 require "core.options"
@@ -31,7 +32,6 @@ local lazy_config = require("core.lazy")
 require("lazy").setup({
   { import = "plugin" },
 }, lazy_config)
-
 
 -- -- loading list from basd46
 -- local packages = {
@@ -70,4 +70,5 @@ end
 
 -- custom mapping
 require("mapping")
--- require("core.autocmds")
+require("lsp_keymaps")
+require("core.autocmds")

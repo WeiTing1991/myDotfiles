@@ -33,6 +33,7 @@ end
 
 -- spell folder
 local spellDir = ""
+
 local spell_word = {}
 if vim.loop.os_uname().sysname == "Darwin" then
   spellDir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"

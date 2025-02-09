@@ -35,8 +35,25 @@ return {
     "ibhagwan/fzf-lua",
     -- lazy = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {}
+    opts = {},
+    config = function()
+      require "configs.fzf"
+    end
   },
+
+  -- file tree
+  {
+    "stevearc/oil.nvim",
+    lazy = true,
+    event = "VimEnter",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    config = function()
+      require "configs.oil"
+    end,
+  },
+
   -- {
   --   "nvim-telescope/telescope.nvim",
   --   lazy = true,
@@ -60,32 +77,28 @@ return {
   -- },
 
   -- treesitter
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   lazy = true,
-  --   event = "VimEnter",
-  --   build = ":TSUpdate",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter-textobjects",
-  --   },
-  --   -- -@param opts TSConfig
-  --   config = function()
-  --     require "configs.treesitter"
-  --   end,
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    version = false,
+    lazy = true,
+    -- load treesitter early when opening a file from the cmdline
+    lazy = vim.fn.argc(-1) == 0,
+    event = "VeryLazy",
+    build = ":TSUpdate",
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    keys = {
+      { "<c-space>", desc = "Increment Selection" },
+      { "<bs>", desc = "Decrement Selection", mode = "x" },
+    },
+    -- -@param opts TSConfig
+    config = function()
+      require "configs.treesitter"
+    end,
+  },
 
-  -- -- file tree
-  -- {
-  --   "stevearc/oil.nvim",
-  --   lazy = true,
-  --   event = "VimEnter",
-  --   ---@module 'oil'
-  --   ---@type oil.SetupOpts
-  --   opts = {},
-  --   config = function()
-  --     require "configs.oil"
-  --   end,
-  -- },
   -- {
   --   "nvim-tree/nvim-tree.lua",
   --   version = "*",
@@ -101,6 +114,7 @@ return {
   {
     "echasnovski/mini.clue",
     version = "*",
+    lazy = true,
     event = "VeryLazy",
   },
 }

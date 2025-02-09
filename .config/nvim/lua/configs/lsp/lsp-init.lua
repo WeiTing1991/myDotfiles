@@ -10,7 +10,6 @@ require("mason").setup({
 
 require("fidget").setup { notification = { window = { winblend = 0 } } }
 
-
 local lsp_server = vim.tbl_keys(require("configs.lsp.configs.server") or {})
 
 local lsp_lint_fomater = vim.tbl_values(require "configs.lsp.configs.extra" or {})
@@ -29,6 +28,7 @@ end
 
 require("mason-tool-installer").setup {
   ensure_installed = ensure_installed,
+  run_on_start = true,
 }
 
 require("mason-lspconfig").setup {

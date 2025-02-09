@@ -4,7 +4,7 @@ return {
   {
     "folke/todo-comments.nvim",
     lazy = true,
-    event = "BufRead",
+    event = "VeryLazy",
     config = function()
       require "configs.todo"
     end,
@@ -21,7 +21,7 @@ return {
     "echasnovski/mini.indentscope",
     version = false,
     lazy = true,
-    event = "VimEnter",
+    event = "VeryLazy",
     config = function()
       require "configs.indentscope"
     end,
@@ -29,7 +29,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     lazy = true,
-    event = "VimEnter",
+    event = "VeryLazy",
     main = "ibl",
     ---@module "ibl"
     ---@type ibl.config
@@ -50,12 +50,12 @@ return {
   {
     "lukas-reineke/virt-column.nvim",
     lazy = true,
-    event = "BufEnter",
+    event = "VeryLazy",
     opts = {
       char = { "┆" },
       virtcolumn = "110",
       highlight = { "NonText" },
-      exclude = { filetypes = { "oil", "markdown" } },
+      exclude = { filetypes = { "oil", "markdown","fzf" } },
     },
   },
 
@@ -63,12 +63,18 @@ return {
   {
     "numToStr/Comment.nvim",
     lazy = true,
-    event = "InsertEnter",
+    event = "VeryLazy",
     opts = {},
-    -- config = function ()
-      -- local ft = require("Comment.ft")
-      -- ft.set('javascript', {'//%s', '/*%s*/'})
-    -- end
+    config = function ()
+      require('Comment').setup {
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      }
+    end
+  },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+    opts = { enable_autocmd = false, },
   },
 
   -- Autopair
@@ -85,7 +91,31 @@ return {
       require("nvim-autopairs").setup(opts)
     end,
   },
-
+  --NOTE: https://github.com/MagicDuck/grug-far.nvim/blob/main/lua/grug-far/opts.lua
+  {
+    "MagicDuck/grug-far.nvim",
+    opts = { headerMaxWidth = 80 },
+    lazy = true,
+    event = "VeryLazy",
+    cmd = "GrugFar",
+    keys = {
+      {
+        "<leader>/",
+        function()
+          local grug = require("grug-far")
+          local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+          grug.open({
+            transient = true,
+            prefills = {
+              filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+            },
+          })
+        end,
+        mode = { "n", "v" },
+        desc = "Search and Replace",
+      },
+    },
+  },
   -- Better sellect with a and i
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
   {
@@ -105,7 +135,7 @@ return {
     event = "VimEnter",
     config = function()
       require("winbar").setup({
-        icons = false,
+        icons = true,
         diagnostics = true,
         buf_modified = true,
         buf_modified_symbol = "-",
@@ -116,7 +146,7 @@ return {
           icons = false,
           name = true,
         },
-        show_file_path = true,
+        show_file_path = false,
         exclude_filetype = {
           "help",
           "startify",
