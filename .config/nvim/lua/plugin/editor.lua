@@ -129,12 +129,12 @@ return {
   },
 
   {
-    'echasnovski/mini.nvim',
+    'echasnovski/mini.align',
     version = '*',
     lazy = true,
     event = 'VeryLazy',
     config = function()
-      require('mini').setup()
+      require('mini.align').setup()
     end
   },
 
