@@ -122,6 +122,7 @@ git_diff_bat() {
 
 alias gd=git_diff_bat
 alias gca="git commit -am"
+alias lg="lazygit"
 
 # path
 alias ob="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen"

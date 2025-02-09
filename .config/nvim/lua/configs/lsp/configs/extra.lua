@@ -3,6 +3,9 @@ local M = {
   -- lua
   {"stylua"},
 
+  -- general
+  {"write-good"},
+
   -- javascript/ markdown / css
   {"biome"},
   -- "prettier",

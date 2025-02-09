@@ -26,6 +26,19 @@ M = {
       },
     },
   },
+  -- ltex
+  -- need to install java
+  -- ["ltex"] = {
+  --   settings = {
+  --     ltex = {
+  --       enabled = true,
+  --       language = "en-US",
+  --       dictionary = {
+  --         ["en-US"] = spell_words,
+  --       },
+  --     },
+  --   },
+  -- },
 
   -- -- HAVE to install go global
   -- -- go
@@ -44,18 +57,6 @@ M = {
   --   },
   -- },
 
-  --ltex
-  ["ltex"] = {
-    settings = {
-      ltex = {
-        enabled = false,
-        language = "en-US",
-        dictionary = {
-          ["en-US"] = spell_words,
-        },
-      },
-    },
-  },
   --
   -- python
   -- mason install ruff-lsp

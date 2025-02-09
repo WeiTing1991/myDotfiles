@@ -30,7 +30,7 @@ stow -t ghostty ~/.config
 
 - WezTerm
 
-  On Windows I use [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with person configurations, which makes it similar to Tumx. It is an amazing GPU terminal emulator for cross-platform system.
+  On Windows I use [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with person configurations, which makes it similar TUMX. It is an amazing GPU terminal emulator for cross-platform system.
 
 ```bash
 cd ~/.dotfiles/
@@ -50,7 +50,7 @@ New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -Item
 ```
 
 ```bash
-# only for mac
+# Only for mac
 rm ~/Library/Application\ Support/Code/User/keybindings.json
 stow -t "$(echo ~/Library/Application\ Support/Code/User)" .vscode
 ```

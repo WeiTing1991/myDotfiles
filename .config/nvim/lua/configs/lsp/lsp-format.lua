@@ -13,6 +13,7 @@ require("null-ls").setup {
 
     -- spell
     null_ls.builtins.completion.spell,
+    null_ls.builtins.diagnostics.write_good,
 
     -- lua
     -- formating
