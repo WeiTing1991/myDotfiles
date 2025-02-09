@@ -157,8 +157,8 @@ map("n", "<leader>tc", function()
   end
 end, { desc = "Copilot" })
 
-map('n', '<C-g>gd', ":DiffviewOpen", { desc = "Git Diff" })
-map('n', '<C-g>q', ":DiffviewClose", { desc = "Close Git Diff" })
+map('n', '<C-g>gd', ":DiffviewOpen<cr>", { desc = "Git Diff" })
+map('n', '<C-g>q', ":DiffviewClose<cr>", { desc = "Close Git Diff" })
 
 -- CHECK: https://github.com/ibhagwan/fzf-lua
 -- and trouble

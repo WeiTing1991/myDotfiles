@@ -47,9 +47,9 @@ require("mason-lspconfig").setup {
         server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
 
         -- disable pyright
-        -- if server_name == "ruff_lsp" then
-        --   server.server_capabilities.hoverProvider = false
-        -- end
+        if server_name == "ruff_lsp" then
+          server.server_capabilities.hoverProvider = false
+        end
 
         lspconfig[server_name].setup(server)
       end
