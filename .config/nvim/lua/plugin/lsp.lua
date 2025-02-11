@@ -101,8 +101,9 @@ return {
       require("neogen").setup { snippet_engine = "luasnip" }
     end,
   },
-  -- CHECK: https://github.com/hedyhli/outline.nvim
 
+  -- CHECK: https://github.com/hedyhli/outline.nvim
+  -- UI
   {
     "hedyhli/outline.nvim",
     lazy = true,
@@ -129,6 +130,16 @@ return {
         -- },
       }
       return opts
+    end,
+  },
+
+  -- LSP saga
+  {
+    "nvimdev/lspsaga.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    config = function()
+      require("configs.lsp.lsp-ui")
     end,
   },
 
@@ -168,17 +179,6 @@ return {
   -- },
   --
 
-  -- UI
-  -- LSP saga
-  -- {
-  --   "nvimdev/lspsaga.nvim",
-  --   lazy = true,
-  --   -- enabled = false,
-  --   event = "BufEnter",
-  --   config = function()
-  --     require("configs.lsp.lsp-ui")
-  --   end,
-  -- },
 
   -- -- debugger
   -- {

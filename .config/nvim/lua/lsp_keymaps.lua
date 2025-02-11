@@ -9,10 +9,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
     end
 
-    map("K", function() return vim.lsp.buf.hover() end, "Hover Documentation")
+    -- map("K", function() return vim.lsp.buf.hover() end, "Hover Documentation")
+
+    map("K", "<cmd>Lspsaga hover_doc<cr>", "Hover Documentation")
+    map("gd", "<cmd>Lspsaga peek_definition<CR>", "peek Definition")
 
     -- map("gd", vim.lsp.buf.definition, "Goto Definition")
-    map("gd", "<cmd>FzfLua lsp_finder<cr>", "Goto Definition")
+    -- map("gd", "<cmd>FzfLua lsp_finder<cr>", "Goto Definition")
     map("<leader>gd", "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>",
       "Goto Definition")
 
@@ -58,8 +61,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- map("<S-l>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev diagnostic")
     -- map("<leader>dl", "<cmd>Telescope diagnostics<cr>", "Diagnostics")
     -- map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-    -- map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-    -- map("gd", "<cmd>Lspsaga peek_definition<CR>", "Type Definition")
 
 
     -- disable semanticTokensProvider
