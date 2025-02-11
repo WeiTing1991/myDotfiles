@@ -145,27 +145,49 @@ return {
 
   -- Lanugae extra
   -- ts/js
+  -- {
+  --   "windwp/nvim-ts-autotag",
+  --   lazy = true,
+  --   event = "BufRead",
+  --   ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+  --   config = function()
+  --     require("nvim-ts-autotag").setup({
+  --       opts = {
+  --         enable_close = true,          -- Auto close tags
+  --         enable_rename = true,         -- Auto rename pairs of tags
+  --         enable_close_on_slash = false -- Auto close on trailing </
+  --       },
+  --       per_filetype = {
+  --         ["html"] = {
+  --           enable_close = false
+  --         }
+  --       }
+  --     })
+  --   end,
+  -- },
   {
-    "windwp/nvim-ts-autotag",
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     lazy = true,
-    event = "BufRead",
+    event = "VeryLazy",
     ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+    opts = {},
     config = function()
-      require("nvim-ts-autotag").setup({
-        opts = {
-          enable_close = true,          -- Auto close tags
-          enable_rename = true,         -- Auto rename pairs of tags
-          enable_close_on_slash = false -- Auto close on trailing </
-        },
-        per_filetype = {
-          ["html"] = {
-            enable_close = false
+      require("typescript-tools").setup {
+        -- on_attach =
+        --     function(client, bufnr)
+        --       client.server_capabilities.documentFormattingProvider = false
+        --       client.server_capabilities.documentRangeFormattingProvider = false
+        --     end,
+        settings = {
+          jsx_close_tag = {
+            enable = true,
+            filetypes = { "javascriptreact", "typescriptreact" },
           }
         }
-      })
-    end,
+      }
+    end
   },
-
   -- c/c++
   -- {
   --   "p00f/clangd_extensions.nvim",
