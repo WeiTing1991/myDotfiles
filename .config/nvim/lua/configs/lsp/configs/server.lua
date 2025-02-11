@@ -112,7 +112,7 @@ M = {
   -- },
 
   -- js/ts/css/html
-  -- ["ts_ls"] = {},
+  ["ts_ls"] = {},
   -- ts_ls = {
   --   settings = {
   --     typescript = {

@@ -41,7 +41,7 @@ require("mason-lspconfig").setup {
       local server = lsp_server[server_name] or {}
 
       -- dissable javaserver attach here
-      if server_name ~= "jdtls" or server_name == "ts_ls" then
+      if server_name ~= "jdtls" or server_name ~= "ts_ls" then
         -- Useful when disabling
         -- certain features of an LSP (for example, turning off formatting for tsserver)
         server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
