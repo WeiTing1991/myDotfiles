@@ -145,26 +145,26 @@ return {
 
   -- Lanugae extra
   -- ts/js
-  -- {
-  --   "windwp/nvim-ts-autotag",
-  --   lazy = true,
-  --   event = "BufRead",
-  --   ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
-  --   config = function()
-  --     require("nvim-ts-autotag").setup({
-  --       opts = {
-  --         enable_close = true,          -- Auto close tags
-  --         enable_rename = true,         -- Auto rename pairs of tags
-  --         enable_close_on_slash = false -- Auto close on trailing </
-  --       },
-  --       per_filetype = {
-  --         ["html"] = {
-  --           enable_close = false
-  --         }
-  --       }
-  --     })
-  --   end,
-  -- },
+  {
+    "windwp/nvim-ts-autotag",
+    lazy = true,
+    event = "BufRead",
+    ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+    config = function()
+      require("nvim-ts-autotag").setup({
+        opts = {
+          enable_close = true,          -- Auto close tags
+          enable_rename = true,         -- Auto rename pairs of tags
+          enable_close_on_slash = false -- Auto close on trailing </
+        },
+        per_filetype = {
+          ["html"] = {
+            enable_close = false
+          }
+        }
+      })
+    end,
+  },
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },

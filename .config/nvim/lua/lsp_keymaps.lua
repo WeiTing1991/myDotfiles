@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<S-l>ca", "<cmd>FzfLua lsp_code_actions<cr>", "Code Action")
     -- map("<S-l>ca", vim.lsp.buf.code_action, "Code Action")
 
-    map("<leader>,", vim.lsp.buf.format, "formatting")
+    map("<leader>,", vim.lsp.buf.format, "formatting", {"n","v"})
 
     -- Optional
     -- map("<S-l>rp", "<cmd>Lspsaga lsp_rename ++project<CR>", "Rename in project")

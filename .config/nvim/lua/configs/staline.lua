@@ -19,9 +19,10 @@ local function copilot_status()
 end
 -- indent statues
 local function indent_style()
+  local sytle_string = vim.opt.expandtab:get() and "Spaces" or "Tabs"
   local style = vim.opt.expandtab:get() and "⇥" or ""
   local tab_width = vim.opt.shiftwidth:get()
-  return string.format("%s (%d)", style, tab_width)
+  return string.format("%s %s (%d)", style, sytle_string, tab_width)
 end
 
 -- NOTE: try to make a pull request
