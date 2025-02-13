@@ -148,7 +148,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     lazy = true,
-    event = "BufRead",
+    event = "VeryLazy",
     ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
       require("nvim-ts-autotag").setup({
@@ -165,23 +165,22 @@ return {
       })
     end,
   },
+  -- NOTE: https://github.com/pmizio/typescript-tools.nvim?tab=readme-ov-file
   {
     "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     lazy = true,
     event = "VeryLazy",
     ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
-    opts = {},
     config = function()
       require("typescript-tools").setup {
-        -- on_attach =
-        --     function(client, bufnr)
-        --       client.server_capabilities.documentFormattingProvider = false
-        --       client.server_capabilities.documentRangeFormattingProvider = false
-        --     end,
+        on_attach =
+            function(client, bufnr)
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end,
         settings = {
           jsx_close_tag = {
-            enable = true,
+            enable = false,
             filetypes = { "javascriptreact", "typescriptreact" },
           }
         }

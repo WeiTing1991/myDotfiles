@@ -112,36 +112,8 @@ M = {
   -- },
 
   -- js/ts/css/html
-  -- ["ts_ls"] = {},
-  -- ts_ls = {
-  --   settings = {
-  --     typescript = {
-  --       inlayHints = {
-  --         includeInlayParameterNameHints = "literal",
-  --         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-  --         includeInlayFunctionParameterTypeHints = true,
-  --         includeInlayVariableTypeHints = false,
-  --         includeInlayPropertyDeclarationTypeHints = true,
-  --         includeInlayFunctionLikeReturnTypeHints = true,
-  --         includeInlayEnumMemberValueHints = true,
-  --       },
-  --       suggest = {
-  --         completeFunctionCalls = true,
-  --       },
-  --     },
-  --     javascript = {
-  --       inlayHints = {
-  --         includeInlayParameterNameHints = "all",
-  --         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-  --         includeInlayFunctionParameterTypeHints = true,
-  --         includeInlayVariableTypeHints = true,
-  --         includeInlayPropertyDeclarationTypeHints = true,
-  --         includeInlayFunctionLikeReturnTypeHints = true,
-  --         includeInlayEnumMemberValueHints = true,
-  --       },
-  --     },
-  --   },
-  -- },
+  -- Switched to ts_ls tool
+  ["ts_ls"] = {},
 
   ["cssls"] = {},
   ["tailwindcss"] = {},

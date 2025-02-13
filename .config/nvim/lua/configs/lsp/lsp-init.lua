@@ -10,6 +10,8 @@ require("mason").setup({
 
 require("fidget").setup { notification = { window = { winblend = 0 } } }
 
+
+local lspconfig = require "lspconfig"
 local lsp_server = vim.tbl_keys(require("configs.lsp.configs.server") or {})
 
 local lsp_lint_fomater = vim.tbl_values(require "configs.lsp.configs.extra" or {})
@@ -37,26 +39,31 @@ require("mason-lspconfig").setup {
 
   handlers = {
     function(server_name)
-      local lspconfig = require "lspconfig"
       local server = lsp_server[server_name] or {}
 
-      -- dissable javaserver attach here
-      if server_name ~= "jdtls" or server_name ~= "ts_ls" then
-        -- Useful when disabling
-        -- certain features of an LSP (for example, turning off formatting for tsserver)
-        server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
+      -- Start by making a basic capabilities object
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- Extend it with cmp or blink capabilities
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
 
-        -- disable pyright
-        if server_name == "ruff_lsp" then
+      if server_name ~= "jdtls" then
+        -- Useful when disabling
+        -- dissable typscript/javaserver attach here
+        if server_name == "ruff_lsp" or server_name == "ts_ls" then
+          if server.server_capabilities == nil then
+            server.server_capabilities = {}
+          end
           server.server_capabilities.hoverProvider = false
+          server.server_capabilities.documentHighlightProvider = false
         end
 
+        -- Use the extended capabilities
+        server.capabilities = capabilities
         lspconfig[server_name].setup(server)
       end
     end,
   },
 }
-
 
 -- Hover diagnostic
 local highlight_augroup = vim.api.nvim_create_augroup("diagnostic-hover", { clear = false })
