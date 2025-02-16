@@ -149,7 +149,7 @@ end
 -- diagnostic
 vim.diagnostic.config {
   underline = true,
-  update_in_insert = false,
+  update_in_insert = true,
   severity_sort = true,
   sings = true,
   virtual_text = false,

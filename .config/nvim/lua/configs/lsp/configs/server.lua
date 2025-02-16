@@ -62,14 +62,12 @@ M = {
   -- mason install ruff-lsp
   -- ["ruff-lsp"] = {},
   ["ruff"] = {
-    --   cmd_env = { RUFF_TRACE = "messages" },
-    --   init_options = {
-    --     settings = {
-    --       logLevel = "error",
-    --     },
-    --   },
-    -- },
-    --
+    -- cmd_env = { RUFF_TRACE = "messages" },
+    init_options = {
+      settings = {
+        logLevel = "error",
+      },
+    },
   },
 
   ["pyright"] = {

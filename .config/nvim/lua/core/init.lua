@@ -8,6 +8,7 @@ require "core.options"
 require "core.keymappings"
 require "core.autocmds"
 
+
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 -- Plugin manager
@@ -34,9 +35,13 @@ require("lazy").setup({
   { import = "plugin.init"},
   { import = "plugin.lsp"},
   { import = "plugin.editor"},
+  { import = "plugin.tools"},
+  { import = "plugin.note_taking"},
+  -- { import = "plugin.misc"},
 }, lazy_config)
 
 -- loading list from basd46
+
 local packages = {
   "defaults",
   "telescope",
@@ -48,16 +53,16 @@ local packages = {
   "nvcheatsheet",
   "nvimtree",
   "blankline",
-  -- "mason",
-  -- "cmp",
-  -- "lsp",
+  "mason",
+  "cmp",
+  "lsp",
+  "git",
   -- "diffview",
-  -- "lspsaga",
-  -- "git",
   -- "tbline",
   -- "term",
   -- "whichkey"
 }
+
 
 -- load base46 UI
 -- individual files

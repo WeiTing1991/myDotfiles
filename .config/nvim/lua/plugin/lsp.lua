@@ -30,9 +30,8 @@ return {
     },
     config = function(_, opts)
       require("luasnip").config.set_config(opts)
-      -- require "nvchad.configs.luasnip"
       require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+      -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
     end,
   },
 
@@ -76,6 +75,31 @@ return {
       require("configs.lsp.lsp-init") -- lsp engine
       -- only if load with lspconfig and mason
       -- require "lsp.dap-init"
+    end,
+  },
+  -- better fold
+
+  {
+    "kevinhwang91/nvim-ufo",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
+      'kevinhwang91/promise-async'
+    },
+    opts = {
+      filetype_exclude = { 'help', 'alpha', 'dashboard', 'nvim-tree', 'Trouble', 'lazy', 'mason' },
+    },
+    config = function(_, opts)
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('local_detach_ufo', { clear = true }),
+        pattern = opts.filetype_exclude,
+        callback = function()
+          require('ufo').detach()
+        end,
+      })
+
+      vim.opt.foldlevelstart = 99
+      require('ufo').setup(opts)
     end,
   },
 

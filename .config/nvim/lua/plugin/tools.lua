@@ -61,6 +61,7 @@ return {
 
   {
     "sindrets/diffview.nvim",
+    enabled = false,
     lazy = true,
     event = "VeryLazy",
   },
@@ -76,4 +77,27 @@ return {
     end,
   },
 
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    lazy = true,
+    -- event = "VeryLazy",
+    dependencies = {
+      -- { "github/copilot.vim" },
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    -- build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {},
+    keys = {
+      {
+        -- Toggle copilotchat, the default is <leader>aa
+        "<M-o>",
+        function()
+          return require("CopilotChat").toggle()
+        end,
+        desc = "Toggle (CopilotChat)",
+        mode = { "n", "i", "v" },
+      },
+    }
+  },
 }

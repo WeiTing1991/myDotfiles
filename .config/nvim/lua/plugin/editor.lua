@@ -112,11 +112,12 @@ return {
     },
   },
   -- NOTE: https://github.com/kylechui/nvim-surround/blob/main/doc/nvim-surround.txt
-  { 'echasnovski/mini.surround',
+  {
+    "echasnovski/mini.surround",
     lazy = true,
     event = "InsertEnter",
-    version = false ,
-    config =function ()
+    version = false,
+    config = function()
       require("mini.surround").setup()
     end
   },
