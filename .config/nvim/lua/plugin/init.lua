@@ -1,25 +1,25 @@
 return {
-  ---------------------------------------- Base UI ----------------------------------------------------
+  ---------------------------------------- Base UI ---------------------------------------------------------
   { "nvim-lua/plenary.nvim" },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
-    "nvchad/ui",
-    -- lazy = true,
-    config = function()
-      require "nvchad"
-    end
-  },
-  {
     "nvchad/base46",
-    lazy = true,
+    -- lazy = false,
     build = function()
       require("base46").load_all_highlights()
     end,
   },
-  --theme switcher
+  {
+    "nvchad/ui",
+    lazy = false,
+    config = function()
+      require "nvchad"
+    end
+  },
+  -- Theme switcher
   { "nvchad/volt" },
 
-  -- statusline
+  -- Statusline
   {
     "WeiTing1991/staline.nvim",
     lazy = false,
@@ -33,7 +33,8 @@ return {
   --
   {
     "ibhagwan/fzf-lua",
-    -- lazy = true,
+    lazy = true,
+    event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
     config = function()
@@ -45,7 +46,7 @@ return {
   {
     "stevearc/oil.nvim",
     lazy = true,
-    event = "VimEnter",
+    event = "VeryLazy",
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {},
@@ -80,17 +81,17 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     version = false,
+    lazy = true,
+    event = "BufReadPre",
     -- load treesitter early when opening a file from the cmdline
     lazy = vim.fn.argc(-1) == 0,
-    event = "VeryLazy",
+    init = function()
+      require("nvim-treesitter.query_predicates")
+    end,
     build = ":TSUpdate",
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-    },
-    keys = {
-      { "<c-space>", desc = "Increment Selection" },
-      { "<bs>", desc = "Decrement Selection", mode = "x" },
     },
     -- -@param opts TSConfig
     config = function()
@@ -107,7 +108,6 @@ return {
       require "configs.nvimtree"
     end,
   },
-
   -- emacs-like keymaps
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md
   {

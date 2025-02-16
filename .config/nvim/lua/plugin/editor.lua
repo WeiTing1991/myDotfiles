@@ -4,12 +4,13 @@ return {
   {
     "folke/todo-comments.nvim",
     lazy = true,
-    event = "VeryLazy",
+    event = "BufRead",
     config = function()
       require "configs.todo"
     end,
   },
 
+  -- indention
   {
     "tpope/vim-sleuth",
     lazy = true,
@@ -21,7 +22,7 @@ return {
     "echasnovski/mini.indentscope",
     version = false,
     lazy = true,
-    event = "VeryLazy",
+    event = "BufRead",
     config = function()
       require "configs.indentscope"
     end,
@@ -29,7 +30,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     lazy = true,
-    event = "VeryLazy",
+    event = "BufRead",
     main = "ibl",
     ---@module "ibl"
     ---@type ibl.config
@@ -45,12 +46,11 @@ return {
       }
     end,
   },
-
   -- column line
   {
     "lukas-reineke/virt-column.nvim",
     lazy = true,
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {
       char = { "┆" },
       virtcolumn = "110",
@@ -58,7 +58,6 @@ return {
       exclude = { filetypes = { "oil", "markdown", "fzf" } },
     },
   },
-
   -- Better Comment
   {
     "numToStr/Comment.nvim",
@@ -71,12 +70,6 @@ return {
       }
     end
   },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
-    opts = { enable_autocmd = false, },
-  },
-
   -- Autopair
   {
     "windwp/nvim-autopairs",
@@ -91,12 +84,14 @@ return {
       require("nvim-autopairs").setup(opts)
     end,
   },
+
+  -- Better search
   --NOTE: https://github.com/MagicDuck/grug-far.nvim/blob/main/lua/grug-far/opts.lua
   {
     "MagicDuck/grug-far.nvim",
     opts = { headerMaxWidth = 80 },
     lazy = true,
-    event = "VeryLazy",
+    -- event = "BufRead",
     cmd = "GrugFar",
     keys = {
       {
@@ -116,12 +111,21 @@ return {
       },
     },
   },
+  -- NOTE: https://github.com/kylechui/nvim-surround/blob/main/doc/nvim-surround.txt
+  { 'echasnovski/mini.surround',
+    lazy = true,
+    event = "InsertEnter",
+    version = false ,
+    config =function ()
+      require("mini.surround").setup()
+    end
+  },
   -- Better sellect with a and i
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
   {
     "echasnovski/mini.ai",
     lazy = true,
-    event = "VeryLazy",
+    event = "InsertEnter",
     version = "*",
     config = function()
       require("mini.ai").setup()
@@ -132,7 +136,7 @@ return {
     'echasnovski/mini.align',
     version = '*',
     lazy = true,
-    event = 'VeryLazy',
+    event = 'InsertEnter',
     config = function()
       require('mini.align').setup()
     end
@@ -159,11 +163,11 @@ return {
         show_file_path = false,
         exclude_filetype = {
           "help",
-          "startify",
           "terminal",
           "dashboard",
           "lazy",
           "fzf",
+          "oil",
           "NvimTree",
           "Trouble",
           "alpha",

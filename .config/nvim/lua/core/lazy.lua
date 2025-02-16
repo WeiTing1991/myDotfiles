@@ -1,10 +1,11 @@
 -- lazy settings.
 return {
-  defaults = { lazy = false },
+  defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
 
   ui = {
     border = "rounded",
+    size = {width = 0.8, height = 0.8},
     icons = {
       ft = "",
       lazy = "󰂠 ",

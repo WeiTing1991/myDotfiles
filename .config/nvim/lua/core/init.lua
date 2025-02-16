@@ -6,7 +6,7 @@ vim.g.maplocalleader = ','
 -- default
 require "core.options"
 require "core.keymappings"
-require("core.autocmds")
+require "core.autocmds"
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
@@ -31,43 +31,49 @@ local lazy_config = require("core.lazy")
 
 -- load plugins
 require("lazy").setup({
-  { import = "plugin" },
+  { import = "plugin.init"},
+  { import = "plugin.lsp"},
+  { import = "plugin.editor"},
 }, lazy_config)
 
--- -- loading list from basd46
--- local packages = {
---   "defaults",
---   "telescope",
---   "statusline",
---   "devicons",
---   "colors",
---   "syntax",
---   "treesitter",
---   "nvcheatsheet",
---   "nvimtree",
---   "todonvim",
---   "mason",
---   "cmp",
---   "lsp",
---   -- "diffview",
---   -- "lspsaga",
---   -- "git",
---   -- "tbline",
---   -- "term",
---   -- "whichkey"
---   -- "blankline"
--- }
+-- loading list from basd46
+local packages = {
+  "defaults",
+  "telescope",
+  -- "statusline",
+  "devicons",
+  "colors",
+  "syntax",
+  "treesitter",
+  "nvcheatsheet",
+  "nvimtree",
+  "blankline",
+  -- "mason",
+  -- "cmp",
+  -- "lsp",
+  -- "diffview",
+  -- "lspsaga",
+  -- "git",
+  -- "tbline",
+  -- "term",
+  -- "whichkey"
+}
 
-
--- -- load base46 UI
--- -- for _, v in ipairs(packages) do
--- --   dofile(vim.g.base46_cache .. v)
--- -- end
-
-for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
-  dofile(vim.g.base46_cache .. v)
+-- load base46 UI
+-- individual files
+for _, v in ipairs(packages) do
+  local file_path = vim.g.base46_cache .. v
+  if vim.loop.fs_stat(file_path) then
+    dofile(file_path)
+  else
+    vim.notify("Base46: Missing file " .. file_path, vim.log.levels.WARN)
+  end
 end
 
+-- load all
+-- for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+--   dofile(vim.g.base46_cache .. v)
+-- end
 
 -- custom mapping
 require("mapping")

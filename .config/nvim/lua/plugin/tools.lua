@@ -56,13 +56,13 @@ return {
   {
     "tpope/vim-fugitive",
     lazy = true,
-    event = "VimEnter",
+    event = "VeryLazy",
   },
 
   {
     "sindrets/diffview.nvim",
     lazy = true,
-    event = "VimEnter",
+    event = "VeryLazy",
   },
 
   -- ai tools

@@ -36,6 +36,7 @@ return {
     end,
   },
 
+
   -- ------------------------------------- LSP config -------------------------------------------------------
   {
     "folke/lazydev.nvim",
@@ -52,6 +53,7 @@ return {
   {
     "Bilal2453/luvit-meta",
     lazy = true,
+    ft = "lua",
     event = "VeryLazy",
   },
   {
@@ -77,7 +79,6 @@ return {
     end,
   },
 
-
   -- formater and linter
   {
     "nvimtools/none-ls.nvim",
@@ -95,7 +96,7 @@ return {
   {
     "danymat/neogen",
     lazy = true,
-    event = "VeryLazy",
+    event = "InsertEnter",
     -- version = "*"
     config = function()
       require("neogen").setup { snippet_engine = "luasnip" }
@@ -148,7 +149,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     lazy = true,
-    event = "VeryLazy",
+    event = "BufReadPre",
     ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
       require("nvim-ts-autotag").setup({
@@ -166,27 +167,35 @@ return {
     end,
   },
   -- NOTE: https://github.com/pmizio/typescript-tools.nvim?tab=readme-ov-file
+  -- CHECK:
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   lazy = true,
+  --   event = "BufReadPre",
+  --   ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+  --   config = function()
+  --     require("typescript-tools").setup {
+  --       on_attach =
+  --           function(client, bufnr)
+  --             client.server_capabilities.documentFormattingProvider = false
+  --             client.server_capabilities.documentRangeFormattingProvider = false
+  --           end,
+  --       settings = {
+  --         jsx_close_tag = {
+  --           enable = false,
+  --           filetypes = { "javascriptreact", "typescriptreact" },
+  --         }
+  --       }
+  --     }
+  --   end
+  -- },
   {
-    "pmizio/typescript-tools.nvim",
+    "JoosepAlviste/nvim-ts-context-commentstring",
     lazy = true,
-    event = "VeryLazy",
-    ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
-    config = function()
-      require("typescript-tools").setup {
-        on_attach =
-            function(client, bufnr)
-              client.server_capabilities.documentFormattingProvider = false
-              client.server_capabilities.documentRangeFormattingProvider = false
-            end,
-        settings = {
-          jsx_close_tag = {
-            enable = false,
-            filetypes = { "javascriptreact", "typescriptreact" },
-          }
-        }
-      }
-    end
+    event = "BufReadPre",
+    opts = { enable_autocmd = false, },
   },
+
   -- c/c++
   -- {
   --   "p00f/clangd_extensions.nvim",
@@ -199,7 +208,6 @@ return {
   --   },
   -- },
   --
-
 
   -- -- debugger
   -- {

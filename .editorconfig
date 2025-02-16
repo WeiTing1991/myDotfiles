@@ -12,6 +12,7 @@ insert_final_newline = true
 max_line_length = 179
 
 [*.md]
+indent_size = 4
 trim_trailing_whitespace = false
 
 # Makefile (use tabs instead of spaces)
@@ -23,6 +24,10 @@ indent_style = tab
 indent_size = 8
 indent_style = space
 
+[*.py]
+indent_size = 2
+indent_style = space
+
 [*.js *.jsx *.ts *.tsx]
 indent_size = 2
-indent_style = tab
+indent_style = space

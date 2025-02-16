@@ -110,15 +110,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     })
   end,
 })
-
--- diagnostic
-vim.diagnostic.config {
-  virtual_text = false,
-  underline = true,
-  update_in_insert = true,
-  sings = true,
-}
-
 -- Change signs for LSP diagnostics
 local signs = {
   Error = " ",
@@ -127,9 +118,58 @@ local signs = {
   Hint = "󰠠 ",
 }
 
+local function format_diagnostic(diagnostic)
+  local icon = signs.Error
+  if diagnostic.severity == vim.diagnostic.severity.WARN then
+    icon = signs.Warn
+  elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+    icon = signs.Info
+  elseif diagnostic.severity == vim.diagnostic.severity.HINT then
+    icon = signs.Hint
+  end
+
+  local message = string.format('%s %s', icon, diagnostic.message)
+  if diagnostic.code and diagnostic.source then
+    message = string.format('%s [%s][%s] %s', icon, diagnostic.source, diagnostic.code, diagnostic.message)
+  elseif diagnostic.code or diagnostic.source then
+    message = string.format('%s [%s] %s', icon, diagnostic.code or diagnostic.source, diagnostic.message)
+  end
+
+  return message .. ' '
+end
+
 for type, icon in pairs(signs) do
   vim.fn.sign_define(
     "DiagnosticSign" .. type,
     { text = icon, texthl = "DiagnosticSign" .. type, numhl = "DiagnosticSign" .. type }
   )
 end
+
+
+-- diagnostic
+vim.diagnostic.config {
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  sings = true,
+  virtual_text = false,
+  -- float = {
+  --   -- border = user_config.border,
+  --   focusable = false,
+  --   -- header = { icons.debug .. ' Diagnostics:', 'DiagnosticInfo' },
+  --   scope = 'line',
+  --   suffix = '',
+  --   source = false,
+  --   format = format_diagnostic,
+  -- },
+  -- virtual_text = {
+  --   prefix = '',
+  --   spacing = 2,
+  --   source = false,
+  --   severity = {
+  --     min = vim.diagnostic.severity.HINT,
+  --   },
+  --   format = format_diagnostic,
+  -- },
+}
+

@@ -109,7 +109,7 @@
     "when": "sideBarFocus"
   },
   {
-    "key": "ctrl+b e",
+    "key": "ctrl+a e",
     "command": "workbench.action.toggleSidebarVisibility"
   },
   // Extensions
@@ -130,7 +130,7 @@
     "when": "explorerViewletFocus && !inputFocus"
   },
   {
-    "key": "ctrl+b d",
+    "key": "ctrl+a d",
     "command": "workbench.view.explorer",
     "when": "viewContainer.workbench.view.explorer.enabled"
   },

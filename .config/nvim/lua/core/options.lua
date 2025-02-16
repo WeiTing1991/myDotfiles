@@ -11,8 +11,6 @@ local globals = {
   loaded_python3_provider = 0,
   loaded_perl_provider = 0,
   loaded_ruby_provider = 0,
-
-  -- editorconfig = true,
 }
 
 for k, v in pairs(globals) do
@@ -46,95 +44,103 @@ end
 
 local options = {
 
-  laststatus = 3,
+  -- misc
+  backspace = { 'eol', 'start', 'indent' },
+  encoding = 'utf-8',
+  matchpairs = { '(:)', '{:}', '[:]', '<:>' },
+  syntax = 'enable',
 
-  --number
-  number = true,
-  relativenumber = true,
-  numberwidth = 2,
 
-  -- Show which line your cursor is on
-  cursorline = true,
-  -- cursorlineopt = "",
-
-  --  See `:help 'clipboard'`
-  clipboard = "unnamedplus",
-
-  -- indenting
+  -- indention
+  autoindent = true,
   expandtab = true,
   shiftwidth = 2,
   smartindent = true,
   tabstop = 2,
   softtabstop = 2,
 
-  -- See `:help 'list'`
-  list = true,
-  listchars = { tab = "▏ ", trail = "·", extends = "»", precedes = "«" },
-  fillchars = { eob = " " },
+  --number
+  number = true,
+  relativenumber = true,
+  numberwidth = 2,
 
-  -- Case-insensitive searching UNLESS \C or capital in search
-  ignorecase = true,
-  smartcase = true,
+  -- ui
   mouse = "a",
+  cursorline = true,
+  laststatus = 3,
+  -- cursorlineopt = "",
 
+  clipboard = "unnamedplus",
+
+  list = true,
+  listchars = { tab = "▏ ", trail = "·", lead = "·", extends = "»", precedes = "«" },
+  fillchars = { eob = " " },
+  wildmenu = true,
   signcolumn = "yes:1",
-
-  -- Decrease update time
-  updatetime = 10,
-  timeoutlen = 200,
   splitright = true,
   splitbelow = true,
 
-  -- Save undo history
-  backup = false,
-  undofile = true,
-  undodir = undoDir,
-
-
-  -- Enable break indent
   breakindent = true,
   showbreak = "↪ ",
 
-  -- Preview substitutions live, as you type!
-  inccommand = "split",
-
+  wrap = false,
   -- cindent = false,
-  -- wrap = true,
-
-  -- tabline
   -- showtabline = 1,
 
+  -- Case-insensitive searching UNLESS \C or capital in search
+  -- search
+  hlsearch = true,
+  ignorecase = true,
+  smartcase = true,
+  wildignore = vim.opt.wildignore + { '*/node_modules/*', '*/.git/*', '*/vendor/*' },
+
+
+  -- Save undo history
+  backup = false,
+  swapfile = false,
+  writebackup  = false,
+  undofile = true,
+  undodir = undoDir,
+
+  -- Preview substitutions live, as you type!
+  inccommand = "split",
+  shortmess = vim.opt.shortmess + { c = true },
+
   -- colorcolumn = "120",
-  textwidth = 105, -- virt column set to 105
+  textwidth = 110, -- virt column set to 110
   linebreak = true,
 
   -- Minimal number of screen lines to keep above and below the cursor.
-  -- scrolloff = 10,
+  scrolloff = 10,
   -- sidescrolloff = 1,
   -- conceallevel = 0,
 
-  -- searcfolds
+  -- searchfolds
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()",
   -- foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()",
   foldtext = "",
   foldlevel = 99,
+  foldnestmax = 4,
   -- foldcolumn = "0",
   -- foldlevelstart = 99,
-  -- foldnextmax = 3,
+
+  --performace
+  updatetime = 50,
+  redrawtime = 1000,
+  timeoutlen = 200,
+  ttimeoutlen = 10,
 
   -- spell check
   spelllang = "en_us",
   spell = false,
   spellfile = spellDir,
-  -- titlestring = string.sub('%{&pvw} - %F', 0, 10),
+
+  termguicolors = true,
 }
 
 -- vim.opt.isfname:append "@-@"
 -- vim.opt.iskeyword:append "-"
-
--- disable nvim intro
--- vim.opt.shortmess:append "sI"
 
 for k, v in pairs(options) do
   vim.opt[k] = v

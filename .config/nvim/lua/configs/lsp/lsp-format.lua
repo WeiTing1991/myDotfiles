@@ -55,22 +55,22 @@ require("null-ls").setup {
       },
     },
 
-    -- require("none-ls.diagnostics.eslint_d").with {
-    --   args = {
-    --     "--no-warn-ignored", -- <-- this is the key argument
-    --     "--format",
-    --     "json",
-    --     "--stdin",
-    --     "--stdin-filename",
-    --     function()
-    --       return vim.api.nvim_buf_get_name(0)
-    --     end,
-    --   },
-    --   filetypes = {
-    --     "javascript",
-    --     "typescript",
-    --   },
-    -- },
+    require("none-ls.diagnostics.eslint_d").with {
+      args = {
+        "--no-warn-ignored", -- <-- this is the key argument
+        -- "--format",
+        "json",
+        "--stdin",
+        "--stdin-filename",
+        function()
+          return vim.api.nvim_buf_get_name(0)
+        end,
+      },
+      -- filetypes = {
+      --   "javascript",
+      --   "typescript",
+      -- },
+    },
 
     -- python
     -- formating

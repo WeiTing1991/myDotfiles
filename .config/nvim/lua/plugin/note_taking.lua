@@ -8,7 +8,7 @@ return {
     event = "VeryLazy",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown"},
-    build = "cd app && npm install",
+    build = function() vim.fn["mkdp#util#install"]() end,
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,

@@ -11,6 +11,7 @@ local M = {
   -- "prettier",
   -- "prettierd",
   -- {'eslint_d', version = '13.1.2'},
+  {'eslint_d'},
 
   -- shell
   {"shfmt"},

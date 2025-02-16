@@ -1,4 +1,4 @@
----------------------------------- Pluglins keymaps ---------------------------------
+---------------------------------- Plugins Keymaps ---------------------------------
 -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/doc/mini-clue.txt
 
 local miniclue = require('mini.clue')
