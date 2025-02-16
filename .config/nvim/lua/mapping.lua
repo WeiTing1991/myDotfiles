@@ -114,6 +114,7 @@ end, { desc = "Toggle maximize buffer" })
 -- git tools
 -- https://www.youtube.com/watch?v=IyBAuDPzdFY&t=22s
 -- https://www.naseraleisa.com/posts/diff
+
 map("v", "<C-g>ss", function()
   require("gitsigns").stage_hunk { vim.fn.line ".", vim.fn.line "v" }
 end, { desc = "git stage hunk" })
@@ -134,7 +135,10 @@ map("n", "<C-g>S", ":Gitsign stage_buffer<CR>", { desc = "stage hunk" })
 map("n", "<C-g>r", ":Gitsign reset_hunk<CR>", { desc = "reset hunk" })
 map("n", "<C-g>i", ":Gitsign toggle_current_line_blame<CR>", { desc = "currentt line blame" })
 
--- map("n", "<C-g>gg", vim.cmd.Git, { desc = "Git" })
+map("n", "<C-g>gg", function()
+  require("neogit").open()
+end, { desc = "NeoGit" })
+
 map("n", "<C-g>gP", function() vim.cmd.Git("push") end, { desc = "Git push" })
 -- map("n", "<C-g>gp", function() vim.cmd.Git({ "pull", "--rebase" }) end, { desc = "Git push" })
 map("n", "<C-g>gpr", function() vim.cmd.Git({ "pull", "--rebase" }) end, { desc = "Git pull rebase " })

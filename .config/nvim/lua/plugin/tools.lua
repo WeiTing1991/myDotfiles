@@ -61,9 +61,20 @@ return {
 
   {
     "sindrets/diffview.nvim",
-    enabled = false,
     lazy = true,
     event = "VeryLazy",
+  },
+
+  {
+    "NeogitOrg/neogit",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+      "ibhagwan/fzf-lua",            -- optional
+    },
+    config = true
   },
 
   -- ai tools

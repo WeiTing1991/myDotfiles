@@ -81,7 +81,6 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     version = false,
-    lazy = true,
     event = "BufReadPre",
     -- load treesitter early when opening a file from the cmdline
     lazy = vim.fn.argc(-1) == 0,

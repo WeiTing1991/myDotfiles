@@ -126,10 +126,10 @@ local options = {
   -- foldlevelstart = 99,
 
   --performace
-  updatetime = 100,
+  updatetime = 300,
   redrawtime = 1000,
   timeoutlen = 200,
-  ttimeoutlen = 10,
+  ttimeoutlen = 50,
 
   -- spell check
   spelllang = "en_us",

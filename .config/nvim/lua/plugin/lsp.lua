@@ -88,6 +88,10 @@ return {
     },
     opts = {
       filetype_exclude = { 'help', 'alpha', 'dashboard', 'nvim-tree', 'Trouble', 'lazy', 'mason' },
+      provider_selector = function(_, _, _)
+        return { "treesitter", "indent" }
+      end,
+      open_fold_hl_timeout = 0, -- Disable highlight timeout after opening
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd('FileType', {
@@ -98,7 +102,10 @@ return {
         end,
       })
 
-      vim.opt.foldlevelstart = 99
+      vim.o.foldenable = true
+      vim.o.foldcolumn = '0'
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
       require('ufo').setup(opts)
     end,
   },

@@ -48,6 +48,7 @@ require("null-ls").setup {
         "typescriptreact",
         "css",
         "html",
+        "toml",
         "json",
         "jsonc",
         "yaml",

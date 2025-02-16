@@ -3,10 +3,12 @@ local M = {
     -- theme = "nord",
     theme = "poimandres",
     -- theme = "Monochrome",
-    hl_add = {},
+    -- theme = "mountain",
+    hl_add = {
+      -- Normal = { bg = "none" },
+      -- NormalFloat = { bg = "none" },
+    },
     h1_override = {
-      Normal = { bg = "none" },
-      NormalFloat = { bg = "none" },
     },
     integrations = {},
     changed_themes = {},

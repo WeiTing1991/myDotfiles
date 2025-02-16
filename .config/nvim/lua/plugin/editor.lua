@@ -132,7 +132,6 @@ return {
       require("mini.ai").setup()
     end,
   },
-
   {
     'echasnovski/mini.align',
     version = '*',
@@ -140,6 +139,17 @@ return {
     event = 'InsertEnter',
     config = function()
       require('mini.align').setup()
+    end
+  },
+
+  -- Not working
+  {
+    'echasnovski/mini.splitjoin',
+    version = '*',
+    lazy = true,
+    event = 'VeryLazy',
+    config = function()
+      require('mini.splitjoin').setup()
     end
   },
 

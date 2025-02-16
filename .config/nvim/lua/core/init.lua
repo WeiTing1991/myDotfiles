@@ -32,11 +32,11 @@ local lazy_config = require("core.lazy")
 
 -- load plugins
 require("lazy").setup({
-  { import = "plugin.init"},
-  { import = "plugin.lsp"},
-  { import = "plugin.editor"},
-  { import = "plugin.tools"},
-  { import = "plugin.note_taking"},
+  { import = "plugin.init" },
+  { import = "plugin.lsp" },
+  { import = "plugin.editor" },
+  { import = "plugin.tools" },
+  { import = "plugin.note_taking" },
   -- { import = "plugin.misc"},
 }, lazy_config)
 

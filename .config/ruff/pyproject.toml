@@ -6,10 +6,10 @@ readme = "README.md"
 # requires-python = ">=3.9"
 # classifiers = [
 # ]
-#
+
 dependencies = [
-    "numpy>=1.26", # needed to avoid conflicts of compas and python version
-    "ruff>=0.8.2", # linting tool
+  "numpy>=1.26", # needed to avoid conflicts of compas and python version
+  "ruff>=0.8.2", # linting tool
 ]
 
 [tool.ruff]
@@ -20,23 +20,29 @@ indent-style = "space"
 
 [tool.ruff.lint]
 select = [
-    "E",   # pycodestyle errors
-    "W",   # pycodestyle warnings
-    "F",   # pyflakes
-    "I",   # isort
-    "UP",  # pyupgrade
-    "N",   # pep8-naming
-    "RUF", # ruff-specific rules
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "I",   # isort
+  "UP",  # pyupgrade
+  "N",   # pep8-naming
+  "RUF", # ruff-specific rules
 ]
 ignore = [
-    "D417",  # missing parameter documentation
+  "D417", # missing parameter documentation
 ]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.ruff.lint.isort]
-section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+section-order = [
+  "future",
+  "standard-library",
+  "third-party",
+  "first-party",
+  "local-folder",
+]
 
 # [tool.pytest.ini_options]
 # testpaths = ["tests"]

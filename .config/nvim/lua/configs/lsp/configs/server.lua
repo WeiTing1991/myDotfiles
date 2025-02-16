@@ -63,11 +63,11 @@ M = {
   -- ["ruff-lsp"] = {},
   ["ruff"] = {
     -- cmd_env = { RUFF_TRACE = "messages" },
-    init_options = {
-      settings = {
-        logLevel = "error",
-      },
-    },
+    -- init_options = {
+    --   settings = {
+    --     logLevel = "error",
+    --   },
+    -- },
   },
 
   ["pyright"] = {

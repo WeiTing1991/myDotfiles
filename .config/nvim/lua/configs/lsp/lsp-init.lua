@@ -60,6 +60,12 @@ require("mason-lspconfig").setup {
         -- Use the extended capabilities
         server.capabilities = capabilities
         lspconfig[server_name].setup(server)
+
+        -- for fold
+        -- capabilities.textDocument.foldingRange = {
+        --   dynamicRegistration = false,
+        --   lineFoldingOnly = true,
+        -- }
       end
     end,
   },
@@ -68,6 +74,20 @@ require("mason-lspconfig").setup {
 -- Hover diagnostic
 local highlight_augroup = vim.api.nvim_create_augroup("diagnostic-hover", { clear = false })
 local ns = vim.api.nvim_create_namespace "CurlineDiag"
+
+-- NOT WORKING
+local diagnostic_enabled = true -- Track if diagnostics are enabled
+
+local function toggle_diagnostics()
+  diagnostic_enabled = not diagnostic_enabled
+  if diagnostic_enabled then
+    print("Diagnostics Hover Enabled")
+  else
+    vim.api.nvim_clear_autocmds({ group = highlight_augroup })
+    print("Diagnostics Hover Disabled")
+  end
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     vim.api.nvim_create_autocmd("CursorHold", {
@@ -110,6 +130,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     })
   end,
 })
+
+-- vim.api.nvim_set_keymap("n", "<leader>tt", toggle_diagnostics(), { noremap = true, silent = true })
+
 -- Change signs for LSP diagnostics
 local signs = {
   Error = " ",
