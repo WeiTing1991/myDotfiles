@@ -1,19 +1,19 @@
 local M = {
   base46 = {
-    -- theme = "nord",
-    theme = "RosePine",
+    theme = "nord",
+    -- theme = "poimandres",
     -- theme = "Monochrome",
     -- theme = "mountain",
     hl_add = {
-      -- Normal = { bg = "none" },
-      -- NormalFloat = { bg = "none" },
+      Normal = { bg = "none" },
+      NormalFloat = { bg = "none" },
     },
     h1_override = {
     },
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "poimandres", "RosePine", "Nano-light" },
+    theme_toggle = { "poimandres", "nord", "Nano-light" },
   },
 
   ui = {
