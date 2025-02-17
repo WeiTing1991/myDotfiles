@@ -1,20 +1,20 @@
 -- extra server
 local M = {
   -- lua
-  {"stylua"},
+  { "stylua" },
 
   -- general
-  {"write-good"},
+  { "write-good" },
 
   -- javascript/ markdown / css
-  {"biome"},
+  { "biome" },
+  { "prettierd" },
   -- "prettier",
-  -- "prettierd",
-  -- {'eslint_d', version = '13.1.2'},
-  {'eslint_d'},
+  {'eslint_d', version = '13.1.2'},
+  -- { 'eslint_d' },
 
   -- shell
-  {"shfmt"},
+  { "shfmt" },
 
   --python
   -- "isort",

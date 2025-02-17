@@ -1,7 +1,7 @@
 local M = {
   base46 = {
     -- theme = "nord",
-    theme = "poimandres",
+    theme = "RosePine",
     -- theme = "Monochrome",
     -- theme = "mountain",
     hl_add = {

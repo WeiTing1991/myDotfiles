@@ -28,6 +28,15 @@ indent_style = space
 indent_size = 2
 indent_style = space
 
-[*.js *.jsx *.ts *.tsx]
-indent_size = 2
-indent_style = space
+# [*.tsx]
+# indent_size = 2
+# indent_style = tab
+# [*.ts]
+# indent_size = 2
+# indent_style = tab
+# [*.js]
+# indent_size = 2
+# indent_style = tab
+# [*.jsx]
+# indent_size = 2
+# indent_style = tab

@@ -1,4 +1,3 @@
-
 local null_ls = require "null-ls"
 
 -- NOTE: https://github.com/nvimtools/none-ls.nvim
@@ -24,20 +23,15 @@ require("null-ls").setup {
     },
 
     -- js/ts
-    -- formatting.prettierd.with {
-    --   command = "prettierd",
-    --   filetyes = {
-    --     "javascript", -- check also ;
-    --     "typescript",
-    --     "css",
-    --     "html",
-    --     "json",
-    --     "jsonc",
-    --     "yaml",
-    --     "markdown",
-    --   },
-    --   extra_filetypes = { "toml" },
-    -- },
+    formatting.prettierd.with {
+      command = "prettierd",
+      filetyes = {
+        "yaml",
+        "markdown",
+        "html",
+      },
+      extra_filetypes = { "toml" },
+    },
 
     formatting.biome.with {
       command = "biome",
@@ -47,30 +41,28 @@ require("null-ls").setup {
         "javascriptreact",
         "typescriptreact",
         "css",
-        "html",
-        "toml",
+        -- "html",
         "json",
         "jsonc",
-        "yaml",
-        "markdown",
       },
     },
 
+
+    -- require("none-ls.diagnostics.eslint_d"),
     require("none-ls.diagnostics.eslint_d").with {
       args = {
         "--no-warn-ignored", -- <-- this is the key argument
-        -- "--format",
-        "json",
+        "--format", "json",
         "--stdin",
         "--stdin-filename",
         function()
           return vim.api.nvim_buf_get_name(0)
         end,
       },
-      -- filetypes = {
-      --   "javascript",
-      --   "typescript",
-      -- },
+      filetypes = {
+        "javascript",
+        "typescript",
+      },
     },
 
     -- python
