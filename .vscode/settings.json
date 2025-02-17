@@ -559,6 +559,9 @@
 //       "command": "workbench.action.toggleCenteredLayout"
 //     }
   ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
 
 }
 

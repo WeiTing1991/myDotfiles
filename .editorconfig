@@ -13,6 +13,7 @@ max_line_length = 179
 
 [*.md]
 indent_size = 4
+indent_style = tab
 trim_trailing_whitespace = false
 
 # Makefile (use tabs instead of spaces)
@@ -28,15 +29,18 @@ indent_style = space
 indent_size = 2
 indent_style = space
 
-# [*.tsx]
-# indent_size = 2
-# indent_style = tab
-# [*.ts]
-# indent_size = 2
-# indent_style = tab
-# [*.js]
-# indent_size = 2
-# indent_style = tab
-# [*.jsx]
-# indent_size = 2
-# indent_style = tab
+[*.tsx]
+indent_size = 2
+indent_style = tab
+[*.ts]
+indent_size = 2
+indent_style = tab
+[*.js]
+indent_size = 2
+indent_style = tab
+[*.jsx]
+indent_size = 2
+indent_style = tab
+[*.json]
+indent_size = 2
+indent_style = tab
