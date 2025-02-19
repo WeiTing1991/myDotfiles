@@ -4,10 +4,14 @@ vim.cmd([[
 	filetype plugin indent on
 ]])
 
-local augroup_name = "wtNvimEditor"
-autocmd('BufWritePre', {
-  command = [[%s/\s\+$//e]],
-  group = vim.api.nvim_create_augroup(augroup_name, { clear = true }) ,
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("wtNvimEditor", { clear = true }),
+  pattern = { "*" }, -- Apply to all files
+  callback = function()
+    if vim.bo.filetype ~= "markdown" then
+      vim.cmd([[ %s/\s\+$//e ]]) -- Trim trailing whitespace
+    end
+  end,
 })
 
 ------------------------------------ highlight color ----------------------------------------:
@@ -22,7 +26,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- some ui settings
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
-
     -- optional
     vim.opt.guicursor = "n-v-c:block-Cursor,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
     -- vim.api.nvim_set_hl(0, "cursor", { background = "#eb6f92", foreground = "white"})
@@ -44,9 +47,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = mdgroup,
   pattern = "*.md",
   callback = function()
-    set.shiftwidth = 4
-    set.tabstop = 4
-    set.softtabstop = 4
+    set.shiftwidth = 2
+    set.tabstop = 2
+    set.softtabstop = 2
     set.textwidth = 150
     vim.opt.foldlevel = 99
 
@@ -79,7 +82,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 local tsgroup = vim.api.nvim_create_augroup("tsgroup", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = tsgroup,
-  pattern = {"*.js", "*.ts", "*.tsx", "*.jsx"},
+  pattern = { "*.js", "*.ts", "*.tsx", "*.jsx" },
   callback = function()
     set.conceallevel = 0
     set.expandtab = false

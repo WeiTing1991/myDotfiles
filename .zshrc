@@ -18,6 +18,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
+    # uv
+    . "$HOME/.local/bin/env"
+
     # enable fzf keybinding
     [ -f /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
 
@@ -173,6 +176,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
 
-# uv
-. "$HOME/.local/bin/env"
 
