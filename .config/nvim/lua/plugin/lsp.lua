@@ -198,28 +198,27 @@ return {
     end,
   },
   -- NOTE: https://github.com/pmizio/typescript-tools.nvim?tab=readme-ov-file
-  -- CHECK:
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   lazy = true,
-  --   event = "BufReadPre",
-  --   ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
-  --   config = function()
-  --     require("typescript-tools").setup {
-  --       on_attach =
-  --           function(client, bufnr)
-  --             client.server_capabilities.documentFormattingProvider = false
-  --             client.server_capabilities.documentRangeFormattingProvider = false
-  --           end,
-  --       settings = {
-  --         jsx_close_tag = {
-  --           enable = false,
-  --           filetypes = { "javascriptreact", "typescriptreact" },
-  --         }
-  --       }
-  --     }
-  --   end
-  -- },
+  {
+    "pmizio/typescript-tools.nvim",
+    lazy = true,
+    event = "BufReadPre",
+    ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+    config = function()
+      require("typescript-tools").setup {
+        on_attach =
+            function(client, bufnr)
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end,
+        settings = {
+          jsx_close_tag = {
+            enable = false,
+            filetypes = { "javascriptreact", "typescriptreact" },
+          }
+        }
+      }
+    end
+  },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     lazy = true,

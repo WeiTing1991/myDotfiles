@@ -70,9 +70,9 @@ return {
     lazy = true,
     event = "VeryLazy",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
+      "nvim-lua/plenary.nvim",  -- required
       "sindrets/diffview.nvim", -- optional - Diff integration
-      "ibhagwan/fzf-lua",            -- optional
+      "ibhagwan/fzf-lua",       -- optional
     },
     config = true
   },
@@ -93,7 +93,6 @@ return {
     lazy = true,
     -- event = "VeryLazy",
     dependencies = {
-      -- { "github/copilot.vim" },
       { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
