@@ -1,4 +1,5 @@
 local null_ls = require "null-ls"
+local null_ls_utils = require("null-ls.utils")
 
 -- NOTE: https://github.com/nvimtools/none-ls.nvim
 local formatting = null_ls.builtins.formatting
@@ -8,6 +9,7 @@ require("null-ls").setup {
   -- on_init = function(new_client, _)
   --   new_client.offset_encoding = "utf-16"
   -- end,
+	root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
   sources = {
 
     -- spell
@@ -33,19 +35,20 @@ require("null-ls").setup {
       extra_filetypes = { "toml" },
     },
 
-    formatting.biome.with {
-      command = "biome",
-      filetypes = {
-        "javascript",
-        "typescript",
-        "javascriptreact",
-        "typescriptreact",
-        "css",
-        -- "html",
-        "json",
-        "jsonc",
-      },
-    },
+    formatting.biome,
+    -- formatting.biome.with {
+    --   command = "biome",
+    --   filetypes = {
+    --     "javascript",
+    --     "typescript",
+    --     "javascriptreact",
+    --     "typescriptreact",
+    --     "css",
+    --     -- "html",
+    --     "json",
+    --     "jsonc",
+    --   },
+    -- },
 
 
     -- require("none-ls.diagnostics.eslint_d"),

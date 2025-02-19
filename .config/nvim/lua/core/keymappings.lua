@@ -63,10 +63,10 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Jump to next match" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Jump to previous match" })
 
 -- move and split between neovim buffers
-vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "move to left buffer" })
-vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "move to right buffer" })
-vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "move to up buffer" })
-vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "move to down buffer" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "move to left buffer" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "move to right buffer" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "move to up buffer" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "move to down buffer" })
 
 -- windows
 vim.keymap.set("n", "<leader>'", function()

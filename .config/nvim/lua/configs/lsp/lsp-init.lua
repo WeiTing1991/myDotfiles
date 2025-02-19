@@ -33,6 +33,7 @@ require("mason-tool-installer").setup {
   run_on_start = true,
 }
 
+
 require("mason-lspconfig").setup {
   ensure_installed = lsp_server,
   automatic_installation = false,

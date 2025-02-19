@@ -37,7 +37,7 @@ require("lazy").setup({
   { import = "plugin.editor" },
   { import = "plugin.tools" },
   { import = "plugin.note_taking" },
-  -- { import = "plugin.misc"},
+  { import = "plugin.misc" },
 }, lazy_config)
 
 -- loading list from basd46

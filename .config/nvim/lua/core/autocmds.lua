@@ -76,6 +76,20 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+local tsgroup = vim.api.nvim_create_augroup("tsgroup", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = tsgroup,
+  pattern = {"*.js", "*.ts", "*.tsx", "*.jsx"},
+  callback = function()
+    set.conceallevel = 0
+    set.expandtab = false
+    set.shiftwidth = 2
+    set.tabstop = 2
+    set.softtabstop = 2
+    set.textwidth = 120
+  end,
+})
+
 -- local cppgroup = vim.api.nvim_create_augroup("cppgroup", { clear = true })
 -- vim.api.nvim_create_autocmd("FileType", {
 --   group = cppgroup,

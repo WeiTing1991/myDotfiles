@@ -18,4 +18,10 @@
 -- },
 --
 return {
+  -- not working
+  { 'glacambre/firenvim',
+    lazy = true,
+    event = "VeryLazy",
+    build = ":call firenvim#install(0)"
+  }
 }

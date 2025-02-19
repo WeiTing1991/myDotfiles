@@ -1,12 +1,12 @@
 local M = {
   base46 = {
-    theme = "nord",
+    -- theme = "nord",
     -- theme = "poimandres",
     -- theme = "Monochrome",
-    -- theme = "mountain",
+    theme = "gruvchad",
     hl_add = {
-      Normal = { bg = "none" },
-      NormalFloat = { bg = "none" },
+      -- Normal = { bg = "#000000" },
+      -- NormalFloat = { bg = "none" },
     },
     h1_override = {
     },
@@ -20,7 +20,7 @@ local M = {
     cmp = {
       icons_left = false, -- only for non-atom styles!
       lspkind_text = true,
-      style = "atom",  -- default/flat_light/flat_dark/atom/atom_colored
+      style = "atom",     -- default/flat_light/flat_dark/atom/atom_colored
       format_colors = {
         tailwind = true,  -- will work for css lsp too
         icon = "󱓻",
