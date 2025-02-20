@@ -13,7 +13,8 @@ local M = {
     integrations = {},
     changed_themes = {},
     transparency = false,
-    theme_toggle = { "poimandres", "nord", "Nano-light" },
+    -- theme_toggle = { "poimandres", "nord", "Nano-light" },
+    theme_toggle = { "gruvchad", "Nano-light" },
   },
 
   ui = {
