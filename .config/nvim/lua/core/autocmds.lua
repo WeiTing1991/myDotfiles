@@ -26,8 +26,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- some ui settings
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
-    -- optional
     vim.opt.guicursor = "n-v-c:block-Cursor,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
+
+    -- optional
     -- vim.api.nvim_set_hl(0, "cursor", { background = "#eb6f92", foreground = "white"})
 
     -- winbar
@@ -79,13 +80,13 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+--[[ js ]]
 local tsgroup = vim.api.nvim_create_augroup("tsgroup", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = tsgroup,
   pattern = { "*.js", "*.ts", "*.tsx", "*.jsx" },
   callback = function()
     set.conceallevel = 0
-    set.expandtab = false
     set.shiftwidth = 2
     set.tabstop = 2
     set.softtabstop = 2
