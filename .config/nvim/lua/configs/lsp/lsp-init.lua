@@ -42,12 +42,8 @@ require("mason-lspconfig").setup {
     function(server_name)
       local server = lsp_server[server_name] or {}
 
-      -- Start by making a basic capabilities object
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- Extend it with cmp or blink capabilities
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
 
-      if server_name ~= "jdtls" then
+      if server_name ~= "jdtls" or server_name =="ts_" then
         -- Useful when disabling
         -- dissable typscript/javaserver attach here
         if server_name == "ruff_lsp" or server_name == "ts_ls" then
@@ -57,6 +53,11 @@ require("mason-lspconfig").setup {
           server.server_capabilities.hoverProvider = false
           server.server_capabilities.documentHighlightProvider = false
         end
+
+        -- Start by making a basic capabilities object
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        -- Extend it with cmp or blink capabilities
+        capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
 
         -- Use the extended capabilities
         server.capabilities = capabilities
