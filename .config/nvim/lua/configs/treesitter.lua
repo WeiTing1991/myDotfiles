@@ -5,6 +5,10 @@ treesitter.setup {
   ensure_installed = {
     "vim",
     "vimdoc",
+    "git_config",
+    "gitcommit",
+    "git_rebase",
+    "gitignore",
 
     "bash",
     "c",
@@ -30,7 +34,6 @@ treesitter.setup {
 
     "regex",
     "dockerfile",
-    "gitignore",
 
     "toml",
     "json",

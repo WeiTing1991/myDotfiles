@@ -42,11 +42,12 @@ require("mason-lspconfig").setup {
     function(server_name)
       local server = lsp_server[server_name] or {}
 
-
-      if server_name ~= "jdtls" or server_name =="ts_" then
-        -- Useful when disabling
-        -- dissable typscript/javaserver attach here
-        if server_name == "ruff_lsp" or server_name == "ts_ls" then
+      -- Useful when disabling
+      -- dissable typscript/javaserver attach here
+      print("Checking:", server_name) -- Debugging line
+      if server_name ~= "jdtls" or server_name ~= "ts_ls" then
+        print("Server Name: ", server_name)
+        if server_name == "ruff_lsp" then
           if server.server_capabilities == nil then
             server.server_capabilities = {}
           end
@@ -197,4 +198,3 @@ vim.diagnostic.config {
   --   format = format_diagnostic,
   -- },
 }
-
