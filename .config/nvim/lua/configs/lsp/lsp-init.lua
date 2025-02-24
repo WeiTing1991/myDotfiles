@@ -37,40 +37,36 @@ require("mason-tool-installer").setup {
 require("mason-lspconfig").setup {
   ensure_installed = lsp_server,
   automatic_installation = false,
-
   handlers = {
     function(server_name)
       local server = lsp_server[server_name] or {}
 
       -- Useful when disabling
       -- dissable typscript/javaserver attach here
-      print("Checking:", server_name) -- Debugging line
-      if server_name ~= "jdtls" or server_name ~= "ts_ls" then
-        print("Server Name: ", server_name)
-        if server_name == "ruff_lsp" then
-          if server.server_capabilities == nil then
-            server.server_capabilities = {}
-          end
-          server.server_capabilities.hoverProvider = false
-          server.server_capabilities.documentHighlightProvider = false
-        end
-
-        -- Start by making a basic capabilities object
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        -- Extend it with cmp or blink capabilities
-        capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
-
-        -- Use the extended capabilities
-        server.capabilities = capabilities
-        lspconfig[server_name].setup(server)
-
-        -- for fold
-        -- capabilities.textDocument.foldingRange = {
-        --   dynamicRegistration = false,
-        --   lineFoldingOnly = true,
-        -- }
+      if server_name == "jdtls" or server_name == "ts_ls" then
+        return
       end
-    end,
+
+      if server_name == "ruff_lsp" then
+        server.server_capabilities.hoverProvider = false
+        server.server_capabilities.documentHighlightProvider = false
+      end
+
+      -- Start by making a basic capabilities object
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      -- Extend it with cmp or blink capabilities
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
+
+      -- Use the extended capabilities
+      server.capabilities = capabilities
+      lspconfig[server_name].setup(server)
+
+      -- for fold
+      -- capabilities.textDocument.foldingRange = {
+      --   dynamicRegistration = false,
+      --   lineFoldingOnly = true,
+      -- }
+    end
   },
 }
 

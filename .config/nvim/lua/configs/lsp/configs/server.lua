@@ -26,19 +26,6 @@ M = {
       },
     },
   },
-  -- ltex
-  -- need to install java
-  -- ["ltex"] = {
-  --   settings = {
-  --     ltex = {
-  --       enabled = true,
-  --       language = "en-US",
-  --       dictionary = {
-  --         ["en-US"] = spell_words,
-  --       },
-  --     },
-  --   },
-  -- },
 
   -- -- HAVE to install go global
   -- -- go
@@ -120,6 +107,8 @@ M = {
   ["marksman"] = {},
   ["yamlls"] = {},
   ["taplo"] = {},
+  ["dockerls"] = {},
+  ["docker_compose_language_service"] = {},
 
   ["jsonls"] = {
     settings = {
