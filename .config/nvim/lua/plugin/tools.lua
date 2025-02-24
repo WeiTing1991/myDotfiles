@@ -90,7 +90,7 @@ return {
 
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    lazy = true,
+    lazy = false,
     -- event = "VeryLazy",
     dependencies = {
       { "zbirenbaum/copilot.lua" },

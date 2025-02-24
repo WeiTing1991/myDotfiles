@@ -1,8 +1,8 @@
 ---------------------------------- Plugins Keymaps ---------------------------------
 -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/doc/mini-clue.txt
 
-local miniclue = require('mini.clue')
-miniclue.setup({
+local miniclue = require "mini.clue"
+miniclue.setup {
   triggers = {
     -- Leader triggers
     { mode = "n", keys = "<Leader>" },
@@ -58,23 +58,32 @@ miniclue.setup({
     scroll_down = "<C-d>",
     scroll_up = "<C-u>",
   },
-})
+}
 
 ---------------------------------- Pluglins keymaps ---------------------------------
 local map = vim.keymap.set
-local fzf = require("fzf-lua")
+local fzf = require "fzf-lua"
+local Snacks = require "snacks"
+
+-- extend
+vim.keymap.set("n", "<leader>q", function()
+  vim.cmd ":w"
+  Snacks.bufdelete()
+end, { desc = "Close current buffer and window" })
 
 -- fzf
 map("n", "<C-f>", fzf.files, { desc = "Find files" })
 map("n", "<leader>ff", fzf.files, { desc = "Find files" })
 map("n", "<leader><leader>", function()
-  require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
+  require("fzf-lua").files { cwd = vim.fn.expand "%:p:h" }
 end, { desc = "Finde file in current child dir" })
 map("n", "<leader>fo", fzf.oldfiles, { desc = "Open recent file" })
 map("n", "<leader>fb", fzf.buffers, { desc = "Finde file in current child dir" })
 
 map("n", "<leader>fk", fzf.keymaps, { desc = "Search keymaps" })
-map("n", "<leader>fg", function() fzf.grep({ search = vim.fn.input "Grep > " }) end, { desc = "Grep search" })
+map("n", "<leader>fg", function()
+  fzf.grep { search = vim.fn.input "Grep > " }
+end, { desc = "Grep search" })
 map("n", "<leader>fl", fzf.live_grep, { desc = "Find live grep" })
 
 map("n", "<leader>bb", fzf.tabs, { desc = "Find live grep" })
@@ -84,7 +93,9 @@ map("n", "<leader>bt", fzf.tmux_buffers, { desc = "Find live grep" })
 map("n", "<leader>th", ":lua require('base46').toggle_theme()<cr>", { desc = " Switch Themes" })
 
 -- File tree
-map("n", "<leader>d", function() require("oil").open_float() end, { desc = "Toggle file explorer" })
+map("n", "<leader>d", function()
+  require("oil").open_float()
+end, { desc = "Toggle file explorer" })
 
 -- Markdown
 map("n", "<leader>mm", "<cmd>PeekOpen<cr>", { desc = "markdown preview with deno" })
@@ -93,13 +104,13 @@ map("n", "<leader>mr", "<cmd>Markview<cr>", { desc = "markdown render toggle" })
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview with node" })
 
 -- Bold (Ctrl + b)
-map("v", "<leader>mb", "c**<C-r>\"**<Esc>", { desc = "Bold" })
+map("v", "<leader>mb", 'c**<C-r>"**<Esc>', { desc = "Bold" })
 -- Italic (Ctrl + i)
-map("v", "<leader>mi", "c*<C-r>\"*<Esc>", { desc = "Italic" })
+map("v", "<leader>mi", 'c*<C-r>"*<Esc>', { desc = "Italic" })
 -- Inline Code (Ctrl + `)
-map("v", "<leader>m`", "c`<C-r>\"`<Esc>", { desc = "Inline Code" })
+map("v", "<leader>m`", 'c`<C-r>"`<Esc>', { desc = "Inline Code" })
 -- Strikethrough (Ctrl + s)
-map("v", "<leader>ms", "c~~<C-r>\"~~<Esc>", { desc = "Strikethrough" })
+map("v", "<leader>ms", 'c~~<C-r>"~~<Esc>', { desc = "Strikethrough" })
 -- Code block (Ctrl + )
 map("v", "<leader>mc", "c```<C-r>/```<Esc>", { desc = "Strikethrough" })
 
@@ -139,17 +150,27 @@ map("n", "<C-g>gg", function()
   require("neogit").open()
 end, { desc = "NeoGit" })
 
-map("n", "<C-g>gP", function() vim.cmd.Git("push") end, { desc = "Git push" })
+map("n", "<C-g>gP", function()
+  vim.cmd.Git "push"
+end, { desc = "Git push" })
 -- map("n", "<C-g>gp", function() vim.cmd.Git({ "pull", "--rebase" }) end, { desc = "Git push" })
-map("n", "<C-g>gpr", function() vim.cmd.Git({ "pull", "--rebase" }) end, { desc = "Git pull rebase " })
+map("n", "<C-g>gpr", function()
+  vim.cmd.Git { "pull", "--rebase" }
+end, { desc = "Git pull rebase " })
 
 local function commit_current_file()
-  local file = vim.fn.expand('%')
-  local message = vim.fn.input('Commit message: ')
-  vim.cmd('Git add ' .. file)
+  local file = vim.fn.expand "%"
+  local message = vim.fn.input "Commit message: "
+  vim.cmd("Git add " .. file)
   vim.cmd('Git commit -m "' .. message .. '"')
 end
-map('n', '<C-g>ca', commit_current_file, { desc = "Git commit current file" })
+map("n", "<C-g>ca", commit_current_file, { desc = "Git commit current file" })
+map("n", "<C-g>B", function()
+  Snacks.gitbrowse()
+end, { desc = "Git Browse" })
+map("n", "<C-g>l", function()
+  Snacks.lazygit()
+end, { desc = "Lazygit" })
 
 -- toggle copilot
 map("n", "<leader>tc", function()
@@ -161,8 +182,8 @@ map("n", "<leader>tc", function()
   end
 end, { desc = "Copilot" })
 
-map('n', '<C-g>gd', ":DiffviewOpen<cr>", { desc = "Git Diff" })
-map('n', '<C-g>q', ":DiffviewClose<cr>", { desc = "Close Git Diff" })
+map("n", "<C-g>gd", ":DiffviewOpen<cr>", { desc = "Git Diff" })
+map("n", "<C-g>q", ":DiffviewClose<cr>", { desc = "Close Git Diff" })
 
 -- CHECK: https://github.com/ibhagwan/fzf-lua
 -- and trouble
@@ -185,7 +206,6 @@ map("n", "<leader>ta", "<cmd>Neogen<cr>", { desc = "Annotation" })
 -- map("n", "<leader>tz", function()
 --   require("zen-mode").toggle { window = { width = 0.85 } }
 -- end, { desc = "Zen mode" })
-
 
 -- map("n", "<C-g>", builtin.git_files, { desc = "Find live grep" })
 -- -- word search

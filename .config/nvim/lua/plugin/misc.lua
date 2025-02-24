@@ -18,12 +18,45 @@
 -- },
 --
 return {
-  -- {
-  --   'glacambre/firenvim',
-  --   lazy = true,
-  --   event = "VeryLazy",
-  --   build = function()
-  --     vim.cmd(":call firenvim#install(0)")
-  --   end,
-  -- }
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      animate = { enabled = false },
+      bigfile = { enabled = false },
+      bufdelete = {},
+      dashboard = { enabled = false },
+      debug = { enabled = false },
+      dim = { enabled = false },
+      explorer = { enabled = false },
+      git = { enabled = false },
+      gitbrowse = {},
+      image = { enabled = false },
+      indent = { enabled = false },
+      input = { enabled = false },
+      layout = { enabled = false },
+      lazygit = {},
+      notifier = {
+        enabled = false,
+        timeout = 3000, -- Keeping timeout in case you need it
+      },
+      notify = { enabled = false },
+      picker = { enabled = false },
+      profiler = { enabled = false },
+      quickfile = { enabled = false },
+      rename = { enabled = false },
+      scope = { enabled = false },
+      scratch = { enabled = false },
+      scroll = { enabled = false },
+      statuscolumn = { enabled = false },
+      terminal = { enabled = false },
+      toggle = { enabled = false },
+      util = { enabled = false },
+      win = { enabled = false },
+      words = { enabled = false },
+      zen = { enabled = false },
+    },
+  },
 }
