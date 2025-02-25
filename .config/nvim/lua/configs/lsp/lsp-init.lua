@@ -1,4 +1,4 @@
-require("mason").setup({
+require("mason").setup {
   ui = {
     icons = {
       package_installed = "✓",
@@ -6,13 +6,12 @@ require("mason").setup({
       package_uninstalled = "✗",
     },
   },
-})
+}
 
 require("fidget").setup { notification = { window = { winblend = 0 } } }
 
-
 local lspconfig = require "lspconfig"
-local lsp_server = vim.tbl_keys(require("configs.lsp.configs.server") or {})
+local lsp_server = vim.tbl_keys(require "configs.lsp.configs.server" or {})
 
 local lsp_lint_fomater = vim.tbl_values(require "configs.lsp.configs.extra" or {})
 -- local dap_server = vim.tbl_values(require "lsp.dap-server")
@@ -33,7 +32,6 @@ require("mason-tool-installer").setup {
   run_on_start = true,
 }
 
-
 require("mason-lspconfig").setup {
   ensure_installed = lsp_server,
   automatic_installation = false,
@@ -48,6 +46,9 @@ require("mason-lspconfig").setup {
       end
 
       if server_name == "ruff_lsp" then
+        if server.server_capabilities == nil then
+          server.server_capabilities = {}
+        end
         server.server_capabilities.hoverProvider = false
         server.server_capabilities.documentHighlightProvider = false
       end
@@ -66,9 +67,15 @@ require("mason-lspconfig").setup {
       --   dynamicRegistration = false,
       --   lineFoldingOnly = true,
       -- }
-    end
+    end,
   },
 }
+
+-- Logging for debugging
+vim.lsp.set_log_level "debug"
+vim.lsp.handlers["$/progress"] = function(_, result, ctx)
+  print("LSP progress:", vim.inspect(result))
+end
 
 -- Hover diagnostic
 local highlight_augroup = vim.api.nvim_create_augroup("diagnostic-hover", { clear = false })
@@ -80,10 +87,10 @@ local diagnostic_enabled = true -- Track if diagnostics are enabled
 local function toggle_diagnostics()
   diagnostic_enabled = not diagnostic_enabled
   if diagnostic_enabled then
-    print("Diagnostics Hover Enabled")
+    print "Diagnostics Hover Enabled"
   else
-    vim.api.nvim_clear_autocmds({ group = highlight_augroup })
-    print("Diagnostics Hover Disabled")
+    vim.api.nvim_clear_autocmds { group = highlight_augroup }
+    print "Diagnostics Hover Disabled"
   end
 end
 
@@ -150,14 +157,14 @@ local function format_diagnostic(diagnostic)
     icon = signs.Hint
   end
 
-  local message = string.format('%s %s', icon, diagnostic.message)
+  local message = string.format("%s %s", icon, diagnostic.message)
   if diagnostic.code and diagnostic.source then
-    message = string.format('%s [%s][%s] %s', icon, diagnostic.source, diagnostic.code, diagnostic.message)
+    message = string.format("%s [%s][%s] %s", icon, diagnostic.source, diagnostic.code, diagnostic.message)
   elseif diagnostic.code or diagnostic.source then
-    message = string.format('%s [%s] %s', icon, diagnostic.code or diagnostic.source, diagnostic.message)
+    message = string.format("%s [%s] %s", icon, diagnostic.code or diagnostic.source, diagnostic.message)
   end
 
-  return message .. ' '
+  return message .. " "
 end
 
 for type, icon in pairs(signs) do
@@ -166,7 +173,6 @@ for type, icon in pairs(signs) do
     { text = icon, texthl = "DiagnosticSign" .. type, numhl = "DiagnosticSign" .. type }
   )
 end
-
 
 -- diagnostic
 vim.diagnostic.config {
