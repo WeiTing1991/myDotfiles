@@ -126,6 +126,7 @@ git_diff_bat() {
 alias gd=git_diff_bat
 alias gca="git commit -am"
 alias lg="lazygit"
+alias dockerkillall="docker rm f $(docker ps -aq)"
 
 # path
 alias ob="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen"
