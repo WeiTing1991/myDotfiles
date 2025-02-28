@@ -1,33 +1,23 @@
-# install neovim and wezterm
-winget install --id Microsoft.Powershell --source winget
-winget install neovim
-winget install wez.wezterm
+# Set the PowerShell execution policy to allow running scripts
+Get-ExecutionPolicy
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
-# for telescope (fzf)
-# winget install BurntSushi.ripgrep.MSVC
-# winget install sharkdp.fd
-# winget install --id=junegunn.fzf  -e
+# Add the script to the PowerShell profile
+$profileScriptPath = "$HOME\.config\powershell\weitingchen.ps1"
+$dotfilesScriptPath = "$HOME\.dotfiles\.config\windows\powershell\weitingchen.ps1"
+New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptPath -Force
 
-# link config file to user dir
+# Create symbolic link for Alacritty configuration
+$alacrittyConfigPath = "$APPDATA\alacritty\alacritty.toml"
+$dotfilesAlacrittyPath = "$HOME\.dotfiles\.config\alacritty\alacritty.toml"
+New-Item -Path $alacrittyConfigPath -ItemType SymbolicLink -Value $dotfilesAlacrittyPath -Force
 
-# Powershell
-New-Item -Path $env:USERPROFILE\.config\powershell\weitingchen.ps1 -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.config\powershell\weitingchen.ps1 -Force
+# Create symbolic link for AutoHotkey script
+$startupFolderPath = "$APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\windos_11_hotkeys.ahk"
+$dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\windos_11_hotkeys.ahk"
+New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
 
-# Weterm
-New-Item -Path "C:\Program Files\WezTerm\wezterm.lua" -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.config\wezterm\wezterm.lua -Force
-
-# neovim and wezterm
-Remove-Item $env:USERPROFILE\AppData\Local\nvim -Recurse -Force
-Remove-Item $env:USERPROFILE\AppData\Local\nvim-data -Recurse -Force
-
-New-Item -Path $env:USERPROFILE\AppData\Local\nvim\ -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.config\nvim\ -Force
-
-# zed
-New-Item -Path $env:USERPROFILE\AppData\Roaming\Zed\ -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.config\zed\ -Force
-
-# New-Item -Path $env:USERPROFILE\.vim\.vimrc -ItemType SymbolicLink -Value $env:USERPROFILE\myDotfiles\.vimrc -Force
-
-# vscode
-New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\settings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\settings.json -Force
-New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\keybindings.json -Force
-
+# Uncomment the following line to create a symbolic link for Vim configuration (if needed)
+# $vimrcLinkPath = "$HOME\.vim\.vimrc"
+# $dotfilesVimrcPath = "$HOME\myDotfiles\.vimrc"
+# New-Item -Path $vimrcLinkPath -ItemType SymbolicLink -Value $dotfilesVimrcPath -Force

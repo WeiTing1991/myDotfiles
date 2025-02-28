@@ -59,21 +59,12 @@ LWin & Tab::AltTab
 ;; app
 ;; not working good
 
-#2::
-{
-    ; Open Google Chrome with a specific profile
-    Run('chrome.exe --profile-directory="eth/usi"')  ; Replace "Profile 1" with your desired profile name
-    WinWait("Google Chrome")  ; Wait for Chrome to launch
-    WinActivate("Google Chrome")  ; Focus the Chrome window
-    MouseMove(A_ScreenHeight/2, A_ScreenWidth/2)  ; Move the mouse to the top-left corner
-}
-
-#3::
-{
-    ; Open Google Chrome with a specific profile
-    Run('chrome.exe --profile-directory="mesh"')  ; Replace "Profile 1" with your desired profile name
-    WinWait("Google Chrome")  ; Wait for Chrome to launch
-    WinActivate("Google Chrome")  ; Focus the Chrome window
-    MouseMove(A_ScreenHeight/2, A_ScreenWidth/2)  ; Move the mouse to the top-left corner
-}
+;#2::
+;{
+;    ; Open Google Chrome with a specific profile
+;    Run('chrome.exe --profile-directory="eth/usi"')  ; Replace "Profile 1" with your desired profile name
+;    WinWait("Google Chrome")  ; Wait for Chrome to launch
+;    WinActivate("Google Chrome")  ; Focus the Chrome window
+;    MouseMove(A_ScreenHeight/2, A_ScreenWidth/2)  ; Move the mouse to the top-left corner
+;}
 
