@@ -1,26 +1,46 @@
 #!/usr/bin/zsh
 
-nvim --headless --listen 127.0.0.1:9999 &
 
-# Capture Neovim's Process ID (PID)
+# Find an available port dynamically
+PORT=$(comm -23 <(seq 1024 65535 | sort) <(ss -tan | awk 'NR>1 {print $4}' | cut -d: -f2 | sort -u) | shuf | head -n 1)
+
+
+if [ -z "$PORT" ]; then
+  echo "Error: Could not determine find the available port."
+  exit 1
+fi
+
+# Set the Neovim listen address
+NVIM_LISTEN_ADDRESS="127.0.0.1:$PORT"
+export NVIM_LISTEN_ADDRESS
+echo "Using port $PORT for Neovim server."
+
+
+# Check if Neovim is already listening on the port
+nvim --headless --listen "$NVIM_LISTEN_ADDRESS" >/dev/null 2>&1 &
 NVIM_PID=$!
+echo "neovim started with pid $nvim_pid"
+echo "Starting Neovim server at $NVIM_LISTEN_ADDRESS..."
 
-# Wait for Neovim to initialize (checking TCP port)
-echo "Waiting for Neovim to initialize..."
-until nc -z 127.0.0.1 9999; do
-  sleep 1
-done
+sleep 0.2
 
-# Start Goneovim (or Neovide) and connect to the Neovim server
-echo "Starting client and connecting to Neovim server..."
-goneovim.exe --server localhost:9999
-# Neovide.exe --server localhost:9999
+# Ensure Neovim is actually running
+if ! nc -z 127.0.0.1 "$PORT" 2>/dev/null; then
+  echo "Error: Neovim failed to start on $NVIM_LISTEN_ADDRESS."
+  exit 1
+fi
 
-# Wait for Neovim process to exit
-wait $NVIM_PID
+# Start Goneovim and connect to the Neovim server
+echo "Starting Goneovim and connecting to Neovim server..."
+goneovim.exe --server "$NVIM_LISTEN_ADDRESS" &
+GONEOVIM_PID=$!
+echo "Goneovim started with PID $GONEOVIM_PID"
 
-echo "Closing Neovim server..."
-kill $NVIM_PID
+# Wait for Goneovim to exit
+wait "$GONEOVIM_PID"
+echo "Goneovim has exited."
 
-# Echo when Neovim has been closed and Goneovim should exit
+# Terminate Neovim server
+echo "Terminating Neovim server..."
+kill -SIGTERM "$NVIM_PID"
 echo "Neovim has closed."
