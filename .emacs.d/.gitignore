@@ -1,0 +1,11 @@
+.DS_store
+
+auto-save-list/
+eln/
+eln-cache/
+elpa/
+etc/
+straight/
+tree-sitter/
+var/
+undo/
