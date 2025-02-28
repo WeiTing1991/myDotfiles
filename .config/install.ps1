@@ -17,6 +17,11 @@ $startupFolderPath = "$APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\win
 $dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\windos_11_hotkeys.ahk"
 New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
 
+# Create symbolic link for Goneovim
+$goneovimFolderPath = "$HOME\.config\goneovim\settings.toml"
+$dotfilesGoneovimPath = "$HOME\.dotfiles\.config\goneovim\settings.toml"
+New-Item -Path $goneovimFolderPath -ItemType SymbolicLink -Value $dotfilesGoneovimPath -Force
+
 # Uncomment the following line to create a symbolic link for Vim configuration (if needed)
 # $vimrcLinkPath = "$HOME\.vim\.vimrc"
 # $dotfilesVimrcPath = "$HOME\myDotfiles\.vimrc"
