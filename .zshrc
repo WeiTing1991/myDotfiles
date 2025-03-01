@@ -110,6 +110,7 @@ setopt hist_find_no_dups
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias n="nvim"
+alias nv="./script/nvim-remote.sh"
 alias e="exit"
 alias pj="cd $HOME/project/"
 
