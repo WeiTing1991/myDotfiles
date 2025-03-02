@@ -33,7 +33,7 @@ return {
       explorer = { enabled = false },
       git = { enabled = false },
       gitbrowse = {},
-      image = { enabled = false },
+      image = {},
       indent = { enabled = false },
       input = { enabled = false },
       layout = { enabled = false },
@@ -58,5 +58,16 @@ return {
       words = { enabled = false },
       zen = { enabled = false },
     },
+  },
+  {
+    "yatli/gui-widgets.nvim",
+    lazy = true,
+    config = function()
+      vim.cmd [[
+      if exists("g:gui_widgets")
+      call GuiWidgetClientAttach(g:goneovim_channel)
+      endif
+       ]]
+    end,
   },
 }

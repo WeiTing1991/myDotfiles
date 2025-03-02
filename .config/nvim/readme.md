@@ -7,6 +7,11 @@
 
 I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and make ths issue or PRs.
 
+## MyNeovim
+
+![](/Users/weitingchen/Desktop/Snipaste_2025-03-02_04-28-25.jpg)
+
+
 ## Setup
 
 **Requirements**

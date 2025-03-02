@@ -110,12 +110,12 @@ setopt hist_find_no_dups
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias n="nvim"
+# alias n="goneovim"
 alias nv="./script/nvim-remote.sh"
 alias e="exit"
 alias pj="cd $HOME/project/"
 
 alias ls="eza --sort=type"
-alias tree="eza --tree"
 alias tree="eza --tree"
 
 
@@ -127,7 +127,7 @@ git_diff_bat() {
 alias gd=git_diff_bat
 alias gca="git commit -am"
 alias lg="lazygit"
-alias dockerkillall="docker rm f $(docker ps -aq)"
+# alias dockerkillall="docker rm f $(docker ps -aq)"
 
 # path
 alias ob="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen"

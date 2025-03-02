@@ -1,22 +1,22 @@
 ## Goneovim settings.toml
-
 [Editor]
 IgnoreSaveConfirmationWithCloseButton = false
-BorderlessWindow = false
-HideTitlebar = false
+BorderlessWindow = true
+HideTitlebar = true
 Width = 1200
 Height = 800
-Margin = 10
+Margin = 6
+image = true
 Gap = 0
 ReversingScrollDirection = false
-LineToScroll = 5
+LineToScroll = 1
 
 RestoreWindowGeometry = true
 FontFamily = "Hack Nerd Font"
-FontSize = 12
+FontSize = 16
 Letterspace = 0
 
-Transparent = 0.95
+Transparent = 1
 
 ## MouseScrollingUnit sets the mode of mouse scrolling.
 ## "line" scrolls in lines.
@@ -85,7 +85,7 @@ IndentGuide = false
 # OptionsToUseGuideWidth = "tabstop"
 
 SmoothScroll = true
-SmoothScrollDuration = 200
+SmoothScrollDuration = 50
 DisableHorizontalScroll = true
 
 ## Draw border on a float window
@@ -183,8 +183,8 @@ Visible = false
 
 ## Configure externalized tabline UI.
 [Tabline]
-Visible = true
-ShowIcon = true
+Visible = false
+ShowIcon = false
 
 ## Configure externalized popupmenu UI.
 [Popupmenu]
@@ -236,7 +236,7 @@ Visible = false
 ##  name: directoryname
 ##  full: /path/to/directoryname
 ##  minimum: /p/t/directoryname
-PathStyle = "minimum"
+# PathStyle = "minimum"
 
 ## Specifies whether the last exited session should be restored at the next startup.
 # RestoreSession = false

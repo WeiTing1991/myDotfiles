@@ -76,15 +76,15 @@ return {
   },
 
   -- Markdown image
-  -- {
-  --   "3rd/image.nvim",
-  --   enabled = false,
-  --   event = "VeryLazy",
-  --   opts = {},
-  --   config = function()
-  --     require "config.image"
-  --   end,
-  -- },
+  {
+    "3rd/image.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    opts = {},
+    -- config = function(opts, _)
+    --   require "configs.image"
+    -- end,
+  },
 
   -- -- Image pasting
   -- -- NOTE https://github.com/HakonHarnes/img-clip.nvim

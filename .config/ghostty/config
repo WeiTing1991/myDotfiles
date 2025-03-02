@@ -6,8 +6,8 @@
 # apparence
 font-family = "Hack Nerd Font"
 font-size = 16
-background = "0D0907"
-theme = rose-pine
+# background = "0D0907"
+theme = gruvbox-material
 window-inherit-font-size=true
 
 # cursor
@@ -40,7 +40,8 @@ keybind = cmd+n=new_window
 keybind = cmd+q=close_window
 
 # tabs
-keybind = cmd+t=new_tab
+keybind = cmd+x>c=new_tab
+keybind = ctrl+x>c=new_tab
 keybind = ctrl+shift+t=new_tab
 keybind = cmd+w=close_surface
 keybind = ctrl+x>n=next_tab
