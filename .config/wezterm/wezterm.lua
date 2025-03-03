@@ -27,7 +27,7 @@ config = {
   default_prog = default_prog,
 
   -- GUI
-  max_fps = 144,
+  max_fps = 100,
   animation_fps = 144,
 
   -- color
@@ -73,7 +73,7 @@ config = {
   },
 
   adjust_window_size_when_changing_font_size = true,
-  window_background_opacity = 0.95,
+  --window_background_opacity = 0.95,
   macos_window_background_blur = 80,
   window_close_confirmation = "AlwaysPrompt",
   default_cursor_style = "BlinkingBlock",
