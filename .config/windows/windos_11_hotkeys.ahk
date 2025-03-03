@@ -1,4 +1,4 @@
-﻿; https://www.autohotkey.com/docs/v2/Hotkeys.htm
+; https://www.autohotkey.com/docs/v2/Hotkeys.htm
 
 #SingleInstance Force ; Prevents duplicate script instances
 ;#Persistent  ; Keep the script running in the background
@@ -40,8 +40,8 @@ LWin & Tab::AltTab
 
 #Enter::{
     ; Center Window
-    NewWidth := A_ScreenWidth * 0.8  ; 70% of screen width
-    NewHeight := A_ScreenHeight * 0.8  ; 70% of screen height
+    NewWidth := A_ScreenWidth * 0.95
+    NewHeight := A_ScreenHeight * 0.95
     X := (A_ScreenWidth - NewWidth) / 2
     Y := (A_ScreenHeight - NewHeight) / 2
     WinMove(X, Y, NewWidth, NewHeight, "A")  ; Move and resize the active window
