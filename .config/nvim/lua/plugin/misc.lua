@@ -65,7 +65,7 @@ return {
     config = function()
       vim.cmd [[
       if exists("g:gui_widgets")
-      call GuiWidgetClientAttach(g:goneovim_channel)
+      call GuiWidgetClientAttach(g:fvim.channel)
       endif
        ]]
     end,

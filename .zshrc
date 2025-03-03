@@ -117,6 +117,7 @@ alias pj="cd $HOME/project/"
 
 alias ls="eza --sort=type"
 alias tree="eza --tree"
+alias fvim="/Applications/FVim.app/Contents/MacOS/FVim"
 
 
 # git tools
