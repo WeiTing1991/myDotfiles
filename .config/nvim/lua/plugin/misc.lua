@@ -59,9 +59,4 @@ return {
       zen = { enabled = false },
     },
   },
-  {
-    "yatli/gui-widgets.nvim",
-    lazy = true,
-    enabled = false,
-  },
 }
