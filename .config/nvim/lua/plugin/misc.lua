@@ -62,12 +62,6 @@ return {
   {
     "yatli/gui-widgets.nvim",
     lazy = true,
-    config = function()
-      vim.cmd [[
-      if exists("g:gui_widgets")
-      call GuiWidgetClientAttach(g:fvim.channel)
-      endif
-       ]]
-    end,
+    enabled = false,
   },
 }
