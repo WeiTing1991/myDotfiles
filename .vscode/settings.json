@@ -1,5 +1,5 @@
 {
-    /** system **************************************************************************************/
+    // system
     // defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
     // defaults delete -g ApplePressAndHoldEnabled
     // defaults write -g ApplePressAndHoldEnabled -bool false
@@ -8,27 +8,24 @@
     "telemetry.telemetryLevel": "off",
     // "telemetry.enableCrashReporter": false,
 
-    //   /** UI *************************************************************************************/
+    // apperance
     "terminal.integrated.defaultLocation": "view",
     "workbench.startupEditor": "none",
-    "window.titleBarStyle": "custom",
-//   "window.commandCenter": false,
-    "workbench.statusBar.visible": true,
     "workbench.sideBar.location": "right",
     "workbench.activityBar.location": "bottom",
 
-// "workbench.editor.showTabs": "none",
+    "workbench.editor.showTabs": "multiple",
     "workbench.tree.enableStickyScroll": false,
     "workbench.tree.renderIndentGuides": "none",
-    "workbench.tree.indent": 20,
+    "workbench.tree.indent": 8,
 
     "workbench.panel.showLabels": false,
     "workbench.panel.defaultLocation": "right",
     "workbench.editor.empty.hint": "hidden",
-
+    "window.commandCenter": false,
 
 //   /** editor *************************************************************************************/
-    // "editor.fontFamily": "Roboto, SauceCodePro Nerd Font, SauceCodePro NF, RobotoMono Nerd Font ",
+    "editor.fontFamily": "Hack Nerd font, Roboto, RobotoMono Nerd Font ",
 
     "editor.fontSize": 16,
     "editor.rulers": [
@@ -44,11 +41,9 @@
     "editor.cursorBlinking": "phase",
     "editor.cursorSmoothCaretAnimation": "off",
     "editor.renderLineHighlight": "none",
-    "editor.hover.delay": 50,
+    "editor.hover.delay": 20,
 
-
-//   // NOTE:https://github.com/alefragnani/vscode-project-manager/tree/master?tab=readme-ov-file
-//   "projectManager.projectsLocation": "~/.dotfiles/.vscode",
+  //"projectManager.projectsLocation": "~/.dotfiles/.vscode",
 
   // scroll bar
   "editor.scrollbar.horizontal": "hidden",
@@ -59,10 +54,10 @@
   // "editor.overviewRulerBorder": true,
   // "editor.insertSpaces": true, // or false for tabs
   "editor.tabSize": 2,
+  "editor.insertSpaces": true,
   "editor.occurrencesHighlight": "off",
   "editor.lightbulb.enabled": "off",
-
-//  "editor.selectionHighlight": false,
+  "editor.selectionHighlight": false,
 //   "editor.copyWithSyntaxHighlighting": false,
 //   "diffEditor.ignoreTrimWhitespace": false,
 //   "editor.emptySelectionClipboard": false,
@@ -179,7 +174,8 @@
     "vim.highlightedyank.duration": 120,
 
     "extensions.experimental.affinity": {
-        "vscodevim.vim": 1
+      "vscodevim.vim": 1,
+      "asvetliakov.vscode-neovim": 1
     },
 
 //   "vim.replaceWithRegister": true,
@@ -291,7 +287,7 @@
     }
   ],
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "git.openRepositoryInParentFolders": "never",
 
@@ -562,6 +558,8 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua",
 
 }
 

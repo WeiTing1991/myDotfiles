@@ -225,7 +225,17 @@ return {
     event = "BufReadPre",
     opts = { enable_autocmd = false, },
   },
-
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = true,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim",
+    },
+    config = function ()
+      require("flutter-tools").setup{}
+    end
+  },
   -- c/c++
   -- {
   --   "p00f/clangd_extensions.nvim",

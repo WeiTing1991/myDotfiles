@@ -3,3 +3,4 @@ normal = ["Hack Nerd Font"]
 size = 16
 hinting = "full"
 edging = "antialias"
+no-multigrid = true

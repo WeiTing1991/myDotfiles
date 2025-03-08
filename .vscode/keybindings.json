@@ -1,4 +1,3 @@
-
 [
   /* NOTE: https://github.com/VSpaceCode/vscode-which-key/blob/master/package.json */
   /* system **************************************************************************************/
@@ -29,6 +28,69 @@
     "key": "shift+space",
     "command": "whichkey.show"
   },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.switchWindow"
+  },
+  {
+    "key": "cmd+j",
+    "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "cmd+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "alt+cmd+b",
+    "command": "-workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+g b",
+    "command": "simpleBrowser.show"
+  },
+  {
+    "key": "cmd+k cmd+r",
+    "command": "-workbench.action.keybindingsReference"
+  },
+  {
+    "key": "cmd+k cmd+s",
+    "command": "-workbench.action.openGlobalKeybindings"
+  },
+  {
+    "key": "ctrl+f f",
+    "command": "find-it-faster.findFiles"
+  },
+  {
+    "key": "shift+cmd+j",
+    "command": "-find-it-faster.findFiles"
+  },
+  {
+    "key": "ctrl+f l",
+    "command": "find-it-faster.findWithinFiles"
+  },
+  {
+    "key": "shift+cmd+u",
+    "command": "-find-it-faster.findWithinFiles"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "-vscode-neovim.ctrl-f",
+    "when": "editorTextFocus && neovim.ctrlKeysNormal.f && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "-editor.action.pageDownHover",
+    "when": "editorHoverFocused"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "-vscode-neovim.send",
+    "when": "editorTextFocus && neovim.ctrlKeysInsert.f && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+  },
   // close the active editor
   {
     "key": "ctrl+q",
@@ -40,21 +102,23 @@
     "key": "ctrl-shift-p",
     "command": "workbench.action.showCommands"
   },
-  /* Nav and window move/split *******************************************************************/
-  // swithc window
+
+  // Nav and window move/split
+  // switch window
   {
-    "key": "ctrl+b w",
+    "key": "ctrl+w w",
     "command": "workbench.action.switchWindow"
   },
-  // frame split
+  // split windows
   {
-    "key": "ctrl-b '",
+    "key": "ctrl-w '",
     "command": "workbench.action.splitEditor"
   },
   {
-    "key": "ctrl-b 5",
+    "key": "ctrl-w 5",
     "command": "workbench.action.splitEditorDown"
   },
+  // max windows
   {
     "key": "ctrl-'",
     "command": "workbench.action.toggleMaximizeEditorGroup",
@@ -76,9 +140,10 @@
     "command": "workbench.action.previousEditorInGroup"
     // "when": "editorTextFocus"
   },
+
   /* termainal  **********************************************************************************/
   {
-    "key": "ctrl+b t",
+    "key": "ctrl+/",
     "command": "workbench.action.togglePanel"
   },
   {
@@ -104,12 +169,12 @@
   /* Side panel **********************************************************************************/
   // Close sidebar
   {
-    "key": "ctrl+q",
+    "key": "ctrl+e",
     "command": "workbench.action.toggleSidebarVisibility",
     "when": "sideBarFocus"
   },
   {
-    "key": "ctrl+a e",
+    "key": "ctrl+e",
     "command": "workbench.action.toggleSidebarVisibility"
   },
   // Extensions
@@ -333,15 +398,15 @@
   // },
   // open config ettings
   {
-    "key": "ctrl+b ctrl+k",
+    "key": "ctrl+x k",
     "command": "workbench.action.openGlobalKeybindings"
   },
   {
-    "key": "ctrl+b ctrl+s",
+    "key": "ctrl+x s",
     "command": "workbench.action.openSettings"
   },
   {
-    "key": "ctrl+c",
+    "key": "ctrl+x",
     "command": "workbench.action.openGlobalKeybindingsFile",
     "when": "inKeybindings"
   },
@@ -474,7 +539,11 @@
     "when": "editorHoverFocused"
   },
   {
-    "key": "ctrl+w",
-    "command": "-workbench.action.switchWindow"
-  }
+    "key": "ctrl+f",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "cmd+p",
+    "command": "-workbench.action.quickOpen"
+  },
 ]

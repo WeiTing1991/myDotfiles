@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "Zed (Default)",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "base_keymap": "Emacs",
   "telemetry": {
     "metrics": false
@@ -17,6 +21,32 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Gruvbox Dark Hard"
+    "dark": "Gruvbox Dark"
+  },
+  "project_panel": {
+    "button": true,
+    "default_width": 240,
+    "dock": "right",
+    "entry_spacing": "comfortable",
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true,
+    "indent_size": 8,
+    "auto_reveal_entries": true,
+    "auto_fold_dirs": true,
+    "scrollbar": {
+      "show": null
+    },
+    "show_diagnostics": "all",
+    "indent_guides": {
+      "show": "always"
+    }
+  },
+  "lsp": {
+    "dart": {
+      "settings": {
+        "lineLength": 120
+      }
+    }
   }
 }
