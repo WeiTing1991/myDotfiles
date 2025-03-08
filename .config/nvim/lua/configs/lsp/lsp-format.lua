@@ -1,5 +1,5 @@
 local null_ls = require "null-ls"
-local null_ls_utils = require("null-ls.utils")
+local null_ls_utils = require "null-ls.utils"
 
 -- NOTE: https://github.com/nvimtools/none-ls.nvim
 local formatting = null_ls.builtins.formatting
@@ -9,7 +9,7 @@ require("null-ls").setup {
   -- on_init = function(new_client, _)
   --   new_client.offset_encoding = "utf-16"
   -- end,
-	root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
+  root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
   sources = {
 
     -- spell
@@ -36,26 +36,13 @@ require("null-ls").setup {
     },
 
     formatting.biome,
-    -- formatting.biome.with {
-    --   command = "biome",
-    --   filetypes = {
-    --     "javascript",
-    --     "typescript",
-    --     "javascriptreact",
-    --     "typescriptreact",
-    --     "css",
-    --     -- "html",
-    --     "json",
-    --     "jsonc",
-    --   },
-    -- },
-
 
     -- require("none-ls.diagnostics.eslint_d"),
     require("none-ls.diagnostics.eslint_d").with {
       args = {
         "--no-warn-ignored", -- <-- this is the key argument
-        "--format", "json",
+        "--format",
+        "json",
         "--stdin",
         "--stdin-filename",
         function()
@@ -77,15 +64,13 @@ require("null-ls").setup {
     require("none-ls.formatting.ruff").with {
       filetypes = { "python" },
     },
-
-    -- formatting.isort.with {
-    --   filetypes = { "python" },
-    -- },
+    formatting.isort.with {
+      filetypes = { "python" },
+    },
 
     -- formatting.black.with {
     --   filetypes = { "python" },
     --   extra_arges = { "--fast" },
     -- },
-
   },
 }

@@ -38,6 +38,9 @@ end, { desc = "Toggle fold" })
 vim.keymap.set("n", "<leader>o", ":bn<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>i", ":bp<cr>", { desc = "Prevous buffer" })
 
+vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
+
 vim.keymap.set("n", "<leader>q", function()
   vim.cmd ":bw"
 end, { desc = "Close current buffer and window" })

@@ -19,14 +19,13 @@ local function copilot_status()
 end
 -- indent statues
 local function indent_style()
-  local sytle_string = vim.opt.expandtab:get() and "Spaces" or "Tabs"
+  local sytle_string = vim.opt.expandtab:get() and "S" or "T"
   local style = vim.opt.expandtab:get() and "⇥" or ""
   local tab_width = vim.opt.shiftwidth:get()
   return string.format("%s %s (%d)", style, sytle_string, tab_width)
 end
 
 -- NOTE: try to make a pull request
-
 -- lsp status
 local function lsp_formater()
   local buf_clients = vim.lsp.buf_get_clients()
@@ -111,7 +110,7 @@ local function lsp_formater()
   --   end
   -- end
 
-  return #server_names > 0 and table.concat(server_names, ". ") or "NO LSP, FORMATTER  "
+  return #server_names > 0 and table.concat(server_names, ". ") or "NO LSP  "
   -- condition = function() return vim.o.columns > 70 end,
 end
 
@@ -140,7 +139,7 @@ require("staline").setup {
   sections = {
     left = { "- ", "-mode", "left_sep_double", "file_name", "branch" },
     mid = { lsp_formater },
-    right = { "lsp", spell_check, copilot_status, indent_style, "right_sep_double", "-cwd" },
+    right = { "lsp", spell_check, copilot_status, indent_style, "line_column", "right_sep_double", "-cwd" },
   },
 
   inactive_sections = {

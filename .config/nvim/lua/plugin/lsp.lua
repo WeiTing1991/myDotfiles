@@ -1,5 +1,5 @@
 return {
-  -- -------------------------------------- Autocompletion --------------------------------------------------
+  --[[ AUTOCOMPLETION ]]
   {
     "saghen/blink.cmp",
     lazy = true,
@@ -7,7 +7,7 @@ return {
     dependencies = "rafamadriz/friendly-snippets",
     version = "*",
     config = function()
-      require("configs.lsp.lsp-cmp")
+      require "configs.lsp.lsp-cmp"
     end,
   },
 
@@ -35,8 +35,7 @@ return {
     end,
   },
 
-
-  -- ------------------------------------- LSP config -------------------------------------------------------
+  --[[ LSP CONFIG ]]
   {
     "folke/lazydev.nvim",
     lazy = true,
@@ -72,41 +71,41 @@ return {
       -- {"jay-babu/mason-nvim-dap.nvim"},
     },
     config = function()
-      require("configs.lsp.lsp-init") -- lsp engine
+      require "configs.lsp.lsp-init" -- lsp engine
       -- only if load with lspconfig and mason
       -- require "lsp.dap-init"
     end,
   },
-  -- better fold
 
+  -- better fold
   {
     "kevinhwang91/nvim-ufo",
     lazy = true,
     event = "VeryLazy",
     dependencies = {
-      'kevinhwang91/promise-async'
+      "kevinhwang91/promise-async",
     },
     opts = {
-      filetype_exclude = { 'help', 'alpha', 'dashboard', 'nvim-tree', 'Trouble', 'lazy', 'mason' },
+      filetype_exclude = { "help", "alpha", "dashboard", "nvim-tree", "Trouble", "lazy", "mason" },
       provider_selector = function(_, _, _)
         return { "treesitter", "indent" }
       end,
       open_fold_hl_timeout = 0, -- Disable highlight timeout after opening
     },
     config = function(_, opts)
-      vim.api.nvim_create_autocmd('FileType', {
-        group = vim.api.nvim_create_augroup('local_detach_ufo', { clear = true }),
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("local_detach_ufo", { clear = true }),
         pattern = opts.filetype_exclude,
         callback = function()
-          require('ufo').detach()
+          require("ufo").detach()
         end,
       })
 
       vim.o.foldenable = true
-      vim.o.foldcolumn = '0'
+      vim.o.foldcolumn = "0"
       vim.o.foldlevel = 99
       vim.o.foldlevelstart = 99
-      require('ufo').setup(opts)
+      require("ufo").setup(opts)
     end,
   },
 
@@ -119,7 +118,7 @@ return {
       "nvimtools/none-ls-extras.nvim",
     },
     config = function()
-      require("configs.lsp.lsp-format")
+      require "configs.lsp.lsp-format"
     end,
   },
 
@@ -128,7 +127,6 @@ return {
     "danymat/neogen",
     lazy = true,
     event = "InsertEnter",
-    -- version = "*"
     config = function()
       require("neogen").setup { snippet_engine = "luasnip" }
     end,
@@ -171,11 +169,11 @@ return {
     lazy = true,
     event = "VeryLazy",
     config = function()
-      require("configs.lsp.lsp-ui")
+      require "configs.lsp.lsp-ui"
     end,
   },
 
-  -- Lanugae extra
+  --[[ language extra ]]
   -- ts/js
   {
     "windwp/nvim-ts-autotag",
@@ -183,18 +181,18 @@ return {
     event = "BufReadPre",
     ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
-      require("nvim-ts-autotag").setup({
+      require("nvim-ts-autotag").setup {
         opts = {
-          enable_close = true,          -- Auto close tags
-          enable_rename = true,         -- Auto rename pairs of tags
-          enable_close_on_slash = false -- Auto close on trailing </
+          enable_close = true,           -- Auto close tags
+          enable_rename = true,          -- Auto rename pairs of tags
+          enable_close_on_slash = false, -- Auto close on trailing </
         },
         per_filetype = {
           ["html"] = {
-            enable_close = false
-          }
-        }
-      })
+            enable_close = false,
+          },
+        },
+      }
     end,
   },
   -- NOTE: https://github.com/pmizio/typescript-tools.nvim?tab=readme-ov-file
@@ -202,40 +200,43 @@ return {
     "pmizio/typescript-tools.nvim",
     lazy = true,
     event = "BufReadPre",
-    ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+    ft = { "css","html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
       require("typescript-tools").setup {
-        on_attach =
-            function(client, bufnr)
-              client.server_capabilities.documentFormattingProvider = false
-              client.server_capabilities.documentRangeFormattingProvider = false
-            end,
+        on_attach = function(client, bufnr)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
         settings = {
           jsx_close_tag = {
             enable = false,
             filetypes = { "javascriptreact", "typescriptreact" },
-          }
-        }
+          },
+        },
       }
-    end
+    end,
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     lazy = true,
     event = "BufReadPre",
-    opts = { enable_autocmd = false, },
+    opts = { enable_autocmd = false },
   },
+
+  -- dart/flutter
   {
     "akinsho/flutter-tools.nvim",
     lazy = true,
+    ft = { "dart" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim",
     },
-    config = function ()
-      require("flutter-tools").setup{}
-    end
+    config = function()
+      require("flutter-tools").setup {}
+    end,
   },
+
   -- c/c++
   -- {
   --   "p00f/clangd_extensions.nvim",

@@ -1,5 +1,5 @@
 return {
-  ---------------------------------- EDITOR  ---------------------------------------------
+  --[[ EDITOR ]]
   -- todo highlight
   {
     "folke/todo-comments.nvim",
@@ -46,6 +46,7 @@ return {
       }
     end,
   },
+
   -- column line
   {
     "lukas-reineke/virt-column.nvim",
@@ -65,10 +66,10 @@ return {
     event = "VeryLazy",
     opts = {},
     config = function()
-      require('Comment').setup {
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       }
-    end
+    end,
   },
   -- Autopair
   {
@@ -89,22 +90,22 @@ return {
   --NOTE: https://github.com/MagicDuck/grug-far.nvim/blob/main/lua/grug-far/opts.lua
   {
     "MagicDuck/grug-far.nvim",
-    opts = { headerMaxWidth = 80 },
     lazy = true,
+    opts = { headerMaxWidth = 80 },
     -- event = "BufRead",
     cmd = "GrugFar",
     keys = {
       {
         "<leader>/",
         function()
-          local grug = require("grug-far")
-          local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-          grug.open({
+          local grug = require "grug-far"
+          local ext = vim.bo.buftype == "" and vim.fn.expand "%:e"
+          grug.open {
             transient = true,
             prefills = {
               filesFilter = ext and ext ~= "" and "*." .. ext or nil,
             },
-          })
+          }
         end,
         mode = { "n", "v" },
         desc = "Search and Replace",
@@ -119,7 +120,7 @@ return {
     version = false,
     config = function()
       require("mini.surround").setup()
-    end
+    end,
   },
   -- Better sellect with a and i
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
@@ -132,25 +133,15 @@ return {
       require("mini.ai").setup()
     end,
   },
+  -- CHECK:
   {
-    'echasnovski/mini.align',
-    version = '*',
+    "echasnovski/mini.align",
     lazy = true,
-    event = 'InsertEnter',
+    version = "*",
+    event = "InsertEnter",
     config = function()
-      require('mini.align').setup()
-    end
-  },
-
-  -- Not working
-  {
-    'echasnovski/mini.splitjoin',
-    version = '*',
-    lazy = true,
-    event = 'VeryLazy',
-    config = function()
-      require('mini.splitjoin').setup()
-    end
+      require("mini.align").setup()
+    end,
   },
 
   -- winbar
@@ -159,7 +150,7 @@ return {
     lazy = true,
     event = "VimEnter",
     config = function()
-      require("winbar").setup({
+      require("winbar").setup {
         icons = true,
         diagnostics = true,
         buf_modified = true,
@@ -183,7 +174,7 @@ return {
           "Trouble",
           "alpha",
         },
-      })
-    end
+      }
+    end,
   },
 }

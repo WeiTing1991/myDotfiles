@@ -126,8 +126,8 @@ local options = {
   -- foldlevelstart = 99,
 
   --performace
-  updatetime = 300,
-  redrawtime = 1000,
+  updatetime = 150,
+  redrawtime = 300,
   timeoutlen = 200,
   ttimeoutlen = 50,
 

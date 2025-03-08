@@ -6,7 +6,7 @@ require("oil").setup {
   skip_confirm_for_simple_edits = true,
   win_options = {
     wrap = false,
-    signcolumn = "no",
+    signcolumn = "yes",
     cursorcolumn = false,
     foldcolumn = "0",
     spell = false,
@@ -22,7 +22,7 @@ require("oil").setup {
     end,
   },
   float = {
-    padding = 2,
+    padding = 6,
     max_width = 0,
     max_height = 0,
     border = "rounded",
@@ -42,8 +42,8 @@ require("oil").setup {
   },
   keymaps = {
     ["g?"] = { "actions.show_help", mode = "n" },
-    ["<C-c>"] = false,
     ["<C-p>"] = "actions.preview",
     ["q"] = "actions.close",
+    ["<C-c>"] = "actions.close",
   },
 }

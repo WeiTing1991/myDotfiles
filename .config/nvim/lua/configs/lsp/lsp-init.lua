@@ -45,13 +45,13 @@ require("mason-lspconfig").setup {
         return
       end
 
-      if server_name == "ruff_lsp" then
-        if server.server_capabilities == nil then
-          server.server_capabilities = {}
-        end
-        server.server_capabilities.hoverProvider = false
-        server.server_capabilities.documentHighlightProvider = false
-      end
+      -- if server_name == "ruff_lsp" then
+      --   -- if server.server_capabilities == nil then
+      --   --   server.server_capabilities = {}
+      --   -- end
+      --   server.server_capabilities.hoverProvider = false
+      --   server.server_capabilities.documentHighlightProvider = false
+      -- end
 
       -- Start by making a basic capabilities object
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -71,73 +71,69 @@ require("mason-lspconfig").setup {
   },
 }
 
--- Logging for debugging
-vim.lsp.set_log_level "debug"
-vim.lsp.handlers["$/progress"] = function(_, result, ctx)
-  print("LSP progress:", vim.inspect(result))
-end
-
 -- Hover diagnostic
 local highlight_augroup = vim.api.nvim_create_augroup("diagnostic-hover", { clear = false })
 local ns = vim.api.nvim_create_namespace "CurlineDiag"
 
--- NOT WORKING
-local diagnostic_enabled = true -- Track if diagnostics are enabled
-
-local function toggle_diagnostics()
-  diagnostic_enabled = not diagnostic_enabled
-  if diagnostic_enabled then
-    print "Diagnostics Hover Enabled"
-  else
-    vim.api.nvim_clear_autocmds { group = highlight_augroup }
-    print "Diagnostics Hover Disabled"
-  end
-end
-
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
+    local g = g or {}
+    g.diagnostic_float_winid = nil
+    g.diagnostic_float_line = nil
+
+    -- Ensure the buffer exists and has diagnostics
+    if vim.api.nvim_buf_is_valid(args.buf) then
+      -- Check if the buffer is of a specific type (e.g., 'oil') and skip it if necessary
+      if vim.bo[args.buf].filetype == "oil" then
+        return
+      end
+    pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
+    local hi = { "Error", "Warn", "Info", "Hint" }
+    local curline = vim.api.nvim_win_get_cursor(0)[1]
+    local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
+    local virt_texts = { { (" "):rep(4) } }
+    for _, diag in ipairs(diagnostics) do
+      virt_texts[#virt_texts + 1] = { diag.message, " " .. hi[diag.severity] }
+    end
     vim.api.nvim_create_autocmd("CursorHold", {
       group = highlight_augroup,
       buffer = args.buf,
       callback = function()
-        -- Ensure the buffer exists and has diagnostics
-        if vim.api.nvim_buf_is_valid(args.buf) then
-          -- Check if the buffer is of a specific type (e.g., 'oil') and skip it if necessary
-          if vim.bo[args.buf].filetype == "oil" then
-            return
-          end
-        end
-        pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
-        local hi = { "Error", "Warn", "Info", "Hint" }
-        local curline = vim.api.nvim_win_get_cursor(0)[1]
-        local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
-        local virt_texts = { { (" "):rep(4) } }
-        for _, diag in ipairs(diagnostics) do
-          virt_texts[#virt_texts + 1] = { diag.message, " " .. hi[diag.severity] }
-        end
-
         -- inline
         -- vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0, {
         --   virt_text = virt_texts,
         --   hl_mode = 'combine'
         -- })
-
         -- float win
-        vim.diagnostic.open_float(nil, {
+        local winid = vim.diagnostic.open_float(nil, {
           focus = false,
-          -- scope = "line",
-          scope = "cursor",
+          scope = "line",
+          -- scope = "cursor",
           border = "rounded",
           header = "",
           prefix = "󱓻 ",
           source = virt_texts,
         })
+
+        g.diagnostic_float_winid = winid
+        g.diagnostic_float_line = curline
       end,
     })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      group = highlight_augroup,
+      buffer = args.buf,
+      callback = function()
+        local current_line = vim.fn.line "."
+        if g.diagnostic_float_winid and current_line ~= g.diagnostic_float_line then
+          -- vim.api.nvim_win_close(g.diagnostic_float_winid, false)
+          g.diagnostic_float_winid = nil
+          g.diagnostic_float_line = nil
+        end
+      end,
+    })
+    end
   end,
 })
-
--- vim.api.nvim_set_keymap("n", "<leader>tt", toggle_diagnostics(), { noremap = true, silent = true })
 
 -- Change signs for LSP diagnostics
 local signs = {
@@ -146,26 +142,6 @@ local signs = {
   Info = " ",
   Hint = "󰠠 ",
 }
-
-local function format_diagnostic(diagnostic)
-  local icon = signs.Error
-  if diagnostic.severity == vim.diagnostic.severity.WARN then
-    icon = signs.Warn
-  elseif diagnostic.severity == vim.diagnostic.severity.INFO then
-    icon = signs.Info
-  elseif diagnostic.severity == vim.diagnostic.severity.HINT then
-    icon = signs.Hint
-  end
-
-  local message = string.format("%s %s", icon, diagnostic.message)
-  if diagnostic.code and diagnostic.source then
-    message = string.format("%s [%s][%s] %s", icon, diagnostic.source, diagnostic.code, diagnostic.message)
-  elseif diagnostic.code or diagnostic.source then
-    message = string.format("%s [%s] %s", icon, diagnostic.code or diagnostic.source, diagnostic.message)
-  end
-
-  return message .. " "
-end
 
 for type, icon in pairs(signs) do
   vim.fn.sign_define(

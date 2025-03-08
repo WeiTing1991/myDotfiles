@@ -17,7 +17,7 @@ local M = {
   { "shfmt" },
 
   --python
-  -- "isort",
+  "isort",
   -- "black",
 
 }

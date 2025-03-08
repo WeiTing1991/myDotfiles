@@ -21,7 +21,6 @@ return {
     },
   },
 
-  -- NOTE: https://www.lazyvim.org/plugins/editor#troublenvim
   {
     "folke/trouble.nvim",
     enabled = false,
@@ -87,8 +86,11 @@ return {
       require "configs.copilot"
     end,
   },
+
+  -- Not sure
   {
     "yetone/avante.nvim",
+    enabled = false,
     event = "VeryLazy",
     lazy = false,
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.

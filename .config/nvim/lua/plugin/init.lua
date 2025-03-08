@@ -1,5 +1,6 @@
 return {
-  ---------------------------------------- Base UI ---------------------------------------------------------
+  -- [[ Base UI ]]
+  --
   { "nvim-lua/plenary.nvim" },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
@@ -28,9 +29,8 @@ return {
     end,
   },
 
-  --------------------------------------------- CORE  -------------------------------------------------------
+  --[[ CORE ]]
   -- fzf/telescope
-  --
   {
     "ibhagwan/fzf-lua",
     lazy = true,
@@ -107,6 +107,7 @@ return {
       require "configs.nvimtree"
     end,
   },
+
   -- emacs-like keymaps
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md
   {

@@ -27,24 +27,6 @@ M = {
     },
   },
 
-  -- -- HAVE to install go global
-  -- -- go
-  -- gopls = {
-  --   settings = {
-  --     gopls = {
-  --       analyses = {
-  --         unusedparams = true,
-  --       },
-  --       staticcheck = true,
-  --       gofumpt = true,
-  --       semanticTokens = {
-  --         enable = true, -- Enable semantic tokens
-  --       },
-  --     },
-  --   },
-  -- },
-
-  --
   -- python
   -- mason install ruff-lsp
   -- ["ruff-lsp"] = {},
@@ -70,14 +52,38 @@ M = {
       },
     },
   },
-  -- basedpyright = {
-  --   settings = {
-  --     basedpyright = {
-  --       typeCheckingMode = "off",
-  --       logLevel = "error",
-  --     },
-  --   },
-  -- },
+
+  -- js/ts/css/html
+  -- Switched to ts_ls tool
+  ["ts_ls"] = {},
+  ["cssls"] = {},
+  ["tailwindcss"] = {},
+  ["html"] = {},
+  ["bashls"] = {},
+
+  ["marksman"] = {
+    capabilities = {
+      workspace = {
+        workspaceFolders = {
+          supported = false,
+        },
+      },
+    },
+  },
+
+  ["yamlls"] = {},
+  ["taplo"] = {},
+  ["dockerls"] = {},
+  ["docker_compose_language_service"] = {},
+
+  ["jsonls"] = {
+    settings = {
+      json = {
+        -- schemas = require("schemastore").json.schemas(),
+        validate = { enable = true },
+      },
+    },
+  },
 
   -- c/c++
   -- clangd = {
@@ -96,28 +102,22 @@ M = {
   --   },
   -- },
 
-  -- js/ts/css/html
-  -- Switched to ts_ls tool
-  ["ts_ls"] = {},
-
-  ["cssls"] = {},
-  ["tailwindcss"] = {},
-  ["html"] = {},
-  ["bashls"] = {},
-  ["marksman"] = {},
-  ["yamlls"] = {},
-  ["taplo"] = {},
-  ["dockerls"] = {},
-  ["docker_compose_language_service"] = {},
-
-  ["jsonls"] = {
-    settings = {
-      json = {
-        -- schemas = require("schemastore").json.schemas(),
-        validate = { enable = true },
-      },
-    },
-  },
+  -- -- HAVE to install go global
+  -- -- go
+  -- gopls = {
+  --   settings = {
+  --     gopls = {
+  --       analyses = {
+  --         unusedparams = true,
+  --       },
+  --       staticcheck = true,
+  --       gofumpt = true,
+  --       semanticTokens = {
+  --         enable = true, -- Enable semantic tokens
+  --       },
+  --     },
+  --   },
+  -- },
 
 }
 
