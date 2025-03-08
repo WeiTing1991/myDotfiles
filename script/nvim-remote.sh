@@ -36,7 +36,7 @@ start_nvim_server() {
   sleep 0.5
 
   if [[ "$(uname)" == "Darwin" ]]; then
-    goneovim --server 127.0.0.1:$PORT
+    neovide --server 127.0.0.1:$PORT
   elif [[ "$(uname)" == "Linux" ]]; then
     /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command "Start-Process 'C:\Users\weiting\fvim\FVim.exe' '--server','127.0.0.1:$PORT' -NoNewWindow" &
   fi
