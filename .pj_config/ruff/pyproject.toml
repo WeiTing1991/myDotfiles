@@ -1,0 +1,106 @@
+[project]
+name = "my-poject"
+version = "1.0.0"
+description = "_"
+authors = [{ name = "Wei-Ting Chen", email = "_" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+  "numpy>=1.26",
+  "ruff>=0.8.2",
+  "pyads>=3.3.9",
+  "attrs>=17.4",
+  "pydantic>=2.10.6",
+  "pandas>=2.2.0",
+  # becasue of the compas_rrc, we should use comaps <=1.0.4
+  "compass<=2.9.0",
+  "compas_rrc @ git+https://github.com/WeiTing1991/compas_rrc.git@main",
+  "matplotlib>=3.8.4",
+  "path>=17.1.0",
+]
+
+[project.optional-dependencies]
+dev = ["black", "isort", "pytest", "pytest-cov"]
+
+docs = [
+  "mkdocs",
+  "mkdocs-material",
+  "mkdocstrings-python",
+  "mkdocs-gen-files",
+  "mkdocs-autorefs",
+  "markdown",
+  "mkdocs-include-markdown-plugin",
+  "mkdocs-macros-plugin",
+  "markdown-exec",
+  "mkdocs-literate-nav",
+]
+
+[tool.ruff]
+src = ["src"]
+indent-width = 2
+line-length = 120
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "I",   # isort
+  "UP",  # pyupgrade
+  "N",   # pep8-naming
+  "RUF", # ruff-specific rules
+]
+ignore = [
+  "D417", # missing parameter documentation
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+# isort-section_order = [
+#   "future",
+#   "standard-library",
+#   "third-party",
+#   "first-party",
+#   "local-folders",
+# ]
+
+# [tool.black]
+# line-length = 120
+
+# [tool.pytest.ini_options]
+# minversion = "6.0"
+# testpaths = ["tests", "src/dcs"]
+# python_files = ["test_*.py", "tests.py"]
+# addopts = "-ra --strict --doctest-modules --doctest-glob=*.rst --tb=short"
+# doctest_optionflags = "NORMALIZE_WHITESPACE IGNORE_EXCEPTION_DETAIL ALLOW_UNICODE ALLOW_BYTES NUMBER"
+# filterwarnings = "ignore::DeprecationWarning"
+
+# testpaths = ["tests"]
+# asyncio_mode = "strict"
+# asyncio_default_fixture_loop_scope = "function"
+
+# [tool.isort]
+# profile = "black"
+# # line_length = 120
+# multi_line_output = 3
+# include_trailing_comma = true
+# force_grid_wrap = 0
+# use_parentheses = true
+# force_single_line = false
+# ensure_newline_before_comments = true
+# known_first_party = "dcs"
+# default_section = "THIRDPARTY"
+# force_sort_within_sections = true
+# forced_separate = "test_dcs"
+# skip = ["__init__.py"]
+#
+# [tool.pyright]
+# venvPath = "."
+# venv = ".env"

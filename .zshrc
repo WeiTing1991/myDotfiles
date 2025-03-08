@@ -13,6 +13,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     export MANPATH="/usr/local/man:$MANPATH"
 
+    # alias
+    alias nv="./script/nvim-remote.sh"
+
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS-specific settings
 
@@ -23,6 +26,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # enable fzf keybinding
     [ -f /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
+
+    # alias
+    alias nv="neovide"
 
 elif [[ "$WSL_DISTRO_NAME" != "" ]]; then
 
@@ -111,7 +117,6 @@ setopt hist_find_no_dups
 #
 alias n="nvim"
 # alias n="goneovim"
-alias nv="./script/nvim-remote.sh"
 alias e="exit"
 alias pj="cd $HOME/project/"
 
