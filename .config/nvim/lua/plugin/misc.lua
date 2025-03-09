@@ -33,7 +33,7 @@ return {
       explorer = { enabled = false },
       git = { enabled = false },
       gitbrowse = {},
-      image = {},
+      image = { enabled = false },
       indent = { enabled = false },
       input = { enabled = false },
       layout = { enabled = false },
@@ -56,7 +56,11 @@ return {
       util = { enabled = false },
       win = { enabled = false },
       words = { enabled = false },
-      zen = { enabled = false },
+      zen = {
+        toggles = {
+          dim = true,
+        }
+      },
     },
   },
 }

@@ -1,5 +1,4 @@
 return {
-
   -- Markdwon preview
   -- NOTE: https://github.com/iamcco/markdown-preview.nvim
   {
@@ -7,8 +6,10 @@ return {
     lazy = true,
     event = "VeryLazy",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown"},
-    build = function() vim.fn["mkdp#util#install"]() end,
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
@@ -16,16 +17,16 @@ return {
   {
     "toppair/peek.nvim",
     lazy = true,
-    event = "VeryLazy" ,
+    event = "VeryLazy",
     build = "deno task --quiet build",
     config = function()
-      local app = 'webview'
+      local app = "webview"
       if vim.fn.has "win32" == 1 then
-        app = '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
+        app = "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
       end
       require("peek").setup {
-        filetype = { "markdown"},
-          app = app
+        filetype = { "markdown" },
+        app = app,
       }
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
@@ -70,9 +71,9 @@ return {
         enable = false,
       },
     },
-    config = function ()
+    config = function()
       require("markview").setup()
-    end
+    end,
   },
 
   -- Markdown image
@@ -86,8 +87,6 @@ return {
     -- end,
   },
 
-  -- -- Image pasting
-  -- -- NOTE https://github.com/HakonHarnes/img-clip.nvim
   -- {
   --   "HakonHarnes/img-clip.nvim",
   --   enabled = false,

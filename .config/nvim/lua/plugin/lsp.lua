@@ -200,7 +200,7 @@ return {
     "pmizio/typescript-tools.nvim",
     lazy = true,
     event = "BufReadPre",
-    ft = { "css","html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+    ft = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
       require("typescript-tools").setup {
         on_attach = function(client, bufnr)

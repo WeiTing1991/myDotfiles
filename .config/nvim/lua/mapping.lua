@@ -183,10 +183,9 @@ map("n", "<leader>tc", function()
 end, { desc = "Copilot" })
 
 map("n", "<C-g>gd", ":DiffviewOpen<cr>", { desc = "Git Diff" })
-map("n", "<C-g>q", ":DiffviewClose<cr>", { desc = "Close Git Diff" })
 
--- CHECK: https://github.com/ibhagwan/fzf-lua
--- and trouble
+-- how to close diffview
+map("n", "<C-g>q", ":DiffviewClose<cr>", { desc = "Close Git Diff" })
 
 -- diagnostics
 -- map("n", "<leader>td", vim.diagnostic.hide, { desc = "Hide diagnostics" })
@@ -198,6 +197,12 @@ map("n", "<leader>tD", ":FzfLua diagnostics_workspace<cr>", { desc = "diagnostic
 
 -- Annotations
 map("n", "<leader>ta", "<cmd>Neogen<cr>", { desc = "Annotation" })
+map("n", "<leader>tz", function()
+  Snacks.zen {
+
+    width = 80,
+  }
+end, { desc = "Annotation" })
 
 -- undotree
 -- map("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
