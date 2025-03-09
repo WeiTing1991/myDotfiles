@@ -5,7 +5,7 @@
 
 # apparence
 font-family = "Hack Nerd Font"
-font-size = 16
+font-size = 14
 # background = "0D0907"
 # theme = gruvbox-material
 theme = GruvboxDarkHard
@@ -25,8 +25,8 @@ macos-titlebar-proxy-icon = hidden
 macos-option-as-alt = true
 # window-save-state = never
 unfocused-split-opacity = 0.3
-window-padding-x = 8
-window-padding-y = 8
+window-padding-x = 4
+window-padding-y = 4
 
 window-colorspace = "display-p3"
 window-title-font-family = "Hack Nerd Font

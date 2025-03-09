@@ -59,7 +59,10 @@ return {
       zen = {
         toggles = {
           dim = true,
-        }
+        },
+        width = 120,
+        height = 0,
+        backdrop = { transparent = true, blend = 100 },
       },
     },
   },
