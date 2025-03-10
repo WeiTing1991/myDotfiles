@@ -29,21 +29,22 @@ indent_style = tab
 # indent_size = 2
 # indent_style = space
 #
-# [*.tsx]
-# indent_size = 2
-# indent_style = tab
-# [*.ts]
-# indent_size = 2
-# indent_style = tab
-# [*.js]
-# indent_size = 2
-# indent_style = tab
-# [*.jsx]
-# indent_size = 2
-# indent_style = tab
-# [*.json]
-# indent_size = 2
-# indent_style = tab
+
+[*.tsx]
+indent_size = 2
+indent_style = tab
+[*.ts]
+indent_size = 2
+indent_style = tab
+[*.js]
+indent_size = 2
+indent_style = tab
+[*.jsx]
+indent_size = 2
+indent_style = tab
+[*.json]
+indent_size = 2
+indent_style = tab
 
 # [*.yml]
 # indent_size = 2
