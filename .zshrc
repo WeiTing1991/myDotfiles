@@ -185,3 +185,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
 
 
+export ZED_ALLOW_EMULATED_GPU=1
+alias zed="WAYLAND_DISPLAY= zed"
