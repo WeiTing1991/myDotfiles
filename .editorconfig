@@ -25,10 +25,9 @@ indent_style = tab
 # indent_size = 8
 # indent_style = space
 
-# [*.py]
-# indent_size = 2
-# indent_style = space
-#
+[*.py]
+indent_size = 2
+indent_style = space
 
 [*.tsx]
 indent_size = 2
