@@ -19,7 +19,6 @@
   "workbench.panel.showLabels": false,
   "workbench.panel.defaultLocation": "right",
   "workbench.editor.empty.hint": "hidden",
-  "window.commandCenter": false,
   //   /** editor *************************************************************************************/
   "editor.fontFamily": "Hack Nerd font, Roboto, RobotoMono Nerd Font ",
   "editor.fontSize": 16,
@@ -446,7 +445,8 @@
   "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua",
   "security.allowedUNCHosts": [
     "wsl.localhost"
-  ]
+  ],
+  "window.commandCenter": false
 }
 //     {
 //       "key": "d",

@@ -1,6 +1,17 @@
+fork = false
+frame = "transparent"
+idle = true
+maximized = false
+no-multigrid = false
+srgb = false
+tabs = true
+theme = "auto"
+title-hidden = true
+vsync = false
+# wsl = false
+
 [font]
 normal = ["Hack Nerd Font"]
-size = 16
+size = 14
 hinting = "full"
 edging = "antialias"
-no-multigrid = true
