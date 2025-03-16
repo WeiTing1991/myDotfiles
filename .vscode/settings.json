@@ -443,7 +443,10 @@
     "editor.defaultFormatter": "biomejs.biome"
   },
   "workbench.colorTheme": "Gruvbox Dark Hard",
-  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua"
+  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua",
+  "security.allowedUNCHosts": [
+    "wsl.localhost"
+  ]
 }
 //     {
 //       "key": "d",

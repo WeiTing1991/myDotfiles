@@ -90,7 +90,6 @@ return {
   -- Not sure
   {
     "yetone/avante.nvim",
-    enabled = false,
     event = "VeryLazy",
     lazy = false,
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
@@ -98,7 +97,7 @@ return {
       provider = "copilot",
       copilot = {
         endpoint = "https://api.githubcopilot.com",
-        model = "gpt-4o-2024-05-13",
+        model = "claude-3.7-sonnet",
         proxy = nil,            -- [protocol://]host[:port] Use this proxy
         allow_insecure = false, -- Allow insecure server connections
         timeout = 30000,        -- Timeout in milliseconds
@@ -112,7 +111,6 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       {
         -- support for image pasting
