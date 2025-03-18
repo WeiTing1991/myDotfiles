@@ -7,23 +7,38 @@
 // from the command palette.
 [
   {
-    "context": "Workspace",
+    "context": "Workspace || Editor",
     "bindings": {
       // "shift shift": "file_finder::Toggle"
-      // "ctrl-o": "pane::ActivateNextItem",
-      // "ctrl-i": "pane::ActivatePreviousItem",
-      "ctrl-o": "menu::SelectNext",
-      "ctrl-i": "menu::SelectPrevious",
-      "cmd-b": "workspace::ToggleLeftDock",
-      "cmd-r": "workspace::ToggleRightDock",
+      "ctrl-o": "pane::ActivateNextItem",
+      "ctrl-i": "pane::ActivatePreviousItem",
+      // "ctrl-o": "menu::SelectNext",
+      // "ctrl-i": "menu::SelectPrevious",
+      "ctrl-shift-e": "workspace::ToggleLeftDock",
+      "ctrl-e": "workspace::ToggleRightDock",
       "ctrl-/": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "RightDock",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
     }
   },
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-/": "workspace::ToggleBottomDock"
+      "ctrl-f": "file_finder::Toggle",
+      "ctrl-/": "workspace::ToggleBottomDock",
+      "ctrl-shift-e": "workspace::ToggleLeftDock",
+      "ctrl-e": "workspace::ToggleRightDock"
       // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j k": "vim::NormalBefore"
     }
   }
 ]
