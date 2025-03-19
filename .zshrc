@@ -16,7 +16,14 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export MANPATH="/usr/local/man:$MANPATH"
 
     # alias
-    alias nv="./script/nvim-remote.sh"
+    alias nv="$HOME/script/nvim-remote.sh"
+
+
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/home/weitingub24/google-cloud-sdk/path.zsh.inc' ]; then . '/home/weitingub24/google-cloud-sdk/path.zsh.inc'; fi
+
+    # The next line enables shell command completion for gcloud.
+    if [ -f '/home/weitingub24/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/weitingub24/google-cloud-sdk/completion.zsh.inc'; fi
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS-specific settings
@@ -190,9 +197,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export ZED_ALLOW_EMULATED_GPU=1
 alias zed="WAYLAND_DISPLAY= zed"
 export PATH=$PATH:$HOME/go/bin
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/weitingub24/google-cloud-sdk/path.zsh.inc' ]; then . '/home/weitingub24/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/weitingub24/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/weitingub24/google-cloud-sdk/completion.zsh.inc'; fi

@@ -38,7 +38,7 @@ start_nvim_server() {
   if [[ "$(uname)" == "Darwin" ]]; then
     neovide --server 127.0.0.1:$PORT
   elif [[ "$(uname)" == "Linux" ]]; then
-    /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command "Start-Process 'C:\Users\weiting\fvim\FVim.exe' '--server','127.0.0.1:$PORT' -NoNewWindow" &
+    /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command "Start-Process 'C:\Program Files\Neovide\neovide.exe' '--server','127.0.0.1:$PORT' -NoNewWindow" &
   fi
   echo "Starting Neovim and connecting to Neovim server on port $PORT..."
 
