@@ -1,0 +1,9 @@
+2025-03-23 03:32:30,873 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
+2025-03-23 03:32:30,888 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'set']
+2025-03-23 03:32:30,889 DEBUG    root            Running [gcloud.config.set] with arguments: [SECTION/PROPERTY: "project", VALUE: "mywebproject-420221"]
+2025-03-23 03:32:30,900 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudresourcemanager.googleapis.com:443
+2025-03-23 03:32:31,713 DEBUG    urllib3.connectionpool https://cloudresourcemanager.googleapis.com:443 "GET /v1/projects/mywebproject-420221?alt=json HTTP/11" 200 None
+2025-03-23 03:32:31,715 INFO     ___FILE_ONLY___ Updated property [core/project].
+
+2025-03-23 03:32:31,717 DEBUG    root            Chosen display Format:default
+2025-03-23 03:32:31,718 INFO     root            Display format: "default"

@@ -1,0 +1,22 @@
+2025-03-23 03:32:36,298 DEBUG    root            Loaded Command Group: ['gcloud', 'run']
+2025-03-23 03:32:36,357 DEBUG    root            Loaded Command Group: ['gcloud', 'run', 'deploy']
+2025-03-23 03:32:36,362 DEBUG    root            Running [gcloud.run.deploy] with arguments: [--allow-unauthenticated: "True", --image: "europe-docker.pkg.dev/mywebproject-420221/mywebsite/myserver:lastest", --max-instances: "<googlecloudsdk.command_lib.run.flags.ScaleValue object at 0x1066e2c50>", --region: "europe-west1", SERVICE: "myweb"]
+2025-03-23 03:32:36,372 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): serviceusage.googleapis.com:443
+2025-03-23 03:32:37,364 DEBUG    urllib3.connectionpool https://serviceusage.googleapis.com:443 "GET /v1/projects/mywebproject-420221/services/run.googleapis.com?alt=json HTTP/11" 200 None
+2025-03-23 03:32:37,436 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): europe-west1-run.googleapis.com:443
+2025-03-23 03:32:37,679 DEBUG    urllib3.connectionpool https://europe-west1-run.googleapis.com:443 "GET /apis/serving.knative.dev/v1/namespaces/mywebproject-420221/services/myweb?alt=json HTTP/11" 200 None
+2025-03-23 03:32:37,686 INFO     ___FILE_ONLY___ Deploying container to Cloud Run service [[1mmyweb[m] in project [[1mmywebproject-420221[m] region [[1meurope-west1[m]
+
+2025-03-23 03:32:37,687 INFO     ___FILE_ONLY___ Deploying...
+2025-03-23 03:32:38,028 DEBUG    urllib3.connectionpool https://europe-west1-run.googleapis.com:443 "PUT /apis/serving.knative.dev/v1/namespaces/mywebproject-420221/services/myweb?alt=json HTTP/11" 200 None
+2025-03-23 03:32:38,034 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): run.googleapis.com:443
+2025-03-23 03:32:38,449 DEBUG    urllib3.connectionpool https://run.googleapis.com:443 "GET /v1/projects/mywebproject-420221/locations/europe-west1/services/myweb:getIamPolicy?alt=json HTTP/11" 200 None
+2025-03-23 03:32:39,255 DEBUG    urllib3.connectionpool https://run.googleapis.com:443 "POST /v1/projects/mywebproject-420221/locations/europe-west1/services/myweb:setIamPolicy?alt=json HTTP/11" 200 None
+2025-03-23 03:32:45,420 DEBUG    urllib3.connectionpool https://europe-west1-run.googleapis.com:443 "POST /v1/projects/mywebproject-420221/locations/europe-west1/operations/431988b8-89e0-42b4-b4c1-8753bc35b001:wait?alt=json HTTP/11" 200 None
+2025-03-23 03:32:45,576 DEBUG    urllib3.connectionpool https://europe-west1-run.googleapis.com:443 "POST /v1/projects/mywebproject-420221/locations/europe-west1/operations/431988b8-89e0-42b4-b4c1-8753bc35b001:wait?alt=json HTTP/11" 200 None
+2025-03-23 03:32:45,697 DEBUG    urllib3.connectionpool https://europe-west1-run.googleapis.com:443 "POST /v1/projects/mywebproject-420221/locations/europe-west1/operations/431988b8-89e0-42b4-b4c1-8753bc35b001:wait?alt=json HTTP/11" 200 None
+2025-03-23 03:32:45,764 INFO     ___FILE_ONLY___ Service [[1mmyweb[m] revision [[1mmyweb-00024-49g[m] has been deployed and is serving [1m100[m percent of traffic.
+Service URL: [1mhttps://myweb-211609611635.europe-west1.run.app[m
+
+2025-03-23 03:32:45,765 DEBUG    root            Chosen display Format:none
+2025-03-23 03:32:45,765 INFO     root            Display format: "none"

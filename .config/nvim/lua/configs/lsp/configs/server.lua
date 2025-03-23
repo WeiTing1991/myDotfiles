@@ -56,7 +56,10 @@ M = {
   -- js/ts/css/html
   -- Switched to ts_ls tool
   ["ts_ls"] = {},
-  ["cssls"] = {},
+  ["cssls"] = {
+    cmd = { "css-languageserver", "--stdio" },
+    filetypes = { "css", "scss", "less" },
+  },
   ["tailwindcss"] = {},
   ["html"] = {},
   ["bashls"] = {},
@@ -118,7 +121,6 @@ M = {
   --     },
   --   },
   -- },
-
 }
 
 return M

@@ -1,0 +1,10 @@
+2025-03-23 03:19:05,192 DEBUG    root            Loaded Command Group: ['gcloud', 'config']
+2025-03-23 03:19:05,207 DEBUG    root            Loaded Command Group: ['gcloud', 'config', 'set']
+2025-03-23 03:19:05,208 DEBUG    root            Running [gcloud.config.set] with arguments: [SECTION/PROPERTY: "project", VALUE: "mywebproject-420221"]
+2025-03-23 03:19:05,219 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): cloudresourcemanager.googleapis.com:443
+2025-03-23 03:19:06,057 DEBUG    urllib3.connectionpool https://cloudresourcemanager.googleapis.com:443 "GET /v1/projects/mywebproject-420221?alt=json HTTP/11" 403 None
+2025-03-23 03:19:06,060 WARNING  root            [weitingchen0502@gmail.com] does not have permission to access projects instance [mywebproject-420221] (or it may not exist): The caller does not have permission. This command is authenticated as weitingchen0502@gmail.com which is the active account specified by the [core/account] property
+2025-03-23 03:19:07,778 INFO     ___FILE_ONLY___ Updated property [core/project].
+
+2025-03-23 03:19:07,779 DEBUG    root            Chosen display Format:default
+2025-03-23 03:19:07,779 INFO     root            Display format: "default"

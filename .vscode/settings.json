@@ -1,1359 +1,483 @@
 {
-  // system
-  // # For VS Code
-  // defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-  // defaults delete -g ApplePressAndHoldEnabled
-  // defaults write -g ApplePressAndHoldEnabled -bool false
-  // "telemetry.enableTelemetry": false,
-  "telemetry.telemetryLevel": "off",
-  // "telemetry.enableCrashReporter": false,
-  // apperance
-  "terminal.integrated.defaultLocation": "view",
-  "workbench.startupEditor": "none",
-  "workbench.sideBar.location": "right",
-  "workbench.activityBar.location": "bottom",
-  "workbench.editor.showTabs": "multiple",
-  "workbench.tree.enableStickyScroll": false,
-  "workbench.tree.renderIndentGuides": "none",
-  "workbench.tree.indent": 8,
-  "workbench.panel.showLabels": false,
-  "workbench.panel.defaultLocation": "right",
-  "workbench.editor.empty.hint": "hidden",
-  //   /** editor *************************************************************************************/
-  "editor.fontFamily": "Hack Nerd font, Roboto, RobotoMono Nerd Font ",
-  "editor.fontSize": 16,
-  "editor.rulers": [
+	// system
+	// # For VS Code
+	// defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+	// defaults delete -g ApplePressAndHoldEnabled
+	// defaults write -g ApplePressAndHoldEnabled -bool false
+	// "telemetry.enableTelemetry": false,
+	"telemetry.telemetryLevel": "off",
+	// "telemetry.enableCrashReporter": false,
+
+	// apperance
+	"terminal.integrated.defaultLocation": "editor",
+	"workbench.startupEditor": "none",
+	"workbench.sideBar.location": "right",
+	"workbench.activityBar.location": "bottom",
+	"workbench.editor.showTabs": "multiple",
+	"workbench.tree.enableStickyScroll": false,
+	"workbench.tree.renderIndentGuides": "none",
+	"workbench.tree.indent": 8,
+	"workbench.panel.showLabels": false,
+	"workbench.panel.defaultLocation": "right",
+	"workbench.editor.empty.hint": "hidden",
+	// editor
+
+	"workbench.colorTheme": "Gruvbox Dark Hard",
+	"vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua",
+	"security.allowedUNCHosts": ["wsl.localhost"],
+	"window.commandCenter": false,
+	"editor.fontFamily": "Hack Nerd font, Roboto, RobotoMono Nerd Font ",
+	"editor.fontSize": 16,
+	"editor.rulers": [
+		{
+			"column": 120,
+			"color": "#2b2b2b"
+		}
+	],
+	"editor.minimap.enabled": false,
+	"editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+	"editor.semanticHighlighting.enabled": "configuredByTheme",
+	"editor.cursorBlinking": "phase",
+	"editor.cursorSmoothCaretAnimation": "off",
+	"editor.renderLineHighlight": "none",
+	"editor.hover.delay": 20,
+
+	//"projectManager.projectsLocation": "~/.dotfiles/.vscode",
+	// scroll bar
+
+	"editor.scrollbar.horizontal": "hidden",
+	"editor.scrollbar.vertical": "hidden",
+	"workbench.list.smoothScrolling": false,
+	"editor.hideCursorInOverviewRuler": true,
+	// "editor.overviewRulerBorder": true,
+	"editor.tabSize": 2,
+	"editor.insertSpaces": true,
+	"editor.occurrencesHighlight": "off",
+	"editor.lightbulb.enabled": "off",
+	"editor.selectionHighlight": false,
+
+	"editor.copyWithSyntaxHighlighting": false,
+	"diffEditor.ignoreTrimWhitespace": false,
+	"editor.emptySelectionClipboard": false,
+	"workbench.editor.enablePreview": false,
+	"diffEditor.renderSideBySide": false,
+	"editor.snippetSuggestions": "top",
+	"editor.detectIndentation": true,
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"editor.guides.indentation": true,
+	"editor.stickyScroll.enabled": false,
+	"editor.autoClosingBrackets": "never",
+	"editor.autoClosingQuotes": "never",
+
+	// trim whitespace
+	"files.trimTrailingWhitespace": true,
+	"editor.renderWhitespace": "trailing",
+	"editor.renderControlCharacters": true,
+	"editor.formatOnSave": false,
+	"editor.accessibilitySupport": "off",
+	"workbench.tips.enabled": false,
+
+	// color decorations
+	"editor.colorDecorators": true,
+	"git.decorations.enabled": false,
+	"problems.decorations.enabled": false,
+	"editor.matchBrackets": "near",
+	"editor.bracketPairColorization.enabled": true,
+
+	// "editor.guides.bracketPairs": "active",
+	// "editor.gotoLocation.multipleReferences": "goto",
+	// "editor.gotoLocation.multipleDefinitions": "goto",
+	// "editor.gotoLocation.multipleDeclarations": "goto",
+	// "workbench.editor.enablePreviewFromQuickOpen": false,
+	// "editor.gotoLocation.multipleImplementations": "goto",
+	// "editor.gotoLocation.multipleTypeDefinitions": "goto",
+
+	// error
+	"errorLens.enabled": true,
+	"errorLens.editorHoverPartsEnabled": {
+		"messageEnabled": false,
+		"sourceCodeEnabled": false,
+		"buttonsEnabled": false
+	},
+	"errorLens.delay": 1000,
+	"errorLens.followCursor": "activeLine",
+	"errorLens.gutterIconsEnabled": true,
+	"errorLens.messageBackgroundMode": "message",
+
+	"errorLens.exclude": ["**/*.txt", "**/dist/**"],
+	// wrap
+	"editor.wordWrap": "on",
+	"editor.wordWrapColumn": 150,
+	"editor.wrappingIndent": "none",
+	/** explorer ***********************************************************************************/
+	"explorer.compactFolders": true,
+	"explorer.sortOrder": "type",
+	"explorer.decorations.colors": false,
+	/** terminal settings **************************************************************************/
+	"terminal.integrated.gpuAcceleration": "auto",
+	"terminal.integrated.fontSize": 14,
+	//   "terminal.integrated.allowChords": true,
+	//   "terminal.integrated.defaultLocation": "view",
+	"terminal.integrated.tabs.enabled": false,
+	"terminal.integrated.fontFamily": "RobotMono Nerd Font",
+	/** misc     **********************************************************************************/
+	"extensions.ignoreRecommendations": true,
+	"extensions.autoUpdate": false,
+	"files.autoSave": "off",
+	// editor
+	"editor.lineNumbers": "relative",
+	// search
+	// "find-it-faster.general.killTerminalAfterUse": true,
+	// "find-it-faster.general.useTerminalInEditor": false,
+
+	// check here https://github.com/VSCodeVim/Vim
+	// vim settings
+	"vim.easymotion": true,
+	"vim.incsearch": true,
+	"vim.useSystemClipboard": true,
+	"vim.useCtrlKeys": false,
+	"vim.hlsearch": true,
+	"vim.autoindent": true,
+	"vim.surround": true,
+	"vim.leader": "space",
+	"vim.history": 2000,
+	"vim.statusBarColorControl": false,
+	"vim.showcmd": true,
+	"vim.gdefault": false, // :substitute flag 'g' is enabled by default to replace all matches in a line.
+	"vim.ignorecase": true, // Ignore case in search patterns.
+	"vim.inccommand": "replace", // Display :substitute command effects while typing.
+	"vim.joinspaces": true, // Add two spaces after '.', '?', or '!' when joining lines.
+	"vim.maxmapdepth": 1000, // Maximum recursive mapping depth to prevent endless loops.
+	"vim.report": 2, // Minimum number of lines changed to trigger a report.
+	// "vim.shell": "/bin/sh",               // Path to the shell for `!` and `:!` commands.
+	"vim.showmodename": true, // Display the current mode name in the status bar.
+	"vim.smartcase": true, // Override ignorecase if the search contains uppercase letters.
+	"vim.textwidth": 120, // Maximum width for text wrapping with `gq`.
+	"vim.timeout": 1000, // Timeout (in milliseconds) for remapped commands.
+	"vim.whichwrap": "b,s", // Allow cursor to wrap to the next/previous line with certain keys.
+	"vim.smartRelativeLine": true,
+	"vim.highlightedyank.enable": true,
+	"vim.highlightedyank.color": "#f6c177",
+	"vim.highlightedyank.duration": 120,
+	"extensions.experimental.affinity": {
+		"vscodevim.vim": 1,
+		"asvetliakov.vscode-neovim": 1
+	},
+	"vim.replaceWithRegister": true,
+	// "vim.sneak": true,
+	// "vim.sneakUseIgnorecaseAndSmartcase": true,
+
+	"vim.handleKeys": {
+		"<C-d>": true,
+		"<C-u>": true,
+		"<C-j>": true,
+		"<C-k>": true,
+		"<->": true,
+		"<_>": true,
+		"<C-f>": true
+		//     "<C-e>": false,
+		//     "<C-h>": true,
+		//     "<C-l>": false,
+		//     "<C-y>": false,
+		//     "<C-s>": false,
+		//     "<C-w>": false,
+	},
+	// lsp
+	// formatter
+	"editor.defaultFormatter": "",
+	// json
+	"[jsonc]": {
+		"editor.tabSize": 2,
+		"editor.insertSpaces": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.tabSize": 2,
+		"editor.insertSpaces": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+
+	// keybindings
+	// normal mode
+	"vim.normalModeKeyBindingsNonRecursive": [
+		// show whichkey
+		{
+			"before": ["<space>"],
+			"commands": ["whichkey.show"]
+		},
+		{
+			"before": ["<Esc>"],
+			"commands": [":nohl"]
+		},
+		{
+			"before": ["<C-c>"],
+			"commands": [":nohl"]
+		},
+		// formatting
+		{
+			"before": ["<C-m>"],
+			"commands": ["editor.action.formatDocument"]
+		},
+		// fold
+		{
+			"before": ["<Tab>"],
+			"after": ["z", "a"]
+		},
+		// center the cursor when using C-d and C-u
+		{
+			"before": ["<C-d>"],
+			"after": ["<C-d>", "z", "z"]
+		},
+		{
+			"before": ["<C-u>"],
+			"after": ["<C-u>", "z", "z"]
+		},
+		// toggle comment selection
+		{
+			"before": ["-"],
+			"after": ["g", "c", "c", "<C-c>"]
+		},
+		{
+			"before": ["_"],
+			"after": ["g", "C", "<C-c>"]
+		},
+		// spell suggestion
+		{
+			"before": ["z", "="],
+			"commands": ["cSpell.suggestSpellingCorrections"]
+		}
+	],
+
+	// Visual mode
+	"vim.visualModeKeyBindingsNonRecursive": [
+		// Stay in visual mode while indenting
+		{
+			"before": ["<"],
+			"after": ["<", "g", "v", "^"]
+		},
+		{
+			"before": [">"],
+			"after": [">", "g", "v", "^"]
+		},
+		// Move selected lines while staying in visual mode
+		{
+			"before": ["J"],
+			"commands": ["editor.action.moveLinesDownAction"]
+		},
+		{
+			"before": ["K"],
+			"commands": ["editor.action.moveLinesUpAction"]
+		},
+		// toggle comment selection
+		{
+			"before": ["-"],
+			"after": ["g", "c", "<C-c>"]
+		},
+		{
+			"before": ["_"],
+			"after": ["g", "C", "<C-c>"]
+		}
+	],
+	"vim.insertModeKeyBindings": [
+		{
+			"before": ["j", "k"],
+			"after": ["<Esc>"]
+		}
+	],
+	// Whichkey keybinding
+	"whichkey.delay": 0,
+	"whichkey.bindings": [
+		{
+			"key": ",",
+			"name": "formatDocument",
+			"command": "editor.action.formatDocument",
+			"when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+		},
+		// lsp setting
+		{
+			"key": "r",
+			"name": "refactor",
+			"command": "editor.action.refactor",
+			"when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+		},
+		// file tree
+		// {
+		// 	"key": "e",
+		// 	"name": "toggle file tree",
+		// 	"type": "command",
+		// 	"command": "runCommands",
+		// 	"args": {
+		// 		"commands": ["workbench.action.toggleSidebarVisibility", "workbench.files.action.focusFilesExplorer"],
+		// 		"when": "vim.mode == 'Normal' && !sideBarFocus && (editorTextFocus || !inputFocus)"
+		// 	}
+		// },
+		// find file
+		{
+			"key": "f",
+			"name": "find files",
+			"type": "bindings",
+			"bindings": [
+				{
+					"key": "f",
+					"name": "find file",
+					"type": "command",
+					"command": "workbench.action.quickOpen"
+				},
+				{
+					"key": "p",
+					"name": "fzf find file with preview",
+					"type": "command",
+					"command": "find-it-faster.findFiles"
+				},
+				{
+					"key": "l",
+					"name": "live rigrep in project",
+					"type": "command",
+					"command": "find-it-faster.findWithinFiles"
+				}
+			]
+		},
     {
-      "column": 120,
-      "color": "#2b2b2b"
-    }
-  ],
-  "editor.minimap.enabled": false,
-  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
-  "editor.semanticHighlighting.enabled": "configuredByTheme",
-  "editor.cursorBlinking": "phase",
-  "editor.cursorSmoothCaretAnimation": "off",
-  "editor.renderLineHighlight": "none",
-  "editor.hover.delay": 20,
-  //"projectManager.projectsLocation": "~/.dotfiles/.vscode",
-  // scroll bar
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.scrollbar.vertical": "hidden",
-  "workbench.list.smoothScrolling": false,
-  "editor.hideCursorInOverviewRuler": true,
-  // "editor.overviewRulerBorder": true,
-  // "editor.insertSpaces": true, // or false for tabs
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.occurrencesHighlight": "off",
-  "editor.lightbulb.enabled": "off",
-  "editor.selectionHighlight": false,
-  //   "editor.copyWithSyntaxHighlighting": false,
-  //   "diffEditor.ignoreTrimWhitespace": false,
-  //   "editor.emptySelectionClipboard": false,
-  //   "workbench.editor.enablePreview": false,
-  //   // "window.newWindowDimensions": "inherit",
-  //   // "editor.multiCursorModifier": "ctrlCmd",
-  //   "diffEditor.renderSideBySide": false,
-  //   "editor.snippetSuggestions": "top",
-  //   "editor.detectIndentation": true,
-  //   // "window.nativeFullScreen": true,
-  //   "files.insertFinalNewline": true,
-  //   "files.trimFinalNewlines": true,
-  //   "editor.guides.indentation": true,
-  //   "editor.stickyScroll.enabled": false,
-  //   "editor.autoClosingBrackets": "never",
-  //   "editor.autoClosingQuotes": "never",
-  // trim whitespace
-  "files.trimTrailingWhitespace": true,
-  // "editor.renderWhitespace": "none",
-  // "editor.renderControlCharacters": false,
-  "editor.formatOnSave": false,
-  "editor.accessibilitySupport": "off",
-  "workbench.tips.enabled": false,
-  // "scm.diffDecorations": "none",
-  //   // color decorations
-  // "editor.colorDecorators": true,
-  //   "git.decorations.enabled": false,
-  //   "problems.decorations.enabled": false,
-  //   "editor.matchBrackets": "near",
-  //   "editor.bracketPairColorization.enabled": true,
-  //   // "editor.guides.bracketPairs":"active",
-  //   // "editor.gotoLocation.multipleReferences": "goto",
-  //   // "editor.gotoLocation.multipleDefinitions": "goto",
-  //   // "editor.gotoLocation.multipleDeclarations": "goto",
-  //   // "workbench.editor.enablePreviewFromQuickOpen": false,
-  //   // "editor.gotoLocation.multipleImplementations": "goto",
-  //   // "editor.gotoLocation.multipleTypeDefinitions": "goto",
-  // error
-  "errorLens.enabled": true,
-  "errorLens.editorHoverPartsEnabled": {
-    "messageEnabled": false,
-    "sourceCodeEnabled": false,
-    "buttonsEnabled": false
-  },
-  "errorLens.delay": 1000,
-  "errorLens.followCursor": "activeLine",
-  "errorLens.gutterIconsEnabled": true,
-  "errorLens.messageBackgroundMode": "message",
-  //   "errorLens.exclude": ["**/*.txt", "**/dist/**"],
-  //   // wrap
-  //   "editor.wordWrap": "on",
-  //   "editor.wordWrapColumn": 150,
-  //   "editor.wrappingIndent": "none",
-  /** explorer ***********************************************************************************/
-  "explorer.compactFolders": true,
-  "explorer.sortOrder": "type",
-  "explorer.decorations.colors": false,
-  /** terminal settings **************************************************************************/
-  "terminal.integrated.gpuAcceleration": "auto",
-  "terminal.integrated.fontSize": 14,
-  //   "terminal.integrated.allowChords": true,
-  //   "terminal.integrated.defaultLocation": "view",
-  //   "terminal.integrated.tabs.enabled": false,
-  //   "terminal.integrated.fontFamily": "RobotMono Nerd Font",
-  /** misc     **********************************************************************************/
-  "extensions.ignoreRecommendations": true,
-  "extensions.autoUpdate": false,
-  "files.autoSave": "off",
-  // editor
-  "editor.lineNumbers": "relative",
-  // search
-  "find-it-faster.general.killTerminalAfterUse": true,
-  "find-it-faster.general.useTerminalInEditor": false,
-  // check here https://github.com/VSCodeVim/Vim
-  // vim settings
-  "vim.easymotion": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": false,
-  "vim.hlsearch": true,
-  "vim.autoindent": true,
-  "vim-commentary": true,
-  "vim.surround": true,
-  "vim.leader": "space",
-  "vim.history": 2000,
-  "vim.statusBarColorControl": false,
-  "vim.showcmd": true,
-  "vim.gdefault": false, // :substitute flag 'g' is enabled by default to replace all matches in a line.
-  "vim.ignorecase": true, // Ignore case in search patterns.
-  "vim.inccommand": "replace", // Display :substitute command effects while typing.
-  "vim.joinspaces": true, // Add two spaces after '.', '?', or '!' when joining lines.
-  "vim.maxmapdepth": 1000, // Maximum recursive mapping depth to prevent endless loops.
-  "vim.report": 2, // Minimum number of lines changed to trigger a report.
-  // "vim.shell": "/bin/sh",               // Path to the shell for `!` and `:!` commands.
-  "vim.showmodename": true, // Display the current mode name in the status bar.
-  "vim.smartcase": true, // Override ignorecase if the search contains uppercase letters.
-  "vim.textwidth": 120, // Maximum width for text wrapping with `gq`.
-  "vim.timeout": 1000, // Timeout (in milliseconds) for remapped commands.
-  "vim.whichwrap": "b,s", // Allow cursor to wrap to the next/previous line with certain keys.
-  "vim.smartRelativeLine": true,
-  "vim.highlightedyank.enable": true,
-  "vim.highlightedyank.color": "#f6c177",
-  "vim.highlightedyank.duration": 120,
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1,
-    "asvetliakov.vscode-neovim": 1
-  },
-  //   "vim.replaceWithRegister": true,
-  //   // "vim.sneak": true,
-  //   // "vim.sneakUseIgnorecaseAndSmartcase": true,
-  "vim.handleKeys": {
-    "<C-d>": true,
-    "<C-u>": true,
-    "<C-j>": true,
-    "<C-k>": true,
-    "<->": true,
-    "<_>": true,
-    "<C-f>": true
-    //     "<C-e>": false,
-    //     "<C-h>": true,
-    //     "<C-l>": false,
-    //     "<C-y>": false,
-    //     "<C-s>": false,
-    //     "<C-w>": false,
-  },
-  // keybindings
-  // normal mode
-  "vim.normalModeKeyBindingsNonRecursive": [
-    // show whichkey
-    {
-      "before": [
-        "<space>"
-      ],
-      "commands": [
-        "whichkey.show"
-      ]
-    },
-    {
-      "before": [
-        "<Esc>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    },
-    {
-      "before": [
-        "<C-c>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    },
-    // formatting
-    {
-      "before": [
-        "<C-m>"
-      ],
-      "commands": [
-        "editor.action.formatDocument"
-      ]
-    },
-    // fold
-    {
-      "before": [
-        "<Tab>"
-      ],
-      "after": [
-        "z",
-        "a"
-      ]
-    },
-    // center the cursor when using C-d and C-u
-    {
-      "before": [
-        "<C-d>"
-      ],
-      "after": [
-        "<C-d>",
-        "z",
-        "z"
-      ]
-    },
-    {
-      "before": [
-        "<C-u>"
-      ],
-      "after": [
-        "<C-u>",
-        "z",
-        "z"
-      ]
-    },
-    // toggle comment selection
-    {
-      "before": [
-        "-"
-      ],
-      "after": [
-        "g",
-        "c",
-        "c",
-        "<C-c>"
-      ]
-    },
-    {
-      "before": [
-        "_"
-      ],
-      "after": [
-        "g",
-        "C",
-        "<C-c>"
-      ]
-    },
-    // spell suggestion
-    {
-      "before": [
-        "z",
-        "="
-      ],
-      "commands": [
-        "cSpell.suggestSpellingCorrections"
-      ]
-    }
-  ],
-  // Visual mode
-  "vim.visualModeKeyBindingsNonRecursive": [
-    // Stay in visual mode while indenting
-    {
-      "before": [
-        "<"
-      ],
-      "after": [
-        "<",
-        "g",
-        "v",
-        "^"
-      ]
-    },
-    {
-      "before": [
-        ">"
-      ],
-      "after": [
-        ">",
-        "g",
-        "v",
-        "^"
-      ]
-    },
-    // Move selected lines while staying in visual mode
-    {
-      "before": [
-        "J"
-      ],
-      "commands": [
-        "editor.action.moveLinesDownAction"
-      ]
-    },
-    {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.moveLinesUpAction"
-      ]
-    },
-    // toggle comment selection
-    {
-      "before": [
-        "-"
-      ],
-      "after": [
-        "g",
-        "c",
-        "<C-c>"
-      ]
-    },
-    {
-      "before": [
-        "_"
-      ],
-      "after": [
-        "g",
-        "C",
-        "<C-c>"
-      ]
-    }
-  ],
-  "git.openRepositoryInParentFolders": "never",
-  // Whichkey keybinding
-  "whichkey.delay": 0,
-  "whichkey.bindings": [
-    {
-      "key": ",",
-      "name": "formatDocument",
-      "command": "editor.action.formatDocument",
-      "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-    },
-    //     // Panel nav
-    //     {
-    //       "key": "h",
-    //       "name": "Focus left group",
-    //       "type": "command",
-    //       "command": "workbench.action.navigateLeft",
-    //       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    //     },
-    //     {
-    //       "key": "j",
-    //       "name": "Focus blow group",
-    //       "type": "command",
-    //       "command": "workbench.action.navigateDown",
-    //       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    //     },
-    //     {
-    //       "key": "k",
-    //       "name": "Focus above group",
-    //       "type": "command",
-    //       "command": "workbench.action.navigateUp",
-    //       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    //     },
-    //     {
-    //       "key": "l",
-    //       "name": "Focus right group",
-    //       "type": "command",
-    //       "command": "workbench.action.navigateRight",
-    //       "when": "terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    //     },
-    //     // lsp setting
-    //     {
-    //       "key": "r",
-    //       "name": "refactor",
-    //       "command": "editor.action.refactor",
-    //       "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
-    //     },
-    //     // file tree
-    //     {
-    //       "key": "e",
-    //       "name": "toggle file tree",
-    //       "type": "command",
-    //       "command": "runCommands",
-    //       "args": {
-    //         "commands": [
-    //           "workbench.action.toggleSidebarVisibility",
-    //           "workbench.files.action.focusFilesExplorer"
-    //         ],
-    //         "when": "vim.mode == 'Normal' && !sideBarFocus && (editorTextFocus || !inputFocus)"
-    //       }
-    //     },
-    // find file
-    {
-      "key": "f",
-      "name": "find files",
+      "key": "d",
+      "name": "open netrew",
       "type": "bindings",
       "bindings": [
         {
-          "key": "f",
-          "name": "find file",
+          "key": "d",
+          "name": "open netrw",
           "type": "command",
-          "command": "workbench.action.quickOpen"
-        },
-        {
-          "key": "p",
-          "name": "fzf find file with preview",
-          "type": "command",
-          "command": "find-it-faster.findFiles"
-        },
-        {
-          "key": "l",
-          "name": "live rigrep in project",
-          "type": "command",
-          "command": "find-it-faster.findWithinFiles"
+          "command": "vsnetrw.open",
+          "when": "!activeEditor"
         }
       ]
-    }
-  ],
-  // formatter
-  "editor.defaultFormatter": "",
-  // json
-  "[jsonc]": {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "workbench.colorTheme": "Gruvbox Dark Hard",
-  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua",
-  "security.allowedUNCHosts": [
-    "wsl.localhost"
-  ],
-  "window.commandCenter": false
+    },
+//     // project/workspace
+//     {
+//       "key": "p",
+//       "name": "Project",
+//       "type": "bindings",
+//       "bindings": [
+//         {
+//           "key": "p",
+//           "name": "open project list",
+//           "type": "command",
+//           "command": "projectManager.listProjects"
+//         },
+//         {
+//           "key": "s",
+//           "name": "open project save",
+//           "type": "command",
+//           "command": "projectManager.saveProject"
+//         },
+//         {
+//           "key": "b",
+//           "name": "open project side bar",
+//           "type": "command",
+//           "command": "_projectManager.openSideBar"
+//         },
+//         {
+//           "key": "n",
+//           "name": "open project in new window",
+//           "type": "command",
+//           "command": "projectManager.listProjectsNewWindow"
+//         }
+//       ]
+//     },
+    // Buffer
+    {
+      "key": "q",
+      "name": "Close current buffer",
+      "type": "commands",
+      "command": "workbench.action.closeActiveEditor"
+    },
+    {
+      "key": "b",
+      "name": "Buffer/Bookmarks",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "b",
+          "name": "Show all buffers",
+          "type": "commands",
+          "command": "workbench.action.showAllEditors"
+        },
+        {
+          "key": "K",
+          "name": "Close all other buffer",
+          "type": "commands",
+          "command": "workbench.action.closeOtherEditors"
+        }
+      ]
+    },
+
+    // markdown
+    // NOTE: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
+    {
+      "key": "m",
+      "name": "Markdown",
+      "type": "bindings",
+      "bindings": [
+        {
+          "key": "p",
+          "name": "preview to the side",
+          "type": "command",
+          "command": "markdown-preview-enhanced.openPreviewToTheSide",
+          "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+        },
+        {
+          "key": "g",
+          "name": "github theme preview to the side",
+          "type": "command",
+          "command": "markdown.showPreviewToSide",
+          "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+        },
+        // BUG:
+        {
+          "key": "k",
+          "name": "kill the preview",
+          "type": "command",
+          "command": "runCommands",
+          "args": {
+            "commands": [
+              "workbench.action.navigateLeft",
+              "workbench.action.closeActiveEditor"
+            ]
+            // "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+          }
+        },
+        {
+          "key": "b",
+          "name": "toggle bold",
+          "type": "command",
+          "command": "markdown.extension.editing.toggleBold",
+          "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+        },
+        {
+          "key": "i",
+          "name": "toggle italic",
+          "type": "command",
+          "command": "markdown.extension.editing.toggleItalic",
+          "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+        },
+        {
+          "key": "s",
+          "name": "toggle strikethrough",
+          "type": "command",
+          "command": "markdown.extension.editing.toggleStrikethrough",
+          "when": "false"
+        }
+      ]
+    },
+    // System
+    {
+      "key": ":",
+      "name": "show command",
+      "type": "command",
+      "command": "workbench.action.showCommands"
+    },
+	]
 }
-//     {
-//       "key": "d",
-//       "name": "open netrew",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "d",
-//           "name": "open netrw",
-//           "type": "command",
-//           "command": "vsnetrw.open",
-//           "when": "!activeEditor"
-//         }
-//       ]
-//     },
-//     // project/workspace
-//     {
-//       "key": "p",
-//       "name": "Project",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "p",
-//           "name": "open project list",
-//           "type": "command",
-//           "command": "projectManager.listProjects"
-//         },
-//         {
-//           "key": "s",
-//           "name": "open project save",
-//           "type": "command",
-//           "command": "projectManager.saveProject"
-//         },
-//         {
-//           "key": "b",
-//           "name": "open project side bar",
-//           "type": "command",
-//           "command": "_projectManager.openSideBar"
-//         },
-//         {
-//           "key": "n",
-//           "name": "open project in new window",
-//           "type": "command",
-//           "command": "projectManager.listProjectsNewWindow"
-//         }
-//       ]
-//     },
-//     // Buffer
-//     {
-//       "key": "q",
-//       "name": "Close current buffer",
-//       "type": "commands",
-//       "command": "workbench.action.closeActiveEditor"
-//     },
-//     {
-//       "key": "b",
-//       "name": "Buffer/Bookmarks",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "b",
-//           "name": "Show all buffers",
-//           "type": "commands",
-//           "command": "workbench.action.showAllEditors"
-//         },
-//         {
-//           "key": "K",
-//           "name": "Close all other buffer",
-//           "type": "commands",
-//           "command": "workbench.action.closeOtherEditors"
-//         }
-//       ]
-//     },
-//     // markdown
-//     // NOTE: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
-//     {
-//       "key": "m",
-//       "name": "Markdown",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "p",
-//           "name": "preview to the side",
-//           "type": "command",
-//           "command": "markdown-preview-enhanced.openPreviewToTheSide",
-//           "when": "!notebookEditorFocused && editorLangId == 'markdown'"
-//         },
-//         {
-//           "key": "g",
-//           "name": "github theme preview to the side",
-//           "type": "command",
-//           "command": "markdown.showPreviewToSide",
-//           "when": "!notebookEditorFocused && editorLangId == 'markdown'"
-//         },
-//         // BUG:
-//         {
-//           "key": "k",
-//           "name": "kill the preview",
-//           "type": "command",
-//           "command": "runCommands",
-//           "args": {
-//             "commands": [
-//               "workbench.action.navigateLeft",
-//               "workbench.action.closeActiveEditor"
-//             ]
-//             // "when": "!notebookEditorFocused && editorLangId == 'markdown'"
-//           }
-//         },
-//         {
-//           "key": "b",
-//           "name": "toggle bold",
-//           "type": "command",
-//           "command": "markdown.extension.editing.toggleBold",
-//           "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
-//         },
-//         {
-//           "key": "i",
-//           "name": "toggle italic",
-//           "type": "command",
-//           "command": "markdown.extension.editing.toggleItalic",
-//           "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
-//         },
-//         {
-//           "key": "s",
-//           "name": "toggle strikethrough",
-//           "type": "command",
-//           "command": "markdown.extension.editing.toggleStrikethrough",
-//           "when": "false"
-//         }
-//       ]
-//     },
-//     // System
-//     {
-//       "key": "/",
-//       "name": "show command",
-//       "type": "command",
-//       "command": "workbench.action.showCommands"
-//     },
-//     // terminal
-//     {
-//       "key": "'",
-//       "name": "new terminal",
-//       "type": "command",
-//       "command": "workbench.action.terminal.toggleTerminal",
-//       "when": "terminal.active"
-//     },
-//     // toggle some panel and mode
-//     {
-//       "key": "t",
-//       "name": "toggle mode",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "p",
-//           "name": "open problems list",
-//           "type": "commands",
-//           "command": "workbench.actions.view.problems",
-//           "when": "workbench.panel.markers.view.active"
-//         },
-//         {
-//           "key": "s",
-//           "name": "toggle spell checker",
-//           "type": "command",
-//           "command": "cSpell.toggleEnableSpellChecker"
-//         }
-//       ]
-//     },
-//     // misc
-//     {
-//       "key": "z",
-//       "name": "toggle center mode",
-//       "type": "command",
-//       "command": "workbench.action.toggleCenteredLayout"
-//     }
-//   "workbench.startupEditor": "none",
-//   "window.titleBarStyle": "custom",
-//   "window.commandCenter": false,
-//   "window.zoomLevel": 0,
-//   "workbench.statusBar.visible": true,
-//   "workbench.sideBar.location": "right",
-//   "workbench.layoutControl.enabled": false,
-//   "workbench.activityBar.location": "bottom",
-//   "workbench.editor.showTabs": "none",
-//   "workbench.tree.enableStickyScroll": false,
-//   "workbench.tree.renderIndentGuides": "none",
-//   "workbench.tree.indent": 15,
-//   "workbench.panel.showLabels": false,
-//   "workbench.panel.defaultLocation": "right",
-//   // NOTE:https://github.com/alefragnani/vscode-project-manager/tree/master?tab=readme-ov-file
-//   "projectManager.projectsLocation": "~/.dotfiles/.vscode",
-//   /** editor *************************************************************************************/
-//   "editor.fontFamily": "SauceCodePro Nerd Font, SauceCodePro NF, RobotoMono Nerd Font, Roboto ",
-//   "editor.fontSize": 14,
-//   "editor.rulers": [
-//     {
-//       "column": 120,
-//       "color": "#2b2b2b"
-//     }
-//   ],
-//   "editor.semanticHighlighting.enabled": "configuredByTheme",
-//   "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
-//   "editor.cursorBlinking": "phase",
-//   "editor.cursorSmoothCaretAnimation": "off",
-//   "editor.renderLineHighlight": "none",
-//   "editor.hover.delay": 50,
-//   "editor.minimap.enabled": false,
-//   "workbench.editor.empty.hint": "hidden",
-//   // scroll bar
-//   "editor.scrollbar.horizontal": "hidden",
-//   "editor.scrollbar.vertical": "hidden",
-//   "workbench.list.smoothScrolling": false,
-//   "editor.hideCursorInOverviewRuler": true,
-//   "editor.overviewRulerBorder": true,
-//   "editor.insertSpaces": true, // or false for tabs
-//   "editor.tabSize": 2,
-//   "editor.occurrencesHighlight": "off",
-//   "editor.lightbulb.enabled": "off",
-//   "editor.selectionHighlight": false,
-//   "editor.copyWithSyntaxHighlighting": false,
-//   "diffEditor.ignoreTrimWhitespace": false,
-//   "editor.emptySelectionClipboard": false,
-//   "workbench.editor.enablePreview": false,
-//   // "window.newWindowDimensions": "inherit",
-//   // "editor.multiCursorModifier": "ctrlCmd",
-//   "diffEditor.renderSideBySide": false,
-//   "editor.snippetSuggestions": "top",
-//   "editor.detectIndentation": true,
-//   // "window.nativeFullScreen": true,
-//   "files.insertFinalNewline": true,
-//   "files.trimFinalNewlines": true,
-//   "editor.guides.indentation": true,
-//   "editor.stickyScroll.enabled": false,
-//   "editor.autoClosingBrackets": "never",
-//   "editor.autoClosingQuotes": "never",
-//   // trim whitespace
-//   "files.trimTrailingWhitespace": true,
-//   "editor.renderWhitespace": "none",
-//   "editor.renderControlCharacters": false,
-//   "editor.formatOnSave": false,
-//   "editor.accessibilitySupport": "off",
-//   "scm.diffDecorations": "none",
-//   "workbench.tips.enabled": false,
-//   // color decorations
-//   "editor.colorDecorators": true,
-//   "git.decorations.enabled": false,
-//   "problems.decorations.enabled": false,
-//   "editor.matchBrackets": "near",
-//   "editor.bracketPairColorization.enabled": true,
-//   // "editor.guides.bracketPairs":"active",
-//   // "editor.gotoLocation.multipleReferences": "goto",
-//   // "editor.gotoLocation.multipleDefinitions": "goto",
-//   // "editor.gotoLocation.multipleDeclarations": "goto",
-//   // "workbench.editor.enablePreviewFromQuickOpen": false,
-//   // "editor.gotoLocation.multipleImplementations": "goto",
-//   // "editor.gotoLocation.multipleTypeDefinitions": "goto",
-//   // wrap
-//   "editor.wordWrap": "on",
-//   "editor.wordWrapColumn": 150,
-//   "editor.wrappingIndent": "none",
-//   /** explorer ***********************************************************************************/
-//   "explorer.compactFolders": true,
-//   "explorer.sortOrder": "type",
-//   //"explorer.decorations.colors": false,
-//   "breadcrumbs.enabled": true,
-//   "breadcrumbs.icons": false,
-//   // "update.showReleaseNotes": false,
-//   "explorer.autoReveal": false,
-//   // "zenMode.centerLayout": false,
-//   // "zenMode.hideLineNumbers": false,
-//   /** ai and autocmp ****************************************************************************/
-//   "github.copilot.editor.enableAutoCompletions": true,
-//   "github.copilot.editor.enableCodeActions": true,
-//   "github.copilot.enable": {
-//     "*": true,
-//     "plaintext": false,
-//     "markdown": true,
-//     "scminput": false
-//   },
-//   // auto suggestion
-//   "editor.suggest.insertMode": "replace",
-//   "editor.linkedEditing": true,
-//   "editor.quickSuggestions": {
-//     "other": true,
-//     "comments": true,
-//     "strings": false
-//   },
-//   "editor.inlineSuggest.enabled": true,
-//   "editor.inlineSuggest.syntaxHighlightingEnabled": false,
-//   "editor.hover.enabled": false,
-//   "editor.acceptSuggestionOnCommitCharacter": true,
-//   "editor.acceptSuggestionOnEnter": "on",
-//   "editor.quickSuggestionsDelay": 5,
-//   "editor.suggestOnTriggerCharacters": true,
-//   "editor.tabCompletion": "off",
-//   "editor.suggest.localityBonus": true,
-//   "editor.suggestSelection": "first",
-//   "editor.wordBasedSuggestions": "matchingDocuments",
-//   "editor.parameterHints.enabled": true,
-//   "workbench.colorCustomizations": {
-//     "editor.background": "#090a0c",
-//     "editorGutter.background": "#090a0c",
-//     "editorGroupHeader.tabsBackground": "#090a0c",
-//     "tab.activeBackground": "#090a0c",
-//     "tab.inactiveBackground": "#2E3440",
-//     "titleBar.activeBackground": "#090a0c",
-//     "activityBar.background": "#090a0c",
-//     "sideBar.background": "#090a0c",
-//     "terminal.background": "#090a0c",
-//     "panel.background": "#090a0c"
-//   },
-//   "[windows]": {},
-//   // Absolute file paths for your css/js files
-//   // For Windows
-//   // "file:///C:/path-of-custom-css/custom-vscode.css",
-//   // "file:///C:/path-of-custom-css/custom-vscode-script.js"
-//   "[mac]": {},
-//   // "vscode_custom_css.imports": [
-//   //   // Absolute file paths for your css/js files
-//   //   // For Mac or Linux
-//   //   "file://${userHome}/.dotfiles/.vscode/wt-vscode.css"
-//   //   // "file:///Users/your-user-name/custom-vscode-script.js"
-//   // ],
-//   "glassit.alpha": 250,
-/** LSP Settings *******************************************************************************/
-//   "files.associations": {
-//     "*.md": "markdown",
-//     "*.py": "python",
-//     "*.cpp": "cpp",
-//     "*.c": "cpp"
-//   },
-//   "editorconfig.generateAuto": false,
-//   "editorconfig.template": "~/.dotfiles/.editorconfig",
-//   // json
-//   "[jsonc]": {
-//     "editor.tabSize": 4,
-//     "editor.insertSpaces": true,
-//     "editor.defaultFormatter": "esbenp.prettier-vscode"
-//   },
-//   "[json]": {
-//     "editor.tabSize": 4,
-//     "editor.insertSpaces": true,
-//     "editor.defaultFormatter": "esbenp.prettier-vscode"
-//   },
-//   "prettier.tabWidth": 4,
-//   "prettier.useEditorConfig": true,
-//   // "prettier.requireConfig": true,
-//   // "prettier.useEditorConfig": false,
-//   //python
-//   // NOTE: check the ruff
-//   "[python]": {
-//     "editor.tabSize": 4,
-//     "editor.insertSpaces": true,
-//     "editor.formatOnType": false
-//   },
-//   "python.languageServer": "Pylance",
-//   // "python.formatting.provider": "black",
-//   // "python.formatting.blackArgs": ["--line-length", "88"],
-//   "python.analysis.aiCodeActions": {
-//     "implementAbstractClasses": true
-//   },
-//   // TODO: check the formatting and include
-//   //cpp
-//   "[cpp]": {
-//     "editor.tabSize": 2,
-//     "editor.insertSpaces": true,
-//     "editor.formatOnType": false
-//   },
-//   "C_Cpp.formatting": "clangFormat",
-//   "C_Cpp.clang_format_style": "Google",
-//   // "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4 }",
-//   "C_Cpp.default.includePath": [
-//     "${default}",
-//     "${workspaceFolder}/**"
-//   ],
-//   // C++ Configuration settings
-//   // "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-//   // "C_Cpp.default.compilerPath": "/usr/bin/clang",
-//   // "C_Cpp.default.cStandard": "c17",
-//   // "C_Cpp.default.cppStandard": "c++17",
-//   // "C_Cpp.default.intelliSenseMode": "macos-clang-arm64",
-//   // "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
-//   /* note taking */
-//   // org
-//   "[org]": {
-//     "editor.lineNumbers": "off"
-//   },
-//   "org.todoKeywords": ["TODO", "DONE"],
-//   // markdown
-//   "[markdown]": {
-//     "editor.wordWrap": "on",
-//     "editor.lineNumbers": "off",
-//     "editor.guides.highlightActiveIndentation": false,
-//     "editor.detectIndentation": false,
-//     "editor.guides.indentation": false,
-//     "editor.defaultFormatter": "esbenp.prettier-vscode",
-//     "editor.fontSize": 14,
-//     "editor.lineHeight": 24,
-//     "editor.semanticHighlighting.enabled": true
-//     // "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'calt', 'dlig'"
-//   },
-//   // better markdown
-//   "editor.tokenColorCustomizations": {
-//     "textMateRules": [
-//       // Underlined link (e.g. `some-link` in `[Name](some-link)`)
-//       {
-//         "scope": "markup.underline.link.markdown",
-//         "settings": { "foreground": "#aaaaaa" }
-//       },
-//       // List Character (e.g. `-`, `*`, `+`)
-//       {
-//         "scope": "punctuation.definition.list.begin.markdown",
-//         "settings": { "foreground": "#FFED9D" }
-//       },
-//       // Heading Hashes (e.g. `##` in `## HEADING`)
-//       // { "scope": "punctuation.definition.heading.markdown", "settings": { "foreground": "#090a0c" } },
-//       { "scope": "punctuation.definition.heading.markdown", "settings": {} },
-//       // Heading Text (e.g. `HEADING` in `## HEADING`)
-//       {
-//         "scope": "entity.name.section.markdown",
-//         "settings": { "fontStyle": "bold" }
-//       },
-//       // Title of link (e.g. `Title` in `[Title](link)`)
-//       {
-//         "scope": "string.other.link.title.markdown",
-//         "settings": { "foreground": "#dc7853" }
-//       },
-//       {
-//         "scope": "punctuation.definition.metadata.markdown",
-//         "settings": { "foreground": "#e761dc" }
-//       },
-//       // IMAGES
-//       // Image link start (e.g. `(` in `![some image](image.png)`)
-//       {
-//         "scope": "punctuation.definition.link.title.begin.markdown",
-//         "settings": { "foreground": "#569CD6" }
-//       },
-//       // Image link start (e.g. `)` in `![some image](image.png)`)
-//       {
-//         "scope": "punctuation.definition.link.title.end.markdown",
-//         "settings": { "foreground": "#569CD6" }
-//       },
-//       // Image link (e.g. `image.png` in `![some image](image.png)`)
-//       {
-//         "scope": "markup.underline.link.image.markdown",
-//         "settings": { "foreground": "#cd56d6" }
-//       },
-//       // Image description start (e.g. `[` in `![some image](image.png)`)
-//       {
-//         "scope": "punctuation.definition.link.description.begin.markdown",
-//         "settings": { "foreground": "#FFED9D" }
-//       },
-//       // Image description end (e.g. `]` in `![some image](image.png)`)
-//       {
-//         "scope": "punctuation.definition.link.description.end.markdown",
-//         "settings": { "foreground": "#FFED9D" }
-//       },
-//       // Image description (e.g. `some image` in `![some image](image.png)`)
-//       {
-//         "scope": "string.other.link.description.markdown",
-//         "settings": { "foreground": "#00D5FF" }
-//       },
-//       // TABLES
-//       // Table Pipe (e.g. all `|` characters in `| Name | Description |`)
-//       {
-//         "scope": "punctuation.definition.table.markdown",
-//         "settings": { "foreground": "#569CD6" }
-//       },
-//       // Any text in tables
-//       {
-//         "scope": "markup.table.markdown",
-//         "settings": { "foreground": "#9CDCFE" }
-//       },
-//       // :-- in tables
-//       {
-//         "scope": "punctuation.separator.table.markdown",
-//         "settings": { "foreground": "#FFFFFFCC" }
-//       },
-//       {
-//         "scope": "meta.separator.markdown",
-//         "settings": { "foreground": "#569CD6" }
-//       }
-//     ]
-//   },
-//   // "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
-//   "markdown-preview-enhanced.previewMode": "Multiple Previews",
-//   "markdown-preview-enhanced.previewTheme": "one-light.css",
-//   // TODO: check if the keybindings is working?
-//   "vim.insertModeKeyBindingsNonRecursive": [
-//     {
-//       "before": ["<C-l>"],
-//       "commands": ["editor.action.triggerSuggest"],
-//       "when": [
-//         "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly"
-//       ]
-//     },
-//     // {
-//     //     "before": ["<l>"],
-//     //     "commands": ["toggleSuggestionDetails"],
-//     //     "when": ["editorTextFocus && suggestWidgetVisible"]
-//     // },
-//     {
-//       "key": ["C-S-l"],
-//       "commands": ["toggleSuggestionFocus"],
-//       "when": ["editorTextFocus && suggestWidgetVisible"]
-//     }
-//   ],
-//   "vim.normalModeKeyBindings": [
-//     // lsp keybinding
-//     {
-//       "before": ["g,", "h"],
-//       "commands": ["editor.action.showDefinitionPreviewHover"]
-//     },
-//     {
-//       "before": ["K"],
-//       "commands": ["editor.action.showHover"]
-//     },
-//     {
-//       "before": ["g", "k"],
-//       "commands": ["editor.action.peekTypeDefinition"]
-//     },
-//     {
-//       "before": ["g", "D"],
-//       "commands": ["editor.action.goToTypeDefinition"]
-//     },
-//     {
-//       "before": ["g", "d"],
-//       "commands": ["editor.action.peekDefinition"]
-//     },
-//     {
-//       "before": ["g", "I"],
-//       "commands": ["editor.action.goToImplementation"]
-//     },
-//     {
-//       "before": ["g", "i"],
-//       "commands": ["editor.action.peekImplementation"]
-//     },
-//     {
-//       "before": ["g", "."],
-//       "commands": ["editor.action.quickFix"]
-//     },
-//     {
-//       "before": ["g", "r"],
-//       "commands": ["editor.action.referenceSearch.trigger"]
-//     }
-//     // {
-//     //   "key": "gs",
-//     //   "command": "workbench.action.gotoSymbol",
-//     //   "when": "editorTextFocus"
-//     // }
-//     // {
-//     //   "key": "gf",
-//     //   "command": "workbench.action.quickOpen",
-//     //   "when": "editorTextFocus"
-//     // }
-//   ],
-//   "vim.visualModeKeyBindings": [
-//     // show whichkey
-//     {
-//       "before": ["<space>"],
-//       "commands": ["whichkey.show"]
-//     }
-//   ],
-// // Whichkey keybinding
-//   "whichkey.delay": 0,
-//   "whichkey.bindings": [
-//     // Panel nav
-//     {
-//       "key": "h",
-//       "name": "Focus left group",
-//       "type": "command",
-//       "command": "workbench.action.navigateLeft",
-//       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-//     },
-//     {
-//       "key": "j",
-//       "name": "Focus blow group",
-//       "type": "command",
-//       "command": "workbench.action.navigateDown",
-//       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-//     },
-//     {
-//       "key": "k",
-//       "name": "Focus above group",
-//       "type": "command",
-//       "command": "workbench.action.navigateUp",
-//       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-//     },
-//     {
-//       "key": "l",
-//       "name": "Focus right group",
-//       "type": "command",
-//       "command": "workbench.action.navigateRight",
-//       "when": "terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-//     },
-//     // lsp setting
-//     {
-//       "key": "r",
-//       "name": "refactor",
-//       "command": "editor.action.refactor",
-//       "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
-//     },
-//     // file tree
-//     {
-//       "key": "e",
-//       "name": "toggle file tree",
-//       "type": "command",
-//       "command": "runCommands",
-//       "args": {
-//         "commands": [
-//           "workbench.action.toggleSidebarVisibility",
-//           "workbench.files.action.focusFilesExplorer"
-//         ],
-//         "when": "vim.mode == 'Normal' && !sideBarFocus && (editorTextFocus || !inputFocus)"
-//       }
-//     },
-//     // find file
-//     {
-//       "key": "f",
-//       "name": "find files",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "f",
-//           "name": "find file",
-//           "type": "command",
-//           "command": "workbench.action.quickOpen"
-//         },
-//         {
-//           "key": "p",
-//           "name": "fzf find file with preview",
-//           "type": "command",
-//           "command": "find-it-faster.findFiles"
-//         },
-//         {
-//           "key": "l",
-//           "name": "live rigrep in project",
-//           "type": "command",
-//           "command": "find-it-faster.findWithinFiles"
-//         }
-//       ]
-//     },
-//     {
-//       "key": "d",
-//       "name": "open netrew",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "d",
-//           "name": "open netrw",
-//           "type": "command",
-//           "command": "vsnetrw.open",
-//           "when": "!activeEditor"
-//         }
-//       ]
-//     },
-//     // project/workspace
-//     {
-//       "key": "p",
-//       "name": "Project",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "p",
-//           "name": "open project list",
-//           "type": "command",
-//           "command": "projectManager.listProjects"
-//         },
-//         {
-//           "key": "s",
-//           "name": "open project save",
-//           "type": "command",
-//           "command": "projectManager.saveProject"
-//         },
-//         {
-//           "key": "b",
-//           "name": "open project side bar",
-//           "type": "command",
-//           "command": "_projectManager.openSideBar"
-//         },
-//         {
-//           "key": "n",
-//           "name": "open project in new window",
-//           "type": "command",
-//           "command": "projectManager.listProjectsNewWindow"
-//         }
-//       ]
-//     },
-//     // Buffer
-//     {
-//       "key": "q",
-//       "name": "Close current buffer",
-//       "type": "commands",
-//       "command": "workbench.action.closeActiveEditor"
-//     },
-//     {
-//       "key": "b",
-//       "name": "Buffer/Bookmarks",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "b",
-//           "name": "Show all buffers",
-//           "type": "commands",
-//           "command": "workbench.action.showAllEditors"
-//         },
-//         {
-//           "key": "K",
-//           "name": "Close all other buffer",
-//           "type": "commands",
-//           "command": "workbench.action.closeOtherEditors"
-//         }
-//       ]
-//     },
-//     // markdown
-//     // NOTE: https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced
-//     {
-//       "key": "m",
-//       "name": "Markdown",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "p",
-//           "name": "preview to the side",
-//           "type": "command",
-//           "command": "markdown-preview-enhanced.openPreviewToTheSide",
-//           "when": "!notebookEditorFocused && editorLangId == 'markdown'"
-//         },
-//         {
-//           "key": "g",
-//           "name": "github theme preview to the side",
-//           "type": "command",
-//           "command": "markdown.showPreviewToSide",
-//           "when": "!notebookEditorFocused && editorLangId == 'markdown'"
-//         },
-//         // BUG:
-//         {
-//           "key": "k",
-//           "name": "kill the preview",
-//           "type": "command",
-//           "command": "runCommands",
-//           "args": {
-//             "commands": [
-//               "workbench.action.navigateLeft",
-//               "workbench.action.closeActiveEditor"
-//             ]
-//             // "when": "!notebookEditorFocused && editorLangId == 'markdown'"
-//           }
-//         },
-//         {
-//           "key": "b",
-//           "name": "toggle bold",
-//           "type": "command",
-//           "command": "markdown.extension.editing.toggleBold",
-//           "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
-//         },
-//         {
-//           "key": "i",
-//           "name": "toggle italic",
-//           "type": "command",
-//           "command": "markdown.extension.editing.toggleItalic",
-//           "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
-//         },
-//         {
-//           "key": "s",
-//           "name": "toggle strikethrough",
-//           "type": "command",
-//           "command": "markdown.extension.editing.toggleStrikethrough",
-//           "when": "false"
-//         }
-//       ]
-//     },
-//     // System
-//     {
-//       "key": "/",
-//       "name": "show command",
-//       "type": "command",
-//       "command": "workbench.action.showCommands"
-//     },
-//     // terminal
-//     {
-//       "key": "'",
-//       "name": "new terminal",
-//       "type": "command",
-//       "command": "workbench.action.terminal.toggleTerminal",
-//       "when": "terminal.active"
-//     },
-//     // toggle some panel and mode
-//     {
-//       "key": "t",
-//       "name": "toggle mode",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "p",
-//           "name": "open problems list",
-//           "type": "commands",
-//           "command": "workbench.actions.view.problems",
-//           "when": "workbench.panel.markers.view.active"
-//         },
-//         {
-//           "key": "s",
-//           "name": "toggle spell checker",
-//           "type": "command",
-//           "command": "cSpell.toggleEnableSpellChecker"
-//         }
-//       ]
-//     },
-//     // misc
-//     {
-//       "key": "z",
-//       "name": "toggle center mode",
-//       "type": "command",
-//       "command": "workbench.action.toggleCenteredLayout"
-//     }
-//   ],
-//   /* extra  *************************************************************************************/
-//   /*   ;; (text       "#e0def4")  ;; foreground
-//   ;; (base       "#232136")  ;; background
-//   ;; (high       "#393552")  ;; highlight
-//   ;; (gold       "#f6c177")  ;; critical
-//   ;; (iris       "#c4a7e7")  ;; salient
-//   ;; (surface    "#6e6a86")  ;; strong
-//   ;; (love       "#eb6f92")  ;; popout
-//   ;; (subtle     "#2a273f")  ;; subtle
-//   ;; (faded      "#6e6a86")  ;; faded
-//   ;; (cursor     "#c4a7e7")) ;; cursor */
-//   // TODO: change the color
-//   // https://marketplace.visualstudio.com/items?itemName=jgclark.vscode-todo-highlight
-//   "todohighlight.isEnable": true,
-//   // "todohighlight.enableDiagnostics": true,
-//   "todohighlight.isCaseSensitive": true,
-//   "todohighlight.keywords": [
-//     {
-//       "text": "FIXME:",
-//       "color": "black",
-//       "backgroundColor": "#eb6f92",
-//       "border": "none",
-//       "isWholeLine": false
-//     },
-//     {
-//       "text": "BUG:",
-//       "color": "black",
-//       "backgroundColor": "#eb6f92",
-//       "border": "none",
-//       "isWholeLine": false
-//     },
-//     {
-//       "text": "NOTE:", // without a defined regex pattern this is the string that will be matched
-//       "color": "white",
-//       "border": "1px solid white",
-//       "borderRadius": "2px",
-//       "regex": {
-//         "pattern": "(?<=^|\"|\\s)NOTE[:]?(?!\\w)" // in this example, highlight `NOTE:` with or without the `:` and that's not part of another word.  (I.e.: The above will highlight 'NOTE' but not the "note" in 'SIDENOTE').
-//       },
-//       "backgroundColor": "rgba(0,0,0,.5)",
-//       "isWholeLine": false
-//     },
-//     {
-//       "text": "TODO:", // with a regex pattern defined, this setting isn't used, but is useful as a name for this section
-//       // "regex": {
-//       //   "pattern": "(?<=^|\"|\\s)TODO(\\(\\w+\\))?:" // this allows for TODO: or TODO(Bob): etc.
-//       // },
-//       "color": "#f6c177",
-//       "border": "1px solid",
-//       "borderRadius": "2px", //NOTE: use borderRadius along with `border` or you will see nothing change
-//       "backgroundColor": "rgba(0,0,0,.2)",
-//       "isWholeLine": false
-//     },
-//     {
-//       "text": "CHECK:", // with a regex pattern defined, this setting isn't used, but is useful as a name for this section
-//       "color": "white",
-//       "backgroundColor": "#393552",
-//       "isWholeLine": false
-//     },
-//     {
-//       "text": "DONE:", // with a regex pattern defined, this setting isn't used, but is useful as a name for this section
-//       "color": "white",
-//       "backgroundColor": "#393552",
-//       "isWholeLine": false
-//     }
-//     // {
-//     //   "text": "*",
-//     //   "color": "black",
-//     //   "backgroundColor": "#eb6f92",
-//     //   "border": "none",
-//     //   "isWholeLine": false
-//     // },
-//   ],
-//   "todohighlight.include": [
-//     "**/*.js",
-//     "**/*.jsx",
-//     "**/*.ts",
-//     "**/*.tsx",
-//     "**/*.html",
-//     "**/*.css",
-//     "**/*.cpp",
-//     "**/*.py",
-//     "**/*.txt",
-//     "**/*.json",
-//     "**/*.mdown",
-//     "**/*.md"
-//     // "**/*.php",
-//     // "**/*.rb",
-//     // "**/*.org"
-//   ],
-//   "cSpell.enabled": false,
-//   "git.openRepositoryInParentFolders": "never",
-//   "security.workspace.trust.untrustedFiles": "open",
-//   "workbench.iconTheme": "vs-minimal"
-// }
