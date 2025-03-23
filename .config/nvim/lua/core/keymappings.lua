@@ -35,8 +35,8 @@ vim.keymap.set("n", "<Tab>", function()
 end, { desc = "Toggle fold" })
 
 -- buffer
-vim.keymap.set("n", "<leader>o", ":bn<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>i", ":bp<cr>", { desc = "Prevous buffer" })
+vim.keymap.set("n", "<leader>o", ":bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>i", ":bprevious<cr>", { desc = "Prevous buffer" })
 
 vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
@@ -72,7 +72,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "move to up buffer" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "move to down buffer" })
 
 -- windows
-vim.keymap.set("n", "<leader>'", function()
+vim.keymap.set("n", "<C-'>", function()
   require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
 end, { desc = "Toggle maximize buffer" })
 

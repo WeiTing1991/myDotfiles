@@ -1,15 +1,15 @@
 local autocmd = vim.api.nvim_create_autocmd
 
-vim.cmd([[
+vim.cmd [[
 	filetype plugin indent on
-]])
+]]
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("wtNvimEditor", { clear = true }),
   pattern = { "*" }, -- Apply to all files
   callback = function()
     if vim.bo.filetype ~= "markdown" then
-      vim.cmd([[ %s/\s\+$//e ]]) -- Trim trailing whitespace
+      vim.cmd [[ %s/\s\+$//e ]] -- Trim trailing whitespace
     end
   end,
 })
@@ -91,6 +91,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     set.tabstop = 2
     set.softtabstop = 2
     set.textwidth = 120
+
+    vim.keymap.set("n", "<S-l>ta", ":TSToolsAddMissingImports<cr>", { desc = "add missing import" })
+    vim.keymap.set("n", "<S-l>tr", ":TSToolRemoveUnusedImports<cr>", { desc = "remove unused import" })
   end,
 })
 
