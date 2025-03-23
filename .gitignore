@@ -1,5 +1,7 @@
 .DS_store
 .config/nvim/lazy-lock.json
 ..vimrc.*
+.config/gcloud/*
+
 
 .config/github-copilot/
