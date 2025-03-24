@@ -1,8 +1,0 @@
-[core]
-account = waiting0502@gmail.com
-project = mywebproject-420221
-
-[compute]
-zone = europe-west4-a
-region = europe-west4
-

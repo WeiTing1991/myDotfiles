@@ -1,9 +1,0 @@
-2025-03-23 03:18:36,793 DEBUG    root            Loaded Command Group: ['gcloud', 'auth']
-2025-03-23 03:18:36,795 DEBUG    root            Loaded Command Group: ['gcloud', 'auth', 'configure_docker']
-2025-03-23 03:18:36,796 DEBUG    root            Running [gcloud.auth.configure-docker] with arguments: [REGISTRIES: "europe-docker.pkg.dev"]
-2025-03-23 03:18:36,918 INFO     ___FILE_ONLY___ Adding credentials for: europe-docker.pkg.dev
-
-2025-03-23 03:18:39,825 INFO     ___FILE_ONLY___ Docker configuration file updated.
-
-2025-03-23 03:18:39,827 DEBUG    root            Chosen display Format:default
-2025-03-23 03:18:39,829 INFO     root            Display format: "default"
