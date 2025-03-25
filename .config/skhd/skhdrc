@@ -1,5 +1,7 @@
 cmd - 1 : open -a "Ghostty"
 cmd - 2 : open -a "Brave Browser"
 cmd - 3 : open -a "Obsidian"
-cmd - 7 : open -a "Neovide"
-cmd - 8 : open -a "Zed"
+
+cmd - 7 : open -a "Code"
+cmd - 8 : open -a "Neovide"
+cmd - 9 : open -a "Zed"
