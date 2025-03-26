@@ -12,7 +12,6 @@
 	"terminal.integrated.defaultLocation": "editor",
 	"workbench.startupEditor": "none",
 	"workbench.sideBar.location": "right",
-	"workbench.activityBar.location": "bottom",
 	"workbench.editor.showTabs": "multiple",
 	"workbench.tree.enableStickyScroll": false,
 	"workbench.tree.renderIndentGuides": "none",
@@ -24,8 +23,9 @@
 
 	"workbench.colorTheme": "Gruvbox Dark Hard",
 	"vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua",
-	"security.allowedUNCHosts": ["wsl.localhost"],
-	"window.commandCenter": false,
+	"security.allowedUNCHosts": [
+		"wsl.localhost"
+	],
 	"editor.fontFamily": "Hack Nerd font, Roboto, RobotoMono Nerd Font ",
 	"editor.fontSize": 16,
 	"editor.rulers": [
@@ -479,5 +479,7 @@
       "type": "command",
       "command": "workbench.action.showCommands"
     },
-	]
+	],
+	"window.commandCenter": false,
+	"git.openRepositoryInParentFolders": "never"
 }
