@@ -32,6 +32,9 @@ require("mason-tool-installer").setup {
   run_on_start = true,
 }
 
+
+require'lspconfig'.protols.setup{}
+
 require("mason-lspconfig").setup {
   ensure_installed = lsp_server,
   automatic_installation = false,

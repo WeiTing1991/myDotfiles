@@ -16,6 +16,7 @@ treesitter.setup {
     "diff",
     "make",
     "cmake",
+    "proto",
 
     "lua",
     "luadoc",

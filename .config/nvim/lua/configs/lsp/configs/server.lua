@@ -62,7 +62,7 @@ M = {
   },
   ["tailwindcss"] = {},
   ["html"] = {
-    filetypes = { 'html', 'templ' },
+    filetypes = { "html", "templ" },
   },
   ["bashls"] = {},
 
@@ -90,8 +90,9 @@ M = {
     },
   },
 
+
   -- c/c++
-  clangd = {
+  ["clangd"] = {
     cmd = {
       "clangd",
       "--clang-tidy",
@@ -106,6 +107,7 @@ M = {
       offsetEncoding = { "utf-16" },
     },
   },
+
 
   -- -- HAVE to install go global
   -- -- go
