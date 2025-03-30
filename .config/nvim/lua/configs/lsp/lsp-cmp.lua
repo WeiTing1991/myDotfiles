@@ -46,8 +46,8 @@ require("blink.cmp").setup {
   },
 
   completion = {
-    keyword = { range = 'full' },
-    accept = { auto_brackets = { enabled = false }, },
+    keyword = { range = "full" },
+    accept = { auto_brackets = { enabled = false } },
     menu = {
       draw = {
         treesitter = { "lsp" },
@@ -68,12 +68,11 @@ require("blink.cmp").setup {
 
   -- snippets
   -- snippets = { preset = 'default' },
-  snippets = { preset = 'luasnip' },
+  snippets = { preset = "luasnip" },
 
   sources = {
     default = { "lsp", "path", "snippets", "buffer" },
-
-  }
+  },
 
   -- providers = {
   --   lsp = {

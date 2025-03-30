@@ -1,5 +1,4 @@
 return {
-  -- -------------------------------- TOOL  -------------------------------------------------------
   -- tmux navigator
   {
     "christoomey/vim-tmux-navigator",

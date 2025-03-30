@@ -123,14 +123,11 @@ git clone  https://github.com/WeiTing1991/myDotfiles/tree/main/.config/nvim ~/.c
 
 **Support Language**
 
-  - [ ]  C/C++ `- extra plugins`
+  - [x]  C/C++ `- extra plugins`
   - [x]  Python
   - [ ]  Go
   - [x]  JavaScript/Typescript
   - [ ]  Java
-
-  <!-- - [x] list -->
-  <!-- - [-] list -->
 
 
 ### Keybindings

@@ -58,10 +58,12 @@ M = {
   ["ts_ls"] = {},
   ["cssls"] = {
     cmd = { "css-languageserver", "--stdio" },
-    filetypes = { "css", "scss", "less" },
+    filetypes = { "css", "scss", "less", "tsx", "jsx" },
   },
   ["tailwindcss"] = {},
-  ["html"] = {},
+  ["html"] = {
+    filetypes = { 'html', 'templ' },
+  },
   ["bashls"] = {},
 
   ["marksman"] = {
@@ -89,21 +91,21 @@ M = {
   },
 
   -- c/c++
-  -- clangd = {
-  --   cmd = {
-  --     "clangd",
-  --     "--clang-tidy",
-  --     "--log=verbose",
-  --     "--enable-config",
-  --     -- "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
-  --   },
-  --   root_dir = function()
-  --     return vim.fn.getcwd()
-  --   end,
-  --   capabilities = {
-  --     offsetEncoding = { "utf-16" },
-  --   },
-  -- },
+  clangd = {
+    cmd = {
+      "clangd",
+      "--clang-tidy",
+      "--log=verbose",
+      "--enable-config",
+      -- "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
+    },
+    root_dir = function()
+      return vim.fn.getcwd()
+    end,
+    capabilities = {
+      offsetEncoding = { "utf-16" },
+    },
+  },
 
   -- -- HAVE to install go global
   -- -- go

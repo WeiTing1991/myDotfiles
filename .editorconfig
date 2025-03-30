@@ -12,7 +12,7 @@ insert_final_newline = true
 max_line_length = 179
 
 [*.md]
-indent_size = 4
+indent_size = 2
 indent_style = tab
 trim_trailing_whitespace = false
 
@@ -21,30 +21,3 @@ trim_trailing_whitespace = false
 indent_size = 4
 indent_style = tab
 
-# [*.org]
-# indent_size = 8
-# indent_style = space
-
-[*.py]
-indent_size = 2
-indent_style = space
-
-[*.tsx]
-indent_size = 2
-indent_style = tab
-[*.ts]
-indent_size = 2
-indent_style = tab
-[*.js]
-indent_size = 2
-indent_style = tab
-[*.jsx]
-indent_size = 2
-indent_style = tab
-[*.json]
-indent_size = 2
-indent_style = tab
-
-# [*.yml]
-# indent_size = 2
-# indent_style = space
