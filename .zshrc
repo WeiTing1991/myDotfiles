@@ -17,7 +17,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     # alias
     alias nv="$HOME/script/nvim-remote.sh"
-
+    . "$HOME/.cargo/env"
 
     # The next line updates PATH for the Google Cloud SDK.
     if [ -f '/home/weitingub24/google-cloud-sdk/path.zsh.inc' ]; then . '/home/weitingub24/google-cloud-sdk/path.zsh.inc'; fi
