@@ -1,0 +1,6 @@
+[config]
+include_paths = ["proto", "idl"]
+
+[config.path]
+clang_format = "clang-format"
+protoc = "protoc"
