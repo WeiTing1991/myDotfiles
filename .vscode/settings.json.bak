@@ -101,87 +101,7 @@
   "vim.timeout": 1000, // Timeout (in milliseconds) for remapped commands.
   "vim.whichwrap": "b,s", // Allow cursor to wrap to the next/previous line with certain keys.
   "vim.smartRelativeLine": true,
-  "vim.highlightedyank.enable": true,
-  "vim.highlightedyank.color": "#f6c177",
-  "vim.highlightedyank.duration": 120,
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1,
-    "asvetliakov.vscode-neovim": 1
-  },
-  //   "vim.replaceWithRegister": true,
-  //   // "vim.sneak": true,
-  //   // "vim.sneakUseIgnorecaseAndSmartcase": true,
-  "vim.handleKeys": {
-    "<C-d>": true,
-    "<C-u>": true,
-    "<C-j>": true,
-    "<C-k>": true,
-    "<->": true,
-    "<_>": true,
-    //     "<C-space>": true,
-    //     "<C-e>": false,
-    //     "<C-h>": true,
-    //     "<C-l>": false,
-    //     "<C-y>": false,
-    //     "<C-s>": false,
-    //     "<C-w>": false,
-  },
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "git.openRepositoryInParentFolders": "never",
-  "whichkey.bindings": [
-    //     // Panel nav
-    //     {
-    //       "key": "h",
-    //       "name": "Focus left group",
-    //       "type": "command",
-    //       "command": "workbench.action.navigateLeft",
-    //       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    //     },
-    //     {
-    //       "key": "j",
-    //       "name": "Focus blow group",
-    //       "type": "command",
-    //       "command": "workbench.action.navigateDown",
-    //       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    //     },
-    //     {
-    //       "key": "k",
-    //       "name": "Focus above group",
-    //       "type": "command",
-    //       "command": "workbench.action.navigateUp",
-    //       "when": "sideBarFocus || terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    //     },
-    //     {
-    //       "key": "l",
-    //       "name": "Focus right group",
-    //       "type": "command",
-    //       "command": "workbench.action.navigateRight",
-    //       "when": "terminalFocus || (editorTextFocus && vim.mode == 'Normal')"
-    //     },
-    //     // lsp setting
-    //     {
-    //       "key": "r",
-    //       "name": "refactor",
-    //       "command": "editor.action.refactor",
-    //       "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
-    //     },
-    //     // file tree
-    //     {
-    //       "key": "e",
-    //       "name": "toggle file tree",
-    //       "type": "command",
-    //       "command": "runCommands",
-    //       "args": {
-    //         "commands": [
-    //           "workbench.action.toggleSidebarVisibility",
-    //           "workbench.files.action.focusFilesExplorer"
-    //         ],
-    //         "when": "vim.mode == 'Normal' && !sideBarFocus && (editorTextFocus || !inputFocus)"
-    //       }
-    //     },
-    // find file
+  "vim.highlightedyank.enable": tfind file
     {
       "key": "f",
       "name": "find files",
@@ -551,7 +471,6 @@
 //   },
 //   "editorconfig.generateAuto": false,
 //   "editorconfig.template": "~/.dotfiles/.editorconfig",
-//   "prettier.tabWidth": 4,
 //   "prettier.useEditorConfig": true,
 //   // "prettier.requireConfig": true,
 //   // "prettier.useEditorConfig": false,
@@ -822,32 +741,6 @@
 //         ],
 //         "when": "vim.mode == 'Normal' && !sideBarFocus && (editorTextFocus || !inputFocus)"
 //       }
-//     },
-//     // find file
-//     {
-//       "key": "f",
-//       "name": "find files",
-//       "type": "bindings",
-//       "bindings": [
-//         {
-//           "key": "f",
-//           "name": "find file",
-//           "type": "command",
-//           "command": "workbench.action.quickOpen"
-//         },
-//         {
-//           "key": "p",
-//           "name": "fzf find file with preview",
-//           "type": "command",
-//           "command": "find-it-faster.findFiles"
-//         },
-//         {
-//           "key": "l",
-//           "name": "live rigrep in project",
-//           "type": "command",
-//           "command": "find-it-faster.findWithinFiles"
-//         }
-//       ]
 //     },
 //     {
 //       "key": "d",

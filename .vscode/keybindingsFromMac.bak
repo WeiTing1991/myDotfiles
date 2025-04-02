@@ -1,25 +1,5 @@
 	/* NOTE: https://github.com/VSpaceCode/vscode-which-key/blob/master/package.json */
 	// quick open navigation
-	{
-		"key": "ctrl+n",
-		"command": "workbench.action.quickOpenSelectNext",
-		"when": "inQuickOpen"
-	},
-	{
-		"key": "ctrl+p",
-		"command": "workbench.action.quickOpenSelectPrevious",
-		"when": "inQuickOpen"
-	},
-	{
-		"key": "ctrl+n",
-		"command": "extension.vim_ctrl+n",
-		"when": "editorTextFocus && vim.active && vim.use<C-n> && !inDebugRepl || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-n> && !inDebugRepl && vim.mode == 'SearchInProgressMode' && !inQuickOpen"
-	},
-	{
-		"key": "ctrl+p",
-		"command": "extension.vim_ctrl+p",
-		"when": "editorTextFocus && vim.active && vim.use<C-p> && !inDebugRepl || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'CommandlineInProgress' || vim.active && vim.use<C-p> && !inDebugRepl && vim.mode == 'SearchInProgressMode' && !inQuickOpen"
-	},
 
 	// Enable to use leader key everywhere
 	// Navigation
@@ -143,17 +123,6 @@
 		"command": "workbench.action.splitEditorDown"
 	},
 
-	// max windows
-	{
-		"key": "ctrl-'",
-		"command": "workbench.action.toggleMaximizeEditorGroup",
-		"when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
-	},
-	{
-		"key": "ctrl-'",
-		"command": "workbench.action.toggleMaximizedPanel",
-		"when": "terminalFocus"
-	},
 
 	// nav buffer
 	{
@@ -233,63 +202,6 @@
 		"command": "workbench.action.closeSidebar",
 		"when": "explorerViewletFocus"
 	},
-	// File tree submenu
-	{
-		"key": "o",
-		"command": "filesExplorer.openFilePreserveFocus",
-		"when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
-	},
-	{
-		"key": "shift+o",
-		"command": "explorer.openToSide",
-		"when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
-	},
-	{
-		"key": "ctrl+o",
-		"command": "openInExternalApp.open",
-		"when": "explorerViewletFocus && explorerViewletVisible && !inputFocus && resourceScheme == 'file'"
-	},
-	{
-		"key": "ctrl+shift+o",
-		"command": "revealFileInOS",
-		"when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
-	},
-	// create/rename/copy/paste/delete the file/dir
-	{
-		"key": "n",
-		"command": "explorer.newFile",
-		"when": "filesExplorerFocus && !inputFocus"
-	},
-	{
-		"key": "shift+n",
-		"command": "explorer.newFolder",
-		"when": "explorerViewletFocus"
-	},
-	{
-		"key": "r",
-		"command": "renameFile",
-		"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-	},
-	{
-		"key": "d",
-		"command": "deleteFile",
-		"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
-	},
-	{
-		"key": "y",
-		"command": "filesExplorer.copy",
-		"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
-	},
-	{
-		"key": "x",
-		"command": "filesExplorer.cut",
-		"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
-	},
-	{
-		"key": "p",
-		"command": "filesExplorer.paste",
-		"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
-	},
 	// nav folder/file
 	{
 		"key": "h",
@@ -360,28 +272,6 @@
 	{
 		"key": "ctrl+0",
 		"command": "workbench.action.zoomReset"
-	},
-	// increase/decrease the view size
-	// TODO: try to find the foucse group
-	{
-		"key": "ctrl+shift+h",
-		"command": "workbench.action.increaseViewWidth",
-		"when": "editorTextFocus || terminalFocus || sideBarFocus"
-	},
-	{
-		"key": "ctrl+shift+l",
-		"command": "workbench.action.decreaseViewWidth",
-		"when": "editorTextFocus || terminalFocus || sideBarFocus"
-	},
-	{
-		"key": "ctrl+shift+j",
-		"command": "workbench.action.increaseViewHeight",
-		"when": "editorTextFocus || terminalFocus || sideBarFocus"
-	},
-	{
-		"key": "ctrl+shift+k",
-		"command": "workbench.action.decreaseViewHeight",
-		"when": "editorTextFocus || terminalFocus || sideBarFocus"
 	},
 	// NOTE: DO I need this?
 	// select move
