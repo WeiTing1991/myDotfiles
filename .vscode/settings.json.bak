@@ -4,50 +4,26 @@
   // defaults delete -g ApplePressAndHoldEnabled
   // defaults write -g ApplePressAndHoldEnabled -bool false
   // "telemetry.enableTelemetry": false,
-  "telemetry.telemetryLevel": "off",
   // "telemetry.enableCrashReporter": false,
   // apperance
   "terminal.integrated.defaultLocation": "view",
   "workbench.startupEditor": "none",
-  "window.titleBarStyle": "custom",
-  "workbench.sideBar.location": "right",
   "workbench.activityBar.location": "bottom",
-  "workbench.editor.showTabs": "multiple",
   "workbench.tree.enableStickyScroll": false,
   "workbench.tree.renderIndentGuides": "none",
-  "workbench.tree.indent": 8,
-  "workbench.panel.showLabels": false,
   "workbench.panel.defaultLocation": "right",
-  "workbench.editor.empty.hint": "hidden",
   "window.commandCenter": false,
+
   //** editor *************************************************************************************/
-  "editor.fontFamily": "Hack Nerd font, Roboto, RobotoMono Nerd Font ",
-  "editor.fontSize": 16,
-  "editor.rulers": [
-    {
-      "column": 120,
-      "color": "#2b2b2b"
-    }
-  ],
-  "editor.minimap.enabled": false,
-  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
   "editor.semanticHighlighting.enabled": "configuredByTheme",
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "off",
   "editor.renderLineHighlight": "none",
-  "editor.hover.delay": 20,
+
   //"projectManager.projectsLocation": "~/.dotfiles/.vscode",
   // scroll bar
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.scrollbar.vertical": "hidden",
-  "workbench.list.smoothScrolling": false,
   "editor.hideCursorInOverviewRuler": true,
   // "editor.overviewRulerBorder": true,
-  // "editor.insertSpaces": true, // or false for tabs
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.occurrencesHighlight": "off",
-  "editor.lightbulb.enabled": "off",
   //  "editor.selectionHighlight": false,
   //   "editor.copyWithSyntaxHighlighting": false,
   //   "diffEditor.ignoreTrimWhitespace": false,
@@ -65,38 +41,24 @@
   //   "editor.stickyScroll.enabled": false,
   //   "editor.autoClosingBrackets": "never",
   //   "editor.autoClosingQuotes": "never",
+
   // trim whitespace
-  "files.trimTrailingWhitespace": true,
-  // "editor.renderWhitespace": "none",
-  // "editor.renderControlCharacters": false,
   "editor.formatOnSave": false,
   "editor.accessibilitySupport": "off",
   "workbench.tips.enabled": false,
+
   // "scm.diffDecorations": "none",
+
   //   // color decorations
   // "editor.colorDecorators": true,
   //   "git.decorations.enabled": false,
   //   "problems.decorations.enabled": false,
-  //   "editor.matchBrackets": "near",
-  //   "editor.bracketPairColorization.enabled": true,
-  //   // "editor.guides.bracketPairs":"active",
   //   // "editor.gotoLocation.multipleReferences": "goto",
   //   // "editor.gotoLocation.multipleDefinitions": "goto",
   //   // "editor.gotoLocation.multipleDeclarations": "goto",
   //   // "workbench.editor.enablePreviewFromQuickOpen": false,
   //   // "editor.gotoLocation.multipleImplementations": "goto",
   //   // "editor.gotoLocation.multipleTypeDefinitions": "goto",
-  //   // error
-  //   "errorLens.enabled": true,
-  //   "errorLens.delay": 1000,
-  //   "errorLens.followCursor": "activeLine",
-  //   "errorLens.gutterIconsEnabled": true,
-  //   "errorLens.messageBackgroundMode": "message",
-  //   //   "errorLens.exclude": ["**/*.txt", "**/dist/**"],
-  //   // wrap
-  //   "editor.wordWrap": "on",
-  //   "editor.wordWrapColumn": 150,
-  //   "editor.wrappingIndent": "none",
   /** explorer ***********************************************************************************/
   "explorer.compactFolders": true,
   "explorer.sortOrder": "type",
@@ -123,7 +85,6 @@
   "vim.hlsearch": true,
   "vim.autoindent": true,
   "vim-commentary": true,
-  // "vim.surround": true,
   "vim.leader": "space",
   "vim.history": 9999,
   "vim.statusBarColorControl": false,
@@ -131,7 +92,6 @@
   "vim.gdefault": false, // :substitute flag 'g' is enabled by default to replace all matches in a line.
   "vim.ignorecase": true, // Ignore case in search patterns.
   "vim.inccommand": "replace", // Display :substitute command effects while typing.
-  "vim.joinspaces": true, // Add two spaces after '.', '?', or '!' when joining lines.
   "vim.maxmapdepth": 1000, // Maximum recursive mapping depth to prevent endless loops.
   "vim.report": 2, // Minimum number of lines changed to trigger a report.
   "vim.shell": "/bin/sh", // Path to the shell for `!` and `:!` commands.
@@ -140,7 +100,6 @@
   "vim.textwidth": 120, // Maximum width for text wrapping with `gq`.
   "vim.timeout": 1000, // Timeout (in milliseconds) for remapped commands.
   "vim.whichwrap": "b,s", // Allow cursor to wrap to the next/previous line with certain keys.
-  "editor.lineNumbers": "relative",
   "vim.smartRelativeLine": true,
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.color": "#f6c177",
@@ -167,177 +126,10 @@
     //     "<C-s>": false,
     //     "<C-w>": false,
   },
-  // keybindings
-  // normal mode
-  "vim.normalModeKeyBindingsNonRecursive": [
-    // show whichkey
-    {
-      "before": [
-        "<space>"
-      ],
-      "commands": [
-        "whichkey.show"
-      ]
-    },
-    {
-      "before": [
-        "<Esc>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    },
-    {
-      "before": [
-        "<C-c>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    },
-    // formatting
-    {
-      "before": [
-        "<C-m>"
-      ],
-      "commands": [
-        "editor.action.formatDocument"
-      ]
-    },
-    // fold
-    {
-      "before": [
-        "<Tab>"
-      ],
-      "after": [
-        "z",
-        "a"
-      ]
-    },
-    // center the cursor when using C-d and C-u
-    {
-      "before": [
-        "<C-d>"
-      ],
-      "after": [
-        "<C-d>",
-        "z",
-        "z"
-      ]
-    },
-    {
-      "before": [
-        "<C-u>"
-      ],
-      "after": [
-        "<C-u>",
-        "z",
-        "z"
-      ]
-    },
-    // toggle comment selection
-    {
-      "before": [
-        "-"
-      ],
-      "after": [
-        "g",
-        "c",
-        "c",
-        "<C-c>"
-      ]
-    },
-    {
-      "before": [
-        "_"
-      ],
-      "after": [
-        "g",
-        "C",
-        "<C-c>"
-      ]
-    },
-    // spell suggestion
-    {
-      "before": [
-        "z",
-        "="
-      ],
-      "commands": [
-        "cSpell.suggestSpellingCorrections"
-      ]
-    }
-  ],
-  // Visual mode
-  "vim.visualModeKeyBindingsNonRecursive": [
-    // Stay in visual mode while indenting
-    {
-      "before": [
-        "<"
-      ],
-      "after": [
-        "<",
-        "g",
-        "v",
-        "^"
-      ]
-    },
-    {
-      "before": [
-        ">"
-      ],
-      "after": [
-        ">",
-        "g",
-        "v",
-        "^"
-      ]
-    },
-    // Move selected lines while staying in visual mode
-    {
-      "before": [
-        "J"
-      ],
-      "commands": [
-        "editor.action.moveLinesDownAction"
-      ]
-    },
-    {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.moveLinesUpAction"
-      ]
-    },
-    // toggle comment selection
-    {
-      "before": [
-        "-"
-      ],
-      "after": [
-        "g",
-        "c",
-        "<C-c>"
-      ]
-    },
-    {
-      "before": [
-        "_"
-      ],
-      "after": [
-        "g",
-        "C",
-        "<C-c>"
-      ]
-    }
-  ],
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "git.openRepositoryInParentFolders": "never",
-  // Whichkey keybinding
-  "whichkey.delay": 0,
   "whichkey.bindings": [
     //     // Panel nav
     //     {
@@ -592,7 +384,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
-  "workbench.colorTheme": "Gruvbox Dark Hard",
   "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua",
 }
 //   "workbench.startupEditor": "none",
@@ -760,17 +551,6 @@
 //   },
 //   "editorconfig.generateAuto": false,
 //   "editorconfig.template": "~/.dotfiles/.editorconfig",
-//   // json
-//   "[jsonc]": {
-//     "editor.tabSize": 4,
-//     "editor.insertSpaces": true,
-//     "editor.defaultFormatter": "esbenp.prettier-vscode"
-//   },
-//   "[json]": {
-//     "editor.tabSize": 4,
-//     "editor.insertSpaces": true,
-//     "editor.defaultFormatter": "esbenp.prettier-vscode"
-//   },
 //   "prettier.tabWidth": 4,
 //   "prettier.useEditorConfig": true,
 //   // "prettier.requireConfig": true,

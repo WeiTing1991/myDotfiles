@@ -3,32 +3,6 @@
   /* NOTE: https://github.com/VSpaceCode/vscode-which-key/blob/master/package.json */
   /* system **************************************************************************************/
   // Enable to use leader key everywhere
-  // Navigation
-  {
-    "key": "ctrl-h",
-    "command": "workbench.action.navigateLeft"
-  },
-  {
-    "key": "ctrl-l",
-    "command": "workbench.action.navigateRight"
-  },
-  {
-    "key": "ctrl-k",
-    "command": "workbench.action.navigateUp"
-  },
-  {
-    "key": "ctrl-j",
-    "command": "workbench.action.navigateDown"
-  },
-  {
-    "key": "space",
-    "command": "whichkey.show",
-    "when": "(!inputFocus && !terminalFocus) || (sideBarFocus && sideBarVisible && !inputFocus) || (editorTextFocus && vim.mode == 'Normal')"
-  },
-  {
-    "key": "shift+space",
-    "command": "whichkey.show"
-  },
   {
     "key": "ctrl+w",
     "command": "-workbench.action.switchWindow"
@@ -91,18 +65,6 @@
     "command": "workbench.action.toggleMaximizedPanel",
     "when": "terminalFocus"
   },
-  // nav buffer
-  {
-    "key": "ctrl+o",
-    "command": "workbench.action.nextEditorInGroup"
-    // "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+i",
-    "command": "workbench.action.previousEditorInGroup"
-    // "when": "editorTextFocus"
-  },
-
   /* termainal  **********************************************************************************/
   {
     "key": "ctrl+/",
@@ -127,17 +89,6 @@
     "key": "ctrl+q",
     "command": "workbench.action.terminal.kill",
     "when": "terminalFocus && !editorTextFocus"
-  },
-  /* Side panel **********************************************************************************/
-  // Close sidebar
-  {
-    "key": "ctrl+e",
-    "command": "workbench.action.toggleSidebarVisibility",
-    "when": "sideBarFocus"
-  },
-  {
-    "key": "ctrl+e",
-    "command": "workbench.action.toggleSidebarVisibility"
   },
   // Extensions
   // {
