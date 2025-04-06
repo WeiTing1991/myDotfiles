@@ -148,7 +148,7 @@ alias lg="lazygit"
 alias ob="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/weitingchen"
 
 # disable ctrl-D
-# setopt ignoreeof
+setopt ignoreeof
 
 # tmux
 tmux_two_pane() {

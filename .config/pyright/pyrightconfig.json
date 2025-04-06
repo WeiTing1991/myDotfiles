@@ -1,0 +1,9 @@
+{
+  "extraPaths": [],
+  "typeCheckingMode": "basic",
+  "useLibraryCodeForTypes": true,
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+  "ignore": ["**/*_pb2.py"],
+  "stubPath": "~/.config/pyright/stubs"
+}
