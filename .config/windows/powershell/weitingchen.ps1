@@ -1,3 +1,4 @@
+Import-Module PSReadLine
 $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 Set-Location $HOME
 
