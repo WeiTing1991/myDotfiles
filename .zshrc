@@ -39,6 +39,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # alias
     alias nv="neovide"
 
+
 elif [[ "$WSL_DISTRO_NAME" != "" ]]; then
 
     # WSL-specific settings (Windows Subsystem for Linux)
