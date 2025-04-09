@@ -32,8 +32,7 @@ require("mason-tool-installer").setup {
   run_on_start = true,
 }
 
-
-require'lspconfig'.protols.setup{}
+require("lspconfig").protols.setup {}
 
 require("mason-lspconfig").setup {
   ensure_installed = lsp_server,
@@ -90,28 +89,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
       if vim.bo[args.buf].filetype == "oil" then
         return
       end
-    pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
-    local hi = { "Error", "Warn", "Info", "Hint" }
-    local curline = vim.api.nvim_win_get_cursor(0)[1]
-    local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
-    local virt_texts = { { (" "):rep(4) } }
-    for _, diag in ipairs(diagnostics) do
-      virt_texts[#virt_texts + 1] = { diag.message, " " .. hi[diag.severity] }
-    end
-    vim.api.nvim_create_autocmd("CursorHold", {
-      group = highlight_augroup,
-      buffer = args.buf,
-      callback = function()
-        -- inline
-        -- vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0, {
-        --   virt_text = virt_texts,
-        --   hl_mode = 'combine'
-        -- })
-        -- float win
+
+      -- Set up a keymap to show diagnostics float
+      vim.keymap.set("n", "K", function()
+        local ns = vim.api.nvim_create_namespace "diagnostics_ns"
+        local curline = vim.api.nvim_win_get_cursor(0)[1]
+        local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
+        local virt_texts = { { (" "):rep(4) } }
+        local hi = { "Error", "Warn", "Info", "Hint" }
+
+        for _, diag in ipairs(diagnostics) do
+          virt_texts[#virt_texts + 1] = { diag.message, " " .. hi[diag.severity] }
+        end
+
         local winid = vim.diagnostic.open_float(nil, {
           focus = false,
           scope = "line",
-          -- scope = "cursor",
           border = "rounded",
           header = "",
           prefix = "󱓻 ",
@@ -120,20 +113,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         g.diagnostic_float_winid = winid
         g.diagnostic_float_line = curline
-      end,
-    })
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      group = highlight_augroup,
-      buffer = args.buf,
-      callback = function()
-        local current_line = vim.fn.line "."
-        if g.diagnostic_float_winid and current_line ~= g.diagnostic_float_line then
-          -- vim.api.nvim_win_close(g.diagnostic_float_winid, false)
-          g.diagnostic_float_winid = nil
-          g.diagnostic_float_line = nil
-        end
-      end,
-    })
+
+        -- Auto-close the float when cursor moves
+        vim.api.nvim_create_autocmd("CursorMoved", {
+          buffer = args.buf,
+          callback = function()
+            local current_line = vim.fn.line "."
+            if g.diagnostic_float_winid and current_line ~= g.diagnostic_float_line then
+              pcall(vim.api.nvim_win_close, g.diagnostic_float_winid, false)
+              g.diagnostic_float_winid = nil
+              g.diagnostic_float_line = nil
+
+              -- Remove this autocmd after it fires once
+              return true
+            end
+          end,
+        })
+      end, { buffer = args.buf, desc = "Show line diagnostics" })
     end
   end,
 })
@@ -155,8 +151,8 @@ end
 
 -- diagnostic
 vim.diagnostic.config {
-  underline = true,
-  update_in_insert = true,
+  underline = false,
+  update_in_insert = false,
   severity_sort = true,
   sings = true,
   virtual_text = false,
