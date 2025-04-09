@@ -137,8 +137,8 @@ require("staline").setup {
   mode_colors = {},
   mode_icons = {},
   sections = {
-    left = { "- ", "-mode", "left_sep_double", "file_name", "branch" },
-    mid = { lsp_formater },
+    left = { "- ", "-mode", "left_sep_double", "branch" },
+    -- mid = { lsp_formater },
     right = { "lsp", spell_check, copilot_status, indent_style, "line_column", "right_sep_double", "-cwd" },
   },
 
