@@ -66,10 +66,10 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Jump to next match" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Jump to previous match" })
 
 -- move and split between neovim buffers
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "move to left buffer" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "move to right buffer" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "move to up buffer" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "move to down buffer" })
+vim.keymap.set({ "n", "t" }, "<C-h>", "<C-w>h", { desc = "move to left buffer" })
+vim.keymap.set({ "n", "t" }, "<C-l>", "<C-w>l", { desc = "move to right buffer" })
+vim.keymap.set({ "n", "t" }, "<C-k>", "<C-w>k", { desc = "move to up buffer" })
+vim.keymap.set({ "n", "t" }, "<C-j>", "<C-w>j", { desc = "move to down buffer" })
 
 -- windows
 vim.keymap.set("n", "<C-'>", function()
@@ -101,18 +101,16 @@ vim.keymap.set(
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = "Replace word throughout file" }
 )
-
 -- inoremap ( ()<Left>
 -- inoremap { {}<Left>
 -- inoremap [ []<Left>
 -- inoremap ' ''<Left>
 -- inoremap " ""<Left>
 -- vim.keymap.set("i", "(", "()<Left>")
-vim.keymap.set("i", "<C-e>", "<Del>")
+-- vim.keymap.set("i", "<C-e>", "<Del>")
 
 -- cd to current file directory
 vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
-
 
 -- Optional
 -- -- Parser info

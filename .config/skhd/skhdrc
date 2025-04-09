@@ -3,4 +3,5 @@ cmd - 2 : open -a "Brave Browser"
 cmd - 3 : open -a "Obsidian"
 
 cmd - 7 : open -a "Visual Studio Code"
+cmd - 8 : open -a "neovide"
 cmd - 9 : open -a "Zed"

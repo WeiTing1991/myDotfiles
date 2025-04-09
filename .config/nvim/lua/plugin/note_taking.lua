@@ -37,7 +37,7 @@ return {
   -- NOTE: https://github.com/OXY2DEV/markview.nvim/wiki
   {
     "OXY2DEV/markview.nvim",
-    enabled = false,
+    enabled = true,
     lazy = true,
     ft = "markdown",
     dependencies = {
@@ -77,15 +77,15 @@ return {
   },
 
   -- Markdown image
-  {
-    "3rd/image.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    opts = {},
+  -- {
+    -- "3rd/image.nvim",
+    -- enabled = false,
+    -- event = "VeryLazy",
+    -- opts = {},
     -- config = function(opts, _)
     --   require "configs.image"
     -- end,
-  },
+  -- },
 
   -- {
   --   "HakonHarnes/img-clip.nvim",

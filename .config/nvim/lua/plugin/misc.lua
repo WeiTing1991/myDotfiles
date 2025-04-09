@@ -51,7 +51,7 @@ return {
       scratch = { enabled = false },
       scroll = { enabled = false },
       statuscolumn = { enabled = false },
-      terminal = { enabled = false },
+      terminal = { enabled = true },
       toggle = { enabled = false },
       util = { enabled = false },
       win = { enabled = false },

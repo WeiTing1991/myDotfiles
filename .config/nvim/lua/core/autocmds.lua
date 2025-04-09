@@ -23,10 +23,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- some ui settings
+-- UI settings
 vim.api.nvim_create_autocmd("BufWinEnter", {
   callback = function()
-    vim.opt.guicursor = "n-v-c:block-Cursor,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
+    -- vim.opt.guicursor = "n-v-c:block-Cursor,n-v-c-i:blinkon1,i:ver1000-Cursor,r-cr-o:hor100-cursor"
 
     -- optional
     -- vim.api.nvim_set_hl(0, "cursor", { background = "#eb6f92", foreground = "white"})
@@ -36,9 +36,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     -- vim.api.nvim_set_hl(0, "WinBarNC", { fg = "#444444", bg = "#000000" }) -- Inactive window
   end,
 })
-
--- TODO:
-------------------------------------------- Autocmd for file type ------------------------------------
 
 local set = vim.opt_local
 
@@ -58,7 +55,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     set.spell = true
     set.number = false
     set.relativenumber = false
-    -- set.conceallevel = 2
+    set.conceallevel = 0
     vim.g.markdown_fenced_languages = { "cpp", "python", "bash=sh", "javascript", "json", "yaml", "vim", "lua" }
     -- vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste the image" })
   end,

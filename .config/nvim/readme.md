@@ -14,7 +14,7 @@ I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setti
 ## Setup
 
 **Requirements**
-- Neovim >= 0.10.2
+  Neovim >= 0.10.2
 - git >= 2.47.1
 - curl
 - fzf
@@ -124,9 +124,10 @@ git clone  https://github.com/WeiTing1991/myDotfiles/tree/main/.config/nvim ~/.c
 **Support Language**
 
   - [x]  C/C++ `- extra plugins`
+- [x]  C#
   - [x]  Python
-  - [ ]  Go
   - [x]  JavaScript/Typescript
+  - [ ]  Go
   - [ ]  Java
 
 

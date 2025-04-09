@@ -198,11 +198,16 @@ map("n", "<leader>tD", ":FzfLua diagnostics_workspace<cr>", { desc = "diagnostic
 -- Annotations
 map("n", "<leader>ta", "<cmd>Neogen<cr>", { desc = "Annotation" })
 map("n", "<leader>tz", function()
-  Snacks.zen {
+  Snacks.zen { width = 90 }
+end, { desc = "Zen" })
 
-    width = 80,
-  }
-end, { desc = "Annotation" })
+map({"n", "t"}, "<C-/>", function()
+  Snacks.terminal.toggle()
+end, { desc = "terminal" })
+
+map({"n", "t"}, "<C-/>", function()
+  Snacks.terminal.toggle()
+end, { desc = "terminal" })
 
 -- undotree
 -- map("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })

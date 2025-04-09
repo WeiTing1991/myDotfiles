@@ -183,7 +183,7 @@ return {
     config = function()
       require("nvim-ts-autotag").setup {
         opts = {
-          enable_close = true,           -- Auto close tags
+          enable_close = false,           -- Auto close tags
           enable_rename = true,          -- Auto rename pairs of tags
           enable_close_on_slash = false, -- Auto close on trailing </
         },
@@ -195,7 +195,6 @@ return {
       }
     end,
   },
-  -- NOTE: https://github.com/pmizio/typescript-tools.nvim?tab=readme-ov-file
   {
     "pmizio/typescript-tools.nvim",
     lazy = true,

@@ -112,18 +112,19 @@ return {
       },
     },
   },
-  -- NOTE: https://github.com/kylechui/nvim-surround/blob/main/doc/nvim-surround.txt
+
   {
-    "echasnovski/mini.surround",
-    lazy = true,
-    event = "InsertEnter",
-    version = false,
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
     config = function()
-      require("mini.surround").setup()
+      require("nvim-surround").setup {
+      }
     end,
   },
-  -- Better sellect with a and i
+
   -- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md
+  -- Better sellect with a and i
   {
     "echasnovski/mini.ai",
     lazy = true,
@@ -133,6 +134,7 @@ return {
       require("mini.ai").setup()
     end,
   },
+
   -- CHECK:
   {
     "echasnovski/mini.align",
