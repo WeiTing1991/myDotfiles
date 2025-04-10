@@ -91,7 +91,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
 
       -- Set up a keymap to show diagnostics float
-      vim.keymap.set("n", "K", function()
+      vim.keymap.set("n", "<C-m>", function()
         local ns = vim.api.nvim_create_namespace "diagnostics_ns"
         local curline = vim.api.nvim_win_get_cursor(0)[1]
         local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
@@ -151,7 +151,7 @@ end
 
 -- diagnostic
 vim.diagnostic.config {
-  underline = false,
+  underline = true,
   update_in_insert = false,
   severity_sort = true,
   sings = true,
