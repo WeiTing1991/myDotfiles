@@ -42,19 +42,6 @@ return {
     end
   },
 
-  -- file tree
-  {
-    "stevearc/oil.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {},
-    config = function()
-      require "configs.oil"
-    end,
-  },
-
   -- {
   --   "nvim-telescope/telescope.nvim",
   --   lazy = true,
@@ -94,7 +81,7 @@ return {
     },
     -- -@param opts TSConfig
     config = function()
-      require "configs.treesitter"
+      require ".config.nvim.lua.plugin.treesitter"
     end,
   },
 

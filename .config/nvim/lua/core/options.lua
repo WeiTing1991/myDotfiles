@@ -3,6 +3,7 @@
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 local is_mac = vim.loop.os_uname().sysname == "Darwin"
+
 local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
 vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
@@ -23,7 +24,6 @@ local globals = {
 for k, v in pairs(globals) do
   vim.g[k] = v
 end
-
 
 ------------------------------------ DEFAULT OPTIONS ------------------------------------
 
@@ -50,7 +50,6 @@ end
 
 
 local options = {
-
   backspace = { 'eol', 'start', 'indent' },
   encoding = 'utf-8',
   matchpairs = { '(:)', '{:}', '[:]', '<:>' },

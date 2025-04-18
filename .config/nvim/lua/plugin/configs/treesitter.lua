@@ -9,11 +9,11 @@ treesitter.setup {
     "gitcommit",
     "git_rebase",
     "gitignore",
+    "diff",
 
     "bash",
     "c",
     "cpp",
-    "diff",
     "make",
     "cmake",
     "proto",
@@ -22,11 +22,9 @@ treesitter.setup {
     "luadoc",
 
     "python",
+    "c_sharp",
     "java",
 
-    "javascript",
-    "typescript",
-    "jsdoc",
 
     "go",
     "gomod",
@@ -42,6 +40,11 @@ treesitter.setup {
     "markdown",
     "markdown_inline",
     "latex",
+
+
+    "javascript",
+    "typescript",
+    "jsdoc",
 
     "xml",
     "html",
@@ -81,7 +84,7 @@ treesitter.setup {
   },
   textobjects = {
     move = {
-      enable = false,
+      enable = true,
       goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
       goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
       goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },

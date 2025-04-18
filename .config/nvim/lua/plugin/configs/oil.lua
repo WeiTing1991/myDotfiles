@@ -1,5 +1,3 @@
--- Note: https://github.com/stevearc/oil.nvim?tab=readme-ov-file#quick-start
-
 require("oil").setup {
   default_file_explorer = false,
   delete_to_trash = true,
@@ -8,18 +6,18 @@ require("oil").setup {
     wrap = false,
     signcolumn = "yes",
     cursorcolumn = false,
-    foldcolumn = "0",
+    foldcolumn = "1",
     spell = false,
-    list = false,
-    conceallevel = 2,
+    list = true,
+    conceallevel = 1,
     concealcursor = "nvic",
   },
   view_options = {
     show_hidden = true,
     natural_order = true,
-    is_always_hidden = function(name, _)
-      return name == ".DS_Store" or name == ".." or name == ".git"
-    end,
+    -- is_always_hidden = function(name, _)
+    --   return name == ".DS_Store" or name == ".." or name == ".git"
+    -- end,
   },
   float = {
     padding = 2,
