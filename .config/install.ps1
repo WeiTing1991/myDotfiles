@@ -4,6 +4,14 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 winget install Neovim.Neovim
 
+# scoop
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+
+# zig ass gcc
+choco install zig
+choco install gcc
+
 # Add the script to the PowerShell profile
 # $profileScriptPath = "$HOME\.config\powershell\weitingchen.ps1"
 # $dotfilesScriptPath = "$HOME\.dotfiles\.config\windows\weitingchen.ps1"

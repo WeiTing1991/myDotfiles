@@ -16,13 +16,10 @@ return {
   -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false,
     event = "BufReadPre",
     -- load treesitter early when opening a file from the cmdline
     lazy = vim.fn.argc(-1) == 0,
-    init = function()
-      require("nvim-treesitter.query_predicates")
-    end,
+    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     build = ":TSUpdate",
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     dependencies = {

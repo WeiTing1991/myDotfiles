@@ -33,9 +33,9 @@ git clone  https://github.com/WeiTing1991/myDotfiles/tree/main/.config/nvim ~/.c
 ```
 
 ```powershell
-rm -Force ~\APPDATA\nvim
-rm -Force ~\APDATA\nvim-data
-```
+rm -Force ~\AppData\Local\nvim
+rm -Force ~\AppData\Local\nvim-data
+
 > In Neovim run `:MasonToolInstall` to install the extra(linter and formater).
 
 ## Config
