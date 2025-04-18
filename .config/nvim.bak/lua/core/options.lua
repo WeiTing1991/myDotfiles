@@ -1,12 +1,5 @@
 ------------------------------------ GLOBALS SETTINGS ------------------------------------
 
--- add binaries installed by mason.nvim to path
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-local is_mac = vim.loop.os_uname().sysname == "Darwin"
-local sep = is_windows and "\\" or "/"
-local delim = is_windows and ";" or ":"
-vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
-
 local globals = {
 
   prev_buffer = nil,
@@ -24,60 +17,60 @@ for k, v in pairs(globals) do
   vim.g[k] = v
 end
 
-
 ------------------------------------ DEFAULT OPTIONS ------------------------------------
 
 -- undo folder
 local undoDir = ""
-if is_mac then
+if vim.loop.os_uname().sysname == "Darwin" then
   undoDir = os.getenv "HOME" .. "/.vim/undodir"
-elseif is_windows then
-  undoDir = vim.fn.stdpath "config" .. "\\.vim\\undodir"
+elseif vim.fn.has "Win32" then
+  undoDir = os.getenv "HOME" .. "/.vim/undodir"
 else
   undoDir = os.getenv "HOME" .. "/.vim/undodir"
 end
 
 -- spell folder
 local spellDir = ""
+
 local spell_word = {}
-if is_mac then
+if vim.loop.os_uname().sysname == "Darwin" then
   spellDir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
-elseif is_windows then
-  spellDir = vim.fn.stdpath "config" .. "\\spell\\en.utf-8.add"
+elseif vim.fn.has "Win32" then
+  spellDir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 else
-  spellDir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
+  spellDir = os.getenv "HOME" .. "/spell/en.utf-8.add"
 end
 
 
 local options = {
 
+  -- misc
   backspace = { 'eol', 'start', 'indent' },
   encoding = 'utf-8',
   matchpairs = { '(:)', '{:}', '[:]', '<:>' },
   syntax = 'enable',
-  clipboard = "unnamedplus",
 
 
   -- indention
   autoindent = true,
   expandtab = true,
-  smartindent = true,
   shiftwidth = 2,
+  smartindent = true,
   tabstop = 2,
   softtabstop = 2,
 
   --number
   number = true,
   relativenumber = true,
-  numberwidth = 4,
+  numberwidth = 2,
 
   -- ui
   mouse = "a",
   cursorline = true,
   laststatus = 3,
-  termguicolors = true,
   -- cursorlineopt = "",
 
+  clipboard = "unnamedplus",
 
   list = true,
   listchars = { tab = "▏ ", trail = "·", lead = "·", extends = "»", precedes = "«" },
@@ -119,7 +112,7 @@ local options = {
 
   -- Minimal number of screen lines to keep above and below the cursor.
   scrolloff = 10,
-  sidescrolloff = 0,
+  -- sidescrolloff = 1,
   -- conceallevel = 0,
 
   -- searchfolds
@@ -135,7 +128,7 @@ local options = {
   --performace
   updatetime = 150,
   redrawtime = 300,
-  timeoutlen = 250,
+  timeoutlen = 200,
   ttimeoutlen = 50,
 
   -- spell check
@@ -143,16 +136,12 @@ local options = {
   spell = false,
   spellfile = spellDir,
 
+  termguicolors = true,
 }
 
+-- vim.opt.isfname:append "@-@"
+-- vim.opt.iskeyword:append "-"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
--- vim.opt.isfname:append "@-@"
--- vim.opt.iskeyword:append "-"
-vim.opt.whichwrap:append "<>[]hl"
-
-print("is_windows: ", is_windows)
-print("is_mac: ", is_mac)
