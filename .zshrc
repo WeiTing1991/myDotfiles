@@ -27,16 +27,17 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS-specific settings
-
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
-    # uv
-    . "$HOME/.local/bin/env"
+
+    export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
     # enable fzf keybinding
     [ -f /opt/homebrew/bin/fzf ] && source <(fzf --zsh)
 
-    # alias
+    # uv
+    . "$HOME/.local/bin/env"
+
     alias nv="neovide"
 
 
@@ -104,12 +105,11 @@ setopt hist_find_no_dups
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-#
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR=vim
+else
+  export EDITOR=nvim
+fi
 
 
 # Compilation flags
@@ -124,7 +124,7 @@ setopt hist_find_no_dups
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+
 alias n="nvim"
 # alias n="goneovim"
 alias e="exit"
@@ -132,7 +132,7 @@ alias pj="cd $HOME/project/"
 
 alias ls="eza --sort=type"
 alias tree="eza --tree"
-alias fvim="/Applications/FVim.app/Contents/MacOS/FVim"
+# alias fvim="/Applications/FVim.app/Contents/MacOS/FVim"
 
 
 # git tools
@@ -172,7 +172,7 @@ alias t=tmux_two_pane
 #     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && "/usr/local/etc/profile.d/bash_completion.sh"
 # fi
 
-# ----------------------------------- PATH -----------------------------------
+# ----------------------------------- PACKAGE PATH -----------------------------------
 
 # nvm
 export NVM_DIR="$HOME/.nvm"

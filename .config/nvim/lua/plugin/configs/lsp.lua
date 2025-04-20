@@ -1,45 +1,36 @@
+local icons = require "icon"
+
 require("mason").setup {
   ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
-    },
+    icons = icons.install,
   },
 }
-
 require("fidget").setup { notification = { window = { winblend = 0 } } }
 
-local lspconfig = require "lspconfig"
-local lsp_server = vim.tbl_keys(require "configs.lsp.configs.server" or {})
-
-local lsp_lint_fomater = vim.tbl_values(require "configs.lsp.configs.extra" or {})
--- local dap_server = vim.tbl_values(require "lsp.dap-server")
 local ensure_installed = {}
+local lsp_server = vim.tbl_keys(require "lsp.server" or {})
+local lsp_formater = vim.tbl_values(require "lsp.formater" or {})
+local debugger_server = require("lsp.debugger") or {}
 
--- fomater
-for _, value in ipairs(lsp_lint_fomater) do
-  table.insert(ensure_installed, value)
-end
 
--- dap server
--- for _, value in ipairs(dap_server) do
---   table.insert(ensure_installed, value)
--- end
+vim.list_extend(ensure_installed, lsp_server)
+vim.list_extend(ensure_installed, lsp_formater)
+vim.list_extend(ensure_installed, debugger_server)
 
 require("mason-tool-installer").setup {
   ensure_installed = ensure_installed,
   run_on_start = true,
 }
 
-require("lspconfig").protols.setup {}
-
+-- Setup servers
 require("mason-lspconfig").setup {
-  ensure_installed = lsp_server,
+  ensure_installed = {},
   automatic_installation = false,
   handlers = {
     function(server_name)
-      local server = lsp_server[server_name] or {}
+      local lspconfig = require "lspconfig"
+      local ls_server_config = require "lsp.server" or {}
+      local server = ls_server_config[server_name] or {}
 
       -- Useful when disabling
       -- dissable typscript/javaserver attach here
@@ -57,27 +48,66 @@ require("mason-lspconfig").setup {
 
       -- Start by making a basic capabilities object
       local capabilities = vim.lsp.protocol.make_client_capabilities()
+
       -- Extend it with cmp or blink capabilities
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
+      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+
+      -- Add folding capabilities
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
 
       -- Use the extended capabilities
-      server.capabilities = capabilities
+      server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
       lspconfig[server_name].setup(server)
-
-      -- for fold
-      -- capabilities.textDocument.foldingRange = {
-      --   dynamicRegistration = false,
-      --   lineFoldingOnly = true,
-      -- }
     end,
   },
 }
 
--- Hover diagnostic
-local highlight_augroup = vim.api.nvim_create_augroup("diagnostic-hover", { clear = false })
-local ns = vim.api.nvim_create_namespace "CurlineDiag"
-
+-- Setup Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("wtc/lsp_attach", { clear = true }),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then
+      return
+    end
+
+    local lsp_keymap = require "lsp.Keymaps"
+    lsp_keymap.on_attach(client, args.buf)
+  end,
+})
+
+-- Diagnostic configuration.
+local diagnostic_icons = icons.diagnostics
+
+vim.diagnostic.config{
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = diagnostic_icons.Error,
+      [vim.diagnostic.severity.WARN] = diagnostic_icons.Warn,
+      [vim.diagnostic.severity.INFO] = diagnostic_icons.Info,
+      [vim.diagnostic.severity.HINT] = diagnostic_icons.Hint,
+    },
+    texthl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+    }
+  },
+}
+
+-- Hover diagnostic
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("wtc/diagnostic-hover", { clear = false }),
   callback = function(args)
     local g = g or {}
     g.diagnostic_float_winid = nil
@@ -85,14 +115,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Ensure the buffer exists and has diagnostics
     if vim.api.nvim_buf_is_valid(args.buf) then
-      -- Check if the buffer is of a specific type (e.g., 'oil') and skip it if necessary
       if vim.bo[args.buf].filetype == "oil" then
         return
       end
 
       -- Set up a keymap to show diagnostics float
       vim.keymap.set("n", "<C-m>", function()
-        local ns = vim.api.nvim_create_namespace "diagnostics_ns"
         local curline = vim.api.nvim_win_get_cursor(0)[1]
         local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
         local virt_texts = { { (" "):rep(4) } }
@@ -107,8 +135,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
           scope = "line",
           border = "rounded",
           header = "",
-          prefix = "󱓻 ",
+          -- prefix = "󱓻 ",
+          prefix = "󱓻",
           source = virt_texts,
+
         })
 
         g.diagnostic_float_winid = winid
@@ -123,7 +153,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
               pcall(vim.api.nvim_win_close, g.diagnostic_float_winid, false)
               g.diagnostic_float_winid = nil
               g.diagnostic_float_line = nil
-
               -- Remove this autocmd after it fires once
               return true
             end
@@ -134,44 +163,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Change signs for LSP diagnostics
-local signs = {
-  Error = " ",
-  Warn = " ",
-  Info = " ",
-  Hint = "󰠠 ",
-}
-
-for type, icon in pairs(signs) do
-  vim.fn.sign_define(
-    "DiagnosticSign" .. type,
-    { text = icon, texthl = "DiagnosticSign" .. type, numhl = "DiagnosticSign" .. type }
-  )
-end
-
--- diagnostic
-vim.diagnostic.config {
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-  sings = true,
-  virtual_text = false,
-  -- float = {
-  --   -- border = user_config.border,
-  --   focusable = false,
-  --   -- header = { icons.debug .. ' Diagnostics:', 'DiagnosticInfo' },
-  --   scope = 'line',
-  --   suffix = '',
-  --   source = false,
-  --   format = format_diagnostic,
-  -- },
-  -- virtual_text = {
-  --   prefix = '',
-  --   spacing = 2,
-  --   source = false,
-  --   severity = {
-  --     min = vim.diagnostic.severity.HINT,
-  --   },
-  --   format = format_diagnostic,
-  -- },
+-- Override the virtual text diagnostic handler so that the most severe diagnostic is shown first.
+local show_handler = vim.diagnostic.handlers.virtual_text.show
+assert(show_handler)
+local hide_handler = vim.diagnostic.handlers.virtual_text.hide
+vim.diagnostic.handlers.virtual_text = {
+  show = function(ns, bufnr, diagnostics, opts)
+    table.sort(diagnostics, function(diag1, diag2)
+      return diag1.severity > diag2.severity
+    end)
+    return show_handler(ns, bufnr, diagnostics, opts)
+  end,
+  hide = hide_handler,
 }

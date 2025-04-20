@@ -1,82 +1,4 @@
 return {
-  --[[ AUTOCOMPLETION ]]
-  {
-    "saghen/blink.cmp",
-    lazy = true,
-    event = "InsertEnter",
-    dependencies = "rafamadriz/friendly-snippets",
-    version = "*",
-    config = function()
-      require "configs.lsp.lsp-cmp"
-    end,
-  },
-
-  {
-    "L3MON4D3/LuaSnip",
-    lazy = true,
-    event = "InsertEnter",
-    dependencies = "rafamadriz/friendly-snippets",
-    version = "v2.*",
-    build = (function()
-      if vim.fn.has "win32" == 1 or vim.fn.executable "make" == 0 then
-        return
-      end
-      return "make install_jsregexp"
-    end)(),
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-      -- updateevents = "TextChanged,TextChangedI"
-    },
-    config = function(_, opts)
-      require("luasnip").config.set_config(opts)
-      require("luasnip.loaders.from_vscode").lazy_load()
-      -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
-    end,
-  },
-
-  --[[ LSP CONFIG ]]
-  {
-    "folke/lazydev.nvim",
-    lazy = true,
-    ft = "lua",
-    event = "VeryLazy",
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
-  },
-  {
-    "Bilal2453/luvit-meta",
-    lazy = true,
-    ft = "lua",
-    event = "VeryLazy",
-  },
-  {
-    "neovim/nvim-lspconfig",
-    lazy = true,
-    event = "VeryLazy",
-    dependencies = {
-      -- NOTE: Must be loaded before dependants
-      { "williamboman/mason.nvim", config = true },
-      "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim",       opt = {} },
-
-      -- cmp
-      { "saghen/blink.cmp" },
-      -- "hrsh7th/cmp-nvim-lsp",
-      -- {"jay-babu/mason-nvim-dap.nvim"},
-    },
-    config = function()
-      require "configs.lsp.lsp-init" -- lsp engine
-      -- only if load with lspconfig and mason
-      -- require "lsp.dap-init"
-    end,
-  },
-
   -- better fold
   {
     "kevinhwang91/nvim-ufo",
@@ -119,16 +41,6 @@ return {
     },
     config = function()
       require "configs.lsp.lsp-format"
-    end,
-  },
-
-  -- others
-  {
-    "danymat/neogen",
-    lazy = true,
-    event = "InsertEnter",
-    config = function()
-      require("neogen").setup { snippet_engine = "luasnip" }
     end,
   },
 
@@ -249,19 +161,5 @@ return {
   -- },
   --
 
-  -- -- debugger
-  -- {
-  --   "mfussenegger/nvim-dap",
-  --   event = "BufEnter",
-  --   dependencies = {
-  --     "rcarriga/nvim-dap-ui",
-  --     "theHamsta/nvim-dap-virtual-text",
-  --     "jay-babu/mason-nvim-dap.nvim",
-  --     "nvim-neotest/nvim-nio",
-  --
-  --     -- Add own debuggers here
-  --     "leoluz/nvim-dap-go",
-  --     "mfussenegger/nvim-dap-python",
-  --   },
-  -- },
+
 }

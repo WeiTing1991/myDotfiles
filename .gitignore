@@ -3,5 +3,5 @@
 ..vimrc.*
 .config/gcloud/*
 
-
+.config/nvim/.vim/*
 .config/github-copilot/

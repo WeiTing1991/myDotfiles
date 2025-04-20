@@ -19,6 +19,9 @@ local globals = {
   loaded_python3_provider = 0,
   loaded_perl_provider = 0,
   loaded_ruby_provider = 0,
+
+  -- disable auto format
+  autoformat = false,
 }
 
 for k, v in pairs(globals) do
@@ -55,6 +58,7 @@ local options = {
   matchpairs = { '(:)', '{:}', '[:]', '<:>' },
   syntax = 'enable',
   clipboard = "unnamedplus",
+  completeopt = 'menu,menuone,noselect',
 
 
   -- indention
@@ -72,6 +76,7 @@ local options = {
 
   -- ui
   mouse = "a",
+  mousescroll = 'ver:3,hor:0',
   cursorline = true,
   laststatus = 3,
   termguicolors = true,
@@ -100,7 +105,6 @@ local options = {
   smartcase = true,
   wildignore = vim.opt.wildignore + { '*/node_modules/*', '*/.git/*', '*/vendor/*' },
 
-
   -- Save undo history
   backup = false,
   swapfile = false,
@@ -117,7 +121,7 @@ local options = {
   linebreak = true,
 
   -- Minimal number of screen lines to keep above and below the cursor.
-  scrolloff = 10,
+  scrolloff = 20,
   sidescrolloff = 0,
   -- conceallevel = 0,
 
@@ -132,10 +136,10 @@ local options = {
   -- foldlevelstart = 99,
 
   --performace
-  updatetime = 150,
-  redrawtime = 300,
-  timeoutlen = 250,
-  ttimeoutlen = 50,
+  updatetime = 50,
+  redrawtime = 200,
+  timeoutlen = 200,
+  ttimeoutlen = 100,
 
   -- spell check
   spelllang = "en_us",
@@ -144,14 +148,13 @@ local options = {
 
 }
 
+-- vim.opt.isfname:append "@-@"
+-- vim.opt.iskeyword:append "-"
+vim.opt.whichwrap:append "<>[]hl"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
--- vim.opt.isfname:append "@-@"
--- vim.opt.iskeyword:append "-"
-vim.opt.whichwrap:append "<>[]hl"
-
-print("is_windows: ", is_windows)
-print("is_mac: ", is_mac)
+-- print("is_windows: ", is_windows)
+-- print("is_mac: ", is_mac)

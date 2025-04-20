@@ -8,13 +8,10 @@
 I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and make ths issue or PRs.
 
 ## MyNeovim
-![](/Users/weitingchen/Desktop/Snipaste_2025-03-02_04-28-25.jpg)
-
 
 ## Setup
-
 **Requirements**
-  Neovim >= 0.10.2
+  Neovim >= 0.11
 - git >= 2.47.1
 - curl
 - fzf
@@ -35,6 +32,7 @@ git clone  https://github.com/WeiTing1991/myDotfiles/tree/main/.config/nvim ~/.c
 ```powershell
 rm -Force ~\AppData\Local\nvim
 rm -Force ~\AppData\Local\nvim-data
+```
 
 > In Neovim run `:MasonToolInstall` to install the extra(linter and formater).
 
@@ -44,71 +42,24 @@ rm -Force ~\AppData\Local\nvim-data
 > Still under documenting
 
 ```sh
-├── init.lua
-├── lua
-│   ├── chadrc.lua
-│   ├── configs
-│   │   ├── achive
-│   │   │   └── telescope.lua
-│   │   ├── copilot.lua
-│   │   ├── fzf.lua
-│   │   ├── indentscope.lua
-│   │   ├── lsp
-│   │   │   ├── configs
-│   │   │   │   ├── extra.lua
-│   │   │   │   └── server.lua
-│   │   │   ├── lsp-cmp.lua
-│   │   │   ├── lsp-format.lua
-│   │   │   ├── lsp-init.lua
-│   │   │   └── lsp-ui.lua
-│   │   ├── nvimtree.lua
-│   │   ├── oil.lua
-│   │   ├── staline.lua
-│   │   ├── todo.lua
-│   │   └── treesitter.lua
-│   ├── core
-│   │   ├── autocmds.lua
-│   │   ├── init.lua
-│   │   ├── keymappings.lua
-│   │   ├── lazy.lua
-│   │   └── options.lua
-│   ├── custom_plugins
-│   │   └── toggle_maximize_window.lua
-│   ├── lsp_keymaps.lua
-│   ├── mapping.lua
-│   └── plugin
-│       ├── editor.lua
-│       ├── init.lua
-│       ├── lsp.lua
-│       ├── misc.lua
-│       ├── note_taking.lua
-│       └── tools.lua
-├── snippets
-└── spell
 ```
 
 **Core**
-    `autocmds.lua`
-    `config.lua`
-    `init.lua`
-    `keymaps.lua`
-    `lazy.lua`
 
 **UI**
-- [Nvchard](https://github.com/NvChad/ui) - better ui, theme, transparent integration.
 
 **Package manager**
 - [lazy.nvim](https://github.com/folke/lazy.nvim) - no question! From folke.
 
 **Navigation**
-- [telescope](https://github.com/nvim-telescope/telescope.nvim) - fuzzy finder, it needs [ripgrep] and [fd].
+<!-- - [telescope](https://github.com/nvim-telescope/telescope.nvim) - fuzzy finder, it needs [ripgrep] and [fd]. -->
 - [oil](https://github.com/stevearc/oil.nvim) - really useful for creating and modifying files as normal buffer. It is really similar to Dired in Emacs.
 
 **Treesitter&Lsp**
 - [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 **Editor tool**
-  - [todo-comments]():
+  <!-- - [todo-comments](): -->
   - [indent-blankline]():
   - [mini.indentscope]():
   - [virt-column]():
@@ -128,10 +79,10 @@ rm -Force ~\AppData\Local\nvim-data
 
 **Support Language**
 
-  - [x]  C/C++ `- extra plugins`
-- [x]  C#
+  - [ ]  C/C++ `- extra plugins`
+	- [x]  C#
   - [x]  Python
-  - [x]  JavaScript/Typescript
+  - [ ]  JavaScript/Typescript
   - [ ]  Go
   - [ ]  Java
 
@@ -153,3 +104,12 @@ More information you can find [here](https://weiting1991.github.io/weitingworks/
 [ripgrep]:
 [fd]:
 
+
+
+
+https://github.com/stevearc/overseer.nvim
+https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/conform.lua
+https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/quicker.lua
+https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/autocmds.lua
+https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/gitsigns.lua
+https://github.com/kkoomen/vim-doge

@@ -29,9 +29,4 @@ function M.toggle_maximize_window()
   end
 end
 
--- default keymaps
-function M.setup()
-  vim.keymap.set("n", "<c-'>", M.toggle_maximize_window, { desc = "Toggle maximize window" })
-end
-
 return M

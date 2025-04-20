@@ -27,32 +27,6 @@ M = {
     },
   },
 
-  -- python
-  -- mason install ruff-lsp
-  -- ["ruff-lsp"] = {},
-  ["ruff"] = {
-    -- cmd_env = { RUFF_TRACE = "messages" },
-    -- init_options = {
-    --   settings = {
-    --     logLevel = "error",
-    --   },
-    -- },
-  },
-
-  ["pyright"] = {
-    settings = {
-      pyright = {
-        disableOrganizeImports = true,
-      },
-      python = {
-        analysis = {
-          ignore = { "*" },
-          -- typeCheckingMode = "basic",
-        },
-      },
-    },
-  },
-
   -- js/ts/css/html
   -- Switched to ts_ls tool
   ["ts_ls"] = {},
@@ -66,29 +40,12 @@ M = {
   },
   ["bashls"] = {},
 
-  ["marksman"] = {
-    capabilities = {
-      workspace = {
-        workspaceFolders = {
-          supported = false,
-        },
-      },
-    },
-  },
+
 
   ["yamlls"] = {},
   ["taplo"] = {},
   ["dockerls"] = {},
   ["docker_compose_language_service"] = {},
-
-  ["jsonls"] = {
-    settings = {
-      json = {
-        -- schemas = require("schemastore").json.schemas(),
-        validate = { enable = true },
-      },
-    },
-  },
 
 
   -- c/c++

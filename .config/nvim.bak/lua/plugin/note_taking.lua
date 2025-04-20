@@ -1,40 +1,4 @@
 return {
-  -- Markdwon preview
-  -- NOTE: https://github.com/iamcco/markdown-preview.nvim
-  {
-    "iamcco/markdown-preview.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-  },
-  {
-    "toppair/peek.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    build = "deno task --quiet build",
-    config = function()
-      local app = "webview"
-      if vim.fn.has "win32" == 1 then
-        app = "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
-      end
-      require("peek").setup {
-        filetype = { "markdown" },
-        app = app,
-      }
-      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-    end,
-  },
-
-  -- Markdown pretty render
-  -- NOTE: https://github.com/OXY2DEV/markview.nvim/wiki
   {
     "OXY2DEV/markview.nvim",
     enabled = true,
@@ -76,33 +40,4 @@ return {
     end,
   },
 
-  -- Markdown image
-  -- {
-    -- "3rd/image.nvim",
-    -- enabled = false,
-    -- event = "VeryLazy",
-    -- opts = {},
-    -- config = function(opts, _)
-    --   require "configs.image"
-    -- end,
-  -- },
-
-  -- {
-  --   "HakonHarnes/img-clip.nvim",
-  --   enabled = false,
-  --   event = "VeryLazy",
-  --   ft = { "markdown" },
-  --   opts = {
-  --     -- recommended settings
-  --     default = {
-  --       embed_image_as_base64 = false,
-  --       prompt_for_file_name = false,
-  --       drag_and_drop = {
-  --         insert_mode = true,
-  --       },
-  --       -- required for Windows users
-  --       use_absolute_path = true,
-  --     },
-  --   },
-  -- },
 }

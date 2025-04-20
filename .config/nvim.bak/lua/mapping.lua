@@ -1,66 +1,3 @@
----------------------------------- Plugins Keymaps ---------------------------------
--- NOTE: https://github.com/echasnovski/mini.nvim/blob/main/doc/mini-clue.txt
-
-local miniclue = require "mini.clue"
-miniclue.setup {
-  triggers = {
-    -- Leader triggers
-    { mode = "n", keys = "<Leader>" },
-    { mode = "x", keys = "<Leader>" },
-
-    -- Leader 2 triggers
-    { mode = "n", keys = "<S-l>" },
-    { mode = "x", keys = "<S-l>" },
-
-    -- Leader 2 triggers
-    { mode = "n", keys = "<C-g>" },
-    { mode = "x", keys = "<C-g>" },
-
-    -- Built-in completion
-    -- { mode = "i", keys = "<C-x>" },
-
-    -- `g` key
-    -- { mode = "n", keys = "g" },
-    -- { mode = "x", keys = "g" },
-
-    -- Marks
-    -- { mode = "n", keys = "'" },
-    -- { mode = "n", keys = "`" },
-    -- { mode = "x", keys = "'" },
-    -- { mode = "x", keys = "`" },
-    --
-    -- Registers
-    -- { mode = "n", keys = "\"" },
-    -- { mode = "x", keys = "\"" },
-    -- { mode = "i", keys = "<C-r>" },
-    -- { mode = "c", keys = "<C-r>" },
-
-    -- Window commands
-    { mode = "n", keys = "<C-w>" },
-
-    -- `z` key
-    { mode = "n", keys = "z" },
-    { mode = "x", keys = "z" },
-  },
-
-  clues = {
-    -- Enhance this by adding descriptions for <Leader> mapping groups
-    miniclue.gen_clues.builtin_completion(),
-    miniclue.gen_clues.g(),
-    -- miniclue.gen_clues.marks(),
-    -- miniclue.gen_clues.registers(),
-    miniclue.gen_clues.windows(),
-    miniclue.gen_clues.z(),
-  },
-  window = {
-    delay = 0,
-    config = {},
-    scroll_down = "<C-d>",
-    scroll_up = "<C-u>",
-  },
-}
-
----------------------------------- Pluglins keymaps ---------------------------------
 local map = vim.keymap.set
 local fzf = require "fzf-lua"
 local Snacks = require "snacks"
@@ -172,15 +109,7 @@ map("n", "<C-g>l", function()
   Snacks.lazygit()
 end, { desc = "Lazygit" })
 
--- toggle copilot
-map("n", "<leader>tc", function()
-  require("copilot.suggestion").toggle_auto_trigger()
-  if not vim.b.copilot_suggestion_auto_trigger then
-    print "Copilot is disabled"
-  else
-    print "Copilot is enabled"
-  end
-end, { desc = "Copilot" })
+
 
 map("n", "<C-g>gd", ":DiffviewOpen<cr>", { desc = "Git Diff" })
 
@@ -200,14 +129,6 @@ map("n", "<leader>ta", "<cmd>Neogen<cr>", { desc = "Annotation" })
 map("n", "<leader>tz", function()
   Snacks.zen { width = 90 }
 end, { desc = "Zen" })
-
-map({"n", "t"}, "<C-/>", function()
-  Snacks.terminal.toggle()
-end, { desc = "terminal" })
-
-map({"n", "t"}, "<C-/>", function()
-  Snacks.terminal.toggle()
-end, { desc = "terminal" })
 
 -- undotree
 -- map("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
