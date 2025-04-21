@@ -1,7 +1,7 @@
 # Import the PSReadLine module
 Import-Module PSReadLine
 
-Import-Module posh-git
+# Import-Module posh-git
 
 # Set predictive IntelliSense (PowerShell 7.2+ feature)
 Set-PSReadLineOption -PredictionSource History
@@ -34,19 +34,20 @@ Set-PSReadLineKeyHandler -Key Ctrl+f -Function ForwardChar
 # Initialize Oh-My-Posh with a theme
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\catppuccin_mocha.omp.json" | Invoke-Expression
 
-
 $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 Set-Location $HOME
+$ENV:EDITOR = 'code'
 
 Set-Alias c clear
 
-function n ($command) {goneovim .}
+function n ($command) {nvim}
 function e ($command) {exit}
 
 #function gdrive ($command) {cd G:\.shortcut-targets-by-id\1AhcyENBzXs13kiaeR7txKn5xdpV0sGGn\002_Projects\003_InnoSuisse_MüllerSteinag }
 function usi ($command) {cd C:\Users\weitingchen\work\01_USI}
+function pj ($command) {cd C:\Users\weitingchen\project/}
 
 function which ($command){
-  Get-Command -Name $command -ErrorAction SilentlyContinue |
-  Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
+  Get-Command -Name $command -ErrorAction SilentlyContinue
+  # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }

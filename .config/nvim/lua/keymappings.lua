@@ -13,7 +13,7 @@ map("n", "<leader>d", function()
   require("oil").open()
 end, { desc = "Toggle file explorer" })
 
-map("n", "<C-S-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 
 map("n", "<C-e>", function()
   local bufname = vim.api.nvim_buf_get_name(0)

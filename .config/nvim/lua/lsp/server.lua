@@ -82,6 +82,7 @@ M = {
       },
     },
   },
+
   -- toml
   ["taplo"] = {
     filetypes = { "toml" },
