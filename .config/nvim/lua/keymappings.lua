@@ -44,6 +44,16 @@ map("n", "<leader>gl", function()
 end, { desc = "Lazygit" })
 
 -- toggle
+map({ "n", "v" }, "<leader>gH", function()
+  require("gitsigns").stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+end, { desc = "Stage hunk" })
+map("n", "<leader>gH", ":Gitsign stage_buffer<CR>", { desc = "stage hunk" })
+map("n", "<leader>ghh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
+map({ "n", "v" }, "<leader>ghr", function()
+  require("gitsigns").reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+end, { desc = "git reset hunk" })
+-- map("n", "<leader>gss", ":Gitsign stage_hunk<CR>", { desc = "stage hunk" })
+-- map("n", "<leader>ghr", ":Gitsign reset_hunk<CR>", { desc = "reset hunk" })
 map("n", "<leader>tc", function()
   require("copilot.suggestion").toggle_auto_trigger()
   if not vim.b.copilot_suggestion_auto_trigger then
