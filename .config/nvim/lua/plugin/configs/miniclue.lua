@@ -60,9 +60,9 @@ miniclue.setup {
     { mode = "n", keys = "<Leader>" },
     { mode = "x", keys = "<Leader>" },
 
-    -- -- Leader 2 triggers
-    -- { mode = "n", keys = "<S-l>" },
-    -- { mode = "x", keys = "<S-l>" },
+    -- Leader 2 triggers
+    { mode = "n", keys = "<S-l>" },
+    { mode = "x", keys = "<S-l>" },
     --
     -- -- Leader 2 triggers
     -- { mode = "n", keys = "<C-g>" },

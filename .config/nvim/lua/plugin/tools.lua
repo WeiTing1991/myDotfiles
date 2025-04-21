@@ -1,5 +1,4 @@
 return {
-  -- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/minifiles.lua
   -- tmux navigator
   {
     "christoomey/vim-tmux-navigator",
@@ -24,21 +23,12 @@ return {
     "echasnovski/mini.files",
     lazy = false,
     opts = {},
-    keys = {
-      {
-        "<leader>e",
-        function()
-          local bufname = vim.api.nvim_buf_get_name(0)
-          local path = vim.fn.fnamemodify(bufname, ":p")
-
-          -- Noop if the buffer isn't valid.
-          if path and vim.uv.fs_stat(path) then
-            require("mini.files").open(bufname, false)
-          end
-        end,
-        desc = "File explorer",
-      },
-    },
+  },
+  -- UndoTree
+  {
+    "mbbill/undotree",
+    lazy = true,
+    event = "VeryLazy",
   },
   -- Tree
   {
@@ -64,15 +54,16 @@ return {
         },
         suggestion = {
           enabled = true,
-          auto_trigger = true,
+          auto_trigger = false,
           hide_during_completion = true,
-          debounce = 50,
+          debounce = 10,
           keymap = {
             accept = "<C-l>",
             accept_word = "<C-f>",
             accept_line = false,
             next = "<C-]>",
             prev = "<C-[>",
+            -- check
             dismiss = "<Esc>",
             -- dismiss = "<C-c>",
           },
@@ -93,6 +84,7 @@ return {
       }
     end,
   },
+
   -- Markdown
   {
     "iamcco/markdown-preview.nvim",
@@ -104,5 +96,138 @@ return {
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
+  },
+
+  -- diagnostics
+  {
+    "folke/trouble.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    cmd = "Trouble",
+    opts = {
+      focus = true,
+      modes = {
+        lsp = {
+          win = { position = "right" },
+        },
+      },
+    },
+  },
+
+  -- better fold
+  -- https://github.com/kevinhwang91/nvim-ufo/issues/4
+  {
+    "kevinhwang91/nvim-ufo",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
+      "kevinhwang91/promise-async",
+      {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+          local builtin = require "statuscol.builtin"
+          require("statuscol").setup {
+            -- relculright = true,
+            setopt = true,
+            -- override the default list of segments with:
+            -- number-less fold indicator, then signs, then line number & separator
+            segments = {
+              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+              { text = { "%s" }, click = "v:lua.ScSa" },
+
+              {
+                text = { builtin.lnumfunc, " " },
+                condition = { true, builtin.not_empty },
+                click = "v:lua.ScLa",
+              },
+            },
+          }
+        end,
+      },
+    },
+    opts = {
+      open_fold_hl_timeout = 0, -- Disable highlight timeout after opening
+    },
+    config = function(_, opts)
+      vim.o.foldcolumn = "1" -- '0' is not bad
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      vim.opt.fillchars:append {
+        foldopen = "v", -- Unicode down arrow (or try "v" if this doesn't look right)
+        foldsep = " ", -- Space for fold separators
+        foldclose = ">", -- Unicode right arrow (or try ">" if this doesn't look right)
+      }
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
+      local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
+      for _, ls in ipairs(language_servers) do
+        require("lspconfig")[ls].setup {
+          capabilities = capabilities,
+          -- you can add other fields for setting up lsp server in this table
+        }
+      end
+      local handler = function(virtText, lnum, endLnum, width, truncate)
+        local newVirtText = {}
+        local suffix = (" 󰁂 %d "):format(endLnum - lnum)
+        local sufWidth = vim.fn.strdisplaywidth(suffix)
+        local targetWidth = width - sufWidth
+        local curWidth = 0
+        for _, chunk in ipairs(virtText) do
+          local chunkText = chunk[1]
+          local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+          if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+          else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, { chunkText, hlGroup })
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+              suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+          end
+          curWidth = curWidth + chunkWidth
+        end
+        table.insert(newVirtText, { suffix, "MoreMsg" })
+        return newVirtText
+      end
+      opts.fold_virt_text_handler = handler
+      require("ufo").setup(opts)
+    end,
+  },
+
+  -- better search
+  {
+    "MagicDuck/grug-far.nvim",
+    lazy = true,
+    enabled = false,
+    opts = { headerMaxWidth = 80 },
+    event = "VeryLazy",
+    cmd = "GrugFar",
+    keys = {
+      {
+        "<leader>/",
+        function()
+          local grug = require "grug-far"
+          local ext = vim.bo.buftype == "" and vim.fn.expand "%:e"
+          grug.open {
+            transient = true,
+            prefills = {
+              filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+            },
+          }
+        end,
+        mode = { "n", "v" },
+        desc = "Search and Replace",
+      },
+    },
   },
 }

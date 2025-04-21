@@ -12,7 +12,7 @@ local function my_on_attach(bufnr)
   -- default mappings
   api.config.mappings.default_on_attach(bufnr)
   -- vim.keymap.set("n", "n", api.fs.create, opts "Create File Or Directory")
-  vim.keymap.set("n", "<C-e>", api.tree.close, opts "Toggle File Explorer")
+  vim.keymap.set("n", "<C-S-e>", api.tree.close, opts "Toggle File Explorer")
 end
 
 nvimtree.setup {

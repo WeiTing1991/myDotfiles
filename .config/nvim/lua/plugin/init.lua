@@ -1,16 +1,16 @@
 return {
   -- [[ Base UI ]]
   { "nvim-lua/plenary.nvim" },
-  -- { "nvim-tree/nvim-web-devicons", lazy = true },
 
   -- Statusline
-  -- {
-  --   "WeiTing1991/staline.nvim",
-  --   lazy = false,
-  --   config = function()
-  --     require "configs.staline"
-  --   end,
-  -- },
+  {
+    "WeiTing1991/staline.nvim",
+    lazy = true,
+    event = "VimEnter",
+    config = function()
+      require "plugin.configs.staline"
+    end,
+  },
 
   --[[ CORE ]]
   -- treesitter

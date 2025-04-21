@@ -108,8 +108,5 @@ More information you can find [here](https://weiting1991.github.io/weitingworks/
 
 
 https://github.com/stevearc/overseer.nvim
-https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/conform.lua
-https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/quicker.lua
 https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/autocmds.lua
-https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/gitsigns.lua
 https://github.com/kkoomen/vim-doge

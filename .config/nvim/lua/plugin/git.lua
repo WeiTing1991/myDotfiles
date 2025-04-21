@@ -1,12 +1,16 @@
 return {
-
+  {
+    "tpope/vim-fugitive",
+    lazy = true,
+    event = { "BufWinEnter" },
+  },
   -- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/diffview.lua
   {
     "sindrets/diffview.nvim",
     lazy = true,
     event = "VeryLazy",
     opts = function()
-      local actions = require "diffview.actions"
+      -- local actions = require "diffview.actions"
       require("diffview.ui.panel").Panel.default_config_float.border = "rounded"
     end,
   },
@@ -14,7 +18,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     lazy = true,
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("gitsigns").setup {
         signs = {
@@ -25,7 +29,7 @@ return {
           changedelete = { text = "│" },
           untracked = { text = "┆" },
         },
-        preview_config = { border = 'rounded' },
+        preview_config = { border = "rounded" },
         current_line_blame = false,
         -- Toggle with `:Gitsigns toggle_current_line_blame`
         -- current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d>-<summary>",

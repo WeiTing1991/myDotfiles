@@ -1,4 +1,2 @@
-vim.g.start_time = os.clock()
-vim.loader.enable()
-
+vim.cmd.colorscheme "bella-gruvbox"
 require "core"

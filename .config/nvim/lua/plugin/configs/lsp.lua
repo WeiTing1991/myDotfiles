@@ -10,12 +10,14 @@ require("fidget").setup { notification = { window = { winblend = 0 } } }
 local ensure_installed = {}
 local lsp_server = vim.tbl_keys(require "lsp.server" or {})
 local lsp_formater = vim.tbl_values(require "lsp.formater" or {})
+local lsp_linter = vim.tbl_values(require "lsp.linter" or {})
 local debugger_server = require("lsp.debugger") or {}
 
 
 vim.list_extend(ensure_installed, lsp_server)
 vim.list_extend(ensure_installed, lsp_formater)
 vim.list_extend(ensure_installed, debugger_server)
+vim.list_extend(ensure_installed, lsp_linter)
 
 require("mason-tool-installer").setup {
   ensure_installed = ensure_installed,
@@ -34,9 +36,9 @@ require("mason-lspconfig").setup {
 
       -- Useful when disabling
       -- dissable typscript/javaserver attach here
-      if server_name == "jdtls" or server_name == "ts_ls" then
-        return
-      end
+      -- if server_name == "jdtls" or server_name == "ts_ls" then
+      --   return
+      -- end
 
       -- if server_name == "ruff_lsp" then
       --   -- if server.server_capabilities == nil then
@@ -176,3 +178,4 @@ vim.diagnostic.handlers.virtual_text = {
   end,
   hide = hide_handler,
 }
+

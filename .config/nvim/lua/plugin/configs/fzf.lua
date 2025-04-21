@@ -2,6 +2,8 @@ local fzf = require "fzf-lua"
 local config = fzf.config
 local actions = fzf.actions
 
+local icons = require "icon"
+
 -- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/fzf-lua.lua
 fzf.setup {
   -- MISC GLOBAL SETUP OPTIONS, SEE BELOW
@@ -18,6 +20,7 @@ fzf.setup {
       vertical = "up:40%",
     },
   },
+  defaults = { git_icons = false},
   lsp = {
     preview = true,
   },
@@ -52,16 +55,15 @@ fzf.setup {
     },
     fzf = {
       -- fzf '--bind=' options
-      -- true,        -- uncomment to inherit all the below in your custom config
-      ["ctrl-z"] = "abort",
-      ["ctrl-u"] = "unix-line-discard",
-      ["ctrl-f"] = "half-page-down",
-      ["ctrl-b"] = "half-page-up",
-      ["ctrl-a"] = "beginning-of-line",
-      ["ctrl-e"] = "end-of-line",
-      ["alt-a"] = "toggle-all",
-      ["alt-g"] = "first",
-      ["alt-G"] = "last",
+      -- ["ctrl-z"] = "abort",
+      -- ["ctrl-u"] = "unix-line-discard",
+      -- ["ctrl-f"] = "half-page-down",
+      -- ["ctrl-b"] = "half-page-up",
+      -- ["ctrl-a"] = "beginning-of-line",
+      -- ["ctrl-e"] = "end-of-line",
+      ["ctrl-a"] = "toggle-all",
+      ["ctrl-g"] = "first",
+      ["ctrl-G"] = "last",
       -- Only valid with fzf previewers (bat/cat/git/etc)
       ["f3"] = "toggle-preview-wrap",
       ["f4"] = "toggle-preview",
@@ -80,15 +82,16 @@ fzf.setup {
       -- `file_edit_or_qf` opens a single selection or sends multiple selection to quickfix
       -- replace `enter` with `file_edit` to open all files/bufs whether single or multiple
       -- replace `enter` with `file_switch_or_edit` to attempt a switch in current tab first
+      -- ["ctrl-t"] = require("trouble.sources.fzf").actions.open,
+      -- ["ctrl-t"] = actions.file_tabedit,
       ["enter"] = actions.file_edit_or_qf,
+      ["alt-f"] = actions.file_sel_to_qf,
+      ["alt-l"] = actions.file_sel_to_ll,
       ["ctrl-s"] = actions.file_split,
       ["ctrl-v"] = actions.file_vsplit,
-      ["ctrl-t"] = actions.file_tabedit,
-      ["alt-q"] = actions.file_sel_to_qf,
-      ["alt-Q"] = actions.file_sel_to_ll,
       ["alt-i"] = actions.toggle_ignore,
       ["alt-h"] = actions.toggle_hidden,
-      ["alt-f"] = actions.toggle_follow,
+      -- ["alt-f"] = actions.toggle_follow,
     },
   }, -- Fzf "accept" binds
   fzf_opts = {
@@ -96,7 +99,8 @@ fzf.setup {
   }, -- Fzf CLI flags
   fzf_colors = {
     true,
-  }, -- Fzf `--color` specification
+  },
+  -- Fzf `--color` specification
   -- hls = { ...  },         -- Highlights
   -- previewers = { ...  },  -- Previewers options
 
@@ -109,6 +113,12 @@ fzf.setup {
     },
   },
   grep = {
+    header_prefix = icons.misc.search .. ' ',
+    rg_glob_fn = function(query, opts)
+        local regex, flags = query:match(string.format('^(.*)%s(.*)$', opts.glob_separator))
+        -- Return the original query if there's no separator.
+        return (regex or query), flags
+    end,
     actions = {
       ["alt-i"] = { actions.toggle_ignore },
       ["alt-h"] = { actions.toggle_hidden },

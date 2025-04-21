@@ -42,8 +42,8 @@ return {
         icons = false,
         diagnostics = true,
         buf_modified = true,
-        buf_modified_symbol = "M",
-        dir_level = 0,
+        buf_modified_ssymbol = "M",
+        dir_level = 2,
         dim_inactive = {
           enabled = true,
           highlight = "WinbarNC",

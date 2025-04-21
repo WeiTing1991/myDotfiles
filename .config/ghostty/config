@@ -4,7 +4,8 @@
 # https://ghostty.org/docs/config/reference#keybind
 
 # apparence
-font-family = "JetBrains Mono Nerd Font"
+font-family = "JetBrainsMono Nerd Font"
+window-title-font-family = "FiraCode Nerd Font"
 font-size = 14
 # background = "0D0907"
 # theme = gruvbox-material
@@ -29,7 +30,6 @@ window-padding-x = 4
 window-padding-y = 4
 
 window-colorspace = "display-p3"
-window-title-font-family = "Hack Nerd Font
 
 # keybindings
 keybind=clear
@@ -41,9 +41,8 @@ keybind = cmd+n=new_window
 keybind = cmd+q=close_window
 
 # tabs
-keybind = cmd+x>c=new_tab
-keybind = ctrl+x>c=new_tab
-keybind = ctrl+shift+t=new_tab
+keybind = cmd+x>t=new_tab
+keybind = ctrl+x>t=new_tab
 keybind = cmd+w=close_surface
 keybind = ctrl+x>n=next_tab
 keybind = ctrl+x>p=previous_tab

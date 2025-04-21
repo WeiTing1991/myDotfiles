@@ -1,5 +1,3 @@
-vim.cmd "colorscheme retrobox"
-
 require "core.options"
 require "core.autocmds"
 require "core.keybindings"
@@ -38,9 +36,9 @@ require("lazy").setup({
   { import = "plugin.git" },
   { import = "plugin.tools" },
 
-  { import = "plugin.dap" },
-  --  { import = "plugin.note_taking" },
-  --  { import = "plugin.misc" },
+  -- { import = "plugin.dap" },
+  -- { import = "plugin.extra." },
+  -- { import = "plugin.lsp_enhance." },
 }, lazy_config)
 
 require "keymappings"

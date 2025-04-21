@@ -112,14 +112,26 @@ return {
 
       -- Autoclosing angle-brackets.
       npairs.add_rule(rule("<", ">", {
-        -- Avoid conflicts with nvim-ts-autotag.
-        "-html",
-        "-javascriptreact",
-        "-typescriptreact",
-      }):with_pair(conds.before_regex("%a+:?:?$", 3)):with_move(function(opts)
-        return opts.char == ">"
-      end))
+          -- Avoid conflicts with nvim-ts-autotag.
+          "-html",
+          "-javascriptreact",
+          "-typescriptreact",
+        })
+        :with_pair(conds.before_regex("%a+:?:?$", 3))
+        :with_move(function(opts)
+          return opts.char == ">"
+        end))
     end,
+  },
+  {
+    "Wansmer/treesj",
+    lazy = true,
+    event = "InsertEnter",
+    dependencies = "nvim-treesitter",
+    keys = {
+      { "<leader>tj", "<cmd>TSJToggle<cr>", desc = "Join/split code block" },
+    },
+    opts = { use_default_keymaps = false },
   },
 
   -- Better Comment
@@ -133,5 +145,26 @@ return {
     --     pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
     --   }
     -- end,
+  },
+
+  -- Not working
+  {
+    "mg979/vim-visual-multi",
+    lazy = true,
+    enabled = false,
+    event = "InsertEnter",
+    config = function()
+      vim.g.VM_default_mappings = 0
+      vim.g.VM_maps = {
+        ["Find Under"] = "<M-d>",
+        ["Find Subword Under"] = "<M-d>",
+      }
+      print(vim.g.VM_maps["Find Under"])
+
+      -- Tried these as well but they do not work.
+      -- vim.g.VM_maps['Find Subword Under'] = "<C-x>"
+      -- vim.g.VM_maps["Select Cursor Down"] = '<M-u>'
+      -- vim.g.VM_maps["Select Cursor Up"]   = '<M-d>'
+    end,
   },
 }

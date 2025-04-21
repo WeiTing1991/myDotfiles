@@ -36,11 +36,11 @@ require("blink.cmp").setup {
       draw = {
         treesitter = { "lsp" },
       },
-      border = nil,
+      border = "none",
     },
     trigger = { show_on_keyword = true },
     list = { selection = { preselect = true, auto_insert = true }, max_items = 10 },
-    documentation = { auto_show = true, auto_show_delay_ms = 300, window = { border = nil } },
+    documentation = { auto_show = true, auto_show_delay_ms = 300, window = { border = "single" } },
   },
 
   cmdline = { enabled = false },
