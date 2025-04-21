@@ -120,6 +120,7 @@ return {
         sources = {
           -- spell
           null_ls.builtins.completion.spell,
+          null_ls.builtins.diagnostics.actionlint,
           -- null_ls.builtins.diagnostics.write_good,
           require("none-ls.diagnostics.eslint_d").with {
             -- root_markers = { ".eslintrc", ".eslintrc.js", ".eslintrc.json", "eslint.config.js", "eslint.config.mjs" },

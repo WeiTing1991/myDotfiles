@@ -1,4 +1,17 @@
 return {
+  -- [[Task Runner]]
+  {
+    "stevearc/overseer.nvim",
+    lazy = true,
+    key = {
+      {
+        "<leader>ot",
+        "<cmd>OverseerToggle<cr>",
+        desc = "Toggle task window",
+      },
+    },
+  },
+
   --[[ language extra ]]
   -- ts/js
   {
@@ -29,8 +42,8 @@ return {
     config = function()
       require("nvim-ts-autotag").setup {
         opts = {
-          enable_close = false,           -- Auto close tags
-          enable_rename = true,          -- Auto rename pairs of tags
+          enable_close = false, -- Auto close tags
+          enable_rename = true, -- Auto rename pairs of tags
           enable_close_on_slash = false, -- Auto close on trailing </
         },
         per_filetype = {
@@ -62,17 +75,16 @@ return {
   -- },
   --
   -- dart/flutter
-  {
-    "akinsho/flutter-tools.nvim",
-    lazy = true,
-    ft = { "dart" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "stevearc/dressing.nvim",
-    },
-    config = function()
-      require("flutter-tools").setup {}
-    end,
-  },
-
+  -- {
+  --   "akinsho/flutter-tools.nvim",
+  --   lazy = true,
+  --   ft = { "dart" },
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "stevearc/dressing.nvim",
+  --   },
+  --   config = function()
+  --     require("flutter-tools").setup {}
+  --   end,
+  -- },
 }

@@ -177,5 +177,3 @@ vim.diagnostic.handlers.virtual_text = {
     return show_handler(ns, bufnr, diagnostics, opts)
   end,
   hide = hide_handler,
-}
-
