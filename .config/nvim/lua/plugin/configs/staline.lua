@@ -123,7 +123,7 @@ require("staline").setup {
     left_separator = "",
     right_separator = "",
 
-    full_path = false,
+    full_path = true,
     branch_symbol = " ",
     -- bg = "#000000",
     -- fg = "#000000", -- Foreground text color.

@@ -1,7 +1,7 @@
 # Import the PSReadLine module
 Import-Module PSReadLine
 
-# Import-Module posh-git
+Import-Module posh-git
 
 # Set predictive IntelliSense (PowerShell 7.2+ feature)
 Set-PSReadLineOption -PredictionSource History
