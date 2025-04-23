@@ -2,6 +2,12 @@
 local map = vim.keymap.set
 local fzf = require "fzf-lua"
 local color_swithcer = require "core.color_switcher"
+-- local snacks = require "snacks"
+
+-- [[ Override default keymaps ]]
+-- vim.keymap.set("n", "<C-q>", function()
+--   snacks.bufdelete()
+-- end, { desc = "Close current buffer and window" })
 
 --[[ color_swithcer ]]
 vim.keymap.set("n", "<leader>tt", function()
@@ -14,6 +20,9 @@ map("n", "<leader>d", function()
 end, { desc = "Toggle file explorer" })
 
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
+-- map("n", "<leader>e", function ()
+--   snacks.explorer()
+-- end, { desc = "File tree" })
 
 map("n", "<C-e>", function()
   local bufname = vim.api.nvim_buf_get_name(0)
@@ -118,7 +127,6 @@ autocmd("BufWinEnter", {
 -- map("n", "gu", "<cmd>diffget //2<CR>", { desc = "Diff get" })
 -- map("n", "gh", "<cmd>diffget //3<CR>", { desc = "Diff get" })
 
-
 --[[ toggle ]]
 map("n", "<leader>tc", function()
   require("copilot.suggestion").toggle_auto_trigger()
@@ -136,6 +144,3 @@ map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { des
 map("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics workspace" })
 map("n", "<leader>xq", "<cmd>Trouble qflist toggle <cr>", { desc = "Quickfix List " })
 map("n", "<leader>xl", "<cmd>Trouble locflist toggle <cr>", { desc = "Location List " })
-
--- Annotation
--- map("n", "<leader>ta", "<cmd>Neogen<cr>", { desc = "Annotation" })

@@ -35,10 +35,12 @@ require("lazy").setup({
   { import = "plugin.ui" },
   { import = "plugin.git" },
   { import = "plugin.tools" },
+  { import = "plugin.snack" },
 
   -- { import = "plugin.dap" },
   -- { import = "plugin.extra." },
   -- { import = "plugin.lsp_enhance." },
+  -- { import = "plugin.note_taking." },
 }, lazy_config)
 
 require "keymappings"

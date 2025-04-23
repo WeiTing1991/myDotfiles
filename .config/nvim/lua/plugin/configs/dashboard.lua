@@ -8,12 +8,6 @@ dashboard.section.header.val = {
   "                                              ",
   "                                              ",
   "                                              ",
-  "                                              ",
-  "                                              ",
-  "                                              ",
-  "                                              ",
-  "                                              ",
-  "                                              ",
   "██     █████████████    ████    ███████    ███",
   "██     ██   ██   ████   ████    ████████  ████",
   "██  █  ██   ██   ██ ██  ████    ██████ ████ ██",
@@ -27,6 +21,12 @@ dashboard.section.header.val = {
   "                                              ",
   "                                              ",
   "                                              ",
+  "                                              ",
+  "                                              ",
+  "                                              ",
+  "                                              ",
+  "                                              ",
+  "                                              ",
 }
 
 -- Set menu
@@ -35,6 +35,7 @@ dashboard.section.buttons.val = {
   dashboard.button("fo", "  Recent Files", ":FzfLua oldfiles<CR>"),
   dashboard.button("fl", "󰈭  Find Word", ":FzfLua live_grep<CR>"),
   dashboard.button("d", "󱥚  Dired", ":lua require('oil').open()<CR>"),
+  dashboard.button("e", "󱥚  Tree", ":NvimTreeToggle<CR>"),
   -- dashboard.button("th", "󱥚  Themes", ":lua require('nvchad.themes').open()<CR>"),
 }
 

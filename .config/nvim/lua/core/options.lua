@@ -94,7 +94,7 @@ local options = {
   breakindent = true,
   showbreak = "↪ ",
 
-  wrap = false,
+  wrap = true,
   -- cindent = false,
   -- showtabline = 1,
 

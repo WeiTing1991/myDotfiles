@@ -54,16 +54,15 @@ return {
         },
         suggestion = {
           enabled = true,
-          auto_trigger = false,
+          auto_trigger = true,
           hide_during_completion = true,
           debounce = 10,
           keymap = {
-            accept = "<C-l>",
+            accept = false,
             accept_word = "<C-f>",
-            accept_line = false,
+            accept_line = "<C-l>",
             next = "<C-]>",
             prev = "<C-[>",
-            -- check
             dismiss = "<Esc>",
             -- dismiss = "<C-c>",
           },

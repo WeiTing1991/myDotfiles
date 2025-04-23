@@ -6,28 +6,32 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-m>", "<C-m>", { silent = true })
+vim.keymap.set({ "n", "v" }, "<Tab>", "<Tab>", { silent = true })
 
--- swithc between buffer
+-- switch between buffer
 vim.keymap.set({ "n", "v" }, "<C-i>", "<C-i>", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<C-o>", "<C-o>", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<C-I>", "<C-I>", { noremap = true })
+vim.keymap.set({ "n", "v" }, "<C-O>", "<C-O>", { noremap = true })
 vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
 vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
 
--- vim.keymap.set("n", "<leader>o", ":bnext<cr>", { desc = "Next buffer" })
--- vim.keymap.set("n", "<leader>i", ":bprevious<cr>", { desc = "Prevous buffer" })
+-- fallback
+vim.keymap.set("n", "<leader>o", ":bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>i", ":bprevious<cr>", { desc = "Prevous buffer" })
 
 -- fold
-vim.keymap.set("n", "<Tab>", function()
-  -- Get the current line number
-  local line = vim.fn.line "."
-  -- Get the fold level of the current line
-  local foldlevel = vim.fn.foldlevel(line)
-  if foldlevel == 0 then
-    vim.notify("No fold found", vim.log.levels.INFO)
-  else
-    vim.cmd "normal! za"
-  end
-end, { noremap = true, silent = true, expr = false, desc = "Toggle fold" })
+-- problem with windows terminal
+-- vim.keymap.set("n", "<Tab>", function()
+--   -- Get the current line number
+--   local line = vim.fn.line "."
+--   -- Get the fold level of the current line
+--   local foldlevel = vim.fn.foldlevel(line)
+--   if foldlevel == 0 then
+--     vim.notify("No fold found", vim.log.levels.INFO)
+--   else
+--     vim.cmd "normal! za"
+--   end
+-- end, { noremap = true, silent = true, expr = false, desc = "Toggle fold" })
 
 vim.keymap.set("n", "<C-q>", function()
   vim.cmd ":bw!"
@@ -77,8 +81,8 @@ vim.keymap.set({ "n", "t" }, "<C-S-j>", "<C-w>+", { desc = "vertical resize -2" 
 vim.keymap.set({ "n", "t" }, "<C-S-k>", "<C-w>-", { desc = "vertical resize -2" })
 
 -- tabs
-vim.keymap.set('n', '<C-S-i>', ':tabnext<CR>', { noremap = true, silent = true, desc = "Next tab" })
-vim.keymap.set('n', '<C-S-o>', ':tabprevious<CR>', { noremap = true, silent = true , desc = "Previous tab" })
+vim.keymap.set("n", "<C-S-i>", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab" })
+vim.keymap.set("n", "<C-S-o>", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab" })
 
 -- windows
 -- vim.keymap.set("n", "<C-'>", function()
@@ -119,20 +123,12 @@ vim.keymap.set({ "n", "v" }, "<C-'>", function()
   require("core.toogle_max").toggle_maximize_window()
 end, { desc = "Toggle maximize buffer" })
 
-vim.keymap.set({ "n", "t" }, "<C-/>", function()
+vim.keymap.set({ "n", "t" }, "<leader>/", function()
   require("core.float_term").float_term()
 end, { desc = "Toggle term" })
-
-
 
 -- Optional
 -- -- Parser info
 -- vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })
 -- -- Delete selected text and replace with text from system clipboard
 -- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection with system clipboard content" })
---
--- -- Yank selected text to system clipboard
--- vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
---
--- -- Yank current line to system clipboard
--- vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank current line to system clipboard" })

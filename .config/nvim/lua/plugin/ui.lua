@@ -8,17 +8,6 @@ return {
     end,
   },
   {
-    "nvzone/volt",
-    lazy = true,
-    event = "VeryLazy",
-  },
-  {
-    "nvzone/minty",
-    lazy = true,
-    event = "VeryLazy",
-    cmd = { "Shades", "Huefy" },
-  },
-  {
     "catgoose/nvim-colorizer.lua",
     event = "BufReadPre",
     opts = {},

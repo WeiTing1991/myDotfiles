@@ -12,10 +12,10 @@ end
 
 -- copilot statues
 local function copilot_status()
-  if vim.b.copilot_suggestion_auto_trigger then
-    return "   "
-  else
+  if not vim.b.copilot_suggestion_auto_trigger then
     return "   "
+  else
+    return "   "
   end
 end
 -- indent statues
