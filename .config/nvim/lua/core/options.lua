@@ -51,15 +51,13 @@ else
   spellDir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
 end
 
-
 local options = {
-  backspace = { 'eol', 'start', 'indent' },
-  encoding = 'utf-8',
-  matchpairs = { '(:)', '{:}', '[:]', '<:>' },
-  syntax = 'enable',
+  backspace = { "eol", "start", "indent" },
+  encoding = "utf-8",
+  matchpairs = { "(:)", "{:}", "[:]", "<:>" },
+  syntax = "enable",
   clipboard = "unnamedplus",
-  completeopt = 'menu,menuone,noselect',
-
+  completeopt = "menu,menuone,noselect,noinsert",
 
   -- indention
   autoindent = true,
@@ -76,12 +74,11 @@ local options = {
 
   -- ui
   mouse = "a",
-  mousescroll = 'ver:3,hor:0',
+  mousescroll = "ver:3,hor:0",
   cursorline = true,
   laststatus = 3,
   termguicolors = true,
   -- cursorlineopt = "",
-
 
   list = true,
   listchars = { tab = "▏ ", trail = "·", lead = "·", extends = "»", precedes = "«" },
@@ -103,12 +100,12 @@ local options = {
   hlsearch = true,
   ignorecase = true,
   smartcase = true,
-  wildignore = vim.opt.wildignore + { '*/node_modules/*', '*/.git/*', '*/vendor/*' },
+  wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" },
 
   -- Save undo history
   backup = false,
   swapfile = false,
-  writebackup  = false,
+  writebackup = false,
   undofile = true,
   undodir = undoDir,
 
@@ -145,7 +142,6 @@ local options = {
   spelllang = "en_us",
   spell = false,
   spellfile = spellDir,
-
 }
 
 -- vim.opt.isfname:append "@-@"

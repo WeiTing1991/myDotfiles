@@ -3,6 +3,7 @@ return {
   {
     "stevearc/overseer.nvim",
     lazy = true,
+    enabled = false,
     key = {
       {
         "<leader>ot",
@@ -17,6 +18,7 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     lazy = true,
+    enabled = false,
     event = "BufReadPre",
     ft = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
@@ -37,6 +39,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     lazy = true,
+    enabled = false,
     event = "BufReadPre",
     ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     config = function()
@@ -57,10 +60,13 @@ return {
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     lazy = true,
+    enabled = false,
     event = "BufReadPre",
     ft = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     opts = { enable_autocmd = false },
   },
+
+  -- C#
 
   -- c/c++
   -- {
@@ -73,7 +79,8 @@ return {
   --     },
   --   },
   -- },
-  --
+
+  -- go
   -- dart/flutter
   -- {
   --   "akinsho/flutter-tools.nvim",

@@ -51,13 +51,12 @@ return {
         dependencies = {},
         opts = {
           history = true,
-          -- delete_check_events = "TextChanged",
+          delete_check_events = "TextChanged",
         },
-        -- config = function(_, opts)
-        --   require("luasnip").config.set_config(opts)
-        --   require("luasnip.loaders.from_vscode").lazy_load()
-        --   -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
-        -- end,
+        config = function(_, opts)
+          require("luasnip").setup(opts)
+          require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+        end,
       },
     },
     version = "1.*",

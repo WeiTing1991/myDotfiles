@@ -2,7 +2,7 @@ return {
   "WeiTing1991/snacks.nvim",
   priority = 1000,
   lazy = false,
-  enabled = false,
+  -- enabled = false,
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = false },

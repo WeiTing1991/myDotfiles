@@ -123,7 +123,7 @@ vim.keymap.set({ "n", "v" }, "<C-'>", function()
   require("core.toogle_max").toggle_maximize_window()
 end, { desc = "Toggle maximize buffer" })
 
-vim.keymap.set({ "n", "t" }, "<leader>/", function()
+vim.keymap.set({ "n", "t" }, "<leader><leader>", function()
   require("core.float_term").float_term()
 end, { desc = "Toggle term" })
 

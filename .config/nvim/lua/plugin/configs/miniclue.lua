@@ -57,9 +57,9 @@ end
 miniclue.setup {
   triggers = {
     -- Leader triggers
-    -- { mode = "n", keys = "<leader>" },
-    -- { mode = "x", keys = "<leader>" },
-    -- { mode = "t", keys = "<leader>" },
+    { mode = "n", keys = "<leader>" },
+    { mode = "x", keys = "<leader>" },
+    { mode = "t", keys = "<leader>" },
 
     -- Leader 2 triggers
     { mode = "n", keys = "<S-l>" },
@@ -104,15 +104,17 @@ miniclue.setup {
     -- miniclue.gen_clues.z(),
 
     -- Leader/movement groups
-    -- { mode = "n", keys = "<leader>", desc = "leader" },
-    -- { mode = "n", keys = "<leader>f", desc = "+find" },
-    -- { mode = "n", keys = "<leader>g", desc = "+git" },
-    -- { mode = "n", keys = "<leader>t", desc = "+toggle" },
+    { mode = "n", keys = "<leader>", desc = "leader" },
+    { mode = "n", keys = "<leader>f", desc = "+find" },
+    { mode = "n", keys = "<leader>g", desc = "+git" },
+    { mode = "n", keys = "<leader>t", desc = "+toggle" },
+    { mode = "n", keys = "<S-l>", desc = "LSP" },
+
     -- Customs
     mark_clues,
   },
   window = {
-    delay = 100,
+    delay = 10,
     scroll_down = "<C-d>",
     scroll_up = "<C-u>",
     config = function(bufnr)

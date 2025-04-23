@@ -2,12 +2,12 @@
 local map = vim.keymap.set
 local fzf = require "fzf-lua"
 local color_swithcer = require "core.color_switcher"
--- local snacks = require "snacks"
+local snacks = require "snacks"
 
 -- [[ Override default keymaps ]]
--- vim.keymap.set("n", "<C-q>", function()
---   snacks.bufdelete()
--- end, { desc = "Close current buffer and window" })
+vim.keymap.set("n", "<C-q>", function()
+  snacks.bufdelete()
+end, { desc = "Close current buffer and window" })
 
 --[[ color_swithcer ]]
 vim.keymap.set("n", "<leader>tt", function()
@@ -20,9 +20,6 @@ map("n", "<leader>d", function()
 end, { desc = "Toggle file explorer" })
 
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
--- map("n", "<leader>e", function ()
---   snacks.explorer()
--- end, { desc = "File tree" })
 
 map("n", "<C-e>", function()
   local bufname = vim.api.nvim_buf_get_name(0)
@@ -38,8 +35,8 @@ end, { desc = "Open file in mini.files" })
 map("n", "<C-f>", fzf.files, { desc = "Find files" })
 map("n", "<leader>ff", fzf.files, { desc = "Find files" })
 map("n", "<leader>fo", fzf.oldfiles, { desc = "Open recent file" })
-map("n", "<leader><leader>", fzf.buffers, { desc = "Finde file in opened buffer" })
-map("n", "<leader>fb", function()
+map("n", "<leader>fb", fzf.buffers, { desc = "Finde file in opened buffer" })
+map("n", "<leader>fj", function()
   require("fzf-lua").files { cwd = vim.fn.expand "%:p:h" }
 end, { desc = "Finde file in current child dir" })
 map("n", "<leader>fg", function()
@@ -91,6 +88,9 @@ map("n", "<leader>gs", ":FzfLua git_status<CR>", { desc = "Status" })
 map("n", "<leader>gb", ":FzfLua git_branches<CR>", { desc = "Branch" })
 map("n", "<leader>gcb", ":FzfLua git_bcommits<CR>", { desc = "Buffer Commits" })
 map("n", "<leader>gcc", ":FzfLua git_commits<CR>", { desc = "Commits" })
+map("n", "<leader>gb", function ()
+  snacks.gitbrowse()
+end, { desc = "open current github" })
 
 local function commit_current_file()
   local file = vim.fn.expand "%"

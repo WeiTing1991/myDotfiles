@@ -16,7 +16,7 @@ return {
   {
     "folke/todo-comments.nvim",
     lazy = true,
-    event = "BufRead",
+    event = "VeryLazy",
     -- config = function()
       -- require("todo-comments").setup {
       --   signs = false, -- show icons in the signs column

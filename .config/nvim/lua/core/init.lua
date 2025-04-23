@@ -1,6 +1,5 @@
 require "core.options"
 require "core.autocmds"
-require "core.keybindings"
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
@@ -43,4 +42,6 @@ require("lazy").setup({
   -- { import = "plugin.note_taking." },
 }, lazy_config)
 
+require "core.keybindings"
 require "keymappings"
+
