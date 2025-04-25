@@ -26,7 +26,8 @@ function keymaps.on_attach(client, bufnr)
 
   if client:supports_method(methods.textDocument_definition) then
     map("gd", function()
-      require("fzf-lua").lsp_definitions { jump1 = false }
+      -- require("fzf-lua").lsp_definitions { jump1 = false }
+      require("goto-preview").goto_preview_definition()
     end, "Peek definition")
     map("gD", function()
       require("fzf-lua").lsp_definitions { jump1 = true }
@@ -34,26 +35,29 @@ function keymaps.on_attach(client, bufnr)
   end
 
   -- map("gr", vim.lsp.buf.references, "Goto References")
+  -- map("gr", function()
+  --   require("goto-preview").goto_preview_references()
+  -- end, "Preview References")
+
   map("grr", "<cmd>FzfLua lsp_references<cr>", "Goto References")
 
   -- For example, in C this would take you to the header
-  -- map("gdd", vim.lsp.buf.declaration, "Goto C Header Declaration")
-  -- map("gd", "<cmd>FzfLua lsp_finder<cr>", "Goto Definition")
+  -- map("gl", vim.lsp.buf.declaration, "Goto C Header Declaration")
+  map("gl", "<cmd>FzfLua lsp_finder<cr>", "Goto header Declaration")
 
-  map("gi", vim.lsp.buf.implementation, "Peek Implementation")
+  map("gi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "Peek Implementation")
   map("gI", "<cmd>FzfLua lsp_implementations <cr>", "Goto Implementation")
   map("<S-l>j", "<cmd>FzfLua lsp_document_symbols<cr>", "Document Symbols")
   if client:supports_method(methods.textDocument_signatureHelp) then
-      local blink_window = require 'blink.cmp.completion.windows.menu'
-      local blink = require 'blink.cmp'
-
-      map('<S-l>k', function()
-          -- Close the completion menu first (if open).
-          if blink_window.win:is_open() then
-              blink.hide()
-          end
-          vim.lsp.buf.signature_help()
-      end, 'Signature help', 'i')
+    local blink_window = require "blink.cmp.completion.windows.menu"
+    local blink = require "blink.cmp"
+    map("<S-l>k", function()
+      -- Close the completion menu first (if open).
+      if blink_window.win:is_open() then
+        blink.hide()
+      end
+      vim.lsp.buf.signature_help()
+    end, "Signature help", "i")
   end
   -- extra
   map("<S-l>ii", "<cmd>LspInfo<cr>", "Lsp Info")
@@ -65,29 +69,26 @@ function keymaps.on_attach(client, bufnr)
   -- map("<S-l>ca", vim.lsp.buf.code_action, "Code Action")
 
   -- formatting
-  map("<leader>,", function()
-    require("conform").format { async = true, lsp_format = "fallback" }
-  end, "Formatting", { "n", "v" })
+  map("<leader>,", vim.lsp.buf.format, "formatting", { "n", "v" })
 
-    -- Add "Fix all" command for ESLint.
-    -- if client.name == 'eslint' then
-    --     vim.keymap.set('n', '<S-l>tl', function()
-    --         if not client then
-    --             return
-    --         end
-    --
-    --         client:request(vim.lsp.protocol.Methods.workspace_executeCommand, {
-    --             command = 'eslint.applyAllFixes',
-    --             arguments = {
-    --                 {
-    --                     uri = vim.uri_from_bufnr(bufnr),
-    --                     version = vim.lsp.util.buf_versions[bufnr],
-    --                 },
-    --             },
-    --         }, nil, bufnr)
-    --     end, { desc = 'Fix all ESLint errors', buffer = bufnr })
-    -- end
-
+  -- Add "Fix all" command for ESLint.
+  -- if client.name == 'eslint' then
+  --     vim.keymap.set('n', '<S-l>tl', function()
+  --         if not client then
+  --             return
+  --         end
+  --
+  --         client:request(vim.lsp.protocol.Methods.workspace_executeCommand, {
+  --             command = 'eslint.applyAllFixes',
+  --             arguments = {
+  --                 {
+  --                     uri = vim.uri_from_bufnr(bufnr),
+  --                     version = vim.lsp.util.buf_versions[bufnr],
+  --                 },
+  --             },
+  --         }, nil, bufnr)
+  --     end, { desc = 'Fix all ESLint errors', buffer = bufnr })
+  -- end
 end
 
 return keymaps

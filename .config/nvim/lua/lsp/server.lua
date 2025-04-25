@@ -102,7 +102,25 @@ M = {
   },
 
   -- C#
-  ["omnisharp"] = {},
+  ["omnisharp"] = {
+    settings = {
+      FormattingOptions = {
+        EnableEditorConfigSupport = true,
+        OrganizeImports = true,
+      },
+      RoslynExtensionsOptions = {
+        EnableAnalyzersSupport = true,
+        EnableImportCompletion = true,
+        AnalyzeOpenDocumentsOnly = false,
+      },
+      MsBuild = {
+        LoadProjectsOnDemand = false,
+      },
+      Sdk = {
+        IncludePrereleases = true,
+      },
+    },
+  },
 
   -- js/ts/css/html
   -- Switched to ts_ls tool

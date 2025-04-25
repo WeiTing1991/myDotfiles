@@ -66,42 +66,22 @@ return {
   },
 
   --[[ FOMATER ]]
-  {
-    "stevearc/conform.nvim",
-    lazy = true,
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
-    config = function()
-      local conform = require "conform"
-      conform.setup {
-        notify_on_error = false,
-        -- format_on_save = false,
-      }
-      conform.formatters_by_ft = require "lsp.formater"
-    end,
-  },
   -- {
-  --   "mfussenegger/nvim-lint",
+  --   "stevearc/conform.nvim",
   --   lazy = true,
-  --   event = { "BufEnter" },
+  --   event = { "BufWritePre" },
+  --   cmd = { "ConformInfo" },
   --   config = function()
-  --     local lint = require("lint")
-  --
-  --     vim.env.ESLINT_D_PPID = vim.fn.getpid()
-  --     lint.linters_by_ft = require("lsp.linter")
-  --
-  --     local lint_augroup = vim.api.nvim_create_augroup("wtc/lint", { clear = true })
-  --     vim.api.nvim_create_autocmd({"BufWritePost" }, {
-  --       group = lint_augroup,
-  --       callback = function()
-  --         lint.try_lint()
-  --       end,
-  --     })
-  --
+  --     local conform = require "conform"
+  --     conform.setup {
+  --       notify_on_error = false,
+  --       -- format_on_save = false,
+  --     }
+  --     conform.formatters_by_ft = require "lsp.formater"
   --   end,
   -- },
 
-  --[[ linter ]]
+  --[[ Formater/ Linter ]]
   {
     "nvimtools/none-ls.nvim",
     lazy = true,
@@ -110,40 +90,7 @@ return {
       "nvimtools/none-ls-extras.nvim",
     },
     config = function()
-      local null_ls = require "null-ls"
-      local null_ls_utils = require "null-ls.utils"
-      -- local formatting = null_ls.builtins.formatting
-      null_ls.setup {
-        debug = false,
-        root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
-        sources = {
-          -- spell
-          null_ls.builtins.completion.spell,
-          null_ls.builtins.diagnostics.actionlint,
-          -- null_ls.builtins.diagnostics.write_good,
-          require("none-ls.diagnostics.eslint_d").with {
-            -- root_markers = { ".eslintrc", ".eslintrc.js", ".eslintrc.json", "eslint.config.js", "eslint.config.mjs" },
-            -- filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "graphql" },
-            -- args = {
-            --   "--no-warn-ignored", -- <-- this is the key argument
-            --   "--format",
-            --   "json",
-            --   "--stdin",
-            --   "--stdin-filename",
-            --   function()
-            --     return vim.api.nvim_buf_get_name(0)
-            --   end,
-            -- },
-            -- before_init = function(params, config)
-            --   -- Set the workspace folder setting for correct search of tsconfig.json files etc.
-            --   config.settings.workspaceFolder = {
-            --     uri = params.rootPath,
-            --     name = vim.fn.fnamemodify(params.rootPath, ":t"),
-            --   }
-            -- end,
-          },
-        },
-      }
+      require("plugin.configs.nonels")
     end,
   },
 

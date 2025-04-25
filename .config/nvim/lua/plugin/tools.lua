@@ -19,6 +19,8 @@ return {
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
+
+  -- tree
   {
     "echasnovski/mini.files",
     lazy = false,
@@ -111,6 +113,29 @@ return {
     },
   },
 
+  -- column
+  {
+    "luukvbaal/statuscol.nvim",
+    lazy = true,
+    event = "BufEnter",
+    config = function()
+      local builtin = require "statuscol.builtin"
+      require("statuscol").setup {
+        setopt = true,
+        segments = {
+          { text = {"%s"}, click = "v:lua.ScFa", maxwidth = 2 },
+
+          { text = { builtin.lnumfunc }, click = "v:lua.scla" },
+          {
+            text = { " ", builtin.foldfunc, " " },
+            condition = { builtin.not_empty, true, builtin.not_empty },
+            click = "v:lua.scfa",
+          },
+        },
+      }
+    end,
+  },
+
   -- BETTER fold
   {
     "kevinhwang91/nvim-ufo",
@@ -118,38 +143,12 @@ return {
     event = "VeryLazy",
     dependencies = {
       "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          local builtin = require "statuscol.builtin"
-          require("statuscol").setup {
-            -- relculright = true,
-            setopt = true,
-            -- override the default list of segments with:
-            -- number-less fold indicator, then signs, then line number & separator
-            segments = {
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-              { text = { "%s" }, click = "v:lua.ScSa" },
-
-              {
-                text = { builtin.lnumfunc, " " },
-                condition = { true, builtin.not_empty },
-                click = "v:lua.ScLa",
-              },
-            },
-          }
-        end,
-      },
     },
     opts = {
-      open_fold_hl_timeout = 0, -- Disable highlight timeout after opening
+      open_fold_hl_timeout = 0,
     },
     config = function(_, opts)
       vim.o.foldcolumn = "1" -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-
       vim.opt.fillchars:append {
         foldopen = "",
         foldsep = " ",
@@ -165,7 +164,6 @@ return {
       for _, ls in ipairs(language_servers) do
         require("lspconfig")[ls].setup {
           capabilities = capabilities,
-          -- you can add other fields for setting up lsp server in this table
         }
       end
       local handler = function(virtText, lnum, endLnum, width, truncate)
@@ -218,7 +216,6 @@ return {
           right = { " ", wilder.popupmenu_scrollbar() },
         }
       )
-
       wilder.set_option("pipeline", {
         wilder.branch(
           wilder.cmdline_pipeline {

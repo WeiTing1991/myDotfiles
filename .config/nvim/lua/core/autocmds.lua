@@ -1,4 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
+local set = vim.opt_local
 
 autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("wtc/trim_trailing_whitespace", { clear = true }),
@@ -23,18 +24,20 @@ autocmd({ "bufenter", "bufwinenter" }, {
   pattern = { "*" },
   callback = function()
     vim.cmd [[set formatoptions-=c formatoptions-=r formatoptions-=o]]
-    --     vim.api.nvim_set_hl(0, "WinBar", { bg = "#303030" })
-    --     vim.api.nvim_set_hl(0, "WinBarNC", { bg = "#1c1c1c" })
-    --     vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#ffffff" })
   end,
 })
 
-local filetype_exclude = { "help", "alpha", "snacks_dashboard", "nvim-tree", "Trouble", "lazy", "mason" }
 autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("wt-local_detach_ufo", { clear = true }),
-  pattern = filetype_exclude,
+  group = vim.api.nvim_create_augroup("wt-local_detach_fold", { clear = true }),
+  pattern = {
+    "alpha",
+    "snacks_*",
+    "help",
+    "dashboard",
+  },
   callback = function()
-    require("ufo").detach()
+    vim.o.foldenable = false
+    vim.o.foldcolumn = "0"
   end,
 })
 
@@ -53,8 +56,6 @@ autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = args.buf })
   end,
 })
-
-local set = vim.opt_local
 
 --[[ Markdwon ]]
 local mdgroup = vim.api.nvim_create_augroup("mdgroup", { clear = true })
@@ -89,6 +90,19 @@ autocmd({ "BufRead", "BufNewFile" }, {
     set.tabstop = 2
     set.softtabstop = 2
     set.textwidth = 150
+  end,
+})
+
+--[[ -- c# ]]
+local cSharp = vim.api.nvim_create_augroup("cSharpgroup", { clear = true })
+autocmd({ "BufRead", "BufNewFile" }, {
+  group = cSharp,
+  pattern = "*.cs",
+  callback = function()
+    set.shiftwidth = 4
+    set.tabstop = 4
+    set.softtabstop = 4
+    set.textwidth = 120
   end,
 })
 

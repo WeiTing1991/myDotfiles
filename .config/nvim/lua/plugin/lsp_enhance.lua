@@ -1,4 +1,43 @@
 return {
+  {
+    "rmagatti/goto-preview",
+    dependencies = { "rmagatti/logger.nvim" },
+    event = "BufEnter",
+    config = true,
+  },
+  {
+    "stevearc/aerial.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = function()
+      local icons = vim.deepcopy(require("icon").symbol_kinds)
+      local opts = {
+        attach_mode = "global",
+        backends = { "lsp", "treesitter", "markdown", "man" },
+        show_guides = true,
+        layout = {
+          resize_to_content = false,
+          win_opts = {
+            winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+            signcolumn = "yes",
+            statuscolumn = " ",
+          },
+        },
+        icons = icons,
+        guides = {
+          mid_item = "├╴",
+          last_item = "└╴",
+          nested_top = "│ ",
+          whitespace = "  ",
+        },
+      }
+      return opts
+    end,
+    keys = {
+      { "<S-l>o", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
+    },
+  },
+
   -- [[Task Runner]]
   {
     "stevearc/overseer.nvim",
@@ -14,6 +53,13 @@ return {
   },
 
   --[[ language extra ]]
+  -- C#
+  {
+    "Hoffs/omnisharp-extended-lsp.nvim",
+    lazy = true,
+    ft = { "cs" },
+  },
+
   -- ts/js
   {
     "pmizio/typescript-tools.nvim",
@@ -65,8 +111,6 @@ return {
     ft = { "css", "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
     opts = { enable_autocmd = false },
   },
-
-  -- C#
 
   -- c/c++
   -- {

@@ -30,21 +30,7 @@ return {
     -- -@param opts TSConfig
     config = function()
       require "plugin.configs.treesitter"
-      require("treesitter-context").setup {
-        enable = true,
-        multiwindow = true,
-        max_lines = 0,
-        min_window_height = 0,
-        line_numbers = true,
-        multiline_threshold = 20,
-        trim_scope = "outer",
-        mode = "cursor",
-        oeparator = nil,
-        zindex = 20,
-        on_attach = nil,
-      }
     end,
-    vim.api.nvim_set_hl(0, "TreesitterContext", { underline = true, sp = "Grey", bold = true }),
   },
   -- fzf/telescope
   {

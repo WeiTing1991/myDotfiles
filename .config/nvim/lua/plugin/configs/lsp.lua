@@ -9,15 +9,15 @@ require("fidget").setup { notification = { window = { winblend = 0 } } }
 
 local ensure_installed = {}
 local lsp_server = vim.tbl_keys(require "lsp.server" or {})
-local lsp_formater = vim.tbl_values(require "lsp.formater" or {})
-local lsp_linter = vim.tbl_values(require "lsp.linter" or {})
+local lsp_extra = vim.tbl_values(require "lsp.formater_linter" or {})
 local debugger_server = require("lsp.debugger") or {}
 
 
 vim.list_extend(ensure_installed, lsp_server)
-vim.list_extend(ensure_installed, lsp_formater)
 vim.list_extend(ensure_installed, debugger_server)
-vim.list_extend(ensure_installed, lsp_linter)
+if not lsp_extra[1] then
+  vim.list_extend(ensure_installed, lsp_extra)
+end
 
 require("mason-tool-installer").setup {
   ensure_installed = ensure_installed,

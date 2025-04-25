@@ -31,7 +31,7 @@ require("staline").setup {
     expand_null_ls = false, -- This expands out all the null-ls sources to be shown
     left_separator = "",
     right_separator = "",
-    full_path = true,
+    full_path = false,
     branch_symbol = " ",
     true_colors = true, -- true lsp colors.
     font_active = "bold", -- "bold", "italic", "bold,italic", etc
@@ -40,12 +40,12 @@ require("staline").setup {
   mode_colors = {},
   mode_icons = {},
   sections = {
-    left = { "-mode", "-branch", "left_sep_double"  },
-    mid = {"right_sep_double", "-file_name", "left_sep_double" },
-    right = { "lsp", spell_check, copilot_status, indent_style, "line_column", "right_sep_double", "-cwd" },
+    left = { "-mode", "left_sep_double", "lsp" },
+    mid = { "right_sep_double", "-branch", "-file_name", "left_sep_double" },
+    right = { spell_check, copilot_status, indent_style, "line_column", "right_sep_double", "-cwd" },
   },
   inactive_sections = {
-    -- left = { "branch" },
+    -- left = { "lsp" },
     -- mid = { spell_check },
     -- right = {},
   },

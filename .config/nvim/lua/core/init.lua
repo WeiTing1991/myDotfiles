@@ -35,13 +35,14 @@ require("lazy").setup({
   { import = "plugin.git" },
   { import = "plugin.tools" },
   { import = "plugin.snack" },
+  { import = "plugin.lsp_enhance" },
+  { import = "plugin.note_taking" },
 
   -- { import = "plugin.dap" },
   -- { import = "plugin.extra." },
-  -- { import = "plugin.lsp_enhance." },
-  -- { import = "plugin.note_taking." },
 }, lazy_config)
 
 require "core.keybindings"
 require "keymappings"
+
 

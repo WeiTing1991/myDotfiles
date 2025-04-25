@@ -25,7 +25,6 @@ treesitter.setup {
     "c_sharp",
     "java",
 
-
     "go",
     "gomod",
     "gowork",
@@ -41,7 +40,6 @@ treesitter.setup {
     "markdown_inline",
     "latex",
 
-
     "javascript",
     "typescript",
     "jsdoc",
@@ -52,7 +50,6 @@ treesitter.setup {
     "toml",
     "css",
     "templ",
-
   },
   auto_install = true,
   ignore_install = {},
@@ -92,3 +89,21 @@ treesitter.setup {
     },
   },
 }
+
+require("treesitter-context").setup {
+  enable = true,
+  multiwindow = true,
+  max_lines = 3,
+  min_window_height = 0,
+  line_numbers = true,
+  multiline_threshold = 20,
+  trim_scope = "outer",
+  mode = "cursor",
+  oeparator = "-",
+  zindex = 20,
+  on_attach = nil,
+}
+
+-- Set up TreesitterContext highlights
+vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "NONE", bold = true })
+vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true, sp = "#ffffff", })

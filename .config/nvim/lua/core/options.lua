@@ -129,8 +129,8 @@ local options = {
   foldtext = "",
   foldlevel = 99,
   foldnestmax = 4,
-  -- foldcolumn = "0",
-  -- foldlevelstart = 99,
+  foldlevelstart = 99,
+  foldenable = true,
 
   --performace
   updatetime = 150,
@@ -147,6 +147,7 @@ local options = {
 -- vim.opt.isfname:append "@-@"
 -- vim.opt.iskeyword:append "-"
 vim.opt.whichwrap:append "<>[]hl"
+
 
 for k, v in pairs(options) do
   vim.opt[k] = v
