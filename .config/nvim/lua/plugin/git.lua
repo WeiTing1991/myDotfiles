@@ -4,6 +4,7 @@ return {
     lazy = true,
     event = { "BufWinEnter" },
   },
+
   -- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/diffview.lua
   {
     "sindrets/diffview.nvim",
@@ -22,12 +23,12 @@ return {
     config = function()
       require("gitsigns").setup {
         signs = {
-          add = { text = "+" },
-          change = { text = "~" },
+          add = { text = " +" },
+          change = { text = " ~" },
           delete = { text = "_" },
-          topdelete = { text = "‾" },
-          changedelete = { text = "│" },
-          untracked = { text = "┆" },
+          topdelete = { text = " ‾" },
+          changedelete = { text = " │" },
+          untracked = { text = " ┆" },
         },
         preview_config = { border = "rounded" },
         current_line_blame = false,

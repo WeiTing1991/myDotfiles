@@ -1,10 +1,10 @@
 return {
   {
-    "goolord/alpha-nvim",
-    lazy = true,
-    event = "VimEnter",
+    "rebelot/heirline.nvim",
+    event = "BufEnter",
+    enabled = false,
     config = function()
-      require "plugin.configs.dashboard"
+      require "plugin.configs.heirline"
     end,
   },
   {
@@ -19,9 +19,9 @@ return {
           "!mason",
           "!lazy",
         },
-        user_default_options ={
+        user_default_options = {
           names = false,
-        }
+        },
       }
     end,
   },
@@ -31,7 +31,7 @@ return {
     event = "VimEnter",
     config = function()
       require("winbar").setup {
-        icons = false,
+        icons = true,
         diagnostics = true,
         buf_modified = true,
         buf_modified_ssymbol = "M",

@@ -5,8 +5,8 @@ return {
   -- Statusline
   {
     "WeiTing1991/staline.nvim",
-    lazy = true,
-    event = "VimEnter",
+    priority = 1000,
+    lazy = false,
     config = function()
       require "plugin.configs.staline"
     end,

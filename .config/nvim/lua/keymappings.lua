@@ -68,7 +68,7 @@ map("n", "<leader>gq", ":DiffClose<cr>", { desc = "Close GitDiff" })
 map("n", "<leader>gl", function()
   require("core.float_term").float_term(
     "lazygit",
-    { size = { width = 0.85, height = 0.8 }, cwd = vim.b.gitsigns_status_dict.root }
+    { size = { width = 0.9, height = 0.85 }, cwd = vim.b.gitsigns_status_dict.root }
   )
 end, { desc = "Lazygit" })
 

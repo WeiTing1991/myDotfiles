@@ -211,25 +211,25 @@ if config.terminal_colors then
   end
 end
 
--- -- for statusline WIP
--- ---@type table<string, vim.api.keyset.highlight>
--- local statusline_groups = {}
--- for mode, color in pairs {
---     Normal = 'purple',
---     Pending = 'pink',
---     Visual = 'yellow',
---     Insert = 'green',
---     Command = 'cyan',
---     Other = 'orange',
--- } do
---     statusline_groups['StatuslineMode' .. mode] = { fg = colors.transparent_black, bg = colors[color] }
---     statusline_groups['StatuslineModeSeparator' .. mode] = { fg = colors[color], bg = colors.transparent_black }
--- end
--- statusline_groups = vim.tbl_extend('error', statusline_groups, {
---     StatuslineItalic = { fg = colors.grey, bg = colors.transparent_black, italic = true },
---     StatuslineSpinner = { fg = colors.bright_green, bg = colors.transparent_black, bold = true },
---     StatuslineTitle = { fg = colors.bright_white, bg = colors.transparent_black, bold = true },
--- })
+-- not working
+local statusline_groups = {}
+for mode, color in pairs {
+  Normal = "purple",
+  Pending = "bright_purple",
+  Visual = "yellow",
+  Insert = "green",
+  Command = "aqua",
+  Other = "orange",
+} do
+  statusline_groups["StatuslineMode" .. mode] = { fg = colors.transparent_black, bg = colors[color] }
+  statusline_groups["StatuslineModeSeparator" .. mode] = { fg = colors[color], bg = colors.transparent_black }
+end
+
+statusline_groups = vim.tbl_extend("error", statusline_groups, {
+  StatuslineItalic = { fg = colors.gray, bg = colors.transparent_black, italic = true },
+  StatuslineSpinner = { fg = colors.bright_green, bg = colors.transparent_black, bold = true },
+  StatuslineTitle = { fg = colors.white, bg = colors.transparent_black, bold = true },
+})
 
 -- Define highlight groups
 local groups = {

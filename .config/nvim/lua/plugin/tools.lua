@@ -24,13 +24,11 @@ return {
     lazy = false,
     opts = {},
   },
-  -- UndoTree
   {
     "mbbill/undotree",
     lazy = true,
     event = "VeryLazy",
   },
-  -- Tree
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
@@ -113,8 +111,7 @@ return {
     },
   },
 
-  -- better fold
-  -- https://github.com/kevinhwang91/nvim-ufo/issues/4
+  -- BETTER fold
   {
     "kevinhwang91/nvim-ufo",
     lazy = true,
@@ -154,9 +151,9 @@ return {
       vim.o.foldenable = true
 
       vim.opt.fillchars:append {
-        foldopen = "v", -- Unicode down arrow (or try "v" if this doesn't look right)
-        foldsep = " ", -- Space for fold separators
-        foldclose = ">", -- Unicode right arrow (or try ">" if this doesn't look right)
+        foldopen = "",
+        foldsep = " ",
+        foldclose = "",
       }
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -200,6 +197,36 @@ return {
       end
       opts.fold_virt_text_handler = handler
       require("ufo").setup(opts)
+    end,
+  },
+
+  -- cmdline
+  {
+    "gelguy/wilder.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    config = function()
+      -- Basic setup
+      local wilder = require "wilder"
+      wilder.setup { modes = { ":", "/", "?" } }
+      -- Optional: Configure renderers for a better look
+      wilder.set_option(
+        "renderer",
+        wilder.popupmenu_renderer {
+          highlighter = wilder.basic_highlighter(),
+          left = { " ", wilder.popupmenu_devicons() },
+          right = { " ", wilder.popupmenu_scrollbar() },
+        }
+      )
+
+      wilder.set_option("pipeline", {
+        wilder.branch(
+          wilder.cmdline_pipeline {
+            fuzzy = 1,
+          },
+          wilder.search_pipeline()
+        ),
+      })
     end,
   },
 

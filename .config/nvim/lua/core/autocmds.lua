@@ -29,7 +29,7 @@ autocmd({ "bufenter", "bufwinenter" }, {
   end,
 })
 
-local filetype_exclude = { "help", "alpha", "dashboard", "nvim-tree", "Trouble", "lazy", "mason" }
+local filetype_exclude = { "help", "alpha", "snacks_dashboard", "nvim-tree", "Trouble", "lazy", "mason" }
 autocmd("FileType", {
   group = vim.api.nvim_create_augroup("wt-local_detach_ufo", { clear = true }),
   pattern = filetype_exclude,
