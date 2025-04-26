@@ -72,7 +72,7 @@ nvimtree.setup({
     },
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
     custom = {
       ".DS_Store",
     },

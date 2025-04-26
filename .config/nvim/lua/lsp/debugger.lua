@@ -1,7 +1,7 @@
 local M = {}
 
 M = {
-  "netcoredbg",
+  -- "netcoredbg",
 }
 
 return M
