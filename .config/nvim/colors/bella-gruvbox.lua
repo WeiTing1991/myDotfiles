@@ -286,8 +286,9 @@ local groups = {
   GruvboxOrangeUnderline = { undercurl = config.undercurl, sp = colors.orange },
 
   -- Standard vim groups
-  Normal = config.transparent_mode and { fg = colors.fg1, bg = nil } or { fg = colors.fg1, bg = colors.bg0 },
-  NormalFloat = config.transparent_mode and { fg = colors.fg0, bg = nil } or { fg = colors.fg1, bg = colors.bg0 },
+  Normal = config.transparent_mode and { fg = colors.fg1, bg = "NONE" } or { fg = colors.fg1, bg = colors.bg0 },
+  NormalFloat = config.transparent_mode and { fg = colors.fg0, bg = "NONE" } or { bg = colors.bg0 },
+  FloatBorder = config.transparent_mode and { fg = colors.fg0, bg = "NONE" } or { fg = "NONE", bg = "NONE" },
   NormalNC = config.dim_inactive and { fg = colors.fg0, bg = colors.bg1 } or { link = "Normal" },
   CursorLine = { bg = colors.bg1 },
   CursorColumn = { link = "CursorLine" },

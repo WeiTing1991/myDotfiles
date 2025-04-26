@@ -82,7 +82,7 @@ rm -Force ~\AppData\Local\nvim-data
   - [ ]  C/C++ `- extra plugins`
 	- [x]  C#
   - [x]  Python
-  - [ ]  JavaScript/Typescript
+  - [x]  JavaScript/Typescript
   - [ ]  Go
   - [ ]  Java
 
@@ -105,8 +105,4 @@ More information you can find [here](https://weiting1991.github.io/weitingworks/
 [fd]:
 
 
-
-
 https://github.com/stevearc/overseer.nvim
-https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/autocmds.lua
-https://github.com/kkoomen/vim-doge

@@ -83,7 +83,7 @@ return {
 
   --[[ Formater/ Linter ]]
   {
-    "nvimtools/none-ls.nvim",
+    "WeiTing1991/none-ls.nvim",
     lazy = true,
     event = "BufEnter",
     dependencies = {

@@ -110,6 +110,7 @@ miniclue.setup {
     { mode = "n", keys = "<leader>t", desc = "+toggle" },
     { mode = "n", keys = "<leader>x", desc = "+diagnostics" },
     { mode = "n", keys = "<S-l>", desc = "LSP" },
+    { mode = "n", keys = "<S-l>t", desc = "typescript" },
 
     -- Customs
     mark_clues,

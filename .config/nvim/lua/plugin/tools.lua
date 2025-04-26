@@ -37,7 +37,7 @@ return {
     lazy = true,
     event = "VeryLazy",
     config = function()
-      require "plugin.configs.nvimtree"
+      require("plugin.configs.nvimtree")
     end,
   },
 
@@ -48,7 +48,7 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup {
+      require("copilot").setup({
         panel = {
           enabled = false,
         },
@@ -80,7 +80,7 @@ return {
         },
         -- copilot_node_command = 'node', -- Node.js version must be > 18.x
         server_opts_overrides = {},
-      }
+      })
     end,
   },
 
@@ -119,11 +119,12 @@ return {
     lazy = true,
     event = "BufEnter",
     config = function()
-      local builtin = require "statuscol.builtin"
-      require("statuscol").setup {
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
         setopt = true,
+        ft_ignore = { "snacks_dashboard", "help", "lazy", "mason", "NvimTree", "undotree" },
         segments = {
-          { text = {"%s"}, click = "v:lua.ScFa", maxwidth = 2 },
+          { text = { "%s" }, click = "v:lua.ScFa", maxwidth = 2 },
 
           { text = { builtin.lnumfunc }, click = "v:lua.scla" },
           {
@@ -132,11 +133,12 @@ return {
             click = "v:lua.scfa",
           },
         },
-      }
+      })
     end,
   },
 
   -- BETTER fold
+  -- TODO: make a PR
   {
     "kevinhwang91/nvim-ufo",
     lazy = true,
@@ -148,12 +150,22 @@ return {
       open_fold_hl_timeout = 0,
     },
     config = function(_, opts)
-      vim.o.foldcolumn = "1" -- '0' is not bad
-      vim.opt.fillchars:append {
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "*",
+        callback = function()
+          if vim.bo.filetype == "snacks_dashboard" then
+            vim.wo.foldcolumn = "0" -- Use window-local setting
+          else
+            vim.wo.foldcolumn = "1"
+          end
+        end,
+      })
+
+      vim.opt.fillchars:append({
         foldopen = "",
         foldsep = " ",
         foldclose = "",
-      }
+      })
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.foldingRange = {
@@ -162,9 +174,9 @@ return {
       }
       local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
       for _, ls in ipairs(language_servers) do
-        require("lspconfig")[ls].setup {
+        require("lspconfig")[ls].setup({
           capabilities = capabilities,
-        }
+        })
       end
       local handler = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
@@ -198,35 +210,6 @@ return {
     end,
   },
 
-  -- cmdline
-  {
-    "gelguy/wilder.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    config = function()
-      -- Basic setup
-      local wilder = require "wilder"
-      wilder.setup { modes = { ":", "/", "?" } }
-      -- Optional: Configure renderers for a better look
-      wilder.set_option(
-        "renderer",
-        wilder.popupmenu_renderer {
-          highlighter = wilder.basic_highlighter(),
-          left = { " ", wilder.popupmenu_devicons() },
-          right = { " ", wilder.popupmenu_scrollbar() },
-        }
-      )
-      wilder.set_option("pipeline", {
-        wilder.branch(
-          wilder.cmdline_pipeline {
-            fuzzy = 1,
-          },
-          wilder.search_pipeline()
-        ),
-      })
-    end,
-  },
-
   -- better search
   {
     "MagicDuck/grug-far.nvim",
@@ -239,14 +222,14 @@ return {
       {
         "<leader>/",
         function()
-          local grug = require "grug-far"
-          local ext = vim.bo.buftype == "" and vim.fn.expand "%:e"
-          grug.open {
+          local grug = require("grug-far")
+          local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+          grug.open({
             transient = true,
             prefills = {
               filesFilter = ext and ext ~= "" and "*." .. ext or nil,
             },
-          }
+          })
         end,
         mode = { "n", "v" },
         desc = "Search and Replace",

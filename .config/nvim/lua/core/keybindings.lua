@@ -1,6 +1,11 @@
 ----- default keymap -----
 local map = vim.keymap.set
 
+-- really good resouce
+-- Remap for dealing with word wrap and adding jumps to the jumplist.
+vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
+vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
+
 -- disable space key and remapping the keys
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
@@ -38,7 +43,7 @@ vim.keymap.set("n", "<C-q>", function()
 end, { desc = "Close current buffer and window" })
 
 -- clear search highlights
-vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear highlights" })
+vim.keymap.set("n", "<Esc>", ":noh<CR>", { desc = "Clear highlights" })
 
 -- comment
 vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })

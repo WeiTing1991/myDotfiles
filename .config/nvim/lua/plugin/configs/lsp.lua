@@ -10,14 +10,11 @@ require("fidget").setup { notification = { window = { winblend = 0 } } }
 local ensure_installed = {}
 local lsp_server = vim.tbl_keys(require "lsp.server" or {})
 local lsp_extra = vim.tbl_values(require "lsp.formater_linter" or {})
-local debugger_server = require("lsp.debugger") or {}
-
+local debugger_server = require "lsp.debugger" or {}
 
 vim.list_extend(ensure_installed, lsp_server)
 vim.list_extend(ensure_installed, debugger_server)
-if not lsp_extra[1] then
-  vim.list_extend(ensure_installed, lsp_extra)
-end
+vim.list_extend(ensure_installed, lsp_extra)
 
 require("mason-tool-installer").setup {
   ensure_installed = ensure_installed,
@@ -84,7 +81,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Diagnostic configuration.
 local diagnostic_icons = icons.diagnostics
 
-vim.diagnostic.config{
+vim.diagnostic.config {
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = diagnostic_icons.Error,
@@ -103,7 +100,7 @@ vim.diagnostic.config{
       [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
       [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
       [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-    }
+    },
   },
 }
 
@@ -140,7 +137,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
           -- prefix = "󱓻 ",
           prefix = "󱓻",
           source = virt_texts,
-
         })
 
         g.diagnostic_float_winid = winid

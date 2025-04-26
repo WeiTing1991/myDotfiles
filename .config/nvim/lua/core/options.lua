@@ -78,6 +78,7 @@ local options = {
   cursorline = true,
   laststatus = 3,
   termguicolors = true,
+  winborder = "rounded",
   -- cursorlineopt = "",
 
   list = true,

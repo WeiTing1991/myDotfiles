@@ -1,10 +1,10 @@
 local M = {}
 local spell_words = {}
-for word in io.open(vim.fn.stdpath "config" .. "/spell/en.utf-8.add", "r"):lines() do
+for word in io.open(vim.fn.stdpath("config") .. "/spell/en.utf-8.add", "r"):lines() do
   table.insert(spell_words, word)
 end
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig
+-- NOTE: https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
 M = {
   --- lua
   ["lua_ls"] = {
@@ -40,8 +40,9 @@ M = {
       python = {
         analysis = {
           ignore = { "*" },
-          -- typeCheckingMode = "basic",
         },
+        -- venvPath = ".",
+        -- venv = ".venv",
       },
     },
   },
@@ -103,18 +104,22 @@ M = {
 
   -- C#
   ["omnisharp"] = {
+    handlers = {
+      ["textDocument/definition"] = require("omnisharp_extended").handler,
+    },
     settings = {
       FormattingOptions = {
         EnableEditorConfigSupport = true,
         OrganizeImports = true,
       },
+      MsBuild = {
+        LoadProjectsOnDemand = false,
+        EnablePackageAutoRestore = true,
+      },
       RoslynExtensionsOptions = {
         EnableAnalyzersSupport = true,
         EnableImportCompletion = true,
         AnalyzeOpenDocumentsOnly = false,
-      },
-      MsBuild = {
-        LoadProjectsOnDemand = false,
       },
       Sdk = {
         IncludePrereleases = true,
@@ -123,10 +128,63 @@ M = {
   },
 
   -- js/ts/css/html
-  -- Switched to ts_ls tool
-  ["ts_ls"] = {},
+  ["ts_ls"] = {
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+        suggest = {
+          includeCompletionsForModuleExports = true,
+          completeFunctionCalls = true,
+          autoImports = true,
+        },
+        format = {
+          enable = true,
+          insertSpaceAfterCommaDelimiter = true,
+          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+          insertSpaceAfterSemicolonInForStatements = true,
+        },
+        updateImportsOnFileMove = {
+          enabled = "always",
+        },
+        autoClosingTags = true,
+      },
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+        suggest = {
+          includeCompletionsForModuleExports = true,
+          autoImports = true,
+        },
+        format = {
+          enable = true,
+          insertSpaceAfterCommaDelimiter = true,
+          insertSpaceAfterSemicolonInForStatements = true,
+          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+        },
+      },
+      completions = {
+        completeFunctionCalls = true,
+      },
+    },
+  },
+
   ["cssls"] = {
-    cmd = { "css-languageserver", "--stdio" },
+    -- cmd = { "css-languageserver", "--stdio" },
     filetypes = { "css", "scss", "less" },
     settings = {
       css = { validate = true },

@@ -1,9 +1,10 @@
 vim.cmd.colorscheme "bella-gruvbox"
 require "core"
 
+
 if vim.g.neovide then
   -- Font settings
-  vim.o.guifont = "JetBrainsMono Nerd Font:h12"  -- Set font and size
+  vim.o.guifont = "JetBrainsMono Nerd Font:h13"  -- Set font and size
 
   -- Disable all animations for clean, distraction-free experience
   vim.g.neovide_cursor_animation_length = 0.0

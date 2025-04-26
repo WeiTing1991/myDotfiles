@@ -140,31 +140,5 @@ return {
     lazy = true,
     event = "VeryLazy",
     opts = {},
-    -- config = function()
-    --   require("Comment").setup {
-    --     pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-    --   }
-    -- end,
-  },
-
-  -- Not working
-  {
-    "mg979/vim-visual-multi",
-    lazy = true,
-    enabled = false,
-    event = "InsertEnter",
-    config = function()
-      vim.g.VM_default_mappings = 0
-      vim.g.VM_maps = {
-        ["Find Under"] = "<M-d>",
-        ["Find Subword Under"] = "<M-d>",
-      }
-      print(vim.g.VM_maps["Find Under"])
-
-      -- Tried these as well but they do not work.
-      -- vim.g.VM_maps['Find Subword Under'] = "<C-x>"
-      -- vim.g.VM_maps["Select Cursor Down"] = '<M-u>'
-      -- vim.g.VM_maps["Select Cursor Up"]   = '<M-d>'
-    end,
   },
 }

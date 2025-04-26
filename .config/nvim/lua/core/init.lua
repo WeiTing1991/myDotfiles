@@ -1,6 +1,3 @@
-require "core.options"
-require "core.autocmds"
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
@@ -38,11 +35,13 @@ require("lazy").setup({
   { import = "plugin.lsp_enhance" },
   { import = "plugin.note_taking" },
 
+  -- FIX:
   -- { import = "plugin.dap" },
   -- { import = "plugin.extra." },
 }, lazy_config)
 
+-- default core
+require "core.options"
+require "core.autocmds"
 require "core.keybindings"
 require "keymappings"
-
-

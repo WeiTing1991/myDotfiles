@@ -1,10 +1,17 @@
--- NOTE: https://github.com/nvimtools/none-ls.nvim
-local null_ls = require "null-ls"
-local null_ls_utils = require "null-ls.utils"
+-- NOTE: https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md#hover
+local null_ls = require("null-ls")
+local null_ls_utils = require("null-ls.utils")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
-require("null-ls").setup {
+local filetypesTS = {
+  "javascript",
+  "typescript",
+  "javascriptreact",
+  "typescriptreact",
+}
+
+require("null-ls").setup({
   debug = false,
   --  -- on_init = function(new_client, _)
   --  --   new_client.offset_encoding = "utf-16"
@@ -13,14 +20,21 @@ require("null-ls").setup {
   sources = {
 
     null_ls.builtins.completion.spell,
+
+    --Github action
     null_ls.builtins.diagnostics.actionlint,
 
     -- formating
     -- lua
     formatting.stylua,
 
+    formatting.biome.with({
+      command = "biome",
+      filetypes = filetypesTS,
+    }),
+
     -- prettier
-    formatting.prettier.with {
+    formatting.prettier.with({
       filetyes = {
         "json",
         "jsonc",
@@ -29,30 +43,36 @@ require("null-ls").setup {
         "html",
       },
       extra_filetypes = { "toml" },
-    },
+      disabled_filetypes = filetypesTS,
+    }),
 
-    formatting.shfmt.with {
+    formatting.shfmt.with({
       filetypes = { "sh", "bash", "zsh" },
-    },
+    }),
 
+    -- cSharp
+    formatting.csharpier,
 
+    -- python
+    require("none-ls.diagnostics.ruff").with({
+      filetypes = { "python" },
+    }),
+
+    require("none-ls.formatting.ruff").with({
+      filetypes = { "python" },
+    }),
+
+    -- formatting.isort.with {
+    --   filetypes = { "python" },
+    -- },
+
+    -- formatting.black.with {
+    --   filetypes = { "python" },
+    --   extra_arges = { "--fast" },
+    -- },
   },
   --    -- js/ts
   --
-  --    formatting.biome,
-  --    -- formatting.biome.with {
-  --    --   command = "biome",
-  --    --   filetypes = {
-  --    --     "javascript",
-  --    --     "typescript",
-  --    --     "javascriptreact",
-  --    --     "typescriptreact",
-  --    --     "css",
-  --    --     -- "html",
-  --    --     "json",
-  --    --     "jsonc",
-  --    --   },
-  --    -- },
   --
   --
   --    -- require("none-ls.diagnostics.eslint_d"),
@@ -72,27 +92,7 @@ require("null-ls").setup {
   --      },
   --    },
   --
-  --    -- python
-  --    -- formating
-  --    require("none-ls.diagnostics.ruff").with {
-  --      filetypes = { "python" },
-  --    },
-  --
-  --    require("none-ls.formatting.ruff").with {
-  --      filetypes = { "python" },
-  --    },
-  --
-  --    -- formatting.isort.with {
-  --    --   filetypes = { "python" },
-  --    -- },
-  --
-  --    -- formatting.black.with {
-  --    --   filetypes = { "python" },
-  --    --   extra_arges = { "--fast" },
-  --    -- },
-  --
-  --  },
-}
+})
 
 -- local null_ls = require "null-ls"
 -- local null_ls_utils = require "null-ls.utils"

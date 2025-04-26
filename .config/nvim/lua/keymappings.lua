@@ -1,11 +1,16 @@
 ----- Pluglins keymaps -----
 local map = vim.keymap.set
-local fzf = require "fzf-lua"
-local color_swithcer = require "core.color_switcher"
-local snacks = require "snacks"
+local fzf = require("fzf-lua")
+local color_swithcer = require("core.color_switcher")
+local snacks = require("snacks")
+
+-- lsp enhance
+map("n", "<leader>q", function()
+  require("goto-preview").close_all_win()
+end, { desc = "Close all preview windows" })
 
 -- [[ Override default keymaps ]]
-vim.keymap.set("n", "<C-q>", function()
+map("n", "<C-q>", function()
   snacks.bufdelete()
 end, { desc = "Close current buffer and window" })
 
@@ -37,10 +42,10 @@ map("n", "<leader>ff", fzf.files, { desc = "Find files" })
 map("n", "<leader>fo", fzf.oldfiles, { desc = "Open recent file" })
 map("n", "<leader>fb", fzf.buffers, { desc = "Finde file in opened buffer" })
 map("n", "<leader>fj", function()
-  require("fzf-lua").files { cwd = vim.fn.expand "%:p:h" }
+  require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
 end, { desc = "Finde file in current child dir" })
 map("n", "<leader>fg", function()
-  fzf.live_grep_glob { search = vim.fn.input "Grep > " }
+  fzf.live_grep_glob({ search = vim.fn.input("Grep > ") })
 end, { desc = "Grep search" })
 map("n", "<leader>fk", fzf.keymaps, { desc = "Search keymaps" })
 map("n", "<leader>fl", fzf.live_grep, { desc = "Find live grep" })
@@ -74,12 +79,12 @@ end, { desc = "Lazygit" })
 
 -- hunk
 map({ "n", "v" }, "<leader>gH", function()
-  require("gitsigns").stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+  require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "Stage hunk" })
 map("n", "<leader>ghs", ":Gitsign stage_buffer<CR>", { desc = "stage hunk" })
 map("n", "<leader>ghh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
 map({ "n", "v" }, "<leader>ghr", function()
-  require("gitsigns").reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+  require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "git reset hunk" })
 -- map("n", "<leader>gss", ":Gitsign stage_hunk<CR>", { desc = "stage hunk" })
 -- map("n", "<leader>ghr", ":Gitsign reset_hunk<CR>", { desc = "reset hunk" })
@@ -88,13 +93,13 @@ map("n", "<leader>gs", ":FzfLua git_status<CR>", { desc = "Status" })
 map("n", "<leader>gb", ":FzfLua git_branches<CR>", { desc = "Branch" })
 map("n", "<leader>gcb", ":FzfLua git_bcommits<CR>", { desc = "Buffer Commits" })
 map("n", "<leader>gcc", ":FzfLua git_commits<CR>", { desc = "Commits" })
-map("n", "<leader>gb", function ()
+map("n", "<leader>gb", function()
   snacks.gitbrowse()
 end, { desc = "open current github" })
 
 local function commit_current_file()
-  local file = vim.fn.expand "%"
-  local message = vim.fn.input "Commit message: "
+  local file = vim.fn.expand("%")
+  local message = vim.fn.input("Commit message: ")
   vim.cmd("Git add " .. file)
   vim.cmd('Git commit -m "' .. message .. '"')
 end
@@ -115,11 +120,11 @@ autocmd("BufWinEnter", {
     local bufnr = vim.api.nvim_get_current_buf()
     local opts = { buffer = bufnr, remap = false }
     vim.keymap.set("n", "<leader>p", function()
-      vim.cmd.Git "push"
+      vim.cmd.Git("push")
     end, opts)
     -- rebase always
     vim.keymap.set("n", "<leader>P", function()
-      vim.cmd.Git { "pull", "--rebase" }
+      vim.cmd.Git({ "pull", "--rebase" })
     end, opts)
     vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts)
   end,
@@ -131,13 +136,16 @@ autocmd("BufWinEnter", {
 map("n", "<leader>tc", function()
   require("copilot.suggestion").toggle_auto_trigger()
   if not vim.b.copilot_suggestion_auto_trigger then
-    print "Copilot is disabled"
+    print("Copilot is disabled")
   else
-    print "Copilot is enabled"
+    print("Copilot is enabled")
   end
 end, { desc = "Copilot" })
 
 map("n", "<leader>tu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
+map("n", "<leader>ta", function()
+  require("neogen").generate()
+end, { desc = "Annotation" })
 
 --[[ diagnostics ]]
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })

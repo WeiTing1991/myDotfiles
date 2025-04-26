@@ -22,7 +22,6 @@ for name, sign in pairs(icons) do
 end
 
 return {
-  -- DEBUGGER
   {
     "mfussenegger/nvim-dap",
     lazy = true,
@@ -31,7 +30,6 @@ return {
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
       "theHamsta/nvim-dap-virtual-text",
-      "jay-babu/mason-nvim-dap.nvim",
 
       -- Add own debuggers here
       -- "leoluz/nvim-dap-go",
@@ -42,7 +40,6 @@ return {
       },
     },
     keys = {
-      -- Basic debugging keymaps, feel free to change to your liking!
       {
         "<F5>",
         function()
@@ -55,19 +52,14 @@ return {
       local dap = require "dap"
       local dapui = require "dapui"
 
-      -- doesnt work with mason-dap
-      -- require("mason-nvim-dap").setup {
-      --   automatic_installation = true,
-      --   handlers = {},
-      --   ensure_installed = require("lsp.debugger")
-      -- }
-
       dapui.setup()
 
       -- Automatically open the UI when a new debug session is created.
       dap.listeners.after.event_initialized["dapui_config"] = dapui.open
       dap.listeners.before.event_terminated["dapui_config"] = dapui.close
       dap.listeners.before.event_exited["dapui_config"] = dapui.close
+      require('overseer').patch_dap(true)
+      require('dap.ext.vscode').json_decode = require('overseer.json').decode
 
       -- csharp configurations
       dap.adapters.coreclr = {
@@ -86,19 +78,19 @@ return {
         },
       }
       -- Lua configurations.
-      dap.adapters.nlua = function(callback, config)
-        callback { type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 }
-      end
-      dap.configurations["lua"] = {
-        {
-          type = "nlua",
-          request = "attach",
-          name = "Attach to running Neovim instance",
-          program = function()
-            pcall(require("osv").launch { port = 8086 })
-          end,
-        },
-      }
+      -- dap.adapters.nlua = function(callback, config)
+      --   callback { type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 }
+      -- end
+      -- dap.configurations["lua"] = {
+      --   {
+      --     type = "nlua",
+      --     request = "attach",
+      --     name = "Attach to running Neovim instance",
+      --     program = function()
+      --       pcall(require("osv").launch { port = 8086 })
+      --     end,
+      --   },
+      -- }
     end,
   },
 }

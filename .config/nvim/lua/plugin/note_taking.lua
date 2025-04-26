@@ -61,17 +61,17 @@ return {
       }
     end,
   },
-  {
-    "nvim-orgmode/orgmode",
-    lazy = true,
-    event = "VeryLazy",
-    enabled = false,
-    config = function()
-      -- Setup orgmode
-      require("orgmode").setup {
-        org_agenda_files = "~/orgfiles/**/*",
-        org_default_notes_file = "~/orgfiles/refile.org",
-      }
-    end,
-  },
+  -- {
+  --   "nvim-orgmode/orgmode",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   enabled = false,
+  --   config = function()
+  --     -- Setup orgmode
+  --     require("orgmode").setup {
+  --       org_agenda_files = "~/orgfiles/**/*",
+  --       org_default_notes_file = "~/orgfiles/refile.org",
+  --     }
+  --   end,
+  -- },
 }
