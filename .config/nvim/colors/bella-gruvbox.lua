@@ -310,7 +310,7 @@ local groups = {
   Underlined = { fg = colors.blue, underline = config.underline },
   StatusLine = { fg = colors.fg1, bg = colors.bg2 },
   StatusLineNC = { fg = colors.fg4, bg = colors.bg1 },
-  WinBar = { fg = colors.fg0, bg = colors.bg4 },
+  WinBar = { fg = colors.bg0, bg = colors.bg4 },
   WinBarNC = { fg = colors.fg3, bg = colors.bg0 },
   WinSeparator = config.transparent_mode and { fg = colors.white, bg = nil } or { fg = colors.white, bg = colors.bg0 },
   WildMenu = { fg = colors.blue, bg = colors.bg2, bold = config.bold },

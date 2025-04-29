@@ -41,49 +41,6 @@ return {
     end,
   },
 
-  -- Copilot
-  {
-    "zbirenbaum/copilot.lua",
-    lazy = true,
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        panel = {
-          enabled = false,
-        },
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          hide_during_completion = true,
-          debounce = 10,
-          keymap = {
-            accept = false,
-            accept_word = "<C-f>",
-            accept_line = "<C-l>",
-            next = "<C-]>",
-            prev = "<C-[>",
-            dismiss = "<Esc>",
-            -- dismiss = "<C-c>",
-          },
-        },
-        filetypes = {
-          yaml = false,
-          markdown = true,
-          help = false,
-          gitcommit = false,
-          gitrebase = false,
-          hgcommit = false,
-          svn = false,
-          cvs = false,
-          ["."] = false,
-        },
-        -- copilot_node_command = 'node', -- Node.js version must be > 18.x
-        server_opts_overrides = {},
-      })
-    end,
-  },
-
   -- Markdown
   {
     "iamcco/markdown-preview.nvim",
@@ -105,10 +62,13 @@ return {
     cmd = "Trouble",
     opts = {
       focus = true,
-      modes = {
-        lsp = {
-          win = { position = "right" },
-        },
+      auto_preview = true, -- Disable auto-preview
+      preview = {
+        type = "float",
+        relative = "editor",
+        size = { width = 0.8, height = 0.3 }, -- Smaller preview
+        position = { 0.5, 0.8 },
+        border = "single",
       },
     },
   },

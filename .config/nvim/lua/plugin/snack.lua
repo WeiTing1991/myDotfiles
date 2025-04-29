@@ -1,3 +1,5 @@
+local obPath = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen/")
+
 local dashboard = {
   width = 60,
   row = nil, -- dashboard position. nil for center
@@ -24,6 +26,12 @@ local dashboard = {
         desc = "Config",
         action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
       },
+      {
+        icon = " ",
+        key = "b",
+        desc = "Notes",
+        action = string.format(":lua Snacks.dashboard.pick('files', {cwd = '%s'})", obPath),
+      },
       { icon = "󱥚 ", key = "d", desc = "Dired", action = ":lua require('oil').open()<CR>" },
       -- { icon = " ", key = "s", desc = "Dired", action = ":lua require('oil').open()<CR>" },
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
@@ -43,7 +51,7 @@ local dashboard = {
   formats = {
     icon = function(item)
       if item.file and item.icon == "file" or item.icon == "directory" then
-        local M = require "icon"
+        local M = require("icon")
         return M.icon(item.file, item.icon)
       end
       return { item.icon, width = 2, hl = "icon" }
@@ -61,7 +69,7 @@ local dashboard = {
           fname = dir .. "/…" .. file
         end
       end
-      local dir, file = fname:match "^(.*)/(.+)$"
+      local dir, file = fname:match("^(.*)/(.+)$")
       return dir and { { dir .. "/", hl = "dir" }, { file, hl = "file" } } or { { fname, hl = "file" } }
     end,
   },

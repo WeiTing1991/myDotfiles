@@ -39,6 +39,7 @@ treesitter.setup {
     "markdown",
     "markdown_inline",
     "latex",
+    "typst",
 
     "javascript",
     "typescript",

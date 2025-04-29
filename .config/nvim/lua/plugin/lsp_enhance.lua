@@ -13,17 +13,20 @@ return {
       local icons = vim.deepcopy(require("icon").symbol_kinds)
       local opts = {
         attach_mode = "global",
-        backends = { "lsp", "treesitter", "markdown", "man" },
+        backends = { "treesitter", "lsp", "markdown", "man" },
         show_guides = true,
         layout = {
-          resize_to_content = false,
+          max_width = { 60, 0.3 },
+          width = nil,
+          min_width = 30,
+          resize_to_content = true,
           win_opts = {
-            winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+            -- winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
             signcolumn = "yes",
             statuscolumn = " ",
           },
         },
-        icons = icons,
+        icons = vim.o.filetype == "markdown" and {} or icons,
         guides = {
           mid_item = "├╴",
           last_item = "└╴",
@@ -84,7 +87,6 @@ return {
   --     },
   --   },
   -- },
-
 
   -- [[Task Runner]]
   -- {

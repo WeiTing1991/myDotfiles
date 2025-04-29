@@ -3,7 +3,7 @@ local map = vim.keymap.set
 
 -- really good resouce
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
-vim.keymap.set('n', 'j', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
+vim.keymap.set('n', 'j', [[(v:count > 0 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
 
 -- disable space key and remapping the keys

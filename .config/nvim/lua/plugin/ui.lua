@@ -32,7 +32,7 @@ return {
     config = function()
       require("winbar").setup {
         icons = true,
-        diagnostics = true,
+        diagnostics = false,
         buf_modified = true,
         buf_modified_symbol = "M",
         dir_levels = 99, -- max levels of directories to show

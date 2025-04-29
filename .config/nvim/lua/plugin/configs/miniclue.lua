@@ -64,10 +64,11 @@ miniclue.setup {
     -- Leader 2 triggers
     { mode = "n", keys = "<S-l>" },
     { mode = "x", keys = "<S-l>" },
-    --
-    -- -- Leader 2 triggers
-    -- { mode = "n", keys = "<C-g>" },
-    -- { mode = "x", keys = "<C-g>" },
+
+    -- Leader 2 triggers
+    { mode = "n", keys = "<M-i>" },
+    { mode = "v", keys = "<M-i>" },
+    { mode = "x", keys = "<M-i>" },
     -- { mode = "i", keys = "<C-x>" },
 
     -- Builtins
@@ -109,8 +110,9 @@ miniclue.setup {
     { mode = "n", keys = "<leader>g", desc = "+git" },
     { mode = "n", keys = "<leader>t", desc = "+toggle" },
     { mode = "n", keys = "<leader>x", desc = "+diagnostics" },
-    { mode = "n", keys = "<S-l>", desc = "LSP" },
-    { mode = "n", keys = "<S-l>t", desc = "typescript" },
+    { mode = "n", keys = "<S-l>", desc = "+LSP" },
+    { mode = "n", keys = "<S-l>t", desc = "+typescript" },
+    { mode = "n", keys = "<M-i>", desc = "+AI" },
 
     -- Customs
     mark_clues,

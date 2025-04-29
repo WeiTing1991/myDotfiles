@@ -3,6 +3,10 @@ local map = vim.keymap.set
 local fzf = require("fzf-lua")
 local color_swithcer = require("core.color_switcher")
 local snacks = require("snacks")
+local ui_seltect = require("core.ui_select")
+
+map("n", "<leader>rr", fzf.registers, { desc = "show register" })
+map("n", "<leader>rm", fzf.marks, { desc = "show marks" })
 
 -- lsp enhance
 map("n", "<leader>q", function()

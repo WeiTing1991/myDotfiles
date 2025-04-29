@@ -107,6 +107,11 @@ M = {
     handlers = {
       ["textDocument/definition"] = require("omnisharp_extended").handler,
     },
+    enable_roslyn_analysers = true,
+    enable_import_completion = true,
+    organize_imports_on_format = true,
+    enable_decompilation_support = true,
+    filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets", "tproj", "slngen", "fproj" },
     settings = {
       FormattingOptions = {
         EnableEditorConfigSupport = true,
@@ -117,7 +122,7 @@ M = {
         EnablePackageAutoRestore = true,
       },
       RoslynExtensionsOptions = {
-        EnableAnalyzersSupport = true,
+        EnableAnalyzersSupport = false,
         EnableImportCompletion = true,
         AnalyzeOpenDocumentsOnly = false,
       },
@@ -200,6 +205,7 @@ M = {
   -- docker
   ["dockerls"] = {},
   ["docker_compose_language_service"] = {},
+  -- markdown
 
   -- c/c++
   -- ["clangd"] = {

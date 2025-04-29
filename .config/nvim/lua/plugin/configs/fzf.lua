@@ -1,11 +1,11 @@
-local fzf = require "fzf-lua"
+local fzf = require("fzf-lua")
 local config = fzf.config
 local actions = fzf.actions
 
-local icons = require "icon"
+local icons = require("icon")
 
 -- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/fzf-lua.lua
-fzf.setup {
+fzf.setup({
   -- MISC GLOBAL SETUP OPTIONS, SEE BELOW
   -- fzf_bin = ...,
   -- UI options
@@ -20,7 +20,7 @@ fzf.setup {
       vertical = "up:40%",
     },
   },
-  defaults = { git_icons = false},
+  defaults = { git_icons = false },
   lsp = {
     preview = true,
   },
@@ -113,16 +113,16 @@ fzf.setup {
     },
   },
   grep = {
-    header_prefix = icons.misc.search .. ' ',
+    header_prefix = icons.misc.search .. " ",
     rg_glob_fn = function(query, opts)
-        local regex, flags = query:match(string.format('^(.*)%s(.*)$', opts.glob_separator))
-        -- Return the original query if there's no separator.
-        return (regex or query), flags
+      local regex, flags = query:match(string.format("^(.*)%s(.*)$", opts.glob_separator))
+      -- Return the original query if there's no separator.
+      return (regex or query), flags
     end,
     actions = {
       ["alt-i"] = { actions.toggle_ignore },
       ["alt-h"] = { actions.toggle_hidden },
     },
   },
-}
+})
 

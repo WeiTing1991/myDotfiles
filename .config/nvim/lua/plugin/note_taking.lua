@@ -5,7 +5,7 @@ return {
     lazy = true,
     event = "VeryLazy",
     config = function()
-      require("todo-comments").setup {
+      require("todo-comments").setup({
         signs = true,
         sign_priority = 8,
         keywords = {
@@ -58,7 +58,7 @@ return {
           pattern = [[\b(KEYWORDS):]], -- ripgrep regex
           -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
         },
-      }
+      })
     end,
   },
   -- {

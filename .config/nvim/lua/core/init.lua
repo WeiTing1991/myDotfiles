@@ -34,10 +34,10 @@ require("lazy").setup({
   { import = "plugin.snack" },
   { import = "plugin.lsp_enhance" },
   { import = "plugin.note_taking" },
+  { import = "plugin.ai" },
 
   -- FIX:
   -- { import = "plugin.dap" },
-  -- { import = "plugin.extra." },
 }, lazy_config)
 
 -- default core
