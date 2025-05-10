@@ -58,10 +58,6 @@
     "command": "-workbench.view.extensions",
     "when": "viewContainer.workbench.view.extensions.enabled"
   },
-  // {
-  //   "key": "ctrl+g b",
-  //   "command": "simpleBrowser.show"
-  // },
   // find file
   {
     "key": "ctrl+f",
