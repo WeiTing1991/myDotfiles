@@ -161,8 +161,16 @@ tmux_two_pane() {
 }
 alias t=tmux_two_pane
 
-# zellij
-# alias z="zellij"
+
+tmux_nvim() {
+    # Check if session exists, create if not
+    tmux has-session -t main 2>/dev/null || tmux new-session -d -s main
+    # Send command to start nvim in the session
+    tmux send-keys -t main "nvim" C-m
+    # Attach to the session
+    tmux -2 attach-session -t main
+}
+alias tn=tmux_nvim
 
 # ----------------------------------- TERM -----------------------------------
 # bash and zsh

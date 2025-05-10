@@ -11,7 +11,7 @@ local function my_on_attach(bufnr)
   end
   -- default mappings
   api.config.mappings.default_on_attach(bufnr)
-  -- vim.keymap.set("n", "n", api.fs.create, opts "Create File Or Directory")
+  vim.keymap.set("n", "n", api.fs.create, opts "Create File Or Directory")
   vim.keymap.set("n", "<C-S-e>", api.tree.close, opts("Toggle File Explorer"))
 end
 
@@ -27,7 +27,7 @@ nvimtree.setup({
     sorter = "case_sensitive",
   },
   view = {
-    width = 35,
+    width = 40,
     relativenumber = false,
     side = "right",
 
@@ -55,6 +55,7 @@ nvimtree.setup({
       end,
     },
   },
+
   on_attach = my_on_attach,
   renderer = {
     indent_markers = { enable = true },

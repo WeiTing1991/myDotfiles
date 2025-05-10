@@ -1,5 +1,8 @@
-vim.cmd.colorscheme "bella-gruvbox"
-require "core"
+if vim.g.vscode then
+else
+  vim.cmd.colorscheme "bella-gruvbox"
+  require "core"
+end
 
 
 if vim.g.neovide then

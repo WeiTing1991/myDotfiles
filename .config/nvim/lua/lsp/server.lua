@@ -205,24 +205,33 @@ M = {
   -- docker
   ["dockerls"] = {},
   ["docker_compose_language_service"] = {},
-  -- markdown
+
+  -- database
+  ["sqls"] = {},
 
   -- c/c++
-  -- ["clangd"] = {
-  --   cmd = {
-  --     "clangd",
-  --     "--clang-tidy",
-  --     "--log=verbose",
-  --     "--enable-config",
-  --     -- "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
-  --   },
-  --   root_dir = function()
-  --     return vim.fn.getcwd()
-  --   end,
-  --   capabilities = {
-  --     offsetEncoding = { "utf-16" },
-  --   },
-  -- },
+  ["clangd"] = {
+    capabilities = {
+      offsetEncoding = { "utf-16" },
+    },
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
+      "--completion-style=detailed",
+      "--function-arg-placeholders",
+      "--fallback-style=llvm",
+      --   "--log=verbose",
+      --   "--enable-config",
+      --   -- "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
+    },
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+      clangdFileStatus = true,
+    },
+  },
 
   -- HAVE to install go global
   -- go

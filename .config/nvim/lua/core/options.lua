@@ -6,7 +6,7 @@ local is_mac = vim.loop.os_uname().sysname == "Darwin"
 
 local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
-vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
+vim.env.PATH = table.concat({ vim.fn.stdpath("data"), "mason", "bin" }, sep) .. delim .. vim.env.PATH
 
 local globals = {
 
@@ -33,22 +33,22 @@ end
 -- undo folder
 local undoDir = ""
 if is_mac then
-  undoDir = os.getenv "HOME" .. "/.vim/undodir"
+  undoDir = os.getenv("HOME") .. "/.vim/undodir"
 elseif is_windows then
-  undoDir = vim.fn.stdpath "config" .. "\\.vim\\undodir"
+  undoDir = vim.fn.stdpath("config") .. "\\.vim\\undodir"
 else
-  undoDir = os.getenv "HOME" .. "/.vim/undodir"
+  undoDir = os.getenv("HOME") .. "/.vim/undodir"
 end
 
 -- spell folder
 local spellDir = ""
 local spell_word = {}
 if is_mac then
-  spellDir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
+  spellDir = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
 elseif is_windows then
-  spellDir = vim.fn.stdpath "config" .. "\\spell\\en.utf-8.add"
+  spellDir = vim.fn.stdpath("config") .. "\\spell\\en.utf-8.add"
 else
-  spellDir = vim.fn.stdpath "config" .. "/spell/en.utf-8.add"
+  spellDir = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
 end
 
 local options = {
@@ -86,6 +86,7 @@ local options = {
   fillchars = { eob = " " },
   wildmenu = true,
   signcolumn = "yes:1",
+  -- split options
   splitright = true,
   splitbelow = true,
 
@@ -98,9 +99,13 @@ local options = {
 
   -- Case-insensitive searching UNLESS \C or capital in search
   -- search
-  hlsearch = true,
+  incsearch = false,
+  -- Preview substitutions live, as you type!
+  shortmess = vim.opt.shortmess + { c = true },
+  inccommand = "split",
   ignorecase = true,
   smartcase = true,
+  hlsearch = true,
   wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" },
 
   -- Save undo history
@@ -109,10 +114,6 @@ local options = {
   writebackup = false,
   undofile = true,
   undodir = undoDir,
-
-  -- Preview substitutions live, as you type!
-  inccommand = "split",
-  shortmess = vim.opt.shortmess + { c = true },
 
   -- colorcolumn = "120",
   textwidth = 110, -- virt column set to 110
@@ -134,8 +135,8 @@ local options = {
   foldenable = true,
 
   --performace
-  updatetime = 150,
-  redrawtime = 100,
+  updatetime = 30,
+  -- redrawtime = 100,
   timeoutlen = 200,
   ttimeoutlen = 100,
 
@@ -145,10 +146,9 @@ local options = {
   spellfile = spellDir,
 }
 
--- vim.opt.isfname:append "@-@"
+vim.opt.isfname:append "@-@"
 -- vim.opt.iskeyword:append "-"
-vim.opt.whichwrap:append "<>[]hl"
-
+vim.opt.whichwrap:append("<>[]hl")
 
 for k, v in pairs(options) do
   vim.opt[k] = v
