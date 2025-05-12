@@ -90,9 +90,9 @@ vim.keymap.set("n", "<C-S-i>", ":tabnext<CR>", { noremap = true, silent = true, 
 vim.keymap.set("n", "<C-S-o>", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab" })
 
 -- windows
--- vim.keymap.set("n", "<C-'>", function()
---   require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
--- end, { desc = "Toggle maximize buffer" })
+vim.keymap.set("n", "<C-'>", function()
+  require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
+end, { desc = "Toggle maximize buffer" })
 
 vim.keymap.set("n", "<C-w>5", "<C-w>v", { desc = "split vertically" })
 vim.keymap.set("n", "<C-w>'", "<C-w>s", { desc = "split horizontally" })
