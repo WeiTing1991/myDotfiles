@@ -37,8 +37,8 @@ return {
           ["."] = false,
         },
         copilot_node_command = "node",
-        copilot_model = "gpt-4o",
-        -- copilot_model = "claude-3.7-sonnet",
+        copilot_model = "claude-3.7-sonnet",
+        -- copilot_model = "gpt-4o",
         server_opts_overrides = {
           trace = "verbose",
           settings = {
@@ -70,6 +70,26 @@ return {
         strategies = {
           chat = { adapter = "copilot" },
           inline = { adapter = "copilot" },
+        },
+        adapters = {
+          copilot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                model = {
+                  default = "claude-3.7-sonnet",
+                  choices = {
+                    "gpt-4o-2024-05-13",
+                    "gpt-4o-2024-08-06",
+                    "claude-3.5-sonnet",
+                    "claude-3.7-sonnet",
+                    "claude-4-sonnet",
+                    "o1-preview-2024-09-12",
+                    "o1-mini-2024-09-12",
+                  },
+                },
+              },
+            })
+          end,
         },
         opts = {
           log_level = "DEBUG",

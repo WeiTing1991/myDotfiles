@@ -5,6 +5,7 @@
 
 # apparence
 font-family = "JetBrainsMonoNL Nerd Font"
+# font-family = "FiraCode Nerd Font"
 window-title-font-family = "FiraCode Nerd Font"
 font-size = 14
 # background = "0D0907"
