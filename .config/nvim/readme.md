@@ -5,7 +5,7 @@
 <a href="https://dotfyle.com/WeiTing1991/mydotfiles-config-nvim"><img src="https://dotfyle.com/WeiTing1991/mydotfiles-config-nvim/badges/plugin-manager?style=flat" /></a>
 
 
->[!NOTE]
+> [!NOTE]
 > it will be update date by date, since I will do some change that during my daily use.
 
 ## Info
@@ -18,7 +18,7 @@ I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setti
 
 ## Setup
 **Requirements**
-  Neovim >= 0.11
+- Neovim >= 0.11
 - git >= 2.47.1
 - curl
 - fzf
@@ -47,9 +47,6 @@ rm -Force ~\AppData\Local\nvim-data
 
 > [!NOTE]
 > Still under documenting
-
-
-
 
 ## Install Instructions
 
