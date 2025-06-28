@@ -47,3 +47,6 @@ New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptP
 # $dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\windos_11_hotkeys.ahk"
 # New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
 
+
+# zed
+New-Item -Path $HOME\AppData\Roaming\Zed -ItemType SymbolicLink -Value $HOME\.dotfiles\.config\zed -Force
