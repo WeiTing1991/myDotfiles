@@ -81,12 +81,12 @@ require("blink.cmp").setup({
 
   appearance = {
     nerd_font_variant = "mono",
-    kind_icons = require("icon").symbol_kinds,
+    -- kind_icons = require("icon").symbol_kinds,
   },
 
   sources = {
     default = function()
-      local sources = { "lazydev", "lsp", "path", "snippets", "buffer" }
+      local sources = { "lazydev", "dadbod", "lsp", "path", "snippets", "omni", "buffer" }
       local ok, node = pcall(vim.treesitter.get_node)
 
       if ok and node then
@@ -106,6 +106,7 @@ require("blink.cmp").setup({
         -- make lazydev completions top priority (see `:h blink.cmp`)
         score_offset = 100,
       },
+      dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
     },
   },
   fuzzy = { implementation = "prefer_rust_with_warning" },

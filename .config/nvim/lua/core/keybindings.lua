@@ -44,6 +44,7 @@ end, { desc = "Close current buffer and window" })
 
 -- clear search highlights
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { desc = "Clear highlights" })
+vim.keymap.set("n", "<C-c>", ":noh<CR>", { desc = "Clear highlights" })
 
 -- comment
 vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
@@ -132,8 +133,9 @@ vim.keymap.set({ "n", "t" }, "<leader><leader>", function()
   require("core.float_term").float_term()
 end, { desc = "Toggle term" })
 
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection with system clipboard content" })
+
 -- Optional
 -- -- Parser info
 -- vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })
 -- -- Delete selected text and replace with text from system clipboard
--- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection with system clipboard content" })

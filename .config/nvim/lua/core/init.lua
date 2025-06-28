@@ -35,6 +35,7 @@ require("lazy").setup({
   { import = "plugin.lsp_enhance" },
   { import = "plugin.note_taking" },
   { import = "plugin.ai" },
+  { import = "plugin.sql" },
 
   -- FIX:
   -- { import = "plugin.dap" },

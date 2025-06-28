@@ -1,5 +1,5 @@
 cmd - 1 : open -a "Ghostty"
-cmd - 2 : open -a "Brave Browser"
+cmd - 2 : open -a "Brave Browser"; sleep 0.1; skhd -k "cmd - 0x32"
 cmd - 3 : open -a "Obsidian"
 
 cmd - 7 : open -a "Visual Studio Code"

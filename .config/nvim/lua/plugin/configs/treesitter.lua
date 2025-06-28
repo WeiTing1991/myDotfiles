@@ -51,6 +51,8 @@ treesitter.setup {
     "toml",
     "css",
     "templ",
+
+    "sql",
   },
   auto_install = true,
   ignore_install = {},
