@@ -7,18 +7,29 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "assistant": {
+  "edit_predictions": {
+    "mode": "eager",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null,
+      "enterprise_uri": null
+    },
+    "enabled_in_text_threads": false
+  },
+  "auto_install_extensions": {},
+  "agent": {
+    "version": "2",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-7-sonnet-latest"
-    },
-    "version": "2"
+    }
   },
   "icon_theme": "Zed (Default)",
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "copilot"
+    // "edit_prediction_provider": "zed"
   },
-  "base_keymap": "Emacs",
+  "base_keymap": "VSCode",
   "telemetry": {
     "metrics": false
   },
@@ -26,10 +37,17 @@
     "show": "never"
   },
   "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "on_yank"
+  },
+  "active_pane_modifiers": {
+    "border_size": 0.0,
+    "inactive_opacity": 0.6
+  },
   "ui_font_size": 14,
-  "ui_font_family": "Hack Nerd Font",
+  "ui_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_font_size": 16,
-  "buffer_font_family": "Hack Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_weight": 500,
   "relative_line_numbers": true,
   "tab_bar": {
@@ -40,26 +58,26 @@
     "git_status": true
   },
   "inlay_hints": {
-    "enabled": true,
+    "enabled": false,
     "font_family": "Consolas"
   },
   "theme": {
     "mode": "system",
     "light": "Gruvbox Light",
-    "dark": "Ayu Dark"
+    "dark": "Github Light High Contrast"
   },
   "soft_wrap": "editor_width",
   "tab_size": 2,
   "format_on_save": "off",
   "project_panel": {
     "button": true,
-    "default_width": 240,
+    "default_width": 300,
     "dock": "right",
     "entry_spacing": "comfortable",
     "file_icons": true,
     "folder_icons": true,
     "git_status": true,
-    "indent_size": 8,
+    "indent_size": 20,
     "auto_reveal_entries": true,
     "auto_fold_dirs": true,
     "scrollbar": {
@@ -70,13 +88,30 @@
       "show": "always"
     }
   },
-
+  "bottom_dock_layout": "contained",
   "terminal": {
-    "font_family": "Hack Nerd Font Propo",
+    "font_family": "JetBrainsMono Nerd Font Propo",
     "toolbar": {
       "title": false
     },
     "copy_on_select": true
+  },
+  //git
+  "git_panel": {
+    "dock": "right"
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  //editor
+  "outline_panel": {
+    "dock": "right"
+  },
+  "trim_whitespace": true,
+  "env": {
+    "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
   },
   "lsp": {
     "markdown": {
@@ -84,10 +119,8 @@
         "lineLength": 120
       }
     },
-    "dart": {
-      "settings": {
-        "lineLength": 120
-      }
+    "omnisharp": {
+      "enable_lsp_tasks": true
     }
   }
 }

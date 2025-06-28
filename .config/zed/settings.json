@@ -18,7 +18,6 @@
   },
   "auto_install_extensions": {},
   "agent": {
-    "version": "2",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-7-sonnet-latest"
@@ -29,7 +28,7 @@
     "edit_prediction_provider": "copilot"
     // "edit_prediction_provider": "zed"
   },
-  "base_keymap": "VSCode",
+  "base_keymap": "Emacs",
   "telemetry": {
     "metrics": false
   },
