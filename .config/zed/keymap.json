@@ -7,6 +7,7 @@
 // from the command palette.
 [
   {
+    "use_key_equivalents": false,
     "bindings": {
       "ctrl-o": "pane::ActivateNextItem",
       "ctrl-i": "pane::ActivatePreviousItem",
@@ -15,10 +16,19 @@
       "ctrl-/": "workspace::ToggleBottomDock",
       "ctrl-f": "file_finder::Toggle",
       "ctrl-q": "pane::CloseActiveItem",
+
+      //Navigation
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
+    }
+  },
+  {
+    "context": "FileFinder > Picker",
+    "bindings": {
+      "ctrl-n": "menu::SelectNext",
+      "ctrl-p": "menu::SelectPrevious"
     }
   },
   {
@@ -27,21 +37,9 @@
       "ctrl-shift-e": "workspace::ToggleLeftDock",
       "ctrl-e": "project_panel::ToggleFocus",
       "ctrl-/": "workspace::ToggleBottomDock",
-      "ctrl-g": "git_panel::ToggleFocus",
-      "ctrl-p": "editor::ContextMenuPrevious",
-      "ctrl-n": "editor::ContextMenuNext",
-    }
-  },
-  {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !menu ",
-    "bindings": {
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "space ,": "editor::Format",
-      "space '": "workspace::ToggleZoom",
-      "ctrl-q": "pane::CloseAllItems"
+      // "ctrl-g": "git_panel::ToggleFocus",
+      // "ctrl-p": "editor::ContextMenuPrevious",
+      // "ctrl-n": "editor::ContextMenuNext"
     }
   },
   {
@@ -90,11 +88,35 @@
       "q": "pane::CloseActiveItem"
     }
   },
+  // vim
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting",
+    "bindings": {
+      // Navigation
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "space ,": "editor::Format",
+      "space f f":"file_finder::Toggle",
+      "space f l":"workspace::NewSearch",
+      "-":"vim::ToggleComments"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !menu",
+    "bindings": {
+      "g d":"editor::GoToDefinition",
+      "g D":"editor::GoToDefinitionSplit",
+      "K": "editor::Hover",
+      "ctrl-y": "editor::ShowCompletions"
+    }
+  },
   {
     "context": "Editor && edit_prediction && vim_mode == insert",
     "bindings": {
       "alt-tab": "editor::AcceptEditPrediction",
-      "ctrl-l": "editor::AcceptEditPrediction",
+      "ctrl-l": "editor::AcceptPartialEditPrediction",
       "tab": "editor::AcceptEditPrediction"
     }
   },
@@ -108,7 +130,8 @@
     "context": "Editor && vim_mode == visual && !menu",
     "bindings": {
       "K": "editor::MoveLineUp",
-      "J": "editor::MoveLineDown"
+      "J": "editor::MoveLineDown",
+      "-":"vim::ToggleComments"
     }
   }
 ]

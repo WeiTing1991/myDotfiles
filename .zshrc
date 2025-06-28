@@ -206,3 +206,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export ZED_ALLOW_EMULATED_GPU=1
 alias zed="WAYLAND_DISPLAY= zed"
 export PATH=$PATH:$HOME/go/bin
+
+export DOTNET_ROOT="/usr/local/share/dotnet/"
