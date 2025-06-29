@@ -2,6 +2,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p11k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     # Linux-specific settings (native Linux, not WSL)

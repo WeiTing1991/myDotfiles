@@ -16,42 +16,51 @@
     },
     "enabled_in_text_threads": false
   },
+  "icon_theme": "Zed (Default)",
+  "base_keymap": "VSCode",
+  "autosave": "off",
+  "restore_on_startup": "none",
+  // "show_edit_predictions": false,
   "auto_install_extensions": {},
   "agent": {
+    "version": "2",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
-    }
+      "model": "claude-sonnet-4"
+    },
+    "dock": "left"
   },
-  "icon_theme": "Zed (Default)",
   "features": {
     "edit_prediction_provider": "copilot"
     // "edit_prediction_provider": "zed"
   },
-  "base_keymap": "Emacs",
   "telemetry": {
     "metrics": false
   },
   "scrollbar": {
     "show": "never"
   },
-  "vim_mode": true,
-  "vim": {
-    "use_system_clipboard": "on_yank"
-  },
   "active_pane_modifiers": {
     "border_size": 0.0,
     "inactive_opacity": 0.6
   },
-  "ui_font_size": 14,
-  "ui_font_family": "JetBrainsMono Nerd Font Mono",
+  "ui_font_size": 16,
+  "ui_font_family": ".SystemUIFont",
+  "ui_font_weight": 500,
   "buffer_font_size": 16,
   "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_weight": 500,
+  "buffer_font_weight": 400,
   "relative_line_numbers": true,
   "tab_bar": {
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
+    "show": false
   },
+  "toolbar": {
+    "breadcrumbs": true,
+    "code_actions": false
+    // "selections_menu": false
+  },
+  "inline_code_actions": false,
   "tabs": {
     "file_icons": true,
     "git_status": true
@@ -63,11 +72,14 @@
   "theme": {
     "mode": "system",
     "light": "Gruvbox Light",
-    "dark": "Github Light High Contrast"
+    "dark": "One Dark"
   },
+  //wrap
   "soft_wrap": "editor_width",
+  "show_wrap_guides": true,
+  "wrap_guides": [120],
   "tab_size": 2,
-  "format_on_save": "off",
+
   "project_panel": {
     "button": true,
     "default_width": 300,
@@ -87,6 +99,10 @@
       "show": "always"
     }
   },
+  "indent_guides": {
+    "enabled": true,
+    "active_line_width": 3
+  },
   "bottom_dock_layout": "contained",
   "terminal": {
     "font_family": "JetBrainsMono Nerd Font Propo",
@@ -95,7 +111,12 @@
     },
     "copy_on_select": true
   },
-  //git
+  "show_whitespaces": "boundary",
+  "trim_whitespace": true,
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "on_yank"
+  },
   "git_panel": {
     "dock": "right"
   },
@@ -108,18 +129,51 @@
   "outline_panel": {
     "dock": "right"
   },
-  "trim_whitespace": true,
   "env": {
     "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
   },
-  "lsp": {
-    "markdown": {
-      "settings": {
-        "lineLength": 120
-      }
+  "diagnostics": {
+    "button": true,
+    "include_warnings": true,
+    "lsp_pull_diagnostics": {
+      "enabled": true,
+      "debounce_ms": 50
     },
+    "inline": {
+      "enabled": true,
+      "update_debounce_ms": 100,
+      "padding": 4,
+      "min_column": 0,
+      "max_severity": null
+    },
+    "cargo": null
+  },
+  "formatter": "auto",
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings"
+  ],
+  "format_on_save": "off",
+  "lsp": {
     "omnisharp": {
-      "enable_lsp_tasks": true
+      "binary": {
+        "arguments": ["optional", "additional", "args", "-lsp"]
+      }
     }
+  },
+  //LSP
+  "languages": {
+    "Markdown": {
+      "remove_trailing_whitespace_on_save": false,
+      "format_on_save": "off"
+    }
+    // "CSharp": { }
   }
 }

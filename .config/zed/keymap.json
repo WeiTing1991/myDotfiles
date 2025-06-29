@@ -3,6 +3,7 @@
 // For information on binding keys, see the Zed
 // documentation: https://zed.dev/docs/key-bindings
 //
+// https://github.com/zed-industries/zed/blob/main/assets/keymaps/default-macos.json
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
@@ -14,7 +15,6 @@
       "ctrl-shift-e": "workspace::ToggleLeftDock",
       "ctrl-e": "workspace::ToggleRightDock",
       "ctrl-/": "workspace::ToggleBottomDock",
-      "ctrl-f": "file_finder::Toggle",
       "ctrl-q": "pane::CloseActiveItem",
 
       //Navigation
@@ -22,13 +22,18 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-shift-j": "vim::ResizePaneDown",
+      "ctrl-shift-k": "vim::ResizePaneUp",
+      "ctrl-shift-l": "vim::ResizePaneLeft",
+      "ctrl-shift-h": "vim::ResizePaneRight",
+      "ctrl-m": "workspace::ToggleZoom"
     }
   },
   {
-    "context": "FileFinder > Picker",
+    "context": "!Terminal && Editor",
+    "use_key_equivalents": true,
     "bindings": {
-      "ctrl-n": "menu::SelectNext",
-      "ctrl-p": "menu::SelectPrevious"
+      "ctrl-f": "file_finder::Toggle"
     }
   },
   {
@@ -36,10 +41,17 @@
     "bindings": {
       "ctrl-shift-e": "workspace::ToggleLeftDock",
       "ctrl-e": "project_panel::ToggleFocus",
-      "ctrl-/": "workspace::ToggleBottomDock",
+      "ctrl-/": "workspace::ToggleBottomDock"
       // "ctrl-g": "git_panel::ToggleFocus",
       // "ctrl-p": "editor::ContextMenuPrevious",
       // "ctrl-n": "editor::ContextMenuNext"
+    }
+  },
+  {
+    "context": "FileFinder > Picker",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious"
     }
   },
   {
@@ -47,8 +59,7 @@
     "use_key_equivalents": true,
     "bindings": {
       "ctrl-w '": "pane::SplitRight",
-      "ctrl-w 5": "pane::SplitDown",
-      // "ctrl-q": ["workspace::SendKeystrokes", "q"]
+      "ctrl-w 5": "pane::SplitDown"
     }
   },
   {
@@ -85,7 +96,8 @@
     "use_key_equivalents": true,
     "bindings": {
       "o": "project_panel::Open",
-      "q": "pane::CloseActiveItem"
+      "q": "pane::CloseActiveItem",
+      "r": "project_panel::Rename"
     }
   },
   // vim
@@ -97,19 +109,20 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
+      "-": "editor::ToggleComments",
       "space ,": "editor::Format",
-      "space f f":"file_finder::Toggle",
-      "space f l":"workspace::NewSearch",
-      "-":"vim::ToggleComments"
+      "space f f": "file_finder::Toggle",
+      "space f l": "workspace::NewSearch",
+      "space x": "diagnostics::Deploy",
+      "space l o": "outline_panel::ToggleFocus"
     }
   },
   {
     "context": "Editor && VimControl && !menu",
     "bindings": {
-      "g d":"editor::GoToDefinition",
-      "g D":"editor::GoToDefinitionSplit",
-      "K": "editor::Hover",
-      "ctrl-y": "editor::ShowCompletions"
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "K": "editor::Hover"
     }
   },
   {
@@ -123,7 +136,8 @@
   {
     "context": "Editor && vim_mode == insert && !menu",
     "bindings": {
-      "j k": "vim::NormalBefore"
+      "j k": "vim::NormalBefore",
+      "ctrl-y": "editor::ShowCompletions"
     }
   },
   {
@@ -131,7 +145,21 @@
     "bindings": {
       "K": "editor::MoveLineUp",
       "J": "editor::MoveLineDown",
-      "-":"vim::ToggleComments"
+      "-": [
+        "editor::ToggleComments",
+        {
+          "advance_downwards": false
+        }
+      ]
+    }
+  },
+  // launguage specific
+  {
+    "context": "Editor && extension == md",
+    "bindings": {
+      // "cmd-k v": "markdown::OpenPreviewToTheSide",
+      // "cmd-shift-v": "markdown::OpenPreview"
+      "space m k": "markdown::OpenPreviewToTheSide"
     }
   }
 ]
