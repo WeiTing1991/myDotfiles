@@ -5,5 +5,5 @@
 
 .config/nvim/.vim/*
 .config/github-copilot/
-.config/zed/converations/*
+.config/zed/conversations/*
 .config/zed/prompts/*
