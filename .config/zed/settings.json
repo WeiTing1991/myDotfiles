@@ -53,7 +53,7 @@
   "relative_line_numbers": true,
   "tab_bar": {
     "show_nav_history_buttons": false,
-    "show": false
+    "show": true
   },
   "toolbar": {
     "breadcrumbs": true,
@@ -123,7 +123,10 @@
   "git": {
     "inline_blame": {
       "enabled": false
-    }
+    },
+    "git_gutter": "tracked_files",
+    "hunk_style": "staged_hollow"
+    // "git_gutter_width": 1
   },
   //editor
   "outline_panel": {
@@ -166,6 +169,20 @@
       "binary": {
         "arguments": ["optional", "additional", "args", "-lsp"]
       }
+    },
+    "pyright": {
+      "settings": {
+        // "pyright": {
+        //   "disableOrganizeImports": false
+        // },
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          "typeCheckingMode": "strict"
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
     }
   },
   //LSP
@@ -173,6 +190,21 @@
     "Markdown": {
       "remove_trailing_whitespace_on_save": false,
       "format_on_save": "off"
+    },
+    "Python": {
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ],
+      "language_servers": ["pyright", "ruff"]
     }
     // "CSharp": { }
   }
