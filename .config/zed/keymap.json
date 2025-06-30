@@ -97,7 +97,10 @@
     "bindings": {
       "o": "project_panel::Open",
       "q": "pane::CloseActiveItem",
-      "r": "project_panel::Rename"
+      "r": "project_panel::Rename",
+      "n": "project_panel::NewFile",
+      "N": "project_panel::NewDirectory",
+      "d": "project_panel::Delete"
     }
   },
   // vim

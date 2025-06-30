@@ -77,9 +77,10 @@
   //wrap
   "soft_wrap": "editor_width",
   "show_wrap_guides": true,
-  "wrap_guides": [120],
+  "wrap_guides": [
+    120
+  ],
   "tab_size": 2,
-
   "project_panel": {
     "button": true,
     "default_width": 300,
@@ -164,10 +165,16 @@
     "**/.settings"
   ],
   "format_on_save": "off",
+  "hard_tabs": false,
   "lsp": {
     "omnisharp": {
       "binary": {
-        "arguments": ["optional", "additional", "args", "-lsp"]
+        "arguments": [
+          "optional",
+          "additional",
+          "args",
+          "-lsp"
+        ]
       }
     },
     "pyright": {
@@ -183,14 +190,85 @@
           "pythonPath": ".venv/bin/python"
         }
       }
+    },
+    "biome": {
+      "settings": {
+        "config_path": [
+          "./bimome.json",
+          "./frontend/bimone.json"
+        ]
+      }
     }
   },
   //LSP
   "languages": {
+    "C": {
+      "tab_size": 2
+    },
     "Markdown": {
       "remove_trailing_whitespace_on_save": false,
       "format_on_save": "off"
     },
+    //Typescript
+    "JavaScript": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "TypeScript": {
+      "tab_size": 2,
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "JSX": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "TSX": {
+      "tab_size": 2,
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "JSON": {
+      "formatter": {
+        "language_server": {
+          "name": "prettier"
+        }
+      }
+    },
+    "JSONC": {
+      "formatter": {
+        "language_server": {
+          "name": "prettier"
+        }
+      }
+    },
+    "CSS": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "GraphQL": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    //python
     "Python": {
       "formatter": [
         {
@@ -204,7 +282,10 @@
           }
         }
       ],
-      "language_servers": ["pyright", "ruff"]
+      "language_servers": [
+        "pyright",
+        "ruff"
+      ]
     }
     // "CSharp": { }
   }
