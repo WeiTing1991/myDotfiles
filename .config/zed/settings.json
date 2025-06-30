@@ -23,7 +23,6 @@
   // "show_edit_predictions": false,
   "auto_install_extensions": {},
   "agent": {
-    "version": "2",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
@@ -72,7 +71,7 @@
   "theme": {
     "mode": "system",
     "light": "Gruvbox Light",
-    "dark": "One Dark"
+    "dark": "Ayu Dark"
   },
   //wrap
   "soft_wrap": "editor_width",
@@ -133,9 +132,9 @@
   "outline_panel": {
     "dock": "right"
   },
-  "env": {
-    "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
-  },
+  // "env": {
+  //   "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
+  // },
   "diagnostics": {
     "button": true,
     "include_warnings": true,
@@ -168,14 +167,6 @@
   "hard_tabs": false,
   "lsp": {
     "omnisharp": {
-      "binary": {
-        "arguments": [
-          "optional",
-          "additional",
-          "args",
-          "-lsp"
-        ]
-      }
     },
     "pyright": {
       "settings": {
@@ -189,14 +180,6 @@
         "python": {
           "pythonPath": ".venv/bin/python"
         }
-      }
-    },
-    "biome": {
-      "settings": {
-        "config_path": [
-          "./bimome.json",
-          "./frontend/bimone.json"
-        ]
       }
     }
   },
