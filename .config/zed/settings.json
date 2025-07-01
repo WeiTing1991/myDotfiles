@@ -23,6 +23,7 @@
   // "show_edit_predictions": false,
   "auto_install_extensions": {},
   "agent": {
+    "version": "2",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
@@ -73,7 +74,6 @@
     "light": "Gruvbox Light",
     "dark": "Ayu Dark"
   },
-  //wrap
   "soft_wrap": "editor_width",
   "show_wrap_guides": true,
   "wrap_guides": [
@@ -128,13 +128,12 @@
     "hunk_style": "staged_hollow"
     // "git_gutter_width": 1
   },
-  //editor
   "outline_panel": {
     "dock": "right"
   },
-  // "env": {
-  //   "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
-  // },
+  "env": {
+    "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
+  },
   "diagnostics": {
     "button": true,
     "include_warnings": true,
