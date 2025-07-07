@@ -74,4 +74,3 @@ keybind = cmd+equal=increase_font_size:1
 keybind = cmd+minus=decrease_font_size:1
 
 
-keybind = shift+enter=text:\n
