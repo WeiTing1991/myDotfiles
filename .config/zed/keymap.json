@@ -30,7 +30,7 @@
     }
   },
   {
-    "context": "!Terminal && Editor",
+    "context": "!Terminal",
     "use_key_equivalents": true,
     "bindings": {
       "ctrl-f": "file_finder::Toggle"

@@ -74,7 +74,6 @@
     "light": "Gruvbox Light",
     "dark": "Ayu Dark"
   },
-  //wrap
   "soft_wrap": "editor_width",
   "show_wrap_guides": true,
   "wrap_guides": [
@@ -129,7 +128,6 @@
     "hunk_style": "staged_hollow"
     // "git_gutter_width": 1
   },
-  //editor
   "outline_panel": {
     "dock": "right"
   },
@@ -168,14 +166,6 @@
   "hard_tabs": false,
   "lsp": {
     "omnisharp": {
-      "binary": {
-        "arguments": [
-          "optional",
-          "additional",
-          "args",
-          "-lsp"
-        ]
-      }
     },
     "pyright": {
       "settings": {
@@ -189,14 +179,6 @@
         "python": {
           "pythonPath": ".venv/bin/python"
         }
-      }
-    },
-    "biome": {
-      "settings": {
-        "config_path": [
-          "./bimome.json",
-          "./frontend/bimone.json"
-        ]
       }
     }
   },

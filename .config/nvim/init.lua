@@ -7,7 +7,7 @@ end
 
 if vim.g.neovide then
   -- Font settings
-  vim.o.guifont = "JetBrainsMono Nerd Font:h13"  -- Set font and size
+  vim.o.guifont = "JetBrainsMono Nerd Font:h10"  -- Set font and size
 
   -- Disable all animations for clean, distraction-free experience
   vim.g.neovide_cursor_animation_length = 0.0
@@ -17,7 +17,7 @@ if vim.g.neovide then
 
   -- Performance settings
   vim.g.neovide_refresh_rate = 120
-  vim.g.neovide_no_idle = true  -- Prevent dropping refresh rate
+  vim.g.neovide_no_idle = true
 
   -- Window behavior
   vim.g.neovide_remember_window_size = true
@@ -25,4 +25,12 @@ if vim.g.neovide then
 
   -- Input settings
   vim.g.neovide_hide_mouse_when_typing = true
+
+  vim.keymap.set("n", "<C-=>", function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1
+  end, { desc = "Increase scale" })
+
+  vim.keymap.set("n", "<C-->", function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 0.9
+  end, { desc = "Decrease scale" })
 end

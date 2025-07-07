@@ -119,7 +119,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
 
       -- Set up a keymap to show diagnostics float
-      vim.keymap.set("n", "<C-y>", function()
+      vim.keymap.set("n", "<C-.>", function()
         local curline = vim.api.nvim_win_get_cursor(0)[1]
         local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
         local virt_texts = { { (" "):rep(4) } }

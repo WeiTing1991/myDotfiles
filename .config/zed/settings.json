@@ -23,7 +23,7 @@
   // "show_edit_predictions": false,
   "auto_install_extensions": {},
   "agent": {
-    "version": "2",
+    "always_allow_tool_actions": true,
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
@@ -76,9 +76,7 @@
   },
   "soft_wrap": "editor_width",
   "show_wrap_guides": true,
-  "wrap_guides": [
-    120
-  ],
+  "wrap_guides": [120],
   "tab_size": 2,
   "project_panel": {
     "button": true,
@@ -165,8 +163,16 @@
   "format_on_save": "off",
   "hard_tabs": false,
   "lsp": {
-    "omnisharp": {
+    "biome": {
+      "code_actions_on_format": {
+        "source.organizeImports.biome": true,
+        "source.fixAll.biome": true
+      },
+      "settings": {
+        "config_path": "./frontend/biome.json"
+      }
     },
+    "omnisharp": {},
     "pyright": {
       "settings": {
         // "pyright": {
@@ -222,20 +228,20 @@
         }
       }
     },
-    "JSON": {
-      "formatter": {
-        "language_server": {
-          "name": "prettier"
-        }
-      }
-    },
-    "JSONC": {
-      "formatter": {
-        "language_server": {
-          "name": "prettier"
-        }
-      }
-    },
+    // "JSON": {
+    //   "formatter": {
+    //     "language_server": {
+    //       "name": "prettier"
+    //     }
+    //   }
+    // },
+    // "JSONC": {
+    //   "formatter": {
+    //     "language_server": {
+    //       "name": "prettier"
+    //     }
+    //   }
+    // },
     "CSS": {
       "formatter": {
         "language_server": {
@@ -264,10 +270,7 @@
           }
         }
       ],
-      "language_servers": [
-        "pyright",
-        "ruff"
-      ]
+      "language_servers": ["pyright", "ruff"]
     }
     // "CSharp": { }
   }

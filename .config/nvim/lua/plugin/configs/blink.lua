@@ -86,7 +86,8 @@ require("blink.cmp").setup({
 
   sources = {
     default = function()
-      local sources = { "lazydev", "dadbod", "lsp", "path", "snippets", "omni", "buffer" }
+      -- local sources = { "lazydev", "dadbod", "lsp", "path", "snippets", "omni", "buffer" }
+      local sources = { "lazydev", "lsp", "path", "snippets", "omni", "buffer" }
       local ok, node = pcall(vim.treesitter.get_node)
 
       if ok and node then
