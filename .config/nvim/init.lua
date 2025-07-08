@@ -1,4 +1,5 @@
 if vim.g.vscode then
+  require "vs_user.settings"
 else
   vim.cmd.colorscheme "bella-gruvbox"
   require "core"
