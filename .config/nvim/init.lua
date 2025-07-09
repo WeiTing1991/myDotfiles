@@ -5,11 +5,9 @@ else
   require "core"
 end
 
-
 if vim.g.neovide then
   -- Font settings
   vim.o.guifont = "JetBrainsMono Nerd Font:h10"  -- Set font and size
-
   -- Disable all animations for clean, distraction-free experience
   vim.g.neovide_cursor_animation_length = 0.0
   vim.g.neovide_cursor_trail_length = 0.0

@@ -39,14 +39,13 @@ rm -Force ~\AppData\Local\nvim
 rm -Force ~\AppData\Local\nvim-data
 
 $profileScriptPath = "$HOME\AppData\Local\nvim"
-$dotfilesScriptPath = "$HOME\.dotfiles\.config\nvim"
+$dotfilesScriptPath = "$HOME\.dotfiles\.config\nvim_win\nvim"
 New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptPath -Force
 
 # Create symbolic link for AutoHotkey script
 # $startupFolderPath = "$APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\windos_11_hotkeys.ahk"
 # $dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\windos_11_hotkeys.ahk"
 # New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
-
 
 # zed
 New-Item -Path $HOME\AppData\Roaming\Zed -ItemType SymbolicLink -Value $HOME\.dotfiles\.config\zed -Force

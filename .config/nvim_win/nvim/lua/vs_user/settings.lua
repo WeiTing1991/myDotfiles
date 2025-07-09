@@ -13,19 +13,20 @@ vim.keymap.set("n", "n", "nzzzv", { desc = "Jump to next match" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Jump to previous match" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines" })
 
--- Move the highlighted line down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
--- Move the highlighted line up
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { desc = "Clear highlights" })
 vim.keymap.set("n", "<C-c>", ":noh<CR>", { desc = "Clear highlights" })
 
--- comment
-vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
-vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
-vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
-vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise" })
+-- comment(use vscode default)
+-- vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
+-- vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
+-- vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
+-- vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise" })
+
+-- -- Move the highlighted line down
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+-- -- Move the highlighted line up
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Scroll
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll half page down" })
@@ -35,7 +36,6 @@ vim.keymap.set("n", "G", "Gzz", { desc = "Scroll to bottom" })
 -- Leave insert mode
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("i", "<Esc>", "<C-c>")
-vim.keymap.set("i", "jk", "<Esc>")
 
 -- Options
 local options ={
@@ -46,7 +46,7 @@ local options ={
   hlsearch = true,
   backup = false,
   swapfile = false,
-  scrolloff = 20,
+  scrolloff = 50,
   sidescrolloff = 0,
 }
 
