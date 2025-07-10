@@ -3,5 +3,6 @@ if vim.g.vscode then
   print("VSCode detected, loading VSCode settings")
 else
   -- vim.cmd.colorscheme "bella-gruvbox"
-  -- require "core"
+  vim.cmd.colorscheme "habamax"
+  require "core"
 end

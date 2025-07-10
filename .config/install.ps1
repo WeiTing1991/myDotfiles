@@ -49,3 +49,9 @@ New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptP
 
 # zed
 New-Item -Path $HOME\AppData\Roaming\Zed -ItemType SymbolicLink -Value $HOME\.dotfiles\.config\zed -Force
+
+
+# Alacritty
+$profileScriptPath = "$HOME\AppData\Roaming\alacritty"
+$dotfilesScriptPath = "$HOME\.dotfiles\.config\alacritty"
+New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptPath -Force
