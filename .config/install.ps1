@@ -7,12 +7,13 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 # scoop
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
+
 # Create symbolic link for AutoHotkey script
+winget install -e --id AutoHotkey.AutoHotkey
 $startupFolderPath = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\windos_11_hotkeys.ahk"
 $dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\windos_11_hotkeys.ahk"
 New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
 
-# Add `$HOME` into path
 # Add the script to the PowerShell profile
 $profileScriptPath = "$HOME\.config\powershell\weitingchen.ps1"
 $dotfilesScriptPath = "$HOME\.dotfiles\.config\windows\weitingchen.ps1"
@@ -36,7 +37,6 @@ rm -Force ~\AppData\Local\nvim-data
 $profileScriptPath = "$HOME\AppData\Local\nvim"
 $dotfilesScriptPath = "$HOME\.dotfiles\.config\nvim_win\nvim"
 New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptPath -Force
-
 
 # zed
 # New-Item -Path $HOME\AppData\Roaming\Zed -ItemType SymbolicLink -Value $HOME\.dotfiles\.config\zed -Force
