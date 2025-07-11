@@ -38,7 +38,7 @@ LWin & Tab::AltTab
     SendEvent("#{Down}") ; Sends Win + Down
 }
 
-#Enter::{
+#+Enter::{
     ; Center Window
     NewWidth := A_ScreenWidth * 0.95
     NewHeight := A_ScreenHeight * 0.95
@@ -47,7 +47,7 @@ LWin & Tab::AltTab
     WinMove(X, Y, NewWidth, NewHeight, "A")  ; Move and resize the active window
 }
 
-#+Enter::{
+#Enter::{
     if WinActive("A") {
         if WinGetMinMax("A") = 1
             WinRestore("A") ; Restore if maximized
