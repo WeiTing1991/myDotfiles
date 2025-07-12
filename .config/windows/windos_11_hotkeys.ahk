@@ -1,5 +1,12 @@
 ; https://www.autohotkey.com/docs/v2/Hotkeys.htm
 
+; Auto-elevate the script
+if not A_IsAdmin
+{
+    Run('*RunAs "' A_ScriptFullPath '"')
+    ExitApp()
+}
+
 #SingleInstance Force ; Prevents duplicate script instances
 ;#Persistent  ; Keep the script running in the background
 
