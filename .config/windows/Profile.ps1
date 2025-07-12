@@ -1,7 +1,15 @@
-# # Import the PSReadLine module
-# Import-Module PSReadLine
+Import-Module posh-git
+Import-Module PSReadLine
 
-# Import-Module posh-git
+# Use AcceptSuggestion instead of Complete
+Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
+
+# Searching history with up/down arrows
+Set-PSReadLineKeyHandler -Key Ctrl+p -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key Ctrl+n -Function HistorySearchForward
+
+# Ctrl+W to delete the previous word (like in Bash)
+# Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
 
 # # Set predictive IntelliSense (PowerShell 7.2+ feature)
 # Set-PSReadLineOption -PredictionSource History
@@ -9,24 +17,14 @@
 # # Ctrl+Space for IntelliSense suggestions
 # Set-PSReadLineKeyHandler -Key Ctrl+tab -Function Complete
 
-# # Use AcceptSuggestion instead of Complete
-# Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
-
 # # Tab completion
 # #Set-PSReadLineKeyHandler -Key tab -Function MenuComplete
-
-# # Searching history with up/down arrows
-# Set-PSReadLineKeyHandler -Key Ctrl+p -Function HistorySearchBackward
-# Set-PSReadLineKeyHandler -Key Ctrl+n -Function HistorySearchForward
 
 # # Ctrl+d to exit, like in bash
 # #Set-PSReadLineKeyHandler -Key Ctrl+w -Function DeleteCharOrExit
 
 # # Ctrl+B to move backward one character (like in Emacs/Bash)
 # Set-PSReadLineKeyHandler -Key Ctrl+b -Function BackwardChar
-
-# # Ctrl+W to delete the previous word (like in Bash)
-# Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
 
 # # Ctrl+F to move forward one character
 # Set-PSReadLineKeyHandler -Key Ctrl+f -Function ForwardChar
@@ -37,15 +35,6 @@
 # $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 # Set-Location $HOME
 # $ENV:EDITOR = 'code'
-
-# title shows current folcer
-function prompt {
-    # Set tab title to current folder name
-    $folderName = Split-Path -Leaf (Get-Location)
-    Write-Host "`e]0;$folderName`e\" -NoNewline
-    # Return prompt
-    "PS $($PWD.Path)> "
-}
 
 Set-Alias c clear
 

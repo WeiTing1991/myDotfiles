@@ -1,8 +1,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+require "core.options"
+require "core.keymaps"
+
 -- Plugin manager
--- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -21,28 +23,47 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require "core.lazy"
+require('lazy').setup({
+  spec = {
+  },
+  defaults = { lazy = false, version = false },
+  ui = {
+    border = "rounded",
+    size = { width = 0.8, height = 0.8 },
+  },
+  rocks = {
+    enabled = false,
+  },
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  performance = {
+    -- reset_packpath = true,
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+        -- "rplugin",
+      },
+    },
+  },
+})
 
--- load plugins
-require("lazy").setup({
-  { import = "plugin.init" },
-  { import = "plugin.editor" },
-  { import = "plugin.lsp" },
-  { import = "plugin.ui" },
-  { import = "plugin.git" },
-  { import = "plugin.tools" },
-  { import = "plugin.snack" },
-  { import = "plugin.lsp_enhance" },
-  { import = "plugin.note_taking" },
-  { import = "plugin.ai" },
-  { import = "plugin.sql" },
 
-  -- FIX:
-  -- { import = "plugin.dap" },
-}, lazy_config)
-
--- default core
-require "core.options"
-require "core.autocmds"
-require "core.keybindings"
-require "keymappings"
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    print("Startup time: " .. vim.fn.reltimestr(vim.fn.reltime(vim.g.start_time)) .. "s")
+  end,
+})
+vim.g.start_time = vim.fn.reltime()
