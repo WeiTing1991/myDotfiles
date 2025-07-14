@@ -14,13 +14,14 @@ function M.float_term(cmd, opts)
 
   opts = vim.tbl_deep_extend("force", {
     ft = "lazyterm",
-    size = { width = 0.7, height = 0.7 },
+    size = { width = 0.9, height = 0.4 },
+    position = "bottom",
     persistent = true,
   }, opts or {})
 
   if is_windows then
     vim.opt.shell = "pwsh.exe"
-    vim.opt.shellcmdflag = "-NoLogo -Command"
+    vim.opt.shellcmdflag = "-l"
   elseif is_mac then
     vim.opt.shell = "/bin/zsh"
     vim.opt.shellcmdflag = "-c"

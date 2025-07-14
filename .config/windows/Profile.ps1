@@ -34,7 +34,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+n -Function HistorySearchForward
 
 # $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 # Set-Location $HOME
-# $ENV:EDITOR = 'code'
+$ENV:EDITOR = 'nvim'
 
 Set-Alias c clear
 

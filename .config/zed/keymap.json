@@ -14,7 +14,7 @@
       "ctrl-i": "pane::ActivatePreviousItem",
       "ctrl-shift-e": "workspace::ToggleLeftDock",
       "ctrl-e": "workspace::ToggleRightDock",
-      "ctrl-/": "workspace::ToggleBottomDock",
+      "ctrl-\\": "workspace::ToggleBottomDock",
       "ctrl-q": "pane::CloseActiveItem",
 
       //Navigation
@@ -143,6 +143,9 @@
       "ctrl-y": "editor::ShowCompletions"
     }
   },
+
+  // vim.keymap.set("v", "<", "<gv")
+  // vim.keymap.set("v", ">", ">gv")
   {
     "context": "Editor && vim_mode == visual && !menu",
     "bindings": {

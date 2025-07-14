@@ -162,7 +162,7 @@ backend = "automatic"
 disable-unfocused-render = false
 level = 1
 disable-occluded-render = true
-target-fps = 165
+target-fps = 120
 # filters = []
 
 # Keyboard
@@ -172,9 +172,8 @@ target-fps = 165
 # disable-ctlseqs-alt - Disable ctlseqs with ALT keys
 #   - For example: Terminal.app does not deal with ctlseqs with ALT keys
 #
-# Example:
-# [keyboard]
-# use-kitty-keyboard-protocol = false
+[keyboard]
+use-kitty-keyboard-protocol = true
 # disable-ctlseqs-alt = false
 
 # Fonts

@@ -20,6 +20,7 @@ treesitter.setup {
 
     "lua",
     "luadoc",
+    "query",
 
     "python",
     "c_sharp",
@@ -43,6 +44,7 @@ treesitter.setup {
 
     "javascript",
     "typescript",
+    "tsx",
     "jsdoc",
 
     "xml",
@@ -50,9 +52,6 @@ treesitter.setup {
     "yaml",
     "toml",
     "css",
-    "templ",
-
-    "sql",
   },
   auto_install = true,
   ignore_install = {},

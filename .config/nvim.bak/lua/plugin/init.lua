@@ -47,7 +47,7 @@ return {
   -- file tree
   {
     "stevearc/oil.nvim",
-    lazy = true,
+    lazy = false,
     event = "VeryLazy",
     ---@module 'oil'
     ---@type oil.SetupOpts

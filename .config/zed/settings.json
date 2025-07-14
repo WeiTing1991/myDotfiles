@@ -8,6 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "edit_predictions": {
+    "disabled_globs": [],
     "mode": "eager",
     "copilot": {
       "proxy": null,
@@ -44,12 +45,12 @@
     "border_size": 0.0,
     "inactive_opacity": 0.6
   },
-  "ui_font_size": 16,
+  "ui_font_size": 14,
   "ui_font_family": ".SystemUIFont",
-  "ui_font_weight": 500,
-  "buffer_font_size": 16,
+  "ui_font_weight": 300,
+  "buffer_font_size": 14,
   "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_weight": 400,
+  "buffer_font_weight": 100,
   "relative_line_numbers": true,
   "tab_bar": {
     "show_nav_history_buttons": false,
@@ -66,13 +67,13 @@
     "git_status": true
   },
   "inlay_hints": {
-    "enabled": false,
-    "font_family": "Consolas"
+    "enabled": false
+    // "font_family": "Consolas"
   },
   "theme": {
     "mode": "system",
     "light": "Gruvbox Light",
-    "dark": "Ayu Dark"
+    "dark": "Gruvbox Dark Hard"
   },
   "soft_wrap": "editor_width",
   "show_wrap_guides": true,
@@ -110,7 +111,6 @@
     "copy_on_select": true
   },
   "show_whitespaces": "boundary",
-  "trim_whitespace": true,
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "on_yank"
@@ -129,9 +129,9 @@
   "outline_panel": {
     "dock": "right"
   },
-  "env": {
-    "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
-  },
+  // "env": {
+  //   "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
+  // },
   "diagnostics": {
     "button": true,
     "include_warnings": true,
@@ -148,7 +148,8 @@
     },
     "cargo": null
   },
-  "formatter": "auto",
+  "hard_tabs": false,
+  "formatter": "prettier",
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -160,8 +161,9 @@
     "**/.classpath",
     "**/.settings"
   ],
+  "remove_trailing_whitespace_on_save": true,
+  "show_whitespaces": "boundary",
   "format_on_save": "off",
-  "hard_tabs": false,
   "lsp": {
     "biome": {
       "settings": {
@@ -169,8 +171,11 @@
       }
     },
     "omnisharp": {
+      "binary": {
+        // "path": "/path/to/OmniSharp",
+        "arguments": ["optional", "additional", "args", "-lsp"]
+      }
     },
-    "omnisharp": {},
     "pyright": {
       "settings": {
         // "pyright": {
@@ -186,75 +191,17 @@
       }
     }
   },
-  //LSP
   "languages": {
-    "C": {
-      "tab_size": 2
+    "JSON": {
+      "language_servers": ["!biome", "prettier"]
+    },
+    "JSONC": {
+      "language_servers": ["!biome", "prettier"]
     },
     "Markdown": {
       "remove_trailing_whitespace_on_save": false,
       "format_on_save": "off"
     },
-    //Typescript
-    "JavaScript": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "TypeScript": {
-      "tab_size": 2,
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "JSX": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "TSX": {
-      "tab_size": 2,
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    // "JSON": {
-    //   "formatter": {
-    //     "language_server": {
-    //       "name": "prettier"
-    //     }
-    //   }
-    // },
-    // "JSONC": {
-    //   "formatter": {
-    //     "language_server": {
-    //       "name": "prettier"
-    //     }
-    //   }
-    // },
-    "CSS": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "GraphQL": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    //python
     "Python": {
       "formatter": [
         {
@@ -270,6 +217,5 @@
       ],
       "language_servers": ["pyright", "ruff"]
     }
-    // "CSharp": { }
   }
 }
