@@ -149,6 +149,8 @@
   {
     "context": "Editor && vim_mode == visual && !menu",
     "bindings": {
+      "<": "vim::Outdent",
+      ">": "vim::Indent",
       "K": "editor::MoveLineUp",
       "J": "editor::MoveLineDown",
       "-": [

@@ -192,17 +192,12 @@ export NVM_DIR="$HOME/.nvm"
 # export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 # set DYLD_LIBRARY_PATH to "(brew --prefix)/lib"
 
-# Deno
-source $HOME/.deno/env
-# . "/home/weiting/.deno/env"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # bun completions
 [ -s "/home/weiting/.bun/_bun" ] && source "/home/weiting/.bun/_bun"
-
 
 export ZED_ALLOW_EMULATED_GPU=1
 alias zed="WAYLAND_DISPLAY= zed"

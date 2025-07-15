@@ -19,19 +19,11 @@ return {
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
-
-  -- tree
   -- {
-  --   "echasnovski/mini.files",
-  --   lazy = false,
-  --   opts = {},
+  --   "mbbill/undotree",
+  --   lazy = true,
+  --   event = "VeryLazy",
   -- },
-
-  {
-    "mbbill/undotree",
-    lazy = true,
-    event = "VeryLazy",
-  },
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
@@ -39,19 +31,6 @@ return {
     event = "VeryLazy",
     config = function()
       require("plugin.configs.nvimtree")
-    end,
-  },
-
-  -- Markdown
-  {
-    "iamcco/markdown-preview.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = "cd app && npm install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
     end,
   },
 
@@ -170,6 +149,20 @@ return {
       require("ufo").setup(opts)
     end,
   },
+
+  -- Markdown
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  --   ft = { "markdown" },
+  --   build = "cd app && npm install",
+  --   init = function()
+  --     vim.g.mkdp_filetypes = { "markdown" }
+  --   end,
+  -- },
+
 
   -- -- better search
   -- {

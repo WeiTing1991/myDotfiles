@@ -104,9 +104,9 @@ M = {
 
   -- C#
   ["omnisharp"] = {
-    handlers = {
-      ["textDocument/definition"] = require("omnisharp_extended").handler,
-    },
+    -- handlers = {
+    --   ["textDocument/definition"] = require("omnisharp_extended").handler,
+    -- },
     enable_roslyn_analysers = true,
     enable_import_completion = true,
     organize_imports_on_format = true,

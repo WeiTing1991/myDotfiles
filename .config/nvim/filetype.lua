@@ -1,6 +1,11 @@
 vim.filetype.add {
+  extension = {
+    env ="dotenv"
+  },
   filename = {
     [".eslintrc.json"] = "jsonc",
+    [".env"] = "dotenv",
+    ["env"] = "dotenv"
   },
   pattern = {
     ["tsconfig*.json"] = "jsonc",

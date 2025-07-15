@@ -3,10 +3,10 @@ local keymaps = {}
 local hover = vim.lsp.buf.hover
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.buf.hover = function()
-  return hover {
+  return hover({
     max_height = math.floor(vim.o.lines * 0.5),
     max_width = math.floor(vim.o.columns * 0.4),
-  }
+  })
 end
 
 function keymaps.on_attach(client, bufnr)
@@ -26,11 +26,11 @@ function keymaps.on_attach(client, bufnr)
 
   if client:supports_method(methods.textDocument_definition) then
     map("gd", function()
-      -- require("fzf-lua").lsp_definitions { jump1 = false }
-      require("goto-preview").goto_preview_definition()
+      -- require("goto-preview").goto_preview_definition()
+      require("telescope.builtin").lsp_definitions()
     end, "Peek definition")
     map("gD", function()
-      require("fzf-lua").lsp_definitions { jump1 = true }
+      require("telescope.builtin").lsp_definitions()
     end, "Go to definition")
   end
 
@@ -39,18 +39,18 @@ function keymaps.on_attach(client, bufnr)
   --   require("goto-preview").goto_preview_references()
   -- end, "Preview References")
 
-  map("grr", "<cmd>FzfLua lsp_references<cr>", "Goto References")
+  -- map("grr", "<cmd>FzfLua lsp_references<cr>", "Goto References")
 
   -- For example, in C this would take you to the header
   -- map("gl", vim.lsp.buf.declaration, "Goto C Header Declaration")
-  map("gl", "<cmd>FzfLua lsp_finder<cr>", "Goto header Declaration")
+  -- map("gl", "<cmd>FzfLua lsp_finder<cr>", "Goto header Declaration")
 
-  map("gi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "Peek Implementation")
-  map("gI", "<cmd>FzfLua lsp_implementations <cr>", "Goto Implementation")
-  map("<S-l>j", "<cmd>FzfLua lsp_document_symbols<cr>", "Document Symbols")
+  -- map("gi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "Peek Implementation")
+  -- map("gI", "<cmd>FzfLua lsp_implementations <cr>", "Goto Implementation")
+  -- map("<S-l>j", "<cmd>FzfLua lsp_document_symbols<cr>", "Document Symbols")
   if client:supports_method(methods.textDocument_signatureHelp) then
-    local blink_window = require "blink.cmp.completion.windows.menu"
-    local blink = require "blink.cmp"
+    local blink_window = require("blink.cmp.completion.windows.menu")
+    local blink = require("blink.cmp")
     map("<S-l>k", function()
       -- Close the completion menu first (if open).
       if blink_window.win:is_open() then
@@ -60,12 +60,12 @@ function keymaps.on_attach(client, bufnr)
     end, "Signature help", "i")
   end
   -- extra
+  map("g.", vim.lsp.buf.code_action, "Code Action")
   map("<S-l>ii", "<cmd>LspInfo<cr>", "Lsp Info")
   map("<S-l>ir", "<cmd>LspRestart<cr>", "Lsp restart")
-  map("<S-l>rp", vim.lsp.buf.rename, "Rename in buf")
-  map("<S-l>d", "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>", "Type defintion")
+  map("<S-l>r", vim.lsp.buf.rename, "Rename in buf")
+  -- map("<S-l>d", "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>", "Type defintion")
   -- map("<S-l>d", vim.lsp.buf.type_definition, "Type defintion")
-  map("<S-l>ca", "<cmd>FzfLua lsp_code_actions<cr>", "Code Action")
   -- map("<S-l>ca", vim.lsp.buf.code_action, "Code Action")
 
   -- formatting

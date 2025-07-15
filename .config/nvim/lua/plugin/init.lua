@@ -11,7 +11,6 @@ return {
     lazy = vim.fn.argc(-1) == 0,
     build = ":TSUpdate",
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    event = { "VeryLazy" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
@@ -46,9 +45,9 @@ return {
     "stevearc/oil.nvim",
     ---@module 'oil'
     ---@type oil.SetupOpts
-    lazy = false,
-    event = "VeryLazy",
     opts = {},
+    event = "VeryLazy",
+    lazy = false,
     config = function()
       require "plugin.configs.oil"
     end,

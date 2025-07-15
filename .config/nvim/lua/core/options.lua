@@ -125,11 +125,11 @@ local options = {
   cursorline = true,
   confirm = true,
   mouse = "a",
-  --mousescroll = "ver:3,hor:0",
-  cursorline = true,
   laststatus = 3,
   termguicolors = true,
-  --winborder = "rounded",
+  showtabline = 2,
+  -- winborder = "single",
+  -- mousescroll = "ver:3,hor:0",
 }
 
 for k, v in pairs(options) do
@@ -137,5 +137,6 @@ for k, v in pairs(options) do
 end
 
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+  vim.o.clipboard = "unnamedplus"
 end)
+

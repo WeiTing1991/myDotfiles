@@ -1,45 +1,47 @@
 return {
   -- {
+  --   "stevearc/aerial.nvim",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   opts = function()
+  --     local icons = vim.deepcopy(require("icon").symbol_kinds)
+  --     local opts = {
+  --       attach_mode = "global",
+  --       backends = { "treesitter", "lsp", "markdown", "man" },
+  --       show_guides = true,
+  --       layout = {
+  --         max_width = { 60, 0.3 },
+  --         width = nil,
+  --         min_width = 30,
+  --         resize_to_content = true,
+  --         win_opts = {
+  --           -- winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+  --           signcolumn = "yes",
+  --           statuscolumn = " ",
+  --         },
+  --       },
+  --       icons = vim.o.filetype == "markdown" and {} or icons,
+  --       guides = {
+  --         mid_item = "├╴",
+  --         last_item = "└╴",
+  --         nested_top = "│ ",
+  --         whitespace = "  ",
+  --       },
+  --     }
+  --     return opts
+  --   end,
+  --   keys = {
+  --     { "<S-l>o", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
+  --   },
+  -- },
+
+  -- {
   --   "rmagatti/goto-preview",
   --   dependencies = { "rmagatti/logger.nvim" },
   --   event = "BufEnter",
   --   config = true,
   -- },
-  {
-    "stevearc/aerial.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    opts = function()
-      local icons = vim.deepcopy(require("icon").symbol_kinds)
-      local opts = {
-        attach_mode = "global",
-        backends = { "treesitter", "lsp", "markdown", "man" },
-        show_guides = true,
-        layout = {
-          max_width = { 60, 0.3 },
-          width = nil,
-          min_width = 30,
-          resize_to_content = true,
-          win_opts = {
-            -- winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
-            signcolumn = "yes",
-            statuscolumn = " ",
-          },
-        },
-        icons = vim.o.filetype == "markdown" and {} or icons,
-        guides = {
-          mid_item = "├╴",
-          last_item = "└╴",
-          nested_top = "│ ",
-          whitespace = "  ",
-        },
-      }
-      return opts
-    end,
-    keys = {
-      { "<S-l>o", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
-    },
-  },
+
   {
     "danymat/neogen",
     lazy = true,
@@ -52,14 +54,6 @@ return {
   },
 
   --[[ language extra ]]
-  -- NOTE: https://github.com/iabdelkareem/csharp.nvim
-  -- C#
-  -- {
-  --   "Hoffs/omnisharp-extended-lsp.nvim",
-  --   lazy = true,
-  --   ft = { "cs" },
-  -- },
-
   -- ts/js
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
@@ -75,6 +69,14 @@ return {
       })
     end,
   },
+
+  -- NOTE: https://github.com/iabdelkareem/csharp.nvim
+  -- C#
+  -- {
+  --   "Hoffs/omnisharp-extended-lsp.nvim",
+  --   lazy = true,
+  --   ft = { "cs" },
+  -- },
 
   -- c/c++
   -- {

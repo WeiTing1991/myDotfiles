@@ -1,7 +1,7 @@
 -- telescope config
 
-local builtin = require "telescope.builtin"
-local utils = require "telescope.utils"
+-- local builtin = require "telescope.builtin"
+-- local utils = require "telescope.utils"
 local actions = require "telescope.actions"
 local tele = require("telescope")
 
@@ -76,7 +76,9 @@ tele.setup {
         "--exclude",
         "node_modules",
         "--exclude",
-        ".venv"
+        ".venv",
+        "--exclude=**/.DS_Store/**",
+        "--exclude=.DS_Store",
       },
     },
     grep_string = {
@@ -121,4 +123,4 @@ tele.setup {
 
 pcall(tele.load_extension, "fzf")
 pcall(tele.load_extension, "frecency")
--- pcall(require("telescope").load_extension "ui-select")
+pcall(tele.load_extension, "ui-select")

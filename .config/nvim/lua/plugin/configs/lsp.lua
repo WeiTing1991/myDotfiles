@@ -1,34 +1,35 @@
-local icons = require "icon"
+local icons = require("icon")
 
-require("mason").setup {
+require("mason").setup({
   ui = {
     icons = icons.install,
   },
-}
-require("fidget").setup { notification = { window = { winblend = 0 } } }
+})
+require("fidget").setup({ notification = { window = { winblend = 0 } } })
 
 local ensure_installed = {}
-local lsp_server = vim.tbl_keys(require "lsp.server" or {})
-local lsp_extra = vim.tbl_values(require "lsp.formater_linter" or {})
-local debugger_server = require "lsp.debugger" or {}
+local lsp_server = vim.tbl_keys(require("lsp.server") or {})
+local lsp_extra = vim.tbl_values(require("lsp.formater_linter") or {})
+local debugger_server = require("lsp.debugger") or {}
 
 vim.list_extend(ensure_installed, lsp_server)
 vim.list_extend(ensure_installed, debugger_server)
 vim.list_extend(ensure_installed, lsp_extra)
 
-require("mason-tool-installer").setup {
+require("mason-tool-installer").setup({
   ensure_installed = ensure_installed,
   run_on_start = true,
-}
+  start_delay = 100,
+})
 
 -- Setup servers
-require("mason-lspconfig").setup {
+require("mason-lspconfig").setup({
   ensure_installed = {},
   automatic_installation = false,
   handlers = {
     function(server_name)
-      local lspconfig = require "lspconfig"
-      local ls_server_config = require "lsp.server" or {}
+      local lspconfig = require("lspconfig")
+      local ls_server_config = require("lsp.server") or {}
       local server = ls_server_config[server_name] or {}
 
       -- Useful when disabling
@@ -62,7 +63,7 @@ require("mason-lspconfig").setup {
       lspconfig[server_name].setup(server)
     end,
   },
-}
+})
 
 -- Setup Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -73,7 +74,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
-    local lsp_keymap = require "lsp.Keymaps"
+    local lsp_keymap = require("lsp.Keymaps")
     lsp_keymap.on_attach(client, args.buf)
   end,
 })
@@ -81,7 +82,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Diagnostic configuration.
 local diagnostic_icons = icons.diagnostics
 
-vim.diagnostic.config {
+vim.diagnostic.config({
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = diagnostic_icons.Error,
@@ -102,75 +103,113 @@ vim.diagnostic.config {
       [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
     },
   },
-}
+})
 
 -- Hover diagnostic
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("wtc/diagnostic-hover", { clear = false }),
+  group = vim.api.nvim_create_augroup("wtc/diagnostic-hover", { clear = true }),
   callback = function(args)
-    local g = g or {}
-    g.diagnostic_float_winid = nil
-    g.diagnostic_float_line = nil
+    local bufnr = args.buf
 
-    -- Ensure the buffer exists and has diagnostics
-    if vim.api.nvim_buf_is_valid(args.buf) then
-      if vim.bo[args.buf].filetype == "oil" then
+    -- Skip oil buffers
+    if vim.bo[bufnr].filetype == "oil" then
+      return
+    end
+
+    -- Store float window info
+    local diagnostic_float = {
+      winid = nil,
+      line = nil,
+      timer = nil,
+    }
+
+    -- Function to show diagnostic float
+    local function show_diagnostic_float()
+      local curline = vim.api.nvim_win_get_cursor(0)[1]
+      local diagnostics = vim.diagnostic.get(bufnr, { lnum = curline - 1 })
+
+      if #diagnostics == 0 then
         return
       end
 
-      -- Set up a keymap to show diagnostics float
-      vim.keymap.set("n", "<C-.>", function()
-        local curline = vim.api.nvim_win_get_cursor(0)[1]
-        local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
-        local virt_texts = { { (" "):rep(4) } }
-        local hi = { "Error", "Warn", "Info", "Hint" }
+      -- Close existing float if any
+      if diagnostic_float.winid and vim.api.nvim_win_is_valid(diagnostic_float.winid) then
+        vim.api.nvim_win_close(diagnostic_float.winid, false)
+      end
 
-        for _, diag in ipairs(diagnostics) do
-          virt_texts[#virt_texts + 1] = { diag.message, " " .. hi[diag.severity] }
-        end
+      -- Show new float
+      local float_opts = {
+        focus = false,
+        scope = "line",
+        border = "single", -- or "none" for no border
+        style = "minimal",
+        header = "",
+        prefix = "󱓻 ",
+        source = "always",
+      }
 
-        local winid = vim.diagnostic.open_float(nil, {
-          focus = false,
-          scope = "line",
-          border = "rounded",
-          header = "",
-          -- prefix = "󱓻 ",
-          prefix = "󱓻",
-          source = virt_texts,
-        })
-
-        g.diagnostic_float_winid = winid
-        g.diagnostic_float_line = curline
-
-        -- Auto-close the float when cursor moves
-        vim.api.nvim_create_autocmd("CursorMoved", {
-          buffer = args.buf,
-          callback = function()
-            local current_line = vim.fn.line "."
-            if g.diagnostic_float_winid and current_line ~= g.diagnostic_float_line then
-              pcall(vim.api.nvim_win_close, g.diagnostic_float_winid, false)
-              g.diagnostic_float_winid = nil
-              g.diagnostic_float_line = nil
-              -- Remove this autocmd after it fires once
-              return true
-            end
-          end,
-        })
-      end, { buffer = args.buf, desc = "Show line diagnostics" })
+      diagnostic_float.winid = vim.diagnostic.open_float(bufnr, float_opts)
+      diagnostic_float.line = curline
     end
+
+    -- Function to hide diagnostic float
+    local function hide_diagnostic_float()
+      if diagnostic_float.timer then
+        diagnostic_float.timer:stop()
+        diagnostic_float.timer = nil
+      end
+
+      if diagnostic_float.winid and vim.api.nvim_win_is_valid(diagnostic_float.winid) then
+        vim.api.nvim_win_close(diagnostic_float.winid, false)
+        diagnostic_float.winid = nil
+        diagnostic_float.line = nil
+      end
+    end
+
+    -- Show diagnostics on cursor hold (with delay)
+    vim.api.nvim_create_autocmd("CursorHold", {
+      buffer = bufnr,
+      callback = function()
+        show_diagnostic_float()
+      end,
+    })
+
+    -- Hide diagnostics when cursor moves
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      buffer = bufnr,
+      callback = function()
+        hide_diagnostic_float()
+      end,
+    })
+
+    -- Hide when entering insert mode
+    vim.api.nvim_create_autocmd("InsertEnter", {
+      buffer = bufnr,
+      callback = function()
+        hide_diagnostic_float()
+      end,
+    })
+
+    -- Manual keymap to show diagnostics immediately
+    -- vim.keymap.set("n", "<leader>d", show_diagnostic_float, {
+    --   buffer = bufnr,
+    --   desc = "Show line diagnostics"
+    -- })
   end,
 })
 
--- Override the virtual text diagnostic handler so that the most severe diagnostic is shown first.
+-- Set updatetime for CursorHold (adjust as needed)
+vim.opt.updatetime = 30
+
+-- Your virtual text sorting is good, keep it
 local show_handler = vim.diagnostic.handlers.virtual_text.show
-assert(show_handler)
 local hide_handler = vim.diagnostic.handlers.virtual_text.hide
+
 vim.diagnostic.handlers.virtual_text = {
   show = function(ns, bufnr, diagnostics, opts)
     table.sort(diagnostics, function(diag1, diag2)
-      return diag1.severity > diag2.severity
+      return diag1.severity < diag2.severity -- Fixed: < instead of >
     end)
     return show_handler(ns, bufnr, diagnostics, opts)
   end,
-  hide = hide_handler,
 }

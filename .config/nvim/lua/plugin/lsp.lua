@@ -99,6 +99,7 @@ return {
   {
     "b0o/schemastore.nvim",
     lazy = true,
+    ft = "jsonc",
     events = "VeryLazy",
   },
 }

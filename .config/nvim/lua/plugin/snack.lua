@@ -1,4 +1,4 @@
-local obPath = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen/")
+-- local obPath = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen/")
 
 local dashboard = {
   width = 60,
@@ -16,10 +16,10 @@ local dashboard = {
     -- When using a function, the `items` argument are the default keymaps.
     ---@type snacks.dashboard.Item[]
     keys = {
-      { icon = " ", key = "f", desc = "Find File", action = ":FzfLua files" },
+      { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
       { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-      { icon = " ", key = "g", desc = "Find Text", action = ":FzfLua live_grep" },
-      { icon = " ", key = "o", desc = "Recent Files", action = ":FzfLua oldfiles" },
+      { icon = " ", key = "g", desc = "Find Text", action = ":" },
+      { icon = " ", key = "o", desc = "Recent Files", action = ":" },
       {
         icon = " ",
         key = "c",

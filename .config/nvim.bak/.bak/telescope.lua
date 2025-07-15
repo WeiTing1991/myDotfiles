@@ -64,6 +64,8 @@ tele.setup {
   pickers = {
     find_files = {
       -- theme = "ivy",
+    find_files = {
+      -- theme = "ivy",
       find_command = {
         "fd",
         "--strip-cwd-prefix",
@@ -76,8 +78,11 @@ tele.setup {
         "--exclude",
         "node_modules",
         "--exclude",
-        ".venv"
+        ".venv",
+        "--exclude",
+        "**/.DS_Store/**",
       },
+    },
     },
     grep_string = {
       -- theme = "ivy",
