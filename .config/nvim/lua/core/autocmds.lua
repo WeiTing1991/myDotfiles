@@ -15,17 +15,17 @@ autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("wtc/yank_highlight", { clear = true }),
   callback = function()
-    vim.hl.on_yank { higroup = "YankHighlight", priority = 250 }
+    vim.hl.on_yank()
   end,
 })
 
-autocmd({ "bufenter", "bufwinenter" }, {
-  group = vim.api.nvim_create_augroup("wtc/editor", { clear = true }),
-  pattern = { "*" },
-  callback = function()
-    vim.cmd [[set formatoptions-=c formatoptions-=r formatoptions-=o]]
-  end,
-})
+-- autocmd({ "bufenter", "bufwinenter" }, {
+--   group = vim.api.nvim_create_augroup("wtc/editor", { clear = true }),
+--   pattern = { "*" },
+--   callback = function()
+--     vim.cmd [[set formatoptions-=c formatoptions-=r formatoptions-=o]]
+--   end,
+-- })
 
 autocmd("FileType", {
   group = vim.api.nvim_create_augroup("wt-local_detach_fold", { clear = true }),

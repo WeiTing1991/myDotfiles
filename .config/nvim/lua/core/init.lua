@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+require "core.options"
+require "core.keymaps"
+require "core.autocmds"
+
 -- Plugin manager
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
@@ -19,10 +23,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-
-require "core.options"
-require "core.keymaps"
-
 require('lazy').setup({
   spec = {
   { import = "plugin.init" },
@@ -30,10 +30,10 @@ require('lazy').setup({
   { import = "plugin.lsp" },
   { import = "plugin.lsp_enhance" },
   { import = "plugin.snack" },
-  { import = "plugin.ai" },
   { import = "plugin.git" },
+  { import = "plugin.ai" },
   { import = "plugin.tools" },
-    -- { import = "plugin.ui" },
+  { import = "plugin.ui" },
   -- { import = "plugin.note_taking" },
   -- { import = "plugin.sql" },
   -- { import = "plugin.dap" },
@@ -73,7 +73,6 @@ require('lazy').setup({
 })
 
 require "userkeymaps"
-
 
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()

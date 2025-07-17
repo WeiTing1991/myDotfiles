@@ -53,7 +53,15 @@ return {
     end,
   },
 
-  --[[ language extra ]]
+  --[[ LANGUAGE ]]
+  -- Json
+  {
+    "b0o/schemastore.nvim",
+    lazy = true,
+    ft = "jsonc",
+    events = "VeryLazy",
+  },
+
   -- ts/js
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
@@ -72,11 +80,11 @@ return {
 
   -- NOTE: https://github.com/iabdelkareem/csharp.nvim
   -- C#
-  -- {
-  --   "Hoffs/omnisharp-extended-lsp.nvim",
-  --   lazy = true,
-  --   ft = { "cs" },
-  -- },
+  {
+    "Hoffs/omnisharp-extended-lsp.nvim",
+    lazy = true,
+    ft = { "cs" },
+  },
 
   -- c/c++
   -- {

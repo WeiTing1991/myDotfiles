@@ -37,8 +37,8 @@ return {
           ["."] = false,
         },
         copilot_node_command = "node",
-        copilot_model = "claude-4.0-sonnet",
-        -- copilot_model = "gpt-4o",
+        -- copilot_model = "",
+        copilot_model = "gpt-4o-copilot",
         server_opts_overrides = {
           trace = "verbose",
           settings = {

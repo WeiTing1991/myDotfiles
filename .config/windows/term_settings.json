@@ -112,6 +112,7 @@
             "backgroundImageStretchMode": "fill",
             "font": 
             {
+                "cellHeight": "1.2",
                 "face": "JetBrainsMono Nerd Font",
                 "size": 10
             },

@@ -68,3 +68,15 @@ end
 
 -- require "vs_user.lazy"
 require "vs_user.keybinding"
+
+
+-- local autocmd = vim.api.nvim_create_autocmd
+-- local set = vim.opt_local
+--
+-- autocmd("TextYankPost", {
+--   desc = "Highlight when yanking (copying) text",
+--   group = vim.api.nvim_create_augroup("wtc/yank_highlight", { clear = true }),
+--   callback = function()
+--     vim.hl.on_yank { higroup = "YankHighlight", priority = 250 }
+--   end,
+-- })

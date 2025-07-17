@@ -33,7 +33,6 @@ return {
       require("plugin.configs.nvimtree")
     end,
   },
-
   -- diagnostics
   {
     "folke/trouble.nvim",

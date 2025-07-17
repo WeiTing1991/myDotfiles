@@ -34,7 +34,8 @@ local undoDir = ""
 if is_mac then
   undoDir = os.getenv("HOME") .. "/.vim/undodir"
 elseif is_windows then
-  undoDir = vim.fn.stdpath("config") .. "\\.vim\\undodir"
+  undoDir = os.getenv("HOME") .. "\\.vim\\undodir"
+  print("undoDir: " .. undoDir)
 else
   undoDir = os.getenv("HOME") .. "/.vim/undodir"
 end
@@ -96,7 +97,7 @@ local options = {
   wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" },
 
   -- Decrease update time
-  updatetime = 100,
+  updatetime = 150,
   -- Decrease mapped sequence wait time
   timeoutlen = 200,
 

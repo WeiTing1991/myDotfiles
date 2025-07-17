@@ -41,9 +41,33 @@ M = {
         analysis = {
           ignore = { "*" },
         },
-        -- venvPath = ".",
-        -- venv = ".venv",
+        venvPath = ".",
+        venv = ".venv",
       },
+    },
+  },
+
+  -- c/c++
+  ["clangd"] = {
+    capabilities = {
+      offsetEncoding = { "utf-16" },
+    },
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
+      "--completion-style=detailed",
+      "--function-arg-placeholders",
+      "--fallback-style=llvm",
+      --   "--log=verbose",
+      --   "--enable-config",
+      --   -- "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
+    },
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+      clangdFileStatus = true,
     },
   },
 
@@ -104,23 +128,24 @@ M = {
 
   -- C#
   ["omnisharp"] = {
-    -- handlers = {
-    --   ["textDocument/definition"] = require("omnisharp_extended").handler,
-    -- },
-    enable_roslyn_analysers = true,
-    enable_import_completion = true,
+    handlers = {
+      ["textDocument/definition"] = require("omnisharp_extended").handler,
+    },
+    cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+    enable_roslyn_analyzers = true,
     organize_imports_on_format = true,
-    enable_decompilation_support = true,
+    enable_import_completion = true,
+    -- enable_decompilation_support = true,
     filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets", "tproj", "slngen", "fproj" },
     settings = {
       FormattingOptions = {
         EnableEditorConfigSupport = true,
         OrganizeImports = true,
       },
-      MsBuild = {
-        LoadProjectsOnDemand = false,
-        EnablePackageAutoRestore = true,
-      },
+      -- MsBuild = {
+      --   LoadProjectsOnDemand = false,
+      --   EnablePackageAutoRestore = true,
+      -- },
       RoslynExtensionsOptions = {
         EnableAnalyzersSupport = false,
         EnableImportCompletion = true,
@@ -207,31 +232,7 @@ M = {
   ["docker_compose_language_service"] = {},
 
   -- database
-  ["sqls"] = {},
-
-  -- c/c++
-  ["clangd"] = {
-    capabilities = {
-      offsetEncoding = { "utf-16" },
-    },
-    cmd = {
-      "clangd",
-      "--background-index",
-      "--clang-tidy",
-      "--header-insertion=iwyu",
-      "--completion-style=detailed",
-      "--function-arg-placeholders",
-      "--fallback-style=llvm",
-      --   "--log=verbose",
-      --   "--enable-config",
-      --   -- "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
-    },
-    init_options = {
-      usePlaceholders = true,
-      completeUnimported = true,
-      clangdFileStatus = true,
-    },
-  },
+  -- ["sqls"] = {},
 
   -- HAVE to install go global
   -- go

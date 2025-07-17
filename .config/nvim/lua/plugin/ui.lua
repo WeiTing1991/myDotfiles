@@ -1,9 +1,19 @@
 return {
+  -- Statusline
   {
-    "nanozuki/tabby.nvim",
-    event = "VimEnter",
-    -- config = function()
-    -- end,
+    "WeiTing1991/staline.nvim",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require "plugin.configs.staline"
+    end,
+  },
+  {
+    'nanozuki/tabby.nvim',
+    ---@type TabbyConfig
+    opts = {
+      -- configs...
+    },
   },
   {
     "catgoose/nvim-colorizer.lua",

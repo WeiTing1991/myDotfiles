@@ -9,8 +9,10 @@ winget install --id=Microsoft.VisualStudio.2022.BuildTools  -e
 
 # uv
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-$env:Path = "C:\Users\weichen34\.local\bin;$env:Path"
+$env:Path = "$HOME\.local\bin;$env:Path"
 uv --version
+# add python
+$env:PATH = "$HOME\AppData\Roaming\uv\python;" + $env:PATH
 
 # bun
 powershell -c "irm bun.sh/install.ps1 | iex"

@@ -73,7 +73,7 @@
   "theme": {
     "mode": "system",
     "light": "Gruvbox Light",
-    "dark": "Gruvbox Dark Hard"
+    "dark": "Ayu Dark"
   },
   "soft_wrap": "editor_width",
   "show_wrap_guides": true,
@@ -186,7 +186,7 @@
           "typeCheckingMode": "strict"
         },
         "python": {
-          "pythonPath": ".venv/bin/python"
+          // "pythonPath": ".venv/bin/python"
         }
       }
     }

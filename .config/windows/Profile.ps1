@@ -8,17 +8,19 @@ Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
 Set-PSReadLineKeyHandler -Key Ctrl+p -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key Ctrl+n -Function HistorySearchForward
 
+# Set predictive IntelliSense (PowerShell 7.2+ feature)
+Set-PSReadLineOption -PredictionSource History
+
+# Tab completion
+Set-PSReadLineKeyHandler -Key tab -Function MenuComplete
+
 # Ctrl+W to delete the previous word (like in Bash)
 # Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
 
-# # Set predictive IntelliSense (PowerShell 7.2+ feature)
-# Set-PSReadLineOption -PredictionSource History
 
 # # Ctrl+Space for IntelliSense suggestions
 # Set-PSReadLineKeyHandler -Key Ctrl+tab -Function Complete
 
-# # Tab completion
-# #Set-PSReadLineKeyHandler -Key tab -Function MenuComplete
 
 # # Ctrl+d to exit, like in bash
 # #Set-PSReadLineKeyHandler -Key Ctrl+w -Function DeleteCharOrExit
@@ -38,8 +40,24 @@ $ENV:EDITOR = 'nvim'
 
 Set-Alias c clear
 
-function n ($command) {nvim}
+function n ($command) {Fvim}
 function e ($command) {exit}
+
+# add python to PATH
+$uvPython = uv python find
+if ($uvPython) {
+    $uvPythonDir = Split-Path $uvPython
+    $env:PATH = "$uvPythonDir;" + $env:PATH
+}
+
+# Add UV tools directory
+$uvToolsDir = Join-Path $env:APPDATA "uv\tools"
+if (Test-Path $uvToolsDir) {
+    $env:PATH = "$uvToolsDir;" + $env:PATH
+}
+
+Set-Alias python3 python
+Set-Alias pip3 pip
 
 #function gdrive ($command) {cd G:\.shortcut-targets-by-id\1AhcyENBzXs13kiaeR7txKn5xdpV0sGGn\002_Projects\003_InnoSuisse_MüllerSteinag }
 # function usi ($command) {cd \work\01_USI}

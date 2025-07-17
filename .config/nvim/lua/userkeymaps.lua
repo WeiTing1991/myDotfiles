@@ -1,9 +1,17 @@
 ----- Pluglins keymaps -----
 local map = vim.keymap.set
 local tele_builtin = require("telescope.builtin")
+local snacks = require("snacks")
 
 --[[ file tree ]]
 map("n", "<leader>d", function() require("oil").open() end, { desc = "Toggle file explorer" })
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
+map("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
+
+-- [[ Override default keymaps ]]
+map("n", "<C-q>", function()
+  snacks.bufdelete()
+end, { desc = "Close current buffer and window" })
 
 --[[ telescope/search ]]
 map("n", "<C-f>", tele_builtin.find_files, { desc = "Find files" })
@@ -11,6 +19,7 @@ map("n", "<leader>ff", tele_builtin.find_files, { desc = "Find files" })
 map("n", "<leader>fl", tele_builtin.live_grep, { desc = "Find live grep" })
 map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
 map("n", "<leader>fb", tele_builtin.buffers, { desc = "Find file in opened buffer" })
+
 -- map("n", "<leader>fj", function()
 --   builtin.find_files({ cwd = vim.fn.expand("%:p:h") })
 -- end, { desc = "Find file in current child dir" })

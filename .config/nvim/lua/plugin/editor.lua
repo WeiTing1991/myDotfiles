@@ -146,17 +146,6 @@ return {
       --   end))
     end,
   },
-  -- {
-  --   "Wansmer/treesj",
-  --   lazy = true,
-  --   event = "InsertEnter",
-  --   dependencies = "nvim-treesitter",
-  --   keys = {
-  --     { "<leader>tj", "<cmd>TSJToggle<cr>", desc = "Join/split code block" },
-  --   },
-  --   opts = { use_default_keymaps = false },
-  -- },
-
   -- Better Comment
   {
     "numToStr/Comment.nvim",
