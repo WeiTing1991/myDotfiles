@@ -4,6 +4,10 @@ require("mason").setup({
   ui = {
     icons = icons.install,
   },
+  registries = {
+    "github:mason-org/mason-registry",
+    "github:Crashdummyy/mason-registry",
+  },
 })
 require("fidget").setup({ notification = { window = { winblend = 0 } } })
 

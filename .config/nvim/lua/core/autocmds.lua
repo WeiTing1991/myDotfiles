@@ -104,7 +104,6 @@ autocmd({ "BufRead", "BufNewFile" }, {
     set.tabstop = 4
     set.softtabstop = 4
     set.textwidth = 120
-    vim.keymap.set('n', 'gd', require('omnisharp_extended').lsp_definitions, { desc = "Goto Definition" })
   end,
 })
 

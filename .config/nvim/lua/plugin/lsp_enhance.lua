@@ -78,13 +78,21 @@ return {
     end,
   },
 
-  -- NOTE: https://github.com/iabdelkareem/csharp.nvim
   -- C#
   {
-    "Hoffs/omnisharp-extended-lsp.nvim",
-    lazy = true,
-    ft = { "cs" },
+    "seblyng/roslyn.nvim",
+    ft = "cs",
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+    },
   },
+  -- NOTE: https://github.com/iabdelkareem/csharp.nvim
+  -- {
+  --   "Hoffs/omnisharp-extended-lsp.nvim",
+  --   lazy = true,
+  --   ft = { "cs" },
+  -- },
 
   -- c/c++
   -- {

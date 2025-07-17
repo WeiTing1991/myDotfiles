@@ -18,16 +18,16 @@
     "keybindings": 
     [
         {
-            "id": null,
-            "keys": "enter"
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
         },
         {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
         },
         {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
+            "id": null,
+            "keys": "enter"
         },
         {
             "id": null,
@@ -113,11 +113,12 @@
             "font": 
             {
                 "cellHeight": "1.2",
-                "face": "JetBrainsMono Nerd Font",
-                "size": 10
+                "face": "Hack Nerd Font Mono",
+                "size": 12,
+                "weight": "medium"
             },
             "historySize": 3000,
-            "opacity": 100,
+            "opacity": 85,
             "padding": "4",
             "scrollbarState": "hidden"
         },

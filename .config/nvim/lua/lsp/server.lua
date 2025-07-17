@@ -126,36 +126,42 @@ M = {
     },
   },
 
+  -- CHAGE TO roslyn
   -- C#
-  ["omnisharp"] = {
-    handlers = {
-      ["textDocument/definition"] = require("omnisharp_extended").handler,
-    },
-    cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-    enable_roslyn_analyzers = true,
-    organize_imports_on_format = true,
-    enable_import_completion = true,
-    -- enable_decompilation_support = true,
-    filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets", "tproj", "slngen", "fproj" },
-    settings = {
-      FormattingOptions = {
-        EnableEditorConfigSupport = true,
-        OrganizeImports = true,
-      },
-      -- MsBuild = {
-      --   LoadProjectsOnDemand = false,
-      --   EnablePackageAutoRestore = true,
-      -- },
-      RoslynExtensionsOptions = {
-        EnableAnalyzersSupport = false,
-        EnableImportCompletion = true,
-        AnalyzeOpenDocumentsOnly = false,
-      },
-      Sdk = {
-        IncludePrereleases = true,
-      },
-    },
-  },
+  ["roslyn"] = {},
+  -- ["omnisharp"] = {
+  --   handlers = {
+  --     ["textDocument/definition"] = require("omnisharp_extended").handler,
+  --   },
+  --   cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+  --   enable_roslyn_analyzers = true,
+  --   organize_imports_on_format = true,
+  --   enable_import_completion = true,
+  --   -- enable_decompilation_support = true,
+  --   filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets", "tproj", "slngen", "fproj" },
+  --   root_dir = function(fname)
+  --     return require'lspconfig'.util.root_pattern('*.sln', '*.csproj', 'omnisharp.json')(fname)
+  --       or require'lspconfig'.util.path.dirname(fname)
+  --   end,
+  --   settings = {
+  --     FormattingOptions = {
+  --       EnableEditorConfigSupport = true,
+  --       OrganizeImports = true,
+  --     },
+  --     -- MsBuild = {
+  --     --   LoadProjectsOnDemand = false,
+  --     --   EnablePackageAutoRestore = true,
+  --     -- },
+  --     RoslynExtensionsOptions = {
+  --       EnableAnalyzersSupport = false,
+  --       EnableImportCompletion = true,
+  --       AnalyzeOpenDocumentsOnly = false,
+  --     },
+  --     Sdk = {
+  --       IncludePrereleases = true,
+  --     },
+  --   },
+  -- },
 
   -- js/ts/css/html
   ["ts_ls"] = {
