@@ -4,7 +4,9 @@ local tele_builtin = require("telescope.builtin")
 local snacks = require("snacks")
 
 --[[ file tree ]]
-map("n", "<leader>d", function() require("oil").open() end, { desc = "Toggle file explorer" })
+map("n", "<leader>d", function()
+  require("oil").open()
+end, { desc = "Toggle file explorer" })
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 map("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 
@@ -19,6 +21,32 @@ map("n", "<leader>ff", tele_builtin.find_files, { desc = "Find files" })
 map("n", "<leader>fl", tele_builtin.live_grep, { desc = "Find live grep" })
 map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
 map("n", "<leader>fb", tele_builtin.buffers, { desc = "Find file in opened buffer" })
+map("n", "<leader>tt", tele_builtin.colorscheme, { desc = "toogle colortheme" })
+
+map({ "n", "t" }, "<C-/>", function()
+  snacks.terminal()
+end, { desc = "Toggle term" })
+
+--[[ toggle ]]
+map("n", "<leader>tc", function()
+  require("copilot.suggestion").toggle_auto_trigger()
+  if not vim.b.copilot_suggestion_auto_trigger then
+    print("Copilot is disabled")
+  else
+    print("Copilot is enabled")
+  end
+end, { desc = "Copilot" })
+
+-- map("n", "<leader>tu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
+-- map("n", "<leader>ta", function()
+--   require("neogen").generate()
+-- end, { desc = "Annotation" })
+
+--[[ diagnostics ]]
+map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })
+map("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics workspace" })
+map("n", "<leader>xq", "<cmd>Trouble qflist toggle <cr>", { desc = "Quickfix List " })
+map("n", "<leader>xl", "<cmd>Trouble locflist toggle <cr>", { desc = "Location List " })
 
 -- map("n", "<leader>fj", function()
 --   builtin.find_files({ cwd = vim.fn.expand("%:p:h") })

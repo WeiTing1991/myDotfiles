@@ -118,6 +118,12 @@ tele.setup {
       db_validate_threshold = 10, -- Default: 10
       show_filter_column = false, -- Default: true
     },
+   ["ui-select"] = {
+      require("telescope.themes").get_dropdown({
+        width = 0.3,
+        height = 0.3,
+      })
+    }
   },
 }
 

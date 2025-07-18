@@ -114,10 +114,6 @@ function ToggleSpellCheck()
 end
 vim.keymap.set("n", "<leader>tp", ToggleSpellCheck, { desc = "Spell check" })
 
-vim.keymap.set({ "n", "t" }, "<C-\\>", function()
-  require("core.float_term").float_term()
-end, { desc = "Toggle term" })
-
 -- Optional
 -- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection with system clipboard content" })
 -- vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })

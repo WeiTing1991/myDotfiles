@@ -27,6 +27,14 @@ for k, v in pairs(globals) do
   vim.g[k] = v
 end
 
+if is_windows then
+  vim.opt.shell = "pwsh.exe"
+  vim.opt.shellcmdflag = "-l"
+elseif is_mac then
+  vim.opt.shell = "/bin/zsh"
+  vim.opt.shellcmdflag = "-c"
+end
+
 ------------------------------------ DEFAULT OPTIONS ------------------------------------
 
 -- undo folder
@@ -97,7 +105,7 @@ local options = {
   wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" },
 
   -- Decrease update time
-  updatetime = 150,
+  updatetime = 200,
   -- Decrease mapped sequence wait time
   timeoutlen = 200,
 
@@ -136,6 +144,9 @@ local options = {
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.o.title = true
+vim.o.titlestring = "%<%F - nvim"
 
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"

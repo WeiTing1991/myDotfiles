@@ -82,6 +82,7 @@ M.tree = {
       unstaged ="○",
       staged ="●",
       ignored = "",
+      untracked = "+",
     },
   },
 }

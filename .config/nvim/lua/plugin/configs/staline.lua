@@ -1,5 +1,5 @@
 -- NOTE: https://github.com/tamton-aquib/staline.nvim
-local icon = require "icon"
+local icon = require("icon")
 
 -- spell statues
 local function spell_check()
@@ -26,13 +26,13 @@ local function indent_style()
   return string.format("%s %s (%d)", style, sytle_string, tab_width)
 end
 
-require("staline").setup {
+require("staline").setup({
   defaults = {
     expand_null_ls = false, -- This expands out all the null-ls sources to be shown
     -- left_separator = "",
     -- right_separator = "",
-    left_separator = "",
-    right_separator = "",
+    left_separator = "",
+    right_separator = "",
     full_path = true,
     branch_symbol = " ",
     true_colors = true,
@@ -42,9 +42,9 @@ require("staline").setup {
   mode_colors = {},
   mode_icons = {},
   sections = {
-    left = { "-mode", "left_sep_double", "-file_name", "left_sep_double", "-branch"},
-    mid = { "right_sep_double", "lsp", "left_sep_double" },
-    right = { "left_sep_double", spell_check, copilot_status, indent_style, "-line_column", "-cwd" },
+    left = { "- ", "mode", "right_sep_double","-file_name", "left_sep_double", "branch" },
+    mid = { "lsp" },
+    right = { spell_check, copilot_status, indent_style, "right_sep_double", "-line_column","left_sep_double", "cwd", "- " },
   },
   inactive_sections = {
     -- left = { "lsp" },
@@ -58,4 +58,4 @@ require("staline").setup {
     snacks_dashboard = { "HOME", "" },
   },
   lsp_symbols = icon.diagnostics,
-}
+})

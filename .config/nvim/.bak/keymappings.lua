@@ -28,6 +28,7 @@ map("n", "<leader>d", function()
   require("oil").open()
 end, { desc = "Toggle file explorer" })
 
+
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 
 map("n", "<C-e>", function()

@@ -22,22 +22,4 @@ indent_size = 4
 indent_style = tab
 
 [*.cs]
-# Disable naming violations
-dotnet_diagnostic.IDE1006.severity = none
-# Disable "can be made static" warnings
-dotnet_diagnostic.CA1822.severity = none
-# Disable "new expression can be simplified"
 dotnet_diagnostic.IDE0090.severity = none
-# Disable "variable declaration can be inlined"
-dotnet_diagnostic.IDE0018.severity = none
-# Disable "unnecessary using directive"
-dotnet_diagnostic.CS8019.severity = none
-dotnet_diagnostic.IDE0005.severity = none
-# Disable "expression value is never used"
-dotnet_diagnostic.IDE0058.severity = none
-# Disable "add braces to if statement"
-dotnet_diagnostic.IDE0011.severity = none
-# Disable "accessibility modifiers required"
-dotnet_diagnostic.IDE0040.severity = none
-# Disable "parentheses should be added for clarity"
-dotnet_diagnostic.IDE0048.severity = none
