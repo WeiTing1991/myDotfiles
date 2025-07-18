@@ -19,9 +19,9 @@ M.arrows = {
 
 --- For install
 M.install = {
-  package_installed = "✓",
+  package_installed = "●",
   package_pending = "➜",
-  package_uninstalled = "✗",
+  package_uninstalled = "○",
 }
 
 --- LSP symbol kinds.
@@ -78,11 +78,14 @@ M.tree = {
       open = "",
       symlink = "@",
     },
-    git = { unmerged = "" },
+    git = {
+      unstaged ="○",
+      staged ="●",
+      ignored = "",
+    },
   },
 }
 
---- Shared icons that don't really fit into a category.
 M.misc = {
   bug = "",
   ellipsis = "…",

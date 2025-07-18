@@ -72,7 +72,7 @@ local options = {
   softtabstop = 2,
 
   breakindent = true,
-  showbreak = "↪ ",
+  showbreak = "↳ ",
   linebreak = true,
 
   -- whitespace

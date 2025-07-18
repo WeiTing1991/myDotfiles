@@ -18,16 +18,16 @@
     "keybindings": 
     [
         {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
+            "id": null,
+            "keys": "enter"
         },
         {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
         },
         {
-            "id": null,
-            "keys": "enter"
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
         },
         {
             "id": null,
