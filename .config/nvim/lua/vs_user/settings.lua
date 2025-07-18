@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- basic keybinding
+
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 -- vim.keymap.set("n", "n", "nzzzv", { desc = "Jump to next match" })
