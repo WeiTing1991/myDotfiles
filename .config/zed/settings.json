@@ -8,7 +8,6 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   // Core Settings
-  //
   "base_keymap": "VSCode",
   "vim_mode": true,
   "vim": {
@@ -71,7 +70,8 @@
   // Tab Bar & Toolbar
   "tab_bar": {
     "show_nav_history_buttons": false,
-    "show": true
+    "show": true,
+    "show_tab_bar_buttons": false
   },
   "toolbar": {
     "breadcrumbs": true,
@@ -95,7 +95,7 @@
     "button": true,
     "default_width": 300,
     "dock": "right",
-    "entry_spacing": "comfortable",
+    "entry_spacing": "standard",
     "file_icons": true,
     "folder_icons": true,
     "git_status": true,
