@@ -26,14 +26,14 @@
   "theme": {
     "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "One Dark"
+    "dark": "One Light"
   },
   "ui_font_size": 16,
   "ui_font_family": ".SystemUIFont",
-  "ui_font_weight": 300,
+  "ui_font_weight": 400,
   "buffer_font_size": 14,
   "buffer_font_family": "Hack Nerd Font Mono",
-  "buffer_font_weight": 100,
+  "buffer_font_weight": 200,
   // Editor Settings
   "relative_line_numbers": true,
   "show_whitespaces": "boundary",
@@ -53,7 +53,7 @@
   },
   "active_pane_modifiers": {
     "border_size": 0.0,
-    "inactive_opacity": 0.6
+    "inactive_opacity": 0.8
   },
   "indent_guides": {
     "enabled": true,
@@ -75,12 +75,12 @@
   },
   "toolbar": {
     "breadcrumbs": true,
-    "code_actions": false,
+    "code_actions": true,
     "selections_menu": true
   },
   "tabs": {
     "file_icons": true,
-    "git_status": true,
+    "git_status": false,
     "close_position": "right"
   },
   // Inline Features
@@ -90,6 +90,7 @@
   },
   "show_completion_documentation": true,
   "selection_highlight": false,
+
   // Project Panel
   "project_panel": {
     "button": true,
@@ -108,7 +109,8 @@
     "show_diagnostics": "all",
     "indent_guides": {
       "show": "always"
-    }
+    },
+    "hide_root": false,
   },
   // File Exclusions (matching VS Code)
   "file_scan_exclusions": [
@@ -150,20 +152,22 @@
   "terminal": {
     "font_family": "Hack Nerd Font Propo",
     "font_size": 14,
+    "font_weight": 800,
+    "button": true,
     "toolbar": {
-      "breadcrumbs": null
+      "breadcrumbs": false
     },
     "copy_on_select": true,
     "dock": "bottom",
     "default_width": null,
-    "default_height": 300,
+    "default_height": 500,
     "working_directory": "current_project_directory",
     "env": {},
     "blinking": "off",
     "alternate_scroll": "off",
     "option_as_meta": false,
     "shell": "system",
-    "line_height": "comfortable",
+    "line_height": "standard",
     "detect_venv": {
       "on": {
         "directories": [".env", "env", ".venv", "venv"],
@@ -173,6 +177,7 @@
   },
   // Git Configuration
   "git": {
+    "gutter_debounce": 100,
     "inline_blame": {
       "enabled": false
     },
