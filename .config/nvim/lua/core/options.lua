@@ -105,9 +105,9 @@ local options = {
   wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" },
 
   -- Decrease update time
-  updatetime = 200,
+  updatetime = 120,
   -- Decrease mapped sequence wait time
-  timeoutlen = 200,
+  timeoutlen = 150,
 
  -- Save undo history
   backup = false,

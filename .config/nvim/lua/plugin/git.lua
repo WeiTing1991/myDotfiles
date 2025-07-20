@@ -25,7 +25,7 @@ return {
         signs = {
           add = { text = " +" },
           change = { text = " ~" },
-          delete = { text = "_" },
+          delete = { text = " x" },
           topdelete = { text = " ‾" },
           changedelete = { text = " │" },
           untracked = { text = " ┆" },

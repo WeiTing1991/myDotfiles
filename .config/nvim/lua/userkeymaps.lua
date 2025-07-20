@@ -2,6 +2,7 @@
 local map = vim.keymap.set
 local tele_builtin = require("telescope.builtin")
 local snacks = require("snacks")
+local mini_ui_select = require("core.ui_select")
 
 --[[ file tree ]]
 map("n", "<leader>d", function()
@@ -21,7 +22,10 @@ map("n", "<leader>ff", tele_builtin.find_files, { desc = "Find files" })
 map("n", "<leader>fl", tele_builtin.live_grep, { desc = "Find live grep" })
 map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
 map("n", "<leader>fb", tele_builtin.buffers, { desc = "Find file in opened buffer" })
-map("n", "<leader>tt", tele_builtin.colorscheme, { desc = "toogle colortheme" })
+
+map("n", "<leader>tt", function()
+  mini_ui_select.ui_select(tele_builtin.colorscheme)
+end, { desc = "toggle colorscheme" })
 
 map({ "n", "t" }, "<C-/>", function()
   snacks.terminal()
@@ -36,6 +40,18 @@ map("n", "<leader>tc", function()
     print("Copilot is enabled")
   end
 end, { desc = "Copilot" })
+
+-- map({ "n", "v" }, "<C-E>", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
+
+-- vim.keymap.set({ "n", "v" }, "<C-S-e>", function()
+--   require("core.ui_select").with_custom_select(function()
+--     vim.cmd("CodeCompanionActions")
+--   end)
+-- end, { desc = "CodeCompanionActions" })
+--
+--   vim.keymap.set({ "n", "v" }, "<M-i>t", function()
+--     vim.cmd("CodeCompanionChat Toggle")
+--   end, { desc = "CodeCompanionChat Toggle" })
 
 -- map("n", "<leader>tu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 -- map("n", "<leader>ta", function()

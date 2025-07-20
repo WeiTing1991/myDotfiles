@@ -7,10 +7,4 @@ return {
       require("nvim-surround").setup({})
     end,
   },
-  {
-    "numToStr/Comment.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    opts = {},
-  },
 }

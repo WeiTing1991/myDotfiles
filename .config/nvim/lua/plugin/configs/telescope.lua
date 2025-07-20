@@ -119,11 +119,7 @@ tele.setup {
       show_filter_column = false, -- Default: true
     },
    ["ui-select"] = {
-      require("telescope.themes").get_dropdown({
-        width = 0.3,
-        height = 0.3,
-      })
-    }
+      require("telescope.themes").get_dropdown({ }) }
   },
 }
 

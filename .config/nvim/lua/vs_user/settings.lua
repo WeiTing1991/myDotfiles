@@ -1,32 +1,14 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
--- basic keybinding
--- Is Working?
--- Remap for dealing with word wrap and adding jumps to the jumplist.
--- vim.keymap.set('n', 'j', [[(v:count > 0 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
--- vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
-
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("n", "n", "nzzzv", { desc = "Jump to next match" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Jump to previous match" })
+-- vim.keymap.set("n", "n", "nzzzv", { desc = "Jump to next match" })
+-- vim.keymap.set("n", "N", "Nzzzv", { desc = "Jump to previous match" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines" })
-
 
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { desc = "Clear highlights" })
 vim.keymap.set("n", "<C-c>", ":noh<CR>", { desc = "Clear highlights" })
-
--- comment(use vscode default)
--- vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
--- vim.api.nvim_set_keymap("v", "-", "gc", { desc = "comment" })
--- vim.api.nvim_set_keymap("n", "_", "gbc", { desc = "comment blockwise" })
--- vim.api.nvim_set_keymap("v", "_", "gb", { desc = "comment blockwise" })
-
--- -- Move the highlighted line down
--- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
--- -- Move the highlighted line up
--- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Scroll
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll half page down" })
@@ -46,7 +28,7 @@ local options ={
   hlsearch = true,
   backup = false,
   swapfile = false,
-  scrolloff = 50,
+  -- scrolloff = 50,
   sidescrolloff = 0,
 }
 
@@ -66,17 +48,25 @@ for k, v in pairs(globals) do
   vim.g[k] = v
 end
 
--- require "vs_user.lazy"
+--[[
+    surr*ound_words             ysiw)           (surround_words)
+    *make strings               ys$"            "make strings"
+    [delete ar*ound me!]        ds]             delete around me!
+    remove <b>HTML t*ags</b>    dst             remove HTML tags
+    'change quot*es'            cs'"            "change quotes"
+    <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+    delete(functi*on calls)     dsf             function calls ]]
+
 require "vs_user.keybinding"
+require "vs_user.lazy"
 
+local autocmd = vim.api.nvim_create_autocmd
+local set = vim.opt_local
 
--- local autocmd = vim.api.nvim_create_autocmd
--- local set = vim.opt_local
---
--- autocmd("TextYankPost", {
---   desc = "Highlight when yanking (copying) text",
---   group = vim.api.nvim_create_augroup("wtc/yank_highlight", { clear = true }),
---   callback = function()
---     vim.hl.on_yank { higroup = "YankHighlight", priority = 250 }
---   end,
--- })
+autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("wtc/yank_highlight", { clear = true }),
+  callback = function()
+    vim.hl.on_yank()
+  end,
+})

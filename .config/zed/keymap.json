@@ -30,6 +30,19 @@
     }
   },
   {
+    "context": "Editor && !menu",
+    "bindings": {
+      "ctrl-shift-c": "editor::Copy",          // vim default: return to normal mode
+      "ctrl-shift-x": "editor::Cut",           // vim default: decrement
+      "ctrl-shift-v": "editor::Paste",         // vim default: visual block mode
+      // "ctrl-y": "editor::Undo",          // vim default: line up
+      // "ctrl-f": "buffer_search::Deploy", // vim default: page down
+      // "ctrl-o": "workspace::Open",       // vim default: go back
+      // "ctrl-s": "workspace::Save",       // vim default: show signature
+      // "ctrl-a": "editor::SelectAll",     // vim default: increment
+    }
+  },
+  {
     "context": "!Terminal",
     "use_key_equivalents": true,
     "bindings": {

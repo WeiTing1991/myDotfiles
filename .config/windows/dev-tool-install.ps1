@@ -27,3 +27,8 @@ Writ-Host "rust: $rust_link"
 
 # docker
 winget install -e --id Docker.DockerDesktop
+
+# fzf tool (test)
+$startupFolderPath = "$env:LOCALAPPDATA\television"
+$dotfilesAHKPath = "$HOME\.dotfiles\.config\television"
+New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force

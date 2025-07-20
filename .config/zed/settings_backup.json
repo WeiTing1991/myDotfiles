@@ -7,36 +7,43 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "edit_predictions": {
-    "mode": "eager",
-    "copilot": {
-      "proxy": null,
-      "proxy_no_verify": null,
-      "enterprise_uri": null
-    },
-    "enabled_in_text_threads": false
-  },
-  "icon_theme": "Zed (Default)",
+  // Core Settings
   "base_keymap": "VSCode",
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true,
+    "highlight_on_yank_duration": 100
+  },
+  // UI & Appearance
+  "icon_theme": "Zed (Default)",
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Light",
+    "dark": "One Dark"
+  },
+  "ui_font_size": 16,
+  "ui_font_family": ".SystemUIFont",
+  "ui_font_weight": 300,
+  "buffer_font_size": 14,
+  "buffer_font_family": "Hack Nerd Font Mono",
+  "buffer_font_weight": 100,
+
+  // Editor Settings
+  "relative_line_numbers": true,
+  "show_whitespaces": "boundary",
+  "soft_wrap": "editor_width",
+  "show_wrap_guides": true,
+  "wrap_guides": [120],
+  "tab_size": 2,
+  "hard_tabs": false,
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "format_on_save": "off",
   "autosave": "off",
-  "restore_on_startup": "none",
-  // "show_edit_predictions": false,
-  "auto_install_extensions": {},
-  "agent": {
-    "version": "2",
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    },
-    "dock": "left"
-  },
-  "features": {
-    "edit_prediction_provider": "copilot"
-    // "edit_prediction_provider": "zed"
-  },
-  "telemetry": {
-    "metrics": false
-  },
+  "restore_on_startup": "last_session",
+
+  // Editor Visual Settings
   "scrollbar": {
     "show": "never"
   },
@@ -44,128 +51,52 @@
     "border_size": 0.0,
     "inactive_opacity": 0.6
   },
-  "ui_font_size": 16,
-  "ui_font_family": ".SystemUIFont",
-  "ui_font_weight": 500,
-  "buffer_font_size": 16,
-  "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_weight": 400,
-  "relative_line_numbers": true,
+  "indent_guides": {
+    "enabled": true,
+    "active_line_width": 2,
+    "coloring": "fixed"
+  },
+  // Search Settings
+  "search": {
+    "whole_word": false,
+    "case_sensitive": false,
+    "include_ignored": false,
+    "regex": false
+  },
+  // Tab Bar & Toolbar
   "tab_bar": {
     "show_nav_history_buttons": false,
     "show": true
   },
   "toolbar": {
     "breadcrumbs": true,
-    "code_actions": false
-    // "selections_menu": false
+    "code_actions": false,
+    "selections_menu": true
   },
-  "inline_code_actions": false,
   "tabs": {
     "file_icons": true,
-    "git_status": true
-  },
-  "inlay_hints": {
-    "enabled": false,
-    "font_family": "Consolas"
-  },
-  "theme": {
-    "mode": "system",
-    "light": "Gruvbox Light",
-    "dark": "Ayu Dark"
-  },
-  "soft_wrap": "editor_width",
-  "show_wrap_guides": true,
-  "wrap_guides": [
-    120
-  ],
-  "tab_size": 2,
-  "project_panel": {
-    "button": true,
-    "default_width": 300,
-    "dock": "right",
-    "entry_spacing": "comfortable",
-    "file_icons": true,
-    "folder_icons": true,
     "git_status": true,
-    "indent_size": 20,
-    "auto_reveal_entries": true,
-    "auto_fold_dirs": true,
-    "scrollbar": {
-      "show": null
-    },
-    "show_diagnostics": "all",
-    "indent_guides": {
-      "show": "always"
-    }
+    "close_position": "right"
   },
-  "indent_guides": {
-    "enabled": true,
-    "active_line_width": 3
+  // Inline Features
+  "inline_code_actions": false,
+  "inlay_hints": {
+    "enabled": false
   },
-  "bottom_dock_layout": "contained",
-  "terminal": {
-    "font_family": "JetBrainsMono Nerd Font Propo",
-    "toolbar": {
-      "title": false
-    },
-    "copy_on_select": true
-  },
-  "show_whitespaces": "boundary",
-  "trim_whitespace": true,
-  "vim_mode": true,
-  "vim": {
-    "use_system_clipboard": "on_yank"
-  },
-  "git_panel": {
-    "dock": "right"
-  },
-  "git": {
-    "inline_blame": {
-      "enabled": false
-    },
-    "git_gutter": "tracked_files",
-    "hunk_style": "staged_hollow"
-    // "git_gutter_width": 1
-  },
-  "outline_panel": {
-    "dock": "right"
-  },
-  "env": {
-    "DOTNET_ROOT": " /opt/homebrew/bin/dotnet"
-  },
-  "diagnostics": {
-    "button": true,
-    "include_warnings": true,
-    "lsp_pull_diagnostics": {
-      "enabled": true,
-      "debounce_ms": 50
-    },
-    "inline": {
-      "enabled": true,
-      "update_debounce_ms": 100,
-      "padding": 4,
-      "min_column": 0,
-      "max_severity": null
-    },
-    "cargo": null
-  },
-  "formatter": "auto",
-  "file_scan_exclusions": [
-    "**/.git",
-    "**/.svn",
-    "**/.hg",
-    "**/.jj",
-    "**/CVS",
-    "**/.DS_Store",
-    "**/Thumbs.db",
-    "**/.classpath",
-    "**/.settings"
-  ],
-  "format_on_save": "off",
-  "hard_tabs": false,
+  "show_inline_completions": true,
+  "show_completion_documentation": true,
+
+
   "lsp": {
+    "biome": {
+      "settings": {
+        "config_path": "./frontend/biome.json"
+      }
+    },
     "omnisharp": {
+      "binary": {
+        "arguments": ["-lsp"]
+      }
     },
     "pyright": {
       "settings": {
@@ -177,80 +108,22 @@
           "typeCheckingMode": "strict"
         },
         "python": {
-          "pythonPath": ".venv/bin/python"
+          // "pythonPath": ".venv/bin/python"
         }
       }
     }
   },
-  //LSP
   "languages": {
-    "C": {
-      "tab_size": 2
+    "JSON": {
+      "language_servers": ["!biome", "prettier"]
+    },
+    "JSONC": {
+      "language_servers": ["!biome", "prettier"]
     },
     "Markdown": {
       "remove_trailing_whitespace_on_save": false,
       "format_on_save": "off"
     },
-    //Typescript
-    "JavaScript": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "TypeScript": {
-      "tab_size": 2,
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "JSX": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "TSX": {
-      "tab_size": 2,
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "JSON": {
-      "formatter": {
-        "language_server": {
-          "name": "prettier"
-        }
-      }
-    },
-    "JSONC": {
-      "formatter": {
-        "language_server": {
-          "name": "prettier"
-        }
-      }
-    },
-    "CSS": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    "GraphQL": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      }
-    },
-    //python
     "Python": {
       "formatter": [
         {
@@ -264,11 +137,7 @@
           }
         }
       ],
-      "language_servers": [
-        "pyright",
-        "ruff"
-      ]
+      "language_servers": ["pyright", "ruff"]
     }
-    // "CSharp": { }
   }
 }

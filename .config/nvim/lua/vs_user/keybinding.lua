@@ -8,6 +8,10 @@ vim.keymap.set("n", "<leader>fg", function()
   vscode.action("workbench.action.quickTextSearch")
 end)
 
+vim.keymap.set("n", "<leader>fl", function()
+  vscode.action("television.ToggleTextFinder")
+end)
+
 vim.keymap.set("n", "g.", function()
   vscode.action("editor.action.codeAction")
 end)
@@ -30,4 +34,9 @@ end)
 
 vim.keymap.set({"v"}, "K", function()
   vscode.action("editor.action.moveLinesUpAction")
+end)
+
+vim.keymap.set("n", "<leader>d", function()
+  -- vscode.action("projectManager.refreshGitProjects")
+  vscode.action("projectManager.listProjectsNewWindow")
 end)

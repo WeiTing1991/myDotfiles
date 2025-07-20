@@ -4,10 +4,10 @@
 
 #SingleInstance Force ; Prevents duplicate script instances
 
-if not A_IsAdmin {
-    Run('*RunAs "' A_ScriptFullPath '"') ; Requires v1.0.92.01+
-    ExitApp()
-}
+; if not A_IsAdmin {
+;     Run('*RunAs "' A_ScriptFullPath '"') ; Requires v1.0.92.01+
+;     ExitApp()
+; }
 
 ;#Persistent  ; Keep the script running in the background
 

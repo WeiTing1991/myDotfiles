@@ -43,7 +43,7 @@ return {
           trace = "verbose",
           settings = {
             advanced = {
-              listCount = 10, -- #completions for panel
+              listCount = 10,         -- #completions for panel
               inlineSuggestCount = 3, -- #completions for getCompletions
             },
           },
@@ -55,56 +55,56 @@ return {
       })
     end,
   },
-  -- {
-  --   "WeiTing1991/codecompanion.nvim",
-  --   lazy = true,
-  --   event = "VeryLazy",
-  --   -- enabled = false,
-  --   opts = {},
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   config = function()
-  --     require("codecompanion").setup({
-  --       strategies = {
-  --         chat = { adapter = "copilot" },
-  --         inline = { adapter = "copilot" },
-  --       },
-  --       adapters = {
-  --         copilot = function()
-  --           return require("codecompanion.adapters").extend("copilot", {
-  --             schema = {
-  --               model = {
-  --                 default = "claude-3.7-sonnet",
-  --                 choices = {
-  --                   "gpt-4o-2024-05-13",
-  --                   "gpt-4o-2024-08-06",
-  --                   "claude-3.5-sonnet",
-  --                   "claude-3.7-sonnet",
-  --                   "claude-4-sonnet",
-  --                   "o1-preview-2024-09-12",
-  --                   "o1-mini-2024-09-12",
-  --                 },
-  --               },
-  --             },
-  --           })
-  --         end,
-  --       },
-  --       opts = {
-  --         log_level = "DEBUG",
-  --       },
-  --     })
-  --     -- keymaps
-  --     vim.keymap.set({ "n", "v" }, "<M-i>i", function()
-  --       require("core.ui_select").with_custom_select(function()
-  --         vim.cmd("CodeCompanionActions")
-  --       end)
-  --     end, { desc = "CodeCompanionActions" })
-
-  --     vim.keymap.set({ "n", "v" }, "<M-i>t", function()
-  --       vim.cmd("CodeCompanionChat Toggle")
-  --     end, { desc = "CodeCompanionChat Toggle" })
-  --   end,
-  -- },
+  {
+    "WeiTing1991/codecompanion.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    enabled = false,
+    opts = {},
+    config = function()
+      require("codecompanion").setup({
+        display = {
+          chat = {
+            window = {
+              layout = "vertical",
+              position = "left",
+              width = 0.3,
+              height = 0.9,
+              border = "rounded",
+              full_height = true,
+            },
+          },
+        },
+        strategies = {
+          chat = { adapter = "copilot" },
+          inline = { adapter = "copilot" },
+        },
+        adapters = {
+          copilot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                model = {
+                  default = "gemini-2.0-flash-001",
+                  -- Supported models based on latest codecompanion documentation:
+                  choices = {
+                    "o3-mini-2025-01-31",
+                    "o1-2024-12-17",
+                    "o1-mini-2024-09-12",
+                    "claude-3.5-sonnet",
+                    "claude-3.7-sonnet",
+                    "claude-3.7-sonnet-thought",
+                    "gpt-4o-2024-08-06",
+                    "gemini-2.0-flash-001",
+                  },
+                },
+              },
+            })
+          end,
+        },
+        opts = {
+          log_level = "DEBUG",
+        },
+      })
+    end,
+  },
 }
