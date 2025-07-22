@@ -198,7 +198,7 @@
   },
   // launguage specific
   {
-    "context": "Editor && extension == md",
+    "context": "Editor && extension == md && vim_mode == normal && !menu",
     "bindings": {
       // "cmd-k v": "markdown::OpenPreviewToTheSide",
       // "cmd-shift-v": "markdown::OpenPreview"

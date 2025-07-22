@@ -29,6 +29,7 @@
     "dark": "One Light"
   },
   "ui_font_size": 16,
+  "buffer_line_height": "standard",
   "ui_font_family": ".SystemUIFont",
   "ui_font_weight": 400,
   "buffer_font_size": 14,
@@ -346,6 +347,9 @@
     "C++": {
       "formatter": "auto",
       "tab_size": 2
+    },
+    "Markdown-Inline": {
+      "preferred_line_length": 150
     }
   }
 }
