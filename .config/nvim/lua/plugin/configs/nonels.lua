@@ -50,6 +50,11 @@ require("null-ls").setup({
       filetypes = { "sh", "bash", "zsh" },
     }),
 
+    -- c++
+    formatting.clang_format.with({
+      filetypes = { "c", "cpp", "objc", "objcpp" },
+    }),
+
     -- cSharp
     formatting.csharpier,
 

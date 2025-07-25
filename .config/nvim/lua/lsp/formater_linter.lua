@@ -12,6 +12,9 @@ M = {
   sh = { "shfmt" },
   cSharp = { "csharpier" },
 
+  c = { "clang-format" },
+  cpp = { "clang-format" },
+
   -- svelte = { "eslint_d" },
   -- kotlin = { "ktlint" },
   -- terraform = { "tflint" },

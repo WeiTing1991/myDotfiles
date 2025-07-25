@@ -71,6 +71,8 @@ M = {
     },
   },
 
+  ["neocmakelsp"] ={},
+
   -- md
   ["marksman"] = {
     -- capabilities = {

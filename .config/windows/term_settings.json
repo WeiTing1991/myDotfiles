@@ -18,16 +18,16 @@
     "keybindings": 
     [
         {
-            "id": null,
-            "keys": "enter"
-        },
-        {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
         },
         {
             "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
+        },
+        {
+            "id": null,
+            "keys": "enter"
         },
         {
             "id": null,
@@ -170,6 +170,18 @@
                 "guid": "{66af7505-e111-52dc-bb9d-738ae0a997e5}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{8c71a326-d914-5226-b6fb-64ff3864fa77}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{e0778625-44e6-5162-a240-b154a37f7f90}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             }
         ]

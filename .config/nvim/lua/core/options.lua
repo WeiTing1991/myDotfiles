@@ -109,9 +109,10 @@ local options = {
   -- Decrease mapped sequence wait time
   timeoutlen = 150,
 
- -- Save undo history
+  -- Save undo history
   backup = false,
   swapfile = false,
+  shadafile = "NONE",
   writebackup = false,
   undofile = true,
   undodir = undoDir,
@@ -149,6 +150,10 @@ vim.o.title = true
 vim.o.titlestring = "%<%F - nvim"
 
 vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
+  local ok, _ = pcall(function()
+    vim.opt.clipboard = "unnamedplus"
+  end)
+  if not ok then
+    print("Clipboard not available")
+  end
 end)
-

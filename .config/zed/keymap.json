@@ -33,16 +33,16 @@
       "ctrl-m": "workspace::ToggleZoom",
 
       // ===== AI ASSISTANT =====
-      "alt-i":"assistant::InlineAssist"
+      "alt-i": "assistant::InlineAssist"
     }
   },
   // ===== EDITOR CONTEXT =====
   {
     "context": "Editor && !menu",
     "bindings": {
-      "ctrl-shift-c": "editor::Copy",          // vim default: return to normal mode
-      "ctrl-shift-x": "editor::Cut",           // vim default: decrement
-      "ctrl-shift-v": "editor::Paste",         // vim default: visual block mode
+      "ctrl-shift-c": "editor::Copy", // vim default: return to normal mode
+      "ctrl-shift-x": "editor::Cut", // vim default: decrement
+      "ctrl-shift-v": "editor::Paste" // vim default: visual block mode
       // "ctrl-y": "editor::Undo",          // vim default: line up
       // "ctrl-f": "buffer_search::Deploy", // vim default: page down
       // "ctrl-o": "workspace::Open",       // vim default: go back
@@ -119,7 +119,8 @@
       "r": "project_panel::Rename",
       "n": "project_panel::NewFile",
       "N": "project_panel::NewDirectory",
-      "d": "project_panel::Delete"
+      "d": "project_panel::Delete",
+      "z": "project_panel::CollapseAllEntries"
     }
   },
   // ===== VIM NORMAL MODE =====
@@ -127,10 +128,10 @@
     "context": "Editor && vim_mode == normal && !VimWaiting",
     "bindings": {
       // Navigation
-       "ctrl-h": "workspace::ActivatePaneLeft",
-       "ctrl-l": "workspace::ActivatePaneRight",
-       "ctrl-k": "workspace::ActivatePaneUp",
-       "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
 
       "-": "editor::ToggleComments",
       "space ,": "editor::Format",
@@ -139,7 +140,7 @@
       "space x": "diagnostics::Deploy",
       "space l o": "outline_panel::ToggleFocus",
 
-     // Git hunks navigation
+      // Git hunks navigation
       "] h": "editor::GoToHunk",
       "[ h": "editor::GoToPreviousHunk",
 

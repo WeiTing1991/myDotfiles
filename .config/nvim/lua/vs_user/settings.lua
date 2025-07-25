@@ -43,7 +43,7 @@ local globals = {
   prev_buffer = nil,
   next_buffer = nil,
   -- disable auto format
-  autoformat = false,
+  -- autoformat = false,
 }
 
 for k, v in pairs(globals) do

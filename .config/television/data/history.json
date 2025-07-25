@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "query": "cmk",
+    "channel": "files",
+    "timestamp": 1753324752
+  }
+]

@@ -1,11 +1,4 @@
 // Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
   // Core Settings
   "base_keymap": "VSCode",
@@ -26,11 +19,11 @@
   "theme": {
     "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "One Light"
+    "dark": "Quiet Light"
   },
   "ui_font_size": 16,
   "buffer_line_height": "standard",
-  "ui_font_family": ".SystemUIFont",
+  "ui_font_family": "Zed Plex Sans",
   "ui_font_weight": 400,
   "buffer_font_size": 14,
   "buffer_font_family": "Hack Nerd Font Mono",
@@ -41,6 +34,7 @@
   "soft_wrap": "editor_width",
   "show_wrap_guides": true,
   "wrap_guides": [120],
+  "preferred_line_length": 120,
   "tab_size": 2,
   "hard_tabs": false,
   "remove_trailing_whitespace_on_save": true,
@@ -101,7 +95,7 @@
     "file_icons": true,
     "folder_icons": true,
     "git_status": true,
-    "indent_size": 20,
+    "indent_size": 16,
     "auto_reveal_entries": true,
     "auto_fold_dirs": false,
     "scrollbar": {
@@ -111,32 +105,28 @@
     "indent_guides": {
       "show": "always"
     },
-    "hide_root": false,
+    "hide_root": false
   },
   // File Exclusions (matching VS Code)
   "file_scan_exclusions": [
     "**/.git",
-    "**/node_modules",
+    // "**/node_modules",
     "**/__pycache__",
-    "**/dist",
-    "**/build",
+    // "**/dist",
+    // "**/build",
     "**/.svn",
     "**/.hg",
     "**/.DS_Store",
     "**/Thumbs.db",
-    "**/.venv",
-    "**/bin",
-    "**/obj",
+    // "**/.venv",
+    // "**/bin",
+    // "**/obj",
     "**/bower_components",
     "**/*.code-search",
     "**/.git/objects/**",
     "**/.git/subtree-cache/**",
     "**/.hg/store/**"
   ],
-  "file_types": {
-    "Diff": ["dif"],
-    "Json": ["json", "jsonc"]
-  },
   // Outline Panel
   "outline_panel": {
     "dock": "right",
@@ -153,7 +143,7 @@
   "terminal": {
     "font_family": "Hack Nerd Font Propo",
     "font_size": 14,
-    "font_weight": 800,
+    "font_weight": 500,
     "button": true,
     "toolbar": {
       "breadcrumbs": false
@@ -209,25 +199,39 @@
     "edit_prediction_provider": "copilot"
   },
   "edit_predictions": {
-    "mode": "eager",
-    "copilot": {
-      "proxy": null,
-      "proxy_no_verify": null,
-      "enterprise_uri": null
-    },
-    "enabled_in_text_threads": false
+    "disabled_globs": []
+    // "mode": "eager",
+    // "copilot": {
+    //   "proxy": null,
+    //   "proxy_no_verify": null,
+    //   "enterprise_uri": null
+    // },
+    // "enabled_in_text_threads": false
   },
   // AI Agent
   "agent": {
+    "default_profile": "ask",
     "always_allow_tool_actions": true,
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
     },
     "dock": "left"
   },
   // Default Formatter
   "formatter": "prettier",
+
+  "file_types": {
+    "Diff": ["dif"],
+    "Json": ["json", "jsonc"],
+    "C++": ["cpp", "cxx", "cc", "c++", "hpp", "hxx", "h++", "hh"],
+    "C": ["C", "H"],
+    "Python": ["py", "pyx", "pyi", "pyw"],
+    "C#": ["cs", "csx"],
+    "CMake": ["CMakeLists.txt"]
+  },
+
+  // Language Server Protocol (LSP) Settings
   "lsp": {
     // "prettier": {
     //   "print_width": 120,
@@ -269,8 +273,36 @@
           "organizeImports": true
         }
       }
+    },
+
+    // C++ (clangd)
+    "clangd": {
+      "binary": {
+        "arguments": [
+          "--log=verbose",
+          "--clang-tidy",
+          "--background-index",
+          "--completion-style=detailed",
+          "--function-arg-placeholders",
+          "--header-insertion=iwyu",
+          "--pch-storage=memory",
+
+          // Add diagnostic flags here:
+          "--compile-commands-dir=.",
+          "--fallback-style=none"
+        ]
+      },
+      "initialization_options": {
+        "clangdFileStatus": true,
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "semanticHighlighting": true,
+        // Add clang-tidy configuration:
+        "fallbackFlags": ["-Wno-everything", "-Werror=return-type"]
+      }
     }
   },
+
   // Language-specific Settings
   "languages": {
     // "JSON": {
@@ -313,11 +345,14 @@
       "tab_size": 2,
       "language_servers": ["typescript-language-server", "!biome"]
     },
+    "TOML": {
+      "tab_size": 2
+    },
     "Markdown": {
       "remove_trailing_whitespace_on_save": false,
       "format_on_save": "off",
       "soft_wrap": "preferred_line_length",
-      "preferred_line_length": 120
+      "preferred_line_length": 179
     },
     "Python": {
       "formatter": [
@@ -340,16 +375,18 @@
       "formatter": "auto",
       "tab_size": 2
     },
-    "CSharp": {
-      "language_servers": ["omnisharp"],
-      "tab_size": 4
-    },
     "C++": {
       "formatter": "auto",
       "tab_size": 2
     },
-    "Markdown-Inline": {
-      "preferred_line_length": 150
+    "CSharp": {
+      "language_servers": ["omnisharp"],
+      "formatter": "language_server",
+      "tab_size": 4
+    },
+    "CMake": {
+      "preferred_line_length": 179,
+      "formatter": "language_server"
     }
   }
 }
