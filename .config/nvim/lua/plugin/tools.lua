@@ -19,26 +19,13 @@ return {
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
-  -- {
-  --   "mbbill/undotree",
-  --   lazy = true,
-  --   event = "VeryLazy",
-  -- },
-  {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = true,
-    event = "VeryLazy",
-    config = function()
-      require("plugin.configs.nvimtree")
-    end,
-  },
   -- diagnostics
   {
     "folke/trouble.nvim",
     lazy = true,
     event = "VeryLazy",
     cmd = "Trouble",
+    enabled = false,
     opts = {
       focus = true,
       auto_preview = true, -- Disable auto-preview
@@ -50,6 +37,22 @@ return {
         border = "single",
       },
     },
+  },
+
+  -- {
+  --   "mbbill/undotree",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  -- },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = true,
+    event = "VeryLazy",
+    config = function()
+      require("plugin.configs.nvimtree")
+    end,
   },
 
   -- column
@@ -146,6 +149,25 @@ return {
       end
       opts.fold_virt_text_handler = handler
       require("ufo").setup(opts)
+    end,
+  },
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    lazy = true,
+    opts = {},
+    config = function()
+      require("colorizer").setup({
+        filetypes = {
+          "*",
+          "!vim",
+          "!mason",
+          "!lazy",
+        },
+        user_default_options = {
+          names = false,
+        },
+      })
     end,
   },
 

@@ -84,15 +84,8 @@ return {
     ft = "cs",
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
-    opts = {
-    },
+    opts = { },
   },
-  -- NOTE: https://github.com/iabdelkareem/csharp.nvim
-  -- {
-  --   "Hoffs/omnisharp-extended-lsp.nvim",
-  --   lazy = true,
-  --   ft = { "cs" },
-  -- },
 
   -- c/c++
   -- {

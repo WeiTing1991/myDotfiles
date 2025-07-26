@@ -9,17 +9,16 @@ vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
-vim.keymap.set({ "n", "v" }, "<C-m>", "<C-m>", { silent = true })
-vim.keymap.set({ "n", "v" }, "<Tab>", "<Tab>", { silent = true })
+-- vim.keymap.set({ "n", "v" }, "<C-m>", "<C-m>", { silent = true })
 
--- BUG
 -- switch between buffer
-vim.keymap.set({ "n", "v" }, "<C-i>", "<C-i>", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<C-o>", "<C-o>", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<C-I>", "<C-I>", { noremap = true })
-vim.keymap.set({ "n", "v" }, "<C-O>", "<C-O>", { noremap = true })
+vim.keymap.set("n", "<C-I>", "<C-I>", { noremap = true })
+vim.keymap.set("n", "<C-O>", "<C-O>", { noremap = true })
 vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
 vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
+
+-- vim.keymap.set("n", "<C-M>", "<C-M>", { noremap = true })
+vim.keymap.set("n", "<Tab>", "za", {  noremap = true})
 
 -- fallback
 vim.keymap.set("n", "<leader>o", ":bnext<cr>", { desc = "Next buffer" })

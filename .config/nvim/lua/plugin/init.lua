@@ -54,13 +54,13 @@ return {
   },
 
   -- emacs-like keymaps
-  -- {
-  --   "echasnovski/mini.clue",
-  --   version = "*",
-  --   lazy = true,
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require "plugin.configs.miniclue"
-  --   end,
-  -- },
+  {
+    "echasnovski/mini.clue",
+    version = "*",
+    lazy = true,
+    event = "VeryLazy",
+    config = function()
+      require "plugin.configs.miniclue"
+    end,
+  },
 }

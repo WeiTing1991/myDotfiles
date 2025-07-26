@@ -40,7 +40,7 @@ $ENV:EDITOR = 'nvim'
 
 Set-Alias c clear
 
-function n ($command) {Fvim}
+function n ($command) {nvim}
 function e ($command) {exit}
 
 # add python to PATH
@@ -66,4 +66,15 @@ function pj ($command) {cd $HOME\project\}
 function which ($command){
   Get-Command -Name $command -ErrorAction SilentlyContinue
   # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
+}
+
+$global:LastOSC7Path = ""
+
+$ExecutionContext.InvokeCommand.PreCommandLookupAction = {
+    $current = $PWD.ProviderPath
+    if ($current -ne $global:LastOSC7Path) {
+        $global:LastOSC7Path = $current
+        # Direct ANSI escape without variable assignments
+        Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
+    }
 }

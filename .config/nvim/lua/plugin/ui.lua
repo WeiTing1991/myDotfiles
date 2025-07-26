@@ -10,37 +10,37 @@ return {
     end,
   },
   -- Statusline
+  -- {
+  --   "WeiTing1991/staline.nvim",
+  --   priority = 1000,
+  --   enabled =false,
+  --   lazy = false,
+  --   config = function()
+  --     require("plugin.configs.staline")
+  --   end,
+  -- },
   {
-    "WeiTing1991/staline.nvim",
-    priority = 1000,
-    lazy = false,
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.g.lualine_laststatus = vim.o.laststatus
+      if vim.fn.argc(-1) > 0 then
+        -- set an empty statusline till lualine loads
+        vim.o.statusline = " "
+      else
+        -- hide the statusline on the starter page
+        vim.o.laststatus = 0
+      end
+    end,
     config = function()
-      require("plugin.configs.staline")
+      require('lualine').setup()
     end,
   },
   {
     "nanozuki/tabby.nvim",
     ---@type TabbyConfig
+    lazy = false,
     opts = {
-      -- configs...
     },
-  },
-  {
-    "catgoose/nvim-colorizer.lua",
-    event = "BufReadPre",
-    opts = {},
-    config = function()
-      require("colorizer").setup({
-        filetypes = {
-          "*",
-          "!vim",
-          "!mason",
-          "!lazy",
-        },
-        user_default_options = {
-          names = false,
-        },
-      })
-    end,
   },
 }

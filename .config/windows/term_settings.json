@@ -97,6 +97,7 @@
             "id": null,
             "keys": "alt+up"
         }
+
     ],
     "newTabMenu": 
     [
@@ -121,6 +122,7 @@
             "opacity": 85,
             "padding": "4",
             "scrollbarState": "hidden"
+
         },
         "list": 
         [

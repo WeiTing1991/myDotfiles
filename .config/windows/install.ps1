@@ -22,13 +22,12 @@ $dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\windos_11_hotkeys.ahk"
 New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
 
 # Terminal
-# winget install -e --id raphamorim.rio
-# $startupFolderPath = "$HOME\AppData\Local\rio"
-# $dotfilesAHKPath = "$HOME\.dotfiles\.config\rio"
-# New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
-
 $startupFolderPath = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 $dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\term_settings.json"
+New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
+
+$startupFolderPath = "$HOME\.config\wezterm"
+$dotfilesAHKPath = "$HOME\.dotfiles\.config\wezterm"
 New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
 
 # tool
@@ -43,7 +42,7 @@ $dotfilesScriptPath = "$env:HOME\.dotfiles\.config\lazygit"
 New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptPath -Force
 
 # Dev tool
-scoop install fd ripgrep make cmake wget unzip gzip 
+scoop install fd ripgrep make cmake wget unzip gzip
 scoop install neovim
 scoop install mingw
 scoop install tree-sitter

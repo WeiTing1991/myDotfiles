@@ -1,6 +1,5 @@
 local miniclue = require "mini.clue"
 
--- borrow from mariasolos
 -- Add a-z/A-Z marks.
 local function mark_clues()
   local marks = {}

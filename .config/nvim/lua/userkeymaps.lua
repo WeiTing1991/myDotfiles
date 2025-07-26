@@ -1,7 +1,7 @@
 ----- Pluglins keymaps -----
 local map = vim.keymap.set
 local tele_builtin = require("telescope.builtin")
-local snacks = require("snacks")
+-- local snacks = require("snacks")
 local mini_ui_select = require("core.ui_select")
 
 --[[ file tree ]]
@@ -12,9 +12,9 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 map("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 
 -- [[ Override default keymaps ]]
-map("n", "<C-q>", function()
-  snacks.bufdelete()
-end, { desc = "Close current buffer and window" })
+-- map("n", "<C-q>", function()
+--   snacks.bufdelete()
+-- end, { desc = "Close current buffer and window" })
 
 --[[ telescope/search ]]
 map("n", "<C-f>", tele_builtin.find_files, { desc = "Find files" })
@@ -27,9 +27,9 @@ map("n", "<leader>tt", function()
   mini_ui_select.ui_select(tele_builtin.colorscheme)
 end, { desc = "toggle colorscheme" })
 
-map({ "n", "t" }, "<C-/>", function()
-  snacks.terminal()
-end, { desc = "Toggle term" })
+-- map({ "n", "t" }, "<C-/>", function()
+--   snacks.terminal()
+-- end, { desc = "Toggle term" })
 
 --[[ toggle ]]
 map("n", "<leader>tc", function()
