@@ -1,9 +1,11 @@
+-- formate and linter
 local M = {}
 
 M = {
   -- formatter
   lua = { "stylua" },
   python = { "ruff" },
+
   -- { "prettierd" },
   json = { "prettier" },
   github = { "actionlint" },
@@ -14,10 +16,7 @@ M = {
 
   c = { "clang-format" },
   cpp = { "clang-format" },
-
-  -- svelte = { "eslint_d" },
-  -- kotlin = { "ktlint" },
-  -- terraform = { "tflint" },
+  cmake = { "cmakelint" },
 
   -- linter
   -- javascript = { "eslint_d" },

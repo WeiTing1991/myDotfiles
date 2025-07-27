@@ -1,20 +1,19 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-require "core.options"
-require "core.keymaps"
-require "core.autocmds"
+require("core.options")
+require("core.keymaps")
+require("core.autocmds")
 
 -- Plugin manager
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath }
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -23,20 +22,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-require('lazy').setup({
+require("lazy").setup({
   spec = {
-  { import = "plugin.init" },
-  { import = "plugin.ui" },
-  { import = "plugin.editor" },
-  { import = "plugin.snack" },
-  { import = "plugin.lsp" },
-  { import = "plugin.lsp_enhance" },
-  { import = "plugin.git" },
-  { import = "plugin.ai" },
-  { import = "plugin.tools" },
-  -- { import = "plugin.note_taking" },
-  -- { import = "plugin.sql" },
-  -- { import = "plugin.dap" },
+    { import = "plugin.init" },
+    { import = "plugin.ui" },
+    { import = "plugin.editor" },
+    { import = "plugin.snack" },
+    { import = "plugin.lsp" },
+    { import = "plugin.lsp_enhance" },
+    { import = "plugin.git" },
+    { import = "plugin.ai" },
+    { import = "plugin.tools" },
+    -- { import = "plugin.note_taking" },
+    -- { import = "plugin.sql" },
+    -- { import = "plugin.dap" },
   },
   defaults = { lazy = false, version = false },
   ui = {
@@ -71,9 +70,7 @@ require('lazy').setup({
     },
   },
 })
-
-require "userkeymaps"
-
+require("userkeymaps")
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     print("Startup time: " .. vim.fn.reltimestr(vim.fn.reltime(vim.g.start_time)) .. "s")

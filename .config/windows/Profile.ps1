@@ -1,3 +1,13 @@
+$global:LastOSC7Path = ""
+$ExecutionContext.InvokeCommand.PreCommandLookupAction = {
+    $current = $PWD.ProviderPath
+    if ($current -ne $global:LastOSC7Path) {
+        $global:LastOSC7Path = $current
+        # Direct ANSI escape without variable assignments
+        Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
+    }
+}
+
 Import-Module posh-git
 Import-Module PSReadLine
 
@@ -17,10 +27,8 @@ Set-PSReadLineKeyHandler -Key tab -Function MenuComplete
 # Ctrl+W to delete the previous word (like in Bash)
 # Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
 
-
 # # Ctrl+Space for IntelliSense suggestions
 # Set-PSReadLineKeyHandler -Key Ctrl+tab -Function Complete
-
 
 # # Ctrl+d to exit, like in bash
 # #Set-PSReadLineKeyHandler -Key Ctrl+w -Function DeleteCharOrExit
@@ -68,13 +76,3 @@ function which ($command){
   # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
-$global:LastOSC7Path = ""
-
-$ExecutionContext.InvokeCommand.PreCommandLookupAction = {
-    $current = $PWD.ProviderPath
-    if ($current -ne $global:LastOSC7Path) {
-        $global:LastOSC7Path = $current
-        # Direct ANSI escape without variable assignments
-        Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
-    }
-}

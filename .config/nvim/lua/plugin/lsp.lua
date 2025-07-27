@@ -20,14 +20,27 @@ return {
       { "williamboman/mason.nvim", opt = {} },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim", opt = {} },
+      { "j-hui/fidget.nvim",       opt = {} },
 
       -- cmp
       { "saghen/blink.cmp" },
       -- {"jay-babu/mason-nvim-dap.nvim"},
     },
     config = function()
-      require "plugin.configs.lsp" -- lsp engine
+      vim.defer_fn(function()
+        require("plugin.configs.lsp")
+      end, 0)
+      -- for windows
+      -- NOTE: have to run "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" before cmake
+      local lspconfig = require('lspconfig')
+
+      local clangd_cmd = { "clangd" }
+      if vim.loop.os_uname().sysname == "Windows_NT" then
+        table.insert(clangd_cmd, "--query-driver=C:/Program Files (x86)/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/*/bin/Hostx64/x64/cl.exe")
+      end
+      lspconfig.clangd.setup {
+        cmd = clangd_cmd,
+      }
     end,
   },
 
@@ -42,7 +55,7 @@ return {
         version = "2.*",
         event = "InsertEnter",
         build = (function()
-          if vim.fn.has "win32" == 1 or vim.fn.executable "make" == 0 then
+          if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
             return
           end
           return "make install_jsregexp"
@@ -61,7 +74,20 @@ return {
     },
     version = "1.*",
     config = function()
-      require "plugin.configs.blink"
+      require("plugin.configs.blink")
+    end,
+  },
+
+  --[[ Formater/ Linter ]]
+  {
+    "WeiTing1991/none-ls.nvim",
+    lazy = true,
+    event = "BufEnter",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
+    config = function()
+      require("plugin.configs.nonels")
     end,
   },
 
@@ -80,17 +106,4 @@ return {
   --     conform.formatters_by_ft = require "lsp.formater"
   --   end,
   -- },
-
-  --[[ Formater/ Linter ]]
-  {
-    "WeiTing1991/none-ls.nvim",
-    lazy = true,
-    event = "BufEnter",
-    dependencies = {
-      "nvimtools/none-ls-extras.nvim",
-    },
-    config = function()
-      require("plugin.configs.nonels")
-    end,
-  },
 }

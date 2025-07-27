@@ -1,7 +1,7 @@
 ----- Pluglins keymaps -----
 local map = vim.keymap.set
 local tele_builtin = require("telescope.builtin")
--- local snacks = require("snacks")
+local snacks = require("snacks")
 local mini_ui_select = require("core.ui_select")
 
 --[[ file tree ]]
@@ -12,9 +12,9 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 map("n", "<C-e>", "<cmd>NvimTreeToggle<cr>", { desc = "File tree" })
 
 -- [[ Override default keymaps ]]
--- map("n", "<C-q>", function()
---   snacks.bufdelete()
--- end, { desc = "Close current buffer and window" })
+map("n", "<C-q>", function()
+  snacks.bufdelete()
+end, { desc = "Close current buffer and window" })
 
 --[[ telescope/search ]]
 map("n", "<C-f>", tele_builtin.find_files, { desc = "Find files" })
@@ -27,9 +27,9 @@ map("n", "<leader>tt", function()
   mini_ui_select.ui_select(tele_builtin.colorscheme)
 end, { desc = "toggle colorscheme" })
 
--- map({ "n", "t" }, "<C-/>", function()
---   snacks.terminal()
--- end, { desc = "Toggle term" })
+map({ "n", "t" }, "<C-/>", function()
+  snacks.terminal()
+end, { desc = "Toggle term" })
 
 --[[ toggle ]]
 map("n", "<leader>tc", function()
@@ -41,22 +41,6 @@ map("n", "<leader>tc", function()
   end
 end, { desc = "Copilot" })
 
--- map({ "n", "v" }, "<C-E>", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
-
--- vim.keymap.set({ "n", "v" }, "<C-S-e>", function()
---   require("core.ui_select").with_custom_select(function()
---     vim.cmd("CodeCompanionActions")
---   end)
--- end, { desc = "CodeCompanionActions" })
---
---   vim.keymap.set({ "n", "v" }, "<M-i>t", function()
---     vim.cmd("CodeCompanionChat Toggle")
---   end, { desc = "CodeCompanionChat Toggle" })
-
--- map("n", "<leader>tu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
--- map("n", "<leader>ta", function()
---   require("neogen").generate()
--- end, { desc = "Annotation" })
 
 --[[ diagnostics ]]
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })
@@ -109,3 +93,20 @@ map("n", "<leader>xl", "<cmd>Trouble locflist toggle <cr>", { desc = "Location L
 -- map('n', '<leader>sn', function()
 --   builtin.find_files { cwd = vim.fn.stdpath 'config' }
 -- end, { desc = '[S]earch [N]eovim files' })
+
+-- map({ "n", "v" }, "<C-E>", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "CodeCompanionChat" })
+
+-- vim.keymap.set({ "n", "v" }, "<C-S-e>", function()
+--   require("core.ui_select").with_custom_select(function()
+--     vim.cmd("CodeCompanionActions")
+--   end)
+-- end, { desc = "CodeCompanionActions" })
+--
+--   vim.keymap.set({ "n", "v" }, "<M-i>t", function()
+--     vim.cmd("CodeCompanionChat Toggle")
+--   end, { desc = "CodeCompanionChat Toggle" })
+
+-- map("n", "<leader>tu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
+-- map("n", "<leader>ta", function()
+--   require("neogen").generate()
+-- end, { desc = "Annotation" })

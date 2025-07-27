@@ -17,9 +17,9 @@ local dashboard = {
     ---@type snacks.dashboard.Item[]
     keys = {
       { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
-      { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-      { icon = " ", key = "g", desc = "Find Text", action = ":" },
-      { icon = " ", key = "o", desc = "Recent Files", action = ":" },
+      -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+      -- { icon = " ", key = "g", desc = "Find Text", action = ":" },
+      { icon = " ", key = "o", desc = "Recent Files", action = ":Telescope oldfiles" },
       {
         icon = " ",
         key = "c",
@@ -34,7 +34,7 @@ local dashboard = {
       },
       { icon = "󱥚 ", key = "d", desc = "Dired", action = ":lua require('oil').open()<CR>" },
       -- { icon = " ", key = "s", desc = "Dired", action = ":lua require('oil').open()<CR>" },
-      { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+      -- { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },
     header = [[

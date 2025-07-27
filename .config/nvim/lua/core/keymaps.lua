@@ -2,8 +2,8 @@
 
 -- really good resouce
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
-vim.keymap.set('n', 'j', [[(v:count > 0 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
-vim.keymap.set('n', 'k', [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
+vim.keymap.set("n", "j", [[(v:count > 0 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
+vim.keymap.set("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
 
 -- disable space key and remapping the keys
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -18,14 +18,14 @@ vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
 vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
 
 -- vim.keymap.set("n", "<C-M>", "<C-M>", { noremap = true })
-vim.keymap.set("n", "<Tab>", "za", {  noremap = true})
+vim.keymap.set("n", "<Tab>", "za", { noremap = true })
 
 -- fallback
 vim.keymap.set("n", "<leader>o", ":bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>i", ":bprevious<cr>", { desc = "Prevous buffer" })
 
 vim.keymap.set("n", "<C-q>", function()
-  vim.cmd ":bw!"
+  vim.cmd(":bw!")
 end, { desc = "Close current buffer and window" })
 
 -- clear search highlights
@@ -74,6 +74,8 @@ vim.keymap.set({ "n", "t" }, "<C-S-k>", "<C-w>-", { desc = "vertical resize -2" 
 -- vim.keymap.set("n", "<C-S-i>", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab" })
 -- vim.keymap.set("n", "<C-S-o>", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab" })
 
+vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true })
+
 -- windows
 vim.keymap.set("n", "<C-'>", function()
   require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
@@ -105,12 +107,13 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir
 function ToggleSpellCheck()
   if vim.o.spell then
     vim.o.spell = false
-    print "Spelling check OFF."
+    print("Spelling check OFF.")
   else
     vim.o.spell = true
-    print "Spelling check ON."
+    print("Spelling check ON.")
   end
 end
+
 vim.keymap.set("n", "<leader>tp", ToggleSpellCheck, { desc = "Spell check" })
 
 -- Optional

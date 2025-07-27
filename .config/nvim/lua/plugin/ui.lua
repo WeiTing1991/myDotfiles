@@ -9,19 +9,10 @@ return {
       vim.cmd.colorscheme("github_dark")
     end,
   },
-  -- Statusline
-  -- {
-  --   "WeiTing1991/staline.nvim",
-  --   priority = 1000,
-  --   enabled =false,
-  --   lazy = false,
-  --   config = function()
-  --     require("plugin.configs.staline")
-  --   end,
-  -- },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    lazy = true,
     init = function()
       vim.g.lualine_laststatus = vim.o.laststatus
       if vim.fn.argc(-1) > 0 then
@@ -43,4 +34,14 @@ return {
     opts = {
     },
   },
+  -- Statusline
+  -- {
+  --   "WeiTing1991/staline.nvim",
+  --   priority = 1000,
+  --   enabled =false,
+  --   lazy = false,
+  --   config = function()
+  --     require("plugin.configs.staline")
+  --   end,
+  -- },
 }

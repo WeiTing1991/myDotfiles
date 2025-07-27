@@ -49,6 +49,22 @@ M = {
 
   -- c/c++
   ["clangd"] = {
+    keys = {
+      { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+    },
+    root_dir = function(fname)
+      return require("lspconfig.util").root_pattern(
+        "Makefile",
+        "configure.ac",
+        "configure.in",
+        "config.h.in",
+        "meson.build",
+        "meson_options.txt",
+        "build.ninja"
+      )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(fname) or require(
+        "lspconfig.util"
+      ).find_git_ancestor(fname)
+    end,
     capabilities = {
       offsetEncoding = { "utf-16" },
     },
@@ -60,9 +76,6 @@ M = {
       "--completion-style=detailed",
       "--function-arg-placeholders",
       "--fallback-style=llvm",
-      --   "--log=verbose",
-      --   "--enable-config",
-      --   -- "--compile-commands-dir=" .. vim.fn.getcwd() .. "/VCPKG/buildtrees/pkgconf/x64-windows-dbg",
     },
     init_options = {
       usePlaceholders = true,
@@ -71,18 +84,11 @@ M = {
     },
   },
 
-  ["neocmakelsp"] ={},
+  -- cmake
+  ["neocmakelsp"] = {},
 
   -- md
-  ["marksman"] = {
-    -- capabilities = {
-    --   workspace = {
-    --     workspaceFolders = {
-    --       -- supported = "false",
-    --     },
-    --   },
-    -- },
-  },
+  ["marksman"] = {},
 
   -- json
   ["jsonls"] = {
@@ -128,7 +134,6 @@ M = {
     },
   },
 
-  -- CHAGE TO roslyn
   -- C#
   ["roslyn"] = {},
   -- ["omnisharp"] = {

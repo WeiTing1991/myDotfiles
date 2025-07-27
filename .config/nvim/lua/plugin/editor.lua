@@ -73,11 +73,12 @@ return {
       char = { "┆" },
       virtcolumn = "120",
       highlight = { "NonText" },
-      exclude = { filetypes = { "oil", "markdown", "fzf" } },
+      exclude = { filetypes = { "oil", "markdown" } },
     },
   },
 
   -- surround select
+  -- NOTE: cs'" ; ysiw)
   {
     "kylechui/nvim-surround",
     lazy = true,

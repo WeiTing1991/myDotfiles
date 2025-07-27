@@ -105,7 +105,7 @@ local options = {
   wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" },
 
   -- Decrease update time
-  updatetime = 120,
+  updatetime = 100,
   -- Decrease mapped sequence wait time
   timeoutlen = 150,
 
@@ -146,8 +146,8 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.o.title = true
-vim.o.titlestring = "%<%F - nvim"
+-- vim.o.title = true
+-- vim.o.titlestring = "%<%F - nvim"
 
 vim.schedule(function()
   local ok, _ = pcall(function()

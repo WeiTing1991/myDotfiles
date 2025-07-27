@@ -13,10 +13,6 @@ local filetypesTS = {
 
 require("null-ls").setup({
   debug = false,
-  --  -- on_init = function(new_client, _)
-  --  --   new_client.offset_encoding = "utf-16"
-  --  -- end,
-  -- root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
   sources = {
 
     null_ls.builtins.completion.spell,
@@ -53,6 +49,10 @@ require("null-ls").setup({
     -- c++
     formatting.clang_format.with({
       filetypes = { "c", "cpp", "objc", "objcpp" },
+    }),
+
+    diagnostics.cmake_lint.with({
+      command = "cmakelint",
     }),
 
     -- cSharp
@@ -99,37 +99,3 @@ require("null-ls").setup({
   --
 })
 
--- local null_ls = require "null-ls"
--- local null_ls_utils = require "null-ls.utils"
--- -- local formatting = null_ls.builtins.formatting
--- null_ls.setup {
---   debug = false,
---   root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
---   sources = {
---     -- spell
---     null_ls.builtins.completion.spell,
---     null_ls.builtins.diagnostics.actionlint,
---     -- null_ls.builtins.diagnostics.write_good,
---     require("none-ls.diagnostics.eslint_d").with {
---       -- root_markers = { ".eslintrc", ".eslintrc.js", ".eslintrc.json", "eslint.config.js", "eslint.config.mjs" },
---       -- filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "graphql" },
---       -- args = {
---       --   "--no-warn-ignored", -- <-- this is the key argument
---       --   "--format",
---       --   "json",
---       --   "--stdin",
---       --   "--stdin-filename",
---       --   function()
---       --     return vim.api.nvim_buf_get_name(0)
---       --   end,
---       -- },
---       -- before_init = function(params, config)
---       --   -- Set the workspace folder setting for correct search of tsconfig.json files etc.
---       --   config.settings.workspaceFolder = {
---       --     uri = params.rootPath,
---       --     name = vim.fn.fnamemodify(params.rootPath, ":t"),
---       --   }
---       -- end,
---     },
---   },
--- }
