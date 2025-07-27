@@ -33,7 +33,7 @@ require("lazy").setup({
     { import = "plugin.git" },
     { import = "plugin.ai" },
     { import = "plugin.tools" },
-    -- { import = "plugin.note_taking" },
+    { import = "plugin.note_taking" },
     -- { import = "plugin.sql" },
     -- { import = "plugin.dap" },
   },

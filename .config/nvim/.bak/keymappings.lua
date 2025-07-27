@@ -59,14 +59,6 @@ map("n", "<leader>ftb", fzf.tmux_buffers, { desc = "Find tmux buffer" })
 
 map("n", "z=", fzf.spell_suggest, { desc = "Spelling suggestions" })
 
---[[ Markdown ]]
--- map("n", "<leader>mr", "<cmd>Markview<cr>", { desc = "markdown render toggle" })
-map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview with node" })
-map("v", "<leader>mb", 'c**<C-r>"**<Esc>', { desc = "Bold" })
-map("v", "<leader>mi", 'c*<C-r>"*<Esc>', { desc = "Italic" })
-map("v", "<leader>m`", 'c`<C-r>"`<Esc>', { desc = "Inline Code" })
-map("v", "<leader>ms", 'c~~<C-r>"~~<Esc>', { desc = "Strikethrough" })
-map("v", "<leader>mc", "c```<C-r>/```<Esc>", { desc = "Strikethrough" })
 
 --[[ git ]]
 -- https://www.naseraleisa.com/posts/diff

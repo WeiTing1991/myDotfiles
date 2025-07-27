@@ -68,7 +68,7 @@ config = {
 
     -- Split windows
     { key = "phys:Quote",  mods = "CTRL|SHIFT",  action = act.SplitVertical({ domain = "DefaultDomain" }) },
-    { key = "raw:53",      mods = "CTRL|SHIFT",  action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
+    { key = "5",  mods = "CTRL",  action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
 
     -- Pane navigation
     { key = "h",           mods = "CTRL|SHIFT",  action = act.ActivatePaneDirection("Left") },

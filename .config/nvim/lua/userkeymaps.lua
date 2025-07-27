@@ -31,6 +31,29 @@ map({ "n", "t" }, "<C-/>", function()
   snacks.terminal()
 end, { desc = "Toggle term" })
 
+-- Snacks.toggle({
+--   name = "Render Markdown",
+--   get = function()
+--     return require("render-markdown.state").enabled
+--   end,
+--   set = function(enabled)
+--     local m = require("render-markdown")
+--     if enabled then
+--       m.enable()
+--     else
+--       m.disable()
+--     end
+--   end,
+-- }):map("<leader>um")
+
+--[[ Markdown ]]
+map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview with node" })
+map("v", "<leader>mb", 'c**<C-r>"**<Esc>', { desc = "Bold" })
+map("v", "<leader>mi", 'c*<C-r>"*<Esc>', { desc = "Italic" })
+map("v", "<leader>m`", 'c`<C-r>"`<Esc>', { desc = "Inline Code" })
+map("v", "<leader>ms", 'c~~<C-r>"~~<Esc>', { desc = "Strikethrough" })
+map("v", "<leader>mc", "c```<C-r>/```<Esc>", { desc = "Strikethrough" })
+
 --[[ toggle ]]
 map("n", "<leader>tc", function()
   require("copilot.suggestion").toggle_auto_trigger()
@@ -41,6 +64,14 @@ map("n", "<leader>tc", function()
   end
 end, { desc = "Copilot" })
 
+map({ "n", "v" }, "<M-i>", function()
+  vim.cmd("CodeCompanionActions")
+end, { desc = "CodeCompanionActions" })
+
+map({ "n", "v" }, "<C-S-e>", function()
+  vim.cmd("CodeCompanionChat Toggle")
+  vim.cmd("vertical resize 50") -- hack to resize the chat window
+end, { desc = "CodeCompanionChat Toggle" })
 
 --[[ diagnostics ]]
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })

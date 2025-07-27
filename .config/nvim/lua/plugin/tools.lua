@@ -22,10 +22,10 @@ return {
   -- diagnostics
   {
     "folke/trouble.nvim",
+    enabled = false,
     lazy = true,
     event = "VeryLazy",
     cmd = "Trouble",
-    enabled = false,
     opts = {
       focus = true,
       auto_preview = true, -- Disable auto-preview
@@ -170,19 +170,6 @@ return {
       })
     end,
   },
-
-  -- Markdown
-  -- {
-  --   "iamcco/markdown-preview.nvim",
-  --   lazy = true,
-  --   event = "VeryLazy",
-  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-  --   ft = { "markdown" },
-  --   build = "cd app && npm install",
-  --   init = function()
-  --     vim.g.mkdp_filetypes = { "markdown" }
-  --   end,
-  -- },
 
 
   -- -- better search

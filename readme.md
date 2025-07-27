@@ -54,21 +54,15 @@ New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -Item
 rm ~/Library/Application\ Support/Code/User/keybindings.json
 stow -t "$(echo ~/Library/Application\ Support/Code/User)" .vscode
 ```
+
 #### Plugins List
-- Vim
-- EditorConfig
-- WhichKey
-- FindInFaster
-- Path Intellisense
-- Code Spell Checker
 
 ### keybinding tool
-- [AUTOHOTKEY](https://www.autohotkey.com/)
-- win+R > shell:startup put the`*.ahk into the startup folder`
-- [MAC](https://www.hammerspoon.org/faq/)
-
-###
-- Font: https://www.nerdfonts.com/font-downloads
+- Windows
+	- [AUTOHOTKEY](https://www.autohotkey.com/): win+R > shell:startup put the`*.ahk into the startup folder`
+- MacOS
+	- [Hammerspoon](https://www.hammerspoon.org/faq/)
+	- [Nerd Font](https://www.nerdfonts.com/font-downloads)
 
 ### Emacs (Deprecated) just for storing my old configuration.
 Please find more information [here](./Emacs.org).

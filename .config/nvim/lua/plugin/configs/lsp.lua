@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Diagnostic configuration.
 -- TODO: make a plugin
 -- Powerful diagnostic plugin:
-vim.opt.updatetime = 30
+vim.opt.updatetime = 150
 -- local show_handler = vim.diagnostic.handlers.virtual_text.show
 -- local hide_handler = vim.diagnostic.handlers.virtual_text.hide
 --
@@ -144,7 +144,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       },
       virtual_text = false,
       underline = true,
-      update_in_insert = false,
+      update_in_insert = true,
       float = false,
     })
     -- Create namespace for our custom virtual text

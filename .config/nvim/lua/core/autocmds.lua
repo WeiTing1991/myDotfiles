@@ -80,7 +80,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
---[[ -- json ]]
+--[[ json ]]
 local jsongroup = vim.api.nvim_create_augroup("jsongroup", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
   group = jsongroup,
@@ -94,7 +94,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
---[[ -- c# ]]
+--[[ c# ]]
 local cSharp = vim.api.nvim_create_augroup("cSharpgroup", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
   group = cSharp,

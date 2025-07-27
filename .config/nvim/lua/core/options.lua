@@ -91,7 +91,7 @@ local options = {
   signcolumn = "yes:1",
 
   -- split options
-  splitright = true,
+  -- splitright = true,
   splitbelow = true,
 
   -- search

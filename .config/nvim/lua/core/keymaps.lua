@@ -65,10 +65,10 @@ vim.keymap.set({ "n", "t" }, "<C-l>", "<C-w>l", { desc = "move to right buffer" 
 vim.keymap.set({ "n", "t" }, "<C-k>", "<C-w>k", { desc = "move to up buffer" })
 vim.keymap.set({ "n", "t" }, "<C-j>", "<C-w>j", { desc = "move to down buffer" })
 
-vim.keymap.set({ "n", "t" }, "<C-S-h>", "<C-w>>", { desc = "resize +2" })
-vim.keymap.set({ "n", "t" }, "<C-S-l>", "<C-w><", { desc = "resize -2" })
-vim.keymap.set({ "n", "t" }, "<C-S-j>", "<C-w>+", { desc = "vertical resize -2" })
-vim.keymap.set({ "n", "t" }, "<C-S-k>", "<C-w>-", { desc = "vertical resize -2" })
+vim.keymap.set({ "n", "t" }, "<C-S-Left>", "<C-w>>", { desc = "resize +2" })
+vim.keymap.set({ "n", "t" }, "<C-S-Right>", "<C-w><", { desc = "resize -2" })
+vim.keymap.set({ "n", "t" }, "<C-S-Up>", "<C-w>+", { desc = "vertical resize -2" })
+vim.keymap.set({ "n", "t" }, "<C-S-Down>", "<C-w>-", { desc = "vertical resize -2" })
 
 -- tabs
 -- vim.keymap.set("n", "<C-S-i>", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab" })
