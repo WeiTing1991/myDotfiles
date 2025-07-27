@@ -67,12 +67,13 @@ hs.hotkey.bind({ "cmd" }, "3", function()
   mouse_focus("Obsidian")
 end)
 
--- hs.hotkey.bind({ "cmd" }, "7", function()
---   mouse_focus("Zed")
--- end)
 
 hs.hotkey.bind({ "cmd" }, "7", function()
   mouse_focus("Visual Studio Code")
+end)
+
+hs.hotkey.bind({ "cmd" }, "8", function()
+  mouse_focus("Zed")
 end)
 
 -- Auto-reload config when file changes

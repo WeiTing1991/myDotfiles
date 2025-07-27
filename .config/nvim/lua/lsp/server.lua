@@ -42,7 +42,7 @@ M = {
           ignore = { "*" },
         },
         venvPath = ".",
-        venv = ".venv",
+        -- venv = ".venv",
       },
     },
   },
