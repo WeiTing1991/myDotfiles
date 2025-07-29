@@ -23,7 +23,6 @@ local function mouse_focus_cycle(app_name)
     local windows = app:allWindows()
 
     if #windows > 1 then
-      -- Multiple windows - cycle through them
       local focusedWindow = app:focusedWindow()
       local nextWindow = nil
 
@@ -69,7 +68,7 @@ end)
 
 
 hs.hotkey.bind({ "cmd" }, "7", function()
-  mouse_focus("Visual Studio Code")
+  mouse_focus_cycle("Visual Studio Code")
 end)
 
 hs.hotkey.bind({ "cmd" }, "8", function()
