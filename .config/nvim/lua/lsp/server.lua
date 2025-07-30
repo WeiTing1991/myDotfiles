@@ -85,7 +85,7 @@ M = {
   },
 
   -- cmake
-  ["neocmakelsp"] = {},
+  ["cmakelang"] = {},
 
   -- md
   ["marksman"] = {},

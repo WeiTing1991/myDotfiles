@@ -19,7 +19,7 @@
   "theme": {
     "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "Quiet Light"
+    "dark": "One Dark"
   },
   "ui_font_size": 16,
   "buffer_line_height": "standard",

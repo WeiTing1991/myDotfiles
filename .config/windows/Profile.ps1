@@ -75,4 +75,11 @@ function which ($command){
   Get-Command -Name $command -ErrorAction SilentlyContinue
   # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
+function GitBrowser {
+    $url = git remote -v | Select-Object -First 1 | ForEach-Object { ($_ -split '\s+')[1] }
+    $url = $url -replace 'git@github\.com:', 'https://github.com/'
+    $url = $url -replace '\.git$', ''
+    Start-Process $url
+}
+Set-Alias -Name git-browse -Value GitBrowser
 
