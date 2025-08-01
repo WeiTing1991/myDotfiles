@@ -76,15 +76,58 @@ LWin & Tab::AltTab
     SendEvent("#^{Right}")
 }
 
-;; app
-;; not working good
+; Move mouse to center of a window
+moveMouseToCenter(winTitle) {
+    if WinExist(winTitle) {
+        WinActivate(winTitle)
+        WinWaitActive(winTitle)
+        WinGetPos(&x, &y, &w, &h, winTitle)
+        MouseMove(x + w // 2, y + h // 2)
+    }
+}
 
-;#2::
-;{
-;    ; Open Google Chrome with a specific profile
-;    Run('chrome.exe --profile-directory="eth/usi"')  ; Replace "Profile 1" with your desired profile name
-;    WinWait("Google Chrome")  ; Wait for Chrome to launch
-;    WinActivate("Google Chrome")  ; Focus the Chrome window
-;    MouseMove(A_ScreenHeight/2, A_ScreenWidth/2)  ; Move the mouse to the top-left corner
-;}
+; Launch or focus an app
+focusApp(appPath, winTitle) {
+    if WinExist(winTitle) {
+        moveMouseToCenter(winTitle)
+    } else {
+        Run(appPath)
+    }
+}
+
+; Cycle through windows of a given ahk_class
+cycleWindows(winClass, appPath := "") {
+    idList := WinGetList("ahk_class " winClass)
+
+    if idList.Length > 1 {
+        activeId := WinGetID("A")
+        idx := 0
+        for i, id in idList {
+            if id = activeId {
+                idx := i
+                break
+            }
+        }
+
+        nextIdx := idx ? (idx = idList.Length ? 1 : idx + 1) : 1
+        nextId := idList[nextIdx]
+
+        WinActivate("ahk_id " nextId)
+        WinWaitActive("ahk_id " nextId)
+        WinGetPos(&x, &y, &w, &h, "ahk_id " nextId)
+        MouseMove(x + w // 2, y + h // 2)
+    } else if idList.Length = 1 {
+        moveMouseToCenter("ahk_id " idList[1])
+    } else if appPath {
+        Run(appPath)
+    }
+}
+
+; === HOTKEYS ===
+; Cmd-like hotkeys: use Ctrl (^) on Windows, or customize to your keyboard
+#1::focusApp("C:\Program Files\WezTerm\wezterm-gui.exe", "ahk_exe wezterm-gui.exe")
+#2::cycleWindows("Chrome_WidgetWin_1") ; Brave Browser or Chrome
+#3::focusApp("C:\Program Files\Obsidian\Obsidian.exe", "ahk_exe Obsidian.exe")
+#7::cycleWindows("Chrome_WidgetWin_1", "C:\Users\YourUser\AppData\Local\Programs\Microsoft VS Code\Code.exe")
+#8::focusApp("C:\Program Files\Zed\Zed.exe", "ahk_exe Zed.exe")
 

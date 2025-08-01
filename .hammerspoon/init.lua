@@ -66,9 +66,8 @@ hs.hotkey.bind({ "cmd" }, "3", function()
   mouse_focus("Obsidian")
 end)
 
-
 hs.hotkey.bind({ "cmd" }, "7", function()
-  mouse_focus_cycle("Visual Studio Code")
+  mouse_focus_cycle("Code")
 end)
 
 hs.hotkey.bind({ "cmd" }, "8", function()
