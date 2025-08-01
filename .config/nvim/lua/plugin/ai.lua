@@ -52,7 +52,7 @@ return {
           "~/work/",
         },
         vim.api.nvim_set_hl(0, "CopilotSuggestion", {
-          fg = "#676767",
+          -- fg = "#676767",
           -- fg = "#8a8a8a",
           ctermfg = 8,
           italic = true,

@@ -1,5 +1,4 @@
 -- telescope config
-
 -- local builtin = require "telescope.builtin"
 -- local utils = require "telescope.utils"
 local actions = require "telescope.actions"

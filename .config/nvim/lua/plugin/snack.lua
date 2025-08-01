@@ -26,12 +26,12 @@ local dashboard = {
         desc = "Config",
         action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
       },
-      {
-        icon = " ",
-        key = "b",
-        desc = "Notes",
-        action = string.format(":lua Snacks.dashboard.pick('files', {cwd = '%s'})", obPath),
-      },
+      -- {
+      --   icon = " ",
+      --   key = "b",
+      --   desc = "Notes",
+      --   action = string.format(":lua Snacks.dashboard.pick('files', {cwd = '%s'})", obPath),
+      -- },
       { icon = "󱥚 ", key = "d", desc = "Dired", action = ":lua require('oil').open()<CR>" },
       -- { icon = " ", key = "s", desc = "Dired", action = ":lua require('oil').open()<CR>" },
       -- { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },

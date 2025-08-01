@@ -1,14 +1,15 @@
 return {
-  {
-    "projekt0n/github-nvim-theme",
-    name = "github-theme",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("github-theme").setup({})
-      vim.cmd.colorscheme("github_dark")
-    end,
-  },
+  -- {
+  --   "projekt0n/github-nvim-theme",
+  --   enabled = false,
+  --   name = "github-theme",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("github-theme").setup({})
+  --     -- vim.cmd.colorscheme("github_dark")
+  --   end,
+  -- },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",

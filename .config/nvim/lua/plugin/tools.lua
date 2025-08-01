@@ -19,6 +19,7 @@ return {
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
+
   -- diagnostics
   {
     "folke/trouble.nvim",
@@ -170,7 +171,6 @@ return {
       })
     end,
   },
-
 
   -- -- better search
   -- {

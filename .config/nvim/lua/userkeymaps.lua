@@ -22,10 +22,15 @@ map("n", "<leader>ff", tele_builtin.find_files, { desc = "Find files" })
 map("n", "<leader>fl", tele_builtin.live_grep, { desc = "Find live grep" })
 map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
 map("n", "<leader>fb", tele_builtin.buffers, { desc = "Find file in opened buffer" })
+map("n", "<leader>fb", tele_builtin.wo, { desc = "Find file in opened buffer" })
 
 map("n", "<leader>tt", function()
   mini_ui_select.ui_select(tele_builtin.colorscheme)
 end, { desc = "toggle colorscheme" })
+
+map("n", "z=", function()
+  mini_ui_select.ui_select(tele_builtin.spell_suggest)
+end, { desc = "spell suggestion" })
 
 map({ "n", "t" }, "<C-/>", function()
   snacks.terminal()
@@ -48,11 +53,6 @@ end, { desc = "Toggle term" })
 
 --[[ Markdown ]]
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview with node" })
-map("v", "<leader>mb", 'c**<C-r>"**<Esc>', { desc = "Bold" })
-map("v", "<leader>mi", 'c*<C-r>"*<Esc>', { desc = "Italic" })
-map("v", "<leader>m`", 'c`<C-r>"`<Esc>', { desc = "Inline Code" })
-map("v", "<leader>ms", 'c~~<C-r>"~~<Esc>', { desc = "Strikethrough" })
-map("v", "<leader>mc", "c```<C-r>/```<Esc>", { desc = "Strikethrough" })
 
 --[[ toggle ]]
 map("n", "<leader>tc", function()
