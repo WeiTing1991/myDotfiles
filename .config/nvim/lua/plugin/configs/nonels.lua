@@ -59,9 +59,9 @@ require("null-ls").setup({
     formatting.csharpier,
 
     -- python
-    require("none-ls.diagnostics.ruff").with({
-      filetypes = { "python" },
-    }),
+    -- require("none-ls.diagnostics.ruff").with({
+    --   filetypes = { "python" },
+    -- }),
 
     require("none-ls.formatting.ruff").with({
       filetypes = { "python" },

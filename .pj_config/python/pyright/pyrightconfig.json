@@ -7,5 +7,7 @@
   "reportMissingImports": true,
   "reportMissingTypeStubs": false,
   "ignore": ["**/*_pb2.py"],
-  "stubPath": "~/.config/pyright/stubs"
+  "stubPath": "~/.config/pyright/stubs",
+  "reportAttributeAccessIssue": false,
+  "reportUnknownMemberType": false
 }

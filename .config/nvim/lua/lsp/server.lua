@@ -31,18 +31,36 @@ M = {
     filetypes = { "bash", "sh", "zsh" },
   },
 
-  --- python
+  -- python BUG
   ["pyright"] = {
     settings = {
       pyright = {
         disableOrganizeImports = true,
+        venvPath = ".",
+        venv = ".venv",
       },
       python = {
         analysis = {
-          ignore = { "*" },
+          extraPaths = {},
+          typeCheckingMode = "standard",
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = "workspace",
+          diagnosticSeverityOverrides = {
+            reportMissingImports = "information", -- Changed from "none" to "information" based on second config
+            -- reportMissingModuleSource = "none",
+            -- reportImportCycles = "none",
+            -- reportImportNotFound = "none",
+            -- reportOptionalSubscript = "none",
+            -- reportOptionalMemberAccess = "none",
+            -- reportMissingTypeStubs = false,
+            -- reportAttributeAccessIssue = false,
+            -- reportUnknownMemberType = false,
+            -- reportUndefinedVariable = false,
+            -- reportGeneralTypeIssues = false,
+          },
+          ignore = { "**/*_pb2.py" },
         },
-        venvPath = ".",
-        -- venv = ".venv",
       },
     },
   },
@@ -135,7 +153,7 @@ M = {
   },
 
   -- C#
-  ["roslyn"] = {},
+  ["roslyn_ls"] = {},
   -- ["omnisharp"] = {
   --   handlers = {
   --     ["textDocument/definition"] = require("omnisharp_extended").handler,

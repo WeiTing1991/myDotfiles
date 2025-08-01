@@ -22,59 +22,71 @@ vim.list_extend(ensure_installed, lsp_extra)
 
 require("mason-tool-installer").setup({
   ensure_installed = ensure_installed,
-  run_on_start = true,
-  start_delay = 100,
+  run_on_start = false,
+  start_delay = 10,
 })
 
--- Setup servers
-require("mason-lspconfig").setup({
-  ensure_installed = {},
-  automatic_installation = false,
-  handlers = {
-    function(server_name)
-      local lspconfig = require("lspconfig")
-      local ls_server_config = require("lsp.server") or {}
-      local server = ls_server_config[server_name] or {}
+local lspconfig = require("lspconfig")
+local ls_server_config = require("lsp.server") or {}
 
-      -- Useful when disabling
-      -- dissable typscript/javaserver attach here
-      -- if server_name == "jdtls" or server_name == "ts_ls" then
-      --   return
-      -- end
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+if pcall(require, "blink.cmp") then
+  capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+end
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
-      -- if server_name == "ruff_lsp" then
-      --   -- if server.server_capabilities == nil then
-      --   --   server.server_capabilities = {}
-      --   -- end
-      --   server.server_capabilities.hoverProvider = false
-      --   server.server_capabilities.documentHighlightProvider = false
-      -- end
+local server_name_map = {
+  roslyn = "roslyn_ls",
+  cmakelang = "cmake",
+  -- Add more mappings if needed
+}
 
-      -- Start by making a basic capabilities object
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-      -- Extend it with cmp or blink capabilities
-      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+for server_name, opts in pairs(ls_server_config) do
+  local actual_server = server_name_map[server_name] or server_name
 
-      -- Add folding capabilities
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      }
+  if actual_server == "roslyn_ls" then
+    vim.lsp.enable("roslyn_ls")
+    goto continue
+  end
 
-      -- Use the extended capabilities
-      server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
-      lspconfig[server_name].setup(server)
-    end,
-    -- c/cpp
-    clangd = function(_, opts)
-      local ls_server_config = require("lsp.server") or {}
-      local clangd_ext_opts = ls_server_config.clangd_extensions or {}
-      require("clangd_extensions").setup(vim.tbl_deep_extend("force", clangd_ext_opts, { server = opts }))
-      return false
-    end,
-  },
+  -- if actual_server == "jdtls" or actual_server == "ts_ls" then
+  --   goto continue
+  -- end
+  --
+  -- -- Optionally patch capabilities for specific servers
+  -- if actual_server == "ruff_lsp" then
+  --   opts.server_capabilities = opts.server_capabilities or {}
+  --   opts.server_capabilities.hoverProvider = false
+  --   opts.server_capabilities.documentHighlightProvider = false
+  -- end
+
+  local server_opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, opts or {})
+  if lspconfig[actual_server] then
+    lspconfig[actual_server].setup(server_opts)
+  else
+    vim.notify("LSP server '" .. actual_server .. "' not found in nvim-lspconfig", vim.log.levels.WARN)
+  end
+  ::continue::
+end
+
+-- for windows
+-- NOTE: have to run "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" before cmake
+local clangd_cmd = { "clangd" }
+if vim.loop.os_uname().sysname == "Windows_NT" then
+  table.insert(
+    clangd_cmd,
+    "--query-driver=C:/Program Files (x86)/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/*/bin/Hostx64/x64/cl.exe"
+  )
+end
+lspconfig.clangd.setup({
+  cmd = clangd_cmd,
 })
+
+
 
 -- Setup Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -184,8 +196,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         vim.api.nvim_buf_set_extmark(bufnr, ns_id, curline - 1, -1, {
           virt_text = {
-            { icon, hl_group },           -- Use matching icon with proper color
-            { " " .. diag.message, hl_group }  -- Message with proper color
+            { icon, hl_group }, -- Use matching icon with proper color
+            { " " .. diag.message, hl_group }, -- Message with proper color
           },
           virt_text_pos = "eol",
         })

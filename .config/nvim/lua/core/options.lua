@@ -43,7 +43,6 @@ if is_mac then
   undoDir = os.getenv("HOME") .. "/.vim/undodir"
 elseif is_windows then
   undoDir = os.getenv("HOME") .. "\\.vim\\undodir"
-  print("undoDir: " .. undoDir)
 else
   undoDir = os.getenv("HOME") .. "/.vim/undodir"
 end

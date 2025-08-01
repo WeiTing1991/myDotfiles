@@ -22,7 +22,6 @@ map("n", "<leader>ff", tele_builtin.find_files, { desc = "Find files" })
 map("n", "<leader>fl", tele_builtin.live_grep, { desc = "Find live grep" })
 map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
 map("n", "<leader>fb", tele_builtin.buffers, { desc = "Find file in opened buffer" })
-map("n", "<leader>fb", tele_builtin.wo, { desc = "Find file in opened buffer" })
 
 map("n", "<leader>tt", function()
   mini_ui_select.ui_select(tele_builtin.colorscheme)
@@ -36,48 +35,34 @@ map({ "n", "t" }, "<C-/>", function()
   snacks.terminal()
 end, { desc = "Toggle term" })
 
--- Snacks.toggle({
---   name = "Render Markdown",
---   get = function()
---     return require("render-markdown.state").enabled
---   end,
---   set = function(enabled)
---     local m = require("render-markdown")
---     if enabled then
---       m.enable()
---     else
---       m.disable()
---     end
---   end,
--- }):map("<leader>um")
 
 --[[ Markdown ]]
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview with node" })
 
 --[[ toggle ]]
-map("n", "<leader>tc", function()
-  require("copilot.suggestion").toggle_auto_trigger()
-  if not vim.b.copilot_suggestion_auto_trigger then
-    print("Copilot is disabled")
-  else
-    print("Copilot is enabled")
-  end
-end, { desc = "Copilot" })
-
-map({ "n", "v" }, "<M-i>", function()
-  vim.cmd("CodeCompanionActions")
-end, { desc = "CodeCompanionActions" })
-
-map({ "n", "v" }, "<C-S-e>", function()
-  vim.cmd("CodeCompanionChat Toggle")
-  vim.cmd("vertical resize 50") -- hack to resize the chat window
-end, { desc = "CodeCompanionChat Toggle" })
-
---[[ diagnostics ]]
-map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })
-map("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics workspace" })
-map("n", "<leader>xq", "<cmd>Trouble qflist toggle <cr>", { desc = "Quickfix List " })
-map("n", "<leader>xl", "<cmd>Trouble locflist toggle <cr>", { desc = "Location List " })
+-- map("n", "<leader>tc", function()
+--   require("copilot.suggestion").toggle_auto_trigger()
+--   if not vim.b.copilot_suggestion_auto_trigger then
+--     print("Copilot is disabled")
+--   else
+--     print("Copilot is enabled")
+--   end
+-- end, { desc = "Copilot" })
+--
+-- map({ "n", "v" }, "<M-i>", function()
+--   vim.cmd("CodeCompanionActions")
+-- end, { desc = "CodeCompanionActions" })
+--
+-- map({ "n", "v" }, "<C-S-e>", function()
+--   vim.cmd("CodeCompanionChat Toggle")
+--   vim.cmd("vertical resize 50") -- hack to resize the chat window
+-- end, { desc = "CodeCompanionChat Toggle" })
+--
+-- --[[ diagnostics ]]
+-- map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })
+-- map("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics workspace" })
+-- map("n", "<leader>xq", "<cmd>Trouble qflist toggle <cr>", { desc = "Quickfix List " })
+-- map("n", "<leader>xl", "<cmd>Trouble locflist toggle <cr>", { desc = "Location List " })
 
 -- map("n", "<leader>fj", function()
 --   builtin.find_files({ cwd = vim.fn.expand("%:p:h") })

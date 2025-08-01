@@ -18,29 +18,16 @@ return {
     dependencies = {
       -- NOTE: Must be loaded before dependants
       { "williamboman/mason.nvim", opt = {} },
-      "williamboman/mason-lspconfig.nvim",
+      -- "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim",       opt = {} },
+      { "j-hui/fidget.nvim", opt = {} },
 
       -- cmp
       { "saghen/blink.cmp" },
       -- {"jay-babu/mason-nvim-dap.nvim"},
     },
     config = function()
-      vim.defer_fn(function()
-        require("plugin.configs.lsp")
-      end, 0)
-      -- for windows
-      -- NOTE: have to run "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" before cmake
-      local lspconfig = require('lspconfig')
-
-      local clangd_cmd = { "clangd" }
-      if vim.loop.os_uname().sysname == "Windows_NT" then
-        table.insert(clangd_cmd, "--query-driver=C:/Program Files (x86)/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/*/bin/Hostx64/x64/cl.exe")
-      end
-      lspconfig.clangd.setup {
-        cmd = clangd_cmd,
-      }
+      require("plugin.configs.lsp")
     end,
   },
 
