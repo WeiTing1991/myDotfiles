@@ -40,7 +40,6 @@ git clone  https://github.com/WeiTing1991/myDotfiles/tree/main/.config/nvim ~/.c
 rm -Force ~\AppData\Local\nvim
 rm -Force ~\AppData\Local\nvim-data
 ```
-
 > In Neovim run `:MasonToolInstall` to install the extra(linter and formater).
 
 ## Config
@@ -66,10 +65,9 @@ NVIM_APPNAME=WeiTing1991/myDotfiles/.config/nvim nvim
 ## Plugins
 
 ### ai
+### Theme
 
-+ [yetone/avante.nvim](https://dotfyle.com/plugins/yetone/avante.nvim)
 ### bars-and-lines
-
 + [luukvbaal/statuscol.nvim](https://dotfyle.com/plugins/luukvbaal/statuscol.nvim)
 + [lukas-reineke/virt-column.nvim](https://dotfyle.com/plugins/lukas-reineke/virt-column.nvim)
 ### code-runner

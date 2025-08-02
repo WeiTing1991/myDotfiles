@@ -4,8 +4,8 @@ local hover = vim.lsp.buf.hover
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.buf.hover = function()
   return hover({
-    max_height = math.floor(vim.o.lines * 0.5),
-    max_width = math.floor(vim.o.columns * 0.4),
+    max_height = math.floor(vim.o.lines * 0.8),
+    max_width = math.floor(vim.o.columns * 0.6),
   })
 end
 
@@ -34,20 +34,15 @@ function keymaps.on_attach(client, bufnr)
     end, "Go to definition")
   end
 
-  -- map("gr", vim.lsp.buf.references, "Goto References")
-  -- map("gr", function()
-  --   require("goto-preview").goto_preview_references()
-  -- end, "Preview References")
+  map("gi", function()
+    require("telescope.builtin").lsp_implementations()
+  end, "Goto Implementation")
+  map("gr", function()
+    require("telescope.builtin").lsp_references()
+  end, "Find all References")
 
-  -- map("grr", "<cmd>FzfLua lsp_references<cr>", "Goto References")
+  map("gh", vim.lsp.buf.declaration, "Goto  header declaration")
 
-  -- For example, in C this would take you to the header
-  -- map("gl", vim.lsp.buf.declaration, "Goto C Header Declaration")
-  -- map("gl", "<cmd>FzfLua lsp_finder<cr>", "Goto header Declaration")
-
-  -- map("gi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", "Peek Implementation")
-  -- map("gI", "<cmd>FzfLua lsp_implementations <cr>", "Goto Implementation")
-  -- map("<S-l>j", "<cmd>FzfLua lsp_document_symbols<cr>", "Document Symbols")
   if client:supports_method(methods.textDocument_signatureHelp) then
     local blink_window = require("blink.cmp.completion.windows.menu")
     local blink = require("blink.cmp")
@@ -59,14 +54,28 @@ function keymaps.on_attach(client, bufnr)
       vim.lsp.buf.signature_help()
     end, "Signature help", "i")
   end
+
   -- extra
   map("g.", vim.lsp.buf.code_action, "Code Action")
-  map("<S-l>ii", "<cmd>LspInfo<cr>", "Lsp Info")
-  map("<S-l>ir", "<cmd>LspRestart<cr>", "Lsp restart")
   map("<S-l>r", vim.lsp.buf.rename, "Rename in buf")
-  -- map("<S-l>d", "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>", "Type defintion")
-  -- map("<S-l>d", vim.lsp.buf.type_definition, "Type defintion")
-  -- map("<S-l>ca", vim.lsp.buf.code_action, "Code Action")
+  map("<F2>", vim.lsp.buf.rename, "Rename in buf")
+  map("<S-l>o", "<cmd>AerialToggle!<CR>", "Toggle Outline")
+
+  map("<C-S-o>", function()
+    require("telescope.builtin").lsp_document_symbols()
+  end, "Go to Symbol in File")
+
+  map("<S-l>d", function()
+    require("telescope.builtin").lsp_document_symbols()
+  end, "Go to Symbol in File")
+
+  map("<C-t>", function()
+    require("telescope.builtin").lsp_workspace_symbols()
+  end, "Go to Symbol in Workspace")
+
+  map("<S-l>w", function()
+    require("telescope.builtin").lsp_workspace_symbols()
+  end, "Go to Symbol in Workspace")
 
   -- formatting
   map("<leader>,", vim.lsp.buf.format, "formatting", { "n", "v" })

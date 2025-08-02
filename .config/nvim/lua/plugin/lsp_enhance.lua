@@ -1,46 +1,57 @@
 return {
-  -- {
-  --   "stevearc/aerial.nvim",
-  --   lazy = true,
-  --   event = "VeryLazy",
-  --   opts = function()
-  --     local icons = vim.deepcopy(require("icon").symbol_kinds)
-  --     local opts = {
-  --       attach_mode = "global",
-  --       backends = { "treesitter", "lsp", "markdown", "man" },
-  --       show_guides = true,
-  --       layout = {
-  --         max_width = { 60, 0.3 },
-  --         width = nil,
-  --         min_width = 30,
-  --         resize_to_content = true,
-  --         win_opts = {
-  --           -- winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
-  --           signcolumn = "yes",
-  --           statuscolumn = " ",
-  --         },
-  --       },
-  --       icons = vim.o.filetype == "markdown" and {} or icons,
-  --       guides = {
-  --         mid_item = "├╴",
-  --         last_item = "└╴",
-  --         nested_top = "│ ",
-  --         whitespace = "  ",
-  --       },
-  --     }
-  --     return opts
-  --   end,
-  --   keys = {
-  --     { "<S-l>o", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
-  --   },
-  -- },
+  {
+    "stevearc/aerial.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = function()
+      local icons = vim.deepcopy(require("icon").symbol_kinds)
+      local opts = {
+        attach_mode = "global",
+        backends = { "treesitter", "lsp", "markdown", "man" },
+        show_guides = true,
+        layout = {
+          max_width = { 60, 0.3 },
+          width = nil,
+          min_width = 30,
+          resize_to_content = true,
+          win_opts = {
+            -- winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+            signcolumn = "yes",
+            statuscolumn = " ",
+          },
+        },
+        icons = vim.o.filetype == "markdown" and {} or icons,
+        guides = {
+          mid_item = "├╴",
+          last_item = "└╴",
+          nested_top = "│ ",
+          whitespace = "  ",
+        },
+      }
+      return opts
+    end,
+    config = function(_, opts)
+      require("aerial").setup(opts)
 
-  -- {
-  --   "rmagatti/goto-preview",
-  --   dependencies = { "rmagatti/logger.nvim" },
-  --   event = "BufEnter",
-  --   config = true,
-  -- },
+      require("telescope").load_extension("aerial")
+      require("telescope").setup({
+        extensions = {
+          aerial = {
+            col1_width = 4,
+            col2_width = 30,
+            format_symbol = function(symbol_path, filetype)
+              if filetype == "json" or filetype == "yaml" then
+                return table.concat(symbol_path, ".")
+              else
+                return symbol_path[#symbol_path]
+              end
+            end,
+            show_columns = "both",
+          },
+        },
+      })
+    end,
+  },
 
   {
     "danymat/neogen",
@@ -84,56 +95,41 @@ return {
     ft = "cs",
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
-    opts = { },
+    opts = {},
   },
 
   -- c/c++
-{
-  "p00f/clangd_extensions.nvim",
-  lazy = true,
-  ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
-  config = function() end,
-  opts = {
-    inlay_hints = {
-      inline = false,
-    },
-    ast = {
-      --These require codicons (https://github.com/microsoft/vscode-codicons)
-      role_icons = {
-        type = "",
-        declaration = "",
-        expression = "",
-        specifier = "",
-        statement = "",
-        ["template argument"] = "",
+  {
+    "p00f/clangd_extensions.nvim",
+    lazy = true,
+    ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
+    config = function() end,
+    opts = {
+      inlay_hints = {
+        inline = false,
       },
-      kind_icons = {
-        Compound = "",
-        Recovery = "",
-        TranslationUnit = "",
-        PackExpansion = "",
-        TemplateTypeParm = "",
-        TemplateTemplateParm = "",
-        TemplateParamObject = "",
+      ast = {
+        --These require codicons (https://github.com/microsoft/vscode-codicons)
+        role_icons = {
+          type = "",
+          declaration = "",
+          expression = "",
+          specifier = "",
+          statement = "",
+          ["template argument"] = "",
+        },
+        kind_icons = {
+          Compound = "",
+          Recovery = "",
+          TranslationUnit = "",
+          PackExpansion = "",
+          TemplateTypeParm = "",
+          TemplateTemplateParm = "",
+          TemplateParamObject = "",
+        },
       },
     },
   },
-}
-
-  -- [[Task Runner]]
-  -- {
-  --   "stevearc/overseer.nvim",
-  --   lazy = true,
-  --   enabled = false,
-  --   key = {
-  --     {
-  --       "<leader>ot",
-  --       "<cmd>OverseerToggle<cr>",
-  --       desc = "Toggle task window",
-  --     },
-  --   },
-  -- },
-
   -- {
   --   "pmizio/typescript-tools.nvim",
   --   lazy = true,
@@ -163,18 +159,25 @@ return {
   --   end,
   -- },
 
-  -- go
-  -- dart/flutter
+  -- Maybe
   -- {
-  --   "akinsho/flutter-tools.nvim",
+  --   "rmagatti/goto-preview",
+  --   dependencies = { "rmagatti/logger.nvim" },
+  --   event = "BufEnter",
+  --   config = true,
+  -- },
+
+  -- [[Task Runner]]
+  -- {
+  --   "stevearc/overseer.nvim",
   --   lazy = true,
-  --   ft = { "dart" },
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "stevearc/dressing.nvim",
+  --   enabled = false,
+  --   key = {
+  --     {
+  --       "<leader>ot",
+  --       "<cmd>OverseerToggle<cr>",
+  --       desc = "Toggle task window",
+  --     },
   --   },
-  --   config = function()
-  --     require("flutter-tools").setup {}
-  --   end,
   -- },
 }

@@ -1,6 +1,6 @@
 -- default keymap
 
--- really good resouce
+-- really good resouce steal from Maria
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
 vim.keymap.set("n", "j", [[(v:count > 0 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 vim.keymap.set("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
@@ -113,10 +113,8 @@ function ToggleSpellCheck()
     print("Spelling check ON.")
   end
 end
-
 vim.keymap.set("n", "<leader>tp", ToggleSpellCheck, { desc = "Spell check" })
 
 -- Optional
--- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Replace selection with system clipboard content" })
+vim.keymap.set("x", "p", [["_dP]], { desc = "Replace selection with system clipboard content" })
 -- vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })
--- -- Delete selected text and replace with text from system clipbo

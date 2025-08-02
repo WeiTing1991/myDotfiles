@@ -40,12 +40,6 @@ return {
     },
   },
 
-  -- {
-  --   "mbbill/undotree",
-  --   lazy = true,
-  --   event = "VeryLazy",
-  -- },
-
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
@@ -171,6 +165,12 @@ return {
       })
     end,
   },
+
+  -- {
+  --   "mbbill/undotree",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  -- },
 
   -- -- better search
   -- {

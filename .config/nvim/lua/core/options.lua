@@ -130,6 +130,11 @@ local options = {
   foldlevelstart = 99,
   foldenable = true,
 
+  -- spelling
+  spell = false,
+  spelllang = { "en_us", "en" },
+  spellfile = spellDir,
+
   -- ui
   cursorline = true,
   confirm = true,
@@ -144,9 +149,6 @@ local options = {
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
--- vim.o.title = true
--- vim.o.titlestring = "%<%F - nvim"
 
 vim.schedule(function()
   local ok, _ = pcall(function()

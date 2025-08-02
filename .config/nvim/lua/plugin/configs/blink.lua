@@ -23,12 +23,10 @@ require("blink.cmp").setup({
         end
       end,
     },
-    --
     -- ["<Backspace>"] = { "snippet_forward", "fallback" },
     -- ["<S-Backspace>"] = { "snippet_backward", "fallback" },
   },
   snippets = { preset = "luasnip" },
-
   completion = {
     keyword = { range = "full" },
     accept = { auto_brackets = { enabled = false } },
@@ -104,10 +102,9 @@ require("blink.cmp").setup({
       lazydev = {
         name = "LazyDev",
         module = "lazydev.integrations.blink",
-        -- make lazydev completions top priority (see `:h blink.cmp`)
         score_offset = 100,
       },
-      dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+      -- dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
     },
   },
   fuzzy = { implementation = "prefer_rust_with_warning" },

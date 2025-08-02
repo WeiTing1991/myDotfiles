@@ -50,7 +50,7 @@ require("lazy").setup({
     notify = false,
   },
   checker = {
-    enabled = true,
+    enabled = false,
     notify = false,
   },
   performance = {
@@ -71,9 +71,12 @@ require("lazy").setup({
   },
 })
 require("userkeymaps")
+
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     print("Startup time: " .. vim.fn.reltimestr(vim.fn.reltime(vim.g.start_time)) .. "s")
   end,
 })
+
+-- for track the time on Windows
 vim.g.start_time = vim.fn.reltime()
