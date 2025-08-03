@@ -153,7 +153,7 @@ M = {
   },
 
   -- C#
-  ["roslyn_ls"] = {},
+  ["roslyn"] = {},
   -- ["omnisharp"] = {
   --   handlers = {
   --     ["textDocument/definition"] = require("omnisharp_extended").handler,
@@ -189,61 +189,187 @@ M = {
   -- },
 
   -- js/ts/css/html
-  ["ts_ls"] = {
+  -- ["ts_ls"] = {
+  --   settings = {
+  --     typescript = {
+  --       inlayHints = {
+  --         includeInlayParameterNameHints = "all",
+  --         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+  --         includeInlayFunctionParameterTypeHints = true,
+  --         includeInlayVariableTypeHints = true,
+  --         includeInlayPropertyDeclarationTypeHints = true,
+  --         includeInlayFunctionLikeReturnTypeHints = true,
+  --         includeInlayEnumMemberValueHints = true,
+  --       },
+  --       suggest = {
+  --         includeCompletionsForModuleExports = true,
+  --         completeFunctionCalls = true,
+  --         autoImports = true,
+  --       },
+  --       format = {
+  --         enable = true,
+  --         insertSpaceAfterCommaDelimiter = true,
+  --         insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+  --         insertSpaceAfterSemicolonInForStatements = true,
+  --       },
+  --       updateImportsOnFileMove = {
+  --         enabled = "always",
+  --       },
+  --       autoClosingTags = true,
+  --     },
+  --     javascript = {
+  --       inlayHints = {
+  --         includeInlayParameterNameHints = "all",
+  --         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+  --         includeInlayFunctionParameterTypeHints = true,
+  --         includeInlayVariableTypeHints = true,
+  --         includeInlayPropertyDeclarationTypeHints = true,
+  --         includeInlayFunctionLikeReturnTypeHints = true,
+  --         includeInlayEnumMemberValueHints = true,
+  --       },
+  --       suggest = {
+  --         includeCompletionsForModuleExports = true,
+  --         autoImports = true,
+  --       },
+  --       format = {
+  --         enable = true,
+  --         insertSpaceAfterCommaDelimiter = true,
+  --         insertSpaceAfterSemicolonInForStatements = true,
+  --         insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+  --       },
+  --     },
+  --     completions = {
+  --       completeFunctionCalls = true,
+  --     },
+  --   },
+  -- },
+  ["vtsls"] = {
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
     settings = {
-      typescript = {
-        inlayHints = {
-          includeInlayParameterNameHints = "all",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+      complete_function_calls = true, -- LazyVim has this at root level
+      vtsls = {
+        enableMoveToFileCodeAction = true,
+        autoUseWorkspaceTsdk = true,
+        experimental = {
+          maxInlayHintLength = 30,
+          completion = {
+            enableServerSideFuzzyMatch = true,
+          },
         },
+      },
+      typescript = {
+        -- Inlay hints (converted from your ts_ls settings)
+        inlayHints = {
+          parameterNames = { enabled = "all" }, -- includeInlayParameterNameHints
+          parameterTypes = { enabled = true }, -- includeInlayFunctionParameterTypeHints
+          variableTypes = { enabled = true }, -- includeInlayVariableTypeHints
+          propertyDeclarationTypes = { enabled = true }, -- includeInlayPropertyDeclarationTypeHints
+          functionLikeReturnTypes = { enabled = true }, -- includeInlayFunctionLikeReturnTypeHints
+          enumMemberValues = { enabled = true }, -- includeInlayEnumMemberValueHints
+        },
+
+        -- Suggestions (your settings)
         suggest = {
           includeCompletionsForModuleExports = true,
           completeFunctionCalls = true,
           autoImports = true,
+          includeCompletionsForImportStatements = true,
+          includeCompletionsWithSnippetText = true,
+          includeAutomaticOptionalChainCompletions = true,
         },
+
+        -- Format settings (your settings)
         format = {
           enable = true,
           insertSpaceAfterCommaDelimiter = true,
           insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
           insertSpaceAfterSemicolonInForStatements = true,
+          indentSize = 2,
+          convertTabsToSpaces = true,
+          tabSize = 2,
         },
-        updateImportsOnFileMove = {
-          enabled = "always",
-        },
+
+        -- File move settings (your settings)
+        updateImportsOnFileMove = { enabled = "always" },
+
+        -- Auto closing tags (your settings)
         autoClosingTags = true,
-      },
-      javascript = {
-        inlayHints = {
-          includeInlayParameterNameHints = "all",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+
+        -- Additional vtsls optimizations
+        preferences = {
+          importModuleSpecifier = "relative",
+          importModuleSpecifierEnding = "minimal",
+          includePackageJsonAutoImports = "auto",
+          providePrefixAndSuffixTextForRename = true,
+          allowRenameOfImportPath = true,
+          allowTextChangesInNewFiles = true,
         },
+
+        -- Workspace settings
+        workspaceSymbols = {
+          scope = "allOpenProjects",
+        },
+      },
+
+      javascript = {
+        -- Inlay hints (your settings)
+        inlayHints = {
+          parameterNames = { enabled = "all" }, -- includeInlayParameterNameHints
+          parameterTypes = { enabled = true }, -- includeInlayFunctionParameterTypeHints
+          variableTypes = { enabled = true }, -- includeInlayVariableTypeHints
+          propertyDeclarationTypes = { enabled = true }, -- includeInlayPropertyDeclarationTypeHints
+          functionLikeReturnTypes = { enabled = true }, -- includeInlayFunctionLikeReturnTypeHints
+          enumMemberValues = { enabled = true }, -- includeInlayEnumMemberValueHints
+        },
+
+        -- Suggestions (your settings)
         suggest = {
           includeCompletionsForModuleExports = true,
           autoImports = true,
+          completeFunctionCalls = true,
+          includeCompletionsForImportStatements = true,
+          includeCompletionsWithSnippetText = true,
+          includeAutomaticOptionalChainCompletions = true,
         },
+
+        -- Format settings (your settings)
         format = {
           enable = true,
           insertSpaceAfterCommaDelimiter = true,
           insertSpaceAfterSemicolonInForStatements = true,
           insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+          indentSize = 2,
+          convertTabsToSpaces = true,
+          tabSize = 2,
+        },
+
+        -- File move settings
+        updateImportsOnFileMove = { enabled = "always" },
+
+        -- Auto closing tags
+        autoClosingTags = true,
+
+        -- Additional settings
+        preferences = {
+          importModuleSpecifier = "relative",
+          importModuleSpecifierEnding = "minimal",
+          includePackageJsonAutoImports = "auto",
         },
       },
+
+      -- Completions (your settings)
       completions = {
         completeFunctionCalls = true,
       },
     },
   },
-
   ["cssls"] = {
     -- cmd = { "css-languageserver", "--stdio" },
     filetypes = { "css", "scss", "less" },

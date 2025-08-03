@@ -6,7 +6,7 @@ autocmd("BufWritePre", {
   pattern = { "*" }, -- Apply to all files
   callback = function()
     if vim.bo.filetype ~= "markdown" then
-      vim.cmd [[ %s/\s\+$//e ]] -- Trim trailing whitespace
+      vim.cmd([[ %s/\s\+$//e ]]) -- Trim trailing whitespace
     end
   end,
 })
@@ -112,7 +112,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 --[[ ts/js ]]
-local ts_funcs = require "lsp.typescriptFunc"
+local ts_funcs = require("lsp.typescriptFunc")
 local tsgroup = vim.api.nvim_create_augroup("tsgroup", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
   group = tsgroup,
@@ -127,8 +127,6 @@ autocmd({ "BufRead", "BufNewFile" }, {
     local bufnr = args.buf
     local opts = { buffer = bufnr, noremap = true, silent = true }
 
-    -- stylua: ignore start
-    -- Set keymaps for TypeScript/JavaScript buffers
     vim.keymap.set('n', '<S-l>to', ts_funcs.ts_organize_imports, vim.tbl_extend('force', opts, { desc = "Organize Imports" }))
     vim.keymap.set('n', '<S-l>tu', ts_funcs.ts_remove_unused, vim.tbl_extend('force', opts, { desc = "Remove Unused" }))
     vim.keymap.set('n', '<S-l>ta', ts_funcs.ts_add_missing_imports, vim.tbl_extend('force', opts, { desc = "Add Missing Imports" }))
@@ -136,16 +134,11 @@ autocmd({ "BufRead", "BufNewFile" }, {
     vim.keymap.set('n', '<S-l>tr', ts_funcs.ts_remove_unused_imports, vim.tbl_extend('force', opts, { desc = "Remove Unused Imports" }))
     vim.keymap.set('n', '<S-l>ts', ts_funcs.ts_sort_imports, vim.tbl_extend('force', opts, { desc = "Sort Imports" }))
 
-    -- Create buffer-local commands
-    vim.api.nvim_buf_create_user_command(bufnr, "TSOrganizeImports", ts_funcs.ts_organize_imports, { desc = "Organize Imports" })
-    vim.api.nvim_buf_create_user_command(bufnr, "TSRemoveUnused", ts_funcs.ts_remove_unused, { desc = "Remove Unused" })
-    vim.api.nvim_buf_create_user_command(bufnr, "TSAddMissingImports", ts_funcs.ts_add_missing_imports, { desc = "Add Missing Imports" })
-    vim.api.nvim_buf_create_user_command(bufnr, "TSFixAll", ts_funcs.ts_fix_all, { desc = "Fix All" })
-    vim.api.nvim_buf_create_user_command(bufnr, "TSRemoveUnusedImports", ts_funcs.ts_remove_unused_imports, { desc = "Remove Unused Imports" })
-    vim.api.nvim_buf_create_user_command(bufnr, "TSSortImports", ts_funcs.ts_sort_imports, { desc = "Sort Imports" })
+    -- Add LazyVim's enhanced keymaps
+    vim.keymap.set('n', 'gD', ts_funcs.ts_goto_source_definition, vim.tbl_extend('force', opts, { desc = "Go to Source Definition" }))
+    vim.keymap.set('n', 'gR', ts_funcs.ts_find_file_references, vim.tbl_extend('force', opts, { desc = "Find File References" }))
 
-    -- stylua: ignore end
-  end,
+  end
 })
 
 -- local cppgroup = vim.api.nvim_create_augroup("cppgroup", { clear = true })

@@ -71,7 +71,6 @@ map("n", "<leader>gb", ":Gitsign toggle_current_line_blame<CR>", { desc = "curre
 map("n", "<leader>gb", function() snacks.gitbrowse() end, { desc = "open current github" })
 
 local function commit_files()
-  local file = vim.fn.expand("%")
   local message = vim.fn.input("Commit message: ")
   vim.cmd("Git add .")
   vim.cmd('Git commit -m "' .. message .. '"')

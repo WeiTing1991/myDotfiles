@@ -18,7 +18,7 @@ return {
     dependencies = {
       -- NOTE: Must be loaded before dependants
       { "williamboman/mason.nvim", opt = {} },
-      -- "williamboman/mason-lspconfig.nvim",
+      "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opt = {} },
 

@@ -44,7 +44,6 @@ local server_name_map = {
   -- Add more mappings if needed
 }
 
-
 for server_name, opts in pairs(ls_server_config) do
   local actual_server = server_name_map[server_name] or server_name
 

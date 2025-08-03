@@ -23,7 +23,6 @@ return {
   -- diagnostics
   {
     "folke/trouble.nvim",
-    enabled = false,
     lazy = true,
     event = "VeryLazy",
     cmd = "Trouble",
