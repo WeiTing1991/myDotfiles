@@ -82,31 +82,24 @@ moveMouseToClientCenter(winTitle) {
         MsgBox("Window not found: " winTitle)
         return
     }
-
     ; Get window position
     WinGetPos(&winX, &winY, &winW, &winH, winTitle)
-
     ; Initialize buffer for GetClientRect
     rc := Buffer(16, 0)  ; AutoHotkey v2 syntax for buffer
-
     success := DllCall("User32.dll\GetClientRect", "Ptr", hwnd, "Ptr", rc)
     if !success {
         MsgBox("GetClientRect failed")
         return
     }
-
     ; Get client area dimensions
     clientW := NumGet(rc, 8, "Int")   ; right - left (left is always 0)
     clientH := NumGet(rc, 12, "Int")  ; bottom - top (top is always 0)
-
     ; Calculate window frame offsets
-    offsetX := (winW - clientW) // 2  ; Use / instead of //
+    offsetX := (winW - clientW) // 2
     offsetY := winH - clientH - offsetX
-
     ; Calculate center position
-    centerX := winX + offsetX + clientW // 2  ; Use / instead of //
-    centerY := winY + offsetY + clientH // 2  ; Use / instead of //
-
+    centerX := winX + offsetX + clientW // 2
+    centerY := winY + offsetY + clientH // 2
     ; Move mouse to center
     MouseMove(centerX, centerY, 0)
 }
@@ -117,7 +110,6 @@ moveMouseToCenter(winTitle) {
         MsgBox("Window not found: " winTitle)
         return
     }
-
     WinGetPos(&winX, &winY, &winW, &winH, winTitle)
     MouseMove(winX + winW//2, winY + winH//2, 0)
 }
@@ -126,55 +118,50 @@ moveMouseToCenter(winTitle) {
 focusApp(appPath, winTitle) {
     if WinExist(winTitle) {
         WinActivate(winTitle)
-        moveMouseToCenter(winTitle)  ; Fixed function name
+        moveMouseToCenter(winTitle)
     } else {
         Run(appPath)
     }
 }
 
-; Cycle through windows of a given executable
+; Cycle through windows of a given executable - FIXED VERSION
 cycleWindows(exeName, appPath := "") {
     idList := WinGetList("ahk_exe " exeName)
-
     if (idList.Length > 1) {
         ; Multiple windows found - cycle through them
         activeId := WinGetID("A")
-        idx := 0
-
+        currentIdx := 0  ; Fixed: was 'idx := 0'
+        
         ; Find current window index
         for i, id in idList {
             if (id = activeId) {
-                currentIdx := i
+                currentIdx := i  ; Fixed: was assigning to undefined variable
                 break
             }
         }
-
+        
         ; Calculate next window index
-        nextIdx := idx ? (idx = idList.Length ? 1 : idx + 1) : 1
+        nextIdx := currentIdx ? (currentIdx = idList.Length ? 1 : currentIdx + 1) : 1  ; Fixed: use currentIdx
         nextId := idList[nextIdx]
-
+        
         ; Activate next window
         WinActivate("ahk_id " nextId)
         WinWaitActive("ahk_id " nextId)
         moveMouseToClientCenter("ahk_id " nextId)
-
     } else if idList.Length = 1 {
         ; Only one window - just focus and center mouse
         WinActivate("ahk_id " idList[1])
         moveMouseToClientCenter("ahk_id " idList[1])
-
     } else if appPath {
-        ; No windows found - launch app
-        Run(appPath)
+        ; No windows found - launch app as normal user (drop admin privileges)
+        ; Use explorer.exe to launch without admin privileges
+        Run('explorer.exe "' appPath '"')
     }
 }
 
 ; === HOTKEYS ===
 ; Windows key + number combinations
 #1::focusApp("C:\Program Files\WezTerm\wezterm-gui.exe", "ahk_exe wezterm-gui.exe")
-#3::focusApp("C:\Program Files\Obsidian\Obsidian.exe", "ahk_exe Obsidian.exe")
 #2::cycleWindows("chrome.exe", "C:\Program Files\Google\Chrome\Application\chrome.exe")
-#7::cycleWindows("Code.exe", "C:\Users\weichen34\AppData\Local\Programs\Microsoft VS Code\Code.exe")
-
-; #8::focusApp("C:\Program Files\Zed\Zed.exe", "ahk_exe Zed.exe")
-
+#3::focusApp("C:\Program Files\Obsidian\Obsidian.exe", "ahk_exe Obsidian.exe")
+#7::cycleWindows("Code.exe", "code")
