@@ -161,7 +161,7 @@ cycleWindows(exeName, appPath := "") {
 
 ; === HOTKEYS ===
 ; Windows key + number combinations
-#1::focusApp("C:\Program Files\WezTerm\wezterm-gui.exe", "ahk_exe wezterm-gui.exe")
+#1::cycleWindows("wezterm-gui.exe", "C:\Program Files\WezTerm\wezterm-gui.exe")
 #2::cycleWindows("chrome.exe", "C:\Program Files\Google\Chrome\Application\chrome.exe")
 #3::focusApp("C:\Program Files\Obsidian\Obsidian.exe", "ahk_exe Obsidian.exe")
 #7::cycleWindows("Code.exe", "code")
