@@ -1,121 +1,287 @@
 {
-  /* General settings and apperance */
-  "workbench.startupEditor": "none",
-  "telemetry.telemetryLevel": "off",
-  "window.titleBarStyle": "custom",
-  "workbench.sideBar.location": "right",
-  "workbench.tree.indent": 15,
-  "workbench.panel.showLabels": false,
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.scrollbar.vertical": "hidden",
-  "workbench.list.smoothScrolling": false,
-  "workbench.colorTheme": "Vim Light Hard",
-  "workbench.editor.showTabs": "single",
-  "workbench.tips.enabled": false,
-  "workbench.editor.enablePreview": false,
-  "window.zoomLevel": 1,
-  "workbench.settings.editor": "json",
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true
-  },
-
-  /* explorer */
-  "explorerexplorer.sortOrder": "type",
-  "explorer.decorations.colors": false,
+  // =============================================================================
+  // EDITOR SETTINGS
+  // =============================================================================
+  "editor.fontFamily": "Hack Nerd Font, JetBrainsMono Nerd Font, 'Courier New', monospace",
+  "editor.fontSize": 14,
   "editor.fontLigatures": true,
-
-  /* editor */
-  "editor.formatOnSave": false,
-  // "editor.fontFamily": "Hack Nerd font, Roboto, RobotoMono Nerd Font ",
-  "editor.fontFamily": "JetBrainsMonoNL Nerd Font",
-  "editor.fontSize": 12,
-  "editor.lineHeight": 1.4,
-  "editor.rulers": [
-    {
-      "column": 120,
-      "color": "#2b2b2b"
-    }
-  ],
-  "editor.minimap.enabled": false,
-  "workbench.editor.empty.hint": "hidden",
   "editor.lineNumbers": "relative",
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.semanticHighlighting.enabled": "configuredByTheme",
-  "editor.suggest.insertMode": "replace",
-
-  "editor.hover.delay": 100,
-  "editor.hover.above": false,
-  "editor.hover.sticky": true,
-  "editor.hover.hidingDelay": 1000,
-  "editor.colorDecorators": true,
-  "editor.glyphMargin": false,
-
-  /*   !!!! formatDocument */
   "editor.tabSize": 2,
-  "editor.insertSpaces": true, //use spaces instead of tab
-
-  "editor.occurrencesHighlight": "off",
-  "editor.lightbulb.enabled": "off",
-
-  "files.trimTrailingWhitespace": true,
-  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+  "editor.indentSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.wordWrap": "on",
+  "editor.rulers": [120],
   "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
-  "editor.guides.bracketPairs": false,
+  "editor.showFoldingControls": "always",
+  "editor.folding": true,
+  "editor.glyphMargin": true,
+  "editor.scrollBeyondLastLine": false,
+
+  // =============================================================================
+  // PERFORMANCE OPTIMIZATIONS
+  // =============================================================================
+  "editor.minimap.enabled": false,
+  "editor.codeLens": false,
+  "editor.lightbulb.enabled": "off",
+  "editor.inlayHints.enabled": "off",
+  "editor.parameterHints.enabled": false,
+  "editor.occurrencesHighlight": "off",
+  "editor.selectionHighlight": false,
+  "editor.overviewRulerBorder": false,
+  "editor.smoothScrolling": false,
+  "editor.cursorSmoothCaretAnimation": "off",
+  "editor.cursorBlinking": "blink",
+  "editor.stickyScroll.enabled": false,
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.verticalScrollbarSize": 0,
+  "editor.semanticHighlighting.enabled": true,
   "editor.matchBrackets": "near",
-  "editor.bracketPairColorization.enabled": true,
+  "editor.links": false,
+  "editor.formatOnSave": false,
+  "editor.hover.delay": 1000,
+  "editor.hover.sticky": true,
+  "editor.suggest.preview": false,
+  "editor.suggest.showStatusBar": false,
+  "editor.quickSuggestions": {
+    "comments": false,
+    "other": true,
+    "strings": false
+  },
+  "editor.quickSuggestionsDelay": 100,
+  "editor.useTabStops": false,
+  "editor.find.autoFindInSelection": "never",
 
-  "editor.wordWrap": "on",
-  "editor.wordWrapColumn": 179,
-  "editor.wrappingIndent": "deepIndent",
-  "editor.folding": true, // Enable folding
-  "editor.foldingStrategy": "auto", // Use"none"folding
+  // =============================================================================
+  // LANGUAGE-SPECIFIC SETTINGS
+  // =============================================================================
+  "[c]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.tabSize": 2
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.semanticHighlighting.enabled": false,
+    "editor.tabSize": 2
+  },
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[cmake]": {
+    "editor.defaultFormatter": "KylinIdeTeam.cmake-intellisence"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 
-  /*   project */
-  "projectManager.sortList": "Recent",
+  // =============================================================================
+  // C/C++ SETTINGS
+  // =============================================================================
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "clangd.arguments": [
+    "--background-index",
+    "--clang-tidy",
+    "--function-arg-placeholders=true",
+    "--header-insertion=iwyu",
+    "--pch-storage=memory",
+    "--compile-commands-dir=.",
+    "--completion-style=detailed"
+  ],
+  "clangd.enable": true,
+  "clangd.fallbackFlags": ["-std=c++17"],
 
-  /* Git settings */
-  "git.openRepositoryInParentFolders": "never",
-  "database-client.autoSync": true,
+  // =============================================================================
+  // CMAKE SETTINGS
+  // =============================================================================
+  "cmake.buildBeforeRun": false,
+  "cmake.configureOnEdit": false,
+  "cmake.configureOnOpen": false,
 
-  // "scm.diffDecorations": "none",
-  "extensions.ignoreRecommendations": true,
+  // =============================================================================
+  // PYTHON SETTINGS
+  // =============================================================================
+  "python.languageServer": "Default",
+  "python.analysis.typeCheckingMode": "standard",
+  "ruff.lint.enable": true,
+
+  // =============================================================================
+  // PRETTIER SETTINGS
+  // =============================================================================
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.tabWidth": 2,
+  "prettier.printWidth": 120,
+  "prettier.requireConfig": false,
+  "workbench.iconTheme": "vs-seti",
+  "workbench.startupEditor": "none",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.highlightModifiedTabs": false,
+  "workbench.editor.restoreViewState": false,
+  "workbench.editor.revealIfOpen": false,
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "default",
+  "workbench.statusBar.visible": true,
+  "workbench.reduceMotion": "on",
+  "workbench.list.smoothScrolling": false,
+  "workbench.enableExperiments": false,
+  "workbench.tips.enabled": false,
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "workbench.tree.renderIndentGuides": "onHover",
+
+  // =============================================================================
+  // WINDOW SETTINGS
+  // =============================================================================
+  "window.customTitleBarVisibility": "never",
+  "window.density.editorTabHeight": "compact",
+
+  // =============================================================================
+  // FILE MANAGEMENT
+  // =============================================================================
+  "files.hotExit": "off",
+  "files.restoreUndoStack": false,
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.DS_Store": true,
+    "**/.git": true
+  },
+  "files.watcherExclude": {
+    "**/__pycache__/**": true,
+    "**/.git/**": true,
+    "**/.next/**": true,
+    "**/*.log": true,
+    "**/coverage/**": true
+  },
+
+  // =============================================================================
+  // SEARCH SETTINGS
+  // =============================================================================
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/.next": true,
+    "**/*.map": true,
+    "**/*.min.js": true,
+    "**/build": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/node_modules": true
+  },
+
+  // =============================================================================
+  // GIT SETTINGS
+  // =============================================================================
+  "git.autofetch": false,
   "git.decorations.enabled": false,
+  "git.enableSmartCommit": true,
+  "scm.diffDecorations": "gutter",
 
-  /*   VIM keybindings */
+  // =============================================================================
+  // GITHUB COPILOT
+  // =============================================================================
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": false,
+    "plaintext": true,
+    "scminput": false
+  },
+  "github.copilot.advanced": {
+    "inlineSuggestEnable": true,
+    "length": 10
+  },
+  "github.copilot.nextEditSuggestions.enabled": false,
+
+  // =============================================================================
+  // TERMINAL SETTINGS
+  // =============================================================================
+  "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.scrollback": 2000,
+  "terminal.integrated.fastScrollSensitivity": 5,
+
+  // =============================================================================
+  // EXTENSIONS
+  // =============================================================================
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false,
+  "extensions.ignoreRecommendations": true,
+  "extensions.experimental.affinity": {
+    "charliermarsh.ruff": 1,
+    "vscodevim.vim": 1
+  },
+
+  // =============================================================================
+  // MISCELLANEOUS
+  // =============================================================================
+  "breadcrumbs.enabled": false,
+  "telemetry.telemetryLevel": "off",
+  "telemetry.feedback.enabled": false,
+  "update.showReleaseNotes": false,
+  "omnisharp.enableEditorConfigSupport": true,
+  "omnisharp.useModernNet": true,
+  "projectManager.git.baseFolders": ["~/project"],
+
+  "errorLens.enabled": true,
+  "errorLens.delay": 10,
+  "errorLens.followCursor": "activeLine",
+  "errorLens.followCursorMore": 1,
+  "errorLens.editorHoverPartsEnabled": {
+    "messageEnabled": false,
+    "sourceCodeEnabled": false,
+    "buttonsEnabled": false
+  },
+  "editor.accessibilitySupport": "off",
+
+  // =============================================================================
+  // VIM SETTINGS
+  // =============================================================================
+  // ysa"[
+  // cs"'
+  // ds"
+  "vim.leader": " ",
+  // "vim.easymotion": true,
   "vim.surround": true,
-  "vim.joinspaces": true, // Add two spaces after '.', '?', or '!' when joining lines.
-  "vim.timeout": 200,
-  "vim.highlightedyank.enable": true,
-  "vim.highlightedyank.color": "#ff6200",
-  "vim.highlightedyank.textColor": "#ffffff",
+  "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
-  "vim.foldfix": true,
-  "vim.leader": "space",
-  "vim.history": 9999,
-  // "vim.incsearch": true,
   "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
+  // "vim.matchpairs": "(:),{:},[:]",
+  "vim.foldfix": true,
+  "vim.autoindent": true,
+  "vim.showmodename": true,
 
-  "vim.useCtrlKeys": false,
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false,
-    "<C-r>": true,
-    "<C-u>": true,
-    "<C-d>": true,
-    "<C-v>": true,
-    "<C-y>": true,
-    "<C-l>": true,
-    "<C-n>": true,
-    "<C-p>": true,
+    "<C-k>": false
   },
 
-  // normal mode
-  "vim.normalModeKeyBindingsNonRecursive": [
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["<C-c>"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    }
+  ],
+
+  "vim.normalModeKeyBindings": [
     {
       "before": ["<Esc>"],
       "commands": [":nohl"]
@@ -124,15 +290,92 @@
       "before": ["<C-c>"],
       "commands": [":nohl"]
     },
-  // Visual mode
-  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<Tab>"],
+      "after": ["z", "a"]
+    },
+    {
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "z", "z"]
+    },
+    {
+      "before": ["G"],
+      "after": ["G", "z", "z"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "l"],
+      "commands": ["workbench.action.quickTextSearch"]
+    },
+    {
+      "before": ["<leader>", "f", "g"],
+      "commands": ["television.ToggleTextFinder"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "commands": ["projectManager.listProjectsNewWindow"]
+    },
+    {
+      "before": ["g", "."],
+      "commands": ["editor.action.codeAction"]
+    },
+    {
+      "before": ["<leader>", ","],
+      "commands": ["editor.action.formatDocument.multiple"]
+    },
+    {
+      "before": ["-"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["_"],
+      "commands": ["editor.action.blockComment"]
+    },
+    {
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["C_Cpp.SwitchHeaderSource"]
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["clangd.switchheadersource"]
+    },
+  ],
+
+  "vim.visualModeKeyBindings": [
     {
       "before": ["<"],
-      "after": ["<", "g", "v", "^"]
+      "after": ["<", "g", "v"]
     },
     {
       "before": [">"],
-      "after": [">", "g", "v", "^"]
+      "after": [">", "g", "v"]
+    },
+    {
+      "before": ["-"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["_"],
+      "commands": ["editor.action.blockComment"]
     },
     {
       "before": ["J"],
@@ -141,221 +384,7 @@
     {
       "before": ["K"],
       "commands": ["editor.action.moveLinesUpAction"]
-    },
-    {
-      "before": ["-"],
-      "after": ["g", "c", "<C-c>"]
-    },
-    {
-      "before": ["_"],
-      "after": ["g", "C", "<C-c>"]
     }
   ],
-
-  /*   Whichkey keybinding */
-  "whichkey.delay": 0,
-  "whichkey.bindings": [
-    {
-      "key": ",",
-      "name": "fomat file",
-      "command": "editor.action.formatDocument"
-    },
-    {
-      "key": "d",
-      "name": "Dir",
-      "command": "file-browser.open"
-    },
-    {
-      "key": "e",
-      "name": "file tree",
-      "command": "workbench.view.explorer"
-    },
-    {
-      "key": "f",
-      "name": "find files",
-      "type": "bindings",
-      "bindings": [
-        {
-          "key": "f",
-          "name": "find file",
-          "type": "command",
-          "command": "workbench.action.quickOpen"
-        },
-        {
-          "key": "o",
-          "name": "find file",
-          "type": "command",
-          "command": "workbench.action.openRecent"
-        },
-        {
-          "key": "b",
-          "name": "find opened file",
-          "type": "command",
-          "command": "workbench.action.quickOpen",
-          "args": ["edt "]
-        },
-        {
-          "key": "l",
-          "name": "live rigrep in project",
-          "type": "command",
-          "command": "workbench.action.findInFiles",
-          "args": [
-            {
-              "query": "",
-              "isRegex": true,
-              "filesToInclude": "${workspaceFolder}/**/*",
-              "filesToExclude": [
-                "**/node_modules/**",
-                "**/dist/**",
-                "**/build/**",
-                "**/out/**",
-                "**/coverage/**",
-                "**/.git/**",
-                "**/.svn/**",
-                "**/.hg/**",
-                "**/.idea/**",
-                "**/.vscode/**"
-              ],
-              "triggerSearch": true
-            }
-          ]
-        },
-        {
-          "key": "g",
-          "name": "rigrep in project",
-          "type": "command",
-          "command": "workbench.action.quickTextSearch",
-          "args": [
-            {
-              "query": "",
-              "isRegex": true,
-              "filesToInclude": "${workspaceFolder}/**/*",
-              "filesToExclude": [
-                "**/node_modules/**",
-                "**/dist/**",
-                "**/build/**",
-                "**/out/**",
-                "**/coverage/**",
-                "**/.git/**",
-                "**/.svn/**",
-                "**/.hg/**",
-                "**/.idea/**",
-                "**/.vscode/**"
-              ],
-              "triggerSearch": true
-            }
-          ]
-        }
-        // {
-        //   "key": "g",
-        //   "name": "live rigrep in project",
-        //   "type": "command",
-        //   "command": "search.action.openNewEditorFromView",
-        //   "when": "view == 'workbench.view.search'"
-        // },
-        // {
-        //   "key": "p",
-        //   "name": "fzf find file with preview",
-        //   "type": "command",
-        //   "command": "find-it-faster.findFiles"
-        // }
-      ]
-    },
-    {
-      "key": "t",
-      "name": "tooggle",
-      "type": "bindings",
-      "bindings": [
-        {
-          "key": "c",
-          "name": "copilot",
-          "command": "github.copilot.completions.toggle",
-          "when": "github.copilot.activated"
-        },
-        {
-          "key": "d",
-          "name": "problems",
-          "command": "workbench.actions.view.problems",
-          "when": "terminalFocus && !editorTextFocus"
-        },
-        {
-          "key": "a",
-          "name": "documentThis",
-          "command": "docthis.documentThis"
-        }
-      ]
-    }
-  ],
-
-  /*   LSP Settins */
-  //   "editorconfig.generateAuto": false,
-  //   "editorconfig.template": "~/.dotfiles/.editorconfig",
-  "prettier.tabWidth": 2,
-  "prettier.useTabs": false,
-  // json
-  "[jsonc]": {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  //typescirpt
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.acceptSuggestionOnCommitCharacter": false
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.acceptSuggestionOnCommitCharacter": false
-  },
-  "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
-  "python.languageServer": "Pylance",
-
-  "[python]": {
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.defaultColorDecorators": "never",
-    "editor.formatOnType": false,
-    "editor.wordBasedSuggestions": "off",
-    "editor.defaultFormatter": "charliermarsh.ruff"
-  },
-  "[csharp]": {
-    "editor.formatOnSave": false,
-    "editor.defaultFormatter": "ms-dotnettools.csharp",
-    "editor.acceptSuggestionOnCommitCharacter": false,
-    "editor.codeLens": false
-  },
-  "csharp.format.enable": true,
-  "csharp.format.openBracesOnSameLine": true,
-
-  // "leetcode.defaultLanguage": "typescript",
-  // "leetcode.workspaceFolder": "/Users/weitingchen/project/algorithms-journey/leetcode",
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": true,
-    "scminput": false
-  },
-  "cSpell.enabled": true,
-  "cSpell.enabledFileTypes": {
-    "*": false,
-    "markdown": true
-  },
-  "code-runner.executorMap": {
-    "typescript": "npx ts-node"
-  },
-  "editorconfig.generateAuto": false,
-  "editor.largeFileOptimizations": false,
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  },
+  "workbench.colorTheme": "Monokai Dimmed"
 }
