@@ -1,4 +1,7 @@
 {
+  // "vscode_custom_css.imports": [
+  //   "file://Users/weitingchen/.dotfiles/.vscode/custom-styles.css"
+  // ],
   // =============================================================================
   // EDITOR SETTINGS
   // =============================================================================
@@ -18,6 +21,10 @@
   "editor.folding": true,
   "editor.glyphMargin": true,
   "editor.scrollBeyondLastLine": false,
+  "zenMode.centerLayout": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.fullScreen": false,
+  "zenMode.hideStatusBar": false,
 
   // =============================================================================
   // PERFORMANCE OPTIMIZATIONS
@@ -55,75 +62,9 @@
   "editor.find.autoFindInSelection": "never",
 
   // =============================================================================
-  // LANGUAGE-SPECIFIC SETTINGS
+  // WORKBENCH SETTINGS
   // =============================================================================
-  "[c]": {
-    "editor.defaultFormatter": "xaver.clang-format",
-    "editor.tabSize": 2
-  },
-  "[cpp]": {
-    "editor.defaultFormatter": "xaver.clang-format",
-    "editor.semanticHighlighting.enabled": false,
-    "editor.tabSize": 2
-  },
-  "[csharp]": {
-    "editor.defaultFormatter": "ms-dotnettools.csharp",
-    "editor.formatOnSave": false,
-    "editor.tabSize": 4
-  },
-  "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 4,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
-    }
-  },
-  "[cmake]": {
-    "editor.defaultFormatter": "KylinIdeTeam.cmake-intellisence"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
 
-  // =============================================================================
-  // C/C++ SETTINGS
-  // =============================================================================
-  "C_Cpp.intelliSenseEngine": "disabled",
-  "clangd.arguments": [
-    "--background-index",
-    "--clang-tidy",
-    "--function-arg-placeholders=true",
-    "--header-insertion=iwyu",
-    "--pch-storage=memory",
-    "--compile-commands-dir=.",
-    "--completion-style=detailed"
-  ],
-  "clangd.enable": true,
-  "clangd.fallbackFlags": ["-std=c++17"],
-
-  // =============================================================================
-  // CMAKE SETTINGS
-  // =============================================================================
-  "cmake.buildBeforeRun": false,
-  "cmake.configureOnEdit": false,
-  "cmake.configureOnOpen": false,
-
-  // =============================================================================
-  // PYTHON SETTINGS
-  // =============================================================================
-  "python.languageServer": "Default",
-  "python.analysis.typeCheckingMode": "standard",
-  "ruff.lint.enable": true,
-
-  // =============================================================================
-  // PRETTIER SETTINGS
-  // =============================================================================
-  "prettier.singleQuote": true,
-  "prettier.semi": true,
-  "prettier.tabWidth": 2,
-  "prettier.printWidth": 120,
-  "prettier.requireConfig": false,
   "workbench.iconTheme": "vs-seti",
   "workbench.startupEditor": "none",
   "workbench.editor.enablePreview": false,
@@ -187,6 +128,7 @@
   "git.decorations.enabled": false,
   "git.enableSmartCommit": true,
   "scm.diffDecorations": "gutter",
+  "git.openRepositoryInParentFolders": "always",
 
   // =============================================================================
   // GITHUB COPILOT
@@ -218,9 +160,16 @@
   "extensions.autoCheckUpdates": false,
   "extensions.ignoreRecommendations": true,
   "extensions.experimental.affinity": {
-    "charliermarsh.ruff": 1,
     "vscodevim.vim": 1
   },
+  "cSpell.enabled": true,
+  "cSpell.enabledFileTypes": {
+    "*": false,
+    "markdown": true
+  },
+  "cSpell.userWords": [
+    "pymdownx"
+  ],
 
   // =============================================================================
   // MISCELLANEOUS
@@ -243,6 +192,78 @@
     "buttonsEnabled": false
   },
   "editor.accessibilitySupport": "off",
+
+  // =============================================================================
+  // LANGUAGE-SPECIFIC SETTINGS
+  // =============================================================================
+  "[c]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.tabSize": 2
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.semanticHighlighting.enabled": false,
+    "editor.tabSize": 2
+  },
+  "C_Cpp.intelliSenseEngine": "default",
+  // "C_Cpp.enhancedColorization": "enabled",
+  // "C_Cpp.errorSquiggles": "enabled",
+  // "C_Cpp.autocomplete": "default",
+  // "C_Cpp.suggestSnippets": true,
+  // "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
+  // "C_Cpp.inlayHints.parameterNames.enabled": true,
+  // "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+
+  "clangd.enable": false,
+  "clangd.arguments": [
+    "--background-index",
+    "--clang-tidy",
+    "--function-arg-placeholders=true",
+    "--header-insertion=iwyu",
+    "--pch-storage=memory",
+    "--compile-commands-dir=.",
+    "--completion-style=detailed"
+  ],
+  "clangd.fallbackFlags": ["-std=c++20"],
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "editor.tabSize": 4
+  },
+  "[cmake]": {
+    "editor.defaultFormatter": "KylinIdeTeam.cmake-intellisence"
+  },
+  "cmake.buildBeforeRun": false,
+  "cmake.configureOnEdit": false,
+  "cmake.configureOnOpen": false,
+
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "python.languageServer": "Default",
+  "python.analysis.typeCheckingMode": "standard",
+  "ruff.lint.enable": true,
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[toml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+  },
+  "[plaintext]": {
+    "editor.wordWrap": "on",
+    "editor.rulers": []
+  },
+
+  "prettier.singleQuote": false,
+  "prettier.semi": true,
+  "prettier.tabWidth": 2,
+  "prettier.printWidth": 120,
+  "prettier.requireConfig": false,
 
   // =============================================================================
   // VIM SETTINGS
@@ -286,6 +307,11 @@
       "before": ["<Esc>"],
       "commands": [":nohl"]
     },
+    // hack
+    {
+      "before": ["p"],
+      "after": ["P"]
+    },
     {
       "before": ["<C-c>"],
       "commands": [":nohl"]
@@ -323,6 +349,14 @@
       "commands": ["projectManager.listProjectsNewWindow"]
     },
     {
+      "before": ["<leader>", "t", "c"],
+      "commands": ["github.copilot.completions.toggle"]
+    },
+    {
+      "before": ["<leader>", "t", "t"],
+      "command": ["workbench.action.selectTheme"]
+    },
+    {
       "before": ["g", "."],
       "commands": ["editor.action.codeAction"]
     },
@@ -353,11 +387,11 @@
     {
       "before": ["g", "I"],
       "commands": ["C_Cpp.SwitchHeaderSource"]
-    },
-    {
-      "before": ["g", "I"],
-      "commands": ["clangd.switchheadersource"]
-    },
+    }
+    // {
+    //   "before": ["g", "I"],
+    //   "commands": ["clangd.switchheadersource"]
+    // }
   ],
 
   "vim.visualModeKeyBindings": [
@@ -386,5 +420,9 @@
       "commands": ["editor.action.moveLinesUpAction"]
     }
   ],
-  "workbench.colorTheme": "Monokai Dimmed"
+  // },
+  // {
+  //   "key": "ctrl+b c t",
+  //   "command": "github.copilot.toggleCopilot"
+  // },
 }
