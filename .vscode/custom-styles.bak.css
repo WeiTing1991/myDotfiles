@@ -1,0 +1,92 @@
+/* Remove all fancy effects */
+*,
+*::before,
+*::after {
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  border-radius: 1 !important;
+}
+
+.monaco-workbench .part.titlebar {
+  border: 0 !important;
+  background: var(--vscode-titleBar-activeBackground) !important;
+  display: none !important;
+}
+
+.tabs-container {
+  background: var(--vscode-editorGroupHeader-tabsBackground) !important;
+  border: 0 !important;
+  height: 28px !important;
+}
+
+.tab {
+  background: var(--vscode-tab-inactiveBackground) !important;
+  border-right: 1px solid var(--vscode-tab-border) !important;
+  color: var(--vscode-tab-inactiveForeground) !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  height: 32px !important;
+  padding: 0px !important;
+  padding-bottom: 2px !important;
+  margin: 0px !important;
+  border-radius: 0 !important;
+}
+
+.tab:hover {
+  background: var(--vscode-tab-hoverBackground) !important;
+  color: var(--vscode-tab-hoverForeground) !important;
+}
+
+.tab.active {
+  background: var(--vscode-tab-activeBackground) !important;
+  color: var(--vscode-tab-activeForeground) !important;
+  border-bottom: 2px solid var(--vscode-tab-activeBorder) !important;
+}
+
+/* Hover tooltips */
+.monaco-editor-hover,
+.monaco-hover {
+  background: var(--vscode-editorHoverWidget-background) !important;
+  border: 1px solid var(--vscode-editorHoverWidget-border) !important;
+  color: var(--vscode-editorHoverWidget-foreground) !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+}
+
+/* Autocomplete popup */
+.monaco-editor .suggest-widget {
+  background: var(--vscode-editorSuggestWidget-background) !important;
+  border: 1px solid var(--vscode-editorSuggestWidget-border) !important;
+  color: var(--vscode-editorSuggestWidget-foreground) !important;
+}
+
+/* Terminal when opened */
+.terminal {
+  background: var(--vscode-terminal-background) !important;
+  color: var(--vscode-terminal-foreground) !important;
+}
+
+/* Hide unnecessary elements */
+.welcome-view,
+.notifications-toasts,
+.empty-editor-group-watermark,
+.editor-group-watermark {
+  display: none !important;
+}
+
+/* Performance optimizations */
+.monaco-editor,
+.monaco-editor .view-lines,
+.monaco-list {
+  text-rendering: optimizeSpeed !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.monaco-editor .view-ruler {
+  display: block !important;
+  border-left: 1px solid var(--vscode-editorRuler-foreground) !important;
+  opacity: 0.3 !important;
+}

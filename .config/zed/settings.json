@@ -19,11 +19,11 @@
   "theme": {
     "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "One Dark"
+    "dark": "Github Light High Contrast"
   },
   "ui_font_size": 16,
   "buffer_line_height": "standard",
-  "ui_font_family": "Zed Plex Sans",
+  "ui_font_family": "JetBrainsMono Nerd Font",
   "ui_font_weight": 400,
   "buffer_font_size": 14,
   "buffer_font_family": "Hack Nerd Font Mono",
@@ -383,10 +383,10 @@
       "language_servers": ["omnisharp"],
       "formatter": "language_server",
       "tab_size": 4
-    },
-    "CMake": {
-      "preferred_line_length": 179,
-      "formatter": "language_server"
     }
+    // "CMake": {
+    //   "preferred_line_length": 179,
+    //   "formatter": "language_server"
+    // }
   }
 }

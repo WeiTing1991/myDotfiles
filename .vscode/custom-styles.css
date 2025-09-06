@@ -10,83 +10,47 @@
   border-radius: 1 !important;
 }
 
-.monaco-workbench .part.titlebar {
-  border: 0 !important;
-  background: var(--vscode-titleBar-activeBackground) !important;
-  display: none !important;
+/* Code canvas top shadow */
+.monaco-editor .scroll-decoration {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .75) !important;
+    top: -6px !important;
 }
 
-.tabs-container {
-  background: var(--vscode-editorGroupHeader-tabsBackground) !important;
-  border: 0 !important;
-  height: 28px !important;
+/* File Explorer Item Label */
+.monaco-tree .monaco-tree-row .label-name,
+.monaco-list .monaco-list-row
+.monaco-icon-label .label-name {
+    font-size: 14px !important;
+    font-weight: 400 !important;
 }
 
-.tab {
-  background: var(--vscode-tab-inactiveBackground) !important;
-  border-right: 1px solid var(--vscode-tab-border) !important;
-  color: var(--vscode-tab-inactiveForeground) !important;
-  font-family: inherit !important;
+.explorer-item-edited {
   font-size: 14px !important;
-  height: 32px !important;
-  padding: 0px !important;
-  padding-bottom: 2px !important;
-  margin: 0px !important;
-  border-radius: 0 !important;
 }
 
-.tab:hover {
-  background: var(--vscode-tab-hoverBackground) !important;
-  color: var(--vscode-tab-hoverForeground) !important;
+/* Scroll Bar */
+.slider {
+    position: absolute !important;
+    right: 1px !important;
+    width: 1px !important;
+    left: auto !important;
 }
 
-.tab.active {
-  background: var(--vscode-tab-activeBackground) !important;
-  color: var(--vscode-tab-activeForeground) !important;
-  border-bottom: 2px solid var(--vscode-tab-activeBorder) !important;
+/* Sidebar top shadow */
+.monaco-scrollable-element>.shadow.top {
+    box-shadow: 0px 0px 10px rgba(0,0,0,.75) !important;
+    top: -3px !important;
 }
 
-/* Hover tooltips */
-.monaco-editor-hover,
-.monaco-hover {
-  background: var(--vscode-editorHoverWidget-background) !important;
-  border: 1px solid var(--vscode-editorHoverWidget-border) !important;
-  color: var(--vscode-editorHoverWidget-foreground) !important;
-  font-family: inherit !important;
-  font-size: 13px !important;
+/* Sidebar title */
+.composite.title {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-items: center !important;
 }
-
-/* Autocomplete popup */
-.monaco-editor .suggest-widget {
-  background: var(--vscode-editorSuggestWidget-background) !important;
-  border: 1px solid var(--vscode-editorSuggestWidget-border) !important;
-  color: var(--vscode-editorSuggestWidget-foreground) !important;
-}
-
-/* Terminal when opened */
-.terminal {
-  background: var(--vscode-terminal-background) !important;
-  color: var(--vscode-terminal-foreground) !important;
-}
-
-/* Hide unnecessary elements */
-.welcome-view,
-.notifications-toasts,
-.empty-editor-group-watermark,
-.editor-group-watermark {
-  display: none !important;
-}
-
-/* Performance optimizations */
-.monaco-editor,
-.monaco-editor .view-lines,
-.monaco-list {
-  text-rendering: optimizeSpeed !important;
-  -webkit-font-smoothing: antialiased !important;
-}
-
-.monaco-editor .view-ruler {
-  display: block !important;
-  border-left: 1px solid var(--vscode-editorRuler-foreground) !important;
-  opacity: 0.3 !important;
+.composite.title h2 {
+    font-weight: bold !important;
+    font-size: 12px !important;
+    text-transform: uppercase;
 }
