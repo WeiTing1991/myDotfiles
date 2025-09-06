@@ -169,6 +169,11 @@
   //   "key": "ctrl+\\"
   // },
   {
+    "command": "workbench.action.toggleMaximizedPanel",
+    "key": "ctrl+'",
+    "when": "terminalFocus && !editorTextFocus"
+  },
+  {
     "command": "workbench.action.terminal.toggleTerminal",
     "key": "ctrl+/",
     "when": "terminal.active"
@@ -191,8 +196,14 @@
 
   /* ==== FILE EXPLORER ==== */
   {
-    "command": "explorer.openToSide",
+    "command": "explorer.openAndPassFocus",
     "key": "o",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+
+  {
+    "command": "explorer.openToSide",
+    "key": "shift+o",
     "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
   },
   {
@@ -447,17 +458,17 @@
     "when": "chatIsEnabled && inChat"
   },
   {
-    "key": "tab",
-    "command": "-editor.action.inlineSuggest.jump",
-    "when": "inlineEditIsVisible && tabShouldJumpToInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible"
-  },
-  {
-    "key": "tab",
-    "command": "-tab",
-    "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus"
-  },
-  {
     "key": "ctrl+shift+m",
     "command": "-editor.action.toggleTabFocusMode"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "inlineChat.acceptChanges",
+    "when": "inlineChatHasProvider && inlineChatVisible"
+  },
+  {
+    "key": "cmd+enter",
+    "command": "-inlineChat.acceptChanges",
+    "when": "inlineChatHasProvider && inlineChatVisible"
   }
 ]

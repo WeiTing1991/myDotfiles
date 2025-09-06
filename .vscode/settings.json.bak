@@ -1,7 +1,8 @@
 {
-  // "vscode_custom_css.imports": [
-  //   "file://Users/weitingchen/.dotfiles/.vscode/custom-styles.css"
-  // ],
+  "vscode_custom_css.imports": [
+    "file:///${userHome}/.dotfiles/.vscode/custom-styles.css"
+    // "file:///C:/Users/MyUserName/Documents/custom.css"
+  ],
   // =============================================================================
   // EDITOR SETTINGS
   // =============================================================================
@@ -13,7 +14,7 @@
   "editor.indentSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
-  "editor.wordWrap": "on",
+  "editor.wordWrap": "off",
   "editor.rulers": [120],
   "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
@@ -25,6 +26,17 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.fullScreen": false,
   "zenMode.hideStatusBar": false,
+  "editor.hover.enabled": true,
+  "breadcrumbs.enabled": true,
+  "editor.renderLineHighlight": "line",
+  // "editor.colorDecorators": false,
+  // "problems.decorations.enabled": false,
+  // "editor.gotoLocation.multipleReferences": "goto",
+  // "editor.gotoLocation.multipleDefinitions": "goto",
+  // "editor.gotoLocation.multipleDeclarations": "goto",
+  // "workbench.editor.enablePreviewFromQuickOpen": false,
+  // "editor.gotoLocation.multipleImplementations": "goto",
+  // "editor.gotoLocation.multipleTypeDefinitions": "goto",
 
   // =============================================================================
   // PERFORMANCE OPTIMIZATIONS
@@ -60,15 +72,14 @@
   "editor.quickSuggestionsDelay": 100,
   "editor.useTabStops": false,
   "editor.find.autoFindInSelection": "never",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   // =============================================================================
   // WORKBENCH SETTINGS
   // =============================================================================
-
-  "workbench.iconTheme": "vs-seti",
   "workbench.startupEditor": "none",
   "workbench.editor.enablePreview": false,
-  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.showTabs": "none",
   "workbench.editor.tabSizing": "shrink",
   "workbench.editor.highlightModifiedTabs": false,
   "workbench.editor.restoreViewState": false,
@@ -82,12 +93,10 @@
   "workbench.tips.enabled": false,
   "workbench.settings.enableNaturalLanguageSearch": false,
   "workbench.tree.renderIndentGuides": "onHover",
-
-  // =============================================================================
-  // WINDOW SETTINGS
-  // =============================================================================
-  "window.customTitleBarVisibility": "never",
+  "workbench.tree.indent": 14,
+  "workbench.tree.enableStickyScroll": false,
   "window.density.editorTabHeight": "compact",
+  "workbench.iconTheme": "vs-seti",
 
   // =============================================================================
   // FILE MANAGEMENT
@@ -152,6 +161,7 @@
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.scrollback": 2000,
   "terminal.integrated.fastScrollSensitivity": 5,
+  "terminal.integrated.gpuAcceleration": "on",
 
   // =============================================================================
   // EXTENSIONS
@@ -167,19 +177,14 @@
     "*": false,
     "markdown": true
   },
-  "cSpell.userWords": [
-    "pymdownx"
-  ],
+  "cSpell.userWords": ["pymdownx"],
 
   // =============================================================================
   // MISCELLANEOUS
   // =============================================================================
-  "breadcrumbs.enabled": false,
   "telemetry.telemetryLevel": "off",
   "telemetry.feedback.enabled": false,
   "update.showReleaseNotes": false,
-  "omnisharp.enableEditorConfigSupport": true,
-  "omnisharp.useModernNet": true,
   "projectManager.git.baseFolders": ["~/project"],
 
   "errorLens.enabled": true,
@@ -252,12 +257,14 @@
   },
   "[toml]": {
     "editor.insertSpaces": true,
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
   "[plaintext]": {
     "editor.wordWrap": "on",
     "editor.rulers": []
   },
+  "omnisharp.enableEditorConfigSupport": true,
+  "omnisharp.useModernNet": true,
 
   "prettier.singleQuote": false,
   "prettier.semi": true,
@@ -345,6 +352,10 @@
       "commands": ["television.ToggleTextFinder"]
     },
     {
+      "before": ["<leader>", "f", "b"],
+      "commands": ["workbench.action.showAllEditors"]
+    },
+    {
       "before": ["<leader>", "d"],
       "commands": ["projectManager.listProjectsNewWindow"]
     },
@@ -420,6 +431,12 @@
       "commands": ["editor.action.moveLinesUpAction"]
     }
   ],
+  "githubLocalActions.dockerDesktopPath": "/Applications/Docker.app",
+  "workbench.colorTheme": "Default Light Modern",
+  "workbench.navigationControl.enabled": false,
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.editorActionsLocation": "titleBar",
+  "chat.commandCenter.enabled": false
   // },
   // {
   //   "key": "ctrl+b c t",
