@@ -1,0 +1,171 @@
+// Settings in here override those in "Default/Preferences.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
+{
+    "ignored_packages": [
+        "Vintage",
+    ],
+
+    // Your font preferences
+    "font_face": "Hack Nerd Font",
+    "font_size": 14,
+    "default_font_size": 10,
+    "font_options": ["subpixel_antialias"],
+
+    // Your theme preferences
+    "theme": "gruvbox.sublime-theme",
+    "color_scheme": "Celeste.sublime-color-scheme",
+    "dark_theme": "Default Dark.sublime-theme",
+    "light_theme": "Default.sublime-theme",
+    "show_minimap": false,
+
+    // Modern editor appearance
+    "highlight_line": true,
+    "caret_extra_width": 2,
+    "caret_style": "phase",
+    "wide_caret": true,
+    "line_numbers": true,
+    "relative_line_numbers": true,
+    "rulers": [120],
+    "sidebar_on_right":true,
+
+    // Modern UI elements
+    "overlay_scroll_bars": "enabled",
+    "always_show_minimap_viewport": false,
+    "draw_minimap_border": false,
+    "fold_buttons": true,
+    "fade_fold_buttons": false,
+
+    "atomic_save": false,
+    "close_windows_when_empty": false,
+    "create_window_at_startup": false,
+    "enable_tab_scrolling": false,
+    "open_files_in_new_window": false,
+    "preview_on_click": true,
+    "show_encoding": true,
+    "show_line_endings": true,
+    "show_full_path": true,
+    "hot_exit": false,
+    "remember_open_files": true,
+    "auto_save": false,
+
+    // Modern editing features
+    "auto_complete_commit_on_tab": true,
+    "auto_complete_with_fields": true,
+    "auto_match_enabled": true,
+    "draw_white_space": "all",
+    "ensure_newline_at_eof_on_save": true,
+    "trim_trailing_white_space_on_save": true,
+    "word_wrap": false,
+    "wrap_width": 0,
+
+    // Your indentation preferences
+    "auto_indent": true,
+    "smart_indent": true,
+    "tab_size": 2, // Using your preferred tab size
+    "translate_tabs_to_spaces": true,
+    "use_tab_stops": true,
+
+    // Performance optimizations
+    "index_files": true,
+    "index_workers": 0,
+
+    // Your search preferences
+    "binary_file_patterns": [
+        "*.jpg", "*.jpeg", "*.png", "*.gif", "*.ttf", "*.tga", "*.dds",
+        "*.ico", "*.eot", "*.pdf", "*.swf", "*.jar", "*.zip", "*.pyc",
+        "*.pyo", "*.exe", "*.dll", "*.obj","*.o", "*.a", "*.lib", "*.so",
+        "*.dylib", "*.ncb", "*.sdf", "*.suo", "*.pdb", "*.idb", ".DS_Store",
+        "*.class", "*.psd", "*.db", "*.sublime-workspace"
+    ],
+
+    // Your vim configuration (NeoVintageous)
+    "vintage_start_in_command_mode": true,
+    "vintage_ctrl_keys": true,
+    "vintage_use_clipboard": true,
+    "neovintageous_build_version": 13200,
+    "vintageous_highlighted_yank": true,
+    "vintageous_highlighted_yank_duration": 100,
+    "vintageous_use_sys_clipboard": true,
+    "vintageous_leader": " ",
+    "vintageous_surround": true,
+    "vintageous_commentary": true,
+    "vintageous_highlightedyank": true,
+    "vintageous_hlsearch": true,
+    "vintageous_incsearch": true,
+    "vintageous_ignorecase": true,
+    "vintageous_smartcase": true,
+    "vintageous_bell": false,
+
+    "show_definitions": true,
+    "auto_complete_delay": 50,
+    "auto_complete_size_limit": 4194304,
+    "auto_complete_triggers": [{"selector": "text.html", "characters": "<",}],
+    /*"close_windows_when_empty": false,*/
+    "copy_with_empty_selection": false,
+    "drag_text": false,
+    "draw_centered": false,
+    "find_selected_text": true,
+    /*"fold_buttons": true,*/
+    "indent_guide_options": ["draw_normal", "draw_active"],
+    "match_brackets": true,
+    "match_brackets_angle": false,
+    "match_brackets_braces": true,
+    "match_brackets_content": true,
+    "match_brackets_square": true,
+    "match_selection": true,
+    "match_tags": true,
+    "move_to_limit_on_up_down": false,
+    "scroll_past_end": true,
+    "scroll_speed": 1.0,
+    "show_panel_on_build": true,
+    "tree_animation_enabled": true,
+    "use_simple_full_screen": false,
+    "word_separators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?",
+
+    // Enhanced sidebar
+    "bold_folder_labels": true,
+    /*"indent_guide_options": ["draw_normal", "draw_active"],*/
+
+    // Modern status bar
+    "show_tab_close_buttons": true,
+    "highlight_modified_tabs": true,
+
+    // Enhanced editing experience
+    "auto_complete_cycle": true,
+    "auto_complete_selector": "meta.tag - punctuation.definition.tag.begin, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
+    "auto_find_in_selection": true,
+    /*"auto_indent": true,*/
+    "detect_indentation": true,
+    "draw_indent_guides": true,
+    "trim_automatic_white_space": true,
+
+    // Modern search and replace
+    "close_find_after_replace_all": false,
+    "close_find_after_find_all": false,
+    /*"find_selected_text": true,*/
+
+    // Project and session management
+    /*"create_window_at_startup": false,*/
+    "enable_hexadecimal_encoding": true,
+    "fallback_encoding": "UTF-8",
+    "default_encoding": "UTF-8",
+
+    // Modern build system
+    /*"show_panel_on_build": true,*/
+    "build_env": {},
+    // lsp
+
+    // Modern LSP UI
+    "auto_show_diagnostics_panel": "saved",
+    "show_diagnostics_count_in_view_status": true,
+    "diagnostics_highlight_style": "underline",
+    "document_highlight_style": "stippled",
+    "show_code_actions": "annotation",
+    "show_diagnostics_phantoms": true,
+    "show_diagnostics_severity_level": 3,
+
+    // Modern completion
+    "completion_hint_type": "auto",
+    "only_show_lsp_completions": false,
+    "show_references_in_quick_panel": true
+}
