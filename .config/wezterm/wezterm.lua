@@ -12,12 +12,15 @@ local is_macos = wezterm.target_triple == "aarch64-apple-darwin"
 
 local default_prog
 local font_size
+local default_font
 if is_windows then
   default_prog = { "pwsh.exe" }
   font_size = 12.0
+  default_font = wezterm.font("Consolas")
 elseif is_macos then
   default_prog = { "/bin/zsh" }
   font_size = 16.0
+  default_font = wezterm.font("Hack Nerd Font")
 end
 
 config = {
@@ -30,7 +33,8 @@ config = {
   -- high performance rendering has issue
   -- webgpu_power_preference = "HighPerformance",
   max_fps = 120,
-  animation_fps = 60,
+  animation_fps = 1,
+  freetype_load_target = "Normal",
 
   default_prog = default_prog,
   font_size = font_size,
@@ -38,10 +42,10 @@ config = {
   initial_cols = 120,
   initial_rows = 50,
 
-  font = wezterm.font("Hack Nerd Font", { weight = "Regular" }),
+  font = default_font,
   -- windows
   window_background_opacity = 0.95,
-  -- window_decorations = "RESIZE",
+  window_decorations = "RESIZE",
   window_padding = {
     left = 5,
     right = 5,

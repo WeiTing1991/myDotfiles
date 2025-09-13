@@ -74,17 +74,17 @@ end
 
 -- for windows
 -- NOTE: have to run "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" before cmake
-local clangd_cmd = { "clangd" }
-if vim.loop.os_uname().sysname == "Windows_NT" then
-  table.insert(
-    clangd_cmd,
-    "--query-driver=C:/Program Files (x86)/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/*/bin/Hostx64/x64/cl.exe"
-  )
-end
-lspconfig.clangd.setup({
-  cmd = clangd_cmd,
-})
-
+-- local clangd_cmd = { "clangd" }
+-- if vim.loop.os_uname().sysname == "Windows_NT" then
+--   table.insert(
+--     clangd_cmd,
+--     "--query-driver=C:/Program Files (x86)/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/*/bin/Hostx64/x64/cl.exe"
+--   )
+-- end
+-- lspconfig.clangd.setup({
+--   cmd = clangd_cmd,
+-- })
+--
 
 
 -- Setup Keymaps

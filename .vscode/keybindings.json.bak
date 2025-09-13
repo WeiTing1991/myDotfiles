@@ -125,14 +125,14 @@
   },
 
   /* ==== TAB NAVIGATION ==== */
-  {
-    "command": "workbench.action.nextEditorInGroup",
-    "key": "ctrl+o"
-  },
-  {
-    "command": "workbench.action.previousEditorInGroup",
-    "key": "ctrl+i"
-  },
+  // {
+  //   "command": "workbench.action.nextEditorInGroup",
+  //   "key": "ctrl+o"
+  // },
+  // {
+  //   "command": "workbench.action.previousEditorInGroup",
+  //   "key": "ctrl+i"
+  // },
 
   /* ==== SIDEBAR & PANELS ==== */
   {
@@ -470,5 +470,9 @@
     "key": "cmd+enter",
     "command": "-inlineChat.acceptChanges",
     "when": "inlineChatHasProvider && inlineChatVisible"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "-claude-code-chat.openChat"
   }
 ]

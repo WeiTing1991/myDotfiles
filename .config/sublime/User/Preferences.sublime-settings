@@ -7,13 +7,13 @@
 
     // Your font preferences
     "font_face": "Hack Nerd Font",
-    "font_size": 14,
-    "default_font_size": 10,
+    "font_size": 12,
+    "default_font_size": 12,
     "font_options": ["subpixel_antialias"],
 
     // Your theme preferences
     "theme": "gruvbox.sublime-theme",
-    "color_scheme": "Celeste.sublime-color-scheme",
+    "color_scheme": "auto",
     "dark_theme": "Default Dark.sublime-theme",
     "light_theme": "Default.sublime-theme",
     "show_minimap": false,
@@ -167,5 +167,7 @@
     // Modern completion
     "completion_hint_type": "auto",
     "only_show_lsp_completions": false,
-    "show_references_in_quick_panel": true
+    "show_references_in_quick_panel": true,
+    "dark_color_scheme": "gruvbox (Dark) (Medium) NDC.sublime-color-scheme",
+    "light_color_scheme": "Celeste.sublime-color-scheme",
 }

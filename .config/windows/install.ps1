@@ -62,3 +62,7 @@ New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptP
 $profileScriptPath = "$env:APPDATA\Zed"
 $dotfilesScriptPath = "$env:HOME\.dotfiles\.config\zed"
 New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptPath -Force
+
+$profileScriptPath = "$env:APPDATA\Sublime Text\Packages\User"
+$dotfilesScriptPath = "$env:HOME\.dotfiles\.config\sublime\User"
+New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptPath -Force

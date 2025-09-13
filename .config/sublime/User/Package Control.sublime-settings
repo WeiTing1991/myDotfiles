@@ -7,10 +7,12 @@
 		"gruvbox",
 		"JsPrettier",
 		"LSP",
+		"LSP-clangd",
 		"NeoVintageous",
 		"Package Control",
 		"SideBarEnhancements",
 		"SublimeLinter",
+		"SummitLinter",
 	],
 	"in_process_packages":
 	[
