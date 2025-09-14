@@ -59,7 +59,6 @@ M = {
             -- reportUndefinedVariable = false,
             -- reportGeneralTypeIssues = false,
           },
-          ignore = { "**/*_pb2.py" },
         },
       },
     },

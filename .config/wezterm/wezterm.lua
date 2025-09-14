@@ -32,7 +32,7 @@ config = {
   -- render option
   front_end = "WebGpu",
   -- high performance rendering has issue
-  webgpu_power_preference = "HighPerformance",
+  -- webgpu_power_preference = "HighPerformance",
   -- webgpu_preferred_adapter  = wezterm.gui.enumerate_gpus()[1],
 
   max_fps = 120,
@@ -41,7 +41,8 @@ config = {
 
   default_prog = default_prog,
   font_size = font_size,
-  color_scheme = "GruvboxDarkHard",
+  -- color_scheme = "GruvboxDarkHard",
+  color_scheme = "Dracula",
   initial_cols = 120,
   initial_rows = 50,
 

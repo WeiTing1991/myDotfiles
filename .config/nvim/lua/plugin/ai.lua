@@ -37,13 +37,15 @@ return {
           ["."] = false,
         },
         copilot_node_command = "node",
-        copilot_model = "gpt-4o-copilot",
+        -- copilot_model = "gpt-4o-copilot",
         server_opts_overrides = {
           trace = "verbose",
           settings = {
             advanced = {
-              listCount = 10,         -- #completions for panel
-              inlineSuggestCount = 3, -- #completions for getCompletions
+              -- completions for panel
+              listCount = 15,
+              -- completions for getCompletions
+              inlineSuggestCount = 3,
             },
           },
         },
@@ -52,79 +54,44 @@ return {
           "~/work/",
         },
         vim.api.nvim_set_hl(0, "CopilotSuggestion", {
-          -- fg = "#676767",
-          -- fg = "#8a8a8a",
-          -- ctermfg = 8,
+          fg = "#676767",
           italic = true,
         }),
       })
     end,
   },
+  -- check open code
+  -- run `claude install` for local build
   {
-    "WeiTing1991/codecompanion.nvim",
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
     lazy = true,
     event = "VeryLazy",
-    opts = {},
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
+    config = true,
+    opts = {
+      terminal = {
+        split_width_percentage = 0.25,
+        split_side = "left",
+      },
     },
-    config = function()
-      vim.opt.winwidth = 10
-      require("codecompanion").setup({
-        strategies = {
-          chat = {
-            adapter = "copilot",
-            window = {
-              layout = "vertical", -- float|vertical|horizontal|buffer
-              position = "left",   -- locked by vim.opt.splitright
-              border = "single",
-              height = 0.8,
-              width = 0.25,
-              relative = "editor",
-              full_height = true, -- when set to false, vsplit will be used to open the chat buffer vs. botright/topleft vsplit
-              sticky = true,      -- when set to true and `layout` is not `"buffer"`, the chat buffer will remain opened when switching tabs
-              opts = {
-                breakindent = true,
-                cursorcolumn = false,
-                cursorline = false,
-                foldcolumn = "0",
-                linebreak = true,
-                list = false,
-                numberwidth = 0,
-                signcolumn = "no",
-                spell = false,
-                wrap = true,
-              },
-            },
-          },
-          inline = { adapter = "copilot" },
-        },
-        adapters = {
-          copilot = function()
-            return require("codecompanion.adapters").extend("copilot", {
-              schema = {
-                model = {
-                  default = "claude-3.7-sonnet",
-                  choices = {
-                    ["o3-mini-2025-01-31"] = { opts = { can_reason = true } },
-                    ["o1-2024-12-17"] = { opts = { can_reason = true } },
-                    ["o1-mini-2024-09-12"] = { opts = { can_reason = true } },
-                    "claude-3.5-sonnet",
-                    "claude-3.7-sonnet",
-                    "claude-3.7-sonnet-thought",
-                    "gpt-4o-2024-08-06",
-                    "gemini-2.0-flash-001",
-                  },
-                },
-              },
-            })
-          end,
-        },
-        opts = {
-          log_level = "DEBUG",
-        },
-      })
-    end,
+    keys = {
+      { "<leader>a", nil, desc = "AI/Claude Code" },
+      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+      -- {
+      --   "<leader>as",
+      --   "<cmd>ClaudeCodeTreeAdd<cr>",
+      --   desc = "Add file",
+      --   ft = { "NvimTree", "neo-tree", "oil", "minifiles" },
+      -- },
+      -- Diff management
+      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+    },
   },
 }

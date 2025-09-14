@@ -97,5 +97,12 @@ return {
     scroll = { enabled = false },
     statuscolumn = { enabled = false },
     words = { enabled = false },
+    terminal ={
+      enabled = true,
+      shell = "pwsh.exe",
+      -- override = function(cmd)
+      --   cmd = "-NoLogo -ExecutionPolicy RemoteSigned -Command"
+      -- end
+    }
   },
 }

@@ -28,8 +28,12 @@ for k, v in pairs(globals) do
 end
 
 if is_windows then
-  vim.opt.shell = "pwsh.exe"
-  vim.opt.shellcmdflag = "-l"
+  -- vim.opt.shell = "pwsh.exe"
+  -- vim.opt.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command"
+  vim.opt.shell = "cmd.exe"
+  vim.opt.shellcmdflag = "/c"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = '"'
 elseif is_mac then
   vim.opt.shell = "/bin/zsh"
   vim.opt.shellcmdflag = "-c"

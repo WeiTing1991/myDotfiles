@@ -36,7 +36,6 @@ map({ "n", "t" }, "<C-/>", function()
   snacks.terminal()
 end, { desc = "Toggle term" })
 
-
 --[[ Markdown ]]
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview with node" })
 
@@ -68,7 +67,9 @@ map("n", "<leader>xl", "<cmd>Trouble locflist toggle <cr>", { desc = "Location L
 -- map("n", "<leader>gq", ":DiffClose<cr>", { desc = "Close GitDiff" })
 
 map("n", "<leader>gb", ":Gitsign toggle_current_line_blame<CR>", { desc = "currentt line blame" })
-map("n", "<leader>gb", function() snacks.gitbrowse() end, { desc = "open current github" })
+map("n", "<leader>gb", function()
+  snacks.gitbrowse()
+end, { desc = "open current github" })
 
 local function commit_files()
   local message = vim.fn.input("Commit message: ")
@@ -79,6 +80,9 @@ map("n", "<leader>gc", commit_files, { desc = "Git commit current file" })
 map({ "n", "v" }, "<leader>gH", function()
   require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 end, { desc = "Stage hunk" })
+
+map({ "n", "t", "i" }, "<C-S-e>", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude" })
+
 -- map("n", "<leader>ghs", ":Gitsign stage_buffer<CR>", { desc = "stage hunk" })
 -- map("n", "<leader>ghh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
 -- map({ "n", "v" }, "<leader>ghr", function()
