@@ -19,11 +19,11 @@
   "theme": {
     "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "Github Light High Contrast"
+    "dark": "One Dark"
   },
   "ui_font_size": 16,
   "buffer_line_height": "standard",
-  "ui_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_family": ".SystemUIFont",
   "ui_font_weight": 400,
   "buffer_font_size": 14,
   "buffer_font_family": "Hack Nerd Font Mono",
@@ -213,8 +213,8 @@
     "default_profile": "ask",
     "always_allow_tool_actions": true,
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     },
     "dock": "left"
   },

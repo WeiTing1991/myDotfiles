@@ -54,6 +54,15 @@ LWin & Tab::AltTab
     WinMove(X, Y, NewWidth, NewHeight, "A")  ; Move and resize the active window
 }
 
+#^Enter::{
+    ; Center Window
+    NewWidth := A_ScreenWidth * 0.50
+    NewHeight := A_ScreenHeight * 0.50
+    X := (A_ScreenWidth - NewWidth) / 2
+    Y := (A_ScreenHeight - NewHeight) / 2
+    WinMove(X, Y, NewWidth, NewHeight, "A")  ; Move and resize the active window
+}
+
 #Enter::{
     if WinActive("A") {
         if WinGetMinMax("A") = 1
@@ -131,7 +140,7 @@ cycleWindows(exeName, appPath := "") {
         ; Multiple windows found - cycle through them
         activeId := WinGetID("A")
         currentIdx := 0  ; Fixed: was 'idx := 0'
-        
+
         ; Find current window index
         for i, id in idList {
             if (id = activeId) {
@@ -139,11 +148,11 @@ cycleWindows(exeName, appPath := "") {
                 break
             }
         }
-        
+
         ; Calculate next window index
         nextIdx := currentIdx ? (currentIdx = idList.Length ? 1 : currentIdx + 1) : 1  ; Fixed: use currentIdx
         nextId := idList[nextIdx]
-        
+
         ; Activate next window
         WinActivate("ahk_id " nextId)
         WinWaitActive("ahk_id " nextId)
