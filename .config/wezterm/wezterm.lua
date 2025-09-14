@@ -17,6 +17,7 @@ if is_windows then
   default_prog = { "pwsh.exe" }
   font_size = 12.0
   default_font = wezterm.font("Consolas")
+  -- default_font = wezterm.font("JetBrains Mono", {weight="Regular"})
 elseif is_macos then
   default_prog = { "/bin/zsh" }
   font_size = 16.0
@@ -31,9 +32,11 @@ config = {
   -- render option
   front_end = "WebGpu",
   -- high performance rendering has issue
-  -- webgpu_power_preference = "HighPerformance",
+  webgpu_power_preference = "HighPerformance",
+  -- webgpu_preferred_adapter  = wezterm.gui.enumerate_gpus()[1],
+
   max_fps = 120,
-  animation_fps = 1,
+  animation_fps = 60,
   freetype_load_target = "Normal",
 
   default_prog = default_prog,
