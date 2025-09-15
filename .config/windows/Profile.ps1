@@ -28,7 +28,7 @@ Set-PSReadLineKeyHandler -Key tab -Function MenuComplete
 Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
 
 # Ctrl+F to move forward one character
-Set-PSReadLineKeyHandler -Key Ctrl+f -Function ForwardChar
+Set-PSReadLineKeyHandler -Key Ctrl+e -Function ForwardChar
 
 # # Ctrl+Space for IntelliSense suggestions
 # Set-PSReadLineKeyHandler -Key Ctrl+tab -Function Complete

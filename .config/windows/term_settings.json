@@ -97,7 +97,6 @@
             "id": null,
             "keys": "alt+up"
         }
-
     ],
     "newTabMenu": 
     [
@@ -114,7 +113,7 @@
             "font": 
             {
                 "cellHeight": "1.2",
-                "face": "Hack Nerd Font Mono",
+                "face": "ZedMono Nerd Font Propo",
                 "size": 12,
                 "weight": "medium"
             },
@@ -122,11 +121,14 @@
             "opacity": 85,
             "padding": "4",
             "scrollbarState": "hidden"
-
         },
         "list": 
         [
             {
+                "font": 
+                {
+                    "face": "ZedMono Nerd Font Propo"
+                },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",

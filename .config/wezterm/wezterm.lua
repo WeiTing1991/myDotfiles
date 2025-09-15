@@ -16,8 +16,11 @@ local default_font
 if is_windows then
   default_prog = { "pwsh.exe" }
   font_size = 12.0
-  default_font = wezterm.font("Consolas")
-  -- default_font = wezterm.font("JetBrains Mono", {weight="Regular"})
+  -- default_font = wezterm.font("Consolas")
+  default_font = wezterm.font("Iosevka")
+  -- default_font = wezterm.font("ZenMono Nerd Font")
+
+  -- default_font = wezterm.font("Hack Nerd Font", {weight="Regular"})
 elseif is_macos then
   default_prog = { "/bin/zsh" }
   font_size = 16.0
@@ -72,59 +75,59 @@ config = {
   leader = { key = "x", mods = "CTRL", timeout_milliseconds = 500 },
   keys = {
     -- mode
-    { key = "x",           mods = "LEADER|CTRL", action = act.SendKey({ key = "x", mods = "CTRL" }) },
+    { key = "x", mods = "LEADER|CTRL", action = act.SendKey({ key = "x", mods = "CTRL" }) },
 
     -- Split windows
-    { key = "phys:Quote",  mods = "CTRL|SHIFT",  action = act.SplitVertical({ domain = "DefaultDomain" }) },
-    { key = "5",  mods = "CTRL",  action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
+    { key = "phys:Quote", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "DefaultDomain" }) },
+    { key = "5", mods = "CTRL", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
 
     -- Pane navigation
-    { key = "h",           mods = "CTRL|SHIFT",  action = act.ActivatePaneDirection("Left") },
-    { key = "j",           mods = "CTRL|SHIFT",  action = act.ActivatePaneDirection("Down") },
-    { key = "k",           mods = "CTRL|SHIFT",  action = act.ActivatePaneDirection("Up") },
-    { key = "l",           mods = "CTRL|SHIFT",  action = act.ActivatePaneDirection("Right") },
+    { key = "h", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Left") },
+    { key = "j", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
+    { key = "k", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
+    { key = "l", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
 
-    { key = "q",           mods = "LEADER",      action = act.CloseCurrentPane({ confirm = true }) },
-    { key = "m",           mods = "CTRL|SHIFT",  action = act.TogglePaneZoomState },
+    { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
+    { key = "m", mods = "CTRL|SHIFT", action = act.TogglePaneZoomState },
 
-    { key = "t",           mods = "SHIFT|CTRL",  action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
+    { key = "t", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
     -- { key = "T", mods = "ALT",    action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
     -- { key = "t", mods = "SUPER",  action = act.SpawnCommandInNewTab({ domain = "CurrentPaneDomain" }) },
     -- { key = "t", mods = "ALT",    action = act.SpawnCommandInNewTab({ domain = "CurrentPaneDomain" }) },
     --
-    { key = "b",           mods = "CTRL|SHIFT",  action = act.ShowDebugOverlay },
+    { key = "b", mods = "CTRL|SHIFT", action = act.ShowDebugOverlay },
 
-    { key = "p",           mods = "CTRL|SHIFT",  action = wezterm.action.ActivateTabRelative(-1) },
-    { mods = "CTRL|SHIFT", key = "n",            action = wezterm.action.ActivateTabRelative(1) },
+    { key = "p", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
+    { mods = "CTRL|SHIFT", key = "n", action = wezterm.action.ActivateTabRelative(1) },
 
     -- close tab
-    { key = "w",           mods = "ALT",         action = act.CloseCurrentTab({ confirm = true }) },
-    { key = "w",           mods = "SUPER",       action = act.CloseCurrentTab({ confirm = true }) },
+    { key = "w", mods = "ALT", action = act.CloseCurrentTab({ confirm = true }) },
+    { key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = true }) },
 
     -- close app
-    { key = "q",           mods = "SHIFT|CTRL",  action = act.QuitApplication },
-    { key = "q",           mods = "ALT",         action = act.QuitApplication },
-    { key = "q",           mods = "SUPER",       action = act.QuitApplication },
+    { key = "q", mods = "SHIFT|CTRL", action = act.QuitApplication },
+    { key = "q", mods = "ALT", action = act.QuitApplication },
+    { key = "q", mods = "SUPER", action = act.QuitApplication },
 
     -- reload the configuration
-    { key = "r",           mods = "SHIFT|CTRL",  action = act.ReloadConfiguration },
-    { key = "r",           mods = "SUPER",       action = act.ReloadConfiguration },
+    { key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+    { key = "r", mods = "SUPER", action = act.ReloadConfiguration },
 
     -- mode
     -- { key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
-    { key = "r",           mods = "LEADER",      action = act.ActivateCopyMode },
+    { key = "r", mods = "LEADER", action = act.ActivateCopyMode },
 
-    { key = "c",           mods = "SHIFT|CTRL",  action = act.CopyTo("Clipboard") },
-    { key = "c",           mods = "SHIFT|SUPER", action = act.CopyTo("Clipboard") },
+    { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
+    { key = "c", mods = "SHIFT|SUPER", action = act.CopyTo("Clipboard") },
     -- { key = "COPY", mods = "NONE", action = act.CopyTo("Clipboard") },
-    { key = "v",           mods = "SHIFT|CTRL",  action = act.PasteFrom("Clipboard") },
-    { key = "v",           mods = "SHIFT|SUPER", action = act.PasteFrom("Clipboard") },
+    { key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
+    { key = "v", mods = "SHIFT|SUPER", action = act.PasteFrom("Clipboard") },
     -- { key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
 
     -- Font size controls
-    { key = "=",           mods = "CTRL",        action = act.IncreaseFontSize },
-    { key = "-",           mods = "CTRL",        action = act.DecreaseFontSize },
-    { key = "0",           mods = "CTRL",        action = act.ResetFontSize },
+    { key = "=", mods = "CTRL", action = act.IncreaseFontSize },
+    { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
+    { key = "0", mods = "CTRL", action = act.ResetFontSize },
   },
   colors = {
     -- Colors for copy_mode and quick_select
@@ -144,22 +147,22 @@ config = {
 
   key_tables = {
     copy_mode = {
-      { key = "h",      mods = "NONE",                action = act.CopyMode("MoveLeft") },
-      { key = "j",      mods = "NONE",                action = act.CopyMode("MoveDown") },
-      { key = "k",      mods = "NONE",                action = act.CopyMode("MoveUp") },
-      { key = "l",      mods = "NONE",                action = act.CopyMode("MoveRight") },
+      { key = "h", mods = "NONE", action = act.CopyMode("MoveLeft") },
+      { key = "j", mods = "NONE", action = act.CopyMode("MoveDown") },
+      { key = "k", mods = "NONE", action = act.CopyMode("MoveUp") },
+      { key = "l", mods = "NONE", action = act.CopyMode("MoveRight") },
 
-      { key = "0",      mods = "NONE",                action = act.CopyMode("MoveToStartOfLineContent") },
-      { key = "5",      mods = "NONE",                action = act.CopyMode("MoveToEndOfLineContent") },
+      { key = "0", mods = "NONE", action = act.CopyMode("MoveToStartOfLineContent") },
+      { key = "5", mods = "NONE", action = act.CopyMode("MoveToEndOfLineContent") },
 
-      { key = "Escape", mods = "NONE",                action = act.CopyMode("Close") },
-      { key = "q",      mods = "NONE",                action = act.CopyMode("Close") },
+      { key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
+      { key = "q", mods = "NONE", action = act.CopyMode("Close") },
 
-      { key = "v",      mods = "NONE",                action = act.CopyMode({ SetSelectionMode = "Cell" }) },
-      { key = "v",      mods = "CTRL",                action = act.CopyMode({ SetSelectionMode = "Block" }) },
+      { key = "v", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
+      { key = "v", mods = "CTRL", action = act.CopyMode({ SetSelectionMode = "Block" }) },
 
-      { key = "=",      action = act.IncreaseFontSize },
-      { key = "-",      action = act.DecreaseFontSize },
+      { key = "=", action = act.IncreaseFontSize },
+      { key = "-", action = act.DecreaseFontSize },
 
       {
         key = "y",

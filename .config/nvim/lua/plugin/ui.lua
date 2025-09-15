@@ -5,9 +5,13 @@ return {
     priority = 1000,
     config = true,
   },
-  { "Mofiqul/dracula.nvim",
+  {
+    "Mofiqul/dracula.nvim",
     priority = 1000,
-    -- enabled = false,
+    enabled = true,
+    config = function()
+      vim.cmd([[colorscheme dracula]])
+    end,
   },
   {
     "projekt0n/github-nvim-theme",

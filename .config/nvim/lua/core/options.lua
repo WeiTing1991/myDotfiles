@@ -148,6 +148,7 @@ local options = {
   showtabline = 2,
   -- winborder = "single",
   -- mousescroll = "ver:3,hor:0",
+  ttyfast = true
 }
 
 for k, v in pairs(options) do

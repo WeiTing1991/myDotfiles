@@ -11,7 +11,7 @@ vsync = false
 # wsl = false
 
 [font]
-normal = ["Hack Nerd Font"]
+normal = ["Consolas"]
 size = 14
 hinting = "full"
 edging = "antialias"
