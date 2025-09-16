@@ -104,35 +104,35 @@
 
   /* ==== VIEW SIZE ADJUSTMENT ==== */
   {
-    "command": "workbench.action.increaseViewWidth",
-    "key": "ctrl+shift+l",
+  "command": "workbench.action.increaseViewWidth",
+    "key": "ctrl+alt+l",
     "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
   },
   {
     "command": "workbench.action.decreaseViewWidth",
-    "key": "ctrl+shift+h",
+    "key": "ctrl+alt+l",
     "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
   },
   {
     "command": "workbench.action.increaseViewHeight",
-    "key": "ctrl+shift+j",
+    "key": "ctrl+alt+l",
     "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
   },
   {
     "command": "workbench.action.decreaseViewHeight",
-    "key": "ctrl+shift+k",
+    "key": "ctrl+alt+l",
     "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
   },
 
   /* ==== TAB NAVIGATION ==== */
-  // {
-  //   "command": "workbench.action.nextEditorInGroup",
-  //   "key": "ctrl+o"
-  // },
-  // {
-  //   "command": "workbench.action.previousEditorInGroup",
-  //   "key": "ctrl+i"
-  // },
+  {
+    "command": "workbench.action.nextEditorInGroup",
+    "key": "ctrl+o"
+  },
+  {
+    "command": "workbench.action.previousEditorInGroup",
+    "key": "ctrl+i"
+  },
 
   /* ==== SIDEBAR & PANELS ==== */
   {
@@ -148,11 +148,16 @@
     "command": "workbench.action.toggleAuxiliaryBar",
     "key": "ctrl+shift+e"
   },
+  // {
+  //   "command": "workbench.view.extensions",
+  //   "key": "ctrl+d",
+  //   "when": "viewContainer.workbench.view.extensions.enabled && sideBarFocus"
+  // },
   {
-    "command": "workbench.view.extensions",
-    "key": "ctrl+d",
-    "when": "viewContainer.workbench.view.extensions.enabled && sideBarFocus"
-  },
+    "command": "outline.focus",
+    "key": "ctrl+9",
+    "when": "explorerViewletFocus || terminalFocus"
+  }
   // {
   //   "command": "workbench.view.extension.project-manager",
   //   "key": "ctrl+p",
@@ -470,9 +475,5 @@
     "key": "cmd+enter",
     "command": "-inlineChat.acceptChanges",
     "when": "inlineChatHasProvider && inlineChatVisible"
-  },
-  {
-    "key": "ctrl+shift+c",
-    "command": "-claude-code-chat.openChat"
   }
 ]
