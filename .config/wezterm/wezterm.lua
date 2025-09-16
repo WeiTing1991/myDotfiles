@@ -19,12 +19,12 @@ if is_windows then
   -- default_font = wezterm.font("Consolas")
   default_font = wezterm.font("Iosevka NF")
   -- default_font = wezterm.font("ZenMono Nerd Font")
-
   -- default_font = wezterm.font("Hack Nerd Font", {weight="Regular"})
 elseif is_macos then
   default_prog = { "/bin/zsh" }
   font_size = 16.0
-  default_font = wezterm.font("Hack Nerd Font")
+  default_font = wezterm.font("Iosevka term Nerd Font")
+  -- default_font = wezterm.font("Hack Nerd Font")
 end
 
 config = {
