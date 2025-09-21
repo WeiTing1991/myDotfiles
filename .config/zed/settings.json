@@ -12,7 +12,7 @@
   "completions": {
   "lsp_insert_mode": "replace_subsequence"
   },
-  "confirm_quit": true,
+  "confirm_quit": false,
 
   // Telemetry
   "telemetry": {

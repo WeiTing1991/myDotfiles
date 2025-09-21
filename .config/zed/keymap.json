@@ -211,5 +211,11 @@
       // "cmd-shift-v": "markdown::OpenPreview"
       // "space m k": "markdown::OpenPreviewToTheSide"
     }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-;": null
+    }
   }
 ]
