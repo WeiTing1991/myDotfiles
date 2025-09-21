@@ -1,14 +1,12 @@
 $global:LastOSC7Path = ""
 $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
-    $current = $PWD.ProviderPath
-    if ($current -ne $global:LastOSC7Path) {
-        $global:LastOSC7Path = $current
-        # Direct ANSI escape without variable assignments
-        Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
-    }
+  $current = $PWD.ProviderPath
+  if ($current -ne $global:LastOSC7Path) {
+    $global:LastOSC7Path = $current
+    # Direct ANSI escape without variable assignments
+    Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
+  }
 }
-
-Import-Module posh-git
 Import-Module PSReadLine
 
 # Use AcceptSuggestion instead of Complete
@@ -48,20 +46,20 @@ $ENV:EDITOR = 'nvim'
 
 Set-Alias c clear
 
-function n ($command) {nvim}
-function e ($command) {exit}
+function n ($command) { nvim }
+function e ($command) { exit }
 
 # add python to PATH
 $uvPython = uv python find
 if ($uvPython) {
-    $uvPythonDir = Split-Path $uvPython
-    $env:PATH = "$uvPythonDir;" + $env:PATH
+  $uvPythonDir = Split-Path $uvPython
+  $env:PATH = "$uvPythonDir;" + $env:PATH
 }
 
 # Add UV tools directory
 $uvToolsDir = Join-Path $env:APPDATA "uv\tools"
 if (Test-Path $uvToolsDir) {
-    $env:PATH = "$uvToolsDir;" + $env:PATH
+  $env:PATH = "$uvToolsDir;" + $env:PATH
 }
 
 Set-Alias python3 python
@@ -69,16 +67,19 @@ Set-Alias pip3 pip
 
 #function gdrive ($command) {cd G:\.shortcut-targets-by-id\1AhcyENBzXs13kiaeR7txKn5xdpV0sGGn\002_Projects\003_InnoSuisse_MüllerSteinag }
 # function usi ($command) {cd \work\01_USI}
-function pj ($command) {cd $HOME\project\}
+function pj ($command) { cd $HOME\project\ }
 
-function which ($command){
+function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue
   # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 function GitBrowser {
-    $url = git remote -v | Select-Object -First 1 | ForEach-Object { ($_ -split '\s+')[1] }
-    $url = $url -replace 'git@github\.com:', 'https://github.com/'
-    $url = $url -replace '\.git$', ''
-    Start-Process $url
+  $url = git remote -v | Select-Object -First 1 | ForEach-Object { ($_ -split '\s+')[1] }
+  $url = $url -replace 'git@github\.com:', 'https://github.com/'
+  $url = $url -replace '\.git$', ''
+  Start-Process $url
 }
 Set-Alias -Name git-browse -Value GitBrowser
+
+# Starship prompt
+Invoke-Expression (&starship init powershell)

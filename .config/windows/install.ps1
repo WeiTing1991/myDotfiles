@@ -21,6 +21,7 @@ $startupFolderPath = "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Program
 $dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\windos_11_hotkeys.ahk"
 New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
 
+
 # Terminal
 $startupFolderPath = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 $dotfilesAHKPath = "$HOME\.dotfiles\.config\windows\term_settings.json"
@@ -29,6 +30,13 @@ New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath
 $startupFolderPath = "$HOME\.config\wezterm"
 $dotfilesAHKPath = "$HOME\.dotfiles\.config\wezterm"
 New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
+
+
+winget install --id Starship.Starship
+$startupFolderPath = "$HOME\.config\starship.toml"
+$dotfilesAHKPath = "$HOME\.dotfiles\.config\starship.toml"
+New-Item -Path $startupFolderPath -ItemType SymbolicLink -Value $dotfilesAHKPath -Force
+
 
 # tool
 winget install --id=liule.Snipaste  -e

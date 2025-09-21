@@ -10,7 +10,7 @@
   },
   "bottom_dock_layout": "contained",
   "completions": {
-  "lsp_insert_mode": "replace_subsequence"
+    "lsp_insert_mode": "replace_subsequence"
   },
   "confirm_quit": false,
 
@@ -25,12 +25,12 @@
   "theme": {
     "mode": "dark",
     "light": "Dracula Light (Alucard",
-    "dark": "Dracula"
+    "dark": "One Dark"
   },
   "experimental.theme_overrides": {},
 
   "ui_font_size": 18,
-  "ui_font_family": ".ZedMono",
+  "ui_font_family": ".SystemUIFont",
   "ui_font_weight": 400,
 
   "buffer_line_height": "standard",
@@ -135,7 +135,7 @@
     "scrollbar": {
       "show": "never"
     },
-    "show_diagnostics": "errors",
+    "show_diagnostics": "all",
     "indent_guides": {
       "show": "always"
     },
@@ -144,25 +144,25 @@
   // File Exclusions (matching VS Code)
   "file_scan_exclusions": [
     "**/.git",
-		"**/.svn",
-		"**/.hg",
-		"**/CVS",
-		"**/.DS_Store",
-		"**/Thumbs.db",
-		"**/.classpath",
-		"**/.settings",
-		"**/.vscode",
-		"**/.idea",
-		// "**/node_modules",
-		"**/.serverless",
-		"**/build",
-		// "**/dist",
-		"**/coverage",
-		// "**/.venv",
-		"**/__pycache__",
-		"**/.ropeproject",
-		"**/.pytest_cache",
-		"**/.ruff_cache",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/.vscode",
+    "**/.idea",
+    // "**/node_modules",
+    "**/.serverless",
+    "**/build",
+    // "**/dist",
+    "**/coverage",
+    // "**/.venv",
+    "**/__pycache__",
+    "**/.ropeproject",
+    "**/.pytest_cache",
+    "**/.ruff_cache",
     // "**/bin",
     // "**/obj",
     // "**/bower_components",
@@ -171,10 +171,7 @@
     "**/.git/subtree-cache/**",
     "**/.hg/store/**"
   ],
-  "file_scan_inclusions": [
-    ".env",
-    ".venv"
-  ],
+  // "file_scan_inclusions": [".env", ".venv"],
   // Outline Panel
   "outline_panel": {
     "dock": "right",
@@ -230,226 +227,5 @@
   },
   "git_panel": {
     "dock": "right"
-  },
-  // Diagnostics
-  "diagnostics": {
-    "button": true,
-    "include_warnings": true,
-    "lsp_pull_diagnostics": {
-      "enabled": true,
-      "debounce_ms": 50
-    },
-    "inline": {
-      "enabled": true,
-      "update_debounce_ms": 100
-      // "padding": 4,
-      // "min_column": 0,
-      // "max_severity": null
-    }
-  },
-  // Copilot/AI Features
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
-  "edit_predictions": {
-    "disabled_globs": [],
-    "mode": "subtle",
-    "enabled_in_text_threads": true
-    // "copilot": {
-    //   "proxy": null,
-    //   "proxy_no_verify": null,
-    //   "enterprise_uri": null
-    // },
-  },
-  // AI Agent
-  "show_edit_predictions": true,
-  "agent": {
-    "default_profile": "ask",
-    "always_allow_tool_actions": true,
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    },
-    "dock": "left",
-    "button": true
-  },
-  // Default Formatter
-  "formatter": "prettier",
-
-  "file_types": {
-    "Diff": ["diff"],
-    "Json": ["json", "jsonc"],
-    "C++": ["cpp", "cxx", "cc", "c++", "hpp", "hxx", "h++", "hh"],
-    "C": ["C", "H"],
-    "Python": ["py", "pyx", "pyi", "pyw"],
-    "C#": ["cs", "csx"],
-    "CMake": ["CMakeLists.txt"],
-    "Dockerfile": ["Dockerfile", "Dockerfile.*"]
-  },
-  // "code_actions_on_format": { },
-
-  // Language Server Protocol (LSP) Settings
-  "lsp": {
-    "prettier": {},
-    "biome": {
-      "settings": {
-        "config_path": "./biome.json"
-      }
-    },
-    "omnisharp": {
-      "binary": {
-        "arguments": ["-lsp"]
-      }
-    },
-    "yaml-language-server": {},
-    "pyright": {
-      "settings": {
-        // "pyright": {
-        //   "disableOrganizeImports": false
-        // },
-        "python.analysis": {
-          "diagnosticMode": "workspace",
-          "typeCheckingMode": "standard",
-          "extraPaths": ["./src", "./lib", "./backend", "./venv", "./env"],
-          "stubPath": "./typings",
-          "autoSearchPaths": true,
-          "autoImportCompletions": true,
-          "useLibraryCodeForTypes": true
-        }
-      }
-    },
-    "ruff": {
-      // "initialization_options": {
-      //   "settings": {
-      //     "organizeImports": true
-      //   }
-      // }
-    },
-    "powershel-es": {
-      "binary": {
-        "path": "pwsh", // or "powershell" on Windows
-        "arguments": ["-NoLogo", "-NoProfile"]
-      }
-    },
-
-    // C++ (clangd)
-    "clangd": {
-      "binary": {
-        "arguments": [
-          // "--clang-tidy",
-          // "--background-index",
-          // "--completion-style=detailed",
-          // "--function-arg-placeholders",
-          // "--header-insertion=iwyu",
-          // "--pch-storage=memory",
-          // // Add diagnostic flags here:
-          // "--compile-commands-dir=.",
-          // "--fallback-style=none"
-        ]
-      },
-      "initialization_options": {
-        "clangdFileStatus": true,
-        "usePlaceholders": true,
-        "completeUnimported": true,
-        "semanticHighlighting": true
-        // Add clang-tidy configuration:
-        // "fallbackFlags": ["-Wno-everything", "-Werror=return-type"]
-      }
-    }
-  },
-
-  // Language-specific Settings
-  "languages": {
-    "JSON": {
-      "wrap_guides": [],
-      "use_autoclose": true
-      //   "formatter":{
-      //     "language_servers": ["!biome", "prettier"],
-      //   },
-      //   // "formatter": "prettier",
-      //   "tab_size": 2
-    },
-    "JSONC": {
-      "wrap_guides": [],
-      "use_autoclose": true
-      //   "formatter":{
-      //     "language_servers": ["!biome", "prettier"],
-      //   },
-      //   "tab_size": 2
-    },
-    "JavaScript": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      },
-      "tab_size": 2,
-      "language_servers": ["typescript-language-server", "!biome"]
-    },
-    "TypeScript": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      },
-      "tab_size": 2,
-      "language_servers": ["typescript-language-server", "!biome"]
-    },
-    "TSX": {
-      "formatter": {
-        "language_server": {
-          "name": "biome"
-        }
-      },
-      "tab_size": 2,
-      "language_servers": ["typescript-language-server", "!biome"]
-    },
-    "TOML": {
-      "tab_size": 2
-    },
-    "Markdown": {
-      "remove_trailing_whitespace_on_save": false,
-      "format_on_save": "off",
-      "soft_wrap": "preferred_line_length",
-      "preferred_line_length": 179
-    },
-    "Python": {
-      "code_actions_on_format": {
-        "sourc.orgaizeImorts.ruff": true
-      },
-      "formatter": [
-        {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
-          }
-        },
-        {
-          "language_server": {
-            "name": "ruff"
-          }
-        }
-      ],
-      "language_servers": ["pyright", "ruff"],
-      "tab_size": 2
-    },
-    "C": {
-      "formatter": "auto",
-      "tab_size": 2
-    },
-    "C++": {
-      "formatter": "auto",
-      "tab_size": 2
-    },
-    "CSharp": {
-      "language_servers": ["omnisharp"],
-      "formatter": "language_server",
-      "tab_size": 4
-    },
-    "Lua": {}
-    // "CMake": {
-    //   "preferred_line_length": 179,
-    //   "formatter": "language_server"
-    // }
   }
 }
