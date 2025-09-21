@@ -27,7 +27,7 @@ Set-PSReadLineKeyHandler -Key tab -Function MenuComplete
 # Ctrl+W to delete the previous word (like in Bash)
 Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
 
-# Ctrl+F to move forward one character
+# Ctrl+E to move forward one character
 Set-PSReadLineKeyHandler -Key Ctrl+e -Function ForwardChar
 
 # # Ctrl+Space for IntelliSense suggestions
@@ -38,7 +38,6 @@ Set-PSReadLineKeyHandler -Key Ctrl+e -Function ForwardChar
 
 # # Ctrl+B to move backward one character (like in Emacs/Bash)
 # Set-PSReadLineKeyHandler -Key Ctrl+b -Function BackwardChar
-
 
 # # Initialize Oh-My-Posh with a theme
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\catppuccin_mocha.omp.json" | Invoke-Expression
@@ -83,4 +82,3 @@ function GitBrowser {
     Start-Process $url
 }
 Set-Alias -Name git-browse -Value GitBrowser
-

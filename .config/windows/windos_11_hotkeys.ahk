@@ -173,4 +173,5 @@ cycleWindows(exeName, appPath := "") {
 #1::cycleWindows("wezterm-gui.exe", "C:\Program Files\WezTerm\wezterm-gui.exe")
 #2::cycleWindows("chrome.exe", "C:\Program Files\Google\Chrome\Application\chrome.exe")
 #3::cycleWindows("Obsidian.exe", "C:\Program Files\Obsidian\Obsidian.exe")
+#6::cycleWindows("zed.exe", " C:\Users\weichen34\zed\target\release\zed.exe")
 #7::cycleWindows("Code.exe", "code")
