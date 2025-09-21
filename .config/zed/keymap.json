@@ -40,9 +40,9 @@
   {
     "context": "Editor && !menu",
     "bindings": {
-      "ctrl-shift-c": "editor::Copy", // vim default: return to normal mode
-      "ctrl-shift-x": "editor::Cut", // vim default: decrement
-      "ctrl-shift-v": "editor::Paste" // vim default: visual block mode
+      "ctrl-shift-c": "editor::Copy",
+      "ctrl-shift-x": "editor::Cut",
+      "ctrl-shift-v": "editor::Paste"
       // "ctrl-y": "editor::Undo",          // vim default: line up
       // "ctrl-f": "buffer_search::Deploy", // vim default: page down
       // "ctrl-o": "workspace::Open",       // vim default: go back
@@ -64,11 +64,11 @@
   },
   // ===== FILE FINDER NAVIGATION =====
   {
-    "context": "FileFinder > Picker",
-    "bindings": {
-      "ctrl-j": "menu::SelectNext",
-      "ctrl-k": "menu::SelectPrevious"
-    }
+    "context": "FileFinder > Picker"
+    // "bindings": {
+    //   "ctrl-j": "menu::SelectNext",
+    //   "ctrl-k": "menu::SelectPrevious"
+    // }
   },
   // ===== PANE SPLITTING =====
   {
@@ -101,7 +101,7 @@
       "cmd-backspace": ["project_panel::Trash", { "skip_prompt": true }],
       "cmd-delete": ["project_panel::Delete", { "skip_prompt": false }],
       "alt-cmd-r": "project_panel::RevealInFileManager",
-      "ctrl-shift-enter": "project_panel::OpenWithSystem",
+      "ctrl-shift-enter": "workspace::OpenWithSystem",
       "cmd-alt-backspace": ["project_panel::Delete", { "skip_prompt": false }],
       "cmd-shift-f": "project_panel::NewSearchInDirectory",
       "shift-down": "menu::SelectNext",
@@ -120,7 +120,9 @@
       "n": "project_panel::NewFile",
       "N": "project_panel::NewDirectory",
       "d": "project_panel::Delete",
-      "z": "project_panel::CollapseAllEntries"
+      "z": "project_panel::CollapseAllEntries",
+      // "l": "project_panel::ExpandSelectedEntry",
+      "l": "project_panel::Open"
     }
   },
   // ===== VIM NORMAL MODE =====
@@ -134,11 +136,13 @@
       "ctrl-j": "workspace::ActivatePaneDown",
 
       "-": "editor::ToggleComments",
+
       "space ,": "editor::Format",
       "space f f": "file_finder::Toggle",
       "space f l": "workspace::NewSearch",
       "space x": "diagnostics::Deploy",
       "space l o": "outline_panel::ToggleFocus",
+      "space g": "git_panel::ToggleFocus",
 
       // Git hunks navigation
       "] h": "editor::GoToHunk",
@@ -157,15 +161,17 @@
       "g D": "editor::GoToDefinitionSplit",
       "g r": "editor::FindAllReferences",
       "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToDeclaration",
+      "g .": "editor::ToggleCodeActions",
       "K": "editor::Hover"
     }
   },
   {
     "context": "Editor && edit_prediction && vim_mode == insert",
     "bindings": {
-      "alt-tab": "editor::AcceptEditPrediction",
       "ctrl-l": "editor::AcceptPartialEditPrediction",
       "tab": "editor::AcceptEditPrediction"
+      // "alt-tab": "editor::AcceptEditPrediction"
     }
   },
   {
@@ -203,7 +209,7 @@
     "bindings": {
       // "cmd-k v": "markdown::OpenPreviewToTheSide",
       // "cmd-shift-v": "markdown::OpenPreview"
-      "space m k": "markdown::OpenPreviewToTheSide"
+      // "space m k": "markdown::OpenPreviewToTheSide"
     }
   }
 ]

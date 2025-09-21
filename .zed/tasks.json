@@ -1,0 +1,8 @@
+[
+  {
+    "label": "lazygit",
+    "command": "lazygit",
+    "hide": "on_success",
+    "reveal_target": "center"
+  }
+]

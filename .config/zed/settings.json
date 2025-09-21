@@ -1,39 +1,69 @@
 // Zed settings
 {
-  // Core Settings
+  // Vim
   "base_keymap": "VSCode",
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
     "use_smartcase_find": true,
-    "highlight_on_yank_duration": 100
+    "highlight_on_yank_duration": 200
   },
   "bottom_dock_layout": "contained",
+  "completions": {
+  "lsp_insert_mode": "replace_subsequence"
+  },
+  "confirm_quit": true,
+
   // Telemetry
   "telemetry": {
     "metrics": false,
     "diagnostics": false
   },
+
   // UI & Appearance
   "icon_theme": "Zed (Default)",
   "theme": {
     "mode": "dark",
-    "light": "Gruvbox Light",
-    "dark": "One Dark"
+    "light": "Dracula Light (Alucard",
+    "dark": "Dracula"
   },
-  "ui_font_size": 16,
-  "buffer_line_height": "standard",
-  "ui_font_family": ".SystemUIFont",
+  "experimental.theme_overrides": {},
+
+  "ui_font_size": 18,
+  "ui_font_family": ".ZedMono",
   "ui_font_weight": 400,
-  "buffer_font_size": 14,
-  "buffer_font_family": "Hack Nerd Font Mono",
-  "buffer_font_weight": 200,
+
+  "buffer_line_height": "standard",
+  "buffer_font_features": {
+    "ss01": true,
+    "ss02": true,
+    "ss03": true,
+    "ss04": true,
+    "ss05": true,
+    "ss06": true,
+    "ss07": true,
+    "ss08": true,
+    "calt": true,
+    "dlig": true
+  },
+  "buffer_font_size": 16,
+  "buffer_font_family": "Iosevka Nerd Font",
+  "buffer_font_weight": 400,
+
   // Editor Settings
   "relative_line_numbers": true,
+  "wrap_guides": [80, 120],
   "show_whitespaces": "boundary",
+  "lsp_document_colors": "inlay",
   "soft_wrap": "editor_width",
+  "active_pane_modifiers": {
+    "border_size": 0.8,
+    "inactive_opacity": 0.8
+  },
+  "use_system_path_prompts": false,
+  "use_system_prompts": false,
+
   "show_wrap_guides": true,
-  "wrap_guides": [120],
   "preferred_line_length": 120,
   "tab_size": 2,
   "hard_tabs": false,
@@ -46,27 +76,25 @@
   "scrollbar": {
     "show": "never"
   },
-  "active_pane_modifiers": {
-    "border_size": 0.0,
-    "inactive_opacity": 0.8
-  },
   "indent_guides": {
     "enabled": true,
     "active_line_width": 2,
-    "coloring": "fixed"
+    "coloring": "fixed",
+    "background_coloring": "disabled"
   },
   // Search Settings
   "search": {
     "whole_word": false,
     "case_sensitive": false,
     "include_ignored": false,
-    "regex": false
+    "regex": true
   },
+
   // Tab Bar & Toolbar
   "tab_bar": {
-    "show_nav_history_buttons": false,
-    "show": true,
-    "show_tab_bar_buttons": false
+    "show": false,
+    "show_tab_bar_buttons": true,
+    "show_nav_history_buttons": false
   },
   "toolbar": {
     "breadcrumbs": true,
@@ -74,34 +102,40 @@
     "selections_menu": true
   },
   "tabs": {
-    "file_icons": true,
-    "git_status": false,
-    "close_position": "right"
+    "file_icons": false,
+    "git_status": true,
+    "close_position": "right",
+    "activate_on_close": "history"
   },
+  "auto_indent": false,
+  "minimap": {
+    "show": "never"
+  },
+
   // Inline Features
-  "inline_code_actions": false,
+  "inline_code_actions": true,
   "inlay_hints": {
     "enabled": false
   },
   "show_completion_documentation": true,
-  "selection_highlight": false,
+  "selection_highlight": true,
 
   // Project Panel
   "project_panel": {
     "button": true,
-    "default_width": 300,
+    "default_width": 350,
     "dock": "right",
     "entry_spacing": "standard",
     "file_icons": true,
     "folder_icons": true,
     "git_status": true,
-    "indent_size": 16,
+    "indent_size": 20,
     "auto_reveal_entries": true,
     "auto_fold_dirs": false,
     "scrollbar": {
       "show": "never"
     },
-    "show_diagnostics": "all",
+    "show_diagnostics": "errors",
     "indent_guides": {
       "show": "always"
     },
@@ -110,40 +144,55 @@
   // File Exclusions (matching VS Code)
   "file_scan_exclusions": [
     "**/.git",
-    // "**/node_modules",
-    "**/__pycache__",
-    // "**/dist",
-    // "**/build",
-    "**/.svn",
-    "**/.hg",
-    "**/.DS_Store",
-    "**/Thumbs.db",
-    // "**/.venv",
+		"**/.svn",
+		"**/.hg",
+		"**/CVS",
+		"**/.DS_Store",
+		"**/Thumbs.db",
+		"**/.classpath",
+		"**/.settings",
+		"**/.vscode",
+		"**/.idea",
+		// "**/node_modules",
+		"**/.serverless",
+		"**/build",
+		// "**/dist",
+		"**/coverage",
+		// "**/.venv",
+		"**/__pycache__",
+		"**/.ropeproject",
+		"**/.pytest_cache",
+		"**/.ruff_cache",
     // "**/bin",
     // "**/obj",
-    "**/bower_components",
-    "**/*.code-search",
+    // "**/bower_components",
+    // "**/*.code-search",
     "**/.git/objects/**",
     "**/.git/subtree-cache/**",
     "**/.hg/store/**"
   ],
+  "file_scan_inclusions": [
+    ".env",
+    ".venv"
+  ],
   // Outline Panel
   "outline_panel": {
     "dock": "right",
-    "default_width": 300,
+    "default_width": 350,
     "button": true,
     "file_icons": true,
     "folder_icons": true,
-    "git_status": true,
+    "git_status": false,
     "indent_size": 20,
     "auto_reveal_entries": true,
     "auto_fold_dirs": true
   },
+
   // Terminal
   "terminal": {
-    "font_family": "Hack Nerd Font Propo",
+    "font_family": "Iosevka Nerd Font",
     "font_size": 14,
-    "font_weight": 500,
+    "font_weight": 400,
     "button": true,
     "toolbar": {
       "breadcrumbs": false
@@ -151,28 +200,32 @@
     "copy_on_select": true,
     "dock": "bottom",
     "default_width": null,
-    "default_height": 500,
+    "default_height": 600,
     "working_directory": "current_project_directory",
-    "env": {},
+    "env": {
+      "EDITOR": "zed -w",
+      "VISUAL": "zed -w"
+    },
     "blinking": "off",
-    "alternate_scroll": "off",
-    "option_as_meta": false,
+    // "alternate_scroll": "off",
+    // "option_as_meta": false,
     "shell": "system",
-    "line_height": "standard",
+    // "line_height": "standard",
     "detect_venv": {
       "on": {
-        "directories": [".env", "env", ".venv", "venv"],
-        "activate_script": "default"
+        "activate_script": "default",
+        "directories": [".env", "env", ".venv", "venv"]
       }
     }
   },
   // Git Configuration
   "git": {
+    "git_gutter": "tracked_files",
     "gutter_debounce": 100,
+    "branch_picker": null,
     "inline_blame": {
       "enabled": false
     },
-    "git_gutter": "tracked_files",
     "hunk_style": "staged_hollow"
   },
   "git_panel": {
@@ -188,10 +241,10 @@
     },
     "inline": {
       "enabled": true,
-      "update_debounce_ms": 100,
-      "padding": 4,
-      "min_column": 0,
-      "max_severity": null
+      "update_debounce_ms": 100
+      // "padding": 4,
+      // "min_column": 0,
+      // "max_severity": null
     }
   },
   // Copilot/AI Features
@@ -199,16 +252,17 @@
     "edit_prediction_provider": "copilot"
   },
   "edit_predictions": {
-    "disabled_globs": []
-    // "mode": "eager",
+    "disabled_globs": [],
+    "mode": "subtle",
+    "enabled_in_text_threads": true
     // "copilot": {
     //   "proxy": null,
     //   "proxy_no_verify": null,
     //   "enterprise_uri": null
     // },
-    // "enabled_in_text_threads": false
   },
   // AI Agent
+  "show_edit_predictions": true,
   "agent": {
     "default_profile": "ask",
     "always_allow_tool_actions": true,
@@ -216,29 +270,27 @@
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
     },
-    "dock": "left"
+    "dock": "left",
+    "button": true
   },
   // Default Formatter
   "formatter": "prettier",
 
   "file_types": {
-    "Diff": ["dif"],
+    "Diff": ["diff"],
     "Json": ["json", "jsonc"],
     "C++": ["cpp", "cxx", "cc", "c++", "hpp", "hxx", "h++", "hh"],
     "C": ["C", "H"],
     "Python": ["py", "pyx", "pyi", "pyw"],
     "C#": ["cs", "csx"],
-    "CMake": ["CMakeLists.txt"]
+    "CMake": ["CMakeLists.txt"],
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"]
   },
+  // "code_actions_on_format": { },
 
   // Language Server Protocol (LSP) Settings
   "lsp": {
-    // "prettier": {
-    //   "print_width": 120,
-    //   "semi": true,
-    //   "single_quote": true,
-    //   "trailing_comma": "es5"
-    // },
+    "prettier": {},
     "biome": {
       "settings": {
         "config_path": "./biome.json"
@@ -249,6 +301,7 @@
         "arguments": ["-lsp"]
       }
     },
+    "yaml-language-server": {},
     "pyright": {
       "settings": {
         // "pyright": {
@@ -257,7 +310,7 @@
         "python.analysis": {
           "diagnosticMode": "workspace",
           "typeCheckingMode": "standard",
-          "extraPaths": ["./src", "./lib", "./backend"],
+          "extraPaths": ["./src", "./lib", "./backend", "./venv", "./env"],
           "stubPath": "./typings",
           "autoSearchPaths": true,
           "autoImportCompletions": true,
@@ -266,12 +319,16 @@
       }
     },
     "ruff": {
-      "initialization_options": {
-        "settings": {
-          // "lineLength": 120,
-          // "fixAll": true,
-          "organizeImports": true
-        }
+      // "initialization_options": {
+      //   "settings": {
+      //     "organizeImports": true
+      //   }
+      // }
+    },
+    "powershel-es": {
+      "binary": {
+        "path": "pwsh", // or "powershell" on Windows
+        "arguments": ["-NoLogo", "-NoProfile"]
       }
     },
 
@@ -279,45 +336,47 @@
     "clangd": {
       "binary": {
         "arguments": [
-          "--log=verbose",
-          "--clang-tidy",
-          "--background-index",
-          "--completion-style=detailed",
-          "--function-arg-placeholders",
-          "--header-insertion=iwyu",
-          "--pch-storage=memory",
-
-          // Add diagnostic flags here:
-          "--compile-commands-dir=.",
-          "--fallback-style=none"
+          // "--clang-tidy",
+          // "--background-index",
+          // "--completion-style=detailed",
+          // "--function-arg-placeholders",
+          // "--header-insertion=iwyu",
+          // "--pch-storage=memory",
+          // // Add diagnostic flags here:
+          // "--compile-commands-dir=.",
+          // "--fallback-style=none"
         ]
       },
       "initialization_options": {
         "clangdFileStatus": true,
         "usePlaceholders": true,
         "completeUnimported": true,
-        "semanticHighlighting": true,
+        "semanticHighlighting": true
         // Add clang-tidy configuration:
-        "fallbackFlags": ["-Wno-everything", "-Werror=return-type"]
+        // "fallbackFlags": ["-Wno-everything", "-Werror=return-type"]
       }
     }
   },
 
   // Language-specific Settings
   "languages": {
-    // "JSON": {
-    //   "formatter":{
-    //     "language_servers": ["!biome", "prettier"],
-    //   },
-    //   // "formatter": "prettier",
-    //   "tab_size": 2
-    // },
-    // "JSONC": {
-    //   "formatter":{
-    //     "language_servers": ["!biome", "prettier"],
-    //   },
-    //   "tab_size": 2
-    // },
+    "JSON": {
+      "wrap_guides": [],
+      "use_autoclose": true
+      //   "formatter":{
+      //     "language_servers": ["!biome", "prettier"],
+      //   },
+      //   // "formatter": "prettier",
+      //   "tab_size": 2
+    },
+    "JSONC": {
+      "wrap_guides": [],
+      "use_autoclose": true
+      //   "formatter":{
+      //     "language_servers": ["!biome", "prettier"],
+      //   },
+      //   "tab_size": 2
+    },
     "JavaScript": {
       "formatter": {
         "language_server": {
@@ -355,6 +414,9 @@
       "preferred_line_length": 179
     },
     "Python": {
+      "code_actions_on_format": {
+        "sourc.orgaizeImorts.ruff": true
+      },
       "formatter": [
         {
           "code_actions": {
@@ -383,7 +445,8 @@
       "language_servers": ["omnisharp"],
       "formatter": "language_server",
       "tab_size": 4
-    }
+    },
+    "Lua": {}
     // "CMake": {
     //   "preferred_line_length": 179,
     //   "formatter": "language_server"
