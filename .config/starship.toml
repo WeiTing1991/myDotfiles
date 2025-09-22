@@ -8,13 +8,14 @@ $username\
 $hostname\
 $directory\
 $git_branch\
-$git_state\
+$git_commit\
 $git_status\
-$cmd_duration\
+$git_state\
 $python\
+$cmd_duration\
 $character"""
+add_newline = false
 
-# Disable line breaks for single line prompt
 [line_break]
 disabled = true
 
@@ -22,7 +23,7 @@ disabled = true
 [directory]
 format = "[$path]($style) "
 read_only = " 󰌾"
-truncation_length = 3
+truncation_length = 0
 truncate_to_repo = false
 home_symbol = "~"
 
@@ -31,7 +32,7 @@ format = "on [$symbol$branch]($style) "
 
 [git_status]
 format = '[\[$all_status\]]($style) '
-# style = ""
+style = ""
 modified = "!${count} "
 staged = "+${count} "
 untracked = "?${count} "
@@ -42,7 +43,6 @@ behind = "⇣${count} "
 renamed = "»${count} "
 typechanged = "T${count} "
 stashed = "_${count} "
-
 
 [git_state]
 format = '([$state( $progress_current/$progress_total)]($style) )'
@@ -58,7 +58,7 @@ vimcmd_symbol = "[❮](bold green)"
 
 [username]
 format = "[$user]($style)@"
-show_always = false
+show_always = true
 
 [hostname]
 format = "[$hostname]($style) "
