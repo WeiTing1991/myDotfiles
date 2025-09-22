@@ -23,7 +23,7 @@ if is_windows then
 elseif is_macos then
   default_prog = { "/bin/zsh" }
   font_size = 16.0
-  default_font = wezterm.font("Iosevka term Nerd Font")
+  default_font = wezterm.font("Iosevka Nerd Font")
   -- default_font = wezterm.font("Hack Nerd Font")
 end
 
