@@ -56,10 +56,8 @@
     "bindings": {
       "ctrl-shift-e": "workspace::ToggleLeftDock",
       "ctrl-e": "project_panel::ToggleFocus",
-      "ctrl-/": "workspace::ToggleBottomDock"
+      "ctrl-/": "workspace::ToggleBottomDock",
       // "ctrl-g": "git_panel::ToggleFocus",
-      // "ctrl-p": "editor::ContextMenuPrevious",
-      // "ctrl-n": "editor::ContextMenuNext"
     }
   },
   // ===== FILE FINDER NAVIGATION =====
@@ -136,7 +134,7 @@
       "ctrl-j": "workspace::ActivatePaneDown",
 
       "-": "editor::ToggleComments",
-
+      "space d":"projects::OpenRecent",
       "space ,": "editor::Format",
       "space f f": "file_finder::Toggle",
       "space f l": "workspace::NewSearch",
