@@ -1,3 +1,6 @@
+Import-Module posh-git
+Import-Module PSReadLine
+
 $global:LastOSC7Path = ""
 $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
   $current = $PWD.ProviderPath
@@ -7,7 +10,6 @@ $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
     Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
   }
 }
-Import-Module PSReadLine
 
 # Use AcceptSuggestion instead of Complete
 Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
