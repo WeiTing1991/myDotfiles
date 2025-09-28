@@ -66,11 +66,15 @@ hs.hotkey.bind({ "cmd" }, "3", function()
   mouse_focus("Obsidian")
 end)
 
-hs.hotkey.bind({ "cmd" }, "7", function()
+hs.hotkey.bind({ "cmd" }, "4", function()
+  mouse_focus("Claude")
+end)
+
+hs.hotkey.bind({ "cmd" }, "6", function()
   mouse_focus_cycle("Code")
 end)
 
-hs.hotkey.bind({ "cmd" }, "8", function()
+hs.hotkey.bind({ "cmd" }, "7", function()
   mouse_focus("Zed")
 end)
 

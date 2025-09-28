@@ -1,5 +1,12 @@
 {
-    "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-    "version": "0.2",
-    "language": "en-US"
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en-US",
+  "includeRegExpList": ["/\"\"\"[\\s\\S]*?\"\"\"/g", "/'''[\\s\\S]*?'''/g", "/\/\/.*$/gm", "/#.*$/gm"],
+  "overrides": [
+    {
+      "filename": ["**/*.md"],
+      "includeRegExpList": []
+    }
+  ]
 }
