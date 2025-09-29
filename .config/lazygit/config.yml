@@ -2,6 +2,8 @@
 git:
   paging:
     colorArg: always
+    pager: delta
 
 gui:
   expandFocusedSidePanel: true
+  sidePanelWidth: 0.2

@@ -25,7 +25,11 @@
     "light": "Dracula Light (Alucard",
     "dark": "Gruvbox Dark Hard"
   },
-  "experimental.theme_overrides": {},
+  "experimental.theme_overrides": {
+    "version_control.added": "#27a657ff",
+    "version_control.modified": "#d3b020ff",
+    "version_control.deleted": "#e06c76ff"
+  },
 
   "ui_font_size": 16,
   "ui_font_family": ".SystemUIFont",
@@ -106,8 +110,9 @@
   },
   "toolbar": {
     "breadcrumbs": true,
-    "code_actions": true,
-    "selections_menu": true
+    "selections_menu": true,
+    "quick_actions": true,
+    "code_actions": true
   },
   "tabs": {
     "file_icons": false,
@@ -125,6 +130,7 @@
   "inlay_hints": {
     "enabled": false
   },
+  "show_completions_on_input": true,
   "show_completion_documentation": true,
   "selection_highlight": true,
 
@@ -256,7 +262,9 @@
   "git": {
     "git_gutter": "tracked_files",
     "gutter_debounce": 100,
-    "branch_picker": null,
+    "branch_picker": {
+      "show_author_name": true
+    },
     "inline_blame": {
       "enabled": false
     },
@@ -325,7 +333,14 @@
         }
       }
     },
-    "ruff": {},
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "organizeImports": true,
+          "fixAll": true
+        }
+      }
+    },
     "powershel-es": {
       "binary": {
         "path": "pwsh",
@@ -357,6 +372,17 @@
       }
     }
   },
+  // check this https://zed.dev/docs/ai/mcp
+  // Mcp
+  // "context_servers": {
+  //   "Context7": {
+  //     "command": {
+  //       "path": "npx",
+  //       "args": ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_API_KEY"]
+  //     },
+  //     "settings": {}
+  //   }
+  // },
 
   // Language-specific Settings
   "languages": {
