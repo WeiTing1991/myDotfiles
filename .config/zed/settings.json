@@ -168,7 +168,7 @@
 
   // Copilot/AI Features
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "zed"
   },
   "edit_predictions": {
     "disabled_globs": [],
