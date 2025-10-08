@@ -20,11 +20,7 @@
 
   // UI & Appearance
   "icon_theme": "Zed (Default)",
-  "theme": {
-    "mode": "dark",
-    "light": "Dracula Light (Alucard",
-    "dark": "Dracula Solid"
-  },
+  "theme": "Gruvbox Dark Hard",
   "experimental.theme_overrides": {
     "version_control.added": "#27a657ff",
     "version_control.modified": "#d3b020ff",
@@ -446,12 +442,8 @@
         "source.orgaizeImports.ruff": true
       },
       "formatter": [
-        {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
-          }
-        },
+        { "code_action": "source.organizeImports.ruff" },
+        { "code_action": "source.fixAll.ruff" },
         {
           "language_server": {
             "name": "ruff"
