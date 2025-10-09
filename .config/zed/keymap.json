@@ -201,7 +201,7 @@
       "ctrl-f": null
     }
   },
-  // launguage specific
+  // language specific
   {
     "context": "Editor && extension == md && vim_mode == normal && !menu",
     "bindings": {

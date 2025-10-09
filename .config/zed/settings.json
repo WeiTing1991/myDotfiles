@@ -20,7 +20,7 @@
 
   // UI & Appearance
   "icon_theme": "Zed (Default)",
-  "theme": "Gruvbox Dark Hard",
+  "theme": "Dracula",
   "experimental.theme_overrides": {
     "version_control.added": "#27a657ff",
     "version_control.modified": "#d3b020ff",
@@ -32,18 +32,18 @@
   "ui_font_weight": 400,
 
   "buffer_line_height": "standard",
-  "buffer_font_features": {
-    "ss01": true,
-    "ss02": true,
-    "ss03": true,
-    "ss04": true,
-    "ss05": true,
-    "ss06": true,
-    "ss07": true,
-    "ss08": true,
-    "calt": true,
-    "dlig": true
-  },
+  // "buffer_font_features": {
+  //   "ss01": true,
+  //   "ss02": true,
+  //   "ss03": true,
+  //   "ss04": true,
+  //   "ss05": true,
+  //   "ss06": true,
+  //   "ss07": true,
+  //   "ss08": true,
+  //   "calt": true,
+  //   "dlig": true
+  // },
   "buffer_font_size": 16,
   "buffer_font_family": "Iosevka Nerd Font",
   "buffer_font_weight": 400,
@@ -432,11 +432,11 @@
       "tab_size": 2,
       "language_servers": ["typescript-language-server", "!biome"]
     },
-
-    // python
     "TOML": {
       "tab_size": 2
     },
+
+    // python
     "Python": {
       "code_actions_on_format": {
         "source.orgaizeImports.ruff": true
@@ -450,8 +450,8 @@
           }
         }
       ],
-      "language_servers": ["pyright", "ruff"],
-      "tab_size": 2
+      "language_servers": ["pyright", "ruff"]
+      // "tab_size": 2
     },
 
     // C/C++
