@@ -1,5 +1,8 @@
 -- local obPath = vim.fn.expand("~/Library/Mobile Documents/iCloud~md~obsidian/Documents/weitingchen/")
 
+local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+local is_mac = vim.loop.os_uname().sysname == "Darwin"
+
 local dashboard = {
   width = 60,
   row = nil, -- dashboard position. nil for center
@@ -8,12 +11,8 @@ local dashboard = {
   autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", -- autokey sequence
   -- These settings are used by some built-in sections
   preset = {
-    -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
     ---@type fun(cmd:string, opts:table)|nil
     pick = nil,
-    -- Used by the `keys` section to show keymaps.
-    -- Set your custom keymaps here.
-    -- When using a function, the `items` argument are the default keymaps.
     ---@type snacks.dashboard.Item[]
     keys = {
       { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
@@ -38,6 +37,7 @@ local dashboard = {
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },
     header = [[
+
 ██     █████████████    ████    ███████    ███
 ██     ██   ██   ████   ████    ████████  ████
 ██  █  ██   ██   ██ ██  ████    ██████ ████ ██
@@ -47,7 +47,6 @@ local dashboard = {
 
  Powered By  eovim ]],
   },
-  -- item field formatters
   formats = {
     icon = function(item)
       if item.file and item.icon == "file" or item.icon == "directory" then
@@ -80,29 +79,73 @@ local dashboard = {
   },
 }
 
+local default_shell = ""
+if is_mac then
+  default_shell = "/bin/zsh"
+elseif is_windows then
+  default_shell = "pwsh.exe" or "cmd.exe"
+end
+
 return {
   "WeiTing1991/snacks.nvim",
   priority = 1000,
   lazy = false,
   opts = {
-    bigfile = { enabled = false },
     dashboard = dashboard,
-    explorer = { enabled = false },
-    indent = { enabled = false },
+    picker = {
+     enabled = false,
+     sources = {
+        explorer = {
+          layout = {
+            layout = {
+              position = "right",
+            },
+          },
+        },
+      },
+    },
+    terminal ={
+      enabled = true,
+      shell = default_shell
+    },
+    indent = {
+      enabled = true,
+      animate = {
+        enabled = false,
+      },
+      scope = {
+        enabled = true,
+        priority = 200,
+        char = "▏",
+      },
+    },
+    statuscolumn = {
+      enabled = true,
+      left = { "mark", "sign", "git" },
+      right = { "fold" },
+      folds = {
+        open = true,
+        git_hl = false,
+      },
+      git = {
+        patterns = { "GitSign" },
+      },
+      refresh = 50, -- refresh at most every 50ms
+    },
+    animate = {
+      enabled = true,
+    },
+    git = {enabled = false},
+    explorer = {enabled = false},
+    bigfile = { enabled = false },
     input = { enabled = false },
-    picker = { enabled = false },
     notifier = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = false },
     scroll = { enabled = false },
-    statuscolumn = { enabled = false },
     words = { enabled = false },
-    terminal ={
-      enabled = true,
-      shell = "pwsh.exe",
-      -- override = function(cmd)
-      --   cmd = "-NoLogo -ExecutionPolicy RemoteSigned -Command"
-      -- end
-    }
   },
+  config = function(_, opts)
+    require("snacks").setup(opts)
+  end
 }

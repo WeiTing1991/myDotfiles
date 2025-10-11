@@ -1,6 +1,4 @@
-local treesitter = require "nvim-treesitter.configs"
-
-treesitter.setup {
+require "nvim-treesitter.configs".setup {
   modules = {},
   ensure_installed = {
     "vim",
@@ -39,7 +37,7 @@ treesitter.setup {
     "jsonc",
     "markdown",
     "markdown_inline",
-    "latex",
+    -- "latex",
     "typst",
 
     "javascript",
@@ -96,16 +94,16 @@ require("treesitter-context").setup {
   enable = true,
   multiwindow = true,
   max_lines = 3,
-  min_window_height = 0,
-  line_numbers = true,
-  multiline_threshold = 20,
-  trim_scope = "outer",
+  -- min_window_height = 0,
+  -- line_numbers = true,
+  -- multiline_threshold = 20,
+  trim_scope = "inner",
   mode = "cursor",
   separator = "-",
   zindex = 20,
-  on_attach = nil,
+  -- on_attach = nil,
 }
 
 -- Set up TreesitterContext highlights
 vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "NONE", bold = true })
-vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true, sp = "#ffffff", })
+-- vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true, sp = "#ffffff", })

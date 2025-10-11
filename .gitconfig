@@ -19,10 +19,10 @@
 	required = true
 
 [delta]
-  side-by-side = true
+  side-by-side = false
   dark = true
   navigate = true
   line-numbers = true
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
