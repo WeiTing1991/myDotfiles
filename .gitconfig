@@ -1,28 +1,29 @@
 [user]
 	name = WeiTing1991
 	email = WeiTing1991@users.noreply.github.com
-
 [init]
 	defaultBranch = main
-
 [core]
   editor = nvim
   pager = delta
-
+  autocrlf = true  # fix CRLF warnings on Windows
 [url "git@github.com:"]
     insteadOf = https://github.com/
-
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-
 [delta]
   side-by-side = false
   dark = true
   navigate = true
   line-numbers = true
-
+  syntax-theme = Dracula
+  features = decorations
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
 [interactive]
   diffFilter = delta --color-only

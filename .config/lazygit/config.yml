@@ -1,8 +1,8 @@
-# config.yml
 git:
   paging:
     colorArg: always
-    pager: delta
+    pager: delta --dark --paging=never --side-by-side
+    useConfig: false
 
 gui:
   expandFocusedSidePanel: true

@@ -5,6 +5,7 @@ require("core.options")
 require("core.keymaps")
 require("core.autocmds")
 
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -28,6 +29,7 @@ require("lazy").setup({
     { import = "plugins.ui" },
     { import = "plugins.editor" },
     { import = "plugins.snack" },
+    { import = "plugins.lsp" },
     { import = "plugins.git" },
     { import = "plugins.ai" },
   },
@@ -62,5 +64,11 @@ require("lazy").setup({
     },
   },
 })
+
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+dofile(vim.g.base46_cache .. "syntax")
+dofile(vim.g.base46_cache .. "treesitter")
+
 
 require("user_keymaps")

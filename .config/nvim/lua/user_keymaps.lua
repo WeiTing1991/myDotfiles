@@ -2,7 +2,6 @@
 local map = vim.keymap.set
 local ui_select = require("core.select")
 local tele_builtin = require("telescope.builtin")
-local tele = require("telescope")
 local snacks = require("snacks")
 local neotree = require("neo-tree.command")
 
@@ -26,7 +25,7 @@ map("n", "<C-q>", function() snacks.bufdelete() end, { desc = "Close current buf
 -- [[ Terminal ]]
 map({ "n", "t" }, "<C-/>", function() snacks.terminal() end, { desc = "Toggle terminal" })
 
-map("n", "<leader>tt",  function() snacks.picker.colorschemes() end, { desc = "Toggle colorscheme" })
+map("n", "<leader>tt",  function() require("nvchad.themes").open() end, { desc = "Toggle colorscheme" })
 
 -- [[ Git ]]
 map("n", "<C-S-g>",  "<cmd>LazyGit<cr>", { desc = "LazyGit" })

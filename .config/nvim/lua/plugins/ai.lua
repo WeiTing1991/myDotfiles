@@ -2,6 +2,7 @@ return {
   -- Copilot
   {
     "zbirenbaum/copilot.lua",
+    lazy = true,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
@@ -12,29 +13,64 @@ return {
         suggestion = {
           enabled = true,
           auto_trigger = true,
+          hide_during_completion = true,
+          debounce = 50,
           keymap = {
-            accept = "<M-l>",
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
+            accept = false,
+            accept_word = "<A-f>",
+            accept_line = "<A-l>",
+            -- next = "<C-]>",
+            -- prev = "<C-[>",
+            dismiss = "<Esc>",
+            -- dismiss = "<C-c>",
           },
+        },
+        filetypes = {
+          -- yaml = false,
+          -- markdown = true,
+          -- help = false,
+          -- gitcommit = false,
+          -- gitrebase = false,
+          -- hgcommit = false,
+          -- svn = false,
+          -- cvs = false,
+          ["."] = true,
+        },
+        server_opts_overrides = {
+          trace = "verbose",
+          settings = {
+            advanced = {
+              listCount = 10,
+              inlineSuggestCount = 3,
+            },
+          },
+        },
+        workspaces_folder = {
+          "~/project/",
+          "~/work/",
         },
       })
     end,
   },
-  -- https://github.com/folke/sidekick.nvim
+
   {
     "folke/sidekick.nvim",
     event = "BufEnter",
-    dependencies = { "zbirenbaum/copilot.lua" },
     opts = {
       nes = {
         enabled = true,
-        debounce = 100,
+        debounce = 50,
+      },
+      signs = {
+        enabled = true,
+        icon = " ",
       },
       cli = {
-        tools = {
-          claude = { cmd = { "claude" } },
+        win = {
+          layout = "left",
+          split = {
+            width = 50,
+          },
         },
       },
     },

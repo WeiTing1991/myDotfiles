@@ -7,8 +7,27 @@ neotree.setup({
   close_if_last_window = false,
   popup_border_style = "rounded",
   enable_git_status = true,
-  enable_diagnostics = true,
+  enable_diagnostics = false,
   sort_case_insensitive = true,
+  sources = {
+    "filesystem",
+    "git_status",
+    "buffers",
+    "document_symbols",
+  },
+  source_selector = {
+    winbar = true,
+    statusline = false,
+    show_scrolled_off_parent_node = false,
+    tabs_layout = "equal",
+    content_layout = "start",
+    sources = {
+      { source = "filesystem", display_name = "󰉓  Files" },
+      { source = "git_status", display_name = "󰊢  Git" },
+      -- { source = "buffers", display_name = "󰈙 Buffers" },
+      { source = "document_symbols", display_name = "󰌗 Symbols" },
+    },
+  },
 
   default_component_configs = {
     indent = {
@@ -25,19 +44,20 @@ neotree.setup({
     --   folder_empty = icon.tree.glyphs.folder.empty or "",
     --   default = icon.tree.glyphs.default or "*",
     -- },
-    -- git_status = {
-    --   symbols = {
-    --     added     = icon.tree.glyphs.git.added or "",
-    --     modified  = icon.tree.glyphs.git.modified or "",
-    --     deleted   = icon.tree.glyphs.git.deleted or "✖",
-    --     renamed   = icon.tree.glyphs.git.renamed or "󰁕",
-    --     untracked = icon.tree.glyphs.git.untracked or "",
-    --     ignored   = icon.tree.glyphs.git.ignored or "",
-    --     unstaged  = icon.tree.glyphs.git.unstaged or "󰄱",
-    --     staged    = icon.tree.glyphs.git.staged or "",
-    --     conflict  = icon.tree.glyphs.git.conflict or "",
-    --   }
-    -- },
+    git_status = {
+        align = "right",
+      -- symbols = {
+      --   added     = icon.tree.glyphs.git.added or "",
+      --   modified  = icon.tree.glyphs.git.modified or "",
+      --   deleted   = icon.tree.glyphs.git.deleted or "✖",
+      --   renamed   = icon.tree.glyphs.git.renamed or "󰁕",
+      --   untracked = icon.tree.glyphs.git.untracked or "",
+      --   ignored   = icon.tree.glyphs.git.ignored or "",
+      --   unstaged  = icon.tree.glyphs.git.unstaged or "󰄱",
+      --   staged    = icon.tree.glyphs.git.staged or "",
+      --   conflict  = icon.tree.glyphs.git.conflict or "",
+      -- }
+    },
   },
 
   window = {
@@ -92,6 +112,7 @@ neotree.setup({
     },
   },
 
+  -- files
   filesystem = {
     filtered_items = {
       visible = true, -- Show filtered items with different highlight
@@ -125,9 +146,23 @@ neotree.setup({
       },
     },
   },
+  -- git
   git_status = {
+    group_empty_dirs = false,
+    renderers = {
+      file = {
+        { "indent",
+          indent_size = 1,
+          padding = 0,
+          with_markers = false,
+        },
+        { "icon" },
+        { "name", use_git_status_colors = true },
+        { "git_status", highlight = "NeoTreeDimText", align = "right" },
+      },
+    },
     window = {
-      position = "float",
+      position = "right",
       mappings = {
         ["A"]  = "git_add_all",
         ["gu"] = "git_unstage_file",

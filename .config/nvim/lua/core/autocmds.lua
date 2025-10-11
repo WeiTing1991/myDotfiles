@@ -19,6 +19,18 @@ autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+  callback = function()
+    vim.wo.winhl = "WinSeparator:WinSeparatorFocused"
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+  callback = function()
+    vim.wo.winhl = "WinSeparator:WinSeparator"
+  end,
+})
+
 --[[ python ]]
 local pygroup = vim.api.nvim_create_augroup("pygroup", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {

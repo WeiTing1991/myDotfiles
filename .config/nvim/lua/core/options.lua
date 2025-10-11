@@ -20,6 +20,7 @@ local globals = {
 
   -- disable auto format
   autoformat = false,
+  markdown_recommended_style = 0
 }
 
 for k, v in pairs(globals) do
@@ -48,7 +49,7 @@ local options = {
 
   -- indention
   autoindent = true,
-  smartindent = true,
+  smartindent = false,
   expandtab = true,
   shiftwidth = 2,
   tabstop = 2,
@@ -57,7 +58,23 @@ local options = {
   -- whitespace
   list = true,
   listchars = { tab = "▏ ", trail = "·", lead = "·", extends = "»", precedes = "«" },
-  fillchars = { eob = " " },
+  fillchars = {
+    foldopen = "",
+    foldclose = "",
+    fold = " ",
+    foldsep = " ",
+    diff = "╱",
+    eob = " ",
+    vert = "┃",      -- Heavy vertical
+    vertleft = "┫",
+    vertright = "┣",
+    horiz = "━",     -- Heavy horizontal
+    horizup = "┻",
+    horizdown = "┳",
+  },
+
+
+  sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize',
 
   -- Save undo history
   backup = false,
@@ -85,8 +102,8 @@ local options = {
   mouse = "a",
   showtabline = 2,
   ttyfast = true,
-  signcolumn = "yes:1",
-  winborder = "rounded"
+  signcolumn = "yes",
+  winborder = "rounded",
 }
 
 for k, v in pairs(options) do
