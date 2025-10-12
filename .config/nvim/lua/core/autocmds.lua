@@ -78,7 +78,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 local mdgroup = vim.api.nvim_create_augroup("mdgroup", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
   group = mdgroup,
-  pattern = { "md", "yaml", "yml", "txt" },
+  pattern = { "*.md", "*.yaml", "*.yml", "*.txt" },
   callback = function()
     set.shiftwidth = 4
     set.tabstop = 4
