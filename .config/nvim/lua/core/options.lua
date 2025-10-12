@@ -48,7 +48,7 @@ local options = {
   numberwidth = 8,
 
   -- indention
-  autoindent = true,
+  autoindent = false,
   smartindent = false,
   expandtab = true,
   shiftwidth = 2,
@@ -104,6 +104,8 @@ local options = {
   ttyfast = true,
   signcolumn = "yes",
   winborder = "rounded",
+  --paste
+  paste = false
 }
 
 for k, v in pairs(options) do

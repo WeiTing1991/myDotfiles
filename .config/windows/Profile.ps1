@@ -19,7 +19,8 @@ Set-PSReadLineKeyHandler -Key Ctrl+p -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key Ctrl+n -Function HistorySearchForward
 
 # Set predictive IntelliSense (PowerShell 7.2+ feature)
-Set-PSReadLineOption -PredictionSource History
+# Set predictive IntelliSense (PowerShell 7.2+ feature)
+# Set-PSReadLineOption -PredictionSource History
 
 # Tab completion
 Set-PSReadLineKeyHandler -Key tab -Function MenuComplete

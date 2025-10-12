@@ -117,5 +117,5 @@ end
 vim.keymap.set("n", "<leader>tp", ToggleSpellCheck, { desc = "Spell check" })
 
 -- Optional
-vim.keymap.set("x", "p", [["_dP]], { desc = "Replace selection with system clipboard content" })
+-- vim.keymap.set("x", "p", [["_dP]], { desc = "Replace selection with system clipboard content" })
 -- vim.keymap.set("n", "<leader><F2>", ":InspectTree<CR>", { desc = "Inspect Tree" })
