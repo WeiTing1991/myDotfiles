@@ -75,22 +75,14 @@ return {
       },
     },
     keys = {
-      {
-        "<leader>aa",
-        function()
-          require("sidekick.cli").toggle({ focus = true })
-        end,
-        desc = "Toggle AI CLI",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ac",
-        function()
-          require("sidekick.cli").toggle({ name = "claude", focus = true })
-        end,
-        desc = "Open Claude",
-        mode = { "n", "v" },
-      },
+      -- {
+      --   "<leader>aa",
+      --   function()
+      --     require("sidekick.cli").toggle({ focus = true })
+      --   end,
+      --   desc = "Toggle AI CLI",
+      --   mode = { "n", "v" },
+      -- },
       -- {
       --   "<leader>ap",
       --   function()

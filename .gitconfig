@@ -7,7 +7,7 @@
 
 [core]
   editor = nvim
-  pager = delta
+  pager = diff-so-fancy | less --tabs=4 -RFX
   autocrlf = true
 
 [url "git@github.com:"]
@@ -22,9 +22,40 @@
 [delta]
   side-by-side = false
   navigate = true
-  line-numbers = false
+  line-numbers = true
   dark = true
 
-[interactive]
-  diffFilter = delta --color-only
+[color]
+  ui = true
 
+; [color "diff"]
+;     meta = "yellow"
+;     frag = "cyan bold"
+;     old = "#ff7b72 reverse"          # GitHub red with reverse
+;     new = "#7ee787 reverse"           # GitHub green with reverse
+;     whitespace = "red reverse"
+;
+; [color "diff-highlight"]
+;     oldNormal = "#ff7b72 reverse"
+;     oldHighlight = "#ffc0cb 52"       # Light pink on dark red
+;     newNormal = "#7ee787 reverse"
+;     newHighlight = "#c0ffc0 22"       # Light green on dark green
+;
+; [interactive]
+;     diffFilter = diff-so-fancy --patch
+
+[color "diff"]
+    meta = "#f8f8f2"
+    frag = "#bd93f9 bold"
+    old = "#ff5555 reverse"           # Dracula red
+    new = "#50fa7b reverse"           # Dracula green
+    whitespace = "red reverse"
+
+[color "diff-highlight"]
+    oldNormal = "#ff5555 reverse"
+    oldHighlight = "#ffb86c 52"       # Orange on dark red
+    newNormal = "#50fa7b reverse"
+    newHighlight = "#8be9fd 22"       # Cyan on dark green
+
+[interactive]
+    diffFilter = diff-so-fancy --patch

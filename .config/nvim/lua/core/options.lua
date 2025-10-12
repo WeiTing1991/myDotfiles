@@ -38,6 +38,17 @@ else
   undoDir = os.getenv("HOME") .. "/.vim/undodir"
 end
 
+-- spell folder
+local spellDir = ""
+local spell_word = {}
+if is_mac then
+  spellDir = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+elseif is_windows then
+  spellDir = vim.fn.stdpath("config") .. "\\spell\\en.utf-8.add"
+else
+  spellDir = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
+end
+
 local options = {
   backspace = { "eol", "start", "indent" },
   encoding = "utf-8",
@@ -56,6 +67,10 @@ local options = {
   tabstop = 2,
   softtabstop = 2,
 
+  breakindent = true,
+  showbreak = "↳ ",
+  linebreak = true,
+
   -- whitespace
   list = true,
   listchars = { tab = "▏ ", trail = "·", lead = "·", extends = "»", precedes = "«" },
@@ -73,6 +88,17 @@ local options = {
     horizup = "┻",
     horizdown = "┳",
   },
+
+  -- search
+  ignorecase = true,
+  smartcase = true,
+  incsearch = false,
+  hlsearch = true,
+
+  -- Preview substitutions live, as you type!
+  shortmess = vim.opt.shortmess + { c = true },
+  inccommand = "split",
+  wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" },
 
   sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize",
 
@@ -101,14 +127,26 @@ local options = {
   cursorline = true,
   mouse = "a",
   showtabline = 2,
+  laststatus = 3,
   ttyfast = true,
   signcolumn = "yes:3",
   winborder = "rounded",
+
   --paste
   paste = false,
+  -- splits
+  splitbelow = true,
+  splitright = true,
 
-  -- time
-  updatetime = 150,
+  -- Decrease update time
+  updatetime = 100,
+  -- Decrease mapped sequence wait time
+  timeoutlen = 150,
+
+  -- spelling
+  spell = false,
+  spelllang = { "en_us", "en" },
+  spellfile = spellDir,
 }
 
 for k, v in pairs(options) do

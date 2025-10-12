@@ -86,6 +86,7 @@ function keymaps.on_attach(client, bufnr)
   map("gO", function()
     require("telescope.builtin").lsp_document_symbols()
   end, "Go to Symbol in File")
+
   map("gI", function()
     require("telescope.builtin").lsp_workspace_symbols()
   end, "Go to Symbol in Workspace")

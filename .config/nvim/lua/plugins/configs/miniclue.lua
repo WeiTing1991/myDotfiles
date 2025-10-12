@@ -107,8 +107,9 @@ miniclue.setup({
     { mode = "n", keys = "<leader>", desc = "leader" },
     { mode = "n", keys = "<leader>f", desc = "+find" },
     { mode = "n", keys = "<leader>g", desc = "+git" },
-    { mode = "n", keys = "<leader>t", desc = "+toggle" },
+    { mode = "n", keys = "<leader>t", desc = "+toggle/tab" },
     { mode = "n", keys = "<leader>x", desc = "+diagnostics" },
+
     { mode = "n", keys = "<S-l>", desc = "+LSP" },
     { mode = "n", keys = "<S-l>t", desc = "+typescript" },
 

@@ -7,6 +7,7 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-m>", "<C-m>", { silent = true })
+vim.keymap.set("n", "<C-/>", "<C-/>", { noremap = true })
 
 vim.keymap.set("n", "<C-q>", function()
   vim.cmd(":bw!")
@@ -24,6 +25,7 @@ vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
 -- fallback
 vim.keymap.set("n", "<leader>o", ":bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>i", ":bprevious<cr>", { desc = "Prevous buffer" })
+
 
 -- vim.keymap.set("n", "<C-M>", "<C-M>", { noremap = true })
 -- vim.keymap.set("n", "<Tab>", "za", { noremap = true })
@@ -71,11 +73,13 @@ vim.keymap.set({ "n", "t" }, "<C-S-Right>", "<C-w><", { desc = "resize -2" })
 vim.keymap.set({ "n", "t" }, "<C-S-Up>", "<C-w>+", { desc = "vertical resize -2" })
 vim.keymap.set({ "n", "t" }, "<C-S-Down>", "<C-w>-", { desc = "vertical resize -2" })
 
-vim.api.nvim_set_keymap("i", "<C-BS>", "<C-W>", { noremap = true })
+vim.keymap.set("i", "<C-BS>", "<C-W>", { noremap = true })
 
 -- tabs
--- vim.keymap.set("n", "<C-S-i>", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab" })
--- vim.keymap.set("n", "<C-S-o>", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab" })
+vim.keymap.set("n", "<leader>tk", ":tabnext<CR>", { noremap = true, silent = true, desc = "Next tab" })
+vim.keymap.set("n", "<leader>tn", ":tabnew<CR>", { noremap = true, silent = true, desc = "New tab" })
+vim.keymap.set("n", "<leader>tq", ":tabclose<CR>", { noremap = true, silent = true, desc = "Close tab" })
+vim.keymap.set("n", "<leader>tj", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab" })
 
 -- windows
 -- vim.keymap.set("n", "<C-'>", function()

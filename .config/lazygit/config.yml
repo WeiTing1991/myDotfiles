@@ -1,8 +1,9 @@
 # config.ym
 git:
   paging:
+    useconfig: false
     colorArg: always
-    pager: delta --dark --paging=never
+    pager: diff-so-fancy
 gui:
   expandFocusedSidePanel: true
-  sidePanelWidth: 0.2
+  sidePanelWidth: 0.25

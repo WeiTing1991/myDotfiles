@@ -57,3 +57,32 @@ autocmd({ "BufRead", "BufNewFile" }, {
     set.textwidth = 150
   end,
 })
+
+--[[ Markdwon ]]
+local mdgroup = vim.api.nvim_create_augroup("mdgroup", { clear = true })
+autocmd({ "BufRead", "BufNewFile" }, {
+  group = mdgroup,
+  pattern = "*.md",
+  callback = function()
+    set.shiftwidth = 2
+    set.tabstop = 2
+    set.softtabstop = 2
+    set.textwidth = 120
+    vim.opt.foldlevel = 99
+
+    set.wrap = true
+    set.spell = true
+    set.number = true
+    set.relativenumber = false
+    set.conceallevel = 0
+    require("snacks.indent").disable()
+
+    -- vim.g.markdown_fenced_languages = { "cpp", "python", "bash=sh", "javascript", "json", "yaml", "vim", "lua" }
+
+    vim.keymap.set("v", "<C-b>", 'c**<C-r>"**<Esc>', { desc = "Bold" })
+    vim.keymap.set("v", "<C-i>", 'c*<C-r>"*<Esc>', { desc = "Italic" })
+    vim.keymap.set("v", "<C-S>`", 'c`<C-r>"`<Esc>', { desc = "Inline Code" })
+    -- vim.keymap.set("v", "<leader>ms", 'c~~<C-r>"~~<Esc>', { desc = "Strikethrough" })
+    -- vim.keymap.set("v", "<leader>mc", "c```<C-r>/```<Esc>", { desc = "Strikethrough" })
+  end,
+})

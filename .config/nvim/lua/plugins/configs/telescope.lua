@@ -61,6 +61,26 @@ tele.setup({
       theme = "cursor",
       previewer = false,
     },
+    lsp_document_symbols = {
+      ignore_symbols = {
+        -- "Class",
+        -- "Function",
+        -- "Method",
+        -- "Constructor",
+        -- "Enum",
+        -- "Interface",
+        -- "Module",
+        -- "Struct",
+        -- Uncomment these if you want them:
+        "Variable",
+        "Constant",
+        "Field",
+        "Property",
+      },
+      fname_width = 30,
+      symbol_width = 35,
+      symbol_type_width = 10,
+    },
     --   find_files = {
     --     -- theme = "ivy",
     --     find_command = {
@@ -122,7 +142,7 @@ tele.setup({
     ["ui-select"] = {
       require("telescope.themes").get_cursor({
         layout_config = {
-          width = 0.65,
+          width = 0.5,
           height = 0.25,
         },
         previewer = false,
