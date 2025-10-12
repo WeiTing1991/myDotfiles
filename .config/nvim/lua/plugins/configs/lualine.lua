@@ -1,18 +1,18 @@
 -- spell statues
 local function spell_check()
   if vim.wo.spell then
-    return "  " .. vim.opt.spelllang:get()[1] .. "Spell"
+    return "󰓆 " .. vim.opt.spelllang:get()[1] .. "Spell"
   else
-    return "  "
+    return ""
   end
 end
 
 -- copilot statues
 local function copilot_status()
   if not vim.b.copilot_suggestion_auto_trigger then
-    return "   "
+    return " "
   else
-    return "   "
+    return " "
   end
 end
 
@@ -21,7 +21,7 @@ local function indent_style()
   local sytle_string = vim.opt.expandtab:get() and "space" or "tab"
   local style = vim.opt.expandtab:get() and "⇥ " or " "
   local tab_width = vim.opt.shiftwidth:get()
-  return string.format("%s %s (%d)", style, sytle_string, tab_width)
+  return string.format("%s%s(%d)", style, sytle_string, tab_width)
 end
 
 require("lualine").setup({

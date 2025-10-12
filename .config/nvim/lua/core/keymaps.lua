@@ -1,4 +1,3 @@
-
 -- Remap for dealing with word wrap and adding jumps to the jumplist.
 vim.keymap.set("n", "j", [[(v:count > 0 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 vim.keymap.set("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
@@ -9,7 +8,9 @@ vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-m>", "<C-m>", { silent = true })
 
-vim.keymap.set("n", "<C-q>", function() vim.cmd(":bw!") end, { desc = "Close current buffer and window" })
+vim.keymap.set("n", "<C-q>", function()
+  vim.cmd(":bw!")
+end, { desc = "Close current buffer and window" })
 
 -- Clear search highlights
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { desc = "Clear highlights" })
@@ -26,7 +27,6 @@ vim.keymap.set("n", "<leader>i", ":bprevious<cr>", { desc = "Prevous buffer" })
 
 -- vim.keymap.set("n", "<C-M>", "<C-M>", { noremap = true })
 -- vim.keymap.set("n", "<Tab>", "za", { noremap = true })
-
 
 -- Comment
 vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })

@@ -1,25 +1,25 @@
 return {
   -- [[ Base UI ]]
   { "nvim-lua/plenary.nvim" },
- { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
 
- {
-   "nvchad/ui",
+  {
+    "nvchad/ui",
     config = function()
-      require "nvchad"
-    end
- },
+      require("nvchad")
+    end,
+  },
 
- {
+  {
     "nvchad/base46",
     lazy = true,
     dependencies = { "nvchad/volt" },
     build = function()
       require("base46").load_all_highlights()
     end,
- },
+  },
 
-    --[[ CORE ]]
+  --[[ CORE ]]
   -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -33,29 +33,29 @@ return {
       "nvim-treesitter/nvim-treesitter-context",
     },
     config = function()
-      require "plugins.configs.treesitter"
+      require("plugins.configs.treesitter")
     end,
   },
 
   -- telescope
   {
-    'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
+    "nvim-telescope/telescope.nvim",
+    event = "VimEnter",
     dependencies = {
       {
-        "nvim-lua/plenary.nvim" ,
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
         cond = function()
-          return vim.fn.executable 'make' == 1
+          return vim.fn.executable("make") == 1
         end,
       },
       { "nvim-tree/nvim-web-devicons" },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { "nvim-telescope/telescope-ui-select.nvim" },
+      { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
     },
     config = function()
-      require "plugins.configs.telescope"
+      require("plugins.configs.telescope")
     end,
   },
 
@@ -66,7 +66,7 @@ return {
     event = "VeryLazy",
     lazy = true,
     config = function()
-      require "plugins.configs.oil"
+      require("plugins.configs.oil")
     end,
   },
   {
@@ -80,7 +80,7 @@ return {
     },
     lazy = false, -- neo-tree will lazily load itself
     config = function()
-      require "plugins.configs.neotree"
+      require("plugins.configs.neotree")
       require("lsp-file-operations").setup()
     end,
   },
@@ -91,7 +91,7 @@ return {
     lazy = true,
     event = "VeryLazy",
     config = function()
-      require "plugins.configs.miniclue"
+      require("plugins.configs.miniclue")
     end,
   },
 }

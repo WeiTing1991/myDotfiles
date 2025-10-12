@@ -19,9 +19,9 @@ M.arrows = {
 
 --- For install
 M.install = {
-  package_installed = "●",
-  package_pending = "➜",
-  package_uninstalled = "○",
+  package_installed = "● ",
+  package_pending = "➜ ",
+  package_uninstalled = "○ ",
 }
 
 --- LSP symbol kinds.
@@ -79,8 +79,8 @@ M.tree = {
       symlink = "@",
     },
     git = {
-      unstaged ="○",
-      staged ="●",
+      unstaged = "○",
+      staged = "●",
       ignored = "",
       untracked = "+",
     },

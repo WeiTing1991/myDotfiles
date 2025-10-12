@@ -21,7 +21,6 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opt = {} },
-
       -- cmp
       { "saghen/blink.cmp" },
       -- {"jay-babu/mason-nvim-dap.nvim"},
@@ -32,6 +31,7 @@ return {
       -- vim.lsp.enable("copilot")
     end,
   },
+
   --[[ AUTOCOMPLETION ]]
   {
     "saghen/blink.cmp",
@@ -42,7 +42,7 @@ return {
       {
         "L3MON4D3/LuaSnip",
         version = "2.*",
-        event = "InsertEnter",
+        event = "BufEnter",
         build = (function()
           if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
             return
@@ -51,18 +51,38 @@ return {
         end)(),
         -- dependencies = "rafamadriz/friendly-snippets",
         dependencies = {},
-      --   opts = {
-      --     history = true,
-      --     delete_check_events = "TextChanged",
-      --   },
-      --   config = function(_, opts)
-      --     require("luasnip").setup(opts)
-      --     require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
-      --   end,
+        opts = {
+          history = true,
+          delete_check_events = "TextChanged",
+        },
+        config = function(_, opts)
+          require("luasnip").setup(opts)
+          local snippet_path = vim.fn.stdpath("config") .. "/snippets"
+          require("luasnip.loaders.from_vscode").lazy_load({ paths = {
+            snippet_path,
+          }})
+          -- debug
+          -- vim.defer_fn(function()
+          --   local snips = require("luasnip").get_snippets("python")
+          --   print("Snippets loaded: " .. vim.inspect(vim.tbl_keys(snips or {})))
+          -- end, 100)
+        end,
       },
     },
     config = function()
       require("plugins.configs.blink")
+    end,
+  },
+  --[[ Formater/ Linter ]]
+  {
+    "WeiTing1991/none-ls.nvim",
+    lazy = true,
+    event = "BufEnter",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
+    config = function()
+      require("plugins.configs.nonels")
     end,
   },
 }

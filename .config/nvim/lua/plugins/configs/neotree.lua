@@ -45,7 +45,7 @@ neotree.setup({
     --   default = icon.tree.glyphs.default or "*",
     -- },
     git_status = {
-        align = "right",
+      align = "right",
       -- symbols = {
       --   added     = icon.tree.glyphs.git.added or "",
       --   modified  = icon.tree.glyphs.git.modified or "",
@@ -73,8 +73,8 @@ neotree.setup({
       ["n"] = {
         "add",
         config = {
-          show_path = "none"
-        }
+          show_path = "none",
+        },
       },
       -- ["<cr>"] = "open",
       -- ["<esc>"] = "cancel",
@@ -151,11 +151,7 @@ neotree.setup({
     group_empty_dirs = false,
     renderers = {
       file = {
-        { "indent",
-          indent_size = 1,
-          padding = 0,
-          with_markers = false,
-        },
+        { "indent", indent_size = 1, padding = 0, with_markers = false },
         { "icon" },
         { "name", use_git_status_colors = true },
         { "git_status", highlight = "NeoTreeDimText", align = "right" },
@@ -164,20 +160,20 @@ neotree.setup({
     window = {
       position = "right",
       mappings = {
-        ["A"]  = "git_add_all",
+        ["A"] = "git_add_all",
         ["gu"] = "git_unstage_file",
         ["ga"] = "git_add_file",
         ["gr"] = "git_revert_file",
         ["gc"] = "git_commit",
         ["gp"] = "git_push",
         ["gg"] = "git_commit_and_push",
-      }
-    }
+      },
+    },
   },
 })
 
 -- Highlight for git ignored files
 vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", {
   fg = "#6c7086",
-  italic = true
+  italic = true,
 })

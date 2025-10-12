@@ -9,16 +9,17 @@ require("mason").setup({
     "github:Crashdummyy/mason-registry",
   },
 })
+
 require("fidget").setup({ notification = { window = { winblend = 0 } } })
 
 local ensure_installed = {}
 local lsp_server = require("lsp.server") or {}
--- local lsp_extra = vim.tbl_values(require("lsp.formater_linter") or {})
+local lsp_extra = require("lsp.formater_linter")
 -- local debugger_server = require("lsp.debugger") or {}
 
 vim.list_extend(ensure_installed, vim.tbl_keys(lsp_server))
+vim.list_extend(ensure_installed, vim.tbl_values(lsp_extra))
 -- vim.list_extend(ensure_installed, debugger_server)
--- vim.list_extend(ensure_installed, lsp_extra)
 
 require("mason-tool-installer").setup({
   ensure_installed = ensure_installed,
@@ -66,25 +67,51 @@ for server_name, opts in pairs(lsp_server) do
   vim.lsp.config(actual_server, server_opts)
   vim.lsp.enable(actual_server)
   -- vim.notify("LSP server '" .. actual_server .. "' not found in nvim-lspconfig", vim.log.levels.WARN)
-  ::continue::
 end
 
-
 -- Setup Keymaps
--- vim.api.nvim_create_autocmd("LspAttach", {
---   group = vim.api.nvim_create_augroup("wtc/lsp_attach", { clear = true }),
---   callback = function(args)
---     local client = vim.lsp.get_client_by_id(args.data.client_id)
---     if not client then
---       return
---     end
---
---     local lsp_keymap = require("lsp.Keymaps")
---     lsp_keymap.on_attach(client, args.buf)
---   end,
--- })
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("wtc/lsp_attach", { clear = true }),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then
+      return
+    end
+
+    local lsp_keymap = require("lsp.keymaps")
+    lsp_keymap.on_attach(client, args.buf)
+  end,
+})
 
 -- Diagnostic configuration.
+local diagnostic_icons = icons.diagnostics
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = diagnostic_icons.Error,
+      [vim.diagnostic.severity.WARN] = diagnostic_icons.Warn,
+      [vim.diagnostic.severity.INFO] = diagnostic_icons.Info,
+      [vim.diagnostic.severity.HINT] = diagnostic_icons.Hint,
+    },
+    texthl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+    },
+  },
+  virtual_text = true,
+  underline = true,
+  update_in_insert = true,
+  float = false,
+})
+
 -- TODO: make a plugin
 -- Powerful diagnostic plugin:
 -- vim.opt.updatetime = 150

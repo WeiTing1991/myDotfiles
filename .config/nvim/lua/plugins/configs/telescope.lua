@@ -1,8 +1,7 @@
-local actions = require "telescope.actions"
 local tele = require("telescope")
 
 -- setup
-tele.setup {
+tele.setup({
   -- defaults = {
   --   -- vimgrep_arguments = {
   --   --   "rg",
@@ -57,49 +56,53 @@ tele.setup {
   --     },
   --   },
   -- },
-  -- pickers = {
-  --   find_files = {
-  --     -- theme = "ivy",
-  --     find_command = {
-  --       "fd",
-  --       "--strip-cwd-prefix",
-  --       "--type", "f", -- Only find files
-  --       "--hidden",
-  --       "--exclude",
-  --       ".git",
-  --       "--exclude",
-  --       ".github",
-  --       "--exclude",
-  --       "node_modules",
-  --       "--exclude",
-  --       ".venv",
-  --       "--exclude=**/.DS_Store/**",
-  --       "--exclude=.DS_Store",
-  --     },
-  --   },
-  --   grep_string = {
-  --     -- theme = "ivy",
-  --     additional_args = {
-  --       "-L",
-  --       "--hidden",
-  --       "--glob=!**/.git/*",
-  --       "--glob=!**/node_modules/*",
-  --       -- "!**/.github/*",
-  --       "--smart-case",
-  --     },
-  --   },
-  --   live_grep = {
-  --     -- theme = "ivy",
-  --     additional_args = {
-  --       "-L",
-  --       "--hidden",
-  --       "--glob=!**/.git/*",
-  --       "--glob=!**/node_modules/*",
-  --       -- "!**/.github/*",
-  --       "--smart-case",
-  --     },
-  --   },
-  -- },
+  pickers = {
+    spell_suggest = {
+      theme = "cursor",
+      previewer = false,
+    },
+    --   find_files = {
+    --     -- theme = "ivy",
+    --     find_command = {
+    --       "fd",
+    --       "--strip-cwd-prefix",
+    --       "--type", "f", -- Only find files
+    --       "--hidden",
+    --       "--exclude",
+    --       ".git",
+    --       "--exclude",
+    --       ".github",
+    --       "--exclude",
+    --       "node_modules",
+    --       "--exclude",
+    --       ".venv",
+    --       "--exclude=**/.DS_Store/**",
+    --       "--exclude=.DS_Store",
+    --     },
+    --   },
+    --   grep_string = {
+    --     -- theme = "ivy",
+    --     additional_args = {
+    --       "-L",
+    --       "--hidden",
+    --       "--glob=!**/.git/*",
+    --       "--glob=!**/node_modules/*",
+    --       -- "!**/.github/*",
+    --       "--smart-case",
+    --     },
+    --   },
+    --   live_grep = {
+    --     -- theme = "ivy",
+    --     additional_args = {
+    --       "-L",
+    --       "--hidden",
+    --       "--glob=!**/.git/*",
+    --       "--glob=!**/node_modules/*",
+    --       -- "!**/.github/*",
+    --       "--smart-case",
+    --     },
+    --   },
+  },
   extensions = {
     fzf = {
       fuzzy = true,
@@ -107,17 +110,29 @@ tele.setup {
       override_file_sorter = true,
       case_mode = "smart_case",
     },
-    -- frecency = {
-    --   show_scores = true,
-    --   db_safe_mode = false,
-    --   auto_validate = true,
-    --   db_validate_threshold = 10,
-    --   show_filter_column = false,
-    -- },
-   ["ui-select"] = {
-      require("telescope.themes").get_dropdown({ }) }
+    frecency = {
+      show_scores = false,
+      db_safe_mode = false,
+      auto_validate = true,
+      db_validate_threshold = 10,
+      show_filter_column = false,
+      show_unindexed = true,
+      default_workspace = "CWD",
+    },
+    ["ui-select"] = {
+      require("telescope.themes").get_cursor({
+        layout_config = {
+          width = 0.65,
+          height = 0.25,
+        },
+        previewer = false,
+        prompt_title = "  Select an action",
+        results_title = "",
+        sotrting_strategy = "ascending",
+      }),
+    },
   },
-}
+})
 
 pcall(tele.load_extension, "fzf")
 pcall(tele.load_extension, "frecency")

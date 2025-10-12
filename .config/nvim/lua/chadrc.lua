@@ -1,35 +1,35 @@
 local M = {}
 
 M.base46 = {
-    theme = "darcula-dark",
-    hl_add = {
-      WinSeparatorFocused = {  bold = true }, -- Bright blue for focused
-    },
-    integrations = {},
-    hl_override = { },
-    changed_themes = {},
-    transparency = true,
-    theme_toggle = { "darcula-dark", "one_light" },
+  theme = "darcula-dark",
+  hl_add = {
+    WinSeparatorFocused = { bold = true }, -- Bright blue for focused
+  },
+  integrations = {},
+  hl_override = {},
+  changed_themes = {},
+  transparency = false,
+  theme_toggle = { "darcula-dark", "one_light" },
 }
 
 M.ui = {
-    cmp = {
-      icons_left = false, -- only for non-atom styles!
-      style = "default", -- default/flat_light/flat_dark/atom/atom_colored
-      abbr_maxwidth = 60,
-      -- for tailwind, css lsp etc
-      format_colors = { lsp = true, icon = "󱓻" },
-    },
-    telescope = { style = "borderless" },
-    statusline = { enabled = false },
-    tabufline = {
-      enabled = false,
-      lazyload = true,
-      order = { "treeOffset", "buffers", "tabs", "btns" },
-      modules = nil,
-      bufwidth = 21,
-    },
-  }
+  cmp = {
+    icons_left = false, -- only for non-atom styles!
+    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    abbr_maxwidth = 60,
+    -- for tailwind, css lsp etc
+    format_colors = { lsp = true, icon = "󱓻" },
+  },
+  telescope = { style = "borderless" },
+  statusline = { enabled = false },
+  tabufline = {
+    enabled = false,
+    lazyload = true,
+    order = { "treeOffset", "buffers", "tabs", "btns" },
+    modules = nil,
+    bufwidth = 21,
+  },
+}
 
 M.nvdash = {
   load_on_startup = false,
@@ -59,10 +59,10 @@ M.cheatsheet = {
 M.mason = { pkgs = {}, skip = {} }
 
 M.colorify = {
-    enabled = true,
-    mode = "virtual", -- fg, bg, virtual
-    virt_text = "󱓻 ",
-    highlight = { hex = true, lspvars = true },
+  enabled = true,
+  mode = "virtual",
+  virt_text = "󱓻 ",
+  highlight = { hex = true, lspvars = true },
 }
 
 return M

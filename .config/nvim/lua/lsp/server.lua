@@ -31,39 +31,57 @@ M = {
     filetypes = { "bash", "sh", "zsh" },
   },
 
-  -- -- python BUG
-  -- ["pyright"] = {
-  --   settings = {
-  --     pyright = {
-  --       disableOrganizeImports = true,
-  --       venvPath = ".",
-  --       venv = ".venv",
-  --     },
-  --     python = {
-  --       analysis = {
-  --         extraPaths = {},
-  --         typeCheckingMode = "standard",
-  --         autoSearchPaths = true,
-  --         useLibraryCodeForTypes = true,
-  --         diagnosticMode = "workspace",
-  --         diagnosticSeverityOverrides = {
-  --           reportMissingImports = "information", -- Changed from "none" to "information" based on second config
-  --           -- reportMissingModuleSource = "none",
-  --           -- reportImportCycles = "none",
-  --           -- reportImportNotFound = "none",
-  --           -- reportOptionalSubscript = "none",
-  --           -- reportOptionalMemberAccess = "none",
-  --           -- reportMissingTypeStubs = false,
-  --           -- reportAttributeAccessIssue = false,
-  --           -- reportUnknownMemberType = false,
-  --           -- reportUndefinedVariable = false,
-  --           -- reportGeneralTypeIssues = false,
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
-  --
+  ["jsonls"] = {
+    filetypes = { "json", "jsonc" },
+    settings = {
+      json = {
+        validate = { enable = true },
+        schemas = require("schemastore").json.schemas(),
+      },
+    },
+  },
+
+  ["pyright"] = {
+    settings = {
+      pyright = {
+        disableOrganizeImports = true,
+        venvPath = ".",
+        venv = ".venv",
+      },
+      python = {
+        analysis = {
+          extraPaths = {},
+          typeCheckingMode = "standard",
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = "workspace",
+          autoImportCompletions = true,
+          diagnosticSeverityOverrides = {
+            -- reportMissingImports = "information",
+            -- reportMissingModuleSource = "none",
+            -- reportImportCycles = "none",
+            -- reportImportNotFound = "none",
+            -- reportOptionalSubscript = "none",
+            -- reportOptionalMemberAccess = "none",
+            -- reportMissingTypeStubs = false,
+            -- reportAttributeAccessIssue = false,
+            -- reportUnknownMemberType = false,
+            -- reportUndefinedVariable = false,
+            -- reportGeneralTypeIssues = false,
+          },
+        },
+      },
+    },
+  },
+  ["ruff"] = {
+    init_options = {
+      settings = {
+        logLevel = "debug",
+        organizeImports = true,
+      },
+    },
+  },
+
   -- -- c/c++
   -- ["clangd"] = {
   --   keys = {
@@ -91,16 +109,6 @@ M = {
   -- -- md
   -- ["marksman"] = {},
   --
-  -- -- json
-  -- ["jsonls"] = {
-  --   filetypes = { "json", "jsonc" },
-  --   settings = {
-  --     json = {
-  --       validate = { enable = true },
-  --       schemas = require("schemastore").json.schemas(),
-  --     },
-  --   },
-  -- },
   --
   -- -- yaml
   -- ["yamlls"] = {

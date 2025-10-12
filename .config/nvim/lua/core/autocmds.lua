@@ -19,13 +19,13 @@ autocmd("TextYankPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+autocmd({ "WinEnter", "BufEnter" }, {
   callback = function()
     vim.wo.winhl = "WinSeparator:WinSeparatorFocused"
   end,
 })
 
-vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+autocmd({ "WinLeave", "BufLeave" }, {
   callback = function()
     vim.wo.winhl = "WinSeparator:WinSeparator"
   end,
@@ -41,5 +41,19 @@ autocmd({ "BufRead", "BufNewFile" }, {
     set.shiftwidth = 4
     set.tabstop = 4
     set.softtabstop = 4
+  end,
+})
+
+--[[ json ]]
+local jsongroup = vim.api.nvim_create_augroup("jsongroup", { clear = true })
+autocmd({ "BufRead", "BufNewFile" }, {
+  group = jsongroup,
+  pattern = "*.json",
+  callback = function()
+    set.conceallevel = 0
+    set.shiftwidth = 2
+    set.tabstop = 2
+    set.softtabstop = 2
+    set.textwidth = 150
   end,
 })

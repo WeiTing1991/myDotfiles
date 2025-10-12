@@ -6,7 +6,6 @@ local sep = is_windows and "\\" or "/"
 local delim = is_windows and ";" or ":"
 vim.env.PATH = table.concat({ vim.fn.stdpath("data"), "mason", "bin" }, sep) .. delim .. vim.env.PATH
 
-
 local globals = {
   prev_buffer = nil,
   next_buffer = nil,
@@ -20,7 +19,7 @@ local globals = {
 
   -- disable auto format
   autoformat = false,
-  markdown_recommended_style = 0
+  markdown_recommended_style = 0,
 }
 
 for k, v in pairs(globals) do
@@ -40,15 +39,17 @@ else
 end
 
 local options = {
+  backspace = { "eol", "start", "indent" },
   encoding = "utf-8",
+  completeopt = "menu,menuone,noselect,noinsert",
 
   --number
   number = true,
   relativenumber = true,
-  numberwidth = 8,
+  numberwidth = 4,
 
   -- indention
-  autoindent = false,
+  autoindent = true,
   smartindent = false,
   expandtab = true,
   shiftwidth = 2,
@@ -65,16 +66,15 @@ local options = {
     foldsep = " ",
     diff = "╱",
     eob = " ",
-    vert = "┃",      -- Heavy vertical
+    vert = "┃", -- Heavy vertical
     vertleft = "┫",
     vertright = "┣",
-    horiz = "━",     -- Heavy horizontal
+    horiz = "━", -- Heavy horizontal
     horizup = "┻",
     horizdown = "┳",
   },
 
-
-  sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize',
+  sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize",
 
   -- Save undo history
   backup = false,
@@ -102,10 +102,13 @@ local options = {
   mouse = "a",
   showtabline = 2,
   ttyfast = true,
-  signcolumn = "yes",
+  signcolumn = "yes:3",
   winborder = "rounded",
   --paste
-  paste = false
+  paste = false,
+
+  -- time
+  updatetime = 150,
 }
 
 for k, v in pairs(options) do

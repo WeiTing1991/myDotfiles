@@ -92,21 +92,9 @@ return {
   lazy = false,
   opts = {
     dashboard = dashboard,
-    picker = {
-     enabled = false,
-     sources = {
-        explorer = {
-          layout = {
-            layout = {
-              position = "right",
-            },
-          },
-        },
-      },
-    },
-    terminal ={
+    terminal = {
       enabled = true,
-      shell = default_shell
+      shell = default_shell,
     },
     indent = {
       enabled = true,
@@ -120,23 +108,23 @@ return {
       },
     },
     statuscolumn = {
-      enabled = true,
-      left = { "mark", "sign", "git" },
-      right = { "fold" },
+      enabled = false,
+      left = { "sign", "git" },
+      right = { "mark", "fold" },
       folds = {
-        open = true,
+        open = false,
         git_hl = false,
       },
       git = {
         patterns = { "GitSign" },
       },
-      refresh = 50, -- refresh at most every 50ms
+      refresh = 50,
     },
     animate = {
       enabled = true,
     },
-    git = {enabled = false},
-    explorer = {enabled = false},
+    git = { enabled = false },
+    explorer = { enabled = false },
     bigfile = { enabled = false },
     input = { enabled = false },
     notifier = { enabled = false },
@@ -144,8 +132,20 @@ return {
     scope = { enabled = false },
     scroll = { enabled = false },
     words = { enabled = false },
+    picker = {
+      enabled = false,
+      sources = {
+        explorer = {
+          layout = {
+            layout = {
+              position = "right",
+            },
+          },
+        },
+      },
+    },
   },
   config = function(_, opts)
     require("snacks").setup(opts)
-  end
+  end,
 }

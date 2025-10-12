@@ -1,4 +1,4 @@
-local miniclue = require "mini.clue"
+local miniclue = require("mini.clue")
 
 -- Add a-z/A-Z marks.
 local function mark_clues()
@@ -53,7 +53,7 @@ local function macro_clues()
   return res
 end
 
-miniclue.setup {
+miniclue.setup({
   triggers = {
     -- Leader triggers
     { mode = "n", keys = "<leader>" },
@@ -111,7 +111,6 @@ miniclue.setup {
     { mode = "n", keys = "<leader>x", desc = "+diagnostics" },
     { mode = "n", keys = "<S-l>", desc = "+LSP" },
     { mode = "n", keys = "<S-l>t", desc = "+typescript" },
-    { mode = "n", keys = "<M-i>", desc = "+AI" },
 
     -- Customs
     mark_clues,
@@ -135,4 +134,4 @@ miniclue.setup {
       }
     end,
   },
-}
+})

@@ -20,9 +20,9 @@
   required = true
 
 [delta]
-  side-by-side = true
+  side-by-side = false
   navigate = true
-  line-numbers = true
+  line-numbers = false
   dark = true
 
 [interactive]

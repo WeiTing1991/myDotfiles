@@ -91,14 +91,14 @@ return {
         desc = "Open Claude",
         mode = { "n", "v" },
       },
-      {
-        "<leader>ap",
-        function()
-          require("sidekick.cli").prompt()
-        end,
-        desc = "Select AI Prompt",
-        mode = { "n", "v" },
-      },
+      -- {
+      --   "<leader>ap",
+      --   function()
+      --     require("sidekick.cli").prompt()
+      --   end,
+      --   desc = "Select AI Prompt",
+      --   mode = { "n", "v" },
+      -- },
     },
   },
 }

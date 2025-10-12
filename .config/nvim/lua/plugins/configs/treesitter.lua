@@ -1,4 +1,4 @@
-require "nvim-treesitter.configs".setup {
+require("nvim-treesitter.configs").setup({
   modules = {},
   ensure_installed = {
     "vim",
@@ -88,9 +88,9 @@ require "nvim-treesitter.configs".setup {
       goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
     },
   },
-}
+})
 
-require("treesitter-context").setup {
+require("treesitter-context").setup({
   enable = true,
   multiwindow = true,
   max_lines = 3,
@@ -102,7 +102,7 @@ require("treesitter-context").setup {
   separator = "-",
   zindex = 20,
   -- on_attach = nil,
-}
+})
 
 -- Set up TreesitterContext highlights
 vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "NONE", bold = true })
