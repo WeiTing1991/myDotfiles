@@ -6,17 +6,17 @@ M = {
   lua = { "stylua" },
   python = { "ruff" },
 
-  -- { "prettierd" },
   json = { "prettier" },
-  -- github = { "actionlint" },
-  -- typescript = { "biome" },
-  --
-  -- sh = { "shfmt" },
+    -- { "prettierd" },
+  github = { "actionlint" },
+  sh = { "shfmt" },
+  c = { "clang-format" },
+  cpp = { "clang-format" },
+  cmake = { "cmakelint" },
+
   -- cSharp = { "csharpier" },
-  --
-  -- c = { "clang-format" },
-  -- cpp = { "clang-format" },
-  -- cmake = { "cmakelint" },
+  -- typescript = { "biome" },
+
 
   -- linter
   -- javascript = { "eslint_d" },

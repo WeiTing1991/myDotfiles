@@ -1,4 +1,19 @@
 return {
+  -- [[Task Runner]]
+  -- TODO
+  -- {
+  --   "stevearc/overseer.nvim",
+  --   lazy = true,
+  --   enabled = false,
+  --   key = {
+  --     {
+  --       "<leader>ot",
+  --       "<cmd>OverseerToggle<cr>",
+  --       desc = "Toggle task window",
+  --     },
+  --   },
+  -- },
+
   --[[ LANGUAGE ]]
   -- Json
   {
@@ -8,32 +23,8 @@ return {
     events = "VeryLazy",
   },
 
-  -- -- ts/js
-  -- {
-  --   "JoosepAlviste/nvim-ts-context-commentstring",
-  --   lazy = true,
-  --   event = "BufReadPre",
-  --   ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
-  --   config = function()
-  --     require("ts_context_commentstring").setup({
-  --       enable_autocmd = false,
-  --     })
-  --     require("Comment").setup({
-  --       pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-  --     })
-  --   end,
-  -- },
-  --
-  -- -- C#
-  -- {
-  --   "seblyng/roslyn.nvim",
-  --   ft = "cs",
-  --   ---@module 'roslyn.config'
-  --   ---@type RoslynNvimConfig
-  --   opts = {},
-  -- },
-  --
-  -- -- c/c++
+  -- TODO: if i need it or not.
+  -- c/c++
   -- {
   --   "p00f/clangd_extensions.nvim",
   --   lazy = true,
@@ -65,6 +56,32 @@ return {
   --     },
   --   },
   -- },
+
+  -- -- ts/js
+  -- {
+  --   "JoosepAlviste/nvim-ts-context-commentstring",
+  --   lazy = true,
+  --   event = "BufReadPre",
+  --   ft = { "html", "javascript", "typescript", "javascriptreact", "typescriptreact", "svelte", "vue" },
+  --   config = function()
+  --     require("ts_context_commentstring").setup({
+  --       enable_autocmd = false,
+  --     })
+  --     require("Comment").setup({
+  --       pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+  --     })
+  --   end,
+  -- },
+  --
+  -- -- C#
+  -- {
+  --   "seblyng/roslyn.nvim",
+  --   ft = "cs",
+  --   ---@module 'roslyn.config'
+  --   ---@type RoslynNvimConfig
+  --   opts = {},
+  -- },
+  --
   -- -- {
   -- --   "pmizio/typescript-tools.nvim",
   -- --   lazy = true,
@@ -102,17 +119,4 @@ return {
   -- --   config = true,
   -- -- },
   --
-  -- -- [[Task Runner]]
-  -- -- {
-  -- --   "stevearc/overseer.nvim",
-  -- --   lazy = true,
-  -- --   enabled = false,
-  -- --   key = {
-  -- --     {
-  -- --       "<leader>ot",
-  -- --       "<cmd>OverseerToggle<cr>",
-  -- --       desc = "Toggle task window",
-  -- --     },
-  -- --   },
-  -- -- },
 }

@@ -31,6 +31,9 @@ M = {
     filetypes = { "bash", "sh", "zsh" },
   },
 
+  -- md
+  ["marksman"] = {},
+
   ["jsonls"] = {
     filetypes = { "json", "jsonc" },
     settings = {
@@ -41,6 +44,43 @@ M = {
     },
   },
 
+  -- yaml
+  ["yamlls"] = {
+    filetypes = { "yaml" },
+    settings = {
+      yaml = {
+        -- Using the schemastore plugin for schemas.
+        schemastore = { enable = false, url = "" },
+        schemas = vim.tbl_deep_extend("force", require("schemastore").yaml.schemas(), {
+          ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*.{yml,yaml}",
+          ["https://json.schemastore.org/github-action.json"] = "action.{yml,yaml}",
+        }),
+      },
+    },
+  },
+
+  -- toml
+  ["taplo"] = {
+    filetypes = { "toml" },
+    settings = {
+      taplo = {
+        configFile = { enabled = true },
+        schema = {
+          enabled = true,
+          catalogs = { "https://www.schemastore.org/api/json/catalog.json" },
+          cache = {
+            memoryExpiration = 60,
+            diskExpiration = 600,
+          },
+        },
+      },
+    },
+  },
+
+  -- docker
+  ["dockerls"] = {},
+  ["docker_compose_language_service"] = {},
+
   ["pyright"] = {
     settings = {
       pyright = {
@@ -50,12 +90,12 @@ M = {
       },
       python = {
         analysis = {
-          extraPaths = {},
+          extraPaths = { "./src", "./lib", "./backend", './venv", ".env' },
           typeCheckingMode = "standard",
           autoSearchPaths = true,
-          useLibraryCodeForTypes = true,
-          diagnosticMode = "workspace",
           autoImportCompletions = true,
+          diagnosticMode = "workspace",
+          useLibraryCodeForTypes = true,
           diagnosticSeverityOverrides = {
             -- reportMissingImports = "information",
             -- reportMissingModuleSource = "none",
@@ -82,67 +122,50 @@ M = {
     },
   },
 
-  -- -- c/c++
-  -- ["clangd"] = {
-  --   keys = {
-  --     { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
-  --   },
-  --   filetypes = { "c", "cpp" },
-  --   root_dir = require('lspconfig').util.root_pattern(
-  --       "compile_commands.json",
-  --       ".git",
-  --       "CMakeLists.txt"
-  --   ),
-  --   cmd = {
-  --     "clangd",
-  --     "--background-index",
-  --     "--clang-tidy",
-  --     "--header-insertion=never",
-  --     "--completion-style=detailed",
-  --     "--fallback-style=llvm",
-  --   },
-  -- },
-  --
-  -- -- cmake
-  -- ["cmakelang"] = {},
-  --
-  -- -- md
-  -- ["marksman"] = {},
-  --
-  --
-  -- -- yaml
-  -- ["yamlls"] = {
-  --   filetypes = { "yaml" },
-  --   settings = {
-  --     yaml = {
-  --       -- Using the schemastore plugin for schemas.
-  --       schemastore = { enable = false, url = "" },
-  --       schemas = vim.tbl_deep_extend("force", require("schemastore").yaml.schemas(), {
-  --         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*.{yml,yaml}",
-  --         ["https://json.schemastore.org/github-action.json"] = "action.{yml,yaml}",
-  --       }),
-  --     },
-  --   },
-  -- },
-  --
-  -- -- toml
-  -- ["taplo"] = {
-  --   filetypes = { "toml" },
-  --   settings = {
-  --     taplo = {
-  --       configFile = { enabled = true },
-  --       schema = {
-  --         enabled = true,
-  --         catalogs = { "https://www.schemastore.org/api/json/catalog.json" },
-  --         cache = {
-  --           memoryExpiration = 60,
-  --           diskExpiration = 600,
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
-  --
+  -- cmake
+  ["cmakelang"] = {},
+
+  -- c/c++
+  ["clangd"] = {
+    -- root_dir = require('lspconfig').util.root_pattern(
+    --     "compile_commands.json",
+    --     ".git",
+    --     "CMakeLists.txt"
+    -- ),
+    root_markers = {
+      "compile_commands.json",
+      "compile_flags.txt",
+      "configure.ac", -- AutoTools
+      "Makefile",
+      "configure.ac",
+      "configure.in",
+      "config.h.in",
+      "meson.build",
+      "meson_options.txt",
+      "build.ninja",
+      ".git",
+      "CMakeLists.txt",
+    },
+    capabilities = {
+      offsetEncoding = { "utf-16" },
+    },
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
+      "--completion-style=detailed",
+      "--function-arg-placeholders",
+      "--fallback-style=llvm",
+    },
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+      clangdFileStatus = true,
+      semanticHighlighting = true,
+    },
+  },
+
   -- -- C#
   -- ["roslyn"] = {},
   -- -- ["omnisharp"] = {
@@ -375,9 +398,6 @@ M = {
   --   filetypes = { "html", "templ" },
   -- },
   --
-  -- -- docker
-  -- ["dockerls"] = {},
-  -- ["docker_compose_language_service"] = {},
   --
   -- -- database
   -- -- ["sqls"] = {},

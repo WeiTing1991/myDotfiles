@@ -1,15 +1,15 @@
 local M = {}
 
 M.base46 = {
-  theme = "catppuccin",
+  theme = "github_dark",
   hl_add = {
     WinSeparatorFocused = { bold = true }, -- Bright blue for focused
   },
   integrations = {},
   hl_override = {},
   changed_themes = {},
-  transparency = false,
-  theme_toggle = { "catppuccin", "one_light" },
+  transparency = true,
+  theme_toggle = { "github_dark", "one_light" },
 }
 
 M.ui = {

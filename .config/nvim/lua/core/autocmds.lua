@@ -44,6 +44,22 @@ autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+--[[ C/C++ ]]
+local cppgroup = vim.api.nvim_create_augroup("cppgroup", { clear = true })
+autocmd("FileType", {
+  group = cppgroup,
+  pattern = { "cpp", "c", "h" },
+  callback = function()
+    vim.opt_local.textwidth = 100
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.shiftwidth = 2
+
+    vim.keymap.set("n", "<leader>h", "<cmd>ClangdSwitchSourceHeader<cr>", { desc = "Switch between source and header" })
+  end,
+})
+
+
 --[[ json ]]
 local jsongroup = vim.api.nvim_create_augroup("jsongroup", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
@@ -62,11 +78,11 @@ autocmd({ "BufRead", "BufNewFile" }, {
 local mdgroup = vim.api.nvim_create_augroup("mdgroup", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
   group = mdgroup,
-  pattern = "*.md",
+  pattern = { "md", "yaml", "yml", "txt" },
   callback = function()
-    set.shiftwidth = 2
-    set.tabstop = 2
-    set.softtabstop = 2
+    set.shiftwidth = 4
+    set.tabstop = 4
+    set.softtabstop = 4
     set.textwidth = 120
     vim.opt.foldlevel = 99
 
@@ -79,6 +95,8 @@ autocmd({ "BufRead", "BufNewFile" }, {
 
     -- vim.g.markdown_fenced_languages = { "cpp", "python", "bash=sh", "javascript", "json", "yaml", "vim", "lua" }
 
+    --[[ Markdown ]]
+    vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "markdown preview" })
     vim.keymap.set("v", "<C-b>", 'c**<C-r>"**<Esc>', { desc = "Bold" })
     vim.keymap.set("v", "<C-i>", 'c*<C-r>"*<Esc>', { desc = "Italic" })
     vim.keymap.set("v", "<C-S>`", 'c`<C-r>"`<Esc>', { desc = "Inline Code" })
@@ -86,3 +104,46 @@ autocmd({ "BufRead", "BufNewFile" }, {
     -- vim.keymap.set("v", "<leader>mc", "c```<C-r>/```<Esc>", { desc = "Strikethrough" })
   end,
 })
+
+-- --[[ c# ]]
+-- local cSharp = vim.api.nvim_create_augroup("cSharpgroup", { clear = true })
+-- autocmd({ "BufRead", "BufNewFile" }, {
+--   group = cSharp,
+--   pattern = "*.cs",
+--   callback = function()
+--     set.shiftwidth = 4
+--     set.tabstop = 4
+--     set.softtabstop = 4
+--     set.textwidth = 120
+--   end,
+-- })
+--
+-- --[[ ts/js ]]
+-- local ts_funcs = require("lsp.typescriptFunc")
+-- local tsgroup = vim.api.nvim_create_augroup("tsgroup", { clear = true })
+-- autocmd({ "BufRead", "BufNewFile" }, {
+--   group = tsgroup,
+--   pattern = { "*.js", "*.ts", "*.tsx", "*.jsx" },
+--   callback = function(args)
+--     set.conceallevel = 0
+--     set.shiftwidth = 2
+--     set.tabstop = 2
+--     set.softtabstop = 2
+--     set.textwidth = 120
+--
+--     local bufnr = args.buf
+--     local opts = { buffer = bufnr, noremap = true, silent = true }
+--
+--     vim.keymap.set('n', '<S-l>to', ts_funcs.ts_organize_imports, vim.tbl_extend('force', opts, { desc = "Organize Imports" }))
+--     vim.keymap.set('n', '<S-l>tu', ts_funcs.ts_remove_unused, vim.tbl_extend('force', opts, { desc = "Remove Unused" }))
+--     vim.keymap.set('n', '<S-l>ta', ts_funcs.ts_add_missing_imports, vim.tbl_extend('force', opts, { desc = "Add Missing Imports" }))
+--     vim.keymap.set('n', '<S-l>tf', ts_funcs.ts_fix_all, vim.tbl_extend('force', opts, { desc = "Fix All" }))
+--     vim.keymap.set('n', '<S-l>tr', ts_funcs.ts_remove_unused_imports, vim.tbl_extend('force', opts, { desc = "Remove Unused Imports" }))
+--     vim.keymap.set('n', '<S-l>ts', ts_funcs.ts_sort_imports, vim.tbl_extend('force', opts, { desc = "Sort Imports" }))
+--
+--     -- Add LazyVim's enhanced keymaps
+--     vim.keymap.set('n', 'gD', ts_funcs.ts_goto_source_definition, vim.tbl_extend('force', opts, { desc = "Go to Source Definition" }))
+--     vim.keymap.set('n', 'gR', ts_funcs.ts_find_file_references, vim.tbl_extend('force', opts, { desc = "Find File References" }))
+--
+--   end
+-- })

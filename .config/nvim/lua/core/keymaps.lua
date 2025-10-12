@@ -7,7 +7,7 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-m>", "<C-m>", { silent = true })
-vim.keymap.set("n", "<C-/>", "<C-/>", { noremap = true })
+-- vim.keymap.set("n", "<C-/>", "<C-/>", { noremap = true })
 
 vim.keymap.set("n", "<C-q>", function()
   vim.cmd(":bw!")
@@ -25,10 +25,6 @@ vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
 -- fallback
 vim.keymap.set("n", "<leader>o", ":bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>i", ":bprevious<cr>", { desc = "Prevous buffer" })
-
-
--- vim.keymap.set("n", "<C-M>", "<C-M>", { noremap = true })
--- vim.keymap.set("n", "<Tab>", "za", { noremap = true })
 
 -- Comment
 vim.api.nvim_set_keymap("n", "-", "gcc", { desc = "comment" })
@@ -82,13 +78,9 @@ vim.keymap.set("n", "<leader>tq", ":tabclose<CR>", { noremap = true, silent = tr
 vim.keymap.set("n", "<leader>tj", ":tabprevious<CR>", { noremap = true, silent = true, desc = "Previous tab" })
 
 -- windows
--- vim.keymap.set("n", "<C-'>", function()
---   require("custom_plugins.toggle_maximize_window").toggle_maximize_window()
--- end, { desc = "Toggle maximize buffer" })
---
--- vim.keymap.set({ "n", "v" }, "<C-'>", function()
---   require("core.toogle_max").toggle_maximize_window()
--- end, { desc = "Toggle maximize buffer" })
+vim.keymap.set({ "n", "t" }, "<C-'>", function()
+  require("core.toogle_max").toggle_maximize_window()
+end, { desc = "Toggle maximize buffer" })
 
 vim.keymap.set("n", "<C-w>'", "<C-w>v", { desc = "split vertically" })
 vim.keymap.set("n", "<C-w>5", "<C-w>s", { desc = "split horizontally" })
