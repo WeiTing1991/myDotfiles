@@ -27,9 +27,13 @@ return {
     lazy = true,
     event = "VeryLazy",
     cmd = "Trouble",
+    keys = {
+      ["j"] = "next",
+      ["k"] = "prev",
+    },
     opts = {
-      focus = true,
-      auto_preview = false, -- Disable auto-preview
+      focus = false,
+      auto_preview = true,
       preview = {
         type = "float",
         relative = "editor",

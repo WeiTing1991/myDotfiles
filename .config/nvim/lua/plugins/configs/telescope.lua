@@ -1,8 +1,9 @@
 local tele = require("telescope")
+local trobule = require("trouble.sources.telescope")
 
 -- setup
 tele.setup({
-  -- defaults = {
+  defaults = {
   --   -- vimgrep_arguments = {
   --   --   "rg",
   --   --   "-L",
@@ -30,32 +31,34 @@ tele.setup({
   --     height = 0.95,
   --     -- preview_cutoff = 50,
   --   },
-  --   mappings = {
-  --     n = {
-  --       ["<C-p>"] = actions.move_selection_previous,
-  --       ["<C-n>"] = actions.move_selection_next,
-  --       ["d"] = actions.delete_buffer,
-  --       -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-  --       ["q"] = actions.close,
-  --       ["<C-o>"] = function(prompt_bufnr)
-  --         local selection = require('telescope.actions.state').get_selected_entry()
-  --         require('telescope.actions').close(prompt_bufnr)
-  --         if selection ~= nil then
-  --           vim.cmd('vsplit ' .. selection.value) -- Opens in vertical split
-  --         end
-  --       end,
-  --     },
-  --     i = {
-  --       ["<C-o>"] = function(prompt_bufnr)
-  --         local selection = require('telescope.actions.state').get_selected_entry()
-  --         require('telescope.actions').close(prompt_bufnr)
-  --         if selection ~= nil then
-  --           vim.cmd('vsplit ' .. selection.value) -- Opens in vertical split
-  --         end
-  --       end,
-  --     },
-  --   },
-  -- },
+    mappings = {
+      n = {
+        -- ["<C-p>"] = actions.move_selection_previous,
+        -- ["<C-n>"] = actions.move_selection_next,
+        -- ["d"] = actions.delete_buffer,
+        -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-q>"] = trobule.open
+        -- ["q"] = actions.close,
+        -- ["<C-o>"] = function(prompt_bufnr)
+        --   local selection = require('telescope.actions.state').get_selected_entry()
+        --   require('telescope.actions').close(prompt_bufnr)
+        --   if selection ~= nil then
+        --     vim.cmd('vsplit ' .. selection.value) -- Opens in vertical split
+        --   end
+        -- end,
+      },
+      i = {
+        ["<C-q>"] = trobule.open
+        -- ["<C-o>"] = function(prompt_bufnr)
+        --   local selection = require('telescope.actions.state').get_selected_entry()
+        --   require('telescope.actions').close(prompt_bufnr)
+        --   if selection ~= nil then
+        --     vim.cmd('vsplit ' .. selection.value) -- Opens in vertical split
+        --   end
+        -- end,
+      },
+    },
+  },
   pickers = {
     spell_suggest = {
       theme = "cursor",

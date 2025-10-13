@@ -53,6 +53,14 @@ map("n", "<leader>xw", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnost
 map("n", "<leader>xq", "<cmd>Trouble qflist toggle <cr>", { desc = "Quickfix List " })
 map("n", "<leader>xl", "<cmd>Trouble locflist toggle <cr>", { desc = "Location List " })
 
+vim.keymap.set("n", "]t", function()
+  require("trouble").next({skip_groups = true, jump = true})
+end, { desc = "Next Trouble item" })
+
+vim.keymap.set("n", "[t", function()
+  require("trouble").prev({skip_groups = true, jump = true})
+end, { desc = "Previous Trouble item" })
+
 
 --[[ toggle ]]
 -- map("n", "<leader>tc", function()
