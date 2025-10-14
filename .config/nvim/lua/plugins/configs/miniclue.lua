@@ -71,8 +71,8 @@ miniclue.setup({
     -- { mode = "i", keys = "<C-x>" },
 
     -- Builtins
-    { mode = "n", keys = "g" },
-    { mode = "x", keys = "g" },
+    -- { mode = "n", keys = "g" },
+    -- { mode = "x", keys = "g" },
 
     -- Marks
     { mode = "n", keys = "'" },

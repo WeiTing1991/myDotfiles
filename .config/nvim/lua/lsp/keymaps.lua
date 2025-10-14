@@ -36,9 +36,10 @@ function keymaps.on_attach(client, bufnr)
   map("gi", function()
     require("telescope.builtin").lsp_implementations()
   end, "Goto Implementation")
-  map("gr", function()
-    require("telescope.builtin").lsp_references()
-  end, "Find all References")
+  -- map("gr", function()
+  --   require("telescope.builtin").lsp_references()
+  -- end, "Find all References")
+  map("gr", vim.lsp.buf.references, "Find all References")
 
   map("gh", vim.lsp.buf.declaration, "Goto header declaration")
 

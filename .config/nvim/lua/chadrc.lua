@@ -1,15 +1,15 @@
 local M = {}
 
 M.base46 = {
-  theme = "github_dark",
+  theme = "carbonfox",
   hl_add = {
     WinSeparatorFocused = { bold = true }, -- Bright blue for focused
   },
   integrations = {},
   hl_override = {},
   changed_themes = {},
-  transparency = true,
-  theme_toggle = { "github_dark", "one_light" },
+  transparency = false,
+  theme_toggle = { "carbonfox", "one_light" },
 }
 
 M.ui = {

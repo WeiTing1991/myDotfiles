@@ -108,7 +108,7 @@ return {
       },
     },
     statuscolumn = {
-      enabled = false,
+      enabled = true,
       left = { "sign", "git" },
       right = { "mark", "fold" },
       folds = {
