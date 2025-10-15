@@ -89,6 +89,7 @@ return {
     "echasnovski/mini.clue",
     version = "*",
     lazy = true,
+    enabled = false,
     event = "VeryLazy",
     config = function()
       require("plugins.configs.miniclue")

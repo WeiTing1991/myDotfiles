@@ -27,10 +27,15 @@ function keymaps.on_attach(client, bufnr)
   if client:supports_method(methods.textDocument_definition) then
     map("gd", function()
       require("telescope.builtin").lsp_definitions()
-    end, "Peek definition")
+    end, "Go to definition ", { "n", "v" })
     map("gD", function()
-      require("telescope.builtin").lsp_definitions()
-    end, "Go to definition")
+      vim.cmd("vsplit")
+      vim.cmd("wincmd l")
+      print("Calling definition...")
+      vim.lsp.buf.definition()
+      print("Definition called")
+    end, "Go to definition vsplit")
+    vim.keymap.set("n", "<leader>zz", function() print("Test works!") end)
   end
 
   map("gi", function()
@@ -40,7 +45,6 @@ function keymaps.on_attach(client, bufnr)
   --   require("telescope.builtin").lsp_references()
   -- end, "Find all References")
   map("gr", vim.lsp.buf.references, "Find all References")
-
   map("gh", vim.lsp.buf.declaration, "Goto header declaration")
 
   if client:supports_method(methods.textDocument_signatureHelp) then
@@ -55,7 +59,7 @@ function keymaps.on_attach(client, bufnr)
     end, "Signature help", "i")
   end
 
-  map( "g.", function()
+  map("g.", function()
     local actions = {
       { name = "󰌵 Code Action", action = vim.lsp.buf.code_action },
       {
@@ -91,7 +95,7 @@ function keymaps.on_attach(client, bufnr)
   map("gI", function()
     require("telescope.builtin").lsp_workspace_symbols()
   end, "Go to Symbol in Workspace")
-  map("<S-i-o>", "<cmd>Neotree document_symbols toggle<cr>",  "document symbols" )
+  map("<S-i-o>", "<cmd>Neotree document_symbols toggle<cr>", "document symbols")
 
   map("<leader>,", vim.lsp.buf.format, "formatting", { "n", "v" })
 

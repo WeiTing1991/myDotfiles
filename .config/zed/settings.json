@@ -3,7 +3,7 @@
   // Vim
   // https://zed.dev/docs/vim?highlight=vim#vim-mode
   "auto_install_extensions": {},
-  "base_keymap": "VSCode",
+  // "base_keymap": "VSCode",
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
@@ -16,6 +16,8 @@
       "visual": "hollow"
     }
   },
+  "current_line_highlight":"none",
+
   // ysiw
   "bottom_dock_layout": "full",
   "confirm_quit": false,

@@ -8,7 +8,7 @@ M.base46 = {
   integrations = {},
   hl_override = {},
   changed_themes = {},
-  transparency = false,
+  transparency = true,
   theme_toggle = { "carbonfox", "one_light" },
 }
 

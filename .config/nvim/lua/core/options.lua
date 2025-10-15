@@ -124,7 +124,7 @@ local options = {
   foldnestmax = 3,
 
   -- ui
-  cursorline = true,
+  cursorline = false,
   mouse = "a",
   showtabline = 2,
   laststatus = 3,
