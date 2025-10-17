@@ -3,5 +3,10 @@
     "query": "cmk",
     "channel": "files",
     "timestamp": 1753324752
+  },
+  {
+    "query": "telescp",
+    "channel": "files",
+    "timestamp": 1760654288
   }
 ]

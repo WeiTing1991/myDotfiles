@@ -2,14 +2,24 @@
 {
   // Vim
   // https://zed.dev/docs/vim?highlight=vim#vim-mode
+  "auto_install_extensions": {},
   "base_keymap": "VSCode",
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
     "use_smartcase_find": true,
-    "highlight_on_yank_duration": 200
+    "highlight_on_yank_duration": 200,
+    "cursor_shape": {
+      "normal": "block",
+      "insert": "bar",
+      "replace": "underline",
+      "visual": "hollow"
+    }
   },
-  "bottom_dock_layout": "contained",
+  "current_line_highlight":"none",
+
+  // ysiw
+  "bottom_dock_layout": "full",
   "confirm_quit": false,
 
   // Telemetry
@@ -19,24 +29,43 @@
   },
 
   // UI & Appearance
-  "icon_theme": "Zed (Default)",
-  "theme": "Dracula",
+  "icon_theme": {
+    "mode": "system",
+    "light": "JetBrains New UI Icons (Light)",
+    "dark": "JetBrains New UI Icons (Dark)"
+  },
+
+  "theme": "Gruvbox Light",
   "experimental.theme_overrides": {
     "version_control.added": "#27a657ff",
     "version_control.modified": "#d3b020ff",
     "version_control.deleted": "#e06c76ff"
   },
 
-  "ui_font_size": 16,
+  "buffer_font_size": 12,
+  "buffer_line_height": {"custom": 1.2},
+  "buffer_font_features": {
+    "ss01": true,
+    "ss02": true,
+    "ss03": true,
+    "ss04": true,
+    "ss05": true,
+    "ss06": true,
+    "ss07": true,
+    "ss08": true,
+    "calt": false,
+    "dlig": true
+  },
+  "buffer_font_family": "Hack Nerd Font",
+  "buffer_font_weight": 500,
+
+  "ui_font_size": 14,
   "ui_font_family": ".SystemUIFont",
   "ui_font_weight": 400,
 
-  "buffer_line_height": "standard",
-  "buffer_font_size": 16,
-  "buffer_font_family": "Iosevka Nerd Font",
-  "buffer_font_weight": 400,
-
   // Editor Settings
+  "use_auto_surround": true,
+  "hide_mouse": "on_typing",
   "relative_line_numbers": true,
   "wrap_guides": [80, 120],
   "show_whitespaces": "boundary",
@@ -78,12 +107,13 @@
     "lsp_fetch_timeout_ms": 0,
     "lsp_insert_mode": "replace_subsequence"
   },
+
   // Search Settings
   "search": {
-    "whole_word": false,
+    "whole_word": true,
     "case_sensitive": false,
     "include_ignored": false,
-    "regex": true
+    "regex": false
   },
 
   // Tab Bar & Toolbar
@@ -155,14 +185,14 @@
     "edit_prediction_provider": "zed"
   },
   "edit_predictions": {
-    "disabled_globs": [],
     "mode": "subtle",
-    "enabled_in_text_threads": true
-    // "copilot": {
-    //   "proxy": null,
-    //   "proxy_no_verify": null,
-    //   "enterprise_uri": null
-    // },
+    "disabled_globs": [],
+    "enabled_in_text_threads": false,
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null,
+      "enterprise_uri": null
+    }
   },
   "show_edit_predictions": true,
   "agent": {
@@ -213,9 +243,9 @@
 
   // Terminal
   "terminal": {
-    "font_family": "Iosevka Nerd Font",
-    "font_size": 14,
-    "font_weight": 400,
+    "font_family": "Hack Nerd Font Mono",
+    "font_size": 12,
+    "font_weight": 500,
     "line_height": "standard",
     "button": true,
     "toolbar": {
@@ -224,17 +254,16 @@
     "copy_on_select": true,
     "dock": "bottom",
     "default_width": null,
-    "default_height": 600,
+    "default_height": 500,
     "working_directory": "current_project_directory",
     "env": {
       "EDITOR": "zed -w",
       "VISUAL": "zed -w"
     },
     "blinking": "off",
-    // "alternate_scroll": "off",
-    // "option_as_meta": false,
+    "alternate_scroll": "on",
+    "option_as_meta": false,
     "shell": "system",
-    // "line_height": "standard",
     "detect_venv": {
       "on": {
         "activate_script": "default",
@@ -242,10 +271,11 @@
       }
     }
   },
+
   // Git Configuration
   "git": {
     "git_gutter": "tracked_files",
-    "gutter_debounce": 100,
+    "gutter_debounce": 50,
     "branch_picker": {
       "show_author_name": true
     },
@@ -277,9 +307,9 @@
     "CMake": ["CMakeLists.txt"],
     "Dockerfile": ["Dockerfile", "Dockerfile.*"]
   },
+
   // Default Formatter
   "formatter": "prettier",
-
   // Language Server Protocol (LSP) Settings
   "lsp": {
     "codebook": {
@@ -293,22 +323,25 @@
         "config_path": "./biome.json"
       }
     },
-    "omnisharp": {
-      "binary": {
-        "arguments": ["-lsp"]
+    // yaml
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "completion": true,
+          "schemas": { "enable": true }
+        }
       }
     },
-    // yaml
-    "yaml-language-server": {},
+
     // python
     "pyright": {
       "settings": {
-        // "pyright": {
-        //   "disableOrganizeImports": false
-        // },
+        "pyright": {
+          "disableOrganizeImports": false
+        },
         "python.analysis": {
-          "diagnosticMode": "workspace",
           "typeCheckingMode": "standard",
+          "diagnosticMode": "workspace",
           "extraPaths": ["./src", "./lib", "./backend", "./venv", "./env"],
           "stubPath": "./typings",
           "autoSearchPaths": true,
@@ -325,6 +358,7 @@
         }
       }
     },
+
     "powershel-es": {
       "binary": {
         "path": "pwsh",
@@ -354,6 +388,11 @@
         // Add clang-tidy configuration:
         // "fallbackFlags": ["-Wno-everything", "-Werror=return-type"]
       }
+    },
+    "omnisharp": {
+      "binary": {
+        "arguments": ["-lsp"]
+      }
     }
   },
   // Language-specific Settings
@@ -362,7 +401,8 @@
       "remove_trailing_whitespace_on_save": false,
       "format_on_save": "off",
       "soft_wrap": "preferred_line_length",
-      "preferred_line_length": 179
+      "preferred_line_length": 179,
+      "show_edit_predictions": true
     },
     "JSON": {
       "wrap_guides": [],
@@ -381,6 +421,39 @@
       //   },
       //   "tab_size": 2
     },
+
+    "Python": {
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ],
+      "language_servers": ["pyright", "ruff"],
+      "tab_size": 4
+    },
+    "TOML": {
+      "tab_size": 2
+    },
+    // C/C++
+    "C": {
+      "formatter": "auto",
+      "tab_size": 2
+    },
+    "C++": {
+      "formatter": "auto",
+      "tab_size": 2
+    },
+    "CSharp": {
+      "language_servers": ["omnisharp"],
+      "formatter": "language_server",
+      "tab_size": 4
+    },
+    "Lua": {},
     "JavaScript": {
       "formatter": {
         "language_server": {
@@ -407,41 +480,6 @@
       },
       "tab_size": 2,
       "language_servers": ["typescript-language-server", "!biome"]
-    },
-    "TOML": {
-      "tab_size": 2
-    },
-
-    // python
-    "Python": {
-      "code_actions_on_format": {
-        "source.organizeImports.ruff": true
-      },
-      "formatter": [
-        {
-          "language_server": {
-            "name": "ruff"
-          }
-        }
-      ],
-      "language_servers": ["pyright", "ruff"]
-      // "tab_size": 2
-    },
-
-    // C/C++
-    "C": {
-      "formatter": "auto",
-      "tab_size": 2
-    },
-    "C++": {
-      "formatter": "auto",
-      "tab_size": 2
-    },
-    "CSharp": {
-      "language_servers": ["omnisharp"],
-      "formatter": "language_server",
-      "tab_size": 4
-    },
-    "Lua": {}
+    }
   }
 }

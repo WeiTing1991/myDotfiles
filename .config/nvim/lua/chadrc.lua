@@ -1,7 +1,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "carbonfox",
+  theme = "chadracula",
   hl_add = {
     WinSeparatorFocused = { bold = true }, -- Bright blue for focused
   },
@@ -9,7 +9,7 @@ M.base46 = {
   hl_override = {},
   changed_themes = {},
   transparency = true,
-  theme_toggle = { "carbonfox", "one_light" },
+  theme_toggle = { "chadracula", "one_light" },
 }
 
 M.ui = {

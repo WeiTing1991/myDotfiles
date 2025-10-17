@@ -7,7 +7,6 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-m>", "<C-m>", { silent = true })
--- vim.keymap.set("n", "<C-/>", "<C-/>", { noremap = true })
 
 vim.keymap.set("n", "<C-q>", function()
   vim.cmd(":bw!")
@@ -20,6 +19,8 @@ vim.keymap.set("n", "<C-c>", ":noh<CR>", { desc = "Clear highlights" })
 -- switch between buffer
 vim.keymap.set("n", "<C-I>", "<C-I>", { noremap = true })
 vim.keymap.set("n", "<C-O>", "<C-O>", { noremap = true })
+vim.keymap.set("n", "<C-/>", "<C-/>", { noremap = true })
+
 vim.keymap.set("n", "<C-i>", ":bp<cr>", { desc = "Prevous buffer" })
 vim.keymap.set("n", "<C-o>", ":bn<cr>", { desc = "Next buffer" })
 -- fallback

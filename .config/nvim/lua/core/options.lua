@@ -141,7 +141,7 @@ local options = {
   -- Decrease update time
   updatetime = 100,
   -- Decrease mapped sequence wait time
-  timeoutlen = 150,
+  timeoutlen = 400,
 
   -- spelling
   spell = false,

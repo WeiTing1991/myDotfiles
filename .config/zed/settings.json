@@ -3,7 +3,7 @@
   // Vim
   // https://zed.dev/docs/vim?highlight=vim#vim-mode
   "auto_install_extensions": {},
-  // "base_keymap": "VSCode",
+  "base_keymap": "VSCode",
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
@@ -35,7 +35,7 @@
     "dark": "JetBrains New UI Icons (Dark)"
   },
 
-  "theme": "One Dark",
+  "theme": "Dracula",
   "experimental.theme_overrides": {
     "version_control.added": "#27a657ff",
     "version_control.modified": "#d3b020ff",
@@ -43,7 +43,7 @@
   },
 
   "buffer_font_size": 12,
-  "buffer_line_height": "standard",
+  "buffer_line_height": {"custom": 1.2},
   "buffer_font_features": {
     "ss01": true,
     "ss02": true,
@@ -182,7 +182,7 @@
 
   // Copilot/AI Features
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "zed"
   },
   "edit_predictions": {
     "mode": "subtle",
@@ -423,10 +423,10 @@
     },
 
     "Python": {
-      "code_actions_on_format": {
-        "source.organizeImports.ruff": true
-      },
       "formatter": [
+        {
+          "code_action": "source.organizeImports.ruff"
+        },
         {
           "language_server": {
             "name": "ruff"

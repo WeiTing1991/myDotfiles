@@ -26,16 +26,13 @@ function keymaps.on_attach(client, bufnr)
 
   if client:supports_method(methods.textDocument_definition) then
     map("gd", function()
-      require("telescope.builtin").lsp_definitions()
+      vim.lsp.buf.definition()
     end, "Go to definition ", { "n", "v" })
+
     map("gD", function()
       vim.cmd("vsplit")
-      vim.cmd("wincmd l")
-      print("Calling definition...")
       vim.lsp.buf.definition()
-      print("Definition called")
-    end, "Go to definition vsplit")
-    vim.keymap.set("n", "<leader>zz", function() print("Test works!") end)
+    end, "Go to definition with split", { "n", "v" })
   end
 
   map("gi", function()
@@ -61,15 +58,15 @@ function keymaps.on_attach(client, bufnr)
 
   map("g.", function()
     local actions = {
-      { name = "󰌵 Code Action", action = vim.lsp.buf.code_action },
+      { name = "Code action", action = vim.lsp.buf.code_action },
       {
-        name = "󰓆 Spell Suggest",
+        name = "Spell suggest",
         action = function()
           require("telescope.builtin").spell_suggest()
         end,
       },
       {
-        name = "Quick AI Action",
+        name = "Quick ai action",
         action = function()
           require("sidekick.cli").prompt()
         end,
@@ -82,7 +79,9 @@ function keymaps.on_attach(client, bufnr)
       end,
     }, function(choice)
       if choice then
-        choice.action()
+        if type(choice.action) == "function" then
+          choice.action()
+        end
       end
     end)
   end, "Code Action")

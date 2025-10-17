@@ -42,8 +42,8 @@ return {
     "nvim-telescope/telescope.nvim",
     event = "VimEnter",
     dependencies = {
+      "nvim-lua/plenary.nvim",
       {
-        "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         cond = function()
@@ -89,7 +89,6 @@ return {
     "echasnovski/mini.clue",
     version = "*",
     lazy = true,
-    enabled = false,
     event = "VeryLazy",
     config = function()
       require("plugins.configs.miniclue")

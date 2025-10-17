@@ -141,6 +141,7 @@
       "space x": "diagnostics::Deploy",
       "space l o": "outline_panel::ToggleFocus",
       "space g": "git_panel::ToggleFocus",
+      "space t t": "theme_selector::Toggle",
 
       // Git hunks navigation
       "] h": "editor::GoToHunk",

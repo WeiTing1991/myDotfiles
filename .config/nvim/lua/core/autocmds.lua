@@ -59,7 +59,6 @@ autocmd("FileType", {
   end,
 })
 
-
 --[[ json ]]
 local jsongroup = vim.api.nvim_create_augroup("jsongroup", { clear = true })
 autocmd({ "BufRead", "BufNewFile" }, {
