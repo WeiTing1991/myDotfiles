@@ -95,7 +95,7 @@ vim.keymap.set(
   { "n", "v" },
   "<leader>s",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left>]],
-  { desc = "Replace word throughout file with confirm" }
+  { desc = "Simple search and replace in buffer" }
 )
 
 -- Change root to current file dir

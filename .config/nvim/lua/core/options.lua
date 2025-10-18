@@ -129,7 +129,7 @@ local options = {
   showtabline = 2,
   laststatus = 3,
   ttyfast = true,
-  signcolumn = "yes:3",
+  signcolumn = "yes:4",
   winborder = "rounded",
 
   --paste
@@ -139,7 +139,7 @@ local options = {
   splitright = true,
 
   -- Decrease update time
-  updatetime = 100,
+  updatetime = 50,
   -- Decrease mapped sequence wait time
   timeoutlen = 400,
 

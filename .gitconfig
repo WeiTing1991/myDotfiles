@@ -1,17 +1,27 @@
 [user]
   name = WeiTing1991
-  email = WeiTing1991@users.noreply.github.com
+	email = 72130405+WeiTing1991@users.noreply.github.com
+  signingkey = ~/.ssh/id_ed25519.pub
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  allowSignWithFile = ~/.ssh/allowed_signers
 
 [init]
   defaultBranch = main
 
+[commit]
+  gpgsign = true
+
 [core]
   editor = nvim
   pager = diff-so-fancy | less --tabs=4 -RFX
-  autocrlf = true
-
-[url "git@github.com:"]
-  insteadOf = https://github.com/
+  autocrlf = input
 
 [filter "lfs"]
   clean = git-lfs clean -- %f

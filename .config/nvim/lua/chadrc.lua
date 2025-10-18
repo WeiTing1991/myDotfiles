@@ -1,15 +1,15 @@
 local M = {}
 
 M.base46 = {
-  theme = "chadracula",
+  theme = "aylin",
   hl_add = {
     WinSeparatorFocused = { bold = true }, -- Bright blue for focused
   },
   integrations = {},
   hl_override = {},
   changed_themes = {},
-  transparency = true,
-  theme_toggle = { "chadracula", "one_light" },
+  transparency = false,
+  theme_toggle = { "aylin", "one_light" },
 }
 
 M.ui = {
@@ -20,7 +20,7 @@ M.ui = {
     -- for tailwind, css lsp etc
     format_colors = { lsp = true, icon = "󱓻" },
   },
-  telescope = { style = "borderless" },
+  fzf = { style = "borderless" },
   statusline = { enabled = false },
   tabufline = {
     enabled = false,

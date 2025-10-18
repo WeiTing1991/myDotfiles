@@ -1,38 +1,32 @@
 local fzf = require("fzf-lua")
-local config = fzf.config
 local actions = fzf.actions
-
-local icons = require("icon")
 
 -- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/plugins/fzf-lua.lua
 fzf.setup({
-  -- MISC GLOBAL SETUP OPTIONS, SEE BELOW
-  -- fzf_bin = ...,
-  -- UI options
   winopts = {
-    height = 0.9,
-    width = 0.7,
-    -- row = 0.5,
-    -- col = 0.5,
+    -- walk around because the
+    height = 0.95, -- Almost fullscreen as default
+    width = 0.95,
+    row = 0.5,
+    col = 0.5,
     preview = {
       scrollbar = false,
       layout = "vertical",
-      vertical = "up:40%",
+      vertical = "up:70%",
     },
   },
-  defaults = { git_icons = false },
-  lsp = {
-    preview = true,
-  },
-  oldfiles = {
-    include_current_session = true,
-    winopts = {
-      preview = { hidden = true },
-    },
-  },
+  -- defaults = { git_icons = false },
+  -- lsp = {
+  --   preview = true,
+  -- },
+  -- oldfiles = {
+  --   include_current_session = true,
+  --   winopts = {
+  --     preview = { hidden = true },
+  --   },
+  -- },
   keymap = {
     builtin = {
-      -- neovim `:tmap` mappings for the fzf win
       -- true,        -- uncomment to inherit all the below in your custom config
       ["<M-Esc>"] = "hide", -- hide fzf-lua, `:FzfLua resume` to continue
       ["<F1>"] = "toggle-help",
@@ -64,6 +58,7 @@ fzf.setup({
       ["ctrl-a"] = "toggle-all",
       ["ctrl-g"] = "first",
       ["ctrl-G"] = "last",
+      ["ctrl-q"] = "select-all+accept",
       -- Only valid with fzf previewers (bat/cat/git/etc)
       ["f3"] = "toggle-preview-wrap",
       ["f4"] = "toggle-preview",
@@ -82,16 +77,15 @@ fzf.setup({
       -- `file_edit_or_qf` opens a single selection or sends multiple selection to quickfix
       -- replace `enter` with `file_edit` to open all files/bufs whether single or multiple
       -- replace `enter` with `file_switch_or_edit` to attempt a switch in current tab first
-      -- ["ctrl-t"] = require("trouble.sources.fzf").actions.open,
-      -- ["ctrl-t"] = actions.file_tabedit,
-      ["enter"] = actions.file_edit_or_qf,
-      ["alt-f"] = actions.file_sel_to_qf,
-      ["alt-l"] = actions.file_sel_to_ll,
-      ["ctrl-s"] = actions.file_split,
-      ["ctrl-v"] = actions.file_vsplit,
-      ["alt-i"] = actions.toggle_ignore,
-      ["alt-h"] = actions.toggle_hidden,
-      -- ["alt-f"] = actions.toggle_follow,
+      ["enter"] = FzfLua.actions.file_edit_or_qf,
+      ["ctrl-s"] = FzfLua.actions.file_split,
+      ["ctrl-v"] = FzfLua.actions.file_vsplit,
+      ["ctrl-t"] = FzfLua.actions.file_tabedit,
+      ["alt-q"] = FzfLua.actions.file_sel_to_qf,
+      ["alt-Q"] = FzfLua.actions.file_sel_to_ll,
+      ["alt-i"] = FzfLua.actions.toggle_ignore,
+      ["alt-h"] = FzfLua.actions.toggle_hidden,
+      ["alt-f"] = FzfLua.actions.toggle_follow,
     },
   }, -- Fzf "accept" binds
   fzf_opts = {
@@ -107,13 +101,17 @@ fzf.setup({
   -- SPECIFIC COMMAND/PICKER OPTIONS, SEE BELOW
   files = {
     cwd_prompt = true,
+    fzf_opts = {
+      ["--exact"] = "",
+      ["--no-sort"] = "",
+    },
     actions = {
       ["alt-i"] = { actions.toggle_ignore },
       ["alt-h"] = { actions.toggle_hidden },
     },
   },
   grep = {
-    header_prefix = icons.misc.search .. " ",
+    -- header_prefix = icons.misc.search .. " ",
     rg_glob_fn = function(query, opts)
       local regex, flags = query:match(string.format("^(.*)%s(.*)$", opts.glob_separator))
       -- Return the original query if there's no separator.
@@ -126,3 +124,13 @@ fzf.setup({
   },
 })
 
+require("fzf-lua").register_ui_select(function(_, items)
+  return {
+    winopts = {
+      height = 0.4,
+      width = 0.6,
+      row = 0.5,
+      col = 0.5,
+    },
+  }
+end)

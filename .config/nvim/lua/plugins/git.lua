@@ -10,14 +10,14 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("gitsigns").setup({
-        -- signs = {
-        --   add          = { text = '┃' },
-        --   change       = { text = '┃' },
-        --   delete       = { text = '_' },
-        --   topdelete    = { text = '‾' },
-        --   changedelete = { text = '~' },
-        --   untracked    = { text = '┆' },
-        -- },
+        signs = {
+          add          = { text = '┃ ' },
+          change       = { text = '┃ ' },
+          delete       = { text = '_ ' },
+          topdelete    = { text = '‾ ' },
+          changedelete = { text = '~ ' },
+          untracked    = { text = '┆ ' },
+        },
         -- signs_staged = {
         --   add          = { text = '┃' },
         --   change       = { text = '┃' },
@@ -26,14 +26,14 @@ return {
         --   changedelete = { text = '~' },
         --   untracked    = { text = '┆' },
         -- },
-        signs = {
-          add = { text = "+" },
-          change = { text = "~" },
-          delete = { text = "~" },
-          topdelete = { text = "‾" },
-          changedelete = { text = "│" },
-          untracked = { text = "┆" },
-        },
+        -- signs = {
+        --   add = { text = "+" },
+        --   change = { text = "+" },
+        --   delete = { text = "_" },
+        --   topdelete = { text = "‾" },
+        --   changedelete = { text = "│" },
+        --   untracked = { text = "┆" },
+        -- },
         -- sings_staged = {
         --   add = { text = "+" },
         --   change = { text = "~" },
@@ -78,6 +78,7 @@ return {
   {
     "kdheepak/lazygit.nvim",
     lazy = true,
+    event = "VeryLazy",
     cmd = {
       "LazyGit",
       "LazyGitConfig",
@@ -89,6 +90,7 @@ return {
   {
     "sindrets/diffview.nvim",
     lazy = true,
+    event = "VeryLazy",
     cmd = {
       "DiffviewOpen",
       "DiffviewClose",

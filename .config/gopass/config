@@ -1,0 +1,4 @@
+[mounts]
+	path = /Users/weitingchen/.local/share/gopass/stores/root
+[recipients]
+	hash = 74c3ea48b5253498a598482921b69536aed381146e2da4770a58166a3724a206

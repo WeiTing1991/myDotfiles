@@ -1,5 +1,4 @@
 return {
-
   -- column
   {
     "luukvbaal/statuscol.nvim",

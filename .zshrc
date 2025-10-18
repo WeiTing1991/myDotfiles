@@ -205,3 +205,4 @@ export PATH=$PATH:$HOME/go/bin
 
 export DOTNET_ROOT="/usr/local/share/dotnet/"
 export PATH="/Applications/CLion.app/Contents/MacOS:$PATH"
+

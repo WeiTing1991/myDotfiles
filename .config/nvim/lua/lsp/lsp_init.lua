@@ -69,145 +69,56 @@ for server_name, opts in pairs(lsp_server) do
   -- vim.notify("LSP server '" .. actual_server .. "' not found in nvim-lspconfig", vim.log.levels.WARN)
 end
 
+-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
+---@param client vim.lsp.Client
+---@param method vim.lsp.protocol.Method
+---@param bufnr? integer some lsp support methods only in specific files
+---@return boolean
+local function client_supports_method(client, method, bufnr)
+  if vim.fn.has("nvim-0.11") == 1 then
+    return client:supports_method(method, bufnr)
+  else
+    return client.supports_method(method, { bufnr = bufnr })
+  end
+end
+
 -- Setup Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("wtc/lsp_attach", { clear = true }),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
+  callback = function(event) -- Changed from 'args' to 'event' for consistency
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
     if not client then
       return
     end
 
     local lsp_keymap = require("lsp.keymaps")
-    lsp_keymap.on_attach(client, args.buf)
+    lsp_keymap.on_attach(client, event.buf) -- Changed args.buf to event.buf
+
+    -- Document highlight setup
+    -- if
+    --   client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
+    -- then
+    --   local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+    --   vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    --     buffer = event.buf,
+    --     group = highlight_augroup,
+    --     callback = vim.lsp.buf.document_highlight,
+    --   })
+    --   vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    --     buffer = event.buf,
+    --     group = highlight_augroup,
+    --     callback = vim.lsp.buf.clear_references,
+    --   })
+    --   vim.api.nvim_create_autocmd("LspDetach", {
+    --     group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+    --     callback = function(event2)
+    --       vim.lsp.buf.clear_references()
+    --       vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+    --     end,
+    --   })
+    -- end
   end,
 })
-
--- Diagnostic configuration.
--- Inline
--- vim.api.nvim_create_autocmd("LspAttach", {
---   group = vim.api.nvim_create_augroup("wtc/diagnostic-hover", { clear = true }),
---   callback = function(args)
---     local bufnr = args.buf
---     local diagnostic_icons = icons.diagnostics
---
---     -- Skip some buffers
---     if vim.bo[bufnr].filetype == "oil" then
---       return
---     end
---
---     -- Configure diagnostics - no virtual text by default
---     vim.diagnostic.config({
---       signs = {
---         text = {
---           [vim.diagnostic.severity.ERROR] = diagnostic_icons.Error,
---           [vim.diagnostic.severity.WARN] = diagnostic_icons.Warn,
---           [vim.diagnostic.severity.INFO] = diagnostic_icons.Info,
---           [vim.diagnostic.severity.HINT] = diagnostic_icons.Hint,
---         },
---         texthl = {
---           [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
---           [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
---           [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
---           [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
---         },
---         numhl = {
---           [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
---           [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
---           [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
---           [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
---         },
---       },
---       virtual_text = false,
---       underline = true,
---       update_in_insert = false,
---     })
---
---     -- Create namespace for our custom virtual text
---     local ns_id = vim.api.nvim_create_namespace("diagnostic_current_line")
---     local last_line = nil
---
---     -- Function to get diagnostic highlight group and icon
---     local function get_diagnostic_info(severity)
---       if severity == vim.diagnostic.severity.ERROR then
---         return "DiagnosticVirtualTextError", diagnostic_icons.Error
---       elseif severity == vim.diagnostic.severity.WARN then
---         return "DiagnosticVirtualTextWarn", diagnostic_icons.Warn
---       elseif severity == vim.diagnostic.severity.INFO then
---         return "DiagnosticVirtualTextInfo", diagnostic_icons.Info
---       elseif severity == vim.diagnostic.severity.HINT then
---         return "DiagnosticVirtualTextHint", diagnostic_icons.Hint
---       else
---         return "DiagnosticVirtualTextError", diagnostic_icons.Error
---       end
---     end
---
---     -- Function to show virtual text on current line only
---     local function update_virtual_text()
---       local curline = vim.api.nvim_win_get_cursor(0)[1]
---
---       -- Always clear previous virtual text first
---       vim.api.nvim_buf_clear_namespace(bufnr, ns_id, 0, -1)
---
---       -- Only proceed if line has changed
---       if last_line == curline then
---         return
---       end
---
---       last_line = curline
---       local diagnostics = vim.diagnostic.get(bufnr, { lnum = curline - 1 })
---
---       -- Show virtual text only for current line if it has diagnostics
---       if #diagnostics > 0 then
---         local diag = diagnostics[1] -- Show first diagnostic
---         local hl_group, icon = get_diagnostic_info(diag.severity)
---
---         vim.api.nvim_buf_set_extmark(bufnr, ns_id, curline - 1, -1, {
---           virt_text = {
---             { icon, hl_group },
---             { " " .. diag.message, hl_group },
---           },
---           virt_text_pos = "eol",
---         })
---       end
---     end
---
---     -- Function to hide virtual text
---     local function hide_virtual_text()
---       vim.api.nvim_buf_clear_namespace(bufnr, ns_id, 0, -1)
---       last_line = nil
---     end
---
---     -- Update virtual text when cursor moves
---     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
---       buffer = bufnr,
---       callback = update_virtual_text,
---     })
---
---     -- Hide virtual text when entering insert mode
---     vim.api.nvim_create_autocmd("InsertEnter", {
---       buffer = bufnr,
---       callback = hide_virtual_text,
---     })
---
---     -- Show virtual text when leaving insert mode
---     vim.api.nvim_create_autocmd("InsertLeave", {
---       buffer = bufnr,
---       callback = function()
---         vim.defer_fn(update_virtual_text, 100)
---       end,
---     })
---
---     -- Hide virtual text when buffer loses focus
---     vim.api.nvim_create_autocmd("BufLeave", {
---       buffer = bufnr,
---       callback = hide_virtual_text,
---     })
---
---     -- Initial call to show virtual text
---     vim.defer_fn(update_virtual_text, 200)
---   end,
--- })
 
 -- TODO: make a plugin
 -- Powerful diagnostic plugin:
@@ -263,6 +174,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       underline = true,
       update_in_insert = true,
       float = false,
+    })
+    vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", {
+      underline = false,
+      underdotted = true,
+      sp = "#61AFEF",
     })
     -- Create namespace for our custom virtual text
     local ns_id = vim.api.nvim_create_namespace("diagnostic_current_line")
@@ -396,7 +312,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       desc = "Show diagnostic hover",
     })
     -- Press Escape to hide float and return to normal
-    vim.keymap.set("n", "<Esc>", function() hide_diagnostic_float() end, { buffer = bufnr }) -- Initial call to show virtual text
+    vim.keymap.set("n", "<Esc>", function()
+      hide_diagnostic_float()
+    end, { buffer = bufnr }) -- Initial call to show virtual text
     vim.defer_fn(update_virtual_text, 200)
   end,
 })

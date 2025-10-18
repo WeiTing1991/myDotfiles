@@ -1,4 +1,4 @@
-# config.ym
+# config.yml
 git:
   paging:
     useconfig: false

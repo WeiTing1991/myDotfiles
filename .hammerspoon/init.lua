@@ -55,7 +55,7 @@ local function mouse_focus_cycle(app_name)
 end
 
 hs.hotkey.bind({ "cmd" }, "1", function()
-  mouse_focus("WezTerm")
+  mouse_focus("Warp")
 end)
 
 hs.hotkey.bind({ "cmd" }, "2", function()
@@ -66,16 +66,16 @@ hs.hotkey.bind({ "cmd" }, "3", function()
   mouse_focus("Obsidian")
 end)
 
-hs.hotkey.bind({ "cmd" }, "4", function()
-  mouse_focus("Claude")
-end)
+-- hs.hotkey.bind({ "cmd" }, "4", function()
+--   mouse_focus("Claude")
+-- end)
 
 hs.hotkey.bind({ "cmd" }, "6", function()
   mouse_focus_cycle("Code")
 end)
 
 hs.hotkey.bind({ "cmd" }, "7", function()
-  mouse_focus("Zed")
+  mouse_focus_cycle("Zed")
 end)
 
 -- Auto-reload config when file changes

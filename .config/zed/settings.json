@@ -305,12 +305,15 @@
     "Python": ["py", "pyx", "pyi", "pyw"],
     "C#": ["cs", "csx"],
     "CMake": ["CMakeLists.txt"],
-    "Dockerfile": ["Dockerfile", "Dockerfile.*"]
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "XML": ["xml", "xsl", "xsd", "xslt", "csproj", "props"]
   },
 
   // Default Formatter
   "formatter": "prettier",
+  //////////////////////////////////////////
   // Language Server Protocol (LSP) Settings
+  //////////////////////////////////////////
   "lsp": {
     "codebook": {
       "initialization_options": {
@@ -323,6 +326,7 @@
         "config_path": "./biome.json"
       }
     },
+
     // yaml
     "yaml-language-server": {
       "settings": {
@@ -332,7 +336,6 @@
         }
       }
     },
-
     // python
     "pyright": {
       "settings": {
@@ -359,20 +362,14 @@
       }
     },
 
-    "powershel-es": {
-      "binary": {
-        "path": "pwsh",
-        "arguments": ["-NoLogo", "-NoProfile"]
-      }
-    },
     // C++ (clangd)
     "clangd": {
       "binary": {
         "arguments": [
           // "--clang-tidy",
-          // "--background-index",
-          // "--completion-style=detailed",
-          // "--function-arg-placeholders",
+          "--background-index",
+          "--completion-style=detailed",
+          "--function-arg-placeholders"
           // "--header-insertion=iwyu",
           // "--pch-storage=memory",
           // // Add diagnostic flags here:
@@ -395,8 +392,10 @@
       }
     }
   },
+
   // Language-specific Settings
   "languages": {
+    "XML": {},
     "Markdown": {
       "remove_trailing_whitespace_on_save": false,
       "format_on_save": "off",
@@ -421,7 +420,6 @@
       //   },
       //   "tab_size": 2
     },
-
     "Python": {
       "formatter": [
         {
@@ -439,6 +437,7 @@
     "TOML": {
       "tab_size": 2
     },
+
     // C/C++
     "C": {
       "formatter": "auto",
@@ -448,12 +447,16 @@
       "formatter": "auto",
       "tab_size": 2
     },
+
+    // CSharp
     "CSharp": {
       "language_servers": ["omnisharp"],
       "formatter": "language_server",
       "tab_size": 4
     },
+
     "Lua": {},
+
     "JavaScript": {
       "formatter": {
         "language_server": {
@@ -481,5 +484,6 @@
       "tab_size": 2,
       "language_servers": ["typescript-language-server", "!biome"]
     }
+    // Add css html ...
   }
 }

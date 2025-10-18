@@ -41,6 +41,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     event = "VimEnter",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       {
@@ -56,6 +57,14 @@ return {
     },
     config = function()
       require("plugins.configs.telescope")
+    end,
+  },
+  {
+    "ibhagwan/fzf-lua",
+    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("plugins.configs.fzf")
     end,
   },
 

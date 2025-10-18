@@ -1,25 +1,27 @@
------ Pluglins keymaps -----
+----- Pluglins keymapsj-----
 local map = vim.keymap.set
-local tele_builtin = require("telescope.builtin")
+-- local tele_builtin = require("telescope.builtin")
 local snacks = require("snacks")
 local neotree = require("neo-tree.command")
+local fzf = require("fzf-lua")
 
---[[ telescope/search ]]
-map("n", "<C-f>", tele_builtin.find_files, { desc = "Find files" })
-map("n", "<leader>ff", tele_builtin.find_files, { desc = "Find files" })
-map("n", "<leader>fl", tele_builtin.live_grep, { desc = "Find live grep" })
-map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
-map("n", "<leader>fb", tele_builtin.buffers, { desc = "Find file in opened buffer" })
--- map("n", "<leader>ol", "<cmd>Telescope aerial<cr>", { desc = "Find the project outline" })
+--[[ fzf/search ]]
+map("n", "<C-f>", fzf.files, { desc = "Find files" })
+map("n", "<leader>ff", fzf.files, { desc = "Find files" })
+map("n", "<leader>fl", fzf.live_grep, { desc = "Find live grep" })
+map("n", "<leader>fg", fzf.grep_curbuf, { desc = "Grep in current buffer" })
+map("n", "<leader>fb", fzf.buffers, { desc = "Find file in opened buffer" })
+-- map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
 
 -- [[ File tree ]]
-map("n", "<leader>d", function()
-  require("oil").open()
-end, { desc = "Toggle file explorer" })
+-- map("n", "<leader>d", function()
+--   require("oil").open()
+-- end, { desc = "Toggle file explorer" })
 map("n", "<C-e>", function()
   neotree.execute({ toggle = true, dir = vim.uv.cwd() })
 end, { desc = "File tree" })
 
+-- Not working on warp terminal
 map("n", "<C-S-e>", function()
   require("sidekick.cli").toggle({ name = "claude", focus = true })
 end, { desc = "Toggle AI Chat" })
@@ -41,8 +43,24 @@ map("n", "<leader>tt", function()
   require("nvchad.themes").open()
 end, { desc = "Toggle colorscheme" })
 
+-- [[ Spell check ]]
+map("n", "<leader>tp", function()
+  vim.g.spell_enabled = not vim.g.spell_enabled
+  if vim.g.spell_enabled then
+    -- Enabled: run spell check immediately
+    local first_line = vim.fn.line("w0") - 1
+    local last_line = vim.fn.line("w$")
+    require("fastspell").sendSpellCheckRequest(first_line, last_line)
+    vim.notify("Spell check enabled", vim.log.levels.INFO)
+  else
+    -- Disabled: clear all diagnostics
+    require("fastspell").sendSpellCheckRequest(0, 0)
+    vim.notify("Spell check disabled", vim.log.levels.INFO)
+  end
+end, { desc = "Spell Ignore" })
+
 -- [[ Git ]]
-map("n", "<C-S-g>", "<cmd>Neotree git_status toggle<cr>", { desc = "Tree Git" })
+-- map("n", "<C>G", "<cmd>Neotree git_status toggle<cr>", { desc = "Tree Git" })
 map("n", "<leader>gh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
 map("n", "<leader>gb", ":Gitsign blame<CR>", { desc = "Git blame" })
 map("n", "<leader>gg", ":LazyGit<CR>", { desc = "Git blame" })
@@ -54,13 +72,12 @@ map("n", "<leader>xq", "<cmd>Trouble qflist toggle <cr>", { desc = "Quickfix Lis
 map("n", "<leader>xl", "<cmd>Trouble locflist toggle <cr>", { desc = "Location List " })
 
 vim.keymap.set("n", "]t", function()
-  require("trouble").next({skip_groups = true, jump = true})
+  require("trouble").next({ skip_groups = true, jump = true })
 end, { desc = "Next Trouble item" })
 
 vim.keymap.set("n", "[t", function()
-  require("trouble").prev({skip_groups = true, jump = true})
+  require("trouble").prev({ skip_groups = true, jump = true })
 end, { desc = "Previous Trouble item" })
-
 
 --[[ toggle ]]
 -- map("n", "<leader>tc", function()
@@ -76,7 +93,6 @@ end, { desc = "Previous Trouble item" })
 -- map("n", "<leader>ta", function()
 --   require("neogen").generate()
 -- end, { desc = "Annotation" })
-
 
 --[[ git ]]
 -- https://www.naseraleisa.com/posts/diff

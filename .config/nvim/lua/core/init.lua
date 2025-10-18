@@ -33,7 +33,7 @@ require("lazy").setup({
     { import = "plugins.lsp_enhance" },
     { import = "plugins.git" },
     { import = "plugins.ai" },
-    { import = "plugins.tool" },
+    { import = "plugins.tools" },
   },
   defaults = {
     lazy = false,

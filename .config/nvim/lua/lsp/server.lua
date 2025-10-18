@@ -46,7 +46,7 @@ M = {
 
   -- yaml
   ["yamlls"] = {
-    filetypes = { "yaml" },
+    filetypes = { "yaml", "yml" },
     settings = {
       yaml = {
         -- Using the schemastore plugin for schemas.
@@ -153,7 +153,7 @@ M = {
     cmd = {
       "clangd",
       "--background-index",
-      "--clang-tidy",
+      -- "--clang-tidy",
       "--header-insertion=iwyu",
       "--completion-style=detailed",
       "--function-arg-placeholders",
@@ -167,8 +167,8 @@ M = {
     },
   },
 
-  -- -- C#
-  -- ["roslyn"] = {},
+  -- C#
+  ["roslyn"] = {},
   -- -- ["omnisharp"] = {
   -- --   handlers = {
   -- --     ["textDocument/definition"] = require("omnisharp_extended").handler,

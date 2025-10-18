@@ -15,16 +15,22 @@ local font_size
 local default_font
 if is_windows then
   default_prog = { "pwsh.exe" }
-  font_size = 12.0
+  font_size = 10.0
   -- default_font = wezterm.font("Consolas")
-  -- default_font = wezterm.font("Iosevka NF")
   -- default_font = wezterm.font("ZenMono Nerd Font")
-  default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
+  -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
+  default_font = wezterm.font_with_fallback({
+    family = "Iosevka NF",
+    harfbuzz_features = { "calt=0" },
+  })
 elseif is_macos then
   default_prog = { "/bin/zsh" }
-  font_size = 16.0
-  -- default_font = wezterm.font("Iosevka Nerd Font")
-  default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
+  font_size = 10.0
+  default_font = wezterm.font_with_fallback({
+    family = "Iosevka Nerd Font",
+    harfbuzz_features = { "calt=0" },
+  })
+  -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
 end
 
 config = {

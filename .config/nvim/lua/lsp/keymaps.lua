@@ -9,6 +9,14 @@ vim.lsp.buf.hover = function()
   })
 end
 
+local function client_supports_method(client, method, bufnr)
+  if vim.fn.has("nvim-0.11") == 1 then
+    return client:supports_method(method, bufnr)
+  else
+    return client.supports_method(method, { bufnr = bufnr })
+  end
+end
+
 function keymaps.on_attach(client, bufnr)
   ---@param keys string
   ---@param func string|function
@@ -36,12 +44,13 @@ function keymaps.on_attach(client, bufnr)
   end
 
   map("gi", function()
-    require("telescope.builtin").lsp_implementations()
+    vim.lsp.buf.implementation()
   end, "Goto Implementation")
-  -- map("gr", function()
-  --   require("telescope.builtin").lsp_references()
-  -- end, "Find all References")
   map("gr", vim.lsp.buf.references, "Find all References")
+  map("gR", function()
+    require("fzf-lua").lsp_references()
+  end, "Find all References")
+
   map("gh", vim.lsp.buf.declaration, "Goto header declaration")
 
   if client:supports_method(methods.textDocument_signatureHelp) then
@@ -58,11 +67,11 @@ function keymaps.on_attach(client, bufnr)
 
   map("g.", function()
     local actions = {
-      { name = "Code action", action = vim.lsp.buf.code_action },
+      { name = "Code action", action = require("fzf-lua").lsp_code_actions },
       {
         name = "Spell suggest",
         action = function()
-          require("telescope.builtin").spell_suggest()
+          require("fzf-lua").spell_suggest()
         end,
       },
       {
@@ -72,15 +81,21 @@ function keymaps.on_attach(client, bufnr)
         end,
       },
     }
-    vim.ui.select(actions, {
-      prompt = "Quick Actions:",
-      format_item = function(item)
-        return item.name
-      end,
+
+    local names = {}
+    for _, item in ipairs(actions) do
+      table.insert(names, item.name)
+    end
+
+    vim.ui.select(names, {
+      prompt = "Quick Actions> ",
     }, function(choice)
       if choice then
-        if type(choice.action) == "function" then
-          choice.action()
+        for _, item in ipairs(actions) do
+          if item.name == choice then
+            item.action()
+            break
+          end
         end
       end
     end)
@@ -88,15 +103,21 @@ function keymaps.on_attach(client, bufnr)
 
   map("<F2>", vim.lsp.buf.rename, "Rename in buf")
   map("gO", function()
-    require("telescope.builtin").lsp_document_symbols()
+    require("fzf-lua").lsp_document_symbols()
   end, "Go to Symbol in File")
-
-  map("gI", function()
-    require("telescope.builtin").lsp_workspace_symbols()
+  map("gW", function()
+    require("fzf-lua").lsp_workspace_symbols()
   end, "Go to Symbol in Workspace")
-  map("<S-i-o>", "<cmd>Neotree document_symbols toggle<cr>", "document symbols")
+  -- map("<S-i-o>", "<cmd>Neotree document_symbols toggle<cr>", "document symbols")
 
   map("<leader>,", vim.lsp.buf.format, "formatting", { "n", "v" })
+
+  -- Inlay hints toggle
+  if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, bufnr) then
+    map('<leader>th', function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr })
+    end, 'Toggle Inlay Hints')
+  end
 
   -- Add "Fix all" command for ESLint.
   -- if client.name == 'eslint' then
