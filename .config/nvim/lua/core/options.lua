@@ -20,6 +20,7 @@ local globals = {
   -- disable auto format
   autoformat = false,
   markdown_recommended_style = 0,
+  editorconfig = true,
 }
 
 for k, v in pairs(globals) do

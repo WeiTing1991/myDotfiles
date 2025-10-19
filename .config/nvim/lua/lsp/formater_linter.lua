@@ -7,16 +7,14 @@ M = {
   python = { "ruff" },
 
   json = { "prettier" },
-    -- { "prettierd" },
+  -- { "prettierd" },
   github = { "actionlint" },
   sh = { "shfmt" },
   c = { "clang-format" },
   cpp = { "clang-format" },
-  cmake = { "cmakelint" },
 
-  -- cSharp = { "csharpier" },
+  cSharp = { "csharpier" },
   -- typescript = { "biome" },
-
 
   -- linter
   -- javascript = { "eslint_d" },

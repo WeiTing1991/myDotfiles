@@ -123,6 +123,7 @@ return {
     animate = {
       enabled = true,
     },
+    -- disable modules
     git = { enabled = false },
     explorer = { enabled = false },
     bigfile = { enabled = false },

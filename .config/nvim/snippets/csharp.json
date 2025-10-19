@@ -1,0 +1,631 @@
+{
+  "Main() template": {
+    "prefix": "main",
+    "body": [
+      "using System;",
+      "",
+      "class Program",
+      "{",
+      "    static void Main(string[] args)",
+      "    {",
+      "        ${0:// code here}",
+      "    }",
+      "}"
+    ],
+    "description": "Standard Main() method template"
+  },
+
+  "Top-level statements": {
+    "prefix": "toplevel",
+    "body": [
+      "using System;",
+      "",
+      "${0:// code here}"
+    ],
+    "description": "Top-level statements (C# 9+)"
+  },
+
+  "Class template": {
+    "prefix": "class",
+    "body": [
+      "public class ${1:ClassName}",
+      "{",
+      "    public ${1}(${2:})",
+      "    {",
+      "        ${3:// constructor}",
+      "    }",
+      "    ",
+      "    ${0:// members}",
+      "}"
+    ],
+    "description": "Basic class template"
+  },
+
+  "Class with properties": {
+    "prefix": "classp",
+    "body": [
+      "public class ${1:ClassName}",
+      "{",
+      "    public ${2:string} ${3:PropertyName} { get; set; }",
+      "    ",
+      "    public ${1}(${4:})",
+      "    {",
+      "        ${0:// constructor}",
+      "    }",
+      "}"
+    ],
+    "description": "Class with auto-properties"
+  },
+
+  "Record class": {
+    "prefix": "record",
+    "body": [
+      "public record ${1:RecordName}(${2:string Property1}${3:, ${4:int} ${5:Property2}});${0}"
+    ],
+    "description": "Record class (C# 9+)"
+  },
+
+  "Struct template": {
+    "prefix": "struct",
+    "body": [
+      "public struct ${1:StructName}",
+      "{",
+      "    public ${2:int} ${3:Field};",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Struct template"
+  },
+
+  "Interface": {
+    "prefix": "interface",
+    "body": [
+      "public interface ${1:IInterfaceName}",
+      "{",
+      "    ${2:void} ${3:MethodName}(${4:});",
+      "    ${0}",
+      "}"
+    ],
+    "description": "Interface template"
+  },
+
+  "Namespace": {
+    "prefix": "namespace",
+    "body": [
+      "namespace ${1:MyNamespace}",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "Namespace template"
+  },
+
+  "File-scoped namespace": {
+    "prefix": "namespacef",
+    "body": [
+      "namespace ${1:MyNamespace};",
+      "",
+      "${0:// code here}"
+    ],
+    "description": "File-scoped namespace (C# 10+)"
+  },
+
+  "Method template": {
+    "prefix": "method",
+    "body": [
+      "public ${1:void} ${2:MethodName}(${3:})",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "Method template"
+  },
+
+  "Async method": {
+    "prefix": "async",
+    "body": [
+      "public async Task${1:<${2:T}>} ${3:MethodName}(${4:})",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "Async method template"
+  },
+
+  "Generic method": {
+    "prefix": "gmethod",
+    "body": [
+      "public ${1:T} ${2:MethodName}<${1:T}>(${3:${1} value})",
+      "{",
+      "    ${0:return value;}",
+      "}"
+    ],
+    "description": "Generic method"
+  },
+
+  "Generic class": {
+    "prefix": "gclass",
+    "body": [
+      "public class ${1:ClassName}<${2:T}>",
+      "{",
+      "    private ${2} ${3:data};",
+      "    ",
+      "    public ${1}(${2} ${3})",
+      "    {",
+      "        this.${3} = ${3};",
+      "    }",
+      "    ",
+      "    ${0:// members}",
+      "}"
+    ],
+    "description": "Generic class template"
+  },
+
+  "For loop": {
+    "prefix": "for",
+    "body": [
+      "for (int ${1:i} = 0; ${1} < ${2:count}; ${1}++)",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "For loop"
+  },
+
+  "Foreach loop": {
+    "prefix": "foreach",
+    "body": [
+      "foreach (${1:var} ${2:item} in ${3:collection})",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "Foreach loop"
+  },
+
+  "While loop": {
+    "prefix": "while",
+    "body": [
+      "while (${1:condition})",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "While loop"
+  },
+
+  "Do-while loop": {
+    "prefix": "do",
+    "body": [
+      "do",
+      "{",
+      "    ${0:// code here}",
+      "} while (${1:condition});"
+    ],
+    "description": "Do-while loop"
+  },
+
+  "If statement": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition})",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "If statement"
+  },
+
+  "If-else statement": {
+    "prefix": "ife",
+    "body": [
+      "if (${1:condition})",
+      "{",
+      "    ${2:// code here}",
+      "}",
+      "else",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+
+  "Switch statement": {
+    "prefix": "switch",
+    "body": [
+      "switch (${1:variable})",
+      "{",
+      "    case ${2:value}:",
+      "        ${3:// code here}",
+      "        break;",
+      "    default:",
+      "        ${0:// code here}",
+      "        break;",
+      "}"
+    ],
+    "description": "Switch statement"
+  },
+
+  "Switch expression": {
+    "prefix": "switche",
+    "body": [
+      "${1:var} ${2:result} = ${3:variable} switch",
+      "{",
+      "    ${4:value1} => ${5:result1},",
+      "    ${6:value2} => ${7:result2},",
+      "    _ => ${0:defaultResult}",
+      "};"
+    ],
+    "description": "Switch expression (C# 8+)"
+  },
+
+  "Try-catch": {
+    "prefix": "try",
+    "body": [
+      "try",
+      "{",
+      "    ${1:// code here}",
+      "}",
+      "catch (${2:Exception} ${3:ex})",
+      "{",
+      "    ${0:// handle exception}",
+      "}"
+    ],
+    "description": "Try-catch block"
+  },
+
+  "Try-catch-finally": {
+    "prefix": "tryf",
+    "body": [
+      "try",
+      "{",
+      "    ${1:// code here}",
+      "}",
+      "catch (${2:Exception} ${3:ex})",
+      "{",
+      "    ${4:// handle exception}",
+      "}",
+      "finally",
+      "{",
+      "    ${0:// cleanup}",
+      "}"
+    ],
+    "description": "Try-catch-finally block"
+  },
+
+  "Using statement": {
+    "prefix": "using",
+    "body": [
+      "using (${1:var} ${2:resource} = ${3:new Resource()})",
+      "{",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "Using statement for IDisposable"
+  },
+
+  "Using declaration": {
+    "prefix": "usingd",
+    "body": [
+      "using ${1:var} ${2:resource} = ${3:new Resource()};",
+      "${0:// code here}"
+    ],
+    "description": "Using declaration (C# 8+)"
+  },
+
+  "Property with backing field": {
+    "prefix": "propf",
+    "body": [
+      "private ${1:int} ${2:_field};",
+      "public ${1} ${3:Property}",
+      "{",
+      "    get { return ${2}; }",
+      "    set { ${2} = value; }",
+      "}${0}"
+    ],
+    "description": "Property with backing field"
+  },
+
+  "Auto-property": {
+    "prefix": "prop",
+    "body": [
+      "public ${1:int} ${2:PropertyName} { get; set; }${0}"
+    ],
+    "description": "Auto-implemented property"
+  },
+
+  "Read-only property": {
+    "prefix": "propr",
+    "body": [
+      "public ${1:int} ${2:PropertyName} { get; }${0}"
+    ],
+    "description": "Read-only auto-property"
+  },
+
+  "Init-only property": {
+    "prefix": "propi",
+    "body": [
+      "public ${1:string} ${2:PropertyName} { get; init; }${0}"
+    ],
+    "description": "Init-only property (C# 9+)"
+  },
+
+  "List": {
+    "prefix": "list",
+    "body": [
+      "var ${1:list} = new List<${2:int}>${3: { ${4:} }};${0}"
+    ],
+    "description": "Create List"
+  },
+
+  "Dictionary": {
+    "prefix": "dict",
+    "body": [
+      "var ${1:dict} = new Dictionary<${2:string}, ${3:int}>();${0}"
+    ],
+    "description": "Create Dictionary"
+  },
+
+  "Array": {
+    "prefix": "array",
+    "body": [
+      "${1:int}[] ${2:array} = new ${1}[${3:size}];${0}"
+    ],
+    "description": "Create array"
+  },
+
+  "Lambda expression": {
+    "prefix": "lambda",
+    "body": [
+      "(${1:x}) => ${0:x * 2}"
+    ],
+    "description": "Lambda expression"
+  },
+
+  "Action delegate": {
+    "prefix": "action",
+    "body": [
+      "Action${1:<${2:int}>} ${3:action} = (${4:x}) => ${0:Console.WriteLine(${4})};"
+    ],
+    "description": "Action delegate"
+  },
+
+  "Func delegate": {
+    "prefix": "func",
+    "body": [
+      "Func<${1:int}, ${2:int}> ${3:func} = (${4:x}) => ${0:${4} * 2};"
+    ],
+    "description": "Func delegate"
+  },
+
+  "LINQ query": {
+    "prefix": "linq",
+    "body": [
+      "var ${1:result} = from ${2:item} in ${3:collection}",
+      "              ${4:where ${2}.${5:Property} ${6:> 0}}",
+      "              select ${0:${2}};"
+    ],
+    "description": "LINQ query syntax"
+  },
+
+  "LINQ method": {
+    "prefix": "linqm",
+    "body": [
+      "var ${1:result} = ${2:collection}",
+      "    .Where(${3:x} => ${4:${3}.Property > 0})",
+      "    .Select(${3} => ${0:${3}});"
+    ],
+    "description": "LINQ method syntax"
+  },
+
+  "Console.WriteLine": {
+    "prefix": "cw",
+    "body": [
+      "Console.WriteLine(${1:\"text\"});${0}"
+    ],
+    "description": "Console output"
+  },
+
+  "Console.ReadLine": {
+    "prefix": "cr",
+    "body": [
+      "var ${1:input} = Console.ReadLine();${0}"
+    ],
+    "description": "Console input"
+  },
+
+  "String interpolation": {
+    "prefix": "inter",
+    "body": [
+      "$\"${1:text} {${2:variable}}\"${0}"
+    ],
+    "description": "String interpolation"
+  },
+
+  "Enum": {
+    "prefix": "enum",
+    "body": [
+      "public enum ${1:EnumName}",
+      "{",
+      "    ${2:Value1},",
+      "    ${3:Value2}${0}",
+      "}"
+    ],
+    "description": "Enum declaration"
+  },
+
+  "Constructor": {
+    "prefix": "ctor",
+    "body": [
+      "public ${1:ClassName}(${2:})",
+      "{",
+      "    ${0:// constructor body}",
+      "}"
+    ],
+    "description": "Constructor"
+  },
+
+  "Static constructor": {
+    "prefix": "sctor",
+    "body": [
+      "static ${1:ClassName}()",
+      "{",
+      "    ${0:// static constructor}",
+      "}"
+    ],
+    "description": "Static constructor"
+  },
+
+  "Event": {
+    "prefix": "event",
+    "body": [
+      "public event EventHandler${1:<${2:EventArgs}>} ${3:EventName};${0}"
+    ],
+    "description": "Event declaration"
+  },
+
+  "Indexer": {
+    "prefix": "indexer",
+    "body": [
+      "public ${1:int} this[${2:int} ${3:index}]",
+      "{",
+      "    get { ${4:return ${5:_data}[${3}];} }",
+      "    set { ${0:${5}[${3}] = value;} }",
+      "}"
+    ],
+    "description": "Indexer property"
+  },
+
+  "Nullable reference": {
+    "prefix": "nullable",
+    "body": [
+      "${1:string}? ${2:variable} = ${0:null};"
+    ],
+    "description": "Nullable reference type (C# 8+)"
+  },
+
+  "Null-coalescing": {
+    "prefix": "nullc",
+    "body": [
+      "${1:variable} ?? ${0:defaultValue}"
+    ],
+    "description": "Null-coalescing operator"
+  },
+
+  "Pattern matching": {
+    "prefix": "pattern",
+    "body": [
+      "if (${1:obj} is ${2:Type} ${3:variable})",
+      "{",
+      "    ${0:// use ${3}}",
+      "}"
+    ],
+    "description": "Pattern matching with is"
+  },
+
+  "File read all lines": {
+    "prefix": "fileread",
+    "body": [
+      "var ${1:lines} = File.ReadAllLines(${2:\"file.txt\"});",
+      "foreach (var ${3:line} in ${1})",
+      "{",
+      "    ${0:// process line}",
+      "}"
+    ],
+    "description": "Read all lines from file"
+  },
+
+  "File write all lines": {
+    "prefix": "filewrite",
+    "body": [
+      "File.WriteAllLines(${1:\"file.txt\"}, ${2:lines});${0}"
+    ],
+    "description": "Write all lines to file"
+  },
+
+  "StreamReader": {
+    "prefix": "streamr",
+    "body": [
+      "using var ${1:reader} = new StreamReader(${2:\"file.txt\"});",
+      "while (!${1}.EndOfStream)",
+      "{",
+      "    var ${3:line} = ${1}.ReadLine();",
+      "    ${0:// process line}",
+      "}"
+    ],
+    "description": "StreamReader for file reading"
+  },
+
+  "StreamWriter": {
+    "prefix": "streamw",
+    "body": [
+      "using var ${1:writer} = new StreamWriter(${2:\"file.txt\"});",
+      "${1}.WriteLine(${3:\"text\"});",
+      "${0}"
+    ],
+    "description": "StreamWriter for file writing"
+  },
+
+  "Task.Run": {
+    "prefix": "taskrun",
+    "body": [
+      "await Task.Run(() =>",
+      "{",
+      "    ${0:// async work}",
+      "});"
+    ],
+    "description": "Run task asynchronously"
+  },
+
+  "ConfigureAwait": {
+    "prefix": "await",
+    "body": [
+      "await ${1:task}.ConfigureAwait(${2:false});${0}"
+    ],
+    "description": "Await with ConfigureAwait"
+  },
+
+  "Region": {
+    "prefix": "region",
+    "body": [
+      "#region ${1:RegionName}",
+      "${0:// code here}",
+      "#endregion"
+    ],
+    "description": "Code region"
+  },
+
+  "Test method (xUnit)": {
+    "prefix": "test",
+    "body": [
+      "[Fact]",
+      "public void ${1:TestMethodName}()",
+      "{",
+      "    // Arrange",
+      "    ${2:// setup}",
+      "    ",
+      "    // Act",
+      "    ${3:// execute}",
+      "    ",
+      "    // Assert",
+      "    ${0:// verify}",
+      "}"
+    ],
+    "description": "xUnit test method"
+  },
+
+  "Test method with parameters": {
+    "prefix": "testp",
+    "body": [
+      "[Theory]",
+      "[InlineData(${1:value1})]",
+      "[InlineData(${2:value2})]",
+      "public void ${3:TestMethodName}(${4:int} ${5:parameter})",
+      "{",
+      "    ${0:// test code}",
+      "}"
+    ],
+    "description": "xUnit parameterized test"
+  }
+}

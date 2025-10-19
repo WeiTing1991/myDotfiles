@@ -118,19 +118,19 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- --[[ c# ]]
--- local cSharp = vim.api.nvim_create_augroup("cSharpgroup", { clear = true })
--- autocmd({ "BufRead", "BufNewFile" }, {
---   group = cSharp,
---   pattern = "*.cs",
---   callback = function()
---     set.shiftwidth = 4
---     set.tabstop = 4
---     set.softtabstop = 4
---     set.textwidth = 120
---   end,
--- })
---
+--[[ c# ]]
+local cSharp = vim.api.nvim_create_augroup("cSharpgroup", { clear = true })
+autocmd({ "BufRead", "BufNewFile" }, {
+  group = cSharp,
+  pattern = "*.cs",
+  callback = function()
+    set.shiftwidth = 4
+    set.tabstop = 4
+    set.softtabstop = 4
+    set.textwidth = 120
+  end,
+})
+
 -- --[[ ts/js ]]
 -- local ts_funcs = require("lsp.typescriptFunc")
 -- local tsgroup = vim.api.nvim_create_augroup("tsgroup", { clear = true })

@@ -37,20 +37,9 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
--- local server_name_map = {
---   -- roslyn = "roslyn_ls",
---   -- cmakelang = "cmake",
---   -- Add more mappings if needed
--- }
-
 for server_name, opts in pairs(lsp_server) do
   -- local actual_server = server_name_map[server_name] or server_name
   local actual_server = server_name
-
-  -- if actual_server == "roslyn_ls" then
-  --   vim.lsp.enable("roslyn_ls")
-  --   goto continue
-  -- end
 
   -- if actual_server == "jdtls" or actual_server == "ts_ls" then
   --   goto continue

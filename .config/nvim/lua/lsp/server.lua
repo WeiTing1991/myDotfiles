@@ -27,13 +27,15 @@ M = {
     },
   },
 
+  -- shell
   ["bashls"] = {
     filetypes = { "bash", "sh", "zsh" },
   },
 
-  -- md
+  -- markdown
   ["marksman"] = {},
 
+  -- json
   ["jsonls"] = {
     filetypes = { "json", "jsonc" },
     settings = {
@@ -81,6 +83,7 @@ M = {
   ["dockerls"] = {},
   ["docker_compose_language_service"] = {},
 
+  -- python
   ["pyright"] = {
     settings = {
       pyright = {
@@ -96,7 +99,7 @@ M = {
           autoImportCompletions = true,
           diagnosticMode = "workspace",
           useLibraryCodeForTypes = true,
-          preferredExecutables = {},  -- This can help with definition resolution
+          preferredExecutables = {}, -- This can help with definition resolution
           diagnosticSeverityOverrides = {
             -- reportMissingImports = "information",
             -- reportMissingModuleSource = "none",
@@ -124,7 +127,28 @@ M = {
   },
 
   -- cmake
-  ["cmakelang"] = {},
+  ["neocmakelsp"] = {
+    cmd = { "neocmakelsp", "--stdio" },
+    filetypes = { "cmake" },
+    single_file_support = true,
+    init_options = {
+      format = {
+        enable = true,
+      },
+      lint = {
+        enable = true,
+      },
+      scan_cmake_in_package = false,
+      semantic_token = false,
+    },
+    settings = {
+      neocmakelsp = {
+        lint = {
+          lineLength = 120,
+        },
+      },
+    },
+  },
 
   -- c/c++
   ["clangd"] = {
@@ -168,41 +192,25 @@ M = {
   },
 
   -- C#
-  ["roslyn"] = {},
-  -- -- ["omnisharp"] = {
-  -- --   handlers = {
-  -- --     ["textDocument/definition"] = require("omnisharp_extended").handler,
-  -- --   },
-  -- --   cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-  -- --   enable_roslyn_analyzers = true,
-  -- --   organize_imports_on_format = true,
-  -- --   enable_import_completion = true,
-  -- --   -- enable_decompilation_support = true,
-  -- --   filetypes = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets", "tproj", "slngen", "fproj" },
-  -- --   root_dir = function(fname)
-  -- --     return require'lspconfig'.util.root_pattern('*.sln', '*.csproj', 'omnisharp.json')(fname)
-  -- --       or require'lspconfig'.util.path.dirname(fname)
-  -- --   end,
-  -- --   settings = {
-  -- --     FormattingOptions = {
-  -- --       EnableEditorConfigSupport = true,
-  -- --       OrganizeImports = true,
-  -- --     },
-  -- --     -- MsBuild = {
-  -- --     --   LoadProjectsOnDemand = false,
-  -- --     --   EnablePackageAutoRestore = true,
-  -- --     -- },
-  -- --     RoslynExtensionsOptions = {
-  -- --       EnableAnalyzersSupport = false,
-  -- --       EnableImportCompletion = true,
-  -- --       AnalyzeOpenDocumentsOnly = false,
-  -- --     },
-  -- --     Sdk = {
-  -- --       IncludePrereleases = true,
-  -- --     },
-  -- --   },
-  -- -- },
-  --
+  ["roslyn"] = {
+    on_attach = function()
+      print("Roslyn LSP attached")
+    end,
+    settings = {
+      ["csharp|inlay_hints"] = {
+        csharp_enable_inlay_hints_for_implicit_object_creation = true,
+        csharp_enable_inlay_hints_for_implicit_variable_types = true,
+      },
+      ["csharp|code_lens"] = {
+        dotnet_enable_references_code_lens = true,
+      },
+      ["csharp|formating"] = {
+        dotnet_organize_imports_on_format = true,
+      },
+    },
+  },
+
+  --TODO:
   -- -- js/ts/css/html
   -- -- ["ts_ls"] = {
   -- --   settings = {

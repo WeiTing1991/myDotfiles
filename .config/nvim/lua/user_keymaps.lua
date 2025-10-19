@@ -14,9 +14,9 @@ map("n", "<leader>fb", fzf.buffers, { desc = "Find file in opened buffer" })
 -- map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
 
 -- [[ File tree ]]
--- map("n", "<leader>d", function()
---   require("oil").open()
--- end, { desc = "Toggle file explorer" })
+map("n", "<leader>d", function()
+  require("oil").open()
+end, { desc = "Toggle file explorer" })
 map("n", "<C-e>", function()
   neotree.execute({ toggle = true, dir = vim.uv.cwd() })
 end, { desc = "File tree" })
@@ -58,6 +58,15 @@ map("n", "<leader>tp", function()
     vim.notify("Spell check disabled", vim.log.levels.INFO)
   end
 end, { desc = "Spell Ignore" })
+-- [[ toggle ]]
+map("n", "<leader>tc", function()
+  require("copilot.suggestion").toggle_auto_trigger()
+  if not vim.b.copilot_suggestion_auto_trigger then
+    print("Copilot is disabled")
+  else
+    print("Copilot is enabled")
+  end
+end, { desc = "Copilot" })
 
 -- [[ Git ]]
 -- map("n", "<C>G", "<cmd>Neotree git_status toggle<cr>", { desc = "Tree Git" })
@@ -68,6 +77,11 @@ map("n", "<leader>gr", function()
   -- vim.cmd("vsplit")
   vim.cmd("Octo pr list")
 end , { desc = "Show pr" })
+
+-- [[ Taksk runner ]]
+map("n", "<leader>rr", "<cmd>OverseerRun<cr>", { desc = "Run task" })
+map("n", "<leader>ri", "<cmd>OverseerInfo<cr>", { desc = "task info" })
+map("n", "<leader>rt", "<cmd>OverseerToggle<cr>", { desc = "task info" })
 
 --[[ Diagnostics ]]
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })
@@ -82,16 +96,6 @@ end, { desc = "Next Trouble item" })
 vim.keymap.set("n", "[t", function()
   require("trouble").prev({ skip_groups = true, jump = true })
 end, { desc = "Previous Trouble item" })
-
---[[ toggle ]]
--- map("n", "<leader>tc", function()
---   require("copilot.suggestion").toggle_auto_trigger()
---   if not vim.b.copilot_suggestion_auto_trigger then
---     print("Copilot is disabled")
---   else
---     print("Copilot is enabled")
---   end
--- end, { desc = "Copilot" })
 
 -- map("n", "<leader>tu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 -- map("n", "<leader>ta", function()

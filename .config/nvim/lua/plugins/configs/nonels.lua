@@ -1,8 +1,8 @@
 -- NOTE: https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md#hover
 local null_ls = require("null-ls")
-local null_ls_utils = require("null-ls.utils")
+-- local null_ls_utils = require("null-ls.utils")
 local formatting = null_ls.builtins.formatting
-local diagnostics = null_ls.builtins.diagnostics
+-- local diagnostics = null_ls.builtins.diagnostics
 
 local filetypesTS = {
   "javascript",
@@ -43,15 +43,10 @@ require("null-ls").setup({
 
     -- c/cpp/cmake
     formatting.clang_format.with({
-      filetypes = { "c", "cpp", "objc", "objcpp" },
-    }),
-
-    diagnostics.cmake_lint.with({
-      command = "cmakelint",
+      filetypes = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
     }),
 
     -- python
-
     require("none-ls.formatting.ruff").with({
       filetypes = { "python" },
     }),
@@ -59,18 +54,15 @@ require("null-ls").setup({
     --   filetypes = { "python" },
     -- }),
 
-    --   -- cSharp
-    --   formatting.csharpier,
+    -- CSharp
+    formatting.csharpier,
 
+    -- --    -- js/ts
     --   formatting.biome.with({
     --     command = "biome",
     --     filetypes = filetypesTS,
     --   }),
     -- },
-    -- --    -- js/ts
-    -- --
-    -- --
-    -- --
     -- --    -- require("none-ls.diagnostics.eslint_d"),
     -- --    require("none-ls.diagnostics.eslint_d").with {
     -- --      args = {

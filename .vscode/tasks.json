@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+  //   {
+  //     "label": "Format",
+  //     "type": "shell",
+  //     "command": "nvim",
+  //     "args": ["--headless", "-c", "lua vim.lsp.buf.format()", "-c", "wq", "${file}"],
+  //     "problemMatcher": []
+  //   }
+  ]
+}

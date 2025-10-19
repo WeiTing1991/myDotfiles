@@ -27,8 +27,6 @@ return {
     },
     config = function()
       require("lsp.lsp_init")
-      -- Not sure
-      -- vim.lsp.enable("copilot")
     end,
   },
 
@@ -60,8 +58,8 @@ return {
           local snippet_path = vim.fn.stdpath("config") .. "/snippets"
           require("luasnip.loaders.from_vscode").lazy_load({ paths = {
             snippet_path,
-          }})
-          -- debug
+          } })
+          -- Debug
           -- vim.defer_fn(function()
           --   local snips = require("luasnip").get_snippets("python")
           --   print("Snippets loaded: " .. vim.inspect(vim.tbl_keys(snips or {})))

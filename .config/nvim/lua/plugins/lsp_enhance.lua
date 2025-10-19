@@ -1,18 +1,33 @@
 return {
   -- [[Task Runner]]
-  -- TODO
-  -- {
-  --   "stevearc/overseer.nvim",
-  --   lazy = true,
-  --   enabled = false,
-  --   key = {
-  --     {
-  --       "<leader>ot",
-  --       "<cmd>OverseerToggle<cr>",
-  --       desc = "Toggle task window",
-  --     },
-  --   },
-  -- },
+   -- TODO
+  {
+    "stevearc/overseer.nvim",
+    lazy = true,
+    cmd = {
+      "OverseerOpen",
+      "OverseerClose",
+      "OverseerToggle",
+      "OverseerSaveBundle",
+      "OverseerLoadBundle",
+      "OverseerDeleteBundle",
+      "OverseerRunCmd",
+      "OverseerRun",
+      "OverseerInfo",
+      "OverseerBuild",
+      "OverseerQuickAction",
+      "OverseerTaskAction",
+      "OverseerClearCache",
+    },
+    opts = {
+      dap = false,
+    },
+    config = function()
+      require("overseer").setup({
+        templates = { "builtin", "lua.format", "csharp.format" },
+      })
+    end,
+  },
 
   --[[ LANGUAGE ]]
   -- Json
@@ -22,40 +37,47 @@ return {
     ft = { "json" },
     events = "VeryLazy",
   },
+  -- C#
+  -- https://github.com/seblyng/roslyn.nvim
+  {
+    "seblyng/roslyn.nvim",
+    ft = "cs",
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {},
+  },
 
-  -- TODO: if i need it or not.
-  -- c/c++
-  -- {
-  --   "p00f/clangd_extensions.nvim",
-  --   lazy = true,
-  --   ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
-  --   config = function() end,
-  --   opts = {
-  --     inlay_hints = {
-  --       inline = false,
-  --     },
-  --     ast = {
-  --       --These require codicons (https://github.com/microsoft/vscode-codicons)
-  --       role_icons = {
-  --         type = "",
-  --         declaration = "",
-  --         expression = "",
-  --         specifier = "",
-  --         statement = "",
-  --         ["template argument"] = "",
-  --       },
-  --       kind_icons = {
-  --         Compound = "",
-  --         Recovery = "",
-  --         TranslationUnit = "",
-  --         PackExpansion = "",
-  --         TemplateTypeParm = "",
-  --         TemplateTemplateParm = "",
-  --         TemplateParamObject = "",
-  --       },
-  --     },
-  --   },
-  -- },
+  -- C/C++
+  {
+    "p00f/clangd_extensions.nvim",
+    lazy = true,
+    ft = { "c", "cpp", "objc", "objcpp" },
+    opts = {
+      inlay_hints = {
+        inline = false,
+      },
+      ast = {
+        --These require codicons (https://github.com/microsoft/vscode-codicons)
+        role_icons = {
+          type = "",
+          declaration = "",
+          expression = "",
+          specifier = "",
+          statement = "",
+          ["template argument"] = "",
+        },
+        kind_icons = {
+          Compound = "",
+          Recovery = "",
+          TranslationUnit = "",
+          PackExpansion = "",
+          TemplateTypeParm = "",
+          TemplateTemplateParm = "",
+          TemplateParamObject = "",
+        },
+      },
+    },
+  },
 
   -- -- ts/js
   -- {
@@ -71,15 +93,6 @@ return {
   --       pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
   --     })
   --   end,
-  -- },
-  --
-  -- -- C#
-  -- {
-  --   "seblyng/roslyn.nvim",
-  --   ft = "cs",
-  --   ---@module 'roslyn.config'
-  --   ---@type RoslynNvimConfig
-  --   opts = {},
   -- },
   --
   -- -- {
@@ -110,13 +123,4 @@ return {
   -- --     })
   -- --   end,
   -- -- },
-  --
-  -- -- Maybe
-  -- -- {
-  -- --   "rmagatti/goto-preview",
-  -- --   dependencies = { "rmagatti/logger.nvim" },
-  -- --   event = "BufEnter",
-  -- --   config = true,
-  -- -- },
-  --
 }
