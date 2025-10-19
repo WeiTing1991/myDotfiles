@@ -63,7 +63,11 @@ end, { desc = "Spell Ignore" })
 -- map("n", "<C>G", "<cmd>Neotree git_status toggle<cr>", { desc = "Tree Git" })
 map("n", "<leader>gh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
 map("n", "<leader>gb", ":Gitsign blame<CR>", { desc = "Git blame" })
-map("n", "<leader>gg", ":LazyGit<CR>", { desc = "Git blame" })
+map("n", "<leader>gg", ":LazyGit<CR>", { desc = "LazyGit" })
+map("n", "<leader>gr", function()
+  -- vim.cmd("vsplit")
+  vim.cmd("Octo pr list")
+end , { desc = "Show pr" })
 
 --[[ Diagnostics ]]
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })

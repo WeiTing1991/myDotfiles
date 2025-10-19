@@ -104,6 +104,20 @@ autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+-- For Octo buffers (GitHub PRs/Issues)
+vim.api.nvim_create_autocmd("FileType", {
+  group = mdgroup,
+  pattern = "octo",
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+    vim.opt_local.number = true
+    vim.opt_local.relativenumber = false
+    vim.opt_local.conceallevel = 2 -- Better for markdown rendering in octo
+    vim.opt_local.textwidth = 120
+  end,
+})
+
 -- --[[ c# ]]
 -- local cSharp = vim.api.nvim_create_augroup("cSharpgroup", { clear = true })
 -- autocmd({ "BufRead", "BufNewFile" }, {

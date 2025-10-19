@@ -11,12 +11,12 @@ return {
     config = function()
       require("gitsigns").setup({
         signs = {
-          add          = { text = '┃ ' },
-          change       = { text = '┃ ' },
-          delete       = { text = '_ ' },
-          topdelete    = { text = '‾ ' },
-          changedelete = { text = '~ ' },
-          untracked    = { text = '┆ ' },
+          add = { text = "┃ " },
+          change = { text = "┃ " },
+          delete = { text = "_ " },
+          topdelete = { text = "‾ " },
+          changedelete = { text = "~ " },
+          untracked = { text = "┆ " },
         },
         -- signs_staged = {
         --   add          = { text = '┃' },
@@ -72,6 +72,37 @@ return {
           row = 0,
           col = 1,
         },
+      })
+    end,
+  },
+  {
+    "pwntester/octo.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "ibhagwan/fzf-lua",
+      "nvim-tree/nvim-web-devicons",
+    },
+    cmd = "Octo",
+    config = function()
+      require("octo").setup({
+        enable_builtin = true,
+        picker = "fzf-lua",
+        use_local_fs = false,
+        snipet_context_lines = 4,
+        ui = {
+          use_singlecoumn = true,
+        },
+        mappings = {
+          pull_request = {
+            list_commits = { lhs = "<localleader>c", desc = "list PR commits" },
+            show_pr_diff = { lhs = "<localleader>d", desc = "show PR diff" },
+            open_in_browser = { lhs = "<C-b>", desc = "open PR in browser" },
+            -- goto_file = { lhs = "gf", desc = "go to file" },
+          },
+        },
+        -- default_merge_method = "commit",
       })
     end,
   },
