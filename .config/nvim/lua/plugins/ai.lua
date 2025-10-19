@@ -18,7 +18,7 @@ return {
           keymap = {
             accept = false,
             accept_word = "<A-f>",
-            accept_line = "<A-l>",
+            accept_line = vim.fn.has("mac") == 1 and "<M-l>" or "<A-l>",
             -- next = "<C-]>",
             -- prev = "<C-[>",
             dismiss = "<Esc>",

@@ -1,5 +1,16 @@
 # Neovim Keybindings Reference
 
+## Notes
+
+- **Leader key**: `<Space>` is the main leader key
+- **Terminal navigation**: All window navigation works from terminal mode
+- **Smart movement**: j/k movements add to jump list when using counts
+- **Centered navigation**: Search results and scrolling keep cursor centered
+- **FZF integration**: Most finding operations use FZF for fast fuzzy searching
+- **LSP support**: Full language server integration with hover, definitions, references
+- **Git workflow**: Integrated git operations with LazyGit and gitsigns
+- **AI assistance**: Claude Code integration for AI-powered development
+
 ## Leader Keys
 - **Leader**: `<Space>`
 - **Local Leader**: `,`
@@ -167,13 +178,3 @@
 | `<F1>` | Disabled |
 | `<C-z>` | Disabled |
 
-## Notes
-
-- **Leader key**: `<Space>` is the main leader key
-- **Terminal navigation**: All window navigation works from terminal mode
-- **Smart movement**: j/k movements add to jump list when using counts
-- **Centered navigation**: Search results and scrolling keep cursor centered
-- **FZF integration**: Most finding operations use FZF for fast fuzzy searching
-- **LSP support**: Full language server integration with hover, definitions, references
-- **Git workflow**: Integrated git operations with LazyGit and gitsigns
-- **AI assistance**: Claude Code integration for AI-powered development

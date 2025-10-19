@@ -1,5 +1,15 @@
 return {
-
+  --[[ diagnostic hover ]]
+  {
+    "WeiTing1991/diagnostic-hover.nvim",
+    lazy = true,
+    event = "LspAttach",
+    config = function()
+      require("diagnostic-hover").setup({
+        use_icons = false,
+      })
+    end,
+  },
   --[[ Refactoring ]]
   {
     "ThePrimeagen/refactoring.nvim",

@@ -5,11 +5,12 @@
 
 ## Info
 
-I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and make ths issue or PRs.
+I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and make the issue or PRs.
 
 ## MyNeovim
 
-![WTNeovim](./doc/wtnvimV1.0.png)
+![WTNeovim](./doc/wtnvim_home.png)
+![WTNeovim_Editore](./doc/wtnvim_preview.png)
 
 ### Architecture & Structure
 
@@ -84,6 +85,14 @@ Remove-Item -Recurse -Force "$env:LOCALAPPDATA\nvim-temp"
 
 > In Neovim run `:MasonToolInstallSync` to install LSP, linter, and formater
 
+### Keybindings
+
+The main core keymaps is in `core/keymaps`, it has basic neovim motion and some useful keymaps
+The LSP keymaps is in `lsp\keymaps`, it is all about lsp stuffs.
+The custom keymaps is under root folder `user_keymaps`, it contains user override and the plugins keymaps.
+
+Detailed keybinding documentation: [Neovim Keymaps Guide](./keybindings.md)
+
 ## Plugins
 
 You can find all the plugins, I currently use [here](./plugins.md)
@@ -141,14 +150,6 @@ You can find all the plugins, I currently use [here](./plugins.md)
 - [ ] Debugger
 - [ ] Better tab view
 - [ ] Better Markdown preview
-
-### Keybindings
-
-The main core keymaps is in `core/keymaps`, it has basic neovim motion and some useful keymaps
-The LSP keymaps is in `lsp\keymaps`, it is all about lsp stuffs.
-The custom keymaps is under root folder `user_keymaps`, it contains user override and the plugins keymaps.
-
-Detailed keybinding documentation: [Neovim Setup Guide](./keybindings.md)
 
 [kickstart]: https://github.com/nvim-lua/kickstart.nvim
 [Neovim]: https://neovim.io/

@@ -16,7 +16,6 @@ M.arrows = {
   up = "",
   down = "",
 }
-
 --- For install
 M.install = {
   package_installed = "● ",
