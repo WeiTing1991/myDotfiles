@@ -58,7 +58,7 @@ return {
     event = "BufEnter",
     opts = {
       nes = {
-        enabled = true,
+        enabled = false,
         debounce = 50,
       },
       signs = {

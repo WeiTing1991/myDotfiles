@@ -1,15 +1,15 @@
 Import-Module posh-git
 Import-Module PSReadLine
 
-$global:LastOSC7Path = ""
-$ExecutionContext.InvokeCommand.PreCommandLookupAction = {
-  $current = $PWD.ProviderPath
-  if ($current -ne $global:LastOSC7Path) {
-    $global:LastOSC7Path = $current
-    # Direct ANSI escape without variable assignments
-    Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
-  }
-}
+# $global:LastOSC7Path = ""
+# $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
+#   $current = $PWD.ProviderPath
+#   if ($current -ne $global:LastOSC7Path) {
+#     $global:LastOSC7Path = $current
+#     # Direct ANSI escape without variable assignments
+#     Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
+#   }
+# }
 
 # Use AcceptSuggestion instead of Complete
 Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
@@ -52,7 +52,7 @@ Set-Alias c clear
 function n ($command) { nvim }
 function e ($command) { exit }
 
-# add python to PATH
+# Python
 $uvPython = uv python find
 if ($uvPython) {
   $uvPythonDir = Split-Path $uvPython
@@ -68,14 +68,15 @@ if (Test-Path $uvToolsDir) {
 Set-Alias python3 python
 Set-Alias pip3 pip
 
-#function gdrive ($command) {cd G:\.shortcut-targets-by-id\1AhcyENBzXs13kiaeR7txKn5xdpV0sGGn\002_Projects\003_InnoSuisse_MüllerSteinag }
+# function gdrive ($command) {cd G:\.shortcut-targets-by-id\1AhcyENBzXs13kiaeR7txKn5xdpV0sGGn\002_Projects\003_InnoSuisse_MüllerSteinag }
 # function usi ($command) {cd \work\01_USI}
 function pj ($command) { cd $HOME\project\ }
 
-function which ($command) {
-  Get-Command -Name $command -ErrorAction SilentlyContinue
-  # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
-}
+# function which ($command) {
+#   Get-Command -Name $command -ErrorAction SilentlyContinue
+#   # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
+# }
+
 function GitBrowser {
   $url = git remote -v | Select-Object -First 1 | ForEach-Object { ($_ -split '\s+')[1] }
   $url = $url -replace 'git@github\.com:', 'https://github.com/'
