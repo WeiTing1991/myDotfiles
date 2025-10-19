@@ -11,6 +11,7 @@
 
 [gpg "ssh"]
   allowSignWithFile = ~/.ssh/allowed_signers
+	allowedSignersFile = /Users/weitingchen/.ssh/allowed_signers
 
 [init]
   defaultBranch = main

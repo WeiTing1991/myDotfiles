@@ -117,7 +117,7 @@ fi
 # export ARCHFLAGS="-arch $(uname -m)"
 
 
-# -------------- Alias -----------------------------------
+# -------------- Alias -------------------
 
 #aliases
 # - $ZSH_CUSTOM/aliases.zsh
@@ -127,14 +127,19 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias n="nvim"
-# alias n="goneovim"
 alias e="exit"
 alias pj="cd $HOME/project/"
 
 alias ls="eza --sort=type"
 alias tree="eza --tree"
-# alias fvim="/Applications/FVim.app/Contents/MacOS/FVim"
 
+gitbrowser() {
+  url=$(git remote -v | head -n 1 | awk "{print \$2}")
+  url=$(echo "$url" | sed "s|git@github\.com:|https://github.com/|")
+  url=$(echo "$url" | sed "s|\.git$||")
+  open "$url"
+}
+alias gitbrowser=gitbrowser
 
 # git tools
 git_diff_bat() {
@@ -173,13 +178,7 @@ tmux_nvim() {
 }
 alias tn=tmux_nvim
 
-# ----------------------------------- TERM -----------------------------------
-# bash and zsh
-# if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-#     # Unsupported plugin/prompt code here, i.e.
-#     # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
-#     [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && "/usr/local/etc/profile.d/bash_completion.sh"
-# fi
+# ----------------------------------- TERM -------------------------------------------
 
 # ----------------------------------- PACKAGE PATH -----------------------------------
 
