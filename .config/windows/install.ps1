@@ -50,12 +50,12 @@ $dotfilesScriptPath = "$env:HOME\.dotfiles\.config\lazygit"
 New-Item -Path $profileScriptPath -ItemType SymbolicLink -Value $dotfilesScriptPath -Force
 
 # Dev tool
-scoop install fd ripgrep make cmake wget unzip gzip
+scoop install fd ripgrep make cmake wget unzip gzip fzf
 scoop install neovim
 scoop install mingw
 scoop install tree-sitter
 
-# scoop install fzf bat gzip
+# scoop install fzf bat
 
 # NVIM
 rm -Force ~\AppData\Local\nvim

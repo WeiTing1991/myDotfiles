@@ -1,2 +1,7 @@
-*.yml text eol=lf
-*.yaml text eol=lf
+* text=auto
+*.lua text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+.gitconfig text eol=lf
+.zshrc text eol=lf
