@@ -109,7 +109,8 @@ miniclue.setup({
     { mode = "n", keys = "<leader>g", desc = "+git" },
     { mode = "n", keys = "<leader>t", desc = "+toggle/tab" },
     { mode = "n", keys = "<leader>x", desc = "+diagnostics" },
-    { mode = "n", keys = "<leader>r", desc = "+tasks" },
+    { mode = "n", keys = "<leader>r", desc = "+refactor" },
+    { mode = "x", keys = "<leader>r", desc = "+refactor" },
 
     { mode = "n", keys = "<S-l>", desc = "+LSP" },
     { mode = "n", keys = "<S-l>t", desc = "+typescript(Not Implementer)" },

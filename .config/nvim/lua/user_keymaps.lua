@@ -72,11 +72,19 @@ map("n", "<leader>tc", function()
   end
 end, { desc = "Copilot" })
 
+-- [[ Refactoring tool ]]
+map("x", "<leader>re", ":Refactor extract ", { desc = "Extract Method" })
+map("x", "<leader>rf", ":Refactor extract_to_file ", { desc = "Extract Method to File" })
+map("x", "<leader>rv", ":Refactor extract_var ", { desc = "Extract Variable" })
+map({ "n", "x" }, "<leader>ri", ":Refactor inline_var", { desc = "Inline Variable" })
+map( "n", "<leader>rI", ":Refactor inline_func", { desc = "Inline Function" })
+map("n", "<leader>rb", ":Refactor extract_block", { desc = "Extract Block" })
+map("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Block to File" })
 
--- [[ Taksk runner ]]
-map("n", "<leader>rr", "<cmd>OverseerRun<cr>", { desc = "Run task" })
-map("n", "<leader>ri", "<cmd>OverseerInfo<cr>", { desc = "task info" })
-map("n", "<leader>rt", "<cmd>OverseerToggle<cr>", { desc = "task info" })
+-- [[ Tasks runner ]]
+map("n", "<leader>tr", "<cmd>OverseerRun<cr>", { desc = "Run task" })
+map("n", "<leader>ti", "<cmd>OverseerInfo<cr>", { desc = "task info" })
+map("n", "<leader>tt", "<cmd>OverseerToggle<cr>", { desc = "task info" })
 
 --[[ Diagnostics ]]
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })
