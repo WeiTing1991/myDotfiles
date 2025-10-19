@@ -290,7 +290,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       callback = hide_virtual_text,
     })
     -- Ctrl+K to show hover float
-    vim.keymap.set("n", "<C-k>", function()
+    vim.keymap.set("n", "<A-k>", function()
       show_diagnostic_float()
       -- Auto-hide float after 1.5 seconds and return to normal
       vim.defer_fn(function()

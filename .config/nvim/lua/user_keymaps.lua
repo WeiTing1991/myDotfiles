@@ -13,6 +13,11 @@ map("n", "<leader>fg", fzf.grep_curbuf, { desc = "Grep in current buffer" })
 map("n", "<leader>fb", fzf.buffers, { desc = "Find file in opened buffer" })
 -- map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
 
+-- [[ Override default keymaps ]]
+map("n", "<C-q>", function()
+  snacks.bufdelete()
+end, { desc = "Close current buffer and window" })
+
 -- [[ File tree ]]
 map("n", "<leader>d", function()
   require("oil").open()
@@ -20,16 +25,15 @@ end, { desc = "Toggle file explorer" })
 map("n", "<C-e>", function()
   neotree.execute({ toggle = true, dir = vim.uv.cwd() })
 end, { desc = "File tree" })
-
 -- Not working on warp terminal
 map("n", "<C-S-e>", function()
   require("sidekick.cli").toggle({ name = "claude", focus = true })
 end, { desc = "Toggle AI Chat" })
 
--- [[ Override default keymaps ]]
-map("n", "<C-q>", function()
-  snacks.bufdelete()
-end, { desc = "Close current buffer and window" })
+-- [[ Spell suggestion ]]
+map("n", "z=", function()
+  require("fzf-lua").spell_suggest()
+end, { desc = "Spell Suggestion" })
 
 -- [[ Terminal ]]
 map({ "n", "t" }, "<C-/>", function()
@@ -68,15 +72,6 @@ map("n", "<leader>tc", function()
   end
 end, { desc = "Copilot" })
 
--- [[ Git ]]
--- map("n", "<C>G", "<cmd>Neotree git_status toggle<cr>", { desc = "Tree Git" })
-map("n", "<leader>gh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
-map("n", "<leader>gb", ":Gitsign blame<CR>", { desc = "Git blame" })
-map("n", "<leader>gg", ":LazyGit<CR>", { desc = "LazyGit" })
-map("n", "<leader>gr", function()
-  -- vim.cmd("vsplit")
-  vim.cmd("Octo pr list")
-end , { desc = "Show pr" })
 
 -- [[ Taksk runner ]]
 map("n", "<leader>rr", "<cmd>OverseerRun<cr>", { desc = "Run task" })
@@ -97,13 +92,16 @@ vim.keymap.set("n", "[t", function()
   require("trouble").prev({ skip_groups = true, jump = true })
 end, { desc = "Previous Trouble item" })
 
--- map("n", "<leader>tu", vim.cmd.UndotreeToggle, { desc = "Undotree" })
--- map("n", "<leader>ta", function()
---   require("neogen").generate()
--- end, { desc = "Annotation" })
-
---[[ git ]]
--- https://www.naseraleisa.com/posts/diff
+-- TOD:
+-- [[ Git ]]
+-- map("n", "<C>G", "<cmd>Neotree git_status toggle<cr>", { desc = "Tree Git" })
+map("n", "<leader>gh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
+map("n", "<leader>gb", ":Gitsign blame<CR>", { desc = "Git blame" })
+map("n", "<leader>gg", ":LazyGit<CR>", { desc = "LazyGit" })
+map("n", "<leader>gr", function()
+  -- vim.cmd("vsplit")
+  vim.cmd("Octo pr list")
+end, { desc = "Show pr" })
 -- map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Git diff view" })
 -- map("n", "<leader>gf", ":DiffviewFileHistory<cr>", { desc = "Git diff view" })
 -- map("n", "<leader>gq", ":DiffClose<cr>", { desc = "Close GitDiff" })
@@ -130,25 +128,3 @@ end, { desc = "Previous Trouble item" })
 -- map("n", "<leader>gss", ":Gitsign stage_hunk<CR>", { desc = "stage hunk" })
 -- map("n", "<leader>ghr", ":Gitsign reset_hunk<CR>", { desc = "reset hunk" })
 
--- local autocmd = vim.api.nvim_create_autocmd
--- autocmd("BufWinEnter", {
---   group = vim.api.nvim_create_augroup("wt/fugitive", {}),
---   pattern = "*",
---   callback = function()
---     if vim.bo.ft ~= "fugitive" then
---       return
---     end
---     local bufnr = vim.api.nvim_get_current_buf()
---     local opts = { buffer = bufnr, remap = false }
---     vim.keymap.set("n", "<leader>p", function()
---       vim.cmd.Git("push")
---     end, opts)
---     -- rebase always
---     vim.keymap.set("n", "<leader>P", function()
---       vim.cmd.Git({ "pull", "--rebase" })
---     end, opts)
---     vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts)
---   end,
--- })
--- map("n", "gu", "<cmd>diffget //2<CR>", { desc = "Diff get" })
--- map("n", "gh", "<cmd>diffget //3<CR>", { desc = "Diff get" })
