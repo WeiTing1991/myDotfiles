@@ -128,18 +128,19 @@ fi
 
 alias n="nvim"
 alias e="exit"
+alias n="clear"
 alias pj="cd $HOME/project/"
 
 alias ls="eza --sort=type"
 alias tree="eza --tree"
 
-gitbrowser() {
+_gitbrowser() {
   url=$(git remote -v | head -n 1 | awk "{print \$2}")
   url=$(echo "$url" | sed "s|git@github\.com:|https://github.com/|")
   url=$(echo "$url" | sed "s|\.git$||")
   open "$url"
 }
-alias gitbrowser=gitbrowser
+alias gitbrowser=_gitbrowser
 
 # git tools
 git_diff_bat() {
