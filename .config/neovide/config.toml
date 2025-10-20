@@ -11,7 +11,7 @@ vsync = false
 # wsl = false
 
 [font]
-normal = ["Consolas"]
+normal = ["Iosevka Nerd Font"]
 size = 14
-hinting = "full"
+# hinting = "full"
 edging = "antialias"

@@ -6,7 +6,9 @@
   // =============================================================================
   // EDITOR SETTINGS
   // =============================================================================
-  "editor.fontFamily": "Hack Nerd Font, JetBrainsMono Nerd Font, 'Courier New', monospace",
+  "window.menuBarVisibility": "toggle",
+  // "editor.fontFamily": "Hack Nerd Font, Consolas, JetBrainsMono Nerd Font, 'Courier New', monospace",
+  "editor.fontFamily": "Iosevka Nerd Font, JetBrainsMonoNL Nerd Font, 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
   "editor.lineNumbers": "relative",
@@ -29,6 +31,7 @@
   "editor.hover.enabled": true,
   "breadcrumbs.enabled": true,
   "editor.renderLineHighlight": "line",
+
   // "editor.colorDecorators": false,
   // "problems.decorations.enabled": false,
   // "editor.gotoLocation.multipleReferences": "goto",
@@ -66,7 +69,7 @@
   "editor.suggest.showStatusBar": false,
   "editor.quickSuggestions": {
     "comments": false,
-    "other": true,
+    "other": false,
     "strings": false
   },
   "editor.quickSuggestionsDelay": 100,
@@ -93,7 +96,7 @@
   "workbench.tips.enabled": false,
   "workbench.settings.enableNaturalLanguageSearch": false,
   "workbench.tree.renderIndentGuides": "onHover",
-  "workbench.tree.indent": 14,
+  "workbench.tree.indent": 20,
   "workbench.tree.enableStickyScroll": false,
   "window.density.editorTabHeight": "compact",
   "workbench.iconTheme": "vs-seti",
@@ -104,7 +107,7 @@
   "files.hotExit": "off",
   "files.restoreUndoStack": false,
   "files.exclude": {
-    "**/__pycache__": true,
+    // "**/__pycache__": true,
     "**/.DS_Store": true,
     "**/.git": true
   },
@@ -113,7 +116,10 @@
     "**/.git/**": true,
     "**/.next/**": true,
     "**/*.log": true,
-    "**/coverage/**": true
+    "**/coverage/**": true,
+    "**/build/**": true,
+    "**/dist/**": true,
+    "**/node_modules": true
   },
 
   // =============================================================================
@@ -144,8 +150,8 @@
   // =============================================================================
   "github.copilot.enable": {
     "*": true,
-    "markdown": false,
     "plaintext": true,
+    "markdown": false,
     "scminput": false
   },
   "github.copilot.advanced": {
@@ -157,11 +163,12 @@
   // =============================================================================
   // TERMINAL SETTINGS
   // =============================================================================
-  "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "JetBrainsMonoNL Nerd Font, Consolas, 'Courier New', monospace",
+  "terminal.integrated.fontSize": 12,
   "terminal.integrated.scrollback": 2000,
   "terminal.integrated.fastScrollSensitivity": 5,
   "terminal.integrated.gpuAcceleration": "on",
+  // "powershell.powerShellDefaultVersion": "PowerShell",
 
   // =============================================================================
   // EXTENSIONS
@@ -170,14 +177,16 @@
   "extensions.autoCheckUpdates": false,
   "extensions.ignoreRecommendations": true,
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
+    "vscodevim.vim": 1,
+    "ms-vscode.cpptools": 1
   },
-  "cSpell.enabled": true,
   "cSpell.enabledFileTypes": {
-    "*": false,
+    "*": true,
     "markdown": true
   },
-  "cSpell.userWords": ["pymdownx"],
+  "cSpell.userWords": [
+    "pymdownx"
+  ],
 
   // =============================================================================
   // MISCELLANEOUS
@@ -196,21 +205,23 @@
     "sourceCodeEnabled": false,
     "buttonsEnabled": false
   },
+  "errorLens.gutterIconsEnabled": false,
   "editor.accessibilitySupport": "off",
 
   // =============================================================================
   // LANGUAGE-SPECIFIC SETTINGS
   // =============================================================================
+
+  // C/C++
   "[c]": {
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.tabSize": 2
   },
   "[cpp]": {
     "editor.defaultFormatter": "xaver.clang-format",
-    "editor.semanticHighlighting.enabled": false,
     "editor.tabSize": 2
   },
-  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.intelliSenseEngine": "disabled",
   // "C_Cpp.enhancedColorization": "enabled",
   // "C_Cpp.errorSquiggles": "enabled",
   // "C_Cpp.autocomplete": "default",
@@ -219,17 +230,19 @@
   // "C_Cpp.inlayHints.parameterNames.enabled": true,
   // "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 
-  "clangd.enable": false,
+  "clangd.enable": true,
   "clangd.arguments": [
-    "--background-index",
-    "--clang-tidy",
-    "--function-arg-placeholders=true",
+    "--compile-commands-dir=${workspaceFolder}",
     "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders=true",
+    "--background-index=false",
+    "--clang-tidy",
     "--pch-storage=memory",
-    "--compile-commands-dir=.",
-    "--completion-style=detailed"
   ],
   "clangd.fallbackFlags": ["-std=c++20"],
+
+  // C#
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp",
     "editor.tabSize": 4
@@ -250,7 +263,6 @@
   },
   "python.languageServer": "Default",
   "python.analysis.typeCheckingMode": "standard",
-  "ruff.lint.enable": true,
 
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -260,6 +272,7 @@
     "editor.tabSize": 2
   },
   "[plaintext]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.wordWrap": "on",
     "editor.rulers": []
   },
@@ -271,6 +284,11 @@
   "prettier.tabWidth": 2,
   "prettier.printWidth": 120,
   "prettier.requireConfig": false,
+  "[powershell]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.tabSize": 4
+  },
+  "powershell.integratedConsole.showOnStartup": false,
 
   // =============================================================================
   // VIM SETTINGS
@@ -280,6 +298,7 @@
   // ds"
   "vim.leader": " ",
   // "vim.easymotion": true,
+  "vim.timeout": 1000,
   "vim.surround": true,
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
@@ -320,6 +339,23 @@
       "after": ["P"]
     },
     {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    {
+      "before": ["<C-o>"],
+      "commands": [":tabn"]
+    },
+    {
+      "before": ["<C-i>"],
+      "commands": [":tabp"]
+    },
+
+    {
       "before": ["<C-c>"],
       "commands": [":nohl"]
     },
@@ -356,6 +392,11 @@
       "commands": ["workbench.action.showAllEditors"]
     },
     {
+      "before": ["<leader>", "s"],
+      "commands": ["editor.action.startFindReplaceAction"]
+    },
+
+    {
       "before": ["<leader>", "d"],
       "commands": ["projectManager.listProjectsNewWindow"]
     },
@@ -366,6 +407,10 @@
     {
       "before": ["<leader>", "t", "t"],
       "command": ["workbench.action.selectTheme"]
+    },
+    {
+      "before": ["<leader>", "t", "p"],
+      "command":["cSpell.toggleEnableSpellChecker" ]
     },
     {
       "before": ["g", "."],
@@ -398,7 +443,26 @@
     {
       "before": ["g", "I"],
       "commands": ["C_Cpp.SwitchHeaderSource"]
+    },
+
+    // harapoon
+    {
+      "before": ["<leader>", "j", "1"],
+      "commands": ["vscode-harpoon.addEditor1"]
+    },
+    {
+      "before": ["<leader>", "j", "2"],
+      "commands": ["vscode-harpoon.addEditor2"]
+    },
+    {
+      "before": ["<leader>", "1"],
+      "commands": ["vscode-harpoon.gotoEditor1"]
+    },
+    {
+      "before": ["<leader>", "2"],
+      "commands": ["vscode-harpoon.gotoEditor2"]
     }
+
     // {
     //   "before": ["g", "I"],
     //   "commands": ["clangd.switchheadersource"]
@@ -432,14 +496,13 @@
     }
   ],
   "githubLocalActions.dockerDesktopPath": "/Applications/Docker.app",
-  "workbench.colorTheme": "Default Light Modern",
-  "workbench.navigationControl.enabled": false,
   "workbench.layoutControl.enabled": false,
   "workbench.editor.editorActionsLocation": "titleBar",
-  "chat.commandCenter.enabled": false
-  // },
-  // {
-  //   "key": "ctrl+b c t",
-  //   "command": "github.copilot.toggleCopilot"
-  // },
+  "chat.commandCenter.enabled": false,
+  "markdown-preview-enhanced.previewTheme": "atom-dark.css",
+  "githubPullRequests.pullBranch": "never",
+  "workbench.colorTheme": "Vim Deep Dark",
+  "workbench.navigationControl.enabled": false,
+  "git.blame.statusBarItem.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": true,
 }
