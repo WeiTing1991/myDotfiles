@@ -13,9 +13,11 @@ local is_macos = wezterm.target_triple == "aarch64-apple-darwin"
 local default_prog
 local font_size
 local default_font
+local launch_menu = {}
+
 if is_windows then
   default_prog = { "pwsh.exe" }
-  font_size = 10.0
+  font_size = 14.0
   -- default_font = wezterm.font("Consolas")
   -- default_font = wezterm.font("ZenMono Nerd Font")
   -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
@@ -25,10 +27,12 @@ if is_windows then
   })
 elseif is_macos then
   default_prog = { "/bin/zsh" }
-  font_size = 10.0
+  font_size = 14.0
   default_font = wezterm.font_with_fallback({
-    family = "Iosevka Nerd Font",
-    harfbuzz_features = { "calt=0" },
+    {
+      family = "Iosevka Nerd Font",
+      harfbuzz_features = { "calt=0" },
+    },
   })
   -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
 end
@@ -45,7 +49,7 @@ config = {
   -- webgpu_power_preference = "HighPerformance",
   -- webgpu_preferred_adapter  = wezterm.gui.enumerate_gpus()[1],
 
-  max_fps = 120,
+  max_fps = 144,
   animation_fps = 60,
   freetype_load_target = "Normal",
 
@@ -119,6 +123,11 @@ config = {
     -- reload the configuration
     { key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
     { key = "r", mods = "SUPER", action = act.ReloadConfiguration },
+
+    { key = 'LeftArrow',  mods = 'CTRL|ALT', action = wezterm.action.AdjustPaneSize { 'Left', 5 } },
+    { key = 'RightArrow', mods = 'CTRL|ALT', action = wezterm.action.AdjustPaneSize { 'Right', 5 } },
+    { key = 'UpArrow',    mods = 'CTRL|ALT', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
+    { key = 'DownArrow',  mods = 'CTRL|ALT', action = wezterm.action.AdjustPaneSize { 'Down', 5 } },
 
     -- mode
     -- { key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
