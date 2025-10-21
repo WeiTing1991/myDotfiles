@@ -30,6 +30,7 @@ return {
     end,
   },
 
+  { import = "nvchad.blink.lazyspec" },
   --[[ AUTOCOMPLETION ]]
   {
     "saghen/blink.cmp",

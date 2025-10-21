@@ -83,14 +83,14 @@ return {
       --   desc = "Toggle AI CLI",
       --   mode = { "n", "v" },
       -- },
-      -- {
-      --   "<leader>ap",
-      --   function()
-      --     require("sidekick.cli").prompt()
-      --   end,
-      --   desc = "Select AI Prompt",
-      --   mode = { "n", "v" },
-      -- },
+      {
+        "<A-i>",
+        function()
+          require("sidekick.cli").prompt()
+        end,
+        desc = "Select AI Prompt",
+        mode = { "n", "v" },
+      },
     },
   },
 }

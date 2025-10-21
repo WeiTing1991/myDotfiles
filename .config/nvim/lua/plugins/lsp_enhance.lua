@@ -6,7 +6,6 @@ return {
     event = "LspAttach",
     config = function()
       require("diagnostic-hover").setup({
-        use_icons = false,
       })
     end,
   },

@@ -98,13 +98,22 @@ vim.keymap.set("v", ">", ">gv")
 -- Replace the word throughout the file
 vim.keymap.set(
   { "n", "v" },
-  "<leader>s",
+  "<leader>S",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left>]],
-  { desc = "Simple search and replace in buffer" }
+  { desc = "Simple search and replace" }
 )
+-- Replace in quickfix
+vim.keymap.set("n", "<leader>s", function()
+  local search = vim.fn.input("Search: ")
+  if search == "" then
+    return
+  end
+  local replace = vim.fn.input("Replace: ")
+  vim.cmd("cdo s/" .. vim.fn.escape(search, "/\\") .. "/" .. vim.fn.escape(replace, "/\\") .. "/gc | update")
+end, { desc = "Search and replace" })
 
 -- Change root to current file dir
-vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
+-- vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { desc = "cd current file dir" })
 
 -- Toggle spelling
 function ToggleSpellCheck()

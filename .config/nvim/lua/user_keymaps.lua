@@ -83,8 +83,8 @@ map("n", "<leader>rbf", ":Refactor extract_block_to_file", { desc = "Extract Blo
 
 -- [[ Tasks runner ]]
 map("n", "<leader>tr", "<cmd>OverseerRun<cr>", { desc = "Run task" })
-map("n", "<leader>ti", "<cmd>OverseerInfo<cr>", { desc = "task info" })
-map("n", "<leader>tt", "<cmd>OverseerToggle<cr>", { desc = "task info" })
+-- map("n", "<leader>ti", "<cmd>OverseerInfo<cr>", { desc = "Task info" })
+-- map("n", "<leader>tk", "<cmd>OverseerToggle<cr>", { desc = "Task toggle" })
 
 --[[ Diagnostics ]]
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Diagnostics " })
@@ -107,9 +107,10 @@ map("n", "<leader>gh", ":Gitsign preview_hunk<CR>", { desc = "Preview hunk" })
 map("n", "<leader>gb", ":Gitsign blame<CR>", { desc = "Git blame" })
 map("n", "<leader>gg", ":LazyGit<CR>", { desc = "LazyGit" })
 map("n", "<leader>gr", function()
-  -- vim.cmd("vsplit")
   vim.cmd("Octo pr list")
-end, { desc = "Show pr" })
+  vim.cmd("vsplit")
+end, { desc = "Show PR" })
+
 -- map("n", "<leader>gd", ":DiffviewOpen<cr>", { desc = "Git diff view" })
 -- map("n", "<leader>gf", ":DiffviewFileHistory<cr>", { desc = "Git diff view" })
 -- map("n", "<leader>gq", ":DiffClose<cr>", { desc = "Close GitDiff" })

@@ -41,6 +41,7 @@ config = {
   -- enable ctrl key
   allow_win32_input_mode = false,
   enable_kitty_keyboard = true,
+  enable_kitty_graphics = true,
 
   -- render option
   -- enable_wayland = false,
@@ -49,7 +50,7 @@ config = {
   -- webgpu_power_preference = "HighPerformance",
   -- webgpu_preferred_adapter  = wezterm.gui.enumerate_gpus()[1],
 
-  max_fps = 144,
+  max_fps = 244,
   animation_fps = 60,
   freetype_load_target = "Normal",
 

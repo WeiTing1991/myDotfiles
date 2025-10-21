@@ -13,6 +13,7 @@ fzf.setup({
       scrollbar = false,
       layout = "vertical",
       vertical = "up:70%",
+      delay = 150,
     },
   },
   -- defaults = { git_icons = false },
@@ -120,6 +121,16 @@ fzf.setup({
     actions = {
       ["alt-i"] = { actions.toggle_ignore },
       ["alt-h"] = { actions.toggle_hidden },
+    },
+  },
+  previewers = {
+    builtin = {
+      extensions = {
+        ["png"] = { "chafa" },
+        ["jpg"] = { "chafa" },
+        ["jpeg"] = { "chafa" },
+        ["gif"] = { "chafa" },
+      },
     },
   },
 })

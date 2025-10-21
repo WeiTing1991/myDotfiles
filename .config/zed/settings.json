@@ -196,11 +196,15 @@
   },
   "show_edit_predictions": true,
   "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
     "default_profile": "ask",
     "always_allow_tool_actions": true,
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
     },
     "dock": "left",
     "button": true

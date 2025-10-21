@@ -101,7 +101,7 @@ function keymaps.on_attach(client, bufnr)
     end)
   end, "Code Action")
 
-  map("<F2>", vim.lsp.buf.rename, "Rename in buf")
+  map("<F2>", require("nvchad.lsp.renamer"), "Rename in buf")
   map("gO", function()
     require("fzf-lua").lsp_document_symbols()
   end, "Go to Symbol in File")
