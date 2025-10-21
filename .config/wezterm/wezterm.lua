@@ -22,8 +22,10 @@ if is_windows then
   -- default_font = wezterm.font("ZenMono Nerd Font")
   -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
   default_font = wezterm.font_with_fallback({
-    family = "Iosevka NF",
-    harfbuzz_features = { "calt=0" },
+    {
+      family = "Iosevka NF",
+      harfbuzz_features = { "calt=0" },
+    },
   })
 elseif is_macos then
   default_prog = { "/bin/zsh" }
@@ -90,7 +92,7 @@ config = {
     { key = "x", mods = "LEADER|CTRL", action = act.SendKey({ key = "x", mods = "CTRL" }) },
 
     -- Split windows
-    { key = "phys:Quote", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "DefaultDomain" }) },
+    { key = "phys:Quote", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
     { key = "5", mods = "CTRL", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
 
     -- Pane navigation
@@ -125,10 +127,10 @@ config = {
     { key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
     { key = "r", mods = "SUPER", action = act.ReloadConfiguration },
 
-    { key = 'LeftArrow',  mods = 'CTRL|ALT', action = wezterm.action.AdjustPaneSize { 'Left', 5 } },
-    { key = 'RightArrow', mods = 'CTRL|ALT', action = wezterm.action.AdjustPaneSize { 'Right', 5 } },
-    { key = 'UpArrow',    mods = 'CTRL|ALT', action = wezterm.action.AdjustPaneSize { 'Up', 5 } },
-    { key = 'DownArrow',  mods = 'CTRL|ALT', action = wezterm.action.AdjustPaneSize { 'Down', 5 } },
+    { key = "LeftArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
+    { key = "RightArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
+    { key = "UpArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+    { key = "DownArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
 
     -- mode
     -- { key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
