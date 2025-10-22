@@ -6,6 +6,10 @@ return {
     event = "LspAttach",
     config = function()
       require("diagnostic-hover").setup({
+        keymap = {
+          show_float = "<A-k>",
+          hide_float = "<Esc>",
+        },
       })
     end,
   },
