@@ -17,13 +17,13 @@ local launch_menu = {}
 
 if is_windows then
   default_prog = { "pwsh.exe" }
-  font_size = 14.0
+  font_size = 12.0
   -- default_font = wezterm.font("Consolas")
   -- default_font = wezterm.font("ZenMono Nerd Font")
   -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
   default_font = wezterm.font_with_fallback({
     {
-      family = "Iosevka NF",
+      family = "Hack Nerd Font",
       harfbuzz_features = { "calt=0" },
     },
   })
@@ -52,7 +52,7 @@ config = {
   -- webgpu_power_preference = "HighPerformance",
   -- webgpu_preferred_adapter  = wezterm.gui.enumerate_gpus()[1],
 
-  max_fps = 244,
+  max_fps = 144,
   animation_fps = 60,
   freetype_load_target = "Normal",
 
