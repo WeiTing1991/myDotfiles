@@ -55,6 +55,8 @@ return {
 
   {
     "folke/sidekick.nvim",
+    lazy = true,
+    enabled = false,
     event = "BufEnter",
     opts = {
       nes = {
