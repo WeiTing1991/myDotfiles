@@ -24,8 +24,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     main = "nvim-treesitter.configs",
-    lazy = false,
+    lazy = true,
     version = false,
+    event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     dependencies = {

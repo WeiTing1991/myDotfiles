@@ -14,7 +14,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     lazy = true,
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       -- NOTE: Must be loaded before dependants
       { "williamboman/mason.nvim", opt = {} },
@@ -41,7 +41,8 @@ return {
       {
         "L3MON4D3/LuaSnip",
         version = "2.*",
-        event = "BufEnter",
+        lazy = true,
+        event = "InsertEnter",
         build = (function()
           if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
             return
@@ -76,7 +77,7 @@ return {
   {
     "WeiTing1991/none-ls.nvim",
     lazy = true,
-    event = "BufEnter",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvimtools/none-ls-extras.nvim",
     },

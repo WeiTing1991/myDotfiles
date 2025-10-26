@@ -2,7 +2,7 @@ return {
   {
     "tpope/vim-fugitive",
     lazy = true,
-    event = { "BufWinEnter" },
+    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "lewis6991/gitsigns.nvim",
