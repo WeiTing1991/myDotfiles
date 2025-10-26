@@ -44,14 +44,6 @@ for server_name, opts in pairs(lsp_server) do
   -- if actual_server == "jdtls" or actual_server == "ts_ls" then
   --   goto continue
   -- end
-  --
-  -- -- Optionally patch capabilities for specific servers
-  -- if actual_server == "ruff_lsp" then
-  --   opts.server_capabilities = opts.server_capabilities or {}
-  --   opts.server_capabilities.hoverProvider = false
-  --   opts.server_capabilities.documentHighlightProvider = false
-  -- end
-
   local server_opts = vim.tbl_deep_extend("force", { capabilities = capabilities }, opts or {})
   vim.lsp.config(actual_server, server_opts)
   vim.lsp.enable(actual_server)
