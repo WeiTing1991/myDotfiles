@@ -20,7 +20,7 @@
 
   // ysiw
   "bottom_dock_layout": "full",
-  "confirm_quit": false,
+  "confirm_quit": true,
 
   // Telemetry
   "telemetry": {
@@ -35,7 +35,7 @@
     "dark": "JetBrains New UI Icons (Dark)"
   },
 
-  "theme": "One Light",
+  "theme": "Gruvbox Dark Hard",
   "experimental.theme_overrides": {
     "version_control.added": "#27a657ff",
     "version_control.modified": "#d3b020ff",
@@ -56,11 +56,11 @@
     "calt": false,
     "dlig": true
   },
-  "buffer_font_family": "Hack Nerd Font",
+  "buffer_font_family": "Iosevka Nerd Font",
   "buffer_font_weight": 500,
 
   "ui_font_size": 14,
-  "ui_font_family": ".SystemUIFont",
+  "ui_font_family": ".ZedSans",
   "ui_font_weight": 400,
 
   // Editor Settings
