@@ -52,7 +52,7 @@ config = {
   -- webgpu_power_preference = "HighPerformance",
   -- webgpu_preferred_adapter  = wezterm.gui.enumerate_gpus()[1],
 
-  max_fps = 144,
+  max_fps = 166,
   animation_fps = 60,
   freetype_load_target = "Normal",
 
@@ -60,12 +60,13 @@ config = {
   font_size = font_size,
   -- color_scheme = "GruvboxDarkHard",
   color_scheme = "Dracula",
+  -- color_scheme = "rose-pine",
   initial_cols = 120,
   initial_rows = 50,
 
   font = default_font,
   -- windows
-  window_background_opacity = 0.95,
+  window_background_opacity = 1,
   window_decorations = "RESIZE",
   window_padding = {
     left = 5,
