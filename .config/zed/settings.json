@@ -16,7 +16,7 @@
       "visual": "hollow"
     }
   },
-  "current_line_highlight":"none",
+  "current_line_highlight": "none",
 
   // ysiw
   "bottom_dock_layout": "full",
@@ -43,7 +43,7 @@
   },
 
   "buffer_font_size": 12,
-  "buffer_line_height": {"custom": 1.2},
+  "buffer_line_height": { "custom": 1.2 },
   "buffer_font_features": {
     "ss01": true,
     "ss02": true,
@@ -56,12 +56,12 @@
     "calt": false,
     "dlig": true
   },
-  // "buffer_font_family": "Iosevka Nerd Font",
-  "buffer_font_family": "Hack Nerd Font",
-  "buffer_font_weight": 500,
 
+  // "buffer_font_family": "Iosevka Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_family": ".ZedSans",
+  "buffer_font_weight": 500,
   "ui_font_size": 14,
-  "ui_font_family": ".SystemUIFont",
   "ui_font_weight": 400,
 
   // Editor Settings
@@ -82,14 +82,15 @@
   "show_wrap_guides": true,
   "preferred_line_length": 120,
   "tab_size": 2,
-  "hard_tabs": false,
+  "hard_tabs": true,
   "remove_trailing_whitespace_on_save": true,
   "ensure_final_newline_on_save": true,
   "format_on_save": "off",
   "autosave": "off",
-  "restore_on_startup": "last_session",
+  "restore_on_startup": null,
 
   // Editor Visual Settings
+
   "scrollbar": {
     "show": "never"
   },
@@ -119,7 +120,7 @@
 
   // Tab Bar & Toolbar
   "tab_bar": {
-    "show": false,
+    "show": true,
     "show_tab_bar_buttons": true,
     "show_nav_history_buttons": false
   },
@@ -149,7 +150,7 @@
   "show_completion_documentation": true,
   "selection_highlight": true,
 
-  // File Exclusions (matching VS Code)
+  // File Exclusion
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -297,10 +298,11 @@
   "diagnostics_max_severity": null,
   "diagnostics": {
     "inline": {
-      "enabled": true,
+      "enabled": false,
       "max_severity": "error"
     }
   },
+  "hover_popover_enabled": true,
 
   "file_types": {
     "Diff": ["diff"],
@@ -316,6 +318,7 @@
 
   // Default Formatter
   "formatter": "prettier",
+
   //////////////////////////////////////////
   // Language Server Protocol (LSP) Settings
   //////////////////////////////////////////
@@ -400,6 +403,18 @@
 
   // Language-specific Settings
   "languages": {
+    // python
+    "Python": {
+      "code_actions_on_format": {
+        "source.fixAll.ruff": true,
+        "source.organizeImports.ruff": true
+      },
+      "language_servers": ["pyright", "ruff"],
+      "tab_size": 4
+    },
+    "TOML": {
+      "tab_size": 2
+    },
     "XML": {},
     "Markdown": {
       "remove_trailing_whitespace_on_save": false,
@@ -411,46 +426,26 @@
     "JSON": {
       "wrap_guides": [],
       "use_autoclose": true
-      //   "formatter":{
-      //     "language_servers": ["!biome", "prettier"],
-      //   },
-      //   // "formatter": "prettier",
-      //   "tab_size": 2
     },
     "JSONC": {
       "wrap_guides": [],
       "use_autoclose": true
-      //   "formatter":{
-      //     "language_servers": ["!biome", "prettier"],
-      //   },
-      //   "tab_size": 2
-    },
-    "Python": {
-      "formatter": [
-        {
-          "code_action": "source.organizeImports.ruff"
-        },
-        {
-          "language_server": {
-            "name": "ruff"
-          }
-        }
-      ],
-      "language_servers": ["pyright", "ruff"],
-      "tab_size": 4
-    },
-    "TOML": {
-      "tab_size": 2
     },
 
     // C/C++
     "C": {
-      "formatter": "auto",
-      "tab_size": 2
+      "formatter": "language_server",
+      "tab_size": 2,
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
     },
     "C++": {
-      "formatter": "auto",
-      "tab_size": 2
+      "formatter": "language_server",
+      "tab_size": 2,
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
     },
 
     // CSharp
@@ -462,6 +457,7 @@
 
     "Lua": {},
 
+    //JS TS
     "JavaScript": {
       "formatter": {
         "language_server": {

@@ -40,8 +40,8 @@
   {
     "context": "Editor && !menu",
     "bindings": {
-      "ctrl-shift-c": "editor::Copy",
-      "ctrl-shift-x": "editor::Cut",
+      // "ctrl-shift-c": "editor::Copy",
+      // "ctrl-shift-x": "editor::Cut",
       // "ctrl-shift-v": "editor::Paste"
       // "ctrl-y": "editor::Undo",          // vim default: line up
       // "ctrl-f": "buffer_search::Deploy", // vim default: page down
@@ -56,7 +56,7 @@
     "bindings": {
       "ctrl-shift-e": "workspace::ToggleLeftDock",
       "ctrl-e": "project_panel::ToggleFocus",
-      "ctrl-/": "workspace::ToggleBottomDock",
+      "ctrl-/": "workspace::ToggleBottomDock"
       // "ctrl-g": "git_panel::ToggleFocus",
     }
   },
@@ -124,6 +124,12 @@
       "l": "project_panel::Open"
     }
   },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "q": "git_panel::Close"
+    }
+  },
   // ===== VIM NORMAL MODE =====
   {
     "context": "Editor && vim_mode == normal && !VimWaiting",
@@ -135,16 +141,25 @@
       "ctrl-j": "workspace::ActivatePaneDown",
 
       "-": "editor::ToggleComments",
-      "space d":"projects::OpenRecent",
+      "space d": "projects::OpenRecent",
       "space ,": "editor::Format",
       "space f f": "file_finder::Toggle",
-      "space f l": "workspace::NewSearch",
+      "space f b": "project_panel::NewSearchInDirectory",
+      "space f l": "pane::DeploySearch",
       "space l o": "outline_panel::ToggleFocus",
       "space t t": "theme_selector::Toggle",
+      "space s": "search::ToggleReplace",
 
       "space g": "git_panel::ToggleFocus",
       "space g b": "git::Blame",
 
+      "space g g": [
+        "task::Spawn",
+        {
+          "task_name": "Lazygit",
+          "reveal_target": "center"
+        }
+      ],
       "space x": "diagnostics::Deploy",
 
       // Git hunks navigation
@@ -201,9 +216,30 @@
     }
   },
   {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"]
+    }
+  },
+  {
     "context": "Terminal",
     "bindings": {
       "ctrl-f": null
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !Terminal",
+    "bindings": {
+      "jk": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "vim_operator == none && !VimWaiting && vim_mode != insert",
+    "bindings": {
+      "ctrl-c": "buffer_search::Dismiss"
+      // "space t": "workspace::NewCenterTerminal"
+      // "ctrl-a": "editor::SelectEnclosingSymbol" // ADD THIS - expand selection
     }
   },
   // language specific

@@ -54,8 +54,12 @@ local function mouse_focus_cycle(app_name)
   end
 end
 
+-- hs.hotkey.bind({ "cmd" }, "1", function()
+--   mouse_focus("Warp")
+-- end)
+
 hs.hotkey.bind({ "cmd" }, "1", function()
-  mouse_focus("Warp")
+  mouse_focus("Wezterm")
 end)
 
 hs.hotkey.bind({ "cmd" }, "2", function()
