@@ -40,8 +40,8 @@
   {
     "context": "Editor && !menu",
     "bindings": {
-      // "ctrl-shift-c": "editor::Copy",
-      // "ctrl-shift-x": "editor::Cut",
+      "ctrl-shift-c": "editor::Copy",
+      "ctrl-shift-x": "editor::Cut",
       // "ctrl-shift-v": "editor::Paste"
       // "ctrl-y": "editor::Undo",          // vim default: line up
       // "ctrl-f": "buffer_search::Deploy", // vim default: page down
