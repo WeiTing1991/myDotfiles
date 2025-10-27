@@ -56,11 +56,12 @@
     "calt": false,
     "dlig": true
   },
-  "buffer_font_family": "Iosevka Nerd Font",
+  // "buffer_font_family": "Iosevka Nerd Font",
+  "buffer_font_family": "Hack Nerd Font",
   "buffer_font_weight": 500,
 
   "ui_font_size": 14,
-  "ui_font_family": ".ZedSans",
+  "ui_font_family": ".SystemUIFont",
   "ui_font_weight": 400,
 
   // Editor Settings
@@ -310,7 +311,7 @@
     "C#": ["cs", "csx"],
     "CMake": ["CMakeLists.txt"],
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
-    "XML": ["xml", "xsl", "xsd", "xslt", "csproj", "props"]
+    "XML": ["xml", "xsl", "xsd", "xslt", "csproj", "Directory.*"]
   },
 
   // Default Formatter

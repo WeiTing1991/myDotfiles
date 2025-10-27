@@ -113,6 +113,7 @@
     "use_key_equivalents": true,
     "bindings": {
       "o": "project_panel::Open",
+      "s": "project_panel::OpenSplitVertical",
       "q": "pane::CloseActiveItem",
       "r": "project_panel::Rename",
       "n": "project_panel::NewFile",
@@ -138,10 +139,13 @@
       "space ,": "editor::Format",
       "space f f": "file_finder::Toggle",
       "space f l": "workspace::NewSearch",
-      "space x": "diagnostics::Deploy",
       "space l o": "outline_panel::ToggleFocus",
-      "space g": "git_panel::ToggleFocus",
       "space t t": "theme_selector::Toggle",
+
+      "space g": "git_panel::ToggleFocus",
+      "space g b": "git::Blame",
+
+      "space x": "diagnostics::Deploy",
 
       // Git hunks navigation
       "] h": "editor::GoToHunk",

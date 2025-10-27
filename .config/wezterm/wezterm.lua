@@ -29,10 +29,10 @@ if is_windows then
   })
 elseif is_macos then
   default_prog = { "/bin/zsh" }
-  font_size = 14.0
+  font_size = 12.0
   default_font = wezterm.font_with_fallback({
     {
-      family = "Iosevka Nerd Font",
+      family = "Hack Nerd Font",
       harfbuzz_features = { "calt=0" },
     },
   })
