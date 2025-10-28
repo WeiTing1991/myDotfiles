@@ -44,6 +44,7 @@ config = {
   allow_win32_input_mode = false,
   enable_kitty_keyboard = true,
   enable_kitty_graphics = true,
+  hyperlink_rules = wezterm.default_hyperlink_rules(),
 
   -- render option
   -- enable_wayland = false,
@@ -203,4 +204,43 @@ config = {
     },
   },
 }
+
+table.insert(config.hyperlink_rules, {
+  regex = [[\b\w+/[\w.-]+\.\w+:\d+\b]],
+  format = "$0",
+  -- When clicked, will try to open the file
+})
+
+local mod = is_macos and "SUPER" or "CTRL"
+config.mouse_bindings = {
+  -- First, select the word under the mouse
+  {
+    event = { Down = { streak = 1, button = "Left" } },
+    mods = mod,
+    action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
+  },
+  -- Then process it
+  {
+    event = { Up = { streak = 1, button = "Left" } },
+    mods = mod,
+    action = wezterm.action_callback(function(window, pane)
+      -- Get the selected text
+      local sel = window:get_selection_text_for_pane(pane)
+
+      -- Match file:line or file:line:col
+      local file, line = sel:match("([%w/._-]+%.[%w]+):(%d+)")
+
+      if file and line then
+        wezterm.log_info("Found: " .. file .. " line " .. line)
+        -- Exit terminal mode with ESC ESC
+        pane:send_text("\x1b\x1b")
+        -- Wait a moment
+        wezterm.sleep_ms(150)
+        -- Open the file
+        pane:send_text(":e +" .. line .. " " .. file .. "\r")
+      end
+    end),
+  },
+}
+
 return config

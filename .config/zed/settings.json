@@ -313,7 +313,9 @@
     "C#": ["cs", "csx"],
     "CMake": ["CMakeLists.txt"],
     "Dockerfile": ["Dockerfile", "Dockerfile.*"],
-    "XML": ["xml", "xsl", "xsd", "xslt", "csproj", "Directory.*"]
+    "XML": ["xml", "xsl", "xsd", "xslt", "csproj", "Directory.*"],
+    "TOML": ["toml", ".clang-format"],
+    "YAML": ["yaml", "yml",".editorconfig"]
   },
 
   // Default Formatter
@@ -434,14 +436,14 @@
 
     // C/C++
     "C": {
-      "formatter": "language_server",
+      "formatter": "auto",
       "tab_size": 2,
       "code_actions_on_format": {
         "source.organizeImports": true
       }
     },
     "C++": {
-      "formatter": "language_server",
+      "formatter": "auto",
       "tab_size": 2,
       "code_actions_on_format": {
         "source.organizeImports": true

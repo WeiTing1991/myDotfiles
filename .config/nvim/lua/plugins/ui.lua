@@ -32,6 +32,8 @@ return {
   },
   {
     "nanozuki/tabby.nvim",
+    lazy = true,
+    enabled = false,
     event = "VeryLazy",
     opts = {},
     -- config = function()

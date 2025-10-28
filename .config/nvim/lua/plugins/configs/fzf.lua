@@ -125,6 +125,9 @@ fzf.setup({
   },
   previewers = {
     builtin = {
+      snacks_image = {
+        enabled = false,
+      },
       extensions = {
         ["png"] = { "chafa" },
         ["jpg"] = { "chafa" },

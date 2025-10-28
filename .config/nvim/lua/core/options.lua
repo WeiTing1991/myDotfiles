@@ -127,6 +127,7 @@ local options = {
   -- ui
   cursorline = false,
   mouse = "a",
+  mousemodel = "popup",
   showtabline = 2,
   laststatus = 3,
   ttyfast = true,
