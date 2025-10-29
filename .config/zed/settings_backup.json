@@ -35,7 +35,7 @@
     "dark": "JetBrains New UI Icons (Dark)"
   },
 
-  "theme": "Neovim default accented dark",
+  "theme": "Neovim default accented light",
   "experimental.theme_overrides": {
     "version_control.added": "#27a657ff",
     "version_control.modified": "#d3b020ff",
@@ -66,7 +66,7 @@
   // Editor Settings
   "use_auto_surround": true,
   "hide_mouse": "on_typing",
-  "relative_line_numbers": "enabled",
+  "relative_line_numbers": true,
   "wrap_guides": [80, 120],
   "show_whitespaces": "boundary",
   "lsp_document_colors": "inlay",
@@ -410,7 +410,7 @@
         "source.fixAll.ruff": true,
         "source.organizeImports.ruff": true
       },
-      "language_servers": ["pyright","!basedpyright","ruff"],
+      "language_servers": ["ty","!basedpyright","ruff"],
       "tab_size": 4
     },
     "TOML": {

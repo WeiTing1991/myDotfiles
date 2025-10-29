@@ -1,7 +1,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "doomchad",
+  theme = "bearded-arc",
   hl_add = {
     WinSeparatorFocused = { bold = true }, -- Bright blue for focused
   },
@@ -9,7 +9,7 @@ M.base46 = {
   hl_override = {},
   changed_themes = {},
   transparency = false,
-  theme_toggle = { "doomchad", "one_light" },
+  theme_toggle = { "bearded-arc", "one_light" },
 }
 
 M.ui = {
