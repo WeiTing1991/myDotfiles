@@ -32,17 +32,19 @@ return {
       ["k"] = "prev",
     },
     opts = {
-      focus = false,
+      focus = true,
       auto_preview = true,
+      auto_close = false,
       preview = {
         type = "float",
         relative = "editor",
-        size = { width = 0.8, height = 0.3 }, -- Smaller preview
+        size = { width = 0.8, height = 0.5 },
         position = { 0.5, 0.8 },
         border = "single",
       },
     },
   },
+
   -- this is really cool
   {
     "lucaSartore/fastspell.nvim",

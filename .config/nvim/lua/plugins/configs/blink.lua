@@ -13,16 +13,16 @@ require("blink.cmp").setup({
         cmp.show({ providers = { "snippets" } })
       end,
     },
-    --
-    ["<Tab>"] = {
-      function(cmp)
-        if cmp.snippet_active() then
-          return cmp.accept()
-        else
-          return cmp.select_and_accept()
-        end
-      end,
-    },
+    ["<Tab>"] = { "select_and_accept", "fallback" },
+    -- ["<Tab>"] = {
+    --   function(cmp)
+    --     if cmp.snippet_active() then
+    --       return cmp.accept()
+    --     else
+    --       return cmp.select_and_accept()
+    --     end
+    --   end,
+    -- },
     -- ["<Backspace>"] = { "snippet_forward", "fallback" },
     -- ["<S-Backspace>"] = { "snippet_backward", "fallback" },
   },

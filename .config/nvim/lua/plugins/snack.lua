@@ -17,8 +17,9 @@ local dashboard = {
     keys = {
       { icon = " ", key = "f", desc = "Find File", action = ":FzfLua files" },
       -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-      { icon = " ", key = "o", desc = "Recent Files", action = ":FzfLua oldfiles" },
-      { icon = " ", key = "g", desc = "LazyGit", action = ":LazyGit" },
+      { icon = " ", key = "l", desc = "Live Grep", action = ":FzfLua live_grep" },
+      -- { icon = " ", key = "o", desc = "Recent Files", action = ":FzfLua " },
+      { icon = " ", key = "G", desc = "LazyGit", action = ":LazyGit" },
       {
         icon = " ",
         key = "c",

@@ -41,6 +41,8 @@ require("null-ls").setup({
       filetypes = { "sh", "bash", "zsh" },
     }),
 
+    -- formatting.xmllint,
+
     -- c/cpp/cmake
     formatting.clang_format.with({
       filetypes = { "c", "cpp", "objc", "objcpp", "h", "hpp" },

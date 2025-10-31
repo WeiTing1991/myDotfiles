@@ -84,69 +84,38 @@ M = {
   ["docker_compose_language_service"] = {},
 
   -- python
-  ["pyright"] = {
+  -- ["pyright"] = {},
+  ["basedpyright"] = {
     settings = {
-      pyright = {
-        disableOrganizeImports = false,
-        -- venvPath = ".",
-        -- venv = ".venv",
-      },
-      python = {
+      basedpyright = {
         analysis = {
-          extraPaths = { "./src", "./lib", "./backend", './venv", ".env' },
-          typeCheckingMode = "standard",
           autoSearchPaths = true,
-          autoImportCompletions = true,
           diagnosticMode = "workspace",
           useLibraryCodeForTypes = true,
-          preferredExecutables = {}, -- This can help with definition resolution
-          diagnosticSeverityOverrides = {
-            -- reportMissingImports = "information",
-            -- reportMissingModuleSource = "none",
-            -- reportImportCycles = "none",
-            -- reportImportNotFound = "none",
-            -- reportOptionalSubscript = "none",
-            -- reportOptionalMemberAccess = "none",
-            -- reportMissingTypeStubs = false,
-            -- reportAttributeAccessIssue = false,
-            -- reportUnknownMemberType = false,
-            -- reportUndefinedVariable = false,
-            -- reportGeneralTypeIssues = false,
-          },
+          typeCheckingMode = "standard",
+          extraPaths = { "./src", "./lib", "./backend", './venv", ".env' },
         },
+        -- diagnosticSeverityOverrides = {
+        --   -- reportMissingImports = "information",
+        --   -- reportMissingModuleSource = "none",
+        --   -- reportImportCycles = "none",
+        --   -- reportImportNotFound = "none",
+        --   -- reportOptionalSubscript = "none",
+        --   -- reportOptionalMemberAccess = "none",
+        --   -- reportMissingTypeStubs = false,
+        --   -- reportAttributeAccessIssue = false,
+        --   -- reportUnknownMemberType = false,
+        --   -- reportUndefinedVariable = false,
+        --   -- reportGeneralTypeIssues = false,
+        -- },
       },
     },
   },
   ["ruff"] = {
-    init_options = {
-      settings = {
-        logLevel = "debug",
-        organizeImports = true,
-      },
-    },
-  },
-
-  -- cmake
-  ["neocmakelsp"] = {
-    cmd = { "neocmakelsp", "--stdio" },
-    filetypes = { "cmake" },
-    single_file_support = true,
-    init_options = {
-      scan_cmake_in_package = false,
-      semantic_token = false,
-    },
-    settings = {
-      neocmakelsp = {
-        lint = {
-          enable = true,
-          lineLength = 120,
-        },
-        format = {
-          enable = true,
-        },
-        scan_cmake_in_package = false,
-      },
-    },
+    on_attach = function(client, bufnr)
+      -- Disable hover in ruff to avoid conflicts with pyright
+      client.server_capabilities.hoverProvider = false
+    end,
   },
 
   -- c/c++
@@ -190,6 +159,29 @@ M = {
     },
   },
 
+  -- cmake
+  ["neocmakelsp"] = {
+    cmd = { "neocmakelsp", "--stdio" },
+    filetypes = { "cmake" },
+    single_file_support = true,
+    init_options = {
+      scan_cmake_in_package = false,
+      semantic_token = false,
+    },
+    settings = {
+      neocmakelsp = {
+        lint = {
+          enable = true,
+          lineLength = 120,
+        },
+        format = {
+          enable = true,
+        },
+        scan_cmake_in_package = false,
+      },
+    },
+  },
+
   -- C#
   ["roslyn"] = {
     on_attach = function()
@@ -207,6 +199,20 @@ M = {
         dotnet_organize_imports_on_format = true,
       },
     },
+  },
+  -- xml
+  ["lemminx"] = {
+    cmd = { "lemminx" },
+    -- cmd = { "java", "-jar", "/path/to/org.eclipse.lemminx-uber.jar" },
+    settings = {
+      xml = {
+        validate = false, -- disable all schema validation
+        format = { enabled = true },
+        trace = { server = "off" },
+        logs = { client = false },
+      },
+    },
+    filetypes = { "xml", "xsd", "svg", "csproj" }, -- make sure .csproj files are included
   },
 
   --TODO:

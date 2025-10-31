@@ -60,6 +60,7 @@ fzf.setup({
       ["ctrl-g"] = "first",
       ["ctrl-G"] = "last",
       ["ctrl-q"] = "select-all+accept",
+
       -- Only valid with fzf previewers (bat/cat/git/etc)
       ["f3"] = "toggle-preview-wrap",
       ["f4"] = "toggle-preview",
@@ -81,9 +82,12 @@ fzf.setup({
       ["enter"] = FzfLua.actions.file_edit_or_qf,
       ["ctrl-s"] = FzfLua.actions.file_split,
       ["ctrl-v"] = FzfLua.actions.file_vsplit,
-      ["ctrl-t"] = FzfLua.actions.file_tabedit,
+      -- ["ctrl-t"] = FzfLua.actions.file_tabedit,
+      ["ctrl-t"] = require("trouble.sources.fzf").open,
+
       ["alt-q"] = FzfLua.actions.file_sel_to_qf,
       ["alt-Q"] = FzfLua.actions.file_sel_to_ll,
+
       ["alt-i"] = FzfLua.actions.toggle_ignore,
       ["alt-h"] = FzfLua.actions.toggle_hidden,
       ["alt-f"] = FzfLua.actions.toggle_follow,
@@ -138,7 +142,7 @@ fzf.setup({
   },
 })
 
-require("fzf-lua").register_ui_select(function(_, items)
+require("fzf-lua").register_ui_select(function()
   return {
     winopts = {
       height = 0.4,

@@ -67,7 +67,7 @@ function keymaps.on_attach(client, bufnr)
 
   map("g.", function()
     local actions = {
-      { name = "Code action", action = require("fzf-lua").lsp_code_actions },
+      { name = "Code action", action = vim.lsp.buf.code_action },
       {
         name = "Spell suggest",
         action = function()

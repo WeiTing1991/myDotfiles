@@ -15,11 +15,10 @@ require("fidget").setup({ notification = { window = { winblend = 0 } } })
 local ensure_installed = {}
 local lsp_server = require("lsp.server") or {}
 local lsp_extra = require("lsp.formater_linter")
--- local debugger_server = require("lsp.debugger") or {}
+
 
 vim.list_extend(ensure_installed, vim.tbl_keys(lsp_server))
 vim.list_extend(ensure_installed, vim.tbl_values(lsp_extra))
--- vim.list_extend(ensure_installed, debugger_server)
 
 require("mason-tool-installer").setup({
   ensure_installed = ensure_installed,
@@ -37,6 +36,7 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
+-- run MasonInstallAll
 for server_name, opts in pairs(lsp_server) do
   -- local actual_server = server_name_map[server_name] or server_name
   local actual_server = server_name

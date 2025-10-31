@@ -7,6 +7,7 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-z>", "<Nop>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<C-m>", "<C-m>", { silent = true })
+vim.keymap.set({ "n", "v" }, "<Tab>", "<Tab>", { silent = true })
 
 vim.keymap.set("n", "<C-q>", function()
   vim.cmd(":bw!")

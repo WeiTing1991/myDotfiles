@@ -13,6 +13,7 @@ return {
       })
     end,
   },
+
   --[[ Refactoring ]]
   {
     "ThePrimeagen/refactoring.nvim",
@@ -76,7 +77,7 @@ return {
     },
     config = function()
       require("overseer").setup({
-        templates = { "builtin", "lua.format", "csharp.format" },
+        templates = { "builtin", "lua.format", "csharp.format", "cpp.build" },
       })
     end,
   },

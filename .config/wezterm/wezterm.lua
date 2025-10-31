@@ -29,7 +29,7 @@ if is_windows then
   })
 elseif is_macos then
   default_prog = { "/bin/zsh" }
-  font_size = 13.0
+  font_size = 14.0
   default_font = wezterm.font_with_fallback({
     {
       family = "Hack Nerd Font",
@@ -45,6 +45,7 @@ config = {
   enable_kitty_keyboard = true,
   enable_kitty_graphics = true,
   hyperlink_rules = wezterm.default_hyperlink_rules(),
+  default_cursor_style = "BlinkingBlock",
 
   -- render option
   -- enable_wayland = false,
@@ -121,18 +122,18 @@ config = {
     { key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = true }) },
 
     -- close app
-    { key = "q", mods = "SHIFT|CTRL", action = act.QuitApplication },
-    { key = "q", mods = "ALT", action = act.QuitApplication },
-    { key = "q", mods = "SUPER", action = act.QuitApplication },
+    -- { key = "q", mods = "SHIFT|CTRL", action = act.QuitApplication },
+    -- { key = "q", mods = "ALT", action = act.QuitApplication },
+    -- { key = "q", mods = "SUPER", action = act.QuitApplication },
 
     -- reload the configuration
     { key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
     { key = "r", mods = "SUPER", action = act.ReloadConfiguration },
 
-    { key = "LeftArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
-    { key = "RightArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
-    { key = "UpArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
-    { key = "DownArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
+    { key = "LeftArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Left", 3 }) },
+    { key = "RightArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Right", 3 }) },
+    { key = "UpArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Up", 3 }) },
+    { key = "DownArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Down", 3 }) },
 
     -- mode
     -- { key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },

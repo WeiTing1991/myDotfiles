@@ -18,12 +18,10 @@ return {
     dependencies = {
       -- NOTE: Must be loaded before dependants
       { "williamboman/mason.nvim", opt = {} },
-      "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opt = {} },
       -- cmp
       { "saghen/blink.cmp" },
-      -- {"jay-babu/mason-nvim-dap.nvim"},
     },
     config = function()
       require("lsp.lsp_init")
