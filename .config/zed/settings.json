@@ -35,7 +35,7 @@
     "dark": "JetBrains New UI Icons (Dark)"
   },
 
-  "theme": "Neovim default accented dark",
+  "theme": "Gruvbox Dark Hard",
   "experimental.theme_overrides": {
     "version_control.added": "#27a657ff",
     "version_control.modified": "#d3b020ff",
@@ -66,7 +66,7 @@
   // Editor Settings
   "use_auto_surround": true,
   "hide_mouse": "on_typing",
-  "relative_line_numbers": "enabled",
+  "relative_line_numbers": true,
   "wrap_guides": [80, 120],
   "show_whitespaces": "boundary",
   "lsp_document_colors": "inlay",
@@ -346,19 +346,28 @@
       }
     },
     // python
-    "pyright": {
+    // "pyright": {
+    //   "settings": {
+    //     "pyright": {
+    //       "disableOrganizeImports": false
+    //     },
+    //     "python.analysis": {
+    //       "typeCheckingMode": "standard",
+    //       "diagnosticMode": "workspace",
+    //       "extraPaths": ["./src", "./lib", "./backend", "./venv", "./env"],
+    //       "stubPath": "./typings",
+    //       "autoSearchPaths": true,
+    //       "autoImportCompletions": true,
+    //       "useLibraryCodeForTypes": true
+    //     }
+    //   }
+    // },
+    "basedpyright": {
       "settings": {
-        "pyright": {
-          "disableOrganizeImports": false
-        },
-        "python.analysis": {
-          "typeCheckingMode": "standard",
+        "analysis": {
           "diagnosticMode": "workspace",
+          "inlayHints.callArgumentNames": false,
           "extraPaths": ["./src", "./lib", "./backend", "./venv", "./env"],
-          "stubPath": "./typings",
-          "autoSearchPaths": true,
-          "autoImportCompletions": true,
-          "useLibraryCodeForTypes": true
         }
       }
     },
@@ -410,7 +419,7 @@
         "source.fixAll.ruff": true,
         "source.organizeImports.ruff": true
       },
-      "language_servers": ["pyright","!basedpyright","ruff"],
+      "language_servers": ["!pyright", "basedpyright", "ruff"],
       "tab_size": 4
     },
     "TOML": {
