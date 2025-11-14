@@ -66,7 +66,7 @@
   // Editor Settings
   "use_auto_surround": true,
   "hide_mouse": "on_typing",
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "wrap_guides": [80, 120],
   "show_whitespaces": "boundary",
   "lsp_document_colors": "inlay",
