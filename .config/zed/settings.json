@@ -35,7 +35,7 @@
     "dark": "JetBrains New UI Icons (Dark)"
   },
 
-  "theme": "Gruvbox Dark Hard",
+  "theme": "Ayu Dark",
   "experimental.theme_overrides": {
     "version_control.added": "#27a657ff",
     "version_control.modified": "#d3b020ff",
