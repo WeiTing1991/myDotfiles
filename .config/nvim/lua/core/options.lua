@@ -1,5 +1,6 @@
 ---------------------------------------------  GLOBALS SETTINGS -------------------------------------------------------
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+
 local is_mac = vim.loop.os_uname().sysname == "Darwin"
 
 local sep = is_windows and "\\" or "/"

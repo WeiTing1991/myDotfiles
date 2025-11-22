@@ -124,9 +124,10 @@ return {
     animate = {
       enabled = true,
     },
-    -- disable modules
+    gh ={},
     git = { enabled = false },
     explorer = { enabled = false },
+    -- disable modules
     bigfile = { enabled = false },
     input = { enabled = false },
     notifier = { enabled = false },

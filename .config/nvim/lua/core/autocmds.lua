@@ -11,6 +11,15 @@ autocmd("BufWritePre", {
   end,
 })
 
+autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("wtc/disable_automatic_comment", { clear = true }),
+  pattern = { "*" }, -- Apply to all files
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" }) -- Disable auto-commenting on new lines
+  end,
+})
+
+
 autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("wtc/yank_highlight", { clear = true }),
