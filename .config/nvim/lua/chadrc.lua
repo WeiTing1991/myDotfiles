@@ -1,7 +1,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "darcula-dark",
+  theme = "github_dark",
   hl_add = {
     WinSeparatorFocused = { bold = true }, -- Bright blue for focused
   },
@@ -9,7 +9,7 @@ M.base46 = {
   hl_override = {},
   changed_themes = {},
   transparency = false,
-  theme_toggle = { "darcula-dark", "one_light" },
+  theme_toggle = { "github_dark", "one_light" },
 }
 
 M.ui = {

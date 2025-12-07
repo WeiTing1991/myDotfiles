@@ -143,8 +143,32 @@ neotree.setup({
         ["<c-x>"] = "clear_filter",
         ["[g"] = "prev_git_modified",
         ["]g"] = "next_git_modified",
+        ["O"] = "system_open",
       },
     },
+  },
+  commands = {
+    system_open = function(state)
+      local node = state.tree:get_node()
+      local path = node:get_id()
+      local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+      local is_mac = vim.loop.os_uname().sysname == "Darwin"
+
+      if is_mac then
+        vim.fn.jobstart({ "open", "-R", path }, { detach = true })
+      elseif is_windows then
+        local p
+        local lastSlashIndex = path:match("^.+()\\[^\\]*$")
+        if lastSlashIndex then
+          p = path:sub(1, lastSlashIndex - 1)
+        else
+          p = path
+        end
+        vim.cmd("silent !start explorer " .. p)
+      else
+        vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+      end
+    end,
   },
   -- git
   git_status = {
@@ -175,5 +199,6 @@ neotree.setup({
 -- Highlight for git ignored files
 vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", {
   fg = "#6c7086",
+
   italic = true,
 })
