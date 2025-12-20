@@ -98,7 +98,7 @@
     "active_line_width": 2,
     "coloring": "fixed",
     "background_coloring": "disabled"
-  },
+ },
 
   // Completion Settings
   "completions": {
