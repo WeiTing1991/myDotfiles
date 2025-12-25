@@ -41,7 +41,7 @@ return {
       vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
     end,
   },
-  { "danilamihailov/beacon.nvim" }, -- lazy calls setup() by itself
+  -- { "danilamihailov/beacon.nvim" }, -- lazy calls setup() by itself
   {
     "lukas-reineke/virt-column.nvim",
     lazy = true,
