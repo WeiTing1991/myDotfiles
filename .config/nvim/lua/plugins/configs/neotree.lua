@@ -25,7 +25,7 @@ neotree.setup({
       { source = "filesystem", display_name = "󰉓  Files" },
       { source = "git_status", display_name = "󰊢  Git" },
       -- { source = "buffers", display_name = "󰈙 Buffers" },
-      { source = "document_symbols", display_name = "󰌗 Symbols" },
+      -- { source = "document_symbols", display_name = "󰌗 Symbols" },
     },
   },
 

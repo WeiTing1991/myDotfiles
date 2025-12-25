@@ -116,6 +116,7 @@ local options = {
   wrap = false,
   colorcolumn = "120",
   textwidth = 110,
+  sidescroll = 0,
 
   -- searchfolds
   foldmethod = "expr",
@@ -129,7 +130,7 @@ local options = {
   cursorline = false,
   mouse = "a",
   mousemodel = "popup",
-  showtabline = 2,
+  showtabline = 1,
   laststatus = 3,
   ttyfast = true,
   signcolumn = "yes:4",

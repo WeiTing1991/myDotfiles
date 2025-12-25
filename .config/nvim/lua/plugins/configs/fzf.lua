@@ -127,6 +127,13 @@ fzf.setup({
       ["alt-h"] = { actions.toggle_hidden },
     },
   },
+  buffers = {
+    winopts = {
+      height = 0.60,
+      width = 0.60,
+    },
+    previewer = false,
+  },
   previewers = {
     builtin = {
       snacks_image = {

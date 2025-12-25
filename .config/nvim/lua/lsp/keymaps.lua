@@ -105,6 +105,8 @@ function keymaps.on_attach(client, bufnr)
   map("gO", function()
     require("fzf-lua").lsp_document_symbols()
   end, "Go to Symbol in File")
+  map("go", "<cmd>topleft Outline<CR>", "Document Symbols")
+
   map("gW", function()
     require("fzf-lua").lsp_workspace_symbols()
   end, "Go to Symbol in Workspace")

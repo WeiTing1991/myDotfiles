@@ -1,7 +1,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "gruvbox",
+  theme = "default-dark",
   hl_add = {
     WinSeparatorFocused = { bold = true }, -- Bright blue for focused
   },
@@ -9,7 +9,7 @@ M.base46 = {
   hl_override = {},
   changed_themes = {},
   transparency = false,
-  theme_toggle = { "gruvbox", "one_light" },
+  theme_toggle = { "default-dark", "one_light" },
 }
 
 M.ui = {

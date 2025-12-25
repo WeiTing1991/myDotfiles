@@ -1,4 +1,5 @@
 return {
+
   --[[ diagnostic hover ]]
   {
     "WeiTing1991/diagnostic-hover.nvim",
@@ -12,6 +13,16 @@ return {
         },
       })
     end,
+  },
+
+  --[[ outline ]]
+  {
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    opts = {
+      -- Your setup opts here
+    },
   },
 
   --[[ Refactoring ]]
@@ -52,7 +63,6 @@ return {
   },
 
   -- [[Task Runner]]
-  -- TODO
   {
     "stevearc/overseer.nvim",
     lazy = true,
@@ -129,6 +139,15 @@ return {
           TemplateParamObject = "",
         },
       },
+    },
+  },
+  {
+    "linux-cultist/venv-selector.nvim",
+    lazy = true,
+    ft = "python",
+    opts = { -- this can be an empty lua table - just showing below for clarity.
+      search = {}, -- if you add your own searches, they go here.
+      options = {}, -- if you add plugin options, they go here.
     },
   },
 

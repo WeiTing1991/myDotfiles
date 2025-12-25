@@ -31,6 +31,29 @@ return {
     end,
   },
   {
+    "Bekaboo/dropbar.nvim",
+    event = "VeryLazy",
+    lazy = true,
+    config = function()
+      local dropbar_api = require("dropbar.api")
+      vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
+      vim.keymap.set("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
+      vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
+    end,
+  },
+  { "danilamihailov/beacon.nvim" }, -- lazy calls setup() by itself
+  {
+    "lukas-reineke/virt-column.nvim",
+    lazy = true,
+    event = "BufRead",
+    opts = {
+      char = { "┆" },
+      virtcolumn = "120",
+      highlight = { "NonText" },
+      exclude = { filetypes = { "oil", "markdown" } },
+    },
+  },
+  {
     "nanozuki/tabby.nvim",
     lazy = true,
     enabled = false,
@@ -85,16 +108,5 @@ return {
     --     end,
     --   })
     -- end,
-  },
-  {
-    "lukas-reineke/virt-column.nvim",
-    lazy = true,
-    event = "BufRead",
-    opts = {
-      char = { "┆" },
-      virtcolumn = "120",
-      highlight = { "NonText" },
-      exclude = { filetypes = { "oil", "markdown" } },
-    },
   },
 }

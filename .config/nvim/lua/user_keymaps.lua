@@ -11,7 +11,9 @@ map("n", "<leader>ff", fzf.files, { desc = "Find files" })
 map("n", "<leader>fl", fzf.live_grep, { desc = "Find live grep" })
 map("n", "<leader>fg", fzf.grep_curbuf, { desc = "Grep in current buffer" })
 map("n", "<leader>fb", fzf.buffers, { desc = "Find file in opened buffer" })
+map("n", "<leader><leader>", fzf.buffers, { desc = "Find file in opened buffer" })
 -- map("n", "<leader>fo", tele_builtin.oldfiles, { desc = "Open recent file" })
+
 
 -- [[ Override default keymaps ]]
 map("n", "<C-q>", function()
