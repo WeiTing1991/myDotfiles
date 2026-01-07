@@ -10,6 +10,7 @@ Import-Module PSReadLine
 #     Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
 #   }
 # }
+
 $prompt = ""
 function Invoke-Starship-PreCommand {
     $current_location = $executionContext.SessionState.Path.CurrentLocation
@@ -97,3 +98,5 @@ Set-Alias -Name git-browse -Value GitBrowser
 
 # Starship prompt
 Invoke-Expression (&starship init powershell)
+
+. ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))

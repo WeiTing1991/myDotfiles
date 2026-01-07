@@ -1,12 +1,13 @@
 . "$PSScriptRoot\helpers.ps1"
+scoop bucket add extras
+scoop bucket add versions
 
-## TODO:
 # Dev tool
 scoop install fd ripgrep make cmake wget unzip gzip fzf
 scoop install neovim
 scoop install laygit
 scoop install mingw
-scoop install tree-sitter
+#scoop install tree-sitter
 
 # scoop install bat
 
@@ -30,10 +31,10 @@ scoop install tree-sitter
 # nvm/nodejs
 
 # lazygit
-LinkDotfiles `
-    -program "" `
-    -dotfilesPath ".config\lazygit" `
-    -targetPath "$env:APPDATA\lazygit"
+# LinkDotfiles `
+#     -program "" `
+#     -dotfilesPath ".config\lazygit" `
+#     -targetPath "$env:APPDATA\lazygit"
 
 # scoop install nvm
 # nvm install node
