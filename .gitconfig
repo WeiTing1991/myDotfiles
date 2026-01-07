@@ -1,6 +1,7 @@
 [user]
   name = WeiTing1991
 	email = 72130405+WeiTing1991@users.noreply.github.com
+  #email = weiting@manukai.ch
   signingkey = ~/.ssh/id_ed25519.pub
 
 [url "git@github.com:"]
