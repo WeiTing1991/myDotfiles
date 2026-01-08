@@ -4,11 +4,11 @@ scoop bucket add versions
 
 # Dev tool
 scoop install fd ripgrep make cmake wget unzip gzip fzf
-scoop install neovim
-scoop install laygit
-scoop install mingw
-#scoop install tree-sitter
+scoop install wezterm-nightly
+scoop install neovim lazygit
 
+#scoop install mingw
+#scoop install tree-sitter
 # scoop install bat
 
 # # NVIM

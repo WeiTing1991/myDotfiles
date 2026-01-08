@@ -23,7 +23,7 @@ if is_windows then
   -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
   default_font = wezterm.font_with_fallback({
     {
-      family = "Hack Nerd Font",
+      family = "JetBrainsMono Nerd Font",
       harfbuzz_features = { "calt=0" },
     },
   })

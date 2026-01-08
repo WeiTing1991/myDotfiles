@@ -174,4 +174,4 @@ cycleWindows(exeName, appPath := "") {
 ;#2::cycleWindows("chrome.exe", "C:\Program Files\Google\Chrome\Application\chrome.exe")
 ;#3::cycleWindows("Obsidian.exe", "C:\Program Files\Obsidian\Obsidian.exe")
 #6::cycleWindows("Code.exe", "C:\Users\weichen34\AppData\Local\Programs\Microsoft VS Code\Code.exe")
-#7::cycleWindows("zed.exe", "C:\Users\weichen34\AppData\Local\Programs\Zed Nightly\bin\zed.exe")
+;#7::cycleWindows("zed.exe", "C:\Users\weichen34\AppData\Local\Programs\Zed Nightly\bin\zed.exe")

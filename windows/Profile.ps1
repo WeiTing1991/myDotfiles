@@ -11,16 +11,16 @@ Import-Module PSReadLine
 #   }
 # }
 
-$prompt = ""
-function Invoke-Starship-PreCommand {
-    $current_location = $executionContext.SessionState.Path.CurrentLocation
-    if ($current_location.Provider.Name -eq "FileSystem") {
-        $ansi_escape = [char]27
-        $provider_path = $current_location.ProviderPath -replace "\\", "/"
-        $prompt = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}$ansi_escape\"
-    }
-    $host.ui.Write($prompt)
-}
+# $prompt = ""
+# function Invoke-Starship-PreCommand {
+#     $current_location = $executionContext.SessionState.Path.CurrentLocation
+#     if ($current_location.Provider.Name -eq "FileSystem") {
+#         $ansi_escape = [char]27
+#         $provider_path = $current_location.ProviderPath -replace "\\", "/"
+#         $prompt = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}$ansi_escape\"
+#     }
+#     $host.ui.Write($prompt)
+# }
 
 # Use AcceptSuggestion instead of Complete
 Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
@@ -97,6 +97,7 @@ function GitBrowser {
 Set-Alias -Name git-browse -Value GitBrowser
 
 # Starship prompt
-Invoke-Expression (&starship init powershell)
+# Invoke-Expression (&starship init powershell)
 
+# scoop search
 . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
