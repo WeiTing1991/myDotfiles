@@ -35,7 +35,7 @@ local undoDir = ""
 if is_mac then
   undoDir = os.getenv("HOME") .. "/.vim/undodir"
 elseif is_windows then
-  undoDir = os.getenv("HOME") .. "\\.vim\\undodir"
+  undoDir = os.getenv("USERPROFILE") .. "\\.vim\\undodir"
 else
   undoDir = os.getenv("HOME") .. "/.vim/undodir"
 end

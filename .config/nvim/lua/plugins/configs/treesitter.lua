@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
   modules = {},
   ensure_installed = {
     "vim",
