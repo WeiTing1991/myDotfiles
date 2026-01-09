@@ -1,0 +1,317 @@
+" ============================================================================
+" .vsvimrc for Visual Studio 2022
+" Compatible with VsVim extension and vs-nerdx (NERDTree-like navigation)
+" ============================================================================
+
+" ============================================================================
+" BASIC SETTINGS
+" ============================================================================
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set number
+set relativenumber
+set clipboard=unnamed
+set scrolloff=8
+set backspace=indent,eol,start
+
+" Use system clipboard
+set clipboard=unnamed
+
+" ============================================================================
+" LEADER KEY
+" ============================================================================
+let mapleader = " "
+
+" ============================================================================
+" NORMAL MODE - NAVIGATION & EDITING
+" ============================================================================
+
+" Better j/k with word wrap and jump list
+nnoremap j gj
+nnoremap k gk
+
+" Clear search highlights
+nnoremap <Esc> :noh<CR>
+nnoremap <C-c> :noh<CR>
+
+" Keep cursor centered when scrolling
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap G Gzz
+
+" Keep cursor centered when searching
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Join lines with cursor position maintained
+nnoremap J mzJ`z
+
+" ============================================================================
+" VISUAL MODE - TEXT MANIPULATION
+" ============================================================================
+
+" Move selected lines up/down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Maintain visual selection when indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" ============================================================================
+" INSERT MODE
+" ============================================================================
+
+" Exit insert mode
+inoremap jk <Esc>
+inoremap <C-c> <Esc>
+
+" Delete word in insert mode (Ctrl+Backspace)
+inoremap <C-BS> <C-w>
+
+" ============================================================================
+" WINDOW NAVIGATION (Using VS Commands)
+" ============================================================================
+
+" Navigate between editor windows
+nnoremap <C-h> :vsc Window.PreviousTab<CR>
+nnoremap <C-l> :vsc Window.NextTab<CR>
+nnoremap <C-k> :vsc Window.PreviousTab<CR>
+nnoremap <C-j> :vsc Window.NextTab<CR>
+
+" ============================================================================
+" BUFFER/TAB NAVIGATION
+" ============================================================================
+
+" Next/Previous buffer (document)
+nnoremap <C-o> :vsc Window.NextTab<CR>
+nnoremap <C-i> :vsc Window.PreviousTab<CR>
+
+" Fallback with leader
+nnoremap <leader>o :vsc Window.NextTab<CR>
+nnoremap <leader>i :vsc Window.PreviousTab<CR>
+
+" Close current file/buffer
+nnoremap <C-q> :vsc File.Close<CR>
+
+" ============================================================================
+" VISUAL STUDIO SPECIFIC - CODE NAVIGATION
+" ============================================================================
+
+" Go to definition
+nnoremap gd :vsc Edit.GoToDefinition<CR>
+nnoremap gD :vsc Edit.GoToDeclaration<CR>
+
+" Go to implementation
+nnoremap gi :vsc Edit.GoToImplementation<CR>
+
+" Find references
+nnoremap gr :vsc Edit.FindAllReferences<CR>
+
+" Peek definition
+nnoremap <leader>pd :vsc Edit.PeekDefinition<CR>
+
+" Go back/forward
+nnoremap <C-O> :vsc View.NavigateBackward<CR>
+nnoremap <C-I> :vsc View.NavigateForward<CR>
+
+" ============================================================================
+" CODE ACTIONS & REFACTORING
+" ============================================================================
+
+" Quick actions (like code fixes)
+nnoremap <leader>ca :vsc View.QuickActions<CR>
+
+" Rename symbol
+nnoremap <leader>rn :vsc Refactor.Rename<CR>
+
+" Format document
+nnoremap <leader>f :vsc Edit.FormatDocument<CR>
+
+" Format selection
+vnoremap <leader>f :vsc Edit.FormatSelection<CR>
+
+" ============================================================================
+" SEARCH & REPLACE
+" ============================================================================
+
+" Find in files
+nnoremap <leader>/ :vsc Edit.FindinFiles<CR>
+
+" Search and replace (simple)
+nnoremap <leader>S :%s/\<<C-r><C-w>\>/<C-r><C-w>/gcI<Left><Left><Left><Left>
+
+" ============================================================================
+" COMMENTING (Assuming Comment/Uncomment shortcuts)
+" ============================================================================
+
+" Toggle comment (VS default is Ctrl+K, Ctrl+C / Ctrl+K, Ctrl+U)
+nnoremap - :vsc Edit.ToggleComment<CR>
+vnoremap - :vsc Edit.ToggleComment<CR>
+
+" Block comment
+nnoremap _ :vsc Edit.ToggleBlockComment<CR>
+vnoremap _ :vsc Edit.ToggleBlockComment<CR>
+
+" ============================================================================
+" SOLUTION EXPLORER & FILE TREE (vs-nerdx compatible)
+" ============================================================================
+
+" Toggle Solution Explorer (NERDTree-like)
+nnoremap <leader>e :vsc View.SolutionExplorer<CR>
+nnoremap <C-n> :vsc View.SolutionExplorer<CR>
+
+" Focus on Solution Explorer
+nnoremap <leader>n :vsc View.SolutionExplorer<CR>
+
+" Sync Solution Explorer with current file
+nnoremap <leader>nf :vsc SolutionExplorer.SyncWithActiveDocument<CR>
+
+" ============================================================================
+" BUILD & DEBUG
+" ============================================================================
+
+" Build solution
+nnoremap <leader>bb :vsc Build.BuildSolution<CR>
+
+" Start debugging
+nnoremap <leader>dd :vsc Debug.Start<CR>
+
+" Stop debugging
+nnoremap <leader>ds :vsc Debug.StopDebugging<CR>
+
+" Toggle breakpoint
+nnoremap <leader>bp :vsc Debug.ToggleBreakpoint<CR>
+
+" Step over
+nnoremap <F10> :vsc Debug.StepOver<CR>
+
+" Step into
+nnoremap <F11> :vsc Debug.StepInto<CR>
+
+" Step out
+nnoremap <S-F11> :vsc Debug.StepOut<CR>
+
+" Continue
+nnoremap <F5> :vsc Debug.Start<CR>
+
+" ============================================================================
+" ERROR NAVIGATION
+" ============================================================================
+
+" Next error
+nnoremap ]d :vsc View.NextError<CR>
+
+" Previous error
+nnoremap [d :vsc View.PreviousError<CR>
+
+" Error list
+nnoremap <leader>el :vsc View.ErrorList<CR>
+
+" ============================================================================
+" TESTING
+" ============================================================================
+
+" Run all tests
+nnoremap <leader>ta :vsc TestExplorer.RunAllTests<CR>
+
+" Run test at cursor
+nnoremap <leader>tr :vsc TestExplorer.RunAllTestsInContext<CR>
+
+" Debug test at cursor
+nnoremap <leader>td :vsc TestExplorer.DebugAllTestsInContext<CR>
+
+" ============================================================================
+" SPLITS & WINDOWS
+" ============================================================================
+
+" Split vertically
+nnoremap <C-w>' :vsc Window.NewVerticalTabGroup<CR>
+
+" Split horizontally
+nnoremap <C-w>5 :vsc Window.NewHorizontalTabGroup<CR>
+
+" Close split
+nnoremap <C-w>q :vsc Window.CloseDocumentWindow<CR>
+
+" ============================================================================
+" BOOKMARKS
+" ============================================================================
+
+" Toggle bookmark
+nnoremap mm :vsc Edit.ToggleBookmark<CR>
+
+" Next bookmark
+nnoremap mn :vsc Edit.NextBookmark<CR>
+
+" Previous bookmark
+nnoremap mp :vsc Edit.PreviousBookmark<CR>
+
+" Clear all bookmarks
+nnoremap mc :vsc Edit.ClearBookmarks<CR>
+
+" ============================================================================
+" MISCELLANEOUS
+" ============================================================================
+
+" Open command palette
+nnoremap <leader>p :vsc Window.QuickLaunch<CR>
+
+" Open file
+nnoremap <C-p> :vsc Edit.GoToAll<CR>
+
+" Show all commands
+nnoremap <leader>: :vsc Tools.CommandWindow<CR>
+
+" Output window
+nnoremap <leader>o :vsc View.Output<CR>
+
+" Terminal
+nnoremap <leader>` :vsc View.Terminal<CR>
+
+" Toggle full screen
+nnoremap <F11> :vsc View.FullScreen<CR>
+
+" Save all
+nnoremap <leader>w :vsc File.SaveAll<CR>
+
+" ============================================================================
+" DISABLE UNWANTED KEYS
+" ============================================================================
+nnoremap <F1> <Nop>
+vnoremap <F1> <Nop>
+nnoremap <C-z> <Nop>
+vnoremap <C-z> <Nop>
+
+" ============================================================================
+" NOTES
+" ============================================================================
+"
+" To use this file:
+" 1. Install VsVim extension for Visual Studio 2022
+" 2. Install vs-nerdx extension for NERDTree-like file navigation
+" 3. Place this file at: C:\Users\YourUsername\_vsvimrc
+" 4. Restart Visual Studio
+"
+" Key differences from Neovim:
+" - Most commands use :vsc (Visual Studio Command) instead of native vim
+" - Some advanced features may not work exactly like Neovim
+" - vs-nerdx provides vim bindings in Solution Explorer (j/k/o/x/etc.)
+"
+" Common vs-nerdx shortcuts (when in Solution Explorer):
+" j/k - Move down/up
+" o - Open file
+" go - Open file but keep focus on tree
+" t - Open in new tab
+" i - Open in horizontal split
+" s - Open in vertical split
+" x - Close parent directory
+" C - Change tree root to selected directory
+" u - Move tree root up one directory
+" r - Refresh current directory
+" m - Show file menu (add/delete/rename)
+" ? - Toggle help
+"
+" ============================================================================
