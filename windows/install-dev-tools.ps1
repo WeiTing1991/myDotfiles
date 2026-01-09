@@ -3,19 +3,20 @@
 # scoop bucket add versions
 
 # Dev tool
-# scoop install fd ripgrep make cmake wget unzip gzip fzf
-# scoop install wezterm-nightly
-# scoop install neovim lazygit
-# scoop install diff-so-fancy
-# scoop install mingw
+scoop install fd ripgrep make cmake wget unzip gzip fzf
+scoop install wezterm-nightly
+scoop install neovim lazygit
+scoop install diff-so-fancy
+scoop install mingw
+
 # scoop install tree-sitter
 # scoop install bat
 
 # lazygit
-# LinkDotfiles `
-#     -program "" `
-#     -dotfilesPath ".config\lazygit" `
-#     -targetPath "$env:APPDATA\lazygit"
+LinkDotfiles `
+-program "" `
+-dotfilesPath ".config\lazygit" `
+-targetPath "$env:APPDATA\lazygit"
 
 # nvm/nodejs
 # scoop install nvm
@@ -23,37 +24,40 @@
 # nvm use newest
 
 # NVIM
-# rm -Force ~\AppData\Local\nvim
-# rm -Force ~\AppData\Local\nvim-data
-# Install-ProgramAndLinkDotfiles `
-# -dotfilesPath ".config\nvim" `
-# -targetPath "$env:LOCALAPPDATA\nvim"
+rm -Force ~\AppData\Local\nvim
+rm -Force ~\AppData\Local\nvim-data
+Install-ProgramAndLinkDotfiles `
+-dotfilesPath ".config\nvim" `
+-targetPath "$env:LOCALAPPDATA\nvim"
 
 # VS
-Install-ProgramAndLinkDotfiles `
+LinkDotfiles `
 -program "" `
 -dotfilesPath "windows\.vsvimrc" `
 -targetPath "$HOME\.vsvimrc"
 
 # uv
-# powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-# $env:Path = "$HOME\.local\bin;$env:Path"
-# uv --version
-# # add python
-# $env:PATH = "$HOME\AppData\Roaming\uv\python;" + $env:PATH
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+$env:Path = "$HOME\.local\bin;$env:Path"
+uv --version
+add python
+$env:PATH = "$HOME\AppData\Roaming\uv\python;" + $env:PATH
+
+scoop install mamba
+powershell -ExecutionPolicy ByPass -c "irm -useb https://pixi.sh/install.ps1 | iex"
+
 
 # UV Python configuration
 # Install-ProgramAndLinkDotfiles `
-#     -program "" `
-#     -dotfilesPath ".config\uv\uv.toml" `
-#     -targetPath "$HOME\.config\uv\uv.toml"
+# -program "" `
+# -dotfilesPath ".config\uv\uv.toml" `
+# -targetPath "$HOME\.config\uv\uv.toml"
 
 # Pip configuration
 # Install-ProgramAndLinkDotfiles `
 #     -program "" `
 #     -dotfilesPath ".config\pip\pip.conf" `
 #     -targetPath "$env:APPDATA\pip\pip.ini
-
 
 # docker
 # winget install -e --id Docker.DockerDesktop

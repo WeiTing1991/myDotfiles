@@ -71,10 +71,10 @@ config = {
   window_background_opacity = 1,
   window_decorations = "RESIZE",
   window_padding = {
-    left = 5,
-    right = 5,
-    top = 10,
-    bottom = 10,
+    left = 2,
+    right = 2,
+    top = 2,
+    bottom = 2,
   },
   inactive_pane_hsb = {
     saturation = 0.5,
