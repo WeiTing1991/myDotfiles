@@ -1,75 +1,83 @@
 # Get editor completions based on the config schema
 # https://github.com/starship/starship/discussions/1107 some reference
 "$schema" = 'https://starship.rs/config-schema.json'
-
-# Inserts a blank line between shell prompts
-format = """
-$username\
-$hostname\
-$directory\
-$git_branch\
-$git_commit\
-$git_status\
-$git_state\
-$python\
-$cmd_duration\
-$character"""
-add_newline = false
-
-[line_break]
-disabled = true
-
-# Directory styling - uses terminal theme colors
-[directory]
-format = "[$path]($style) "
-read_only = " 󰌾"
-truncation_length = 0
-truncate_to_repo = false
-home_symbol = "~"
-
-[git_branch]
-format = "on [$symbol$branch]($style) "
-
-[git_status]
-format = '[\[$all_status\]]($style) '
-style = ""
-modified = "!${count} "
-staged = "+${count} "
-untracked = "?${count} "
-deleted = "x${count} "
-conflicted = "=${count} "
-ahead = "⇡${count} "
-behind = "⇣${count} "
-renamed = "»${count} "
-typechanged = "T${count} "
-stashed = "_${count} "
-
-[git_state]
-format = '([$state( $progress_current/$progress_total)]($style) )'
-
-[cmd_duration]
-format = "took [$duration]($style) "
-min_time = 1000
+continuation_prompt = "[.](bright-black) "
 
 [character]
+# This removes the default symbols from most modules
+# format = '$all'
 success_symbol = "[❯](bold green)"
 error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[❮](bold green)"
 
-[username]
-format = "[$user]($style)@"
-show_always = true
-
-[hostname]
-format = "[$hostname]($style) "
-ssh_only = true
-
-[nodejs]
+[line_break]
 disabled = true
 
+
 [python]
-format = 'via [${symbol}${version}]($style)[ (${virtualenv})]($style) '
-symbol = 'PY '
+# format = 'via [${symbol}${version}]($style)[ (${virtualenv})]($style) '
+symbol = 'py '
 detect_extensions = ['py', 'pyc','pyi']
 detect_files = ['pyproject.toml', 'requirements.txt', 'uv.lock', '__init__.py',]
-detect_folders = []
+# detect_folders = []
+
+
+# # Inserts a blank line between shell prompts
+# format = """
+# $username\
+# $hostname\
+# $directory\
+# $git_branch\
+# $git_commit\
+# $git_status\
+# $git_state\
+# $python\
+# $cmd_duration\
+# $character"""
+# add_newline = false
+
+
+# # Directory styling - uses terminal theme colors
+# [directory]
+# format = "[$path]($style) "
+# read_only = " 󰌾"
+# truncation_length = 0
+# truncate_to_repo = false
+# home_symbol = "~"
+
+# [git_branch]
+# format = "on [$symbol$branch]($style) "
+
+# [git_status]
+# format = '[\[$all_status\]]($style) '
+# style = ""
+# modified = "!${count} "
+# staged = "+${count} "
+# untracked = "?${count} "
+# deleted = "x${count} "
+# conflicted = "=${count} "
+# ahead = "⇡${count} "
+# behind = "⇣${count} "
+# renamed = "»${count} "
+# typechanged = "T${count} "
+# stashed = "_${count} "
+
+# [git_state]
+# format = '([$state( $progress_current/$progress_total)]($style) )'
+
+# [cmd_duration]
+# format = "took [$duration]($style) "
+# min_time = 1000
+
+
+# [username]
+# format = "[$user]($style)@"
+# show_always = true
+
+# [hostname]
+# format = "[$hostname]($style) "
+# ssh_only = true
+
+# [nodejs]
+# disabled = true
+

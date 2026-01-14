@@ -1,5 +1,4 @@
-; https://www.autohotkey.com/docs/v2/Hotkeys.htm
-
+#Requires Autohotkey v2.0+
 
 #SingleInstance Force ; Prevents duplicate script instances
 
@@ -8,12 +7,10 @@
 ;   ExitApp()
 ;}
 
-;#Persistent  ; Keep the script running in the background
-
 TileWidth := A_ScreenWidth / 2
 TileHeight := A_ScreenHeight / 2
 
-padding := 10
+;padding := 10
 
 CapsLock::Ctrl   ; CapsLock → Acts as Ctrl
 LWin & Tab::AltTab
@@ -26,41 +23,51 @@ LWin & Tab::AltTab
 #+h::
 {
     SendEvent("#{Left}") ; Sends Win + Left
+    Sleep(300)
+    centerMouseInWindow()
 }
 
-; Win + Shift + K -> Snap window to top half
 #+k::
 {
     SendEvent("#{Up}") ; Sends Win + Up
+    Sleep(300)
+    centerMouseInWindow()
 }
 
-; Win + Shift + L -> Snap window to right half
 #+l::
 {
     SendEvent("#{Right}") ; Sends Win + Right
+    Sleep(300)
+    centerMouseInWindow()
 }
 
 #+j::
 {
     SendEvent("#{Down}") ; Sends Win + Down
+    Sleep(300)
+    centerMouseInWindow()
 }
 
 #+Enter::{
-    ; Center Window
+    ; Center Window (95% size)
     NewWidth := A_ScreenWidth * 0.95
     NewHeight := A_ScreenHeight * 0.95
     X := (A_ScreenWidth - NewWidth) / 2
     Y := (A_ScreenHeight - NewHeight) / 2
-    WinMove(X, Y, NewWidth, NewHeight, "A")  ; Move and resize the active window
+    WinMove(X, Y, NewWidth, NewHeight, "A")
+    Sleep(100)
+    centerMouseInWindow()
 }
 
 #^Enter::{
-    ; Center Window
+    ; Center Window (50% size)
     NewWidth := A_ScreenWidth * 0.50
     NewHeight := A_ScreenHeight * 0.50
     X := (A_ScreenWidth - NewWidth) / 2
     Y := (A_ScreenHeight - NewHeight) / 2
-    WinMove(X, Y, NewWidth, NewHeight, "A")  ; Move and resize the active window
+    WinMove(X, Y, NewWidth, NewHeight, "A")
+    Sleep(100)
+    centerMouseInWindow()
 }
 
 #Enter::{
@@ -69,11 +76,12 @@ LWin & Tab::AltTab
             WinRestore("A") ; Restore if maximized
         else
             WinMaximize("A") ; Maximize if not
+        Sleep(300)
+        centerMouseInWindow()
     }
 }
 
-; desktop
-
+; Desktop switching
 #^j::
 {
     SendEvent("#^{Left}")
@@ -84,94 +92,95 @@ LWin & Tab::AltTab
     SendEvent("#^{Right}")
 }
 
-; Move mouse to center of a window
-moveMouseToClientCenter(winTitle) {
-    hwnd := WinExist(winTitle)
-    if !hwnd {
-        MsgBox("Window not found: " winTitle)
+; === FUNCTIONS ===
+
+centerMouseInWindow() {
+    hwnd := WinExist("A")
+    if !hwnd
+        return
+
+    Sleep(100)
+
+    WinGetPos(&winX, &winY, &winW, &winH, "A")
+
+    if (winW <= 0 || winH <= 0)
+        return
+
+    RECT := Buffer(16, 0)
+    DllCall("GetClientRect", "Ptr", hwnd, "Ptr", RECT)
+
+    clientWidth := NumGet(RECT, 8, "Int")
+    clientHeight := NumGet(RECT, 12, "Int")
+
+    if (clientWidth <= 0 || clientHeight <= 0) {
+        MouseMove(winX + winW//2, winY + winH//2, 0)
         return
     }
-    ; Get window position
-    WinGetPos(&winX, &winY, &winW, &winH, winTitle)
-    ; Initialize buffer for GetClientRect
-    rc := Buffer(16, 0)  ; AutoHotkey v2 syntax for buffer
-    success := DllCall("User32.dll\GetClientRect", "Ptr", hwnd, "Ptr", rc)
-    if !success {
-        MsgBox("GetClientRect failed")
-        return
-    }
-    ; Get client area dimensions
-    clientW := NumGet(rc, 8, "Int")   ; right - left (left is always 0)
-    clientH := NumGet(rc, 12, "Int")  ; bottom - top (top is always 0)
-    ; Calculate window frame offsets
-    offsetX := (winW - clientW) // 2
-    offsetY := winH - clientH - offsetX
-    ; Calculate center position
-    centerX := winX + offsetX + clientW // 2
-    centerY := winY + offsetY + clientH // 2
-    ; Move mouse to center
+
+    POINT := Buffer(8, 0)
+    NumPut("Int", 0, POINT, 0)
+    NumPut("Int", 0, POINT, 4)
+    DllCall("ClientToScreen", "Ptr", hwnd, "Ptr", POINT)
+
+    clientX := NumGet(POINT, 0, "Int")
+    clientY := NumGet(POINT, 4, "Int")
+
+    centerX := clientX + clientWidth//2
+    centerY := clientY + clientHeight//2
+
     MouseMove(centerX, centerY, 0)
 }
 
-; Simple version - move to window center (without client area calculation)
-moveMouseToCenter(winTitle) {
-    if !WinExist(winTitle) {
-        MsgBox("Window not found: " winTitle)
+cycleWindows(exeName) {
+    idList := WinGetList("ahk_exe " exeName)
+
+    if (idList.Length = 0)
+        return
+
+    if (idList.Length = 1) {
+        if (WinGetMinMax("ahk_id " idList[1]) = -1)
+            WinRestore("ahk_id " idList[1])
+        WinActivate("ahk_id " idList[1])
+        Sleep(150)
+        centerMouseInWindow()
         return
     }
-    WinGetPos(&winX, &winY, &winW, &winH, winTitle)
-    MouseMove(winX + winW//2, winY + winH//2, 0)
-}
 
-; Function to focus or launch an application
-focusApp(appPath, winTitle) {
-    if WinExist(winTitle) {
-        WinActivate(winTitle)
-        moveMouseToCenter(winTitle)
-    } else {
-        Run(appPath)
-    }
-}
+    activeId := WinGetID("A")
+    currentIdx := 0
+    isCurrentlyActive := false
 
-; Cycle through windows of a given executable - FIXED VERSION
-cycleWindows(exeName, appPath := "") {
-    idList := WinGetList("ahk_exe " exeName)
-    if (idList.Length > 1) {
-        ; Multiple windows found - cycle through them
-        activeId := WinGetID("A")
-        currentIdx := 0  ; Fixed: was 'idx := 0'
-
-        ; Find current window index
-        for i, id in idList {
-            if (id = activeId) {
-                currentIdx := i  ; Fixed: was assigning to undefined variable
-                break
-            }
+    for i, id in idList {
+        if (id = activeId) {
+            currentIdx := i
+            isCurrentlyActive := true
+            break
         }
-
-        ; Calculate next window index
-        nextIdx := currentIdx ? (currentIdx = idList.Length ? 1 : currentIdx + 1) : 1  ; Fixed: use currentIdx
-        nextId := idList[nextIdx]
-
-        ; Activate next window
-        WinActivate("ahk_id " nextId)
-        WinWaitActive("ahk_id " nextId)
-        moveMouseToClientCenter("ahk_id " nextId)
-    } else if idList.Length = 1 {
-        ; Only one window - just focus and center mouse
-        WinActivate("ahk_id " idList[1])
-        moveMouseToClientCenter("ahk_id " idList[1])
-    } else if appPath {
-        ; No windows found - launch app as normal user (drop admin privileges)
-        ; Use explorer.exe to launch without admin privileges
-        Run('explorer.exe "' appPath '"')
     }
+
+    if (! isCurrentlyActive) {
+        nextId := idList[1]
+    } else {
+        nextIdx := (currentIdx = idList.Length) ? 1 : currentIdx + 1
+        nextId := idList[nextIdx]
+    }
+
+    if (WinGetMinMax("ahk_id " nextId) = -1)
+        WinRestore("ahk_id " nextId)
+
+    WinActivate("ahk_id " nextId)
+    Sleep(150)
+    centerMouseInWindow()
 }
-; === HOTKEYS ===
-; Windows key + number combinations
-#1::cycleWindows("wezterm-gui.exe", "C:\Program Files\WezTerm\wezterm-gui.exe")
-;#2::cycleWindows("chrome.exe", "C:\Program Files\Mozilla Firefox\firefox.exe")
-;#2::cycleWindows("chrome.exe", "C:\Program Files\Google\Chrome\Application\chrome.exe")
-;#3::cycleWindows("Obsidian.exe", "C:\Program Files\Obsidian\Obsidian.exe")
-#7::cycleWindows("Code.exe", "C:\Users\weichen34\AppData\Local\Programs\Microsoft VS Code\Code.exe")
-;#7::cycleWindows("zed.exe", "C:\Users\weichen34\AppData\Local\Programs\Zed Nightly\bin\zed.exe")
+
+; === APP SHORTCUTS ===
+
+#1::cycleWindows("WindowsTerminal.exe")
+#4::cycleWindows("chrome.exe")
+#7::cycleWindows("Code.exe")
+
+#+1::Run("wt")
+#+4::Run("chrome.exe")
+#+7::Run("code.exe")
+
+

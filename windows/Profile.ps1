@@ -97,7 +97,7 @@ function GitBrowser {
 Set-Alias -Name git-browse -Value GitBrowser
 
 # Starship prompt
-# Invoke-Expression (&starship init powershell)
+Invoke-Expression (&starship init powershell)
 
 # scoop search
 . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
