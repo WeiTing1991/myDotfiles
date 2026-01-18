@@ -6,7 +6,7 @@ local neotree = require("neo-tree.command")
 local fzf = require("fzf-lua")
 
 --[[ fzf/search ]]
-map("n", "<C-f>", fzf.files, { desc = "Find files" })
+map("n", "<C-p>", fzf.files, { desc = "Find files" })
 map("n", "<leader>ff", fzf.files, { desc = "Find files" })
 map("n", "<leader>fl", fzf.live_grep, { desc = "Find live grep" })
 map("n", "<leader>fg", fzf.grep_curbuf, { desc = "Grep in current buffer" })
@@ -38,7 +38,7 @@ map("n", "z=", function()
 end, { desc = "Spell Suggestion" })
 
 -- [[ Terminal ]]
-map({ "n", "t" }, "<C-/>", function()
+map({ "n", "t" }, "<C-`>", function()
   snacks.terminal()
 end, { desc = "Toggle terminal" })
 -- fallback

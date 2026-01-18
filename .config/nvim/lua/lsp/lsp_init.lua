@@ -40,7 +40,7 @@ capabilities.textDocument.foldingRange = {
 for server_name, opts in pairs(lsp_server) do
   -- local actual_server = server_name_map[server_name] or server_name
   local actual_server = server_name
-
+-- 
   -- if actual_server == "jdtls" or actual_server == "ts_ls" then
   --   goto continue
   -- end
