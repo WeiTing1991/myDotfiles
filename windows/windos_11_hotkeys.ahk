@@ -13,7 +13,10 @@ TileHeight := A_ScreenHeight / 2
 ;padding := 10
 
 CapsLock::Ctrl   ; CapsLock → Acts as Ctrl
-LWin & Tab::AltTab
+;LWin::Alt
+;Alt::LWin
+
+;LWin & Tab::AltTab
 
 !w::  ; Alt + W
 {

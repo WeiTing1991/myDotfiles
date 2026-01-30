@@ -83,7 +83,7 @@ Set-Alias pip3 pip
 # function usi ($command) {cd \work\01_USI}
 function pj ($command) { cd $HOME\project\ }
 
-# function which ($command) {
+# function where ($command) {
 #   Get-Command -Name $command -ErrorAction SilentlyContinue
 #   # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 # }
@@ -101,3 +101,11 @@ Invoke-Expression (&starship init powershell)
 
 # scoop search
 . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
+
+#region conda initialize
+# !! Contents within this block are managed by 'conda init' !!
+If (Test-Path "C:\Users\WeiTing\miniforge3\Scripts\conda.exe") {
+    (& "C:\Users\WeiTing\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ?{$_} | Invoke-Expression
+}
+#endregion
+
