@@ -179,11 +179,11 @@ cycleWindows(exeName) {
 ; === APP SHORTCUTS ===
 
 #1::cycleWindows("WindowsTerminal.exe")
-#4::cycleWindows("chrome.exe")
+;#4::cycleWindows("chrome.exe")
 #7::cycleWindows("Code.exe")
 
 #+1::Run("wt")
-#+4::Run("chrome.exe")
 #+7::Run("code.exe")
+;#+4::Run("chrome.exe")
 
 
