@@ -137,10 +137,10 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Move lines (normal mode) - Alt+j/k
-nnoremap <A-j> :vsc Edit.MoveSelectedLinesDown<CR>
-nnoremap <A-k> :vsc Edit.MoveSelectedLinesUp<CR>
-vnoremap <A-j> :vsc Edit.MoveSelectedLinesDown<CR>
-vnoremap <A-k> :vsc Edit.MoveSelectedLinesUp<CR>
+inoremap <A-j> :vsc Edit.LineDown<CR>
+inoremap <A-k> :vsc Edit.LineUp<CR>
+" vnoremap <A-j> :vsc Edit.MoveSelectedLinesDown<CR>
+" vnoremap <A-k> :vsc Edit.MoveSelectedLinesUp<CR>
 
 
 " ============================================================================
