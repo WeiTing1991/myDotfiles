@@ -11,7 +11,7 @@ error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[❮](bold green)"
 
 [line_break]
-disabled = true
+disabled = false
 
 
 [python]
@@ -20,6 +20,17 @@ symbol = 'py '
 detect_extensions = ['py', 'pyc','pyi']
 detect_files = ['pyproject.toml', 'requirements.txt', 'uv.lock', '__init__.py',]
 # detect_folders = []
+
+[dotnet]
+symbol = 'C# '
+format = '[$symbol($version )]($style)'
+detect_extensions = ['csproj', 'fsproj', 'xproj', 'sln']
+detect_files = ['project.json', 'Directory.Build.props']
+# heuristic = true  # Faster detection without running dotnet command
+
+[conda]
+format = '[$environment]($style) '
+ignore_base = true  # Hide when in base environment
 
 
 # # Inserts a blank line between shell prompts

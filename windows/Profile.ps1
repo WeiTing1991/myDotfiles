@@ -105,7 +105,10 @@ Invoke-Expression (&starship init powershell)
 #region conda initialize
 # !! Contents within this block are managed by 'conda init' !!
 If (Test-Path "C:\Users\WeiTing\miniforge3\Scripts\conda.exe") {
-    (& "C:\Users\WeiTing\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ?{$_} | Invoke-Expression
+  (& "C:\Users\WeiTing\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
 }
 #endregion
 
+# MSBuild
+$env:MSBUILD = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe 2>$null | Select-Object -First 1
+function msbuild { & $env:MSBUILD @args }

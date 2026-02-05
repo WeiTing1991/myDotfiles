@@ -8,6 +8,8 @@ scoop install wezterm-nightly
 scoop install neovim lazygit
 scoop install diff-so-fancy
 scoop install mingw
+scoop install bat
+scoop install eza
 
 # scoop install tree-sitter
 # scoop install bat

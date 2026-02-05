@@ -9,6 +9,8 @@ Install-Module -Name PowerShellGet -RequiredVersion 2.2.5 -Force
 winget install --id=liule.Snipaste  -e
 winget install -e --id PuTTY.PuTTY
 winget install -e --id Notepad++.Notepad++
+winget install FilesCommunity.Files
+
 
 # scoop
 if (Test-Path "$env:USERPROFILE\scoop") {
