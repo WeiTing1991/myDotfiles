@@ -207,3 +207,4 @@ export DOTNET_ROOT="/usr/local/share/dotnet/"
 export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="/Applications/CLion.app/Contents/MacOS:$PATH"
 
+eval "$(starship init zsh)"

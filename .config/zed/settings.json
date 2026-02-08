@@ -182,10 +182,8 @@
   // "file_scan_inclusions": [".env", ".venv"],
 
   // Copilot/AI Features
-  "features": {
-    "edit_prediction_provider": "zed"
-  },
   "edit_predictions": {
+    "provider": "zed",
     "mode": "subtle",
     "disabled_globs": [],
     "enabled_in_text_threads": false,
