@@ -59,7 +59,7 @@ end
 -- end)
 
 hs.hotkey.bind({ "cmd" }, "1", function()
-  mouse_focus("Wezterm")
+  mouse_focus("Ghostty")
 end)
 
 hs.hotkey.bind({ "cmd" }, "2", function()
