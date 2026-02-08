@@ -1,0 +1,431 @@
+[
+  /* ==== QUICK OPEN & NAVIGATION ==== */
+  {
+    "command": "workbench.action.quickOpenSelectNext",
+    "key": "alt+j",
+    "when": "inQuickOpen && !inSearchEditor"
+  },
+  {
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "key": "alt+k",
+    "when": "inQuickOpen && !inSearchEditor"
+  },
+  {
+    "command": "workbench.action.showCommands",
+    "key": "ctrl+shift+p"
+  },
+  {
+    "key": "alt+l",
+    "command": "editor.action.inlineSuggest.acceptNextLine",
+    "when": "inlineSuggestionVisible && !editorReadonly"
+  },
+  {
+    "key": "tab",
+    "command": "-editor.action.inlineSuggest.commit"
+  },
+  {
+    "key": "tab",
+    "command": "-editor.action.inlineSuggest.accept",
+    "when": "inlineSuggestionVisible"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "editor.action.inlineSuggest.commit",
+    "when": "inlineSuggestionVisible && !editorReadonly"
+  },
+  /* ==== EDITOR NAVIGATION ==== */
+  {
+    "command": "workbench.action.navigateLeft",
+    "key": "ctrl+h",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
+  },
+  {
+    "command": "workbench.action.navigateRight",
+    "key": "ctrl+l",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
+  },
+  {
+    "command": "workbench.action.navigateUp",
+    "key": "ctrl+k",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
+  },
+  {
+    "command": "workbench.action.navigateDown",
+    "key": "ctrl+j",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
+  },
+  {
+    "key": "ctrl+shift+/",
+    "command": "editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "command": "-workbench.action.terminal.focusFind",
+    "key": "ctrl+f",
+    "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
+  },
+  {
+    "command": "workbench.action.findInFiles",
+    "key": "shift+ctrl+f",
+    "when": "!terminalFocus"
+  },
+  {
+    "command": "workbench.action.findInFiles",
+    "key": "shift+ctrl+f",
+    "when": "!terminalFocus"
+  },
+  {
+    "command": "workbench.action.terminal.focusFind",
+    "key": "ctrl+shift+f",
+    "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
+  },
+  //   "command": "editor.fold",
+  //   "key": "tab",
+  //   "when": "editorTextFocus && foldingEnabled && !inputFocus"
+  // },
+  {
+    "command": "search.action.focusNextSearchResult",
+    "key": "alt+shift+j",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "command": "search.action.focusPreviousSearchResult",
+    "key": "alt+shift+k",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  /* ==== WINDOW MANAGEMENT ==== */
+  // {
+  //   "command": "workbench.action.switchWindow",
+  //   "key": "ctrl+w w",
+  //   "when": "!terminalFocus"
+  // },
+  {
+    "command": "workbench.action.splitEditor",
+    "key": "ctrl+w '",
+    "when": "!terminalFocus"
+  },
+  {
+    "command": "workbench.action.splitEditorDown",
+    "key": "ctrl+w 5",
+    "when": "!terminalFocus"
+  },
+  {
+    "command": "workbench.action.closeActiveEditor",
+    "key": "ctrl+q",
+    "when": "!sideBarFocus"
+  },
+
+  {
+    "command": "workbench.action.closeActiveEditor",
+    "key": "ctrl+q",
+    "when": "!sideBarFocus"
+  },
+
+  // {
+  //   "command": "workbench.action.toggleZenMode",
+  //   "key": "ctrl+'",
+  // },
+  // {
+  //   "command": "workbench.action.toggleMaximizeEditorGroup",
+  //   "key": "ctrl+shift+'",
+  //   "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups, || terminalFocus"
+  // },
+
+  /* ==== VIEW SIZE ADJUSTMENT ==== */
+  {
+    "command": "workbench.action.increaseViewWidth",
+    "key": "ctrl+shift+l",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
+  },
+  {
+    "command": "workbench.action.decreaseViewWidth",
+    "key": "ctrl+shift+h",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
+  },
+  {
+    "command": "workbench.action.increaseViewHeight",
+    "key": "ctrl+shift+j",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
+  },
+  {
+    "command": "workbench.action.decreaseViewHeight",
+    "key": "ctrl+shift+k",
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
+  },
+
+
+  /* ==== SIDEBAR & PANELS ==== */
+  {
+    "command": "workbench.view.explorer",
+    "key": "ctrl+e"
+  },
+  {
+    "command": "workbench.action.toggleSidebarVisibility",
+    "key": "ctrl+e",
+    "when": "explorerViewletFocus || terminalFocus"
+  },
+  {
+    "command": "workbench.action.toggleAuxiliaryBar",
+    "key": "ctrl+shift+e"
+  },
+  // {
+  //   "command": "workbench.view.extension.project-manager",
+  //   "key": "ctrl+p",
+  //   "when": "viewContainer.workbench.view.extensions.enabled && sideBarFocus"
+  // },
+
+  /* ==== TERMINAL ==== */
+  // {
+  //   "command": "workbench.action.togglePanel",
+  // },
+  {
+    "command": "workbench.action.terminal.new",
+    "key": "ctrl+x n",
+    "when": "terminalFocus && !editorTextFocus"
+  },
+  {
+    "command": "workbench.action.terminal.kill",
+    "key": "ctrl+x q",
+    "when": "terminalFocus && !editorTextFocus"
+  },
+  {
+    "command": "workbench.action.terminal.focusNext",
+    "key": "ctrl+x j",
+    "when": "terminalFocus && !editorTextFocus"
+  },
+
+  // {
+  //   "command": "workbench.action.toggleMaximizedPanel",
+  //   "key": "ctrl+x",
+  //   "when": "terminalFocus && !editorTextFocus"
+  // },
+  // {
+  //   "command": "workbench.action.terminal.toggleTerminal",
+  //   "key": "ctrl+/",
+  //   "when": "terminal.active"
+  // },
+
+
+  /* ==== FILE EXPLORER ==== */
+  {
+    "command": "explorer.openAndPassFocus",
+    "key": "o",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
+    "command": "explorer.openToSide",
+    "key": "shift+o",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
+    "command": "revealFileInOS",
+    "key": "shift+alt+r",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
+    "command": "copyFilePath",
+    "key": "shift+alt+c",
+    "when": "editorFocus"
+  },
+
+  // {
+  //   "command": "openInExternalApp.open",
+  //   "key": "ctrl+o",
+  //   "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus && resourceScheme == 'file'"
+  // },
+
+  // OPERATIONS
+  {
+    "command": "explorer.newFile",
+    "key": "n",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "explorer.newFolder",
+    "key": "shift+n",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "deleteFile",
+    "key": "d",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "command": "deleteFile",
+    "key": "del",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "command": "filesExplorer.copy",
+    "key": "y",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+  },
+  {
+    "command": "filesExplorer.cut",
+    "key": "x",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+  },
+  {
+    "command": "filesExplorer.paste",
+    "key": "p",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "command": "workbench.files.action.collapseExplorerFolders",
+    "key": "z",
+    "when": "listFocus && explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "renameFile",
+    "key": "r",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+
+  // {
+  //   "command": "list.collapse",
+  //   "key": "h",
+  //   "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+  // {
+  //   "command": "list.focusDown",
+  //   "key": "j",
+  //   "when": "listFocus && explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+  // {
+  //   "command": "list.focusUp",
+  //   "key": "k",
+  //   "when": "listFocus && explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+  // {
+  //   "command": "list.toggleExpand",
+  //   "key": "l",
+  //   "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+  // {
+  //   "command": "list.toggleExpand",
+  //   "key": "Enter",
+  //   "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  // },
+
+
+  // /* ==== SUGGESTIONS & CODE ACTIONS ==== */
+  {
+    "command": "selectNextCodeAction",
+    "key": "alt+j",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "command": "selectPrevCodeAction",
+    "key": "alt+k",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "command": "selectNextSuggestion",
+    "key": "alt+j",
+    "when": "suggestWidgetVisible"
+  },
+  {
+    "command": "selectPrevSuggestion",
+    "key": "alt+k",
+    "when": "suggestWidgetVisible"
+  },
+
+  // {
+  //   "command": "editor.action.scrollDownHover",
+  //   "key": "ctrl+n",
+  //   "when": "editorHoverFocused"
+  // },
+  // {
+  //   "command": "editor.action.scrollUpHover",
+  //   "key": "ctrl+p",
+  //   "when": "editorHoverFocused"
+  // },
+  // /* ==== LIST NAVIGATION ==== */
+  // {
+  //   "command": "list.scrollDown",
+  //   "key": "ctrl+n",
+  //   "when": "listFocus && !inputFocus && !treestickyScrollFocused && listScrollAtBoundary != 'both' && listScrollAtBoundary != 'bottom'"
+  // },
+  // {
+  //   "command": "list.scrollUp",
+  //   "key": "ctrl+p",
+  //   "when": "listFocus && !inputFocus && !treestickyScrollFocused && listScrollAtBoundary != 'both' && listScrollAtBoundary != 'top'"
+  // },
+
+  // {
+  //   "command": "acceptSelectedCodeAction",
+  //   "key": "ctrl+y",
+  //   "when": "neovim.mode == insert && codeActionMenuVisible"
+  // },
+  // // {
+  // //   "command": "editor.action.inlineSuggest.commit",
+  // //   "key": "ctrl+l",
+  // //   "when": "neovim.mode == insert && inputFocus"
+  // // },
+  // {
+  //   "command": "editor.action.inlineSuggest.acceptNextWord",
+  //   "key": "ctrl+l",
+  //   "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
+  // },
+  // {
+  //   "command": "editor.action.inlineSuggest.acceptNextWord",
+  //   "key": "ctrl+right",
+  //   "when": "inlineSuggestionVisible && !accessibilityModeEnabled && !editorReadonly"
+  // },
+  // // {
+  // //   "command": "-tab",
+  // //   "key": "tab",
+  // //   "when": "neovim.mode == insert && editorTextFocus && !suggestWidgetVisible"
+  // // },
+
+  /* ==== COPILOT ==== */
+  {
+    "command": "inlineChat.startWithCurrentLine",
+    "key": "alt+i",
+    "when": "editorFocus"
+  },
+  /* ==== PROJECT MANAGEMENT ==== */
+  {
+    "command": "workbench.action.clearRecentFiles",
+    "key": "ctrl+x backspace"
+  },
+  {
+    "command": "projectManager.listProjects",
+    "key": "shift+alt+p"
+  },
+
+  /* ==== ZOOM ==== */
+  {
+    "command": "workbench.action.zoomOut",
+    "key": "ctrl+-"
+  },
+  {
+    "command": "workbench.action.zoomIn",
+    "key": "ctrl+="
+  },
+  {
+    "command": "workbench.action.zoomReset",
+    "key": "ctrl+0"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-markdown-preview-enhanced.openPreview",
+    "when": "editorLangId == 'markdown'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-markdown.showPreview",
+    "when": "!notebookEditorFocused && editorLangId =~ /^(markdown|prompt|instructions|chatagent)$/"
+  },
+
+  // {
+  //   "command": "-workbench.action.terminal.openNativeConsole",
+  //   "key": "ctrl+shift+c",
+  //   "when": "!terminalFocus"
+  // },
+]
