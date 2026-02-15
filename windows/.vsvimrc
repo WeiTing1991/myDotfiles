@@ -41,7 +41,8 @@ nnoremap N Nzzzv
 " ============================================================================
 nnoremap <C-p> :vsc Edit.GoToAll<CR>
 nnoremap <C-S-p> :vsc Edit.GoToFile<CR>
-nnoremap <leader>f :vsc Edit.GoToFile<CR>
+" nnoremap <leader>f :vsc Edit.GoToFile<CR>
+nnoremap <leader>f :vsc InstaSearch.FileSearch<CR>
 nnoremap <leader>s :vsc Edit.GoToSymbol<CR>
 nnoremap gO :vsc Edit.GoToSymbol<CR>
 
@@ -122,7 +123,6 @@ vnoremap <leader>= :vsc Edit.FormatSelection<CR>
 " COMMENTING
 " ============================================================================
 nnoremap gcc :vsc Edit.ToggleLineComment<CR>
-vnoremap <C-/> :vsc Edit.ToggleLineComment<CR>
 
 
 
