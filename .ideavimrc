@@ -5,30 +5,35 @@
 
 
 "" -- Suggested options --
-" Show a few lines of context around the cursor. Note that this makes the
-" text scroll if you mouse-click near the start or end of the window.
-set scrolloff=8
+" ── Core settings ────────────────────────────────────────────
+set scrolloff=10             " keep 8 lines visible above/below cursor
+set sidescrolloff=5          " keep 5 columns visible left/right of cursor
+set incsearch                " show matches as you type search pattern
+set hlsearch                 " highlight all search matches
+set ignorecase               " case-insensitive search...
+set smartcase                " ...unless you type uppercase letters
+set number                   " show line numbers
+set relativenumber           " relative line numbers (for easy j/k jumps)
+set visualbell               " flash screen instead of beeping
+set showmode                 " show current mode (NORMAL/INSERT/etc)
 
-" Do incremental searching.
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
-set number
-set relativenumber
-set visualbell
-set ideajoin
-set idearefactormode=keep
-set clipboard+=unnamed
+" IdeaVim-specific settings
+set ideajoin                 " use IntelliJ's smart join (J) instead of Vim's
+set idearefactormode=keep    " stay in current mode during refactoring
+set clipboard+=unnamed       " yank/paste uses system clipboard
+set clipboard+=ideaput       " use IntelliJ's paste for better formatting
+set ideastatusicon=gray      " subtle status bar icon
 
-let mapleader=" "
+let mapleader=" "            " Space as leader key
 
 " ── sethandler (claim Ctrl keys for Vim) ─────────────────────
 sethandler <C-A> a:vim
 sethandler <C-B> a:vim
 sethandler <C-D> a:vim
 sethandler <C-E> a:ide
-sethandler <C-F> a:vim
+
+sethandler <C-F> a:ide
+
 sethandler <C-H> a:vim
 sethandler <C-I> a:vim
 sethandler <C-J> a:vim
@@ -37,7 +42,7 @@ sethandler <C-L> a:vim
 sethandler <C-M> a:vim
 sethandler <C-N> a:vim
 sethandler <C-O> a:vim
-sethandler <C-P> a:vim
+sethandler <C-P> a:ide
 sethandler <C-R> a:vim
 sethandler <C-S> a:vim
 sethandler <C-T> a:vim
@@ -48,20 +53,22 @@ sethandler <C-Y> a:vim
 sethandler <C-[> a:vim
 sethandler <C-]> a:vim
 sethandler <C-\> a:vim
+sethandler <C-/> a:vim
 
-sethandler <C-C> i:vim n-x-v:ide
-sethandler <C-V> i:vim n-x-v:ide
+sethandler <C-C> i:ide n-x-v:vim
+sethandler <C-V> i:ide n-x-v:vim
 
 
 " Don't use Ex mode, use Q for formatting.
-map Q gq
+" map Q gq
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 
 " ── Plugins ──────────────────────────────────────────────────
-" Highlight copied text
 Plug 'machakann/vim-highlightedyank'
-" Commentary plugin
+set highlightedyank
+let g:highlightedyank_highlight_duration = "100"
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
@@ -70,6 +77,7 @@ Plug 'preservim/nerdtree'
 " set which-key
 " set notimeout
 set nerdtree
+set ReplaceWithRegister
 
 " ── Navigation ───────────────────────────────────────────────
 map <C-h> <C-w>h
@@ -82,6 +90,10 @@ nmap <C-u> <C-u>zz
 nmap n nzzzv
 nmap N Nzzz
 nmap <Esc> :nohlsearch<CR>
+nmap <C-C> <Esc>
+
+nmap <C-/> gcc
+vmap <C-/> <Action>>(CommentByLineComment)
 
 
 " ── Better escape ────────────────────────────────────────────
@@ -126,18 +138,44 @@ nmap g. <Action>(ShowIntentionActions)
 
 nmap <leader>' <Action>(MaximizeEditorInSplit)
 
-nmap <C-b> <Action>(BuildSolutionAction)
-nmap <C-q> <Action>(CloseContent)
+nmap <C-Q> <Action>(CloseContent)
 
 " nmap <leader>rn <Action>(RenameElement)
 " nmap <leader>rf <Action>(Refactorings.QuickListPopupAction)
 " nmap <leader>fm <Action>(ReformatCode)
 " nmap <leader>oi <Action>(OptimizeImports)
 
+" ── LSP / Go-to ──────────────────────────────────────────────
 nmap gd <Action>(GotoDeclaration)
+"   gd → go to where this symbol is defined
 nmap gi <Action>(GotoImplementation)
-nmap K <Action>(QuickJavaDoc)
+"   gi → go to implementation (e.g. from interface to concrete class)
+nmap gy <Action>(GotoTypeDeclaration)
+"   gy → go to the TYPE of the variable (e.g. on a variable, jump to its class)
+nmap gr <Action>(ShowUsages)
+"   gr → show all places where this symbol is used (popup list)
+nmap gR <Action>(FindUsages)
 
-" nmap gu <Action>(ShowUsages)
-" nmap ge <Action>(GotoNextError)
-" nmap gE <Action>(GotoPreviousError)
+nmap gU <Action>(GotoSuperMethod)
+"   gU → go to parent/super class method (e.g. overridden method → base)
+nmap K <Action>(QuickJavaDoc)
+"   K → show documentation popup for symbol under cursor
+
+nmap gh <Action>(GotoDeclaration)
+
+nmap gO <Action>(FileStructurePopup)
+nmap go <Action>(ActivateStructureToolWindow)
+nmap gW <Action>(GotoSymbol)
+
+nmap <leader>fl <Action>(FindInPath)
+" nmap <leader>fg <Action>(Find)
+nmap <leader><leader> <Action>(Switcher)
+
+nmap <leader>j <Action>(HideAllWindows)
+
+nmap <leader>tc <Action>(ToggleInlineCompletionAction)
+nmap <leader>th <Action>(ToggleInlayHintsGloballyAction)
+
+nmap <leader>gb <Action>(Annotate)
+nmap <leader>go <Action>(Github.Open.In.Browser)
+nmap <leader>gg <Action>(Vcs.QuickListPopupAction)

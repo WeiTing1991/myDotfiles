@@ -1,0 +1,41 @@
+[mgr]
+# Layout ratio: [parent, current, preview]
+# Default is [1, 4, 3] — adjust to your liking
+ratio = [1, 4, 3]
+
+# Sorting
+sort_by = "natural"       # natural, alphabetical, size, mtime, ctime, ext, random
+sort_sensitive = false     # case sensitive sorting
+sort_reverse = false
+sort_dir_first = true      # directories always on top
+
+# What to show on the right side of each file
+line_mode = "size"         # none, size, mtime, permissions, owner
+
+# Show hidden files by default
+show_hidden = false
+
+[preview]
+# Max preview dimensions
+max_width = 1920
+max_height = 1080
+
+# Image filter quality (Triangle is fast, Lanczos3 is best quality)
+image_filter = "triangle"
+
+[opener]
+# Custom file openers
+edit = [
+  { run = 'nvim "%*"', block = true, desc = "nvim" },
+  { run = 'code "%*"', orphan = true, desc = "VS Code" },
+]
+open = [
+  { run = 'start "" "%1"', orphan = true, desc = "Open (Windows)" },
+]
+
+[open]
+# Rules for which opener to use
+prepend_rules = [
+  { mime = "text/*", use = "edit" },
+  { mime = "application/json", use = "edit" },
+]
