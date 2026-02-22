@@ -58,10 +58,10 @@ keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+v=paste_from_clipboard
 
-# keybind = ctrl+x>5=new_split:right
-# keybind = ctrl+x>'=new_split:down
-# keybind = ctrl+shift+'knew_split:down
-# keybind = ctrl+shift+5=new_split:right
+# keybind = ctrl+5=new_split:right
+# keybind = ctrl+'=new_split:down
+keybind = ctrl+shift+'=new_split:down
+keybind = ctrl+shift+5=new_split:right
 
 # keybind = ctrl+x>l=goto_split:right
 # keybind = ctrl+x>h=goto_split:left

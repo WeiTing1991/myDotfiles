@@ -85,9 +85,9 @@ vim.keymap.set({ "n", "t" }, "<C-'>", function()
 end, { desc = "Toggle maximize buffer" })
 
 -- fallback
-vim.keymap.set({ "n", "t" }, "<leader>'", function()
-  require("core.toogle_max").toggle_maximize_window()
-end, { desc = "Toggle maximize buffer" })
+-- vim.keymap.set({ "n", "t" }, "<leader>'", function()
+--   require("core.toogle_max").toggle_maximize_window()
+-- end, { desc = "Toggle maximize buffer" })
 
 vim.keymap.set("n", "<C-w>'", "<C-w>v", { desc = "split vertically" })
 vim.keymap.set("n", "<C-w>5", "<C-w>s", { desc = "split horizontally" })

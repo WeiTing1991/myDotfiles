@@ -1,0 +1,428 @@
+{
+  // Zed settings// Vim//zed.dev/docs/vim?highlight=vim#vim-mode
+  //  "auto_install_extensions": {},
+  //  "bottom_dock_layout": "full",
+  //  "confirm_quit": true,// Telemetry
+  //  "telemetry": {
+  //    "metrics": false,
+  //    "diagnostics": false
+  //  },// UI & Appearance
+  //  "icon_theme": {
+  //    "mode": "system",
+  //    "light": "JetBrains New UI Icons (Light)",
+  //    "dark": "JetBrains New UI Icons (Dark)"
+  //  },
+  //  "theme": "One Light",
+  //  "experimental.theme_overrides": {
+  //    "version_control.added": "#27a657ff",
+  //    "version_control.modified": "#d3b020ff",
+  //    "version_control.deleted": "#e06c76ff"
+  //  },
+  //  "buffer_font_size": 12,
+  //  "buffer_line_height": { "custom": 1.2 },
+  //  "buffer_font_features": {
+  //    "ss01": true,
+  //    "ss02": true,
+  //    "ss03": true,
+  //    "ss04": true,
+  //    "ss05": true,
+  //    "ss06": true,
+  //    "ss07": true,
+  //    "ss08": true,
+  //    "calt": false,
+  //    "dlig": true
+  //  },// "buffer_font_family": "Iosevka Nerd Font",
+  //  "buffer_font_family": "JetBrainsMono Nerd Font",
+  //  "buffer_font_weight": 400,
+  //  "ui_font_family": ".ZedSans",
+  //  "ui_font_size": 16,
+  //  "ui_font_weight": 400,// Editor Settings
+  //  "use_auto_surround": true,
+  //  "hide_mouse": "on_typing",
+  //  "relative_line_numbers": "enabled",
+  //  "wrap_guides": [80, 120],
+  //  "show_whitespaces": "boundary",
+  //  "lsp_document_colors": "inlay",
+  //  "soft_wrap": "editor_width",
+  //  "active_pane_modifiers": {
+  //    "border_size": 5,
+  //    "inactive_opacity": 0.8
+  //  },
+  //  "use_system_path_prompts": false,
+  //  "use_system_prompts": false,
+  //  "show_wrap_guides": true,
+  //  "preferred_line_length": 120,
+  //  "tab_size": 2,
+  //  "hard_tabs": true,
+  //  "remove_trailing_whitespace_on_save": true,
+  //  "ensure_final_newline_on_save": true,
+  //  "format_on_save": "off",
+  //  "autosave": "off",
+  //  "restore_on_startup": null,// Editor Visual Settings
+  //  "scrollbar": {
+  //    "show": "never"
+  //  },
+  //  "indent_guides": {
+  //    "enabled": true,
+  //    "active_line_width": 2,
+  //    "coloring": "fixed",
+  //    "background_coloring": "disabled"
+  // },// Completion Settings
+  //  "completions": {
+  //    "words": "fallback",
+  //    "words_min_length": 3,
+  //    "lsp": true,
+  //    "lsp_fetch_timeout_ms": 0,
+  //    "lsp_insert_mode": "replace_subsequence"
+  //  },// Search Settings
+  //  "search": {
+  //    "whole_word": true,
+  //    "case_sensitive": false,
+  //    "include_ignored": false,
+  //    "regex": false
+  //  },// Tab Bar & Toolbar
+  //  "tab_bar": {
+  //    "show": true,
+  //    "show_tab_bar_buttons": true,
+  //    "show_nav_history_buttons": false
+  //  },
+  //  "toolbar": {
+  //    "breadcrumbs": true,
+  //    "selections_menu": true,
+  //    "quick_actions": true,
+  //    "code_actions": true
+  //  },
+  //  "tabs": {
+  //    "file_icons": false,
+  //    "git_status": true,
+  //    "close_position": "right",
+  //    "activate_on_close": "history"
+  //  },
+  //  "auto_indent": false,
+  //  "minimap": {
+  //    "show": "never"
+  //  },// Inline Features
+  //  "inline_code_actions": true,
+  //  "inlay_hints": {
+  //    "enabled": false
+  //  },
+  //  "show_completions_on_input": true,
+  //  "show_completion_documentation": true,
+  //  "selection_highlight": true,// File Exclusion
+  //  "file_scan_exclusions": [
+  //    "**/.git",
+  //    "**/.svn",
+  //    "**/.hg",
+  //    "**/CVS",
+  //    "**/.DS_Store",
+  //    "**/Thumbs.db",
+  //    "**/.classpath",
+  //    "**/.settings",
+  //    "**/.vscode",
+  //    "**/.idea",
+  //    "**/node_modules",
+  //    "**/.serverless",
+  //    "**/build",
+  //    "**/dist",
+  //    "**/coverage",// "**/.venv",
+  //    "**/__pycache__",
+  //    "**/.ropeproject",
+  //    "**/.pytest_cache",
+  //    "**/.ruff_cache",// "**/bin",// "**/obj",// "**/bower_components",// "**/*.code-search",
+  //    "**/.git/objects/**",
+  //    "**/.git/subtree-cache/**",
+  //    "**/.hg/store/**"
+  //  ],// "file_scan_inclusions": [".env", ".venv"],// Copilot/AI Features
+  //  "edit_predictions": {
+  //    "provider": "zed",
+  //    "mode": "subtle",
+  //    "disabled_globs": [],
+  //    "enabled_in_text_threads": false,
+  //    "copilot": {
+  //      "proxy": null,
+  //      "proxy_no_verify": null,
+  //      "enterprise_uri": null
+  //    }
+  //  },
+  //  "show_edit_predictions": true,
+  //  "agent": {
+  //    "tool_permissions": {
+  //      "default": "allow"
+  //    },
+  //    "inline_assistant_model": {
+  //      "provider": "copilot_chat",
+  //      "model": "claude-sonnet-4"
+  //    },
+  //    "default_profile": "ask",
+  //    "default_model": {
+  //      "provider": "copilot_chat",
+  //      "model": "claude-opus-4.6"
+  //    },
+  //    "dock": "left",
+  //    "button": true
+  //  },// Outline Panel
+  //  "outline_panel": {
+  //    "dock": "right",
+  //    "default_width": 350,
+  //    "button": true,
+  //    "file_icons": true,
+  //    "folder_icons": true,
+  //    "git_status": false,
+  //    "indent_size": 20,
+  //    "auto_reveal_entries": true,
+  //    "auto_fold_dirs": true
+  //  },// Project Panel
+  //  "project_panel": {
+  //    "button": true,
+  //    "default_width": 350,
+  //    "dock": "right",
+  //    "entry_spacing": "standard",
+  //    "file_icons": true,
+  //    "folder_icons": true,
+  //    "git_status": true,
+  //    "indent_size": 20,
+  //    "auto_reveal_entries": true,
+  //    "auto_fold_dirs": false,
+  //    "scrollbar": {
+  //      "show": "never"
+  //    },
+  //    "show_diagnostics": "off",
+  //    "indent_guides": {
+  //      "show": "always"
+  //    },
+  //    "hide_root": false
+  //  },// Terminal
+  //  "terminal": {
+  //    "font_family": "Hack Nerd Font Mono",
+  //    "font_size": 12,
+  //    "font_weight": 500,
+  //    "line_height": "standard",
+  //    "button": true,
+  //    "toolbar": {
+  //      "breadcrumbs": false
+  //    },
+  //    "copy_on_select": true,
+  //    "dock": "bottom",
+  //    "default_width": null,
+  //    "default_height": 500,
+  //    "working_directory": "current_project_directory",
+  //    "env": {
+  //      "EDITOR": "zed -w",
+  //      "VISUAL": "zed -w"
+  //    },
+  //    "blinking": "off",
+  //    "alternate_scroll": "on",
+  //    "option_as_meta": false,
+  //    "shell": "system",
+  //    "detect_venv": {
+  //      "on": {
+  //        "activate_script": "default",
+  //        "directories": [".env", "env", ".venv", "venv"]
+  //      }
+  //    }
+  //  },// Git Configuration
+  //  "git": {
+  //    "git_gutter": "tracked_files",
+  //    "gutter_debounce": 50,
+  //    "branch_picker": {
+  //      "show_author_name": true
+  //    },
+  //    "inline_blame": {
+  //      "enabled": false
+  //    },
+  //    "hunk_style": "staged_hollow"
+  //  },
+  //  "git_panel": {
+  //    "dock": "right"
+  //  },// Diagnostics
+  //  "diagnostics_max_severity": null,
+  //  "diagnostics": {
+  //    "inline": {
+  //      "enabled": false,
+  //      "max_severity": "error"
+  //    }
+  //  },
+  //  "hover_popover_enabled": true,
+  //  "file_types": {
+  //    "Diff": ["diff"],
+  //    "Json": ["json", "jsonc"],
+  //    "C++": ["cpp", "cxx", "cc", "c++", "hpp", "hxx", "h++", "hh"],
+  //    "C": ["C", "H"],
+  //    "Python": ["py", "pyx", "pyi", "pyw"],
+  //    "C#": ["cs", "csx"],
+  //    "CMake": ["CMakeLists.txt"],
+  //    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+  //    "XML": ["xml", "xsl", "xsd", "xslt", "csproj", "Directory.*"],
+  //    "TOML": ["toml", ".clang-format"],
+  //    "YAML": ["yaml", "yml", ".editorconfig"]
+  //  },// Default Formatter
+  //  "formatter": "prettier",//// Language Server Protocol (LSP) Settings//
+  //  "lsp": {
+  //    "codebook": {
+  //      "initialization_options": {
+  //        "logLevel": "debug"
+  //      }
+  //    },
+  //    "prettier": {},
+  //    "biome": {
+  //      "settings": {
+  //        "config_path": "./biome.json"
+  //      }
+  //    },// yaml
+  //    "yaml-language-server": {
+  //      "settings": {
+  //        "yaml": {
+  //          "completion": true,
+  //          "schemas": { "enable": true }
+  //        }
+  //      }
+  //    },// python// "pyright": {//   "settings": {//     "pyright": {//       "disableOrganizeImports": false//     },//     "python.analysis": {//       "typeCheckingMode": "standard",//       "diagnosticMode": "workspace",//       "extraPaths": ["./src", "./lib", "./backend", "./venv", "./env"],//       "stubPath": "./typings",//       "autoSearchPaths": true,//       "autoImportCompletions": true,//       "useLibraryCodeForTypes": true//     }//   }// },
+  //    "basedpyright": {
+  //      "settings": {
+  //        "analysis": {
+  //          "diagnosticMode": "workspace",
+  //          "inlayHints.callArgumentNames": false,
+  //          "extraPaths": ["./src", "./lib", "./backend", "./venv", "./env"],
+  //        }
+  //      }
+  //    },
+  //    "ruff": {
+  //      "initialization_options": {
+  //        "settings": {
+  //          "organizeImports": true,
+  //          "fixAll": true
+  //        }
+  //      }
+  //    },// C++ (clangd)
+  //    "clangd": {
+  //      "binary": {
+  //        "arguments": [// "--clang-tidy",
+  //          "--background-index",
+  //          "--completion-style=detailed",
+  //          "--function-arg-placeholders"// "--header-insertion=iwyu",// "--pch-storage=memory",// Add diagnostic flags here:// "--compile-commands-dir=.",// "--fallback-style=none"
+  //        ]
+  //      },
+  //      "initialization_options": {
+  //        "clangdFileStatus": true,
+  //        "usePlaceholders": true,
+  //        "completeUnimported": true,
+  //        "semanticHighlighting": true// Add clang-tidy configuration:// "fallbackFlags": ["-Wno-everything", "-Werror=return-type"]
+  //      }
+  //    },
+  //    "omnisharp": {
+  //      "binary": {
+  //        "arguments": ["-lsp"]
+  //      }
+  //    }
+  //  },// Language-specific Settings
+  //  "languages": {// python
+  //    "Python": {
+  //      "code_actions_on_format": {
+  //        "source.fixAll.ruff": true,
+  //        "source.organizeImports.ruff": true
+  //      },
+  //      "language_servers": ["!pyright", "basedpyright", "ruff"],
+  //      "tab_size": 4
+  //    },
+  //    "TOML": {
+  //      "tab_size": 2
+  //    },
+  //    "XML": {},
+  //    "Markdown": {
+  //      "remove_trailing_whitespace_on_save": false,
+  //      "format_on_save": "off",
+  //      "soft_wrap": "preferred_line_length",
+  //      "preferred_line_length": 179,
+  //      "show_edit_predictions": true
+  //    },
+  //    "JSON": {
+  //      "wrap_guides": [],
+  //      "use_autoclose": true
+  //    },
+  //    "JSONC": {
+  //      "wrap_guides": [],
+  //      "use_autoclose": true
+  //    },// C/C++
+  //    "C": {
+  //      "formatter": "auto",
+  //      "tab_size": 2,
+  //      "code_actions_on_format": {
+  //        "source.organizeImports": true
+  //      }
+  //    },
+  //    "C++": {
+  //      "formatter": "auto",
+  //      "tab_size": 2,
+  //      "code_actions_on_format": {
+  //        "source.organizeImports": true
+  //      }
+  //    },// CSharp
+  //    "CSharp": {
+  //      "language_servers": ["omnisharp"],
+  //      "formatter": "language_server",
+  //      "tab_size": 4
+  //    },
+  //    "Lua": {},//JS TS
+  //    "JavaScript": {
+  //      "formatter": {
+  //        "language_server": {
+  //          "name": "biome"
+  //        }
+  //      },
+  //      "tab_size": 2,
+  //      "language_servers": ["typescript-language-server", "!biome"]
+  //    },
+  //    "TypeScript": {
+  //      "formatter": {
+  //        "language_server": {
+  //          "name": "biome"
+  //        }
+  //      },
+  //      "tab_size": 2,
+  //      "language_servers": ["typescript-language-server", "!biome"]
+  //    },
+  //    "TSX": {
+  //      "formatter": {
+  //        "language_server": {
+  //          "name": "biome"
+  //        }
+  //      },
+  //      "tab_size": 2,
+  //      "language_servers": ["typescript-language-server", "!biome"]
+  //    }// Add css html ...
+  //  }
+  "context_servers": {
+    "mcp-server-context7": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "context7_api_key": "ctx7sk-93a98b27-fbf2-4ad3-9386-756ddfe709fd",
+      },
+    },
+  },
+  "theme": "Ayu Light",
+  "agent_servers": {
+    "claude": {
+      "favorite_config_option_values": {
+        "mode": ["plan"],
+      },
+    },
+  },
+  "vim_mode": true,
+  "edit_predictions": {
+    "provider": "copilot",
+  },
+  "vim": {
+    "toggle_relative_line_numbers": true,
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true,
+    "highlight_on_yank_duration": 200,
+    "cursor_shape": {
+      "normal": "block",
+      "insert": "bar",
+      "replace": "underline",
+      "visual": "hollow",
+    },
+  },
+  "current_line_highlight": "none", // ysiw
+}

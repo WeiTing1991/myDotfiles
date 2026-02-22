@@ -41,10 +41,12 @@ end, { desc = "Spell Suggestion" })
 map({ "n", "t" }, "<C-`>", function()
   snacks.terminal()
 end, { desc = "Toggle terminal" })
+
 -- fallback
-map({ "n", "t" }, "<leader>/", function()
-  snacks.terminal()
-end, { desc = "Toggle terminal" })
+-- map({ "n", "t" }, "<leader>/", function()
+--   snacks.terminal()
+-- end, { desc = "Toggle terminal" })
+
 map("n", "<leader>tt", function()
   require("nvchad.themes").open()
 end, { desc = "Toggle colorscheme" })

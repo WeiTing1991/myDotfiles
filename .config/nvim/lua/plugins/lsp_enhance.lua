@@ -87,7 +87,7 @@ return {
     },
     config = function()
       require("overseer").setup({
-        templates = { "builtin", "lua.format", "csharp.format", "cpp.build" },
+        templates = { "builtin", "lua.format", "csharp.format", "csharp.build", "cpp.build" },
       })
     end,
   },

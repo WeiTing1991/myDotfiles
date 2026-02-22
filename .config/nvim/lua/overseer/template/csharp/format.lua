@@ -1,13 +1,15 @@
 return {
-  name = "Format all files",
+  name = "dotnet format",
   builder = function()
-    -- Find project root (looks for common root markers)
     local root = vim.fs.root(0, { ".git" })
     return {
       cmd = { "dotnet" },
       args = { "format" },
-      cwd = root, -- This sets the working directory to project root
-      components = { "on_output_quickfix","default" },
+      cwd = root,
+      components = {
+        "default",
+        "on_complete_trouble",
+      },
     }
   end,
   condition = {
