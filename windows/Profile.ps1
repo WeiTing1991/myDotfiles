@@ -1,26 +1,12 @@
 Import-Module posh-git
 Import-Module PSReadLine
 
-# $global:LastOSC7Path = ""
-# $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
-#   $current = $PWD.ProviderPath
-#   if ($current -ne $global:LastOSC7Path) {
-#     $global:LastOSC7Path = $current
-#     # Direct ANSI escape without variable assignments
-#     Write-Host "`e]7;file://$env:COMPUTERNAME/$($current -Replace '\\','/')`e\" -NoNewline
-#   }
-# }
-
-# $prompt = ""
-# function Invoke-Starship-PreCommand {
-#     $current_location = $executionContext.SessionState.Path.CurrentLocation
-#     if ($current_location.Provider.Name -eq "FileSystem") {
-#         $ansi_escape = [char]27
-#         $provider_path = $current_location.ProviderPath -replace "\\", "/"
-#         $prompt = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}$ansi_escape\"
-#     }
-#     $host.ui.Write($prompt)
-# }
+function Invoke-Starship-PreCommand {
+    $loc = $executionContext.SessionState.Path.CurrentLocation
+    if ($loc.Provider.Name -eq "FileSystem") {
+        $host.ui.Write("`e]9;9;`"$($loc.ProviderPath)`"`e\")
+    }
+}
 
 # Use AcceptSuggestion instead of Complete
 Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion

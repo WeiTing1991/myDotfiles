@@ -93,7 +93,7 @@ nmap <Esc> :nohlsearch<CR>
 nmap <C-C> <Esc>
 
 nmap <C-/> gcc
-vmap <C-/> <Action>>(CommentByLineComment)
+vmap <C-/> <Action>(CommentByLineComment)
 
 
 " ── Better escape ────────────────────────────────────────────

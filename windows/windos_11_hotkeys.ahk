@@ -203,15 +203,13 @@ cycleWindows(exeName) {
 
 ; Win+1 → Cycle through Windows Terminal windows
 #1::cycleWindows("WindowsTerminal.exe")
-
-; Win+7 → Cycle through VS Code windows
-;#4::cycleWindows("chrome.exe")          ; Disabled — Chrome
-#7::cycleWindows("Code.exe")
-
 ; Win+Shift+1 → Launch new Windows Terminal
 #+1::Run("wt")
 
 ; Win+Shift+7 → Launch new VS Code
+#7::cycleWindows("Code.exe")
 #+7::Run("code.exe")
 
-;#+4::Run("chrome.exe")                  ; Disabled — Chrome
+; Win- → Cycle through Chrome windows
+#-::cycleWindows("chrome.exe")
+#+::cycleWindows("chrome.exe")

@@ -120,7 +120,8 @@
             "historySize": 3000,
             "opacity": 85,
             "padding": "4",
-            "scrollbarState": "hidden"
+            "scrollbarState": "hidden",
+            "startingDirectory": null
         },
         "list":
         [

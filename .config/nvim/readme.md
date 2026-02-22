@@ -1,7 +1,7 @@
 # Neovim Configuration
 
 > [!NOTE]
-> it will be update date by date, since I will do some change that during my daily use.
+> It will be updated from time to time, since I make changes during my daily use.
 
 ## Info
 
@@ -16,23 +16,22 @@ I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setti
 
 Modular Design:
 
-- init.lua → core/ → plugins/ flow
+- `init.lua` -> `core/` -> `plugins/` flow
 - Each plugin has its own configuration file
 
 Core Organization:
 
-- core/ - Basic Neovim settings and keymaps
-- lsp/ - Language server configurations
-- plugins/ - Plugin specifications and configs
-- snippets/ - Language-specific code snippets
+- `core/` - Basic Neovim settings and keymaps
+- `lsp/` - Language server configurations
+- `plugins/` - Plugin specifications and configs
+- `overseer/` - Task runner templates
+- `snippets/` - Language-specific code snippets
 
 Plugin Management:
 
 - Uses lazy.nvim for lazy loading
-- Individual plugin configs in plugins/configs/
+- Individual plugin configs in `plugins/configs/`
 - Cross-platform compatibility (Windows and Mac)
-
-### Config
 
 You can find more detail [here](./structure.md)
 
@@ -41,11 +40,21 @@ You can find more detail [here](./structure.md)
 **Essential Tools:**
 
 - File Management: Oil, NeoTree
-- Fuzzy Finding: fzr-Lua
+- Fuzzy Finding: FZF-Lua
 - LSP: Full setup with Mason, blink.cmp completion
-- Git Integration: Gitsigns, Octo, lazygit
-- AI Tools: Copilot + ClaudeCode integration
-- Spell check with fastspel
+- Git Integration: Gitsigns, Fugitive, LazyGit
+- AI Tools: Copilot, OpenCode, Claude Code (sidekick)
+- Spell check with fastspell
+
+You can find all the plugins [here](./plugins.md)
+
+### Keybindings
+
+The main core keymaps is in `core/keymaps`, it has basic neovim motion and some useful keymaps.
+The LSP keymaps is in `lsp/keymaps`, it is all about lsp stuffs.
+The custom keymaps is under root folder `user_keymaps`, it contains user override and the plugins keymaps.
+
+Detailed keybinding documentation: [Neovim Keymaps Guide](./keybindings.md)
 
 ## Setup
 
@@ -56,7 +65,7 @@ You can find more detail [here](./structure.md)
 - fzf
 - ripgrep
 - fd || fdfind
-- lazygit `option`
+- lazygit `optional`
 
 **Getting Started**
 
@@ -83,75 +92,51 @@ Copy-Item -Recurse "$env:LOCALAPPDATA\nvim-temp\.config\nvim" "$env:LOCALAPPDATA
 Remove-Item -Recurse -Force "$env:LOCALAPPDATA\nvim-temp"
 ```
 
-> In Neovim run `:MasonToolInstallSync` to install LSP, linter, and formater
+> In Neovim run `:MasonToolsInstallSync` to install LSP, linter, and formatter
 
-### Keybindings
+### LSP Servers
 
-The main core keymaps is in `core/keymaps`, it has basic neovim motion and some useful keymaps
-The LSP keymaps is in `lsp\keymaps`, it is all about lsp stuffs.
-The custom keymaps is under root folder `user_keymaps`, it contains user override and the plugins keymaps.
+| Language | Server |
+|----------|--------|
+| Lua | lua_ls |
+| Bash/Sh/Zsh | bashls |
+| Markdown | marksman |
+| JSON/JSONC | jsonls (schemastore) |
+| YAML | yamlls (schemastore) |
+| TOML | taplo |
+| Dockerfile | dockerls |
+| Docker Compose | docker_compose_language_service |
+| Python | basedpyright, ruff |
+| C/C++ | clangd |
+| CMake | neocmakelsp |
+| C# | roslyn |
+| XML | lemminx |
 
-Detailed keybinding documentation: [Neovim Keymaps Guide](./keybindings.md)
+### Formatters & Linters
 
-## Plugins
+| Tool | Language |
+|------|----------|
+| stylua | Lua |
+| ruff | Python |
+| prettier | JSON, YAML, Markdown, HTML |
+| actionlint | GitHub Actions |
+| shfmt | Shell |
+| clang-format | C/C++ |
+| csharpier | C# |
 
-You can find all the plugins, I currently use [here](./plugins.md)
-
-### **Package Manager**
-
-- [lazy.nvim](https://github.com/folke/lazy.nvim) - Modern plugin manager with lazy loading
-
-### **Core & UI**
-
-- [nvchad/ui](https://github.com/nvchad/ui) - NvChad UI components
-- [nvchad/base46](https://github.com/nvchad/base46) - Theme management
-
-### **Navigation & File Management**
-
-- [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit your filesystem like a buffer
-- [fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fast fuzzy finder
-- [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - File explorer tree
-
-### **LSP & Language Support**
-
-- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Language server configurations
-- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) - Language server installer
-- [WeiTing1991/none-ls.nvim](https://github.com/WeiTing1991/none-ls.nvim) - Formatter/linter integration (forked)
-
-### **Autocompletion & Snippets**
-
-- [saghen/blink.cmp](https://github.com/saghen/blink.cmp) - Fast completion engine
-- [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) - Snippet engine
-
-### **Git Integration**
-
-- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git decorations and hunks
-- [pwntester/octo.nvim](https://github.com/pwntester/octo.nvim) - GitHub integration
-- [kdheepak/lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) - LazyGit integration
-- [sindrets/diffview.nvim](https://github.com/sindrets/diffview.nvim) - Git diff viewer
-
-### **AI Tools**
-
-- [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot integration
-- [folke/sidekick.nvim](https://github.com/folke/sidekick.nvim) - Claude Code integration
-
-### **Language Support Status**
+### Language Support Status
 
 - [x] C/C++
 - [x] C#
 - [x] Python
 - [x] Lua
+- [x] Bash/Shell
+- [x] JSON/YAML/TOML
+- [x] Docker
+- [x] Markdown
 - [ ] JavaScript/TypeScript (partial)
 - [ ] Go
-- [ ] Java
-
-## Features
-
-- [ ] Debugger
-- [ ] Better tab view
-- [ ] Better Markdown preview
 
 [kickstart]: https://github.com/nvim-lua/kickstart.nvim
 [Neovim]: https://neovim.io/
-[GNU stow]: https://www.gnu.org/software/stow/manual/stow.html
 [NvChad UI]: https://nvchad.com/

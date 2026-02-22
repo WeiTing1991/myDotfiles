@@ -3,17 +3,11 @@
 ## Notes
 
 - **Leader key**: `<Space>` is the main leader key
+- **Local Leader**: `,`
 - **Terminal navigation**: All window navigation works from terminal mode
 - **Smart movement**: j/k movements add to jump list when using counts
 - **Centered navigation**: Search results and scrolling keep cursor centered
 - **FZF integration**: Most finding operations use FZF for fast fuzzy searching
-- **LSP support**: Full language server integration with hover, definitions, references
-- **Git workflow**: Integrated git operations with LazyGit and gitsigns
-- **AI assistance**: Claude Code integration for AI-powered development
-
-## Leader Keys
-- **Leader**: `<Space>`
-- **Local Leader**: `,`
 
 ## Core Navigation & Movement
 
@@ -33,6 +27,7 @@
 | `n` | `<C-i>`/`<C-o>` | Previous/next buffer |
 | `n` | `<leader>i`/`<leader>o` | Previous/next buffer (fallback) |
 | `n` | `<C-q>` | Close current buffer (smart delete) |
+| `n` | `<leader><leader>` | Find buffer (FZF) |
 | `n` | `<Esc>`/`<C-c>` | Clear search highlights |
 
 ## File Explorer & Navigation
@@ -47,7 +42,7 @@
 
 | Mode | Keybinding | Description |
 |------|------------|-------------|
-| `n` | `<C-f>` | Find files |
+| `n` | `<C-p>` | Find files |
 | `n` | `<leader>ff` | Find files |
 | `n` | `<leader>fl` | Live grep search |
 | `n` | `<leader>fg` | Grep in current buffer |
@@ -58,15 +53,13 @@
 
 | Mode | Keybinding | Description |
 |------|------------|-------------|
-| `n,t` | `<C-/>` | Toggle terminal |
-| `n,t` | `<leader>/` | Toggle terminal (fallback) |
+| `n,t` | `` <C-`> `` | Toggle terminal |
 
 ## Window Management
 
 | Mode | Keybinding | Description |
 |------|------------|-------------|
 | `n,t` | `<C-'>` | Toggle maximize window |
-| `n,t` | `<leader>'` | Toggle maximize window (fallback) |
 | `n` | `<C-w>'` | Split vertically |
 | `n` | `<C-w>5` | Split horizontally |
 | `n,t` | `<C-S-Left/Right>` | Resize window horizontally |
@@ -88,7 +81,8 @@
 | `v` | `J`/`K` | Move selection down/up |
 | `n` | `J` | Join lines (cursor stays) |
 | `v` | `<`/`>` | Indent/unindent (stay in visual) |
-| `n,v` | `<leader>s` | Search and replace word under cursor |
+| `n,v` | `<leader>S` | Search and replace word under cursor |
+| `n` | `<leader>s` | Search and replace in quickfix |
 | `i` | `jk` | Exit insert mode |
 | `i` | `<C-c>` | Exit insert mode |
 | `i` | `<C-BS>` | Delete word backward |
@@ -108,15 +102,16 @@
 |------|------------|-------------|
 | `n` | `K` | Hover documentation |
 | `n,v` | `gd` | Go to definition |
-| `n,v` | `gD` | Go to definition (split) |
+| `n,v` | `gD` | Go to definition (vsplit) |
 | `n` | `gi` | Go to implementation |
 | `n` | `gr` | Find references |
 | `n` | `gR` | Find references (FZF) |
 | `n` | `gh` | Go to declaration |
-| `n` | `g.` | Quick actions menu |
+| `n` | `g.` | Quick actions menu (code action / spell / AI) |
 | `n` | `<F2>` | Rename symbol |
-| `n` | `gO` | Document symbols |
-| `n` | `gW` | Workspace symbols |
+| `n` | `gO` | Document symbols (FZF) |
+| `n` | `go` | Document symbols (Outline) |
+| `n` | `gW` | Workspace symbols (FZF) |
 | `n,v` | `<leader>,` | Format code |
 | `i` | `<S-l>k` | Signature help |
 | `n` | `<leader>th` | Toggle inlay hints |
@@ -158,23 +153,52 @@
 | Mode | Keybinding | Description |
 |------|------------|-------------|
 | `n` | `<leader>tr` | Run task |
-| `n` | `<leader>ti` | Task info |
-| `n` | `<leader>tt` | Toggle task list |
 
 ## Toggles & Utilities
 
 | Mode | Keybinding | Description |
 |------|------------|-------------|
+| `n` | `<leader>tt` | Toggle colorscheme |
 | `n` | `<leader>tp` | Toggle spell check |
 | `n` | `<leader>tc` | Toggle Copilot |
-| `n` | `<leader>tt` | Toggle colorscheme |
-| `n` | `<leader>cd` | Change directory to current file |
+
+## FZF Internal Keybindings
+
+These work within the FZF picker interface:
+
+### Builtin Actions
+| Key | Description |
+|-----|-------------|
+| `<M-Esc>` | Hide FZF (resume with `:FzfLua resume`) |
+| `<F1>` | Toggle help |
+| `<F2>` | Toggle fullscreen |
+| `<F3>` | Toggle preview wrap |
+| `<F4>` | Toggle preview |
+| `<F5>` | Rotate preview counter-clockwise |
+| `<F6>` | Rotate preview clockwise |
+| `<F7>` | Toggle preview treesitter context |
+| `<S-Down>`/`<S-Up>` | Preview page down/up |
+| `<M-S-Down>`/`<M-S-Up>` | Preview scroll down/up |
+
+### FZF Actions
+| Key | Description |
+|-----|-------------|
+| `<C-a>` | Toggle all selections |
+| `<C-g>`/`<C-G>` | Jump to first/last item |
+| `<C-q>` | Select all and accept |
+| `<Enter>` | Edit file or send to quickfix |
+| `<C-s>` | Open in horizontal split |
+| `<C-v>` | Open in vertical split |
+| `<C-t>` | Send to Trouble |
+| `<Alt-q>`/`<Alt-Q>` | Send to quickfix/location list |
+| `<Alt-i>` | Toggle ignore files |
+| `<Alt-h>` | Toggle hidden files |
+| `<Alt-f>` | Toggle follow |
 
 ## Disabled Keys
 
-| Keybinding | Description |
-|------------|-------------|
-| `<Space>` | Disabled (used as leader) |
-| `<F1>` | Disabled |
-| `<C-z>` | Disabled |
-
+| Keybinding | Reason |
+|------------|--------|
+| `<Space>` | Used as leader |
+| `<F1>` | Disabled default help |
+| `<C-z>` | Disabled suspend |
