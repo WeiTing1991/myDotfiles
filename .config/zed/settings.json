@@ -25,7 +25,7 @@
   },
   "vim_mode": true,
   "edit_predictions": {
-    "provider": "copilot",
+    "provider": "zed",
   },
   "vim": {
     "toggle_relative_line_numbers": true,
