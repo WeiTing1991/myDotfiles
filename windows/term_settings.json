@@ -121,7 +121,7 @@
             "opacity": 85,
             "padding": "4",
             "scrollbarState": "hidden",
-            "startingDirectory": null
+            "startingDirectory": "%USERPROFILE%"
         },
         "list":
         [

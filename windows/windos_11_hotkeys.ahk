@@ -212,4 +212,4 @@ cycleWindows(exeName) {
 
 ; Win- → Cycle through Chrome windows
 #-::cycleWindows("chrome.exe")
-#+::cycleWindows("chrome.exe")
+;#+::cycleWindows("chrome.exe")
