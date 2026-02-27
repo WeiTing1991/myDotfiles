@@ -210,6 +210,8 @@ cycleWindows(exeName) {
 #7::cycleWindows("Code.exe")
 #+7::Run("code.exe")
 
+#+8::cycleWindows("clion64.exe")
+
 ; Win- → Cycle through Chrome windows
 #-::cycleWindows("chrome.exe")
 ;#+::cycleWindows("chrome.exe")

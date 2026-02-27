@@ -152,7 +152,7 @@ nmap gi <Action>(GotoImplementation)
 "   gi → go to implementation (e.g. from interface to concrete class)
 nmap gy <Action>(GotoTypeDeclaration)
 "   gy → go to the TYPE of the variable (e.g. on a variable, jump to its class)
-nmap gr <Action>(ShowUsages)
+" nmap gR <Action>(ShowUsages)
 "   gr → show all places where this symbol is used (popup list)
 nmap gR <Action>(FindUsages)
 
