@@ -50,16 +50,17 @@ function n ($command) { nvim }
 function e ($command) { exit }
 
 # Python
-$uvPython = uv python find
-if ($uvPython) {
-  $uvPythonDir = Split-Path $uvPython
-  $env:PATH = "$uvPythonDir;" + $env:PATH
-}
-
-# Add UV tools directory
-$uvToolsDir = Join-Path $env:APPDATA "uv\tools"
-if (Test-Path $uvToolsDir) {
-  $env:PATH = "$uvToolsDir;" + $env:PATH
+function uv-init {
+    $uvPython = uv python find
+    if ($uvPython) {
+        $uvPythonDir = Split-Path $uvPython
+        $env:PATH = "$uvPythonDir;" + $env:PATH
+    }
+    $uvToolsDir = Join-Path $env:APPDATA "uv\tools"
+    if (Test-Path $uvToolsDir) {
+        $env:PATH = "$uvToolsDir;" + $env:PATH
+    }
+    Write-Host "uv python loaded."
 }
 
 Set-Alias python3 python
@@ -86,15 +87,21 @@ Set-Alias -Name git-browse -Value GitBrowser
 Invoke-Expression (&starship init powershell)
 
 # scoop search
-. ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
+# . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
+function scoop-s { scoop-search @args }
 
 #region conda initialize
 # !! Contents within this block are managed by 'conda init' !!
-If (Test-Path "C:\Users\WeiTing\miniforge3\Scripts\conda.exe") {
-  (& "C:\Users\WeiTing\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
+function conda-init {
+    (& "C:\Users\WeiTing\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
+    Write-Host "conda loaded."
 }
+# If (Test-Path "C:\Users\WeiTing\miniforge3\Scripts\conda.exe") {
+#   (& "C:\Users\WeiTing\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
+# }
 #endregion
-
 # MSBuild
-$env:MSBUILD = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe 2>$null | Select-Object -First 1
-function msbuild { & $env:MSBUILD @args }
+# $env:MSBUILD = "C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe"  # <-- UPDATE THIS with your actual path
+# function msbuild { & $env:MSBUILD @args }
+# $env:MSBUILD = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe 2>$null | Select-Object -First 1
+# function msbuild { & $env:MSBUILD @args }

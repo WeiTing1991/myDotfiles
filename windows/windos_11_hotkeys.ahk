@@ -206,11 +206,11 @@ cycleWindows(exeName) {
 ; Win+Shift+1 → Launch new Windows Terminal
 #+1::Run("wt")
 
+#+4::Run("C:\Program Files\Everything\Everything.exe")
+
 ; Win+Shift+7 → Launch new VS Code
 #7::cycleWindows("Code.exe")
 #+7::Run("code.exe")
-
-#+8::cycleWindows("clion64.exe")
 
 ; Win- → Cycle through Chrome windows
 #-::cycleWindows("chrome.exe")

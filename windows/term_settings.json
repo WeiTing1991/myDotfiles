@@ -108,6 +108,8 @@
     {
         "defaults":
         {
+            "useAcrylic": false,
+            "useAtlasEngine": true,
             "backgroundImage": null,
             "backgroundImageStretchMode": "fill",
             "font":
