@@ -1,8 +1,6 @@
 # Import-Module posh-git
-# Import-Module PSReadLine
-Invoke-Expression (&starship init powershell)
+Import-Module PSReadLine
 
-# Windows Terminal integration
 function Invoke-Starship-PreCommand {
     $loc = $executionContext.SessionState.Path.CurrentLocation
     if ($loc.Provider.Name -eq "FileSystem") {
@@ -10,18 +8,40 @@ function Invoke-Starship-PreCommand {
     }
 }
 
-# Predictions
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle InlineView
-
-# Keybindings
+# Use AcceptSuggestion instead of Complete
 Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
+
+# Searching history with up/down arrows
 Set-PSReadLineKeyHandler -Key Ctrl+p -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key Ctrl+n -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key Ctrl+e -Function ForwardChar
-Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
-Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
+# Set predictive IntelliSense (PowerShell 7.2+ feature)
+# Set predictive IntelliSense (PowerShell 7.2+ feature)
+# Set-PSReadLineOption -PredictionSource History
+
+# Tab completion
+Set-PSReadLineKeyHandler -Key tab -Function MenuComplete
+
+# Ctrl+W to delete the previous word (like in Bash)
+Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
+
+# Ctrl+E to move forward one character
+Set-PSReadLineKeyHandler -Key Ctrl+e -Function ForwardChar
+
+# # Ctrl+Space for IntelliSense suggestions
+# Set-PSReadLineKeyHandler -Key Ctrl+tab -Function Complete
+
+# # Ctrl+d to exit, like in bash
+# #Set-PSReadLineKeyHandler -Key Ctrl+w -Function DeleteCharOrExit
+
+# # Ctrl+B to move backward one character (like in Emacs/Bash)
+# Set-PSReadLineKeyHandler -Key Ctrl+b -Function BackwardChar
+
+# # Initialize Oh-My-Posh with a theme
+# oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\catppuccin_mocha.omp.json" | Invoke-Expression
+
+# $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
+# Set-Location $HOME
 $ENV:EDITOR = 'nvim'
 
 Set-Alias c clear
