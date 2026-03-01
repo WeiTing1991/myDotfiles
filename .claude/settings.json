@@ -1,0 +1,6 @@
+{
+  "permissions": {
+    "defaultMode": "plan"
+  },
+  "enableAllProjectMcpServers": true
+}

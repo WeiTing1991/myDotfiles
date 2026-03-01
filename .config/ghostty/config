@@ -8,10 +8,10 @@
 font-family = "FiraCode Nerd Font"
 window-title-font-family = "FiraCode Nerd Font"
 font-size = 14
-background = "0D0907"
+# background = "0D0907"
 # theme = gruvbox-material
 # theme = GruvboxDarkHard
-theme = Adventure
+# theme = Adventure
 window-inherit-font-size=true
 
 # cursor
@@ -34,9 +34,15 @@ window-padding-y = 4
 window-colorspace = "display-p3"
 
 # keybindings
-keybind=clear
+keybind =clear
+keybind =all:cmd+shift+,=reload_config
+keybind =ctrl+shift+'=new_split:down
+keybind =ctrl+shift+5=new_split:right
 
-keybind = all:cmd+shift+,=reload_config
+keybind =ctrl+x>l=goto_split:right
+keybind =ctrl+x>h=goto_split:left
+keybind =ctrl+x>k=goto_split:top
+keybind =ctrl+x>j=goto_split:bottom
 
 # windows
 keybind = cmd+n=new_window
@@ -58,23 +64,12 @@ keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+c=copy_to_clipboard
 keybind = ctrl+shift+v=paste_from_clipboard
 
-# keybind = ctrl+5=new_split:right
-# keybind = ctrl+'=new_split:down
-keybind = ctrl+shift+'=new_split:down
-keybind = ctrl+shift+5=new_split:right
-
-# keybind = ctrl+x>l=goto_split:right
-# keybind = ctrl+x>h=goto_split:left
-# keybind = ctrl+x>k=goto_split:top
-# keybind = ctrl+x>j=goto_split:bottom
 # keybind = ctrl+x>m=toggle_split_zoom
 # keybind = ctrl+m=toggle_split_zoom
-
 # keybind = ctrl+x>,=toggle_split_zoom
 
-# # resize
+# resize
 # keybind = ctrl+shift+equal=reset_font_size
 # keybind = cmd+equal=increase_font_size:1
 # keybind = cmd+minus=decrease_font_size:1
-
 # keybind = shift+enter=text:\n

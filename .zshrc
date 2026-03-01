@@ -1,6 +1,7 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p11k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p11k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+eval "$(starship init zsh)"
 
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -52,15 +53,14 @@ elif [[ "$WSL_DISTRO_NAME" != "" ]]; then
 fi
 
 # ----------------------------------- Environment Variables -----------------------------------
-
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME=""
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -206,5 +206,3 @@ export PATH=$PATH:$HOME/go/bin
 export DOTNET_ROOT="/usr/local/share/dotnet/"
 export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="/Applications/CLion.app/Contents/MacOS:$PATH"
-
-eval "$(starship init zsh)"
