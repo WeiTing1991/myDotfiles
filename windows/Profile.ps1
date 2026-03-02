@@ -1,5 +1,8 @@
-# Import-Module posh-git
 # Import-Module PSReadLine
+Import-Module posh-git
+$GitPromptSettings.EnablePromptStatus = $false
+
+# Load Starship (handles the prompt)
 Invoke-Expression (&starship init powershell)
 
 # Windows Terminal integration

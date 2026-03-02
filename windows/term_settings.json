@@ -18,6 +18,10 @@
     "keybindings": 
     [
         {
+            "id": null,
+            "keys": "enter"
+        },
+        {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
         },
@@ -26,36 +30,56 @@
             "keys": "ctrl+v"
         },
         {
+            "id": null,
+            "keys": "ctrl+insert"
+        },
+        {
             "id": "Terminal.DuplicatePaneDown",
             "keys": "ctrl+shift+'"
         },
         {
-            "id": "User.togglePaneZoom",
-            "keys": "ctrl+shift+m"
+            "id": null,
+            "keys": "alt+shift+minus"
         },
         {
             "id": "Terminal.DuplicatePaneRight",
             "keys": "ctrl+shift+5"
         },
         {
+            "id": null,
+            "keys": "alt+shift+plus"
+        },
+        {
             "id": "Terminal.NextTab",
             "keys": "ctrl+shift+n"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+tab"
         },
         {
             "id": "User.openTabRenamer",
             "keys": "ctrl+shift+r"
         },
         {
+            "id": "User.togglePaneZoom",
+            "keys": "ctrl+shift+m"
+        },
+        {
             "id": "Terminal.MoveFocusDown",
             "keys": "ctrl+shift+j"
         },
         {
-            "id": "Terminal.MoveFocusUp",
-            "keys": "ctrl+shift+k"
+            "id": null,
+            "keys": "alt+down"
         },
         {
             "id": "Terminal.MoveFocusLeft",
             "keys": "ctrl+shift+h"
+        },
+        {
+            "id": null,
+            "keys": "alt+left"
         },
         {
             "id": "Terminal.MoveFocusRight",
@@ -63,39 +87,15 @@
         },
         {
             "id": null,
-            "keys": "enter"
+            "keys": "alt+right"
         },
         {
-            "id": null,
-            "keys": "ctrl+insert"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+tab"
-        },
-        {
-            "id": null,
-            "keys": "alt+shift+minus"
-        },
-        {
-            "id": null,
-            "keys": "alt+shift+plus"
-        },
-        {
-            "id": null,
-            "keys": "alt+down"
+            "id": "Terminal.MoveFocusUp",
+            "keys": "ctrl+shift+k"
         },
         {
             "id": null,
             "keys": "alt+up"
-        },
-        {
-            "id": null,
-            "keys": "alt+left"
-        },
-        {
-            "id": null,
-            "keys": "alt+right"
         }
     ],
     "newTabMenu": 
@@ -108,10 +108,12 @@
     {
         "defaults": 
         {
+            "backgroundImage": null,
+            "backgroundImageStretchMode": "fill",
             "font": 
             {
                 "cellHeight": "1.2",
-                "face": "CaskaydiaMono Nerd Font",
+                "face": "CaskaydiaCove Nerd Font",
                 "size": 12,
                 "weight": "medium"
             },
@@ -133,20 +135,56 @@
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": true,
+                "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": true,
+                "hidden": false,
                 "name": "Command Prompt"
             },
             {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": true,
+                "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{ce07ab55-09a5-5aeb-bc5c-f4c46955a807}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{9eed4334-6258-518b-8dad-74b95979c7f0}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{9d4ac31f-af9f-5388-a3fa-6da3ffc3af0a}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{66af7505-e111-52dc-bb9d-738ae0a997e5}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{8c71a326-d914-5226-b6fb-64ff3864fa77}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{e0778625-44e6-5162-a240-b154a37f7f90}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             },
             {
                 "guid": "{16208362-94fc-5b1f-a491-5b2624d5ab56}",
