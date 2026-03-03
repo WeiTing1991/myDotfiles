@@ -104,8 +104,16 @@ imap kj <Esc>
 nmap Y y$
 
 " ── Move lines in visual mode ────────────────────────────────
-vmap J :m '>+1<CR>gv=gv
-vmap K :m '<-2<CR>gv=gv
+"vmap J :m '>+1<CR>gv=gv
+"vmap K :m '<-2<CR>gv=gv
+
+" Move lines using IDE (better for code)
+vmap J <Action>(MoveLineDown)
+vmap K <Action>(MoveLineUp)
+
+" Keep Vim indenting behavior
+set smartindent
+set autoindent
 
 " ── Keep visual selection after indent ───────────────────────
 vmap < <gv
@@ -147,25 +155,32 @@ nmap <C-Q> <Action>(CloseContent)
 
 " ── LSP / Go-to ──────────────────────────────────────────────
 nmap gd <Action>(GotoDeclaration)
-"   gd → go to where this symbol is defined
-nmap gi <Action>(GotoImplementation)
-"   gi → go to implementation (e.g. from interface to concrete class)
-nmap gy <Action>(GotoTypeDeclaration)
-"   gy → go to the TYPE of the variable (e.g. on a variable, jump to its class)
-" nmap gR <Action>(ShowUsages)
-"   gr → show all places where this symbol is used (popup list)
-nmap gR <Action>(FindUsages)
+nmap gD <Action>(GotoDeclarationInRightSplit)
+nmap g<C-d> <Action>(GotoDeclarationInSplit)
 
-nmap gU <Action>(GotoSuperMethod)
-"   gU → go to parent/super class method (e.g. overridden method → base)
-nmap K <Action>(QuickJavaDoc)
-"   K → show documentation popup for symbol under cursor
+nmap gi <Action>(GotoImplementation)
+nmap gI <Action>(GotoImplementationInRightSplit)
+
+nmap gy <Action>(GotoTypeDeclaration)
+" Type declaration
+" nmap gY <Action>(GotoTypeDeclarationInRightSplit)
 
 nmap gh <Action>(GotoDeclaration)
+
+" Full usages tool window (Alt+F7 equivalent)
+nmap gr <Action>(FindUsages)
+" Popup usages near cursor (Ctrl+Alt+F7 equivalent)
+nmap gR <Action>(ShowUsages)
+
+nmap gu <Action>(GotoSuperMethod)
+nmap gU <Action>(GotoSuperMethod)
+
+nmap K <Action>(QuickJavaDoc)
 
 nmap gO <Action>(FileStructurePopup)
 nmap go <Action>(ActivateStructureToolWindow)
 nmap gW <Action>(GotoSymbol)
+
 
 nmap <leader>fl <Action>(FindInPath)
 " nmap <leader>fg <Action>(Find)
@@ -182,7 +197,9 @@ nmap <leader>gg <Action>(Vcs.QuickListPopupAction)
 
 nmap <leader>rr <Action>(Run)
 nmap <leader>rb <Action>(Debug)
+
 "nmap <leader>rs <Action>(Stop)
 "nmap <leader>rb <Action>(BuildSolutionAction)
 "nmap <leader>rc <Action>(ChooseRunConfiguration)
 "nmap <leader>re <Action>(EditRunConfigurations)
+

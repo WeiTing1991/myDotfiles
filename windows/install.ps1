@@ -32,11 +32,11 @@ scoop install CascadiaMono-NF
 
 . "$PSScriptRoot\helpers.ps1"
 
-# # AutoHotkey script
-# Install-ProgramAndLinkDotfiles `
-# -program "AutoHotkey.AutoHotkey" `
-# -dotfilesPath "windows\windos_11_hotkeys.ahk" `
-# -targetPath "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\windos_11_hotkeys.ahk"
+# AutoHotkey script
+Install-ProgramAndLinkDotfiles `
+-program "AutoHotkey.AutoHotkey" `
+-dotfilesPath "windows\windos_11_hotkeys.ahk" `
+-targetPath "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\windos_11_hotkeys.ahk"
 
 # Windows Terminal
 Install-ProgramAndLinkDotfiles `
