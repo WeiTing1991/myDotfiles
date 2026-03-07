@@ -54,13 +54,13 @@ local function mouse_focus_cycle(app_name)
   end
 end
 
--- hs.hotkey.bind({ "cmd" }, "1", function()
---   mouse_focus("Warp")
--- end)
-
 hs.hotkey.bind({ "cmd" }, "1", function()
-  mouse_focus("Ghostty")
+  mouse_focus("Warp")
 end)
+
+-- hs.hotkey.bind({ "cmd" }, "1", function()
+--   mouse_focus("Ghostty")
+-- end)
 
 hs.hotkey.bind({ "cmd" }, "2", function()
   mouse_focus_cycle("Brave Browser")
@@ -74,12 +74,17 @@ end)
 --   mouse_focus("Claude")
 -- end)
 
+
 hs.hotkey.bind({ "cmd" }, "6", function()
-  mouse_focus_cycle("Code")
+  mouse_focus_cycle("Clion")
 end)
 
 hs.hotkey.bind({ "cmd" }, "7", function()
-  mouse_focus_cycle("Zed")
+  mouse_focus_cycle("Code")
+end)
+
+hs.hotkey.bind({ "cmd" }, "8", function()
+  mouse_focus_cycle("rider")
 end)
 
 -- Auto-reload config when file changes
