@@ -1,6 +1,6 @@
 # Get editor completions based on the config schema
 # https://github.com/starship/starship/discussions/1107 some reference
-"$schema" = 'https://starship.rs/config-schema.json'
+# "$schema" = 'https://starship.rs/config-schema.json'
 
 command_timeout = 10000
 

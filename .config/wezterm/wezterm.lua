@@ -14,7 +14,7 @@ local is_macos = wezterm.target_triple == "aarch64-apple-darwin"
 local default_prog
 local font_size
 if is_windows then
-  default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe", "-NoLogo" }
+  default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe"}
   font_size = 12.0
   front_end = "WebGpu"
   webgpu_power_preference = "HighPerformance"
@@ -22,7 +22,7 @@ if is_windows then
   max_fps = 120
   default_font = wezterm.font_with_fallback({
     {
-      family = "Cascadia Code NF",
+      family = "CaskaydiaCove Nerd Font Mono",
       harfbuzz_features = { "calt=0" },
     },
     {
@@ -35,7 +35,7 @@ if is_windows then
   })
   window_frame = {
     font = wezterm.font("Consolas", { weight = "Regular" }),
-    font_size = 14.0,
+    font_size = 10.0,
   }
 
 
@@ -117,9 +117,38 @@ config.keys ={
     -- Split windows
     { key = "phys:Quote", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
     { key = "5", mods = "CTRL", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
-
     { key = "t", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
 
+    -- Copy/Paste
+    { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo "Clipboard" },
+    { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom "Clipboard" },
+
+    -- Tabs
+    { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
+    { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentTab { confirm = false } },
+
+    -- Font size
+    { key = "=", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
+    { key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
+    { key = "0", mods = "CTRL", action = act.ResetFontSize},
+
+    -- Pane navigation
+    { key = "h", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Left") },
+    { key = "j", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
+    { key = "k", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
+    { key = "l", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
+
+    -- Window
+    { key = "n", mods = "CTRL|SHIFT", action = act.SpawnWindow       },
+
+    -- ── Search ────────────────────────
+    { key = "f", mods = "CTRL|SHIFT",       action = act.Search { CaseSensitiveString = "" }     },
+
+    -- Alt keys (readline)
+    -- { key = "f",         mods = "ALT", action = wezterm.action.SendString("\x1bf")    },
+    -- { key = "b",         mods = "ALT", action = wezterm.action.SendString("\x1bb")    },
+    -- { key = "d",         mods = "ALT", action = wezterm.action.SendString("\x1bd")    },
+    -- { key = "Backspace", mods = "ALT", action = wezterm.action.SendString("\x1b\x7f") },
 }
 
 return config
