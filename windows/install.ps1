@@ -44,8 +44,8 @@ Install-ProgramAndLinkDotfiles `
     -dotfilesPath "windows\term_settings.json" `
     -targetPath "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 
-# # WezTerm (linking entire directory)
-# Install-ProgramAndLinkDotfiles `
-#     -program "" `
-#     -dotfilesPath ".config\wezterm" `
-#     -targetPath "$HOME\.config\wezterm"
+# WezTerm (linking entire directory)
+Install-ProgramAndLinkDotfiles `
+    -program "" `
+    -dotfilesPath ".config\wezterm" `
+    -targetPath "$HOME\.config\wezterm"
