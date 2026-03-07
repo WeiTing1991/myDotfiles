@@ -29,6 +29,7 @@ winget install -e --id Notepad++.Notepad++
 scoop install starship
 scoop bucket add nerd-fonts
 scoop install CascadiaMono-NF
+scoop install CascadiaCode-NF
 
 . "$PSScriptRoot\helpers.ps1"
 
