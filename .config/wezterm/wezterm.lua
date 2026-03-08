@@ -221,15 +221,19 @@ config.key_tables = {
 -- tab title
 wezterm.on('format-tab-title', function(tab)
   local title = tab.tab_title
-  if title and #title > 0 then
-    -- Use custom title if set
-  else
-    title = tab.active_pane.title
+  if not title or #title == 0 then
+    local cwd = tab.active_pane.current_working_dir
+    if cwd then
+      title = cwd.file_path:match("([^/\\]+)/?$") or cwd.file_path
+    else
+      title = tab.active_pane.title
+    end
   end
   if tab.active_pane.is_zoomed then
     title = '[Z] ' .. title
   end
   return title
 end)
+
 
 return config
