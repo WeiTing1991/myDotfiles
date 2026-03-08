@@ -1,7 +1,7 @@
 return {
   {
     "saghen/blink.cmp",
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     version = "1.*",
     dependencies = {
       {
@@ -52,6 +52,7 @@ return {
         enabled = true,
         keymap = {
           preset = "cmdline",
+          ["<Tab>"] = { "select_and_accept", "fallback" },
           ["<A-j>"] = { "select_next", "fallback" },
           ["<A-k>"] = { "select_prev", "fallback" },
         },

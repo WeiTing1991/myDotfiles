@@ -29,6 +29,10 @@ return {
             },
           },
         },
+        workspaces_folder = {
+          "~/project/",
+          "~/work/",
+        },
       })
     end,
     keys = {
@@ -72,27 +76,32 @@ return {
       },
     },
     config = function()
+      local terminal = require("opencode.terminal")
+      local term_opts = { split = "left", width = math.floor(vim.o.columns * 0.35) }
+
       ---@type opencode.Opts
       vim.g.opencode_opts = {
-        provider = {
-          enabled = "snacks",
-          snacks = {
-            win = {
-              position = "left",
-              width = 0.35,
-            },
-          },
+        server = {
+          start = function() terminal.start("opencode --port", term_opts) end,
+          stop = function() terminal.stop() end,
+          toggle = function() terminal.toggle("opencode --port", term_opts) end,
         },
       }
 
       vim.o.autoread = true
+
+      vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end, { desc = "Scroll opencode up" })
+      vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
+
+      vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
     end,
     keys = {
       { "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, mode = { "n", "x" }, desc = "Ask opencode" },
       { "<C-x>", function() require("opencode").select() end, mode = { "n", "x" }, desc = "Execute opencode action" },
-      { "<C-.>", function() require("opencode").toggle() end, mode = { "n", "t" }, desc = "Toggle opencode" },
+      { "<C-S-e>", function() require("opencode").toggle() end, mode = { "n", "t" }, desc = "Toggle opencode" },
       { "go", function() return require("opencode").operator("@this ") end, mode = { "n", "x" }, desc = "Add range to opencode", expr = true },
       { "goo", function() return require("opencode").operator("@this ") .. "_" end, desc = "Add line to opencode", expr = true },
     },
   },
+
 }

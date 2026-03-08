@@ -87,6 +87,7 @@ local options = {
   sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize",
 
   -- file handling
+  shadafile = "NONE",
   backup = false,
   swapfile = false,
   writebackup = false,

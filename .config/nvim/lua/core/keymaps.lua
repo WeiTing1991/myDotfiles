@@ -117,8 +117,22 @@ map("n", "<leader>s", function()
   vim.cmd("cdo s/" .. vim.fn.escape(search, "/\\") .. "/" .. vim.fn.escape(replace, "/\\") .. "/gc | update")
 end, { desc = "Search and replace" })
 
--- Toggle spelling
+-- Toggle spelling (fastspell)
 map("n", "<leader>tp", function()
-  vim.o.spell = not vim.o.spell
-  print("Spell " .. (vim.o.spell and "ON" or "OFF"))
+  vim.g.spell_enabled = not vim.g.spell_enabled
+  if vim.g.spell_enabled then
+    local first_line = vim.fn.line("w0") - 1
+    local last_line = vim.fn.line("w$")
+    local ok, fastspell = pcall(require, "fastspell")
+    if ok then
+      fastspell.sendSpellCheckRequest(first_line, last_line)
+    end
+    vim.notify("Spell check enabled", vim.log.levels.INFO)
+  else
+    local ok, fastspell = pcall(require, "fastspell")
+    if ok then
+      fastspell.sendSpellCheckRequest(0, 0)
+    end
+    vim.notify("Spell check disabled", vim.log.levels.INFO)
+  end
 end, { desc = "Spell check" })

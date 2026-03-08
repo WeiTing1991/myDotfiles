@@ -11,12 +11,12 @@ return {
     event = "BufReadPost",
     opts = {
       signs = {
-        add = { text = "+" },
-        change = { text = "+" },
-        delete = { text = "_" },
-        topdelete = { text = "~" },
-        changedelete = { text = "~" },
-        untracked = { text = "|" },
+        add = { text = "┃ " },
+        change = { text = "┃ " },
+        delete = { text = "_ " },
+        topdelete = { text = "‾ " },
+        changedelete = { text = "~ " },
+        untracked = { text = "┆ " },
       },
       signs_staged_enable = false,
       signcolumn = true,
@@ -47,6 +47,7 @@ return {
     keys = {
       { "<leader>gh", "<cmd>Gitsigns preview_hunk<CR>", desc = "Preview hunk" },
       { "<leader>gb", "<cmd>Gitsigns blame<CR>", desc = "Git blame" },
+      { "<leader>gr", function() require("snacks").picker.gh_pr() end, desc = "Show PR" },
     },
   },
 

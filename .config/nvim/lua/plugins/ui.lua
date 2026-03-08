@@ -64,7 +64,14 @@ return {
           },
           header = [[
 
-          Powered By  eovim ]],
+██     █████████████    ████    ███████    ███
+██     ██   ██   ████   ████    ████████  ████
+██  █  ██   ██   ██ ██  ████    ██████ ████ ██
+██ ███ ██   ██   ██  ██ ██ ██  ██ ████  ██  ██
+ ███ ███    ██   ██   ████  ████  ████      ██
+
+
+ Powered By  eovim ]],
         },
         sections = {
           { section = "header" },
@@ -82,7 +89,7 @@ return {
         scope = {
           enabled = true,
           priority = 200,
-          char = "|",
+          char = "▏",
         },
       },
       statuscolumn = {
@@ -108,6 +115,7 @@ return {
     },
     keys = {
       { "<C-`>", function() require("snacks").terminal() end, desc = "Toggle terminal", mode = { "n", "t" } },
+      { "<leader>tt", function() require("fzf-lua").colorschemes() end, desc = "Toggle colorscheme" },
     },
   },
 
@@ -167,8 +175,8 @@ return {
     "lukas-reineke/virt-column.nvim",
     event = "BufReadPost",
     opts = {
-      char = { "|" },
-      virtcolumn = "120",
+      char = { "┆" },
+      virtcolumn = "80, 120",
       highlight = { "NonText" },
       exclude = { filetypes = { "oil", "markdown" } },
     },

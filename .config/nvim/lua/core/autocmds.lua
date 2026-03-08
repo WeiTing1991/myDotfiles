@@ -94,6 +94,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
     vim.opt_local.number = true
     vim.opt_local.relativenumber = false
     vim.opt_local.conceallevel = 0
+    require("snacks.indent").disable()
 
     vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>",
       { buffer = true, desc = "markdown preview" })

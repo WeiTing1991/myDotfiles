@@ -144,7 +144,7 @@ return {
 
           -- Symbols
           map("gO", function() require("fzf-lua").lsp_document_symbols() end, "Document Symbols (fzf)")
-          map("<leader>co", "<cmd>topleft Outline<CR>", "Document Outline")
+          map("<leader>co", "<cmd>Outline<CR>", "Document Outline")
           map("gW", function() require("fzf-lua").lsp_workspace_symbols() end, "Workspace Symbols (fzf)")
 
           -- Inlay hints toggle
