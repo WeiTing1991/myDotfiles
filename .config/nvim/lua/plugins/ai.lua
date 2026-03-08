@@ -1,74 +1,12 @@
 return {
-  {
-    "nickjvandyke/opencode.nvim",
-    version = "*", -- Latest stable release
-    dependencies = {
-      {
-        -- `snacks.nvim` integration is recommended, but optional
-        ---@module "snacks" <- Loads `snacks.nvim` types for configuration intellisense
-        "folke/snacks.nvim",
-        optional = true,
-        opts = {
-          input = {}, -- Enhances `ask()`
-          picker = { -- Enhances `select()`
-            actions = {
-              opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
-            },
-            win = {
-              input = {
-                keys = {
-                  ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
-                },
-              },
-            },
-          },
-          terminal = {}, -- Enables the `snacks` provider
-        },
-      },
-    },
-    config = function()
-        ---@type opencode.Opts
-        vim.g.opencode_opts = {
-          provider = {
-            enabled = "snacks",
-            snacks = {
-              win = {
-                position = "left",  -- "left" | "right" | "bottom" | "float"
-                width = 0.35,       -- 35% of screen width
-              },
-            },
-          },
-        }
-
-      vim.o.autoread = true -- Required for `opts.events.reload`
-
-      -- Recommended/example keymaps
-      vim.keymap.set({ "n", "x" }, "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
-      vim.keymap.set({ "n", "x" }, "<C-x>", function() require("opencode").select() end,                          { desc = "Execute opencode action…" })
-      vim.keymap.set({ "n", "t" }, "<C-.>", function() require("opencode").toggle() end,                          { desc = "Toggle opencode" })
-
-      vim.keymap.set({ "n", "x" }, "go",  function() return require("opencode").operator("@this ") end,        { desc = "Add range to opencode", expr = true })
-      vim.keymap.set("n",          "goo", function() return require("opencode").operator("@this ") .. "_" end, { desc = "Add line to opencode", expr = true })
-
-      vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll opencode up" })
-      vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
-
-      -- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap)
-      vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
-      vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
-    end,
-  },
   -- Copilot
   {
     "zbirenbaum/copilot.lua",
-    lazy = true,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
-        panel = {
-          enabled = false,
-        },
+        panel = { enabled = false },
         suggestion = {
           enabled = true,
           auto_trigger = true,
@@ -78,23 +16,10 @@ return {
             accept = false,
             accept_word = "<A-f>",
             accept_line = vim.fn.has("mac") == 1 and "<M-l>" or "<A-l>",
-            -- next = "<C-]>",
-            -- prev = "<C-[>",
             dismiss = "<Esc>",
-            -- dismiss = "<C-c>",
           },
         },
-        filetypes = {
-          -- yaml = false,
-          -- markdown = true,
-          -- help = false,
-          -- gitcommit = false,
-          -- gitrebase = false,
-          -- hgcommit = false,
-          -- svn = false,
-          -- cvs = false,
-          ["."] = true,
-        },
+        filetypes = { ["."] = true },
         server_opts_overrides = {
           trace = "verbose",
           settings = {
@@ -110,47 +35,73 @@ return {
         },
       })
     end,
+    keys = {
+      {
+        "<leader>tc",
+        function()
+          require("copilot.suggestion").toggle_auto_trigger()
+          if not vim.b.copilot_suggestion_auto_trigger then
+            print("Copilot is disabled")
+          else
+            print("Copilot is enabled")
+          end
+        end,
+        desc = "Toggle Copilot",
+      },
+    },
   },
 
+  -- OpenCode
   {
-    "folke/sidekick.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    opts = {
-      nes = {
-        enabled = false,
-        debounce = 50,
-      },
-      signs = {
-        enabled = true,
-        icon = " ",
-      },
-      cli = {
-        win = {
-          layout = "left",
-          split = {
-            width = 50,
+    "nickjvandyke/opencode.nvim",
+    version = "*",
+    dependencies = {
+      {
+        "WeiTing1991/snacks.nvim",
+        optional = true,
+        opts = {
+          input = {},
+          picker = {
+            actions = {
+              opencode_send = function(...) return require("opencode").snacks_picker_send(...) end,
+            },
+            win = {
+              input = {
+                keys = { ["<a-a>"] = { "opencode_send", mode = { "n", "i" } } },
+              },
+            },
           },
+          terminal = {},
         },
       },
     },
+    config = function()
+      local terminal = require("opencode.terminal")
+      local term_opts = { split = "left", width = math.floor(vim.o.columns * 0.35) }
+
+      ---@type opencode.Opts
+      vim.g.opencode_opts = {
+        server = {
+          start = function() terminal.start("opencode --port", term_opts) end,
+          stop = function() terminal.stop() end,
+          toggle = function() terminal.toggle("opencode --port", term_opts) end,
+        },
+      }
+
+      vim.o.autoread = true
+
+      vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end, { desc = "Scroll opencode up" })
+      vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
+
+      vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+    end,
     keys = {
-      -- {
-      --   "<leader>aa",
-      --   function()
-      --     require("sidekick.cli").toggle({ focus = true })
-      --   end,
-      --   desc = "Toggle AI CLI",
-      --   mode = { "n", "v" },
-      -- },
-      {
-        "<A-i>",
-        function()
-          require("sidekick.cli").prompt()
-        end,
-        desc = "Select AI Prompt",
-        mode = { "n", "v" },
-      },
+      { "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, mode = { "n", "x" }, desc = "Ask opencode" },
+      { "<C-x>", function() require("opencode").select() end, mode = { "n", "x" }, desc = "Execute opencode action" },
+      { "<C-S-e>", function() require("opencode").toggle() end, mode = { "n", "t" }, desc = "Toggle opencode" },
+      { "go", function() return require("opencode").operator("@this ") end, mode = { "n", "x" }, desc = "Add range to opencode", expr = true },
+      { "goo", function() return require("opencode").operator("@this ") .. "_" end, desc = "Add line to opencode", expr = true },
     },
   },
+
 }
