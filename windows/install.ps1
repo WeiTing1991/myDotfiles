@@ -29,14 +29,15 @@ winget install -e --id Notepad++.Notepad++
 scoop install starship
 scoop bucket add nerd-fonts
 scoop install CascadiaMono-NF
+scoop install CascadiaCode-NF
 
 . "$PSScriptRoot\helpers.ps1"
 
-# # AutoHotkey script
-# Install-ProgramAndLinkDotfiles `
-# -program "AutoHotkey.AutoHotkey" `
-# -dotfilesPath "windows\windos_11_hotkeys.ahk" `
-# -targetPath "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\windos_11_hotkeys.ahk"
+# AutoHotkey script
+Install-ProgramAndLinkDotfiles `
+-program "AutoHotkey.AutoHotkey" `
+-dotfilesPath "windows\windos_11_hotkeys.ahk" `
+-targetPath "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\windos_11_hotkeys.ahk"
 
 # Windows Terminal
 Install-ProgramAndLinkDotfiles `
@@ -44,8 +45,8 @@ Install-ProgramAndLinkDotfiles `
     -dotfilesPath "windows\term_settings.json" `
     -targetPath "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 
-# # WezTerm (linking entire directory)
-# Install-ProgramAndLinkDotfiles `
-#     -program "" `
-#     -dotfilesPath ".config\wezterm" `
-#     -targetPath "$HOME\.config\wezterm"
+# WezTerm (linking entire directory)
+Install-ProgramAndLinkDotfiles `
+    -program "" `
+    -dotfilesPath ".config\wezterm" `
+    -targetPath "$HOME\.config\wezterm"

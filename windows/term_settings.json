@@ -18,16 +18,16 @@
     "keybindings": 
     [
         {
-            "id": null,
-            "keys": "enter"
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
         },
         {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
         },
         {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
+            "id": null,
+            "keys": "enter"
         },
         {
             "id": null,
@@ -113,7 +113,7 @@
             "font": 
             {
                 "cellHeight": "1.2",
-                "face": "CaskaydiaCove Nerd Font",
+                "face": "CaskaydiaCove Nerd Font Mono",
                 "size": 12,
                 "weight": "medium"
             },

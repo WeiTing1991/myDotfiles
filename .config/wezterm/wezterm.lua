@@ -1,74 +1,89 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
 local act = wezterm.action
-
--- This will hold the configuration.
-local config = wezterm.config_builder()
-
--- Detect the operating system
 local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
--- aarch special for m-series mac
 local is_macos = wezterm.target_triple == "aarch64-apple-darwin"
 
-local default_prog
-local font_size
-local default_font
-local launch_menu = {}
-
 if is_windows then
-  default_prog = { "pwsh.exe" }
-  font_size = 10.0
-  -- default_font = wezterm.font("Consolas")
-  -- default_font = wezterm.font("ZenMono Nerd Font")
-  -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
+  default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe"}
+  font_size = 12.0
+  front_end = "WebGpu"
+  webgpu_power_preference = "HighPerformance"
+  animation_fps = 1
+  max_fps = 120
   default_font = wezterm.font_with_fallback({
+    {
+      family = "CaskaydiaCove Nerd Font Mono",
+      harfbuzz_features = { "calt=0" },
+    },
+    {
+      family = "Hack Nerd Font",
+    },
     {
       family = "JetBrainsMono Nerd Font",
       harfbuzz_features = { "calt=0" },
-    },
+    }
   })
+  window_frame = {
+    font = wezterm.font("Consolas", { weight = "Regular" }),
+    font_size = 10.0,
+  }
+  freetype_load_target = "HorizontalLcd"
+
+
+
 elseif is_macos then
-  default_prog = { "/bin/zsh" }
-  font_size = 14.0
+  default_prog = { "/bin/zsh" , "-l"}
+  font_size = 16.0
+  front_end = "WebGpu"
+  webgpu_power_preference = "HighPerformance"
+  animation_fps = 1
+  max_fps = 120
+  -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
   default_font = wezterm.font_with_fallback({
     {
-      family = "Hack Nerd Font",
+      family = "Cascadia Code NF",
       harfbuzz_features = { "calt=0" },
     },
+    {
+      family = "Hack Nerd Font",
+    },
+    {
+      family = "JetBrainsMono Nerd Font",
+      harfbuzz_features = { "calt=0" },
+    }
   })
-  -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
+  window_frame = {
+    font = wezterm.font("SF Pro Text", { weight = "Regular" }),
+    font_size = 14.0,
+  }
+  freetype_load_target = "Light"
+
 end
 
+-- main config
 config = {
-  -- enable ctrl key
+  color_scheme = "Dracula",
   allow_win32_input_mode = false,
   enable_kitty_keyboard = true,
-  enable_kitty_graphics = true,
-  hyperlink_rules = wezterm.default_hyperlink_rules(),
-  default_cursor_style = "BlinkingBlock",
-
-  -- render option
-  -- enable_wayland = false,
-  front_end = "WebGpu",
-  -- high performance rendering has issue
-  -- webgpu_power_preference = "HighPerformance",
-  -- webgpu_preferred_adapter  = wezterm.gui.enumerate_gpus()[1],
-
-  max_fps = 166,
-  animation_fps = 60,
-  freetype_load_target = "Normal",
+  -- enable_kitty_graphics = true,
 
   default_prog = default_prog,
   font_size = font_size,
-  -- color_scheme = "GruvboxDarkHard",
-  color_scheme = "Dracula",
-  -- color_scheme = "rose-pine",
-  initial_cols = 120,
-  initial_rows = 50,
-
+  animation_fps = animation_fps,
   font = default_font,
+  window_frame = window_frame,
+  webgpu_power_preference = webgpu_power_preference,
+  window_background_opacity = 0.8,
+  freetype_load_target = freetype_load_target,
+
+
+  -- win32_system_backdrop = "Acrylic"  -- frosted glass effect
+  -- win32_acrylic_accent_color = "#10101080"
+  max_fps = max_fps,
+  scrollback_lines = 3000,
+
   -- windows
-  window_background_opacity = 1,
+  adjust_window_size_when_changing_font_size = false,
   window_decorations = "RESIZE",
   window_padding = {
     left = 2,
@@ -81,179 +96,144 @@ config = {
     brightness = 0.8,
   },
   window_close_confirmation = "AlwaysPrompt",
-  adjust_window_size_when_changing_font_size = false,
   enable_tab_bar = true,
   use_fancy_tab_bar = true,
   tab_and_split_indices_are_zero_based = true,
-  scrollback_lines = 3000,
 
   -- key_bindings
   disable_default_key_bindings = true,
   leader = { key = "x", mods = "CTRL", timeout_milliseconds = 500 },
-  keys = {
+
+  hyperlink_rules = wezterm.default_hyperlink_rules(),
+}
+
+-- mouse_bindings
+config.mouse_bindings = {
+  -- Double-click: open cwd in Finder/Explorer
+  {
+    event = { Up = { streak = 2, button = 'Left' } },
+    mods = 'CTRL',
+    action = wezterm.action_callback(function(window, pane)
+      local cwd = pane:get_current_working_directory()
+      if cwd then
+        if is_macos then
+          wezterm.open_with(cwd.file_path, 'Finder')
+        else
+          wezterm.open_with(cwd.file_path, 'explorer')
+        end
+      end
+    end),
+  },
+  {
+    event = { Up = { streak = 2, button = 'Right' } },
+    mods = 'NONE',
+    action = act.CopyTo('Clipboard'),
+  },
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = is_macos and 'SUPER' or 'CTRL',
+    action = act.OpenLinkAtMouseCursor,
+  },
+}
+
+config.keys ={
+    -- { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
+    { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+    { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+
     -- mode
     { key = "x", mods = "LEADER|CTRL", action = act.SendKey({ key = "x", mods = "CTRL" }) },
+  	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
 
     -- Split windows
     { key = "phys:Quote", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
     { key = "5", mods = "CTRL", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
+
+    -- Copy/Paste
+    { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo "Clipboard" },
+    { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom "Clipboard" },
+
+    -- Tabs
+    { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
+    { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentTab { confirm = false } },
+
+    -- Font size
+    { key = "=", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
+    { key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
+    { key = "0", mods = "CTRL", action = act.ResetFontSize},
 
     -- Pane navigation
     { key = "h", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Left") },
     { key = "j", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
     { key = "k", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
     { key = "l", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
-
-    { key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
     { key = "m", mods = "CTRL|SHIFT", action = act.TogglePaneZoomState },
 
-    { key = "t", mods = "SHIFT|CTRL", action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
-    -- { key = "T", mods = "ALT",    action = act.SpawnCommandInNewTab({ cwd = "wezterm.home_dir" }) },
-    -- { key = "t", mods = "SUPER",  action = act.SpawnCommandInNewTab({ domain = "CurrentPaneDomain" }) },
-    -- { key = "t", mods = "ALT",    action = act.SpawnCommandInNewTab({ domain = "CurrentPaneDomain" }) },
-    --
-    { key = "b", mods = "CTRL|SHIFT", action = act.ShowDebugOverlay },
+    -- Window
+    { key = "n", mods = "CTRL|SHIFT", action = act.SpawnWindow       },
 
-    { key = "p", mods = "CTRL|SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
-    { mods = "CTRL|SHIFT", key = "n", action = wezterm.action.ActivateTabRelative(1) },
+    -- Search
+    { key = "f", mods = "CTRL|SHIFT",       action = act.Search { CaseSensitiveString = "" }     },
 
-    -- close tab
-    { key = "w", mods = "ALT", action = act.CloseCurrentTab({ confirm = true }) },
-    { key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = true }) },
+    -- Alt keys (readline)
+    -- { key = "f",         mods = "ALT", action = wezterm.action.SendString("\x1bf")    },
+    -- { key = "b",         mods = "ALT", action = wezterm.action.SendString("\x1bb")    },
+    -- { key = "d",         mods = "ALT", action = wezterm.action.SendString("\x1bd")    },
+    -- { key = "Backspace", mods = "ALT", action = wezterm.action.SendString("\x1b\x7f") },
 
-    -- close app
-    -- { key = "q", mods = "SHIFT|CTRL", action = act.QuitApplication },
-    -- { key = "q", mods = "ALT", action = act.QuitApplication },
-    -- { key = "q", mods = "SUPER", action = act.QuitApplication },
+    { key = "r", mods = "SHIFT|CTRL", action = act.PromptInputLine {
+      description = "Enter new name for tab",
+      action = wezterm.action_callback(function(window, pane, line)
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    }},
+}
 
-    -- reload the configuration
-    { key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
-    { key = "r", mods = "SUPER", action = act.ReloadConfiguration },
+config.key_tables = {
+	copy_mode = {
+    { key = 'h', mods = 'NONE', action = act.CopyMode('MoveLeft') },
+    { key = 'j', mods = 'NONE', action = act.CopyMode('MoveDown') },
+    { key = 'k', mods = 'NONE', action = act.CopyMode('MoveUp') },
+    { key = 'l', mods = 'NONE', action = act.CopyMode('MoveRight') },
 
-    { key = "LeftArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Left", 3 }) },
-    { key = "RightArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Right", 3 }) },
-    { key = "UpArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Up", 3 }) },
-    { key = "DownArrow", mods = "CTRL|ALT", action = wezterm.action.AdjustPaneSize({ "Down", 3 }) },
+    { key = "Escape", mods = 'NONE', action = act.CopyMode 'Close' },
+    { key = 'v', mods = 'NONE', action = act.CopyMode{ SetSelectionMode =  'Cell' } },
+    { key = 'v', mods = 'CTRL', action = act.CopyMode{ SetSelectionMode =  'Block' } },
+
+  	{ key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
+  	{ key = "c", mods = "SHIFT|SUPER", action = act.CopyTo("Clipboard") },
+  	{ key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
+  	{ key = "v", mods = "SHIFT|SUPER", action = act.PasteFrom("Clipboard") },
+
     {
-      key = ",",
-      mods = "CTRL",
-      action = wezterm.action.PromptInputLine({
-        description = "Enter new name for tab",
-        action = wezterm.action_callback(function(window, pane, line)
-          if line then
-            window:active_tab():set_title(line)
-          end
-        end),
-      }),
-    },
-
-    -- mode
-    -- { key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "RESIZE_PANE", one_shot = false }) },
-    { key = "r", mods = "LEADER", action = act.ActivateCopyMode },
-
-    { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
-    { key = "c", mods = "SHIFT|SUPER", action = act.CopyTo("Clipboard") },
-    -- { key = "COPY", mods = "NONE", action = act.CopyTo("Clipboard") },
-    { key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom("Clipboard") },
-    { key = "v", mods = "SHIFT|SUPER", action = act.PasteFrom("Clipboard") },
-    -- { key = "Paste", mods = "NONE", action = act.PasteFrom("Clipboard") },
-
-    -- Font size controls
-    { key = "=", mods = "CTRL", action = act.IncreaseFontSize },
-    { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
-    { key = "0", mods = "CTRL", action = act.ResetFontSize },
-  },
-  colors = {
-    -- Colors for copy_mode and quick_select
-    -- available since: 20220807-113146-c2fee766
-    -- In copy_mode, the color of the active text is:
-    -- 1. copy_mode_active_highlight_* if additional text was selected using the mouse
-    -- 2. selection_* otherwise
-    copy_mode_active_highlight_bg = { Color = "#000000" },
-    -- use `AnsiColor` to specify one of the ansi color palette values
-    -- (index 0-15) using one of the names "Black", "Maroon", "Green",
-    --  "Olive", "Navy", "Purple", "Teal", "Silver", "Grey", "Red", "Lime",
-    -- "Yellow", "Blue", "Fuchsia", "Aqua" or "White".
-    copy_mode_active_highlight_fg = { AnsiColor = "Black" },
-    copy_mode_inactive_highlight_bg = { Color = "#52ad70" },
-    copy_mode_inactive_highlight_fg = { AnsiColor = "White" },
-  },
-
-  key_tables = {
-    copy_mode = {
-      { key = "h", mods = "NONE", action = act.CopyMode("MoveLeft") },
-      { key = "j", mods = "NONE", action = act.CopyMode("MoveDown") },
-      { key = "k", mods = "NONE", action = act.CopyMode("MoveUp") },
-      { key = "l", mods = "NONE", action = act.CopyMode("MoveRight") },
-
-      { key = "0", mods = "NONE", action = act.CopyMode("MoveToStartOfLineContent") },
-      { key = "5", mods = "NONE", action = act.CopyMode("MoveToEndOfLineContent") },
-
-      { key = "Escape", mods = "NONE", action = act.CopyMode("Close") },
-      { key = "q", mods = "NONE", action = act.CopyMode("Close") },
-
-      { key = "v", mods = "NONE", action = act.CopyMode({ SetSelectionMode = "Cell" }) },
-      { key = "v", mods = "CTRL", action = act.CopyMode({ SetSelectionMode = "Block" }) },
-
-      { key = "=", action = act.IncreaseFontSize },
-      { key = "-", action = act.DecreaseFontSize },
-
-      {
-        key = "y",
-        mods = "NONE",
-        action = act.Multiple({
-          { CopyTo = "ClipboardAndPrimarySelection" },
-          { CopyMode = "Close" },
-        }),
+      key = 'y',
+      mods = 'NONE',
+      action = act.Multiple {
+        { CopyTo = 'ClipboardAndPrimarySelection' },
+        { CopyMode = 'Close' },
       },
-
-      -- Scroll up and down by line
-      -- { key = 'u', action = act.ScrollByLine(-1) },
-      -- { key = 'd', action = act.ScrollByLine(1) },
-
-      -- Scroll up and down by page
-      { key = "u", action = act.ScrollByPage(-0.5) },
-      { key = "d", action = act.ScrollByPage(0.5) },
     },
-  },
+	}
 }
 
-table.insert(config.hyperlink_rules, {
-  regex = [[\b\w+/[\w.-]+\.\w+:\d+\b]],
-  format = "$0",
-  -- When clicked, will try to open the file
-})
+-- tab title
+wezterm.on('format-tab-title', function(tab)
+  local title = tab.tab_title
+  if not title or #title == 0 then
+    local cwd = tab.active_pane.current_working_dir
+    if cwd then
+      title = cwd.file_path:match("([^/\\]+)/?$") or cwd.file_path
+    else
+      title = tab.active_pane.title
+    end
+  end
+  if tab.active_pane.is_zoomed then
+    title = '[Z] ' .. title
+  end
+  return title
+end)
 
-local mod = is_macos and "SUPER" or "CTRL"
-config.mouse_bindings = {
-  -- First, select the word under the mouse
-  {
-    event = { Down = { streak = 1, button = "Left" } },
-    mods = mod,
-    action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
-  },
-  -- Then process it
-  {
-    event = { Up = { streak = 1, button = "Left" } },
-    mods = mod,
-    action = wezterm.action_callback(function(window, pane)
-      -- Get the selected text
-      local sel = window:get_selection_text_for_pane(pane)
-
-      -- Match file:line or file:line:col
-      local file, line = sel:match("([%w/._-]+%.[%w]+):(%d+)")
-
-      if file and line then
-        wezterm.log_info("Found: " .. file .. " line " .. line)
-        -- Exit terminal mode with ESC ESC
-        pane:send_text("\x1b\x1b")
-        -- Wait a moment
-        wezterm.sleep_ms(150)
-        -- Open the file
-        pane:send_text(":e +" .. line .. " " .. file .. "\r")
-      end
-    end),
-  },
-}
 
 return config

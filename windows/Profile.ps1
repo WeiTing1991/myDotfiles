@@ -5,30 +5,54 @@ $GitPromptSettings.EnablePromptStatus = $false
 # Load Starship (handles the prompt)
 Invoke-Expression (&starship init powershell)
 
-# Windows Terminal integration
+
+Invoke-Expression (&starship init powershell)
+
+# Add WezTerm cwd tracking AFTER starship init
+$ENV:STARSHIP_PRECMD_ASYNC = "1"
+
+# WezTerm integration
 function Invoke-Starship-PreCommand {
-    $loc = $executionContext.SessionState.Path.CurrentLocation
-    if ($loc.Provider.Name -eq "FileSystem") {
-        $host.ui.Write("`e]9;9;`"$($loc.ProviderPath)`"`e\")
-    }
+    $cwd = $PWD.Path -replace "\\", "/"
+    Write-Host -NoNewline "`e]7;file://$env:COMPUTERNAME/$cwd`a"
 }
+
+# Windows Terminal integration
+# function Invoke-Starship-PreCommand {
+#     $loc = $executionContext.SessionState.Path.CurrentLocation
+#     if ($loc.Provider.Name -eq "FileSystem") {
+#         $host.ui.Write("`e]9;9;`"$($loc.ProviderPath)`"`e\")
+#     }
+# }
+
 
 # Predictions
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle InlineView
+Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineOption -BellStyle None
 
 # Keybindings
-Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
-Set-PSReadLineKeyHandler -Key Ctrl+p -Function HistorySearchBackward
-Set-PSReadLineKeyHandler -Key Ctrl+n -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key Ctrl+e -Function ForwardChar
-Set-PSReadLineKeyHandler -Key Ctrl+w -Function BackwardDeleteWord
+Set-PSReadLineKeyHandler -Key "Ctrl+a"  -Function BeginningOfLine      # auto
+Set-PSReadLineKeyHandler -Key "Ctrl+e"  -Function EndOfLine            # auto
+Set-PSReadLineKeyHandler -Key "Ctrl+k"  -Function ForwardDeleteLine    # auto
+Set-PSReadLineKeyHandler -Key "Ctrl+u"  -Function BackwardDeleteLine   # auto
+Set-PSReadLineKeyHandler -Key "Ctrl+r"  -Function ReverseSearchHistory # auto
+Set-PSReadLineKeyHandler -Key "Ctrl+l"  -Function ClearScreen          # auto
+Set-PSReadLineKeyHandler -Key "Ctrl+w"  -Function BackwardDeleteWord   # auto
+
+Set-PSReadLineKeyHandler -Key "Alt+f"         -Function ForwardWord
+Set-PSReadLineKeyHandler -Key "Alt+b"         -Function BackwardWord
+Set-PSReadLineKeyHandler -Key "Alt+d"         -Function DeleteWord
+Set-PSReadLineKeyHandler -Key "Alt+Backspace" -Function BackwardDeleteWord
+Set-PSReadLineKeyHandler -Key "Alt+p"         -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key "ALt+n"         -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+# Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
 
 $ENV:EDITOR = 'nvim'
 
 Set-Alias c clear
-
 function n ($command) { nvim }
 function e ($command) { exit }
 
