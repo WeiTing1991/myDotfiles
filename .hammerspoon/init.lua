@@ -63,22 +63,20 @@ end
 -- end)
 
 hs.hotkey.bind({ "cmd" }, "1", function()
-  mouse_focus("Wezterm")
+  mouse_focus_cycle("Wezterm")
 end)
-
 
 hs.hotkey.bind({ "cmd" }, "2", function()
   mouse_focus_cycle("Brave Browser")
 end)
 
 hs.hotkey.bind({ "cmd" }, "3", function()
-  mouse_focus("Obsidian")
+  mouse_focus_cycle("Obsidian")
 end)
 
 -- hs.hotkey.bind({ "cmd" }, "4", function()
 --   mouse_focus("Claude")
 -- end)
-
 
 hs.hotkey.bind({ "cmd" }, "6", function()
   mouse_focus_cycle("Clion")
