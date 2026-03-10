@@ -73,7 +73,7 @@ config = {
   font = default_font,
   window_frame = window_frame,
   webgpu_power_preference = webgpu_power_preference,
-  window_background_opacity = 0.8,
+  window_background_opacity = 0.9,
   freetype_load_target = freetype_load_target,
 
 
