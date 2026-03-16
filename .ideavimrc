@@ -23,6 +23,7 @@ set idearefactormode=keep    " stay in current mode during refactoring
 set clipboard+=unnamed       " yank/paste uses system clipboard
 set clipboard+=ideaput       " use IntelliJ's paste for better formatting
 set ideastatusicon=gray      " subtle status bar icon
+set notimeout
 
 let mapleader=" "            " Space as leader key
 
