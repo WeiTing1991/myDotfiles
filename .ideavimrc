@@ -24,6 +24,7 @@ set clipboard+=unnamed       " yank/paste uses system clipboard
 set clipboard+=ideaput       " use IntelliJ's paste for better formatting
 set ideastatusicon=gray      " subtle status bar icon
 set notimeout
+set foldlevel=1
 
 let mapleader=" "            " Space as leader key
 
