@@ -157,16 +157,9 @@ nmap <C-Q> <Action>(CloseContent)
 
 " ── LSP / Go-to ──────────────────────────────────────────────
 nmap gd <Action>(GotoDeclaration)
-nmap gD <Action>(GotoDeclarationInRightSplit)
-nmap g<C-d> <Action>(GotoDeclarationInSplit)
-
 nmap gi <Action>(GotoImplementation)
-nmap gI <Action>(GotoImplementationInRightSplit)
 
 nmap gy <Action>(GotoTypeDeclaration)
-" Type declaration
-" nmap gY <Action>(GotoTypeDeclarationInRightSplit)
-
 nmap gh <Action>(GotoDeclaration)
 
 " Full usages tool window (Alt+F7 equivalent)
