@@ -4,8 +4,6 @@
 ### **Core & Base**
 - [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) - Lua utility functions
 - [nvim-tree/nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) - File type icons
-- [nvchad/ui](https://github.com/nvchad/ui) - NvChad UI components
-- [nvchad/base46](https://github.com/nvchad/base46) - Theme management
 
 ### **Navigation & File Management**
 - [ibhagwan/fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fast fuzzy finder
@@ -22,17 +20,16 @@
 ### **LSP & Language Support**
 - [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Language server configurations
 - [folke/lazydev.nvim](https://github.com/folke/lazydev.nvim) - Lua development support
-- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) - Language server installer
+- [mason-org/mason.nvim](https://github.com/mason-org/mason.nvim) - Language server installer
 - [WhoIsSethDaniel/mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Declarative tool installation
 - [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim) - LSP progress notifications
 
 ### **Autocompletion & Snippets**
-- [saghen/blink.cmp](https://github.com/saghen/blink.cmp) - Fast completion engine
+- [saghen/blink.cmp](https://github.com/saghen/blink.cmp) - Fast completion engine (Rust fuzzy matcher)
 - [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) - Snippet engine
 
-### **Formatting & Linting**
-- [WeiTing1991/none-ls.nvim](https://github.com/WeiTing1991/none-ls.nvim) - Formatter/linter integration (forked)
-- [nvimtools/none-ls-extras.nvim](https://github.com/nvimtools/none-ls-extras.nvim) - Additional none-ls sources
+### **Formatting**
+- [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim) - Async formatter integration
 
 ### **Editing Enhancement**
 - [tpope/vim-sleuth](https://github.com/tpope/vim-sleuth) - Auto-detect indentation
@@ -40,11 +37,10 @@
 - [echasnovski/mini.ai](https://github.com/echasnovski/mini.ai) - Extended text objects
 - [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Auto-close brackets
 - [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) - Smart commenting
+- [lucaSartore/fastspell.nvim](https://github.com/lucaSartore/fastspell.nvim) - Fast spell checking
 
 ### **UI & Themes**
 - [WeiTing1991/gruvbox.nvim](https://github.com/WeiTing1991/gruvbox.nvim) - Gruvbox colorscheme (forked)
-- [Mofiqul/dracula.nvim](https://github.com/Mofiqul/dracula.nvim) - Dracula colorscheme
-- [projekt0n/github-nvim-theme](https://github.com/projekt0n/github-nvim-theme) - GitHub colorscheme
 - [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Status line
 - [Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim) - Breadcrumb winbar
 - [lukas-reineke/virt-column.nvim](https://github.com/lukas-reineke/virt-column.nvim) - Virtual column guide
@@ -59,19 +55,17 @@
 ### **AI Tools**
 - [nickjvandyke/opencode.nvim](https://github.com/nickjvandyke/opencode.nvim) - AI coding assistant
 - [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot integration
-- [folke/sidekick.nvim](https://github.com/folke/sidekick.nvim) - Claude Code integration
 
 ### **Development Tools**
 - [folke/trouble.nvim](https://github.com/folke/trouble.nvim) - Diagnostics and quickfix
-- [lucaSartore/fastspell.nvim](https://github.com/lucaSartore/fastspell.nvim) - Fast spell checking
 - [WeiTing1991/markdown-preview.nvim](https://github.com/WeiTing1991/markdown-preview.nvim) - Markdown preview (forked)
 - [ThePrimeagen/refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim) - Code refactoring tools
 - [stevearc/overseer.nvim](https://github.com/stevearc/overseer.nvim) - Task runner
 - [WeiTing1991/diagnostic-hover.nvim](https://github.com/WeiTing1991/diagnostic-hover.nvim) - Diagnostic hover float
+- [hedyhli/outline.nvim](https://github.com/hedyhli/outline.nvim) - Document symbol outline
 
 ### **Language-Specific**
 - [b0o/schemastore.nvim](https://github.com/b0o/schemastore.nvim) - JSON/YAML schema support
 - [seblyng/roslyn.nvim](https://github.com/seblyng/roslyn.nvim) - C# Roslyn language server
 - [p00f/clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim) - C/C++ clangd enhancements
 - [linux-cultist/venv-selector.nvim](https://github.com/linux-cultist/venv-selector.nvim) - Python virtualenv picker
-- [hedyhli/outline.nvim](https://github.com/hedyhli/outline.nvim) - Document symbol outline

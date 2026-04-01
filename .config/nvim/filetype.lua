@@ -15,7 +15,7 @@ vim.filetype.add({
     ["package*.json"] = "jsonc",
     [".*/%.vscode/.*%.json"] = "jsonc",
     [".*/%.zed/.*%.json"] = "jsonc",
-    -- Borrowed from LazyVim. Mark huge files to disable features later.
+    -- Mark huge files to disable features later.
     [".*"] = function(path, bufnr)
       return vim.bo[bufnr]
           and vim.bo[bufnr].filetype ~= "bigfile"
