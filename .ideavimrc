@@ -78,6 +78,8 @@ Plug 'preservim/nerdtree'
 " set sneak
 " set which-key
 " set notimeout
+
+set argtextobj
 set nerdtree
 set ReplaceWithRegister
 
@@ -99,8 +101,8 @@ vmap <C-/> <Action>(CommentByLineComment)
 
 
 " ── Better escape ────────────────────────────────────────────
-imap jk <Esc>
-imap kj <Esc>
+"imap jk <Esc>
+"imap kj <Esc>
 
 " ── Yank to end of line ──────────────────────────────────────
 nmap Y y$

@@ -17,7 +17,7 @@ scoop install scoop-search
 
 winget install --id=liule.Snipaste  -e
 winget install -e --id Notepad++.Notepad++
-# winget install -e --id PuTTY.PuTTY
+winget install -e --id PuTTY.PuTTY
 # winget install FilesCommunity.Files
 
 # [Environment]::SetEnvironmentVariable("HOME", "C:\Users\weichen34", "User")
@@ -26,7 +26,7 @@ winget install -e --id Notepad++.Notepad++
 # ls $env:LOCALAPPDATA
 # ls $env:HOME
 
-scoop install starship
+
 scoop bucket add nerd-fonts
 scoop install CascadiaMono-NF
 scoop install CascadiaCode-NF
