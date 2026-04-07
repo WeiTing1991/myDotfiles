@@ -24,6 +24,7 @@
   pager = diff-so-fancy | less --tabs=4 -RFX
   autocrlf = input
   fsmonitor = true
+  ignorecase = false
 
 [filter "lfs"]
   clean = git-lfs clean -- %f
