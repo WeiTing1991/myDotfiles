@@ -101,7 +101,7 @@ vmap <C-/> <Action>(CommentByLineComment)
 
 " ── Better escape ────────────────────────────────────────────
 "imap kk <Esc>
-imap kj <Esc>
+"imap kj <Esc>
 
 " ── Yank to end of line ──────────────────────────────────────
 nmap Y y$
