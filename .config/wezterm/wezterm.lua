@@ -154,6 +154,7 @@ config.keys ={
     { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom "Clipboard" },
 
     -- Tabs
+    { key = "t", mods = "LEADER",     action = act.ShowTabNavigator },
     { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
     { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentTab { confirm = false } },
 
