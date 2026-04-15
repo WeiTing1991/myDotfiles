@@ -23,6 +23,8 @@ set idearefactormode=keep    " stay in current mode during refactoring
 set clipboard+=unnamed       " yank/paste uses system clipboard
 set clipboard+=ideaput       " use IntelliJ's paste for better formatting
 set ideastatusicon=gray      " subtle status bar icon
+set notimeout
+set foldlevel=1
 
 let mapleader=" "            " Space as leader key
 
@@ -75,7 +77,8 @@ Plug 'preservim/nerdtree'
 
 " set sneak
 " set which-key
-" set notimeout
+
+set argtextobj
 set nerdtree
 set ReplaceWithRegister
 
@@ -97,8 +100,8 @@ vmap <C-/> <Action>(CommentByLineComment)
 
 
 " ── Better escape ────────────────────────────────────────────
-imap jk <Esc>
-imap kj <Esc>
+"imap kk <Esc>
+"imap kj <Esc>
 
 " ── Yank to end of line ──────────────────────────────────────
 nmap Y y$
@@ -155,16 +158,9 @@ nmap <C-Q> <Action>(CloseContent)
 
 " ── LSP / Go-to ──────────────────────────────────────────────
 nmap gd <Action>(GotoDeclaration)
-nmap gD <Action>(GotoDeclarationInRightSplit)
-nmap g<C-d> <Action>(GotoDeclarationInSplit)
-
 nmap gi <Action>(GotoImplementation)
-nmap gI <Action>(GotoImplementationInRightSplit)
 
 nmap gy <Action>(GotoTypeDeclaration)
-" Type declaration
-" nmap gY <Action>(GotoTypeDeclarationInRightSplit)
-
 nmap gh <Action>(GotoDeclaration)
 
 " Full usages tool window (Alt+F7 equivalent)

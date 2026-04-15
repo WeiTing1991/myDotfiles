@@ -73,7 +73,7 @@ config = {
   font = default_font,
   window_frame = window_frame,
   webgpu_power_preference = webgpu_power_preference,
-  window_background_opacity = 0.8,
+  window_background_opacity = 0.9,
   freetype_load_target = freetype_load_target,
 
 
@@ -154,6 +154,7 @@ config.keys ={
     { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom "Clipboard" },
 
     -- Tabs
+    { key = "t", mods = "LEADER",     action = act.ShowTabNavigator },
     { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
     { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentTab { confirm = false } },
 

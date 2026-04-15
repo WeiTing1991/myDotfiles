@@ -90,6 +90,10 @@ hs.hotkey.bind({ "cmd" }, "8", function()
   mouse_focus_cycle("rider")
 end)
 
+hs.hotkey.bind({ "cmd" }, "9", function()
+  mouse_focus_cycle("clion")
+end)
+
+
 -- Auto-reload config when file changes
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", hs.reload):start()
-hs.alert.show("Config loaded")

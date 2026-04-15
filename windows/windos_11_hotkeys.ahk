@@ -202,9 +202,10 @@ cycleWindows(exeName) {
 ; =====================================================
 
 ; Win+1 → Cycle through Windows Terminal windows
-#1::cycleWindows("WindowsTerminal.exe")
 ; Win+Shift+1 → Launch new Windows Terminal
-#+1::Run("wt")
+;#+1::Run("wt")
+
+#+1::cycleWindows("WindowsTerminal.exe")
 
 #+4::Run("C:\Program Files\Everything\Everything.exe")
 

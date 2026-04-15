@@ -1,12 +1,121 @@
 {
   "version": "2.0.0",
   "tasks": [
-  //   {
-  //     "label": "Format",
-  //     "type": "shell",
-  //     "command": "nvim",
-  //     "args": ["--headless", "-c", "lua vim.lsp.buf.format()", "-c", "wq", "${file}"],
-  //     "problemMatcher": []
-  //   }
+    // ── Python (assumes project root with main.py or src/) ──
+    {
+      "label": "Python: Run",
+      "type": "shell",
+      "command": "python3",
+      "args": ["${file}"],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Python: Test",
+      "type": "shell",
+      "command": "python3",
+      "args": ["-m", "pytest", "-v"],
+      "group": "test",
+      "problemMatcher": []
+    },
+
+    // ── C++ (CMake project) ──
+    {
+      "label": "C++: CMake Configure",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["-S", ".", "-B", "build"],
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "C++: Build",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "build"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "dependsOn": "C++: CMake Configure",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "C++: Run",
+      "type": "shell",
+      "command": "./build/${workspaceFolderBasename}",
+      "dependsOn": "C++: Build",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "C++: Test",
+      "type": "shell",
+      "command": "ctest",
+      "args": ["--test-dir", "build", "--output-on-failure"],
+      "dependsOn": "C++: Build",
+      "group": "test",
+      "problemMatcher": ["$gcc"]
+    },
+
+    // ── Rust (Cargo project) ──
+    {
+      "label": "Rust: Build",
+      "type": "shell",
+      "command": "cargo",
+      "args": ["build"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": ["$rustc"]
+    },
+    {
+      "label": "Rust: Run",
+      "type": "shell",
+      "command": "cargo",
+      "args": ["run"],
+      "dependsOn": "Rust: Build",
+      "group": "build",
+      "problemMatcher": ["$rustc"]
+    },
+    {
+      "label": "Rust: Test",
+      "type": "shell",
+      "command": "cargo",
+      "args": ["test"],
+      "group": "test",
+      "problemMatcher": ["$rustc"]
+    },
+
+    // ── C# (dotnet project) ──
+    {
+      "label": "C#: Build",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["build"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": ["$msCompile"]
+    },
+    {
+      "label": "C#: Run",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["run"],
+      "dependsOn": "C#: Build",
+      "group": "build",
+      "problemMatcher": ["$msCompile"]
+    },
+    {
+      "label": "C#: Test",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["test"],
+      "group": "test",
+      "problemMatcher": ["$msCompile"]
+    }
   ]
 }
