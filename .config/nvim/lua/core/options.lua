@@ -1,15 +1,12 @@
----------------------------------------------  GLOBALS SETTINGS -------------------------------------------------------
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+local utils = require("core.utils")
 
-local is_mac = vim.loop.os_uname().sysname == "Darwin"
-
-local sep = is_windows and "\\" or "/"
-local delim = is_windows and ";" or ":"
+local sep = utils.is_windows and "\\" or "/"
+local delim = utils.is_windows and ";" or ":"
 vim.env.PATH = table.concat({ vim.fn.stdpath("data"), "mason", "bin" }, sep) .. delim .. vim.env.PATH
 
+--------------------------------------------- GLOBALS ----------------------------------------------------------
+
 local globals = {
-  prev_buffer = nil,
-  next_buffer = nil,
   have_nerd_font = true,
 
   -- disable some default providers
@@ -28,24 +25,18 @@ for k, v in pairs(globals) do
   vim.g[k] = v
 end
 
----------------------------------------------- DEFAULT OPTIONS ---------------------------------------------------------
+--------------------------------------------- OPTIONS ----------------------------------------------------------
 
--- undo folder
+-- undo / spell paths
 local undoDir = ""
-if is_mac then
-  undoDir = os.getenv("HOME") .. "/.vim/undodir"
-elseif is_windows then
+if utils.is_windows then
   undoDir = os.getenv("USERPROFILE") .. "\\.vim\\undodir"
 else
   undoDir = os.getenv("HOME") .. "/.vim/undodir"
 end
 
--- spell folder
 local spellDir = ""
-local spell_word = {}
-if is_mac then
-  spellDir = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
-elseif is_windows then
+if utils.is_windows then
   spellDir = vim.fn.stdpath("config") .. "\\spell\\en.utf-8.add"
 else
   spellDir = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
@@ -56,7 +47,7 @@ local options = {
   encoding = "utf-8",
   completeopt = "menu,menuone,noselect,noinsert",
 
-  --number
+  -- number
   number = true,
   relativenumber = true,
   numberwidth = 4,
@@ -77,18 +68,10 @@ local options = {
   list = true,
   listchars = { tab = "▏ ", trail = "·", lead = "·", extends = "»", precedes = "«" },
   fillchars = {
-    foldopen = "",
-    foldclose = "",
-    fold = " ",
-    foldsep = " ",
-    diff = "╱",
-    eob = " ",
-    vert = "┃", -- Heavy vertical
-    vertleft = "┫",
-    vertright = "┣",
-    horiz = "━", -- Heavy horizontal
-    horizup = "┻",
-    horizdown = "┳",
+    foldopen = "", foldclose = "", fold = " ", foldsep = " ",
+    diff = "╱", eob = " ",
+    vert = "┃", vertleft = "┫", vertright = "┣",
+    horiz = "━", horizup = "┻", horizdown = "┳",
   },
 
   -- search
@@ -97,17 +80,16 @@ local options = {
   incsearch = false,
   hlsearch = true,
 
-  -- Preview substitutions live, as you type!
   shortmess = vim.opt.shortmess + { c = true },
   inccommand = "split",
   wildignore = vim.opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" },
 
   sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize",
 
-  -- Save undo history
+  -- file handling
+  shadafile = "NONE",
   backup = false,
   swapfile = false,
-  shadafile = "NONE",
   writebackup = false,
   undofile = true,
   undodir = undoDir,
@@ -118,9 +100,9 @@ local options = {
   textwidth = 110,
   sidescroll = 0,
 
-  -- searchfolds
+  -- folding (native treesitter - faster than vimscript bridge)
   foldmethod = "expr",
-  foldexpr = "nvim_treesitter#foldexpr()",
+  foldexpr = "v:lua.vim.treesitter.foldexpr()",
   foldlevel = 99,
   foldtext = "",
   foldenable = true,
@@ -136,15 +118,15 @@ local options = {
   signcolumn = "yes:4",
   winborder = "rounded",
 
-  --paste
+  -- paste
   paste = false,
+
   -- splits
   splitbelow = true,
   splitright = true,
 
-  -- Decrease update time
+  -- timing
   updatetime = 50,
-  -- Decrease mapped sequence wait time
   timeoutlen = 400,
 
   -- spelling
@@ -157,6 +139,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+-- clipboard (deferred to avoid startup delay)
 vim.schedule(function()
   local ok, _ = pcall(function()
     vim.opt.clipboard = "unnamedplus"
