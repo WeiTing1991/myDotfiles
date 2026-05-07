@@ -18,16 +18,16 @@
     "keybindings": 
     [
         {
+            "id": null,
+            "keys": "enter"
+        },
+        {
             "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
         },
         {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
-        },
-        {
-            "id": null,
-            "keys": "enter"
         },
         {
             "id": null,
@@ -191,6 +191,42 @@
                 "hidden": true,
                 "name": "Visual Studio Debug Console",
                 "source": "VSDebugConsole"
+            },
+            {
+                "guid": "{e742849b-f277-58ec-af4d-9461a4443fbe}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{1847cdcd-f34d-5943-bca3-362d6ec319d4}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{bbececa2-f8f2-557a-95c6-c3371b6dbac5}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{98705606-0fd4-5729-9a34-15ccee0c2a90}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18 (2)",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{dc01b7a4-4366-5431-aaa4-1de510c6f936}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{1dd3353f-1369-56fd-a2f9-301745b37a51}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },
