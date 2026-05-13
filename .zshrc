@@ -138,6 +138,10 @@ _gitbrowser() {
   url=$(git remote -v | head -n 1 | awk "{print \$2}")
   url=$(echo "$url" | sed "s|git@github\.com:|https://github.com/|")
   url=$(echo "$url" | sed "s|\.git$||")
+  branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  if [ -n "$branch" ] && [ "$branch" != "HEAD" ]; then
+    url="$url/tree/$branch"
+  fi
   open "$url"
 }
 alias gitbrowser=_gitbrowser

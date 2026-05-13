@@ -86,6 +86,10 @@ function GitBrowser {
   $url = git remote -v | Select-Object -First 1 | ForEach-Object { ($_ -split '\s+')[1] }
   $url = $url -replace 'git@github\.com:', 'https://github.com/'
   $url = $url -replace '\.git$', ''
+  $branch = git rev-parse --abbrev-ref HEAD 2>$null
+  if ($branch -and $branch -ne 'HEAD') {
+    $url = "$url/tree/$branch"
+  }
   Start-Process $url
 }
 Set-Alias -Name git-browse -Value GitBrowser
