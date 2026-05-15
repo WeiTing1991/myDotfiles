@@ -136,6 +136,22 @@ config.mouse_bindings = {
   },
 }
 
+local function tab_title(tab)
+  local user_title = tab:get_title()
+  if user_title and #user_title > 0 then return user_title end
+  local active_pane
+  for _, info in ipairs(tab:panes_with_info()) do
+    if info.is_active then active_pane = info.pane; break end
+  end
+  if not active_pane then return "?" end
+  local ok, cwd = pcall(function() return active_pane:get_current_working_directory() end)
+  if ok and cwd then
+    return cwd.file_path:match("([^/\\]+)/?$") or cwd.file_path
+  end
+  local ok2, t = pcall(function() return active_pane:get_title() end)
+  return (ok2 and t) or "?"
+end
+
 config.keys ={
     -- { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
     { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
@@ -154,7 +170,34 @@ config.keys ={
     { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom "Clipboard" },
 
     -- Tabs
-    { key = "t", mods = "LEADER",     action = act.ShowTabNavigator },
+    { key = "t", mods = "LEADER", action = wezterm.action_callback(function(window, pane)
+      local choices = {}
+      local build_ok, build_err = pcall(function()
+        for i, t in ipairs(window:mux_window():tabs()) do
+          local ok, title = pcall(tab_title, t)
+          table.insert(choices, {
+            label = string.format("%d: %s", i, ok and title or ("tab " .. i)),
+            id    = tostring(i - 1),
+          })
+        end
+      end)
+      if not build_ok then
+        wezterm.log_error("tab-nav build error: " .. tostring(build_err))
+        choices = {{ label = "error - check debug overlay", id = "0" }}
+      end
+      window:perform_action(
+        act.InputSelector {
+          title   = "Go to Tab",
+          choices = choices,
+          fuzzy   = true,
+          action  = wezterm.action_callback(function(w, p, id, _)
+            if not id then return end
+            w:perform_action(act.ActivateTab(tonumber(id)), p)
+          end),
+        },
+        pane
+      )
+    end) },
     { key = "t", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab "CurrentPaneDomain" },
     { key = "w", mods = "CTRL|SHIFT", action = wezterm.action.CloseCurrentTab { confirm = false } },
 
