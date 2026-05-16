@@ -74,10 +74,6 @@ hs.hotkey.bind({ "cmd" }, "3", function()
   mouse_focus_cycle("Obsidian")
 end)
 
--- hs.hotkey.bind({ "cmd" }, "4", function()
---   mouse_focus("Claude")
--- end)
-
 hs.hotkey.bind({ "cmd" }, "6", function()
   mouse_focus_cycle("Clion")
 end)
@@ -86,13 +82,17 @@ hs.hotkey.bind({ "cmd" }, "7", function()
   mouse_focus_cycle("Code")
 end)
 
+hs.hotkey.bind({ "cmd", "shift" }, "7", function()
+  mouse_focus_cycle("Zed")
+end)
+
 hs.hotkey.bind({ "cmd" }, "8", function()
   mouse_focus_cycle("rider")
 end)
 
-hs.hotkey.bind({ "cmd" }, "9", function()
-  mouse_focus_cycle("clion")
-end)
+-- hs.hotkey.bind({ "cmd" }, "9", function()
+--   mouse_focus_cycle("clion")
+-- end)
 
 
 -- Auto-reload config when file changes
