@@ -156,6 +156,8 @@ config.keys ={
     -- { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
     { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
     { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+    { key = "<", mods = "LEADER", action = act.MoveTabRelative(-1) },
+    { key = ">", mods = "LEADER", action = act.MoveTabRelative(1) },
 
     -- mode
     { key = "x", mods = "LEADER|CTRL", action = act.SendKey({ key = "x", mods = "CTRL" }) },
