@@ -81,6 +81,7 @@ Plug 'preservim/nerdtree'
 set argtextobj
 set nerdtree
 set ReplaceWithRegister
+set VimEverywhere 
 
 " ── Navigation ───────────────────────────────────────────────
 map <C-h> <C-w>h
@@ -187,12 +188,12 @@ nmap <leader>j <Action>(HideAllWindows)
 nmap <leader>tc <Action>(ToggleInlineCompletionAction)
 nmap <leader>th <Action>(ToggleInlayHintsGloballyAction)
 
-nmap <leader>gb <Action>(Annotate)
-nmap <leader>go <Action>(Github.Open.In.Browser)
-nmap <leader>gg <Action>(Vcs.QuickListPopupAction)
+" nmap <leader>gb <Action>(Annotate)
+" nmap <leader>go <Action>(Github.Open.In.Browser)
+" nmap <leader>gg <Action>(Vcs.QuickListPopupAction)
 
-nmap <leader>rr <Action>(Run)
-nmap <leader>rb <Action>(Debug)
+" nmap <leader>rr <Action>(Run)
+" nmap <leader>rb <Action>(Debug)
 
 "nmap <leader>rs <Action>(Stop)
 "nmap <leader>rb <Action>(BuildSolutionAction)
