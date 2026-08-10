@@ -15,9 +15,8 @@
     "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.tabSize": 4,
   },
-  "cSpell.userWords": [
-    "pymdownx"
-  ],
+  // "cSpell.enabled": false
+  "cSpell.userWords": ["pymdownx"],
   "cSpell.enabledFileTypes": {
     "*": true,
     "markdown": true,
@@ -28,6 +27,7 @@
     },
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.tabSize": 4,
+    "editor.formatOnSave": false,
   },
   "python.analysis.typeCheckingMode": "standard",
   "python.languageServer": "Default",
@@ -58,7 +58,7 @@
   "C_Cpp.default.cStandard": "c23",
   "C_Cpp.formatting": "default",
   "C_Cpp.clang_format_fallbackStyle": "Visual Studio",
-  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.intelliSenseEngine": "disabled",
   "C_Cpp.errorSquiggles": "enabled",
   "C_Cpp.autocomplete": "default",
   "C_Cpp.intelliSenseUpdateDelay": 500,
@@ -230,10 +230,7 @@
   "editor.renderControlCharacters": true,
   "editor.renderLineHighlight": "line",
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
   "editor.scrollbar.verticalScrollbarSize": 0,
@@ -242,7 +239,6 @@
   "editor.semanticHighlighting.enabled": true,
   "editor.showFoldingControls": "always",
   "editor.smoothScrolling": false,
-  "editor.stickyScroll.enabled": false,
   "editor.suggest.preview": false,
   "editor.suggest.showStatusBar": false,
   "editor.tabSize": 2,
@@ -280,7 +276,6 @@
   "workbench.startupEditor": "none",
   "workbench.statusBar.visible": true,
   "workbench.tips.enabled": false,
-  "workbench.tree.enableStickyScroll": false,
   "workbench.tree.indent": 15,
   "workbench.tree.renderIndentGuides": "onHover",
   "window.density.editorTabHeight": "compact",
@@ -303,7 +298,7 @@
   // =============================================================================
   // EXTENSIONS
   // =============================================================================
-  "extensions.autoUpdate": false,
+  "extensions.autoUpdate": "off",
   "extensions.experimental.affinity": {
     "ms-vscode.cpptools": 1,
     "vscodevim.vim": 1,
@@ -344,7 +339,8 @@
     "*": true,
     "plaintext": true,
     "markdown": true,
-    "scminput": false
+    "scminput": false,
+    "csharp": false,
   },
   "github.copilot.nextEditSuggestions.enabled": false,
   "github.copilot.editor.enableCodeActions": false,
@@ -354,10 +350,7 @@
   "prettier.semi": true,
   "prettier.singleQuote": false,
   "prettier.tabWidth": 2,
-  "projectManager.git.baseFolders": [
-    "~/project",
-    ""
-  ],
+  "projectManager.git.baseFolders": ["~/project", ""],
   "scm.diffDecorations": "gutter",
   "markdown-preview-enhanced.previewTheme": "github-light.css",
   // "workbench.layoutControl.enabled": false,
@@ -427,21 +420,12 @@
   "vim.incsearch": true,
   "vim.insertModeKeyBindings": [
     {
-      "after": [
-        "<Esc>"
-      ],
-      "before": [
-        "<C-c>"
-      ],
+      "after": ["<Esc>"],
+      "before": ["<C-c>"],
     },
     {
-      "after": [
-        "<Esc>"
-      ],
-      "before": [
-        "j",
-        "k"
-      ],
+      "after": ["<Esc>"],
+      "before": ["j", "k"],
     },
   ],
   // ysa"[
@@ -450,317 +434,146 @@
   "vim.leader": " ",
   "vim.normalModeKeyBindings": [
     {
-      "before": [
-        "<Esc>"
-      ],
-      "commands": [
-        ":nohl"
-      ],
+      "before": ["<Esc>"],
+      "commands": [":nohl"],
     },
     // hack
     {
-      "after": [
-        "P"
-      ],
-      "before": [
-        "p"
-      ],
+      "after": ["P"],
+      "before": ["p"],
     },
     {
-      "before": [
-        "u"
-      ],
-      "commands": [
-        "undo"
-      ],
+      "before": ["u"],
+      "commands": ["undo"],
     },
     {
-      "before": [
-        "<C-r>"
-      ],
-      "commands": [
-        "redo"
-      ],
+      "before": ["<C-r>"],
+      "commands": ["redo"],
     },
     {
-      "before": [
-        "<C-o>"
-      ],
-      "commands": [
-        "workbench.action.nextEditorInGroup"
-      ],
+      "before": ["<C-o>"],
+      "commands": ["workbench.action.nextEditorInGroup"],
     },
     {
-      "before": [
-        "<C-i>"
-      ],
-      "commands": [
-        "workbench.action.previousEditorInGroup"
-      ],
+      "before": ["<C-i>"],
+      "commands": ["workbench.action.previousEditorInGroup"],
     },
     {
-      "before": [
-        "<leader>",
-        "o"
-      ],
-      "commands": [
-        ":tabn"
-      ],
+      "before": ["<leader>", "o"],
+      "commands": [":tabn"],
     },
     {
-      "before": [
-        "<leader>",
-        "i"
-      ],
-      "commands": [
-        ":tabp"
-      ],
+      "before": ["<leader>", "i"],
+      "commands": [":tabp"],
     },
     {
-      "before": [
-        "<C-c>"
-      ],
-      "commands": [
-        ":nohl"
-      ],
+      "before": ["<C-c>"],
+      "commands": [":nohl"],
     },
     {
-      "after": [
-        "z",
-        "a"
-      ],
-      "before": [
-        "<Tab>"
-      ],
+      "after": ["z", "a"],
+      "before": ["<Tab>"],
     },
     {
-      "after": [
-        "<C-d>",
-        "z",
-        "z"
-      ],
-      "before": [
-        "<C-d>"
-      ],
+      "after": ["<C-d>", "z", "z"],
+      "before": ["<C-d>"],
     },
     {
-      "after": [
-        "<C-u>",
-        "z",
-        "z"
-      ],
-      "before": [
-        "<C-u>"
-      ],
+      "after": ["<C-u>", "z", "z"],
+      "before": ["<C-u>"],
     },
     {
-      "after": [
-        "G",
-        "z",
-        "z"
-      ],
-      "before": [
-        "G"
-      ],
+      "after": ["G", "z", "z"],
+      "before": ["G"],
     },
     {
-      "before": [
-        "<leader>",
-        "f",
-        "f"
-      ],
-      "commands": [
-        "workbench.action.quickOpen"
-      ],
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"],
     },
     {
-      "before": [
-        "<leader>",
-        "f",
-        "l"
-      ],
-      "commands": [
-        "workbench.action.quickTextSearch"
-      ],
+      "before": ["<leader>", "f", "l"],
+      "commands": ["workbench.action.quickTextSearch"],
     },
     // {
     //   "before": ["<leader>", "f", "g"],
     //   "commands": ["television.ToggleTextFinder"],
     // },
     {
-      "before": [
-        "<leader>",
-        "f",
-        "b"
-      ],
-      "commands": [
-        "workbench.action.showAllEditors"
-      ],
+      "before": ["<leader>", "f", "b"],
+      "commands": ["workbench.action.showAllEditors"],
     },
     {
-      "before": [
-        "<leader>",
-        "s"
-      ],
-      "commands": [
-        "editor.action.startFindReplaceAction"
-      ],
+      "before": ["<leader>", "s"],
+      "commands": ["editor.action.startFindReplaceAction"],
     },
     {
-      "before": [
-        "<leader>",
-        "d"
-      ],
-      "commands": [
-        "projectManager.listProjectsNewWindow"
-      ],
+      "before": ["<leader>", "d"],
+      "commands": ["projectManager.listProjectsNewWindow"],
     },
     {
-      "before": [
-        "<leader>",
-        "t",
-        "c"
-      ],
-      "commands": [
-        "github.copilot.completions.toggle"
-      ],
+      "before": ["<leader>", "t", "c"],
+      "commands": ["github.copilot.completions.toggle"],
     },
     {
-      "before": [
-        "<leader>",
-        "t",
-        "t"
-      ],
-      "command": [
-        "workbench.action.selectTheme"
-      ],
+      "before": ["<leader>", "t", "t"],
+      "command": ["workbench.action.selectTheme"],
     },
     {
-      "before": [
-        "<leader>",
-        "t",
-        "p"
-      ],
-      "command": [
-        "cSpell.toggleEnableSpellChecker"
-      ],
+      "before": ["<leader>", "t", "p"],
+      "command": ["cSpell.toggleEnableSpellChecker"],
     },
     {
-      "before": [
-        "g",
-        "."
-      ],
-      "commands": [
-        "editor.action.codeAction"
-      ],
+      "before": ["g", "."],
+      "commands": ["editor.action.codeAction"],
     },
     {
-      "before": [
-        "<leader>",
-        "."
-      ],
-      "commands": [
-        "editor.action.formatDocument.multiple"
-      ],
+      "before": ["<leader>", "."],
+      "commands": ["editor.action.formatDocument.multiple"],
     },
     {
-      "before": [
-        "-"
-      ],
-      "commands": [
-        "editor.action.commentLine"
-      ],
+      "before": ["-"],
+      "commands": ["editor.action.commentLine"],
     },
     {
-      "before": [
-        "_"
-      ],
-      "commands": [
-        "editor.action.blockComment"
-      ],
+      "before": ["_"],
+      "commands": ["editor.action.blockComment"],
     },
     {
-      "before": [
-        "g",
-        "i"
-      ],
-      "commands": [
-        "editor.action.goToImplementation"
-      ],
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"],
     },
     {
-      "before": [
-        "g",
-        "r"
-      ],
-      "commands": [
-        "editor.action.goToReferences"
-      ],
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"],
     },
     {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.showHover"
-      ],
+      "before": ["K"],
+      "commands": ["editor.action.showHover"],
     },
     {
-      "before": [
-        "g",
-        "I"
-      ],
-      "commands": [
-        "C_Cpp.SwitchHeaderSource"
-      ],
+      "before": ["g", "I"],
+      "commands": ["C_Cpp.SwitchHeaderSource"],
     },
     {
-      "before": [
-        "<leader>",
-        "'"
-      ],
-      "commands": [
-        "workbench.action.toggleEditorWidths"
-      ],
+      "before": ["<leader>", "'"],
+      "commands": ["workbench.action.toggleEditorWidths"],
     },
     // harapoon
     {
-      "before": [
-        "<leader>",
-        "j",
-        "1"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor1"
-      ],
+      "before": ["<leader>", "j", "1"],
+      "commands": ["vscode-harpoon.addEditor1"],
     },
     {
-      "before": [
-        "<leader>",
-        "j",
-        "2"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor2"
-      ],
+      "before": ["<leader>", "j", "2"],
+      "commands": ["vscode-harpoon.addEditor2"],
     },
     {
-      "before": [
-        "<leader>",
-        "1"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor1"
-      ],
+      "before": ["<leader>", "1"],
+      "commands": ["vscode-harpoon.gotoEditor1"],
     },
     {
-      "before": [
-        "<leader>",
-        "2"
-      ],
-      "commands": [
-        "vscode-harpoon.gotoEditor2"
-      ],
+      "before": ["<leader>", "2"],
+      "commands": ["vscode-harpoon.gotoEditor2"],
     },
     // {
     //   "before": ["g", "I"],
@@ -775,48 +588,24 @@
   "vim.useSystemClipboard": true,
   "vim.visualModeKeyBindings": [
     {
-      "after": [
-        "<",
-        "g",
-        "v"
-      ],
-      "before": [
-        "<"
-      ],
+      "after": ["<", "g", "v"],
+      "before": ["<"],
     },
     {
-      "after": [
-        ">",
-        "g",
-        "v"
-      ],
-      "before": [
-        ">"
-      ],
+      "after": [">", "g", "v"],
+      "before": [">"],
     },
     {
-      "before": [
-        "-"
-      ],
-      "commands": [
-        "editor.action.commentLine"
-      ],
+      "before": ["-"],
+      "commands": ["editor.action.commentLine"],
     },
     {
-      "before": [
-        "J"
-      ],
-      "commands": [
-        "editor.action.moveLinesDownAction"
-      ],
+      "before": ["J"],
+      "commands": ["editor.action.moveLinesDownAction"],
     },
     {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.moveLinesUpAction"
-      ],
+      "before": ["K"],
+      "commands": ["editor.action.moveLinesUpAction"],
     },
   ],
   "cSpell.enabled": false,
@@ -825,9 +614,11 @@
   "chat.viewSessions.orientation": "stacked",
   "githubPullRequests.pullBranch": "never",
   "[rust]": {
-    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
   },
-  "git.blame.statusBarItem.enabled": false,
-  "workbench.colorTheme": "Dracula Theme",
+  "git.blame.statusBarItem.enabled": true,
   "workbench.editor.enablePreview": false,
+  "git.blame.editorDecoration.enabled": true,
+  "workbench.colorTheme": "Vim Light Hard",
+  "workbench.panel.showLabels": false,
 }

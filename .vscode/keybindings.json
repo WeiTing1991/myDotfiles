@@ -42,7 +42,7 @@
   {
     "command": "workbench.action.navigateRight",
     "key": "ctrl+l",
-    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatIsEnabled"
+    "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
   },
   {
     "command": "workbench.action.navigateUp",
@@ -54,11 +54,6 @@
     "key": "ctrl+j",
     "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
   },
-  // {
-  //   "key": "ctrl+l",
-  //   "command": "workbench.action.focusActiveEditorGroup",
-  //   "when": "chatIsEnabled"
-  // },
   {
     "key": "ctrl+shift+/",
     "command": "editor.action.blockComment",
@@ -73,11 +68,6 @@
     "command": "-workbench.action.terminal.focusFind",
     "key": "ctrl+f",
     "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
-  },
-  {
-    "command": "workbench.action.findInFiles",
-    "key": "shift+ctrl+f",
-    "when": "!terminalFocus"
   },
   {
     "command": "workbench.action.findInFiles",
@@ -125,12 +115,6 @@
     "when": "!sideBarFocus"
   },
 
-  {
-    "command": "workbench.action.closeActiveEditor",
-    "key": "ctrl+q",
-    "when": "!sideBarFocus"
-  },
-
   // {
   //   "command": "workbench.action.toggleZenMode",
   //   "key": "ctrl+'",
@@ -162,7 +146,6 @@
     "key": "ctrl+shift+k",
     "when": "editorTextFocus || terminalFocus || sideBarFocus || chatInputHasFocus"
   },
-
 
   /* ==== SIDEBAR & PANELS ==== */
   {
@@ -203,7 +186,6 @@
     "key": "ctrl+x j",
     "when": "terminalFocus && !editorTextFocus"
   },
-
   // {
   //   "command": "workbench.action.toggleMaximizedPanel",
   //   "key": "ctrl+x",
