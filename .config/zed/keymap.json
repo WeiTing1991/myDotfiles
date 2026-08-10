@@ -1,0 +1,163 @@
+// Zed keymap — mirrors ~/.ideavimrc
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // ── Window navigation (map <C-h/j/k/l> <C-w>h/j/k/l) ──────────
+  {
+    "context": "Editor && VimControl && !menu",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+
+  // ── Normal / visual / operator ───────────────────────────────
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Keep the cursor centered (<C-d>zz, <C-u>zz, nzzzv, Nzzzv)
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+      "n": ["workspace::SendKeystrokes", "n z z z v"],
+      "shift-n": ["workspace::SendKeystrokes", "shift-n z z z v"],
+
+      "ctrl-c": "editor::Cancel",
+      "shift-y": "vim::YankToEndOfLine",
+
+      // Splits (<C-w>5 / <C-w>')
+      "ctrl-w 5": "pane::SplitDown",
+      "ctrl-w '": "pane::SplitRight",
+      "ctrl-q":"pane::CloseActiveItem",
+
+      // LSP / go-to
+      "g d": "editor::GoToDefinition",
+      "g i": "editor::GoToImplementation",
+      "g y": "editor::GoToTypeDefinition",
+      "g h": "editor::GoToDeclaration",
+      "g r": "editor::FindAllReferences",
+      "shift-k": "editor::Hover",
+      "g .": "editor::ToggleCodeActions",
+
+      // Structure / symbols
+      "g shift-o": "outline::Toggle",
+      "g o": "outline_panel::ToggleFocus",
+      "g shift-w": "project_symbols::Toggle",
+
+      // Tabs
+      "space o": "pane::ActivateNextItem",
+      "space i": "pane::ActivatePreviousItem",
+      "space space": "tab_switcher::Toggle",
+
+      "space .": "editor::Format",
+      "space '": "workspace::ToggleZoom",
+      "space j": "workspace::CloseAllDocks",
+      "space f l": "pane::DeploySearch",
+
+      // Panels / docks
+      "ctrl-e": "project_panel::ToggleFocus",
+      "ctrl-shift-e": "workspace::ToggleLeftDock",
+
+      // Toggles
+      "space t c": "editor::ToggleEditPrediction",
+      "space t h": "editor::ToggleInlayHints",
+
+      // Git
+      // "space g b": "git::Blame",
+      // "space g o": "editor::OpenPermalinkToLine",
+      "space g g": "git_panel::ToggleFocus",
+
+      // Run / debug
+      // "space r r": "task::Spawn",
+      // "space r b": "debugger::Start",
+    },
+  },
+
+  // ── Inside the panels: same keys jump back to the editor ─────
+  // ctrl-q closes the focused dock, mirroring ctrl-q closing a tab in the editor
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-q": "workspace::CloseActiveDock",
+      "ctrl-shift-e": "workspace::ToggleLeftDock",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "ctrl-e": "project_panel::ToggleFocus",
+      "ctrl-n": "workspace::ToggleRightDock",
+    },
+  },
+  {
+    "context": "OutlinePanel && not_editing",
+    "bindings": {
+      "g o": "outline_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "GitPanel && !CommitEditor",
+    "bindings": {
+      "space g g": "git_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-\\": "terminal_panel::ToggleFocus",
+    },
+  },
+
+  // ── Normal mode only ─────────────────────────────────────────
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "ctrl-/": ["workspace::SendKeystrokes", "g c c"],
+    },
+  },
+
+  // ── Visual mode ──────────────────────────────────────────────
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "ctrl-/": "editor::ToggleComments",
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+
+      // Keep the selection after indenting
+      "<": ["workspace::SendKeystrokes", "< g v"],
+      ">": ["workspace::SendKeystrokes", "> g v"],
+
+      // Don't overwrite the register when pasting over a selection
+      "p": ["vim::Paste", { "preserve_clipboard": true }],
+    },
+  },
+
+  // ── Everywhere (extensions page, search, pickers, panels) ────
+  // The leader (space) only exists under VimControl, i.e. inside a
+  // buffer — these are the ctrl equivalents for the rest of the UI.
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-e": "project_panel::ToggleFocus",
+      "ctrl-shift-e": "workspace::ToggleLeftDock",
+      "ctrl-shift-o": "pane::ActivateNextItem",
+      "ctrl-shift-i": "pane::ActivatePreviousItem",
+      "ctrl-q": "pane::CloseActiveItem",
+    },
+  },
+]
