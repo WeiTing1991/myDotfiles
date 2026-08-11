@@ -1,112 +1,184 @@
+local utils = require("core.utils")
+
+local function spell_check()
+  if vim.wo.spell then
+    return vim.opt.spelllang:get()[1]
+  else
+    return ""
+  end
+end
+
+local function copilot_status()
+  if not vim.b.copilot_suggestion_auto_trigger then
+    return " "
+  else
+    return " "
+  end
+end
+
+local function indent_style()
+  local style = vim.opt.expandtab:get() and "space" or "tab"
+  local tab_width = vim.opt.shiftwidth:get()
+  return string.format("%s(%d)", style, tab_width)
+end
+
+local default_shell = ""
+if utils.is_mac then
+  default_shell = "/bin/zsh"
+elseif utils.is_windows then
+  default_shell = "pwsh.exe"
+end
+
 return {
+  -- Colorscheme
   {
     "WeiTing1991/gruvbox.nvim",
+    lazy = false,
     priority = 1000,
-    lazy = true,
+    config = function()
+      vim.cmd.colorscheme("gruvbox")
+    end,
   },
+
+  -- Snacks (dashboard, terminal, indent, statuscolumn)
   {
-    "Mofiqul/dracula.nvim",
+    "WeiTing1991/snacks.nvim",
+    lazy = false,
     priority = 1000,
-    lazy = true,
+    opts = {
+      dashboard = {
+        width = 60,
+        preset = {
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":FzfLua files" },
+            { icon = " ", key = "l", desc = "Live Grep", action = ":FzfLua live_grep" },
+            { icon = " ", key = "G", desc = "LazyGit", action = ":LazyGit" },
+            {
+              icon = " ",
+              key = "c",
+              desc = "Config",
+              action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+            },
+            { icon = " ", key = "d", desc = "Dired", action = ":lua require('oil').open()" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+          header = [[
+
+██     █████████████    ████    ███████    ███
+██     ██   ██   ████   ████    ████████  ████
+██  █  ██   ██   ██ ██  ████    ██████ ████ ██
+██ ███ ██   ██   ██  ██ ██ ██  ██ ████  ██  ██
+ ███ ███    ██   ██   ████  ████  ████      ██
+
+
+ Powered By  eovim ]],
+        },
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+      },
+      terminal = {
+        enabled = true,
+        shell = default_shell,
+      },
+      indent = {
+        enabled = true,
+        animate = { enabled = false },
+        scope = {
+          enabled = true,
+          priority = 200,
+          char = "▏",
+        },
+      },
+      statuscolumn = {
+        enabled = true,
+        left = { "sign", "git" },
+        right = { "mark", "fold" },
+        folds = { open = false, git_hl = false },
+        git = { patterns = { "GitSign" } },
+        refresh = 50,
+      },
+      animate = { enabled = true },
+      gh = {},
+      git = { enabled = false },
+      explorer = { enabled = false },
+      bigfile = { enabled = false },
+      input = { enabled = false },
+      notifier = { enabled = false },
+      quickfile = { enabled = false },
+      scope = { enabled = false },
+      scroll = { enabled = false },
+      words = { enabled = false },
+      picker = { enabled = false },
+    },
+    keys = {
+      { "<C-`>", function() require("snacks").terminal() end, desc = "Toggle terminal", mode = { "n", "t" } },
+      { "<leader>tt", function() require("fzf-lua").colorschemes() end, desc = "Toggle colorscheme" },
+    },
   },
-  {
-    "projekt0n/github-nvim-theme",
-    priority = 1000,
-    lazy = true,
-  },
+
+  -- Statusline
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    lazy = true,
-    init = function()
-      vim.g.lualine_laststatus = vim.o.laststatus
-      if vim.fn.argc(-1) > 0 then
-        vim.o.statusline = " "
-      else
-        vim.o.laststatus = 0
-      end
-    end,
     config = function()
-      require("plugins.configs.lualine")
+      require("lualine").setup({
+        options = {
+          icons_enabled = true,
+          theme = "auto",
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          always_divide_middle = true,
+          always_show_tabline = false,
+          globalstatus = true,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+          },
+        },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch", "diff", "diagnostics" },
+          lualine_c = { { "filename", path = 2 } },
+          lualine_x = { "encoding" },
+          lualine_y = { indent_style, spell_check, copilot_status },
+          lualine_z = { "location" },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { "filename" },
+          lualine_x = { "location" },
+          lualine_y = {},
+          lualine_z = {},
+        },
+      })
     end,
   },
+
+  -- Breadcrumbs
   {
     "Bekaboo/dropbar.nvim",
-    event = "VeryLazy",
-    lazy = true,
-    config = function()
-      local dropbar_api = require("dropbar.api")
-      vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
-      vim.keymap.set("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
-      vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
-    end,
+    event = "BufReadPost",
+    keys = {
+      { "<Leader>;", function() require("dropbar.api").pick() end, desc = "Pick symbols in winbar" },
+      { "[;", function() require("dropbar.api").goto_context_start() end, desc = "Go to start of context" },
+      { "];", function() require("dropbar.api").select_next_context() end, desc = "Select next context" },
+    },
   },
-  -- { "danilamihailov/beacon.nvim" }, -- lazy calls setup() by itself
+
+  -- Virtual column
   {
     "lukas-reineke/virt-column.nvim",
-    lazy = true,
-    event = "BufRead",
+    event = "BufReadPost",
     opts = {
       char = { "┆" },
-      virtcolumn = "120",
+      virtcolumn = "80, 120",
       highlight = { "NonText" },
       exclude = { filetypes = { "oil", "markdown" } },
     },
-  },
-  {
-    "nanozuki/tabby.nvim",
-    lazy = true,
-    enabled = false,
-    event = "VeryLazy",
-    opts = {},
-    -- config = function()
-    --   local theme = {
-    --     fill = "TabLineFill",
-    --     head = "TabLine",
-    --     current_tab = "TabLineSel",
-    --     tab = "TabLine",
-    --     win = "TabLine",
-    --     tail = "TabLine",
-    --   }
-    --   require("tabby").setup({
-    --     line = function(line)
-    --       return {
-    --         {
-    --           { "  ", hl = theme.head },
-    --           line.sep("|", theme.head, theme.fill),
-    --         },
-    --         line.tabs().foreach(function(tab)
-    --           local hl = tab.is_current() and theme.current_tab or theme.tab
-    --           return {
-    --             line.sep("", hl, theme.fill),
-    --             tab.is_current() and "" or "󰆣",
-    --             tab.number(),
-    --             tab.name(),
-    --             tab.close_btn(""),
-    --             line.sep("", hl, theme.fill),
-    --             hl = hl,
-    --             margin = " ",
-    --           }
-    --         end),
-    --         line.spacer(),
-    --         line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-    --           return {
-    --             line.sep("", theme.win, theme.fill),
-    --             win.is_current() and "" or "",
-    --             win.buf_name(),
-    --             line.sep("", theme.win, theme.fill),
-    --             hl = theme.win,
-    --             margin = " ",
-    --           }
-    --         end),
-    --         {
-    --           line.sep("", theme.tail, theme.fill),
-    --           { "  ", hl = theme.tail },
-    --         },
-    --         hl = theme.fill,
-    --       }
-    --     end,
-    --   })
-    -- end,
   },
 }

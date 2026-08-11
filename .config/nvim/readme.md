@@ -5,33 +5,31 @@
 
 ## Info
 
-I start with [kickstart] and [NvChad UI] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and make the issue or PRs.
+Standalone Neovim 0.11 configuration with native LSP auto-discovery and lazy.nvim plugin management. Performance-optimized with aggressive lazy loading (target < 50ms startup).
 
 ## MyNeovim
-
-![WTNeovim](./doc/wtnvim_home.png)
-![WTNeovim_Editore](./doc/wtnvim_preview.png)
 
 ### Architecture & Structure
 
 Modular Design:
 
 - `init.lua` -> `core/` -> `plugins/` flow
-- Each plugin has its own configuration file
+- Native Neovim 0.11 LSP config via `lsp/<server>.lua` auto-discovery
+- Each plugin category has its own spec file
 
 Core Organization:
 
-- `core/` - Basic Neovim settings and keymaps
-- `lsp/` - Language server configurations
-- `plugins/` - Plugin specifications and configs
+- `core/` - Basic Neovim settings, keymaps, autocmds, utils
+- `lsp/` - Per-server LSP configurations (auto-discovered by Neovim 0.11)
+- `plugins/` - Plugin specifications with inline configs
 - `overseer/` - Task runner templates
 - `snippets/` - Language-specific code snippets
 
 Plugin Management:
 
 - Uses lazy.nvim for lazy loading
-- Individual plugin configs in `plugins/configs/`
-- Cross-platform compatibility (Windows and Mac)
+- Only 2 plugins load at startup (gruvbox + snacks dashboard)
+- Cross-platform compatibility (macOS and Windows)
 
 You can find more detail [here](./structure.md)
 
@@ -41,18 +39,17 @@ You can find more detail [here](./structure.md)
 
 - File Management: Oil, NeoTree
 - Fuzzy Finding: FZF-Lua
-- LSP: Full setup with Mason, blink.cmp completion
+- LSP: Native Neovim 0.11 + Mason, blink.cmp completion
+- Formatting: conform.nvim (async)
 - Git Integration: Gitsigns, Fugitive, LazyGit
-- AI Tools: Copilot, OpenCode, Claude Code (sidekick)
+- AI Tools: Copilot, OpenCode
 - Spell check with fastspell
 
 You can find all the plugins [here](./plugins.md)
 
 ### Keybindings
 
-The main core keymaps is in `core/keymaps`, it has basic neovim motion and some useful keymaps.
-The LSP keymaps is in `lsp/keymaps`, it is all about lsp stuffs.
-The custom keymaps is under root folder `user_keymaps`, it contains user override and the plugins keymaps.
+All keymaps are defined either in `core/keymaps.lua` (core motions) or inline within plugin specs (plugin-specific keymaps).
 
 Detailed keybinding documentation: [Neovim Keymaps Guide](./keybindings.md)
 
@@ -117,10 +114,10 @@ Remove-Item -Recurse -Force "$env:LOCALAPPDATA\nvim-temp"
 | Tool | Language |
 |------|----------|
 | stylua | Lua |
-| ruff | Python |
-| prettier | JSON, YAML, Markdown, HTML |
+| ruff_format | Python |
+| prettier | JSON, JSONC, YAML, Markdown |
 | actionlint | GitHub Actions |
-| shfmt | Shell |
+| shfmt | Shell (sh, bash, zsh) |
 | clang-format | C/C++ |
 | csharpier | C# |
 
@@ -136,7 +133,3 @@ Remove-Item -Recurse -Force "$env:LOCALAPPDATA\nvim-temp"
 - [x] Markdown
 - [ ] JavaScript/TypeScript (partial)
 - [ ] Go
-
-[kickstart]: https://github.com/nvim-lua/kickstart.nvim
-[Neovim]: https://neovim.io/
-[NvChad UI]: https://nvchad.com/

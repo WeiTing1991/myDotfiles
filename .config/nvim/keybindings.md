@@ -24,9 +24,8 @@
 
 | Mode | Keybinding | Description |
 |------|------------|-------------|
-| `n` | `<C-i>`/`<C-o>` | Previous/next buffer |
-| `n` | `<leader>i`/`<leader>o` | Previous/next buffer (fallback) |
-| `n` | `<C-q>` | Close current buffer (smart delete) |
+| `n` | `<leader>o`/`<leader>i` | Next/previous buffer |
+| `n` | `<C-q>` | Close current buffer and window |
 | `n` | `<leader><leader>` | Find buffer (FZF) |
 | `n` | `<Esc>`/`<C-c>` | Clear search highlights |
 
@@ -36,7 +35,6 @@
 |------|------------|-------------|
 | `n` | `<leader>d` | Open Oil file manager |
 | `n` | `<C-e>` | Toggle NeoTree |
-| `n` | `<C-S-e>` | Toggle AI Chat (Claude) |
 
 ## Fuzzy Finding (FZF)
 
@@ -59,7 +57,7 @@
 
 | Mode | Keybinding | Description |
 |------|------------|-------------|
-| `n,t` | `<C-'>` | Toggle maximize window |
+| `n,t` | `<leader>'` | Toggle maximize window |
 | `n` | `<C-w>'` | Split vertically |
 | `n` | `<C-w>5` | Split horizontally |
 | `n,t` | `<C-S-Left/Right>` | Resize window horizontally |
@@ -107,14 +105,25 @@
 | `n` | `gr` | Find references |
 | `n` | `gR` | Find references (FZF) |
 | `n` | `gh` | Go to declaration |
-| `n` | `g.` | Quick actions menu (code action / spell / AI) |
+| `n` | `g.` | Code action |
 | `n` | `<F2>` | Rename symbol |
 | `n` | `gO` | Document symbols (FZF) |
-| `n` | `go` | Document symbols (Outline) |
+| `n` | `<leader>co` | Document symbols (Outline) |
 | `n` | `gW` | Workspace symbols (FZF) |
 | `n,v` | `<leader>,` | Format code |
-| `i` | `<S-l>k` | Signature help |
+| `i` | `<C-k>` | Signature help |
 | `n` | `<leader>th` | Toggle inlay hints |
+
+## Completion (blink.cmp)
+
+| Mode | Keybinding | Description |
+|------|------------|-------------|
+| `i` | `<Tab>` | Accept completion |
+| `i` | `<A-j>`/`<A-k>` | Next/previous completion item |
+| `i` | `<C-y>` | Show/toggle documentation |
+| `i` | `<C-space>` | Show snippets |
+| `:` | `<Tab>` | Accept cmdline completion |
+| `:` | `<A-j>`/`<A-k>` | Next/previous cmdline item |
 
 ## Git Integration
 
@@ -154,13 +163,32 @@
 |------|------------|-------------|
 | `n` | `<leader>tr` | Run task |
 
+## AI Tools
+
+| Mode | Keybinding | Description |
+|------|------------|-------------|
+| `n,x` | `<C-a>` | Ask opencode |
+| `n,x` | `<C-x>` | Execute opencode action |
+| `n,t` | `<C-.>` | Toggle opencode |
+| `n,x` | `go` | Add range to opencode |
+| `n` | `goo` | Add line to opencode |
+| `n` | `+` | Increment (remapped from `<C-a>`) |
+
 ## Toggles & Utilities
 
 | Mode | Keybinding | Description |
 |------|------------|-------------|
 | `n` | `<leader>tt` | Toggle colorscheme |
-| `n` | `<leader>tp` | Toggle spell check |
+| `n` | `<leader>tp` | Toggle spell check (fastspell) |
 | `n` | `<leader>tc` | Toggle Copilot |
+
+## Dropbar (Breadcrumbs)
+
+| Mode | Keybinding | Description |
+|------|------------|-------------|
+| `n` | `<Leader>;` | Pick symbols in winbar |
+| `n` | `[;` | Go to start of context |
+| `n` | `];` | Select next context |
 
 ## FZF Internal Keybindings
 
@@ -169,23 +197,20 @@ These work within the FZF picker interface:
 ### Builtin Actions
 | Key | Description |
 |-----|-------------|
-| `<M-Esc>` | Hide FZF (resume with `:FzfLua resume`) |
+| `<M-Esc>` | Hide FZF |
 | `<F1>` | Toggle help |
 | `<F2>` | Toggle fullscreen |
 | `<F3>` | Toggle preview wrap |
 | `<F4>` | Toggle preview |
-| `<F5>` | Rotate preview counter-clockwise |
-| `<F6>` | Rotate preview clockwise |
-| `<F7>` | Toggle preview treesitter context |
 | `<S-Down>`/`<S-Up>` | Preview page down/up |
-| `<M-S-Down>`/`<M-S-Up>` | Preview scroll down/up |
+| `alt-j`/`alt-k` | Navigate up/down |
 
 ### FZF Actions
 | Key | Description |
 |-----|-------------|
-| `<C-a>` | Toggle all selections |
-| `<C-g>`/`<C-G>` | Jump to first/last item |
-| `<C-q>` | Select all and accept |
+| `ctrl-a` | Toggle all selections |
+| `ctrl-g`/`ctrl-G` | Jump to first/last item |
+| `ctrl-q` | Select all and accept |
 | `<Enter>` | Edit file or send to quickfix |
 | `<C-s>` | Open in horizontal split |
 | `<C-v>` | Open in vertical split |
