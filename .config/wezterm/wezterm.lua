@@ -156,6 +156,8 @@ config.keys ={
     -- { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
     { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
     { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+    { key = "phys:Comma",  mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },
+    { key = "phys:Period", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
     { key = "<", mods = "LEADER", action = act.MoveTabRelative(-1) },
     { key = ">", mods = "LEADER", action = act.MoveTabRelative(1) },
 
