@@ -7,10 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "terminal": {
+    "font_size": 12.0
+  },
   "cli_default_open_behavior": "new_window",
   "audio": null,
   "icon_theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "Zed (Default)",
     "dark": "Zed (Default)"
   },
@@ -20,7 +23,7 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "effort": "default",
+        "effort": "medium",
         "model": "opus",
         "mode": "default",
       },
@@ -57,12 +60,12 @@
     },
   ],
   "diff_view_style": "split",
-  "ui_font_size": 14,
+  "ui_font_size": 16,
   "buffer_font_size": 12,
   "theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "One Light",
-    "dark": "Rosé Pine",
+    "dark": "Rosé Pine Moon",
   },
   "show_whitespaces": "boundary",
   "horizontal_scroll_margin": 0,

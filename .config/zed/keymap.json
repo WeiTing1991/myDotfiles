@@ -66,6 +66,9 @@
       "space .": "editor::Format",
       "space '": "workspace::ToggleZoom",
       "space j": "workspace::CloseAllDocks",
+      // Modal picker of results (telescope-style); esc returns to the buffer
+      "space f g": "project_search::OpenTextFinder",
+      // Opens results as a tab instead
       "space f l": "pane::DeploySearch",
 
       // Panels / docks
@@ -84,6 +87,9 @@
       // Run / debug
       // "space r r": "task::Spawn",
       // "space r b": "debugger::Start",
+      // Open markdown preview
+      "space m p": "markdown::OpenPreviewToTheSide",
+      "space m P": "markdown::OpenPreview",
     },
   },
 
@@ -118,7 +124,10 @@
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-\\": "terminal_panel::ToggleFocus",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
     },
   },
 
@@ -144,6 +153,24 @@
 
       // Don't overwrite the register when pasting over a selection
       "p": ["vim::Paste", { "preserve_clipboard": true }],
+    },
+  },
+
+  // ── alt-j / alt-k as aliases for ctrl-n / ctrl-p ─────────────
+  // Pickers, file finder, command palette
+  {
+    "context": "menu",
+    "bindings": {
+      "alt-j": "menu::SelectNext",
+      "alt-k": "menu::SelectPrevious",
+    },
+  },
+  // Completion / code action popup in the editor
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "alt-j": "editor::ContextMenuNext",
+      "alt-k": "editor::ContextMenuPrevious",
     },
   },
 
