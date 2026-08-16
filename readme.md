@@ -7,16 +7,25 @@ This repository is my dotfiles (always updating) via [GNU stow].
 Please find the installation guide for [GNU stow].
 
 ```bash
-git clone https://github.com/WeiTing1991/myDotfiles.git .dotfiles
+git clone --recurse-submodules https://github.com/WeiTing1991/myDotfiles.git .dotfiles
 cd .dotfiles && stow .
 ```
+
+> If you already cloned without `--recurse-submodules`:
+> ```bash
+> git submodule update --init --recursive
+> ```
 
 ## Tools
 
 ### Neovim
+
+Neovim config lives in a separate repo as a submodule:
+[wtnvim](https://github.com/WeiTing1991/wtnvim) → `.config/nvim/`
+
 I start with [kickstart] to configure my personal [Neovim] setting. If you would like to use my configuration, you can clone it and follow the command below. Feel free to use it and let me know if these is any issue.
 
-**More information** find [here](/.config/nvim/readme.md)
+**More information** find [here](https://github.com/WeiTing1991/wtnvim)
 
 ### Terminal and shell
 
@@ -37,9 +46,10 @@ cd ~/.dotfiles/
 #stow -t wezterm ~/.config
 ```
 
-### VSCode
+### VSCode/Zed
 
-Sometimes I use VSCode for just for quick edit on Window (the language i don't use daily such Jupbter). I have make it similar to my Neovim workflow.
+Sometimes I use VSCode/Zed for just for quick edit on Window. I have make it similar to my Neovim workflow.
+
 
 #### Sync
 
@@ -69,5 +79,3 @@ Please find more information [here](./Emacs.org).
 
 <!-- link -->
 [kickstart]: https://github.com/nvim-lua/kickstart.nvim
-[Neovim]: https://neovim.io/
-[GNU stow]: https://www.gnu.org/software/stow/manual/stow.html

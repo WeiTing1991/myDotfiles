@@ -1,9 +1,10 @@
 .DS_store
-.config/nvim/lazy-lock.json
 ..vimrc.*
 .config/gcloud/*
 
-.config/nvim/.vim/*
+# nvim is a separate repo (wtnvim), will become a submodule
+.config/nvim/
+.config/nvim.back/*
 .config/github-copilot/
 .config/zed/conversations/*
 .config/zed/prompts/*

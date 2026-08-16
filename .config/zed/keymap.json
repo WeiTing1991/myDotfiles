@@ -107,6 +107,12 @@
     "bindings": {
       "ctrl-e": "project_panel::ToggleFocus",
       "ctrl-n": "workspace::ToggleRightDock",
+
+      // VSCode-style new file / folder (vim keymap defaults to netrw's % and d)
+      "n": "project_panel::NewFile",
+      "shift-n": "project_panel::NewDirectory",
+      // "%": null,
+      // "d": null,
     },
   },
   {
@@ -163,6 +169,19 @@
     "bindings": {
       "alt-j": "menu::SelectNext",
       "alt-k": "menu::SelectPrevious",
+    },
+  },
+  // Word wrap: j/k walk display lines (nvim's gj/gk).
+  // Zed has no expr mappings or count predicate, so the nvim version's
+  // count branch (5j staying linewise + m` jumplist push) isn't possible —
+  // a count here repeats the display-line motion instead.
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "j": ["vim::Down", { "display_lines": true }],
+      "k": ["vim::Up", { "display_lines": true }],
+      "alt-j": ["vim::Down", { "display_lines": true }],
+      "alt-k": ["vim::Up", { "display_lines": true }],
     },
   },
   // Completion / code action popup in the editor

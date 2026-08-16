@@ -11,6 +11,7 @@ if is_windows then
   animation_fps = 1
   max_fps = 120
   default_font = wezterm.font_with_fallback({
+
     {
       family = "CaskaydiaCove Nerd Font Mono",
       harfbuzz_features = { "calt=0" },
@@ -73,7 +74,7 @@ config = {
   font = default_font,
   window_frame = window_frame,
   webgpu_power_preference = webgpu_power_preference,
-  window_background_opacity = 0.9,
+  window_background_opacity = 0.95,
   freetype_load_target = freetype_load_target,
 
 
@@ -92,8 +93,8 @@ config = {
     bottom = 2,
   },
   inactive_pane_hsb = {
-    saturation = 0.5,
-    brightness = 0.8,
+    saturation = 0.35,
+    brightness = 0.75,
   },
   window_close_confirmation = "AlwaysPrompt",
   enable_tab_bar = true,
