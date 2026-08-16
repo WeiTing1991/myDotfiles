@@ -2,8 +2,6 @@
 ..vimrc.*
 .config/gcloud/*
 
-# nvim is a separate repo (wtnvim), will become a submodule
-.config/nvim/
 .config/nvim.back/*
 .config/github-copilot/
 .config/zed/conversations/*

@@ -75,7 +75,6 @@ stow -t "$(echo ~/Library/Application\ Support/Code/User)" .vscode
 	- [Nerd Font](https://www.nerdfonts.com/font-downloads)
 
 ### Emacs (Deprecated) just for storing my old configuration.
-Please find more information [here](./Emacs.org).
+Please find more information [here](https://github.com/WeiTing1991/wtemacs).
 
 <!-- link -->
-[kickstart]: https://github.com/nvim-lua/kickstart.nvim
