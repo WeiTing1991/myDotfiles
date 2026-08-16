@@ -79,11 +79,11 @@ hs.hotkey.bind({ "cmd" }, "6", function()
 end)
 
 hs.hotkey.bind({ "cmd" }, "7", function()
-  mouse_focus_cycle("Code")
+  mouse_focus_cycle("Zed")
 end)
 
 hs.hotkey.bind({ "cmd", "shift" }, "7", function()
-  mouse_focus_cycle("Zed")
+  mouse_focus_cycle("Code")
 end)
 
 hs.hotkey.bind({ "cmd" }, "8", function()

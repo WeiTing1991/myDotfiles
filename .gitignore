@@ -7,3 +7,5 @@
 .config/github-copilot/
 .config/zed/conversations/*
 .config/zed/prompts/*
+
+.claude/settings.local.json

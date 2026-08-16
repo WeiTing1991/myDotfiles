@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(Get-ChildItem -Path C:\\\\Users\\\\WeiTing\\\\.dotfiles -Recurse -Filter \"*wezterm*\" -Directory)",
-      "Bash(Select-Object FullName)"
-    ]
-  }
-}
