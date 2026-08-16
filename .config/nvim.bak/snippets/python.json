@@ -1,0 +1,209 @@
+{
+  "main() template": {
+    "prefix": "main",
+    "body": [
+      "def main():",
+      "    ${0:pass}",
+      "",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ],
+    "description": "Standard main() function template"
+  },
+
+  "main() with argparse": {
+    "prefix": "mainarg",
+    "body": [
+      "import argparse",
+      "",
+      "",
+      "def main():",
+      "    parser = argparse.ArgumentParser(description='${1:Description}')",
+      "    parser.add_argument('${2:arg}', help='${3:Help text}')",
+      "    args = parser.parse_args()",
+      "    ",
+      "    ${0:pass}",
+      "",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ],
+    "description": "Main function with argparse"
+  },
+
+  "class template": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName}:",
+      "    \"\"\"${2:Class description}\"\"\"",
+      "    ",
+      "    def __init__(self${3:, args}):",
+      "        ${0:pass}"
+    ],
+    "description": "Basic class template"
+  },
+
+  "dataclass template": {
+    "prefix": "dataclass",
+    "body": [
+      "from dataclasses import dataclass",
+      "",
+      "",
+      "@dataclass",
+      "class ${1:ClassName}:",
+      "    \"\"\"${2:Class description}\"\"\"",
+      "    ${3:field}: ${4:type}${0}"
+    ],
+    "description": "Dataclass template"
+  },
+
+  "function with docstring": {
+    "prefix": "deff",
+    "body": [
+      "def ${1:function_name}(${2:args}) -> ${3:None}:",
+      "    \"\"\"${4:Function description}",
+      "    ",
+      "    Args:",
+      "        ${5:arg}: ${6:description}",
+      "    ",
+      "    Returns:",
+      "        ${7:return description}",
+      "    \"\"\"",
+      "    ${0:pass}"
+    ],
+    "description": "Function with Google-style docstring"
+  },
+
+  "async function": {
+    "prefix": "adef",
+    "body": [
+      "async def ${1:function_name}(${2:args}) -> ${3:None}:",
+      "    \"\"\"${4:Function description}\"\"\"",
+      "    ${0:pass}"
+    ],
+    "description": "Async function template"
+  },
+
+  "try-except": {
+    "prefix": "try",
+    "body": [
+      "try:",
+      "    ${1:pass}",
+      "except ${2:Exception} as ${3:e}:",
+      "    ${0:pass}"
+    ],
+    "description": "Try-except block"
+  },
+
+  "try-except-finally": {
+    "prefix": "tryf",
+    "body": [
+      "try:",
+      "    ${1:pass}",
+      "except ${2:Exception} as ${3:e}:",
+      "    ${4:pass}",
+      "finally:",
+      "    ${0:pass}"
+    ],
+    "description": "Try-except-finally block"
+  },
+
+  "if __name__ == __main__": {
+    "prefix": "ifmain",
+    "body": [
+      "if __name__ == \"__main__\":",
+      "    ${0:pass}"
+    ],
+    "description": "If main guard"
+  },
+
+  "property getter/setter": {
+    "prefix": "prop",
+    "body": [
+      "@property",
+      "def ${1:property_name}(self) -> ${2:type}:",
+      "    \"\"\"${3:Property description}\"\"\"",
+      "    return self._${1}",
+      "",
+      "@${1}.setter",
+      "def ${1}(self, value: ${2}) -> None:",
+      "    self._${1} = value${0}"
+    ],
+    "description": "Property with getter and setter"
+  },
+
+  "pytest test function": {
+    "prefix": "test",
+    "body": [
+      "def test_${1:function_name}():",
+      "    \"\"\"${2:Test description}\"\"\"",
+      "    # Arrange",
+      "    ${3:pass}",
+      "    ",
+      "    # Act",
+      "    ${4:pass}",
+      "    ",
+      "    # Assert",
+      "    assert ${0:True}"
+    ],
+    "description": "Pytest test function template"
+  },
+
+  "context manager": {
+    "prefix": "with",
+    "body": [
+      "with ${1:expression} as ${2:variable}:",
+      "    ${0:pass}"
+    ],
+    "description": "Context manager (with statement)"
+  },
+
+  "list comprehension": {
+    "prefix": "lc",
+    "body": [
+      "[${1:expression} for ${2:item} in ${3:iterable}${4: if ${5:condition}}]${0}"
+    ],
+    "description": "List comprehension"
+  },
+
+  "dict comprehension": {
+    "prefix": "dc",
+    "body": [
+      "{${1:key}: ${2:value} for ${3:item} in ${4:iterable}${5: if ${6:condition}}}${0}"
+    ],
+    "description": "Dictionary comprehension"
+  },
+
+  "pathlib Path": {
+    "prefix": "path",
+    "body": [
+      "from pathlib import Path",
+      "",
+      "${1:file_path} = Path(${2:'.'})${0}"
+    ],
+    "description": "Import and use pathlib.Path"
+  },
+
+  "logging setup": {
+    "prefix": "logging",
+    "body": [
+      "import logging",
+      "",
+      "logging.basicConfig(",
+      "    level=logging.${1|DEBUG,INFO,WARNING,ERROR,CRITICAL|},",
+      "    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'",
+      ")",
+      "logger = logging.getLogger(__name__)${0}"
+    ],
+    "description": "Basic logging setup"
+  },
+
+  "typing imports": {
+    "prefix": "typing",
+    "body": [
+      "from typing import ${1|Any,Dict,List,Optional,Tuple,Union,Callable,TypeVar,Generic|}${0}"
+    ],
+    "description": "Common typing imports"
+  }
+}

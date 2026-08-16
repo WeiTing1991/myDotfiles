@@ -1,0 +1,492 @@
+{
+  "main() template": {
+    "prefix": "main",
+    "body": [
+      "#include <iostream>",
+      "",
+      "int main() {",
+      "    ${0:// code here}",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Standard main() function template"
+  },
+
+  "main() with args": {
+    "prefix": "mainarg",
+    "body": [
+      "#include <iostream>",
+      "#include <vector>",
+      "#include <string>",
+      "",
+      "int main(int argc, char* argv[]) {",
+      "    std::vector<std::string> args(argv, argv + argc);",
+      "    ",
+      "    ${0:// code here}",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Main function with command line arguments"
+  },
+
+  "class template": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName} {",
+      "public:",
+      "    ${1}(${2:});",
+      "    ~${1}();",
+      "    ",
+      "private:",
+      "    ${0:// members}",
+      "};"
+    ],
+    "description": "Basic class template"
+  },
+
+  "class with implementation": {
+    "prefix": "classi",
+    "body": [
+      "class ${1:ClassName} {",
+      "public:",
+      "    ${1}() {",
+      "        ${2:// constructor}",
+      "    }",
+      "    ",
+      "    ~${1}() {",
+      "        ${3:// destructor}",
+      "    }",
+      "    ",
+      "private:",
+      "    ${0:// members}",
+      "};"
+    ],
+    "description": "Class with inline implementation"
+  },
+
+  "struct template": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:StructName} {",
+      "    ${2:type} ${3:member};",
+      "    ${0}",
+      "};"
+    ],
+    "description": "Struct template"
+  },
+
+  "namespace": {
+    "prefix": "namespace",
+    "body": [
+      "namespace ${1:name} {",
+      "",
+      "${0:// code here}",
+      "",
+      "}  // namespace ${1}"
+    ],
+    "description": "Namespace template"
+  },
+
+  "function template": {
+    "prefix": "func",
+    "body": [
+      "${1:void} ${2:functionName}(${3:}) {",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "Function template"
+  },
+
+  "function declaration": {
+    "prefix": "funcd",
+    "body": [
+      "${1:void} ${2:functionName}(${3:});${0}"
+    ],
+    "description": "Function declaration"
+  },
+
+  "template function": {
+    "prefix": "tfunc",
+    "body": [
+      "template<typename ${1:T}>",
+      "${2:T} ${3:functionName}(${4:T value}) {",
+      "    ${0:return value;}",
+      "}"
+    ],
+    "description": "Template function"
+  },
+
+  "template class": {
+    "prefix": "tclass",
+    "body": [
+      "template<typename ${1:T}>",
+      "class ${2:ClassName} {",
+      "public:",
+      "    ${2}(${3:});",
+      "    ",
+      "private:",
+      "    ${1} ${0:data};",
+      "};"
+    ],
+    "description": "Template class"
+  },
+
+  "for loop": {
+    "prefix": "for",
+    "body": [
+      "for (${1:int} ${2:i} = 0; ${2} < ${3:count}; ++${2}) {",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "For loop"
+  },
+
+  "range-based for loop": {
+    "prefix": "forr",
+    "body": [
+      "for (${1:auto}& ${2:item} : ${3:container}) {",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "Range-based for loop"
+  },
+
+  "while loop": {
+    "prefix": "while",
+    "body": [
+      "while (${1:condition}) {",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "While loop"
+  },
+
+  "do-while loop": {
+    "prefix": "do",
+    "body": [
+      "do {",
+      "    ${0:// code here}",
+      "} while (${1:condition});"
+    ],
+    "description": "Do-while loop"
+  },
+
+  "if statement": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "If statement"
+  },
+
+  "if-else statement": {
+    "prefix": "ife",
+    "body": [
+      "if (${1:condition}) {",
+      "    ${2:// code here}",
+      "} else {",
+      "    ${0:// code here}",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+
+  "switch statement": {
+    "prefix": "switch",
+    "body": [
+      "switch (${1:variable}) {",
+      "    case ${2:value}:",
+      "        ${3:// code here}",
+      "        break;",
+      "    default:",
+      "        ${0:// code here}",
+      "        break;",
+      "}"
+    ],
+    "description": "Switch statement"
+  },
+
+  "try-catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "    ${1:// code here}",
+      "} catch (${2:const std::exception&} ${3:e}) {",
+      "    ${0:// handle exception}",
+      "}"
+    ],
+    "description": "Try-catch block"
+  },
+
+  "try-catch-all": {
+    "prefix": "trya",
+    "body": [
+      "try {",
+      "    ${1:// code here}",
+      "} catch (${2:const std::exception&} ${3:e}) {",
+      "    ${4:// handle exception}",
+      "} catch (...) {",
+      "    ${0:// handle any exception}",
+      "}"
+    ],
+    "description": "Try-catch with catch-all"
+  },
+
+  "smart pointer - unique_ptr": {
+    "prefix": "unique",
+    "body": [
+      "std::unique_ptr<${1:Type}> ${2:ptr} = std::make_unique<${1}>(${3:});${0}"
+    ],
+    "description": "Create unique_ptr"
+  },
+
+  "smart pointer - shared_ptr": {
+    "prefix": "shared",
+    "body": [
+      "std::shared_ptr<${1:Type}> ${2:ptr} = std::make_shared<${1}>(${3:});${0}"
+    ],
+    "description": "Create shared_ptr"
+  },
+
+  "vector": {
+    "prefix": "vector",
+    "body": [
+      "std::vector<${1:int}> ${2:vec}${3:{ ${4:} }};${0}"
+    ],
+    "description": "Create vector"
+  },
+
+  "map": {
+    "prefix": "map",
+    "body": [
+      "std::map<${1:KeyType}, ${2:ValueType}> ${3:map};${0}"
+    ],
+    "description": "Create map"
+  },
+
+  "unordered_map": {
+    "prefix": "umap",
+    "body": [
+      "std::unordered_map<${1:KeyType}, ${2:ValueType}> ${3:map};${0}"
+    ],
+    "description": "Create unordered_map"
+  },
+
+  "pair": {
+    "prefix": "pair",
+    "body": [
+      "std::pair<${1:FirstType}, ${2:SecondType}> ${3:p}${4:{ ${5:}, ${6:} }};${0}"
+    ],
+    "description": "Create pair"
+  },
+
+  "lambda": {
+    "prefix": "lambda",
+    "body": [
+      "[${1:&}](${2:auto ${3:param}}) ${4:-> ${5:auto}} {",
+      "    ${0:return ${3};}",
+      "}"
+    ],
+    "description": "Lambda expression"
+  },
+
+  "cout": {
+    "prefix": "cout",
+    "body": [
+      "std::cout << ${1:\"text\"} << std::endl;${0}"
+    ],
+    "description": "Console output"
+  },
+
+  "cin": {
+    "prefix": "cin",
+    "body": [
+      "std::cin >> ${1:variable};${0}"
+    ],
+    "description": "Console input"
+  },
+
+  "cerr": {
+    "prefix": "cerr",
+    "body": [
+      "std::cerr << ${1:\"error\"} << std::endl;${0}"
+    ],
+    "description": "Error output"
+  },
+
+  "include guard": {
+    "prefix": "guard",
+    "body": [
+      "#ifndef ${1:HEADER}_H",
+      "#define ${1}_H",
+      "",
+      "${0:// code here}",
+      "",
+      "#endif  // ${1}_H"
+    ],
+    "description": "Include guard"
+  },
+
+  "pragma once": {
+    "prefix": "pragma",
+    "body": [
+      "#pragma once",
+      "",
+      "${0:// code here}"
+    ],
+    "description": "Pragma once header guard"
+  },
+
+  "constructor": {
+    "prefix": "ctor",
+    "body": [
+      "${1:ClassName}(${2:}) ${3:: ${4:member}(${5:})} {",
+      "    ${0:// constructor body}",
+      "}"
+    ],
+    "description": "Constructor"
+  },
+
+  "destructor": {
+    "prefix": "dtor",
+    "body": [
+      "~${1:ClassName}() {",
+      "    ${0:// destructor body}",
+      "}"
+    ],
+    "description": "Destructor"
+  },
+
+  "copy constructor": {
+    "prefix": "cctor",
+    "body": [
+      "${1:ClassName}(const ${1}& ${2:other}) {",
+      "    ${0:// copy constructor}",
+      "}"
+    ],
+    "description": "Copy constructor"
+  },
+
+  "move constructor": {
+    "prefix": "mctor",
+    "body": [
+      "${1:ClassName}(${1}&& ${2:other}) noexcept {",
+      "    ${0:// move constructor}",
+      "}"
+    ],
+    "description": "Move constructor"
+  },
+
+  "operator overload": {
+    "prefix": "operator",
+    "body": [
+      "${1:Type}& operator${2:=}(${3:const ${1}& other}) {",
+      "    ${0:// implementation}",
+      "    return *this;",
+      "}"
+    ],
+    "description": "Operator overload"
+  },
+
+  "enum class": {
+    "prefix": "enum",
+    "body": [
+      "enum class ${1:Name} {",
+      "    ${2:Value1},",
+      "    ${3:Value2}${0}",
+      "};"
+    ],
+    "description": "Enum class"
+  },
+
+  "using alias": {
+    "prefix": "using",
+    "body": [
+      "using ${1:Alias} = ${2:Type};${0}"
+    ],
+    "description": "Type alias"
+  },
+
+  "constexpr": {
+    "prefix": "constexpr",
+    "body": [
+      "constexpr ${1:auto} ${2:name} = ${3:value};${0}"
+    ],
+    "description": "Constexpr variable"
+  },
+
+  "static_cast": {
+    "prefix": "scast",
+    "body": [
+      "static_cast<${1:Type}>(${2:value})${0}"
+    ],
+    "description": "Static cast"
+  },
+
+  "dynamic_cast": {
+    "prefix": "dcast",
+    "body": [
+      "dynamic_cast<${1:Type}*>(${2:ptr})${0}"
+    ],
+    "description": "Dynamic cast"
+  },
+
+  "file stream read": {
+    "prefix": "ifstream",
+    "body": [
+      "std::ifstream ${1:file}(${2:\"filename.txt\"});",
+      "if (${1}.is_open()) {",
+      "    ${3:std::string line;}",
+      "    while (std::getline(${1}, ${3:line})) {",
+      "        ${0:// process line}",
+      "    }",
+      "    ${1}.close();",
+      "}"
+    ],
+    "description": "Read from file"
+  },
+
+  "file stream write": {
+    "prefix": "ofstream",
+    "body": [
+      "std::ofstream ${1:file}(${2:\"filename.txt\"});",
+      "if (${1}.is_open()) {",
+      "    ${1} << ${3:\"text\"} << std::endl;",
+      "    ${0}",
+      "    ${1}.close();",
+      "}"
+    ],
+    "description": "Write to file"
+  },
+
+  "algorithm for_each": {
+    "prefix": "foreach",
+    "body": [
+      "std::for_each(${1:container}.begin(), ${1}.end(), [](${2:auto& item}) {",
+      "    ${0:// code here}",
+      "});"
+    ],
+    "description": "std::for_each algorithm"
+  },
+
+  "algorithm sort": {
+    "prefix": "sort",
+    "body": [
+      "std::sort(${1:container}.begin(), ${1}.end()${2:, [](const auto& a, const auto& b) { return ${3:a < b}; }});${0}"
+    ],
+    "description": "std::sort algorithm"
+  },
+
+  "algorithm find": {
+    "prefix": "find",
+    "body": [
+      "auto ${1:it} = std::find(${2:container}.begin(), ${2}.end(), ${3:value});",
+      "if (${1} != ${2}.end()) {",
+      "    ${0:// found}",
+      "}"
+    ],
+    "description": "std::find algorithm"
+  }
+}
