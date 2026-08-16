@@ -2,7 +2,7 @@
 ..vimrc.*
 .config/gcloud/*
 
-.config/nvim.back/*
+.config/nvim.bak/
 .config/github-copilot/
 .config/zed/conversations/*
 .config/zed/prompts/*
