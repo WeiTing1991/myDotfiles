@@ -15,7 +15,7 @@
   "cli_default_open_behavior": "new_window",
   "audio": null,
   "icon_theme": {
-    "mode": "dark",
+    "mode": "light",
     "light": "Zed (Default)",
     "dark": "Zed (Default)",
   },
@@ -67,7 +67,7 @@
   "theme": {
     "mode": "dark",
     "light": "Suannhai Shironeri",
-    "dark": "Suannhai Sumi",
+    "dark": "Suannhai Jiufen",
   },
   "show_whitespaces": "boundary",
   "horizontal_scroll_margin": 0,

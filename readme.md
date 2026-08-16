@@ -12,6 +12,7 @@ cd .dotfiles && stow .
 ```
 
 > If you already cloned without `--recurse-submodules`:
+>
 > ```bash
 > git submodule update --init --recursive
 > ```
@@ -29,29 +30,31 @@ I start with [kickstart] to configure my personal [Neovim] setting. If you would
 
 ### Terminal and shell
 
-- Ghostty
+<!--- Ghostty
   I am using [Ghostty](https://github.com/ghostty-org/ghostty) as my terminal align with Tmux, which is a faster terminal specially when it renders images. And no lag time and fast refresh, the main reason I use switch to it.
 
 ```bash
 cd ~/.dotfiles/
 stow -t ghostty ~/.config
-```
+```-->
 
 - WezTerm
 
-  On Windows I use [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with person configurations, which makes it similar TUMX. It is an amazing GPU terminal emulator for cross-platform system.
+	I use [WezTerm](https://wezfurlong.org/wezterm/) as my terminal with person configurations, which makes it similar TUMX. It is an amazing GPU terminal emulator for cross-platform system.
 
 ```bash
 cd ~/.dotfiles/
 #stow -t wezterm ~/.config
 ```
 
+### JetBrains IDE
+
+Check [ideavimrc](./ideavimrc) for my personal configuration.
+
 ### VSCode/Zed
 
-Sometimes I use VSCode/Zed for just for quick edit on Window. I have make it similar to my Neovim workflow.
-
-
-#### Sync
+SoSometimes I use VSCode/Zed for just for quick edit on Window. I have make it similar to my `Neovim` workflow.
+#### Sync without account
 
 ```bash
 # only for window
@@ -67,14 +70,14 @@ stow -t "$(echo ~/Library/Application\ Support/Code/User)" .vscode
 
 #### Plugins List
 
-### keybinding tool
+### OS keybinding tool
 - Windows
-	- [AUTOHOTKEY](https://www.autohotkey.com/): win+R > shell:startup put the`*.ahk into the startup folder`
+  - [AUTOHOTKEY](https://www.autohotkey.com/): win+R > shell:startup put the`*.ahk into the startup folder`
+  
 - MacOS
-	- [Hammerspoon](https://www.hammerspoon.org/faq/)
-	- [Nerd Font](https://www.nerdfonts.com/font-downloads)
+  - [Hammerspoon](https://www.hammerspoon.org/faq/)
+  - [Nerd Font](https://www.nerdfonts.com/font-downloads)
 
-### Emacs (Deprecated) just for storing my old configuration.
+### Emacs (**Deprecated**) just for storing my old configuration.
+
 Please find more information [here](https://github.com/WeiTing1991/wtemacs).
-
-<!-- link -->
