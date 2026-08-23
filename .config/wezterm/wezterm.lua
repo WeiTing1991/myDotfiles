@@ -29,8 +29,9 @@ if is_windows then
     font_size = 10.0,
   }
   freetype_load_target = "HorizontalLcd"
-
-
+  color_scheme_dirs = { '/Users/weitingchen/project/theme/suannhai-theme/suannhai-wezterm/colors' }
+  color_scheme = "Suannhai Jiufen"
+  nvim_bin  = '/opt/homebrew/bin/nvim'
 
 elseif is_macos then
   default_prog = { "/bin/zsh" , "-l"}
@@ -58,12 +59,25 @@ elseif is_macos then
     font_size = 14.0,
   }
   freetype_load_target = "Light"
-
+  color_scheme_dirs = { '/Users/weitingchen/project/theme/suannhai-theme/suannhai-wezterm/colors' }
+  color_scheme = "Suannhai Jiufen"
+  nvim_bin  = '/opt/homebrew/bin/nvim'
 end
+
+-- Available schemes:
+-- - Suannhai Jiufen (dark)
+-- - Suannhai Lam-ni (dark)
+-- - Suannhai Rouiro (dark)
+-- - Suannhai Sumi (dark)
+-- - Suannhai Koiai (dark)
+-- - Suannhai Hue-poo (light)
+-- - Suannhai Torinoko (light)
+-- - Suannhai Shironeri (light)
 
 -- main config
 config = {
-  color_scheme = "Dracula",
+  color_scheme_dirs=color_scheme_dirs,
+  color_scheme=color_scheme,
   allow_win32_input_mode = false,
   enable_kitty_keyboard = true,
   -- enable_kitty_graphics = true,
@@ -93,8 +107,8 @@ config = {
     bottom = 2,
   },
   inactive_pane_hsb = {
-    saturation = 0.35,
-    brightness = 0.75,
+    saturation = 0.8,
+    brightness = 1,
   },
   window_close_confirmation = "AlwaysPrompt",
   enable_tab_bar = true,
@@ -107,6 +121,7 @@ config = {
 
   hyperlink_rules = wezterm.default_hyperlink_rules(),
 }
+
 
 -- mouse_bindings
 config.mouse_bindings = {
@@ -155,8 +170,8 @@ end
 
 config.keys ={
     -- { key = "p", mods = "CTRL|SHIFT", action = act.ActivateCommandPalette },
-    { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-    { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+    { key = "k", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+    { key = "j", mods = "LEADER", action = act.ActivateTabRelative(1) },
     { key = "phys:Comma",  mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },
     { key = "phys:Period", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
     { key = "<", mods = "LEADER", action = act.MoveTabRelative(-1) },
@@ -285,4 +300,12 @@ wezterm.on('format-tab-title', function(tab)
 end)
 
 
+local dispatcher = require("dispatcher")
+dispatcher.apply_to_config(config, {
+  nvim_bin = nvim_bin,
+  focus_nvim = true,
+  debug = true,      -- set false once it works
+})
+
 return config
+

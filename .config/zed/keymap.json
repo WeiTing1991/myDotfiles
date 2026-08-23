@@ -51,7 +51,6 @@
       "g h": "editor::GoToDeclaration",
       "g r": "editor::FindAllReferences",
       "shift-k": "editor::Hover",
-      "g .": "editor::ToggleCodeActions",
 
       // Structure / symbols
       "g shift-o": "outline::Toggle",
@@ -72,7 +71,7 @@
       "space f l": "pane::DeploySearch",
 
       // Panels / docks
-      "ctrl-e": "project_panel::ToggleFocus",
+      "ctrl-e": "project_panel::Toggle",
       "ctrl-shift-e": "workspace::ToggleLeftDock",
 
       // Toggles
@@ -85,15 +84,16 @@
       "space g g": "git_panel::ToggleFocus",
 
       // Run / debug
-      // "space r r": "task::Spawn",
-      // "space r b": "debugger::Start",
+      "space r r": "task::Spawn",
+      "space r l": "task::Rerun",
+      "space r b": "debugger::Start",
       // Open markdown preview
       "space m p": "markdown::OpenPreviewToTheSide",
       "space m P": "markdown::OpenPreview",
     },
   },
 
-  // ── Inside the panels: same keys jump back to the editor ─────
+  // ── Inside the panels: same keys close the panel / jump back ─
   // ctrl-q closes the focused dock, mirroring ctrl-q closing a tab in the editor
   {
     "context": "Dock",
@@ -105,7 +105,7 @@
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
-      "ctrl-e": "project_panel::ToggleFocus",
+      "ctrl-e": "project_panel::Toggle",
       "ctrl-n": "workspace::ToggleRightDock",
 
       // VSCode-style new file / folder (vim keymap defaults to netrw's % and d)
@@ -199,7 +199,9 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-e": "project_panel::ToggleFocus",
+      // cmd-p equivalent — file finder on ctrl-p (nvim muscle memory)
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-e": "project_panel::Toggle",
       "ctrl-shift-e": "workspace::ToggleLeftDock",
       "ctrl-shift-o": "pane::ActivateNextItem",
       "ctrl-shift-i": "pane::ActivatePreviousItem",

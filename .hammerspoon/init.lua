@@ -74,6 +74,10 @@ hs.hotkey.bind({ "cmd" }, "3", function()
   mouse_focus_cycle("Obsidian")
 end)
 
+hs.hotkey.bind({ "cmd" }, "4", function()
+  mouse_focus_cycle("Finder")
+end)
+
 hs.hotkey.bind({ "cmd" }, "6", function()
   mouse_focus_cycle("Clion")
 end)
@@ -93,7 +97,6 @@ end)
 -- hs.hotkey.bind({ "cmd" }, "9", function()
 --   mouse_focus_cycle("clion")
 -- end)
-
 
 -- Auto-reload config when file changes
 hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", hs.reload):start()

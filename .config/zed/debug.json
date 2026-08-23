@@ -1,0 +1,89 @@
+// Zed global debug scenarios — the launch.json equivalent.
+//
+// Merged into every project; they show up in `debugger: start` (space r b).
+// Project-specific configs go in <project>/.zed/debug.json and are listed
+// alongside these. Zed also reads .vscode/launch.json when .zed/debug.json
+// is absent.
+//
+// Docs: https://zed.dev/docs/debugger
+// Fields: label + adapter are required; `build` runs a task first;
+// everything else is passed through to the adapter.
+[
+  // ── C / C++ ──────────────────────────────────────────────────
+  // Compile the active file with -g, then debug the resulting binary.
+  // Mirrors the "clang build active file" task.
+  {
+    "label": "C/C++: Debug active file",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "build": {
+      "command": "clang",
+      "args": ["-g", "-O0", "$ZED_FILE", "-o", "$ZED_DIRNAME/$ZED_STEM"],
+      "cwd": "$ZED_DIRNAME"
+    },
+    "program": "$ZED_DIRNAME/$ZED_STEM",
+    "cwd": "$ZED_DIRNAME"
+  },
+  // CMake projects. `program` can't be derived automatically — override it
+  // in the project's own .zed/debug.json if the target name isn't the folder name.
+  {
+    "label": "C++: CMake build & debug",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "build": {
+      "command": "cmake",
+      "args": ["--build", "build", "--config", "Debug"],
+      "cwd": "$ZED_WORKTREE_ROOT"
+    },
+    "program": "$ZED_WORKTREE_ROOT/build/$ZED_STEM",
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+
+  // ── Rust ─────────────────────────────────────────────────────
+  // With `cargo build`/`cargo test` as the build command, Zed infers the
+  // output binary path, so no `program` is needed.
+  {
+    "label": "Rust: Build & debug binary",
+    "adapter": "CodeLLDB",
+    "build": {
+      "command": "cargo",
+      "args": ["build"]
+    },
+    // Required for CodeLLDB with Rust (not for GDB) — enables enum/String pretty printing
+    "sourceLanguages": ["rust"]
+  },
+  {
+    "label": "Rust: Debug tests",
+    "adapter": "CodeLLDB",
+    "build": {
+      "command": "cargo",
+      "args": ["test", "--no-run"]
+    },
+    "sourceLanguages": ["rust"]
+  },
+
+  // ── Python ───────────────────────────────────────────────────
+  {
+    "label": "Python: Debug active file",
+    "adapter": "Debugpy",
+    "request": "launch",
+    "program": "$ZED_FILE",
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "Python: Debug pytest",
+    "adapter": "Debugpy",
+    "request": "launch",
+    "module": "pytest",
+    "args": ["-v"],
+    "cwd": "$ZED_WORKTREE_ROOT"
+  },
+
+  // ── Attach ───────────────────────────────────────────────────
+  // No process_id: Zed shows a process picker.
+  {
+    "label": "CodeLLDB: Attach to process",
+    "adapter": "CodeLLDB",
+    "request": "attach"
+  }
+]
