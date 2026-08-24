@@ -16,7 +16,6 @@ scoop install eza
 
 # lazygit
 LinkDotfiles `
--program "" `
 -dotfilesPath ".config\lazygit" `
 -targetPath "$env:APPDATA\lazygit"
 
@@ -25,16 +24,17 @@ LinkDotfiles `
 # nvm install node
 # nvm use newest
 
-# NVIM
-rm -Force ~\AppData\Local\nvim
-rm -Force ~\AppData\Local\nvim-data
-Install-ProgramAndLinkDotfiles `
+# NVIM (config is a git submodule)
+foreach ($dir in @("$env:LOCALAPPDATA\nvim", "$env:LOCALAPPDATA\nvim-data", "$env:LOCALAPPDATA\nvim-log")) {
+    if (Test-Path $dir) { Remove-Item $dir -Recurse -Force }
+}
+git -C "$HOME\.dotfiles" submodule update --init --recursive .config/nvim
+LinkDotfiles `
 -dotfilesPath ".config\nvim" `
 -targetPath "$env:LOCALAPPDATA\nvim"
 
 # VS
 LinkDotfiles `
--program "" `
 -dotfilesPath "windows\.vsvimrc" `
 -targetPath "$HOME\.vsvimrc"
 
