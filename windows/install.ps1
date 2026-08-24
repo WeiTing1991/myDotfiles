@@ -50,3 +50,12 @@ Install-ProgramAndLinkDotfiles `
     -program "" `
     -dotfilesPath ".config\wezterm" `
     -targetPath "$HOME\.config\wezterm"
+
+# WezTerm color schemes (theme repo lives outside dotfiles)
+$themeColors = "$HOME\theme\suannhai-theme\suannhai-wezterm\colors"
+if (Test-Path $themeColors) {
+    New-Item -Path "$HOME\.dotfiles\.config\wezterm\colors" `
+        -ItemType SymbolicLink -Value $themeColors -Force
+} else {
+    Write-Error "Theme not found: $themeColors - clone https://github.com/WeiTing1991/suannhai-theme"
+}

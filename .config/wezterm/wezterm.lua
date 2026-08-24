@@ -29,7 +29,7 @@ if is_windows then
     font_size = 10.0,
   }
   freetype_load_target = "HorizontalLcd"
-  color_scheme_dirs = { '/Users/weitingchen/project/theme/suannhai-theme/suannhai-wezterm/colors' }
+  color_scheme_dirs = { wezterm.config_dir .. '/colors' }
   color_scheme = "Suannhai Jiufen"
   nvim_bin  = '/opt/homebrew/bin/nvim'
 
