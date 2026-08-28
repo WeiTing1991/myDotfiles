@@ -78,8 +78,8 @@ end
 config = {
   color_scheme_dirs=color_scheme_dirs,
   color_scheme=color_scheme,
-  allow_win32_input_mode = false,
-  enable_kitty_keyboard = true,
+  allow_win32_input_mode = true,
+  enable_kitty_keyboard = false,
   -- enable_kitty_graphics = true,
 
   default_prog = default_prog,
