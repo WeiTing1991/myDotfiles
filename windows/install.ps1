@@ -51,6 +51,17 @@ Install-ProgramAndLinkDotfiles `
     -dotfilesPath ".config\wezterm" `
     -targetPath "$HOME\.config\wezterm"
 
+# VS Code - shared with macOS, which stows the same .vscode directory into
+# ~/Library/Application Support/Code/User
+$codeUser = "$env:APPDATA\Code\User"
+if (Test-Path $codeUser) {
+    foreach ($file in @("settings.json", "keybindings.json", "tasks.json")) {
+        LinkDotfiles -dotfilesPath ".vscode\$file" -targetPath "$codeUser\$file"
+    }
+} else {
+    Write-Error "VS Code user directory not found: $codeUser - install VS Code first"
+}
+
 # WezTerm color schemes (theme repo lives outside dotfiles)
 $themeColors = "$HOME\theme\suannhai-theme\suannhai-wezterm\colors"
 if (Test-Path $themeColors) {

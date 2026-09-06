@@ -334,7 +334,8 @@
   "prettier.semi": true,
   "prettier.singleQuote": false,
   "prettier.tabWidth": 2,
-  "projectManager.git.baseFolders": ["~/project", ""],
+  // "~" is expanded by the extension itself, so this works on macOS and Windows
+  "projectManager.git.baseFolders": ["~/project"],
   "scm.diffDecorations": "gutter",
   "markdown-preview-enhanced.previewTheme": "github-light.css",
   // "workbench.layoutControl.enabled": false,
@@ -377,13 +378,9 @@
   "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.scrollback": 2000,
   "terminal.integrated.shellIntegration.enabled": false,
+  // Built-in profile; VS Code auto-detects and prefers pwsh 7 over Windows
+  // PowerShell, so no custom profile entry is needed. Ignored on macOS.
   "terminal.integrated.defaultProfile.windows": "PowerShell",
-  "terminal.integrated.profiles.windows": {
-    "PowerShell 7": {
-      "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-      "icon": "terminal-powershell",
-    },
-  },
   "update.showReleaseNotes": false,
   // =============================================================================
   // VIM SETTINGS

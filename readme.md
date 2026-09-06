@@ -54,18 +54,29 @@ Check [ideavimrc](./.ideavimrc) for my personal configuration.
 ### VSCode/Zed
 
 SoSometimes I use VSCode/Zed for just for quick edit on Window. I have make it similar to my `Neovim` workflow.
+
+`.vscode/` is a single config shared by both platforms. Every keybinding uses
+`ctrl+*` rather than `cmd+*`, and Windows-only settings are namespaced
+(`terminal.integrated.defaultProfile.windows`), so macOS ignores them. Anything
+that genuinely has to differ belongs in a `when` clause using the `isWindows` /
+`isMac` context keys, not in a second copy of the file.
+
 #### Sync without account
 
-```bash
-# only for window
-New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\settings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\settings.json -Force
-New-Item -Path $env:USERPROFILE\AppData\Roaming\Code\User\keybindings.json -ItemType SymbolicLink -Value $env:USERPROFILE\.dotfiles\.vscode\keybindings.json -Force
+```powershell
+# Only for Windows - or just run windows\install.ps1, which does this
+$codeUser = "$env:APPDATA\Code\User"
+foreach ($file in @("settings.json", "keybindings.json", "tasks.json")) {
+    New-Item -Path "$codeUser\$file" -ItemType SymbolicLink `
+        -Value "$HOME\.dotfiles\.vscode\$file" -Force
+}
 ```
 
 ```bash
 # Only for mac
-rm ~/Library/Application\ Support/Code/User/keybindings.json
-stow -t "$(echo ~/Library/Application\ Support/Code/User)" .vscode
+cd ~/.dotfiles
+rm -f ~/Library/Application\ Support/Code/User/{settings,keybindings,tasks}.json
+stow -t "$HOME/Library/Application Support/Code/User" .vscode
 ```
 
 #### Plugins List
