@@ -71,7 +71,7 @@
   },
   {
     "command": "workbench.action.findInFiles",
-    "key": "shift+ctrl+f",
+    "key": "ctrl+shift+f",
     "when": "!terminalFocus"
   },
   {
@@ -79,10 +79,6 @@
     "key": "ctrl+shift+f",
     "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
   },
-  //   "command": "editor.fold",
-  //   "key": "tab",
-  //   "when": "editorTextFocus && foldingEnabled && !inputFocus"
-  // },
   {
     "command": "search.action.focusNextSearchResult",
     "key": "alt+shift+j",
@@ -122,7 +118,7 @@
   // {
   //   "command": "workbench.action.toggleMaximizeEditorGroup",
   //   "key": "ctrl+shift+'",
-  //   "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups, || terminalFocus"
+  //   "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups || terminalFocus"
   // },
 
   /* ==== VIEW SIZE ADJUSTMENT ==== */
@@ -372,7 +368,7 @@
 
   /* ==== COPILOT ==== */
   {
-    "command": "inlineChat.startWithCurrentLine",
+    "command": "inlineChat.start",
     "key": "alt+i",
     "when": "editorFocus"
   },

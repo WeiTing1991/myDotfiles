@@ -7,15 +7,16 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[plaintext]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.rulers": [],
     "editor.wordWrap": "on",
   },
   "[powershell]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.defaultFormatter": "ms-vscode.powershell",
     "editor.tabSize": 4,
   },
-  // "cSpell.enabled": false
+  // Off by default; toggled with <leader>tp (cSpell.toggleEnableSpellChecker).
+  // userWords / enabledFileTypes below apply once it is toggled on.
+  "cSpell.enabled": false,
   "cSpell.userWords": ["pymdownx"],
   "cSpell.enabledFileTypes": {
     "*": true,
@@ -38,13 +39,13 @@
   },
   // C/C++
   "[c]": {
-    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.tabSize": 2,
     "editor.formatOnSave": false,
     "editor.formatOnType": false,
   },
   "[cpp]": {
-    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.tabSize": 2,
     "editor.formatOnType": false,
     "editor.formatOnSave": false,
@@ -54,27 +55,10 @@
     "editor.suggest.insertMode": "replace",
     "editor.semanticHighlighting.enabled": true,
   },
-  "C_Cpp.default.cppStandard": "c++23",
-  "C_Cpp.default.cStandard": "c23",
-  "C_Cpp.formatting": "default",
-  "C_Cpp.clang_format_fallbackStyle": "Visual Studio",
+  // clangd is the C/C++ language server; cpptools is kept only for debugging.
+  // Every other C_Cpp.* option (IntelliSense, inlay hints, vcFormat) is a no-op
+  // while intelliSenseEngine is disabled, so they are not set here.
   "C_Cpp.intelliSenseEngine": "disabled",
-  "C_Cpp.errorSquiggles": "enabled",
-  "C_Cpp.autocomplete": "default",
-  "C_Cpp.intelliSenseUpdateDelay": 500,
-  "C_Cpp.enhancedColorization": "disabled", // Better syntax highlighting
-  "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true, // Show auto type hints
-  "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": false,
-  "C_Cpp.inlayHints.parameterNames.enabled": true, // Show parameter names in function calls
-  "C_Cpp.inlayHints.parameterNames.hideLeadingUnderscores": true,
-  "C_Cpp.inlayHints.referenceOperator.enabled": true, // Show & and * operators
-  "C_Cpp.suggestSnippets": true, // Enable code snippets
-  "C_Cpp.simplifyStructuredComments": true, // Better comment formatting
-  "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
-  "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "newLine",
-  "C_Cpp.vcFormat.space.beforeFunctionOpenParenthesis": "remove",
-  "C_Cpp.vcFormat.indent.withinParentheses": "alignToParenthesis",
-  "C_Cpp.vcFormat.wrap.preserveBlocks": "allOneLineScopes",
   "files.associations": {
     "*.tcc": "cpp",
     "*.hpp": "cpp",
@@ -122,7 +106,8 @@
       "source.organizeImports": "explicit",
       "source.addMissingImports": "explicit",
     },
-    "editor.inlayHints.enabled": "off",
+    // inherits editor.inlayHints.enabled = "offUnlessPressed" so the
+    // dotnet.inlayHints.* / csharp.inlayHints.* options below stay reachable
     "editor.formatOnSave": false,
     // "editor.inlineSuggest.enabled": false  // Disables inline Copilot for C#
   },
@@ -233,7 +218,6 @@
   "editor.rulers": [80, 120],
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
-  "editor.scrollbar.verticalScrollbarSize": 0,
   "editor.scrollBeyondLastLine": false,
   "editor.selectionHighlight": false,
   "editor.semanticHighlighting.enabled": true,
@@ -437,26 +421,11 @@
       "before": ["<Esc>"],
       "commands": [":nohl"],
     },
-    // hack
+    // <C-o>/<C-i> intentionally left unmapped: VSCodeVim's own jumplist handles
+    // them. Unlike real vim it has no normal-mode <Tab> action, so alias it.
     {
-      "after": ["P"],
-      "before": ["p"],
-    },
-    {
-      "before": ["u"],
-      "commands": ["undo"],
-    },
-    {
-      "before": ["<C-r>"],
-      "commands": ["redo"],
-    },
-    {
-      "before": ["<C-o>"],
-      "commands": ["workbench.action.nextEditorInGroup"],
-    },
-    {
-      "before": ["<C-i>"],
-      "commands": ["workbench.action.previousEditorInGroup"],
+      "after": ["<C-i>"],
+      "before": ["<Tab>"],
     },
     {
       "before": ["<leader>", "o"],
@@ -469,10 +438,6 @@
     {
       "before": ["<C-c>"],
       "commands": [":nohl"],
-    },
-    {
-      "after": ["z", "a"],
-      "before": ["<Tab>"],
     },
     {
       "after": ["<C-d>", "z", "z"],
@@ -512,15 +477,15 @@
     },
     {
       "before": ["<leader>", "t", "c"],
-      "commands": ["github.copilot.completions.toggle"],
+      "commands": ["github.copilot.chat.completions.toggle"],
     },
     {
       "before": ["<leader>", "t", "t"],
-      "command": ["workbench.action.selectTheme"],
+      "commands": ["workbench.action.selectTheme"],
     },
     {
       "before": ["<leader>", "t", "p"],
-      "command": ["cSpell.toggleEnableSpellChecker"],
+      "commands": ["cSpell.toggleEnableSpellChecker"],
     },
     {
       "before": ["g", "."],
@@ -558,23 +523,7 @@
       "before": ["<leader>", "'"],
       "commands": ["workbench.action.toggleEditorWidths"],
     },
-    // harapoon
-    {
-      "before": ["<leader>", "j", "1"],
-      "commands": ["vscode-harpoon.addEditor1"],
-    },
-    {
-      "before": ["<leader>", "j", "2"],
-      "commands": ["vscode-harpoon.addEditor2"],
-    },
-    {
-      "before": ["<leader>", "1"],
-      "commands": ["vscode-harpoon.gotoEditor1"],
-    },
-    {
-      "before": ["<leader>", "2"],
-      "commands": ["vscode-harpoon.gotoEditor2"],
-    },
+    // harpoon binds removed: tobias-z.vscode-harpoon is uninstalled
     // {
     //   "before": ["g", "I"],
     //   "commands": ["clangd.switchheadersource"]
@@ -608,9 +557,7 @@
       "commands": ["editor.action.moveLinesUpAction"],
     },
   ],
-  "cSpell.enabled": false,
   "githubPullRequests.createOnPublishBranch": "never",
-  "github.copilot.selectedCompletionModel": "",
   "chat.viewSessions.orientation": "stacked",
   "githubPullRequests.pullBranch": "never",
   "[rust]": {
