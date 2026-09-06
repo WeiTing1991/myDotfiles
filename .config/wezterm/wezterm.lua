@@ -91,11 +91,21 @@ config = {
   window_background_opacity = 0.95,
   freetype_load_target = freetype_load_target,
 
+  -- Pane divider weight. WezTerm has no dedicated setting: the split line is
+  -- drawn at underline_height, so this also thickens underlines and box glyphs.
+  underline_thickness = "3px",
+
+  -- Cursor. animation_fps = 1 above turns the fade into a plain on/off blink.
+  default_cursor_style = "BlinkingBlock",
+  cursor_blink_rate = 500,
+  cursor_blink_ease_in = "Constant",
+  cursor_blink_ease_out = "Constant",
+
 
   -- win32_system_backdrop = "Acrylic"  -- frosted glass effect
   -- win32_acrylic_accent_color = "#10101080"
   max_fps = max_fps,
-  scrollback_lines = 3000,
+  scrollback_lines = 10000,
 
   -- windows
   adjust_window_size_when_changing_font_size = false,
@@ -233,11 +243,23 @@ config.keys ={
     { key = "l", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
     { key = "m", mods = "CTRL|SHIFT", action = act.TogglePaneZoomState },
 
+    -- Pane list: overlays a label on each pane, press it to jump there
+    { key = "p", mods = "LEADER", action = act.PaneSelect { show_pane_ids = true } },
+    { key = "P", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActive" } },
+
+    -- Pane resize: hold the mode and repeat hjkl, exits after 1s idle
+    { key = "r", mods = "LEADER", action = act.ActivateKeyTable {
+      name = "resize_pane",
+      one_shot = false,
+      timeout_milliseconds = 1000,
+    }},
+
     -- Window
     { key = "n", mods = "CTRL|SHIFT", action = act.SpawnWindow       },
 
-    -- Search
-    { key = "f", mods = "CTRL|SHIFT",       action = act.Search { CaseSensitiveString = "" }     },
+    -- Search (prefills from the current selection, like an IDE find bar)
+    { key = "f", mods = "CTRL|SHIFT", action = act.Search("CurrentSelectionOrEmptyString") },
+    { key = "f", mods = "SUPER",      action = act.Search("CurrentSelectionOrEmptyString") },
 
     -- Alt keys (readline)
     -- { key = "f",         mods = "ALT", action = wezterm.action.SendString("\x1bf")    },
@@ -279,6 +301,49 @@ config.key_tables = {
         { CopyMode = 'Close' },
       },
     },
+
+    -- Search navigation
+    { key = 'n', mods = 'NONE',  action = act.CopyMode('NextMatch') },
+    { key = 'n', mods = 'SHIFT', action = act.CopyMode('PriorMatch') },
+    { key = '/', mods = 'NONE',  action = act.CopyMode('EditPattern') },
+    { key = 'd', mods = 'CTRL',  action = act.CopyMode('PageDown') },
+    { key = 'u', mods = 'CTRL',  action = act.CopyMode('PageUp') },
+    { key = 'g', mods = 'NONE',  action = act.CopyMode('MoveToScrollbackTop') },
+    { key = 'g', mods = 'SHIFT', action = act.CopyMode('MoveToScrollbackBottom') },
+	},
+
+	resize_pane = {
+    { key = 'h', mods = 'NONE',  action = act.AdjustPaneSize({ 'Left', 3 }) },
+    { key = 'j', mods = 'NONE',  action = act.AdjustPaneSize({ 'Down', 3 }) },
+    { key = 'k', mods = 'NONE',  action = act.AdjustPaneSize({ 'Up', 3 }) },
+    { key = 'l', mods = 'NONE',  action = act.AdjustPaneSize({ 'Right', 3 }) },
+
+    -- SHIFT for fine adjustment
+    { key = 'h', mods = 'SHIFT', action = act.AdjustPaneSize({ 'Left', 1 }) },
+    { key = 'j', mods = 'SHIFT', action = act.AdjustPaneSize({ 'Down', 1 }) },
+    { key = 'k', mods = 'SHIFT', action = act.AdjustPaneSize({ 'Up', 1 }) },
+    { key = 'l', mods = 'SHIFT', action = act.AdjustPaneSize({ 'Right', 1 }) },
+
+    { key = 'Escape', mods = 'NONE', action = 'PopKeyTable' },
+    { key = 'Enter',  mods = 'NONE', action = 'PopKeyTable' },
+	},
+
+	-- Find bar: Enter goes forward (wezterm's default sends it backwards)
+	search_mode = {
+    { key = 'Enter',     mods = 'NONE',  action = act.CopyMode('NextMatch') },
+    { key = 'Enter',     mods = 'SHIFT', action = act.CopyMode('PriorMatch') },
+    { key = 'DownArrow', mods = 'NONE',  action = act.CopyMode('NextMatch') },
+    { key = 'UpArrow',   mods = 'NONE',  action = act.CopyMode('PriorMatch') },
+    { key = 'n',         mods = 'CTRL',  action = act.CopyMode('NextMatch') },
+    { key = 'p',         mods = 'CTRL',  action = act.CopyMode('PriorMatch') },
+    { key = 'PageDown',  mods = 'NONE',  action = act.CopyMode('NextMatchPage') },
+    { key = 'PageUp',    mods = 'NONE',  action = act.CopyMode('PriorMatchPage') },
+    { key = 'r',         mods = 'CTRL',  action = act.CopyMode('CycleMatchType') },
+    { key = 'u',         mods = 'CTRL',  action = act.CopyMode('ClearPattern') },
+    { key = 'Escape',    mods = 'NONE',  action = act.CopyMode('Close') },
+
+    { key = 'c', mods = 'SHIFT|CTRL', action = act.CopyTo('Clipboard') },
+    { key = 'c', mods = 'SUPER',      action = act.CopyTo('Clipboard') },
 	}
 }
 
@@ -295,6 +360,10 @@ wezterm.on('format-tab-title', function(tab)
   end
   if tab.active_pane.is_zoomed then
     title = '[Z] ' .. title
+  end
+  local pane_count = #tab.panes
+  if pane_count > 1 then
+    title = title .. ' [' .. pane_count .. ']'
   end
   return title
 end)
