@@ -210,3 +210,7 @@ export PATH=$PATH:$HOME/go/bin
 export DOTNET_ROOT="/usr/local/share/dotnet/"
 export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="/Applications/CLion.app/Contents/MacOS:$PATH"
+
+# vcpkg
+export VCPKG_ROOT="$HOME/vcpkg/"
+export PATH=$VCPKG_ROOT:$PATH

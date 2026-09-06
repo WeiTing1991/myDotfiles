@@ -49,7 +49,7 @@ cd ~/.dotfiles/
 
 ### JetBrains IDE
 
-Check [ideavimrc](./ideavimrc) for my personal configuration.
+Check [ideavimrc](./.ideavimrc) for my personal configuration.
 
 ### VSCode/Zed
 

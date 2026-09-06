@@ -2,11 +2,12 @@
 "   the same commands as the original .vimrc configuration.
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
+"
+" Kept in sync with .config/nvim/lua/core/keymaps.lua and lua/user/keymaps.lua
+" Action IDs: https://jb.gg/abva4t  (discover with `set ideatrackactionids`)
 
-
-"" -- Suggested options --
 " ── Core settings ────────────────────────────────────────────
-set scrolloff=10             " keep 8 lines visible above/below cursor
+set scrolloff=10             " keep 10 lines visible above/below cursor
 set sidescrolloff=5          " keep 5 columns visible left/right of cursor
 set incsearch                " show matches as you type search pattern
 set hlsearch                 " highlight all search matches
@@ -16,26 +17,24 @@ set number                   " show line numbers
 set relativenumber           " relative line numbers (for easy j/k jumps)
 set visualbell               " flash screen instead of beeping
 set showmode                 " show current mode (NORMAL/INSERT/etc)
+set foldlevel=1              " needs a recent IdeaVim (VIM-566); drop if E518
 
-" IdeaVim-specific settings
+" ── IdeaVim-specific settings ────────────────────────────────
 set ideajoin                 " use IntelliJ's smart join (J) instead of Vim's
 set idearefactormode=keep    " stay in current mode during refactoring
 set clipboard+=unnamed       " yank/paste uses system clipboard
 set clipboard+=ideaput       " use IntelliJ's paste for better formatting
 set ideastatusicon=gray      " subtle status bar icon
-set notimeout
-set foldlevel=1
+" set ideamarks              " sync Vim global marks with IDE bookmarks
 
+" ── Leader ───────────────────────────────────────────────────
 let mapleader=" "            " Space as leader key
 
 " ── sethandler (claim Ctrl keys for Vim) ─────────────────────
 sethandler <C-A> a:vim
 sethandler <C-B> a:vim
 sethandler <C-D> a:vim
-sethandler <C-E> a:ide
-
-sethandler <C-F> a:ide
-
+sethandler <C-E> a:vim
 sethandler <C-H> a:vim
 sethandler <C-I> a:vim
 sethandler <C-J> a:vim
@@ -44,7 +43,6 @@ sethandler <C-L> a:vim
 sethandler <C-M> a:vim
 sethandler <C-N> a:vim
 sethandler <C-O> a:vim
-sethandler <C-P> a:ide
 sethandler <C-R> a:vim
 sethandler <C-S-R> n:vim
 sethandler <C-S> a:vim
@@ -58,147 +56,141 @@ sethandler <C-]> a:vim
 sethandler <C-\> a:vim
 sethandler <C-/> a:vim
 
+sethandler <C-F> a:ide
+sethandler <C-P> a:ide
+
 sethandler <C-C> i:ide n-x-v:vim
 sethandler <C-V> i:ide n-x-v:vim
 
-
-" Don't use Ex mode, use Q for formatting.
-" map Q gq
-
-" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
-
 " ── Plugins ──────────────────────────────────────────────────
-Plug 'machakann/vim-highlightedyank'
+" https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
 set highlightedyank
-let g:highlightedyank_highlight_duration = "100"
-
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'preservim/nerdtree'
-
-" set sneak
-" set which-key
-
+set commentary
+set surround
+set NERDTree
 set argtextobj
-set nerdtree
-set ReplaceWithRegister
-set VimEverywhere 
+" set ReplaceWithRegister
+" set VimEverywhere
+" set textobj-indent
 
-" ── Navigation ───────────────────────────────────────────────
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-map <C-j> <C-w>j
-map <C-k> <C-w>k
+let g:highlightedyank_highlight_duration = "300"
 
-nmap <C-d> <C-d>zz
-nmap <C-u> <C-u>zz
-nmap n nzzzv
-nmap N Nzzz
-nmap <Esc> :nohlsearch<CR>
-nmap <C-C> <Esc>
+" ── Editing ──────────────────────────────────────────────────
+imap jk <Esc>
 
-nmap <C-/> gcc
-vmap <C-/> <Action>(CommentByLineComment)
-
-
-" ── Better escape ────────────────────────────────────────────
-"imap kk <Esc>
-"imap kj <Esc>
-
-" ── Yank to end of line ──────────────────────────────────────
 nmap Y y$
 
-" ── Move lines in visual mode ────────────────────────────────
-"vmap J :m '>+1<CR>gv=gv
-"vmap K :m '<-2<CR>gv=gv
+" Keep visual selection after indent
+vmap < <gv
+vmap > >gv
+
+" Don't overwrite register on paste in visual
+vmap p "_dP
 
 " Move lines using IDE (better for code)
 vmap J <Action>(MoveLineDown)
 vmap K <Action>(MoveLineUp)
 
-" Keep Vim indenting behavior
-" set smartindent
-" set autoindent
+" Comment (commentary provides gcc / gc / gbc / gb)
+nmap <C-/> gcc
+vmap <C-/> <Action>(CommentByLineComment)
+" nmap - gcc
+" vmap - gc
+" nmap _ gbc
+" vmap _ gb
 
-" ── Keep visual selection after indent ───────────────────────
-vmap < <gv
-vmap > >gv
+" ── Navigation ───────────────────────────────────────────────
+nmap <C-d> <C-d>zz
+nmap <C-u> <C-u>zz
+nmap G Gzz
+nmap n nzzzv
+nmap N Nzzzv
 
-" ── Don't overwrite register on paste in visual ──────────────
-vmap p "_dP
+nmap <Esc> :nohlsearch<CR>
+nmap <C-c> :nohlsearch<CR>
+"nmap jk :nohlsearch<CR>
 
-" Sync IDE bookmarks with Vim marksset ideastatusicon=gray  " Cleaner status bar iconset clipboard+=ideaput
-" set ideamarks
-
-"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
-"" Map \r to the Reformat Code action
-"map \r <Action>(ReformatCode)
-
-"" Map <leader>d to start debug
-"map <leader>d <Action>(Debug)
-
-"" Map \b to toggle the breakpoint on the current line
-"map \b <Action>(ToggleLineBreakpoint)
-
-nmap <leader>o <Action>(NextTab)
-nmap <leader>i <Action>(PreviousTab)
+" Windows
+map <C-h> <C-w>h
+map <C-l> <C-w>l
+map <C-j> <C-w>j
+map <C-k> <C-w>k
 
 nmap <C-w>5 <Action>(SplitHorizontally)
 nmap <C-w>' <Action>(SplitVertically)
 
-nmap <leader>. <Action>(ReformatCode)
-nmap g. <Action>(ShowIntentionActions)
+" Move / copy current tab to the other editor group
+nmap <C-w>m <Action>(MoveEditorToOppositeTabGroup)
+nmap <C-w>M <Action>(OpenEditorInOppositeTabGroup)
 
 nmap <leader>' <Action>(MaximizeEditorInSplit)
+nmap <leader>j <Action>(HideAllWindows)
 
-nmap <C-Q> <Action>(CloseContent)
+" Resize splits
+nmap <C-S-Left>  <Action>(StretchSplitToLeft)
+nmap <C-S-Right> <Action>(StretchSplitToRight)
+nmap <C-S-Up>    <Action>(StretchSplitToTop)
+nmap <C-S-Down>  <Action>(StretchSplitToBottom)
 
+" Diagnostics / VCS hunks
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap [c <Action>(VcsShowPrevChangeMarker)
 
-" nmap <leader>rn <Action>(RenameElement)
-" nmap <leader>rf <Action>(Refactorings.QuickListPopupAction)
-" nmap <leader>fm <Action>(ReformatCode)
-" nmap <leader>oi <Action>(OptimizeImports)
+" ── Tabs & buffers ───────────────────────────────────────────
+nmap <leader>o <Action>(NextTab)
+nmap <leader>i <Action>(PreviousTab)
+
+nmap <C-q> <Action>(CloseContent)
+nmap <C-e> <Action>(ActivateProjectToolWindow)
 
 " ── LSP / Go-to ──────────────────────────────────────────────
 nmap gd <Action>(GotoDeclaration)
-nmap gi <Action>(GotoImplementation)
-
-nmap gy <Action>(GotoTypeDeclaration)
 nmap gh <Action>(GotoDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gy <Action>(GotoTypeDeclaration)
+nmap gs <Action>(GotoSuperMethod)
 
 " Full usages tool window (Alt+F7 equivalent)
 nmap gr <Action>(FindUsages)
 " Popup usages near cursor (Ctrl+Alt+F7 equivalent)
 nmap gR <Action>(ShowUsages)
 
-nmap gu <Action>(GotoSuperMethod)
-nmap gU <Action>(GotoSuperMethod)
-
 nmap K <Action>(QuickJavaDoc)
+nmap g. <Action>(ShowIntentionActions)
 
 nmap gO <Action>(FileStructurePopup)
 nmap go <Action>(ActivateStructureToolWindow)
 nmap gW <Action>(GotoSymbol)
 
-
-nmap <leader>fl <Action>(FindInPath)
+" ── Search & find ────────────────────────────────────────────
+nmap <leader>ff <Action>(GotoFile)
 " nmap <leader>fg <Action>(Find)
+nmap <leader>fl <Action>(FindInPath)
+nmap <leader>fb <Action>(Switcher)
 nmap <leader><leader> <Action>(Switcher)
 
-nmap <leader>j <Action>(HideAllWindows)
+nmap <leader>S <Action>(Replace)
+nmap <leader>s <Action>(ReplaceInPath)
 
-nmap <leader>tc <Action>(ToggleInlineCompletionAction)
-nmap <leader>th <Action>(ToggleInlayHintsGloballyAction)
+" ── Refactor & format ────────────────────────────────────────
+nmap <leader>. <Action>(ReformatCode)
+" nmap <leader>rn <Action>(RenameElement)
+" nmap <leader>rf <Action>(Refactorings.QuickListPopupAction)
+" nmap <leader>oi <Action>(OptimizeImports)
 
+" ── Run & debug ──────────────────────────────────────────────
+" nmap <leader>rr <Action>(Run)
+" nmap <leader>rd <Action>(Debug)
+" nmap <leader>rs <Action>(Stop)
+" nmap <leader>rc <Action>(ChooseRunConfiguration)
+" nmap <leader>b  <Action>(ToggleLineBreakpoint)
+
+" ── VCS ──────────────────────────────────────────────────────
 " nmap <leader>gb <Action>(Annotate)
-" nmap <leader>go <Action>(Github.Open.In.Browser)
 " nmap <leader>gg <Action>(Vcs.QuickListPopupAction)
 
-" nmap <leader>rr <Action>(Run)
-" nmap <leader>rb <Action>(Debug)
-
-"nmap <leader>rs <Action>(Stop)
-"nmap <leader>rb <Action>(BuildSolutionAction)
-"nmap <leader>rc <Action>(ChooseRunConfiguration)
-"nmap <leader>re <Action>(EditRunConfigurations)
-
+" ── Toggles ──────────────────────────────────────────────────
+nmap <leader>tc <Action>(ToggleInlineCompletionAction)
+nmap <leader>th <Action>(ToggleInlayHintsGloballyAction)
