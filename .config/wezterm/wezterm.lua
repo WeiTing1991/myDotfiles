@@ -29,9 +29,9 @@ if is_windows then
     font_size = 10.0,
   }
   freetype_load_target = "HorizontalLcd"
-  color_scheme_dirs = { wezterm.config_dir .. '/colors' }
+  color_scheme_dirs = { 'C:/Users/WeiTing/theme/suannhai-theme/suannhai-wezterm/colors' }
   color_scheme = "Suannhai Jiufen"
-  nvim_bin  = '/opt/homebrew/bin/nvim'
+  nvim_bin  = 'nvim'
 
 elseif is_macos then
   default_prog = { "/bin/zsh" , "-l"}
