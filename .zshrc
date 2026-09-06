@@ -17,8 +17,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     export MANPATH="/usr/local/man:$MANPATH"
 
-    # alias
-    alias nv="$HOME/script/nvim-remote.sh"
     . "$HOME/.cargo/env"
 
     # The next line updates PATH for the Google Cloud SDK.
@@ -39,9 +37,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # uv
     . "$HOME/.local/bin/env"
-
-    alias nv="neovide"
-
 
 elif [[ "$WSL_DISTRO_NAME" != "" ]]; then
 
@@ -128,7 +123,7 @@ fi
 
 alias n="nvim"
 alias e="exit"
-alias n="clear"
+alias c="clear"
 alias pj="cd $HOME/project/"
 
 alias ls="eza --sort=type"

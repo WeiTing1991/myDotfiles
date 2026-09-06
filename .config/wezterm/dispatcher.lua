@@ -2,12 +2,15 @@ local wezterm = require("wezterm")
 
 local M = {}
 
+local is_windows = wezterm.target_triple:find("windows") ~= nil
+
 local root_cache = {}
 
 local function git_root(path)
   if root_cache[path] then return root_cache[path] end
+  local devnull = is_windows and "NUL" or "/dev/null"
   local p = io.popen('cd ' .. ('%q'):format(path) ..
-                     ' && git rev-parse --show-toplevel 2>/dev/null')
+                     ' && git rev-parse --show-toplevel 2>' .. devnull)
   local root = p and p:read('*l')
   if p then p:close() end
   if not root or root == '' then root = path end
@@ -15,9 +18,18 @@ local function git_root(path)
   return root
 end
 
+-- Must match M.pipe_name in socket-dispatcher/init.lua exactly. Named pipes
+-- are one global namespace, so the name comes from the full root path; using
+-- the basename made ~/work/app and ~/project/app collide.
+local function pipe_name(root)
+  local s = (root:lower():gsub("[^%w]", "-"))
+  if #s > 100 then s = s:sub(-100) end
+  return [[\\.\pipe\nvim-]] .. s
+end
+
 local defaults = {
   nvim_bin    = "nvim",
-  sock_path   = "/.nvim/socket_dispatcher/nvim.sock",
+  sock_path   = "/.nvim.sock",
   extensions  = "cpp|cc|cxx|hpp|h|c|cs|rs|py|lua",
   focus_nvim  = false,
   debug       = false,
@@ -50,9 +62,12 @@ function M.apply_to_config(config, opts)
     local cwd = pane:get_current_working_dir()
     if not cwd then return true end
 
-    local sock = git_root(cwd.file_path) .. opts.sock_path
+    local root = git_root(cwd.file_path)
+    local sock = is_windows and pipe_name(root) or (root .. opts.sock_path)
 
-    if not file:match("^/") then
+    -- absolute is "/..." on unix but "C:\..." or "C:/..." on windows
+    local absolute = file:match("^/") or file:match("^%a:[/\\]")
+    if not absolute then
       file = cwd.file_path .. "/" .. file
     end
 
