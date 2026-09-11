@@ -1,177 +1,151 @@
-" ============================================================================
-" .vsvimrc for Visual Studio (MERGED)
-" ============================================================================
+" .vsvimrc — VsVim (Visual Studio)
+" Kept in sync with .ideavimrc / .vscode/settings.json
+" VsVim has no plugin system: no surround, commentary, highlightedyank, NERDTree.
+" Command IDs: View > Other Windows > Command Window, or Tools > Options > Environment > Keyboard
+" Keys VS steals (Ctrl+K chords, Ctrl+E, Ctrl+Q): see windows/README.md
+" Mappings are non-recursive on purpose — nmap <C-d> <C-d>zz self-references and breaks.
 
-let mapleader = " "
-
-" ============================================================================
-" BASIC SETTINGS
-" ============================================================================
-set ignorecase
-set smartcase
+" ── Core settings ────────────────────────────────────────────
+set scrolloff=10
 set incsearch
 set hlsearch
+set ignorecase
+set smartcase
 set number
 set relativenumber
+set visualbell
 set clipboard=unnamed
-set scrolloff=5
 set backspace=indent,eol,start
+" needed for the g-prefixed mappings below to resolve reliably
+set timeout
+set timeoutlen=1000
+" not supported by VsVim: sidescrolloff, showmode, foldlevel
 
-" ============================================================================
-" ESCAPE & CLEAR SEARCH
-" ============================================================================
-" [FIXED] Removed duplicate <Esc> mappings - kept one
-" nnoremap <Esc> :noh<CR><Esc>
-nnoremap <C-c> <Esc>:noh<CR>
+" ── Leader ───────────────────────────────────────────────────
+let mapleader = " "
 
+" ── Editing ──────────────────────────────────────────────────
 inoremap jk <Esc>
-inoremap kj <Esc>
 
-" ============================================================================
-" SCROLLING & CENTERING
-" ============================================================================
+nnoremap Y y$
+
+" Keep visual selection after indent
+vnoremap < <gv
+vnoremap > >gv
+
+" Don't overwrite register on paste in visual
+vnoremap p "_dP
+
+" Move lines using the IDE
+" visual :vsc gets a '<,'> prefix; if that ever errors, use :<C-u>vsc
+vnoremap J :vsc Edit.MoveSelectedLinesDown<CR>
+vnoremap K :vsc Edit.MoveSelectedLinesUp<CR>
+nnoremap <A-j> :vsc Edit.MoveSelectedLinesDown<CR>
+nnoremap <A-k> :vsc Edit.MoveSelectedLinesUp<CR>
+vnoremap <A-j> :vsc Edit.MoveSelectedLinesDown<CR>
+vnoremap <A-k> :vsc Edit.MoveSelectedLinesUp<CR>
+
+" Comment (VS 17.11+ also binds Ctrl+/ natively)
+nnoremap <C-/> :vsc Edit.ToggleLineComment<CR>
+vnoremap <C-/> :vsc Edit.ToggleLineComment<CR>
+nnoremap gcc :vsc Edit.ToggleLineComment<CR>
+vnoremap gc :vsc Edit.ToggleLineComment<CR>
+
+" ── Navigation ───────────────────────────────────────────────
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap G Gzz
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" ============================================================================
-" FILE NAVIGATION
-" ============================================================================
-nnoremap <C-p> :vsc Edit.GoToAll<CR>
-nnoremap <C-S-p> :vsc Edit.GoToFile<CR>
-" nnoremap <leader>f :vsc Edit.GoToFile<CR>
-nnoremap <leader>f :vsc InstaSearch.FileSearch<CR>
-nnoremap <leader>s :vsc Edit.GoToSymbol<CR>
-nnoremap gO :vsc Edit.GoToSymbol<CR>
+nnoremap <Esc> :nohlsearch<CR>
+nnoremap <C-c> :nohlsearch<CR>
 
-" ============================================================================
-" WINDOW / TAB MANAGEMENT
-" ============================================================================
-" Split windows
-nnoremap <C-w>' :vsc Window.NewVerticalTabGroup<CR>
-nnoremap <C-w>v :vsc Window.NewVerticalTabGroup<CR>
-nnoremap <C-w>5 <C-w>s
-nnoremap <C-w>s :vsc Window.NewHorizontalTabGroup<CR>
-
-" [CHANGED] Tab navigation - using leader to preserve C-o/C-i for jump list
-" Your original: <C-o>/<C-i> for tabs (overwrites vim jump list!)
-" New: <leader>o/<leader>i for tabs, C-o/C-i for navigation
-nnoremap <leader>o :vsc Window.NextTab<CR>
-nnoremap <leader>i :vsc Window.PreviousTab<CR>
-nnoremap <Tab> :vsc Window.NextTab<CR>
-nnoremap <S-Tab> :vsc Window.PreviousTab<CR>
-
-" Jump list navigation (vim default behavior)
+" Jump list
+" <C-i> remaps are ignored by VsVim (VsVim#2532); fall back to Ctrl+Shift+-
 nnoremap <C-o> :vsc View.NavigateBackward<CR>
 nnoremap <C-i> :vsc View.NavigateForward<CR>
 
-" Window navigation
-nnoremap <C-k> <C-w>k
-nnoremap <C-j> <C-w>j
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <C-k> :vsc Window.MoveToPreviousTabGroup<CR>
+" ── Windows ──────────────────────────────────────────────────
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
 
+nnoremap <C-w>5 :vsc Window.NewHorizontalTabGroup<CR>
+nnoremap <C-w>' :vsc Window.NewVerticalTabGroup<CR>
 
-" Close
+" Move current tab to the other tab group
+nnoremap <C-w>m :vsc Window.MovetoNextTabGroup<CR>
+nnoremap <C-w>M :vsc Window.MovetoPreviousTabGroup<CR>
+
+nnoremap <leader>' :vsc View.FullScreen<CR>
+" alternative: Window.AutoHide
+nnoremap <leader>j :vsc Window.HideShowAllToolWindows<CR>
+
+" Diagnostics (F8 / Shift+F8 in the error list)
+nnoremap ]d :vsc Edit.GoToNextLocation<CR>
+nnoremap [d :vsc Edit.GoToPrevLocation<CR>
+
+" ── Tabs & buffers ───────────────────────────────────────────
+nnoremap <leader>o :vsc Window.NextTab<CR>
+nnoremap <leader>i :vsc Window.PreviousTab<CR>
+
 nnoremap <C-q> :vsc Window.CloseDocumentWindow<CR>
-" nnoremap <leader>q :vsc File.Close<CR>
-" nnoremap <leader>w :vsc Window.CloseDocumentWindow<CR>
-
-" ============================================================================
-" VIEWS / PANELS
-" ============================================================================
-" [FIXED] You had duplicate <C-e> mappings - split into two keys
 nnoremap <C-e> :vsc View.SolutionExplorer<CR>
 nnoremap <leader>e :vsc SolutionExplorer.SyncWithActiveDocument<CR>
 
-nnoremap <leader>h :vsc Window.HideShowAllToolWindows<CR>
-nnoremap <C-`> :vsc View.Terminal<CR>
-nnoremap <C-S-m> :vsc View.ErrorList<CR>
-" use f8 and shift-f8
-
-
-" ============================================================================
-" LSP / CODE NAVIGATION
-" ============================================================================
+" ── LSP / Go-to ──────────────────────────────────────────────
 nnoremap gd :vsc Edit.GoToDefinition<CR>
+nnoremap gh :vsc Edit.GoToDefinition<CR>
 nnoremap gD :vsc Edit.PeekDefinition<CR>
-nnoremap gI :vsc Edit.GoToImplementation<CR>
-nnoremap gi :vsc Edit.GoToDeclaration<CR>
+nnoremap gy :vsc Edit.GoToTypeDefinition<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
+
 nnoremap K :vsc Edit.QuickInfo<CR>
-nnoremap gh :vsc EditorContextMenus.CodeWindow.ToggleHeaderCodeFile<CR>
+" code actions / light bulb — VS calls it Show Smart Tag (native: Ctrl+.)
+nnoremap g. :vsc View.ShowSmartTag<CR>
 
+nnoremap gO :vsc Edit.GoToMember<CR>
+nnoremap go :vsc View.DocumentOutline<CR>
+nnoremap gW :vsc Edit.GoToAll<CR>
 
+" C/C++ header <-> source
+nnoremap gI :vsc EditorContextMenus.CodeWindow.ToggleHeaderCodeFile<CR>
 
-" ============================================================================
-" CODE ACTIONS / REFACTORING
-" ============================================================================
-nnoremap g. :vsc View.QuickActions<CR>
-nnoremap <F2> :vsc Refactor.Rename<CR>
+" ── Search & find ────────────────────────────────────────────
+nnoremap <leader>ff :vsc Edit.GoToFile<CR>
+nnoremap <leader>fl :vsc Edit.FindinFiles<CR>
+nnoremap <leader>fb :vsc Window.NextDocumentWindowNav<CR>
+nnoremap <leader><leader> :vsc Window.NextDocumentWindowNav<CR>
 
-" ============================================================================
-" FORMATTING
-" ============================================================================
-
-nnoremap <leader>. :vsc Edit.FormatDocument<CR>
-vnoremap <leader>= :vsc Edit.FormatSelection<CR>
-
-" ============================================================================
-" COMMENTING
-" ============================================================================
-nnoremap gcc :vsc Edit.ToggleLineComment<CR>
-
-
-
-" ============================================================================
-" LINE OPERATIONS
-" ============================================================================
-" Join lines (preserve cursor position)
-nnoremap J mzJ`z
-
-" Move lines (visual mode)
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-" Move lines (normal mode) - Alt+j/k
-inoremap <A-j> :vsc Edit.LineDown<CR>
-inoremap <A-k> :vsc Edit.LineUp<CR>
-" vnoremap <A-j> :vsc Edit.MoveSelectedLinesDown<CR>
-" vnoremap <A-k> :vsc Edit.MoveSelectedLinesUp<CR>
-
-
-" ============================================================================
-" INDENTATION (keep selection)
-" ============================================================================
-vnoremap < <gv
-vnoremap > >gv
-
-" ============================================================================
-" SEARCH
-" ============================================================================
-" nnoremap <leader>/ :vsc Edit.FindinFiles<CR>
+nnoremap <leader>S :vsc Edit.Replace<CR>
 nnoremap <leader>s :vsc Edit.ReplaceinFiles<CR>
 
+nnoremap <C-p> :vsc Edit.GoToAll<CR>
 
-" ============================================================================
-" BUILD & DEBUG
-" ============================================================================
-" nnoremap <leader>b :vsc Build.BuildSolution<CR>
-" nnoremap <leader>db :vsc Debug.ToggleBreakpoint<CR>
+" ── Refactor & format ────────────────────────────────────────
+nnoremap <leader>. :vsc Edit.FormatDocument<CR>
+vnoremap <leader>. :vsc Edit.FormatSelection<CR>
+nnoremap <F2> :vsc Refactor.Rename<CR>
+
+" ── Run & debug ──────────────────────────────────────────────
 nnoremap <F5> :vsc Debug.Start<CR>
 nnoremap <F9> :vsc Debug.ToggleBreakpoint<CR>
+nnoremap <C-`> :vsc View.Terminal<CR>
+nnoremap <C-S-m> :vsc View.ErrorList<CR>
 
-" ============================================================================
-" GIT
-" ============================================================================
+" ── VCS ──────────────────────────────────────────────────────
 nnoremap <leader>gg :vsc Team.Git.GoToGitChanges<CR>
-" nnoremap <leader>gc :vsc Team.Git.Commit<CR>
 
-" ============================================================================
-" SAVE
-" ============================================================================
+" ── Save ─────────────────────────────────────────────────────
 nnoremap <C-s> :vsc File.SaveSelectedItems<CR>
-" nnoremap <leader>fs :vsc File.SaveAll<CR>
+
+" ── Unverified command IDs ───────────────────────────────────
+" Confirm each in Tools > Options > Environment > Keyboard, then uncomment.
+" nnoremap gi :vsc Edit.GoToImplementation<CR>   " search: GoToImplementation (fallback: Edit.GoToDeclaration, Ctrl+F12)
+" nnoremap gs :vsc Edit.GoToBase<CR>             " search: GoToBase
+" nnoremap ]c :vsc ?<CR>                         " search: NextChange     (git hunk)
+" nnoremap [c :vsc ?<CR>                         " search: PreviousChange (git hunk)
+" nnoremap <leader>tc :vsc ?<CR>                 " search: Copilot completions toggle
+" nnoremap <leader>th :vsc ?<CR>                 " search: InlineHints
