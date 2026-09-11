@@ -32,12 +32,6 @@
 	process = git-lfs filter-process
 	required = true
 
-[delta]
-  side-by-side = false
-  navigate = true
-  line-numbers = true
-  dark = true
-
 [color]
   ui = true
 
