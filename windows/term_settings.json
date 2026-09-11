@@ -18,16 +18,16 @@
     "keybindings": 
     [
         {
-            "id": null,
-            "keys": "enter"
-        },
-        {
             "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
         },
         {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "id": null,
+            "keys": "enter"
         },
         {
             "id": null,
@@ -224,6 +224,18 @@
             },
             {
                 "guid": "{1dd3353f-1369-56fd-a2f9-301745b37a51}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{464dab62-e432-5cbf-98f9-9e3852fc2138}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{818ad5bd-aef8-5760-b96c-0a093e5fd5f9}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 18",
                 "source": "Windows.Terminal.VisualStudio"

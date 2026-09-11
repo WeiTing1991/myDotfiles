@@ -5,7 +5,7 @@ local is_macos = wezterm.target_triple == "aarch64-apple-darwin"
 
 if is_windows then
   default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe"}
-  font_size = 12.0
+  font_size = 10.0
   front_end = "WebGpu"
   webgpu_power_preference = "HighPerformance"
   animation_fps = 1

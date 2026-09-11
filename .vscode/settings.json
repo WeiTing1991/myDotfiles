@@ -563,6 +563,6 @@
   "git.blame.statusBarItem.enabled": true,
   "workbench.editor.enablePreview": false,
   "git.blame.editorDecoration.enabled": true,
-  "workbench.colorTheme": "Vim Light Hard",
+  "workbench.colorTheme": "Dark Modern",
   "workbench.panel.showLabels": false,
 }

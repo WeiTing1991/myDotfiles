@@ -1,118 +1,121 @@
-# Import-Module PSReadLine
-Import-Module posh-git
-$GitPromptSettings.EnablePromptStatus = $false
+# Encoding
+try {
+    [Console]::InputEncoding  = [System.Text.Encoding]::UTF8
+    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+    chcp 65001 > $null
+} catch {}
 
-# Load Starship (handles the prompt)
-Invoke-Expression (&starship init powershell)
+# ============================================
+# Module Loading (with error checking)
+# ============================================
 
-
-Invoke-Expression (&starship init powershell)
-
-# Add WezTerm cwd tracking AFTER starship init
-$ENV:STARSHIP_PRECMD_ASYNC = "1"
-
-# WezTerm integration
-function Invoke-Starship-PreCommand {
-    $cwd = $PWD.Path -replace "\\", "/"
-    Write-Host -NoNewline "`e]7;file://$env:COMPUTERNAME/$cwd`a"
+$modules = @('PSReadLine', 'posh-git')
+foreach ($module in $modules) {
+    if (Get-Module -ListAvailable -Name $module) {
+        Import-Module $module -ErrorAction SilentlyContinue
+    }
 }
 
-# Windows Terminal integration
-# function Invoke-Starship-PreCommand {
-#     $loc = $executionContext.SessionState.Path.CurrentLocation
-#     if ($loc.Provider.Name -eq "FileSystem") {
-#         $host.ui.Write("`e]9;9;`"$($loc.ProviderPath)`"`e\")
-#     }
-# }
+# ============================================
+# Starship Prompt (call ONCE only!)
+# ============================================
+if (Get-Command starship -ErrorAction SilentlyContinue) {
+    $ENV:STARSHIP_PRECMD_ASYNC = "1"
+    Invoke-Expression (&starship init powershell)
+}
 
-
-# Predictions
+# ============================================
+# PSReadLine Configuration
+# ============================================
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle InlineView
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -BellStyle None
 
 # Keybindings
-Set-PSReadLineKeyHandler -Key "Ctrl+a"  -Function BeginningOfLine      # auto
-Set-PSReadLineKeyHandler -Key "Ctrl+e"  -Function EndOfLine            # auto
-Set-PSReadLineKeyHandler -Key "Ctrl+k"  -Function ForwardDeleteLine    # auto
-Set-PSReadLineKeyHandler -Key "Ctrl+u"  -Function BackwardDeleteLine   # auto
-Set-PSReadLineKeyHandler -Key "Ctrl+r"  -Function ReverseSearchHistory # auto
-Set-PSReadLineKeyHandler -Key "Ctrl+l"  -Function ClearScreen          # auto
-Set-PSReadLineKeyHandler -Key "Ctrl+w"  -Function BackwardDeleteWord   # auto
+$keybindings = @{
+    "Ctrl+a"       = "BeginningOfLine"
+    "Ctrl+e"       = "EndOfLine"
+    "Ctrl+k"       = "ForwardDeleteLine"
+    "Ctrl+u"       = "BackwardDeleteLine"
+    "Ctrl+r"       = "ReverseSearchHistory"
+    "Ctrl+l"       = "ClearScreen"
+    "Ctrl+w"       = "BackwardDeleteWord"
+    "Alt+f"        = "ForwardWord"
+    "Alt+b"        = "BackwardWord"
+    "Alt+d"        = "DeleteWord"
+    "Alt+Backspace"= "BackwardDeleteWord"
+    "Alt+p"        = "HistorySearchBackward"
+    "Alt+n"        = "HistorySearchForward"
+    "Tab"          = "MenuComplete"
+}
 
-Set-PSReadLineKeyHandler -Key "Alt+f"         -Function ForwardWord
-Set-PSReadLineKeyHandler -Key "Alt+b"         -Function BackwardWord
-Set-PSReadLineKeyHandler -Key "Alt+d"         -Function DeleteWord
-Set-PSReadLineKeyHandler -Key "Alt+Backspace" -Function BackwardDeleteWord
-Set-PSReadLineKeyHandler -Key "Alt+p"         -Function HistorySearchBackward
-Set-PSReadLineKeyHandler -Key "ALt+n"         -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
-# Set-PSReadLineKeyHandler -Key Ctrl+f -Function AcceptSuggestion
+$keybindings.GetEnumerator() | ForEach-Object {
+    Set-PSReadLineKeyHandler -Key $_.Key -Function $_.Value
+}
 
+# ============================================
+# Environment & Aliases
+# ============================================
 $ENV:EDITOR = 'nvim'
 
 Set-Alias c clear
-function n ($command) { nvim }
-function e ($command) { exit }
-
-# Python
-function uv-init {
-    $uvPython = uv python find
-    if ($uvPython) {
-        $uvPythonDir = Split-Path $uvPython
-        $env:PATH = "$uvPythonDir;" + $env:PATH
-    }
-    $uvToolsDir = Join-Path $env:APPDATA "uv\tools"
-    if (Test-Path $uvToolsDir) {
-        $env:PATH = "$uvToolsDir;" + $env:PATH
-    }
-    Write-Host "uv python loaded."
-}
-
 Set-Alias python3 python
 Set-Alias pip3 pip
 
-# function gdrive ($command) {cd G:\.shortcut-targets-by-id\1AhcyENBzXs13kiaeR7txKn5xdpV0sGGn\002_Projects\003_InnoSuisse_MüllerSteinag }
-# function usi ($command) {cd \work\01_USI}
-function pj ($command) { cd $HOME\project\ }
+# ============================================
+# Functions
+# ============================================
 
-# function where ($command) {
-#   Get-Command -Name $command -ErrorAction SilentlyContinue
-#   # Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
-# }
+function n { nvim @args }
+function e { exit }
+function pj { cd $HOME\project\ }
 
+# Lazy load uv Python
+function uv-init {
+    $uvPython = uv python find 2>$null
+    if ($uvPython) {
+        $uvPythonDir = Split-Path $uvPython
+        $env:PATH = "$uvPythonDir;$env:PATH"
+        Write-Host "✓ uv python loaded" -ForegroundColor Green
+    }
+}
+
+# Git browser function
 function GitBrowser {
-  $url = git remote -v | Select-Object -First 1 | ForEach-Object { ($_ -split '\s+')[1] }
-  $url = $url -replace 'git@github\.com:', 'https://github.com/'
-  $url = $url -replace '\.git$', ''
-  $branch = git rev-parse --abbrev-ref HEAD 2>$null
-  if ($branch -and $branch -ne 'HEAD') {
-    $url = "$url/tree/$branch"
-  }
-  Start-Process $url
+    try {
+        $url = git remote -v | Select-Object -First 1 | ForEach-Object { ($_ -split '\s+')[1] }
+        if (-not $url) { Write-Error "No git remote found"; return }
+
+        $url = $url -replace 'git@github\.com:', 'https://github.com/'
+        $url = $url -replace '\.git$', ''
+
+        $branch = git rev-parse --abbrev-ref HEAD 2>$null
+        if ($branch -and $branch -ne 'HEAD') {
+            $url = "$url/tree/$branch"
+        }
+
+        Start-Process $url
+    } catch {
+        Write-Error "Failed to open git repo: $_"
+    }
 }
-Set-Alias -Name git-browse -Value GitBrowser
+Set-Alias git-browse GitBrowser
 
-# Starship prompt
-Invoke-Expression (&starship init powershell)
-
-# scoop search
-# . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
-function scoop-s { scoop-search @args }
-
-#region conda initialize
-# !! Contents within this block are managed by 'conda init' !!
+# Lazy load conda
 function conda-init {
-    (& "C:\Users\WeiTing\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
-    Write-Host "conda loaded."
+    $condaPath = "$env:USERPROFILE\miniforge3\Scripts\conda.exe"
+    if (Test-Path $condaPath) {
+        (& $condaPath shell.powershell hook) | Out-String | Invoke-Expression
+        Write-Host "✓ conda loaded" -ForegroundColor Green
+    } else {
+        Write-Warning "Conda not found at $condaPath"
+    }
 }
-# If (Test-Path "C:\Users\WeiTing\miniforge3\Scripts\conda.exe") {
-#   (& "C:\Users\WeiTing\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
-# }
-#endregion
-# MSBuild
-# $env:MSBUILD = "C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe"  # <-- UPDATE THIS with your actual path
-# function msbuild { & $env:MSBUILD @args }
-# $env:MSBUILD = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe 2>$null | Select-Object -First 1
-# function msbuild { & $env:MSBUILD @args }
+
+# ============================================
+# Optional: Load on demand
+# ============================================
+# Uncomment below if you want lazy loading:
+# function conda { conda-init; & conda @args }
+# function uv { uv-init; & uv @args }

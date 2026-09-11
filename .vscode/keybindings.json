@@ -368,7 +368,7 @@
 
   /* ==== COPILOT ==== */
   {
-    "command": "inlineChat.start",
+    "command": "inlineChat.startWithCurrentLine",
     "key": "alt+i",
     "when": "editorFocus"
   },
