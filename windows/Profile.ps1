@@ -24,6 +24,13 @@ if (Get-Command starship -ErrorAction SilentlyContinue) {
     Invoke-Expression (&starship init powershell)
 }
 
+# WezTerm cwd tracking (OSC 7) - called by starship before each prompt
+function Invoke-Starship-PreCommand {
+    if ($PWD.Provider.Name -ne 'FileSystem') { return }
+    $cwd = $PWD.Path -replace '\\', '/'
+    Write-Host -NoNewline "`e]7;file://$env:COMPUTERNAME/$cwd`a"
+}
+
 # ============================================
 # PSReadLine Configuration
 # ============================================

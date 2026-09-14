@@ -193,7 +193,7 @@ config.keys ={
 
     -- Split windows
     { key = "phys:Quote", mods = "CTRL|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = "5", mods = "CTRL", action = act.SplitHorizontal({ domain = "DefaultDomain" }) },
+    { key = "5", mods = "CTRL", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
     -- Copy/Paste
     { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo "Clipboard" },
