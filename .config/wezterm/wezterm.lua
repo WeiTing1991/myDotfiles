@@ -1,110 +1,52 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
-local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
-local is_macos = wezterm.target_triple == "aarch64-apple-darwin"
 
-if is_windows then
-  default_prog = { "C:/Program Files/PowerShell/7/pwsh.exe"}
-  font_size = 10.0
-  front_end = "WebGpu"
-  webgpu_power_preference = "HighPerformance"
-  animation_fps = 1
-  max_fps = 120
-  default_font = wezterm.font_with_fallback({
+local platform = require("platform")
+local workspaces = require("workspaces")
+local tabbar = require("tabbar")
+require("statusbar")
 
-    {
-      family = "CaskaydiaCove Nerd Font Mono",
-      harfbuzz_features = { "calt=0" },
-    },
-    {
-      family = "Hack Nerd Font",
-    },
-    {
-      family = "JetBrainsMono Nerd Font",
-      harfbuzz_features = { "calt=0" },
-    }
-  })
-  window_frame = {
-    font = wezterm.font("Consolas", { weight = "Regular" }),
-    font_size = 10.0,
-  }
-  freetype_load_target = "HorizontalLcd"
-  color_scheme_dirs = { 'C:/Users/WeiTing/theme/suannhai-theme/suannhai-wezterm/colors' }
-  color_scheme = "Suannhai Jiufen"
-  nvim_bin  = 'nvim'
+local is_macos = platform.is_macos
+local opts = platform.opts
 
-elseif is_macos then
-  default_prog = { "/bin/zsh" , "-l"}
-  font_size = 16.0
-  front_end = "WebGpu"
-  webgpu_power_preference = "HighPerformance"
-  animation_fps = 1
-  max_fps = 120
-  -- default_font = wezterm.font("Hack Nerd Font", { weight = "Regular" })
-  default_font = wezterm.font_with_fallback({
-    {
-      family = "Cascadia Code NF",
-      harfbuzz_features = { "calt=0" },
-    },
-    {
-      family = "Hack Nerd Font",
-    },
-    {
-      family = "JetBrainsMono Nerd Font",
-      harfbuzz_features = { "calt=0" },
-    }
-  })
-  window_frame = {
-    font = wezterm.font("SF Pro Text", { weight = "Regular" }),
-    font_size = 14.0,
-  }
-  freetype_load_target = "Light"
-  color_scheme_dirs = { '/Users/weitingchen/project/theme/suannhai-theme/suannhai-wezterm/colors' }
-  color_scheme = "Suannhai Jiufen"
-  nvim_bin  = '/opt/homebrew/bin/nvim'
-end
-
--- Available schemes:
+-- Available schemes. These are the exact metadata names from the .toml files --
+-- two carry diacritics, and wezterm silently falls back to its defaults if the
+-- name doesn't match byte for byte.
 -- - Suannhai Jiufen (dark)
--- - Suannhai Lam-ni (dark)
+-- - Suannhai Lâm-ní (dark)
 -- - Suannhai Rouiro (dark)
 -- - Suannhai Sumi (dark)
 -- - Suannhai Koiai (dark)
--- - Suannhai Hue-poo (light)
+-- - Suannhai Hue-pòo (light)
 -- - Suannhai Torinoko (light)
 -- - Suannhai Shironeri (light)
 
 -- main config
-config = {
-  color_scheme_dirs=color_scheme_dirs,
-  color_scheme=color_scheme,
+local config = {
+  color_scheme_dirs = opts.color_scheme_dirs,
+  color_scheme = opts.color_scheme,
   allow_win32_input_mode = true,
   enable_kitty_keyboard = false,
-  -- enable_kitty_graphics = true,
 
-  default_prog = default_prog,
-  font_size = font_size,
-  animation_fps = animation_fps,
-  font = default_font,
-  window_frame = window_frame,
-  webgpu_power_preference = webgpu_power_preference,
+  default_prog = opts.default_prog,
+  font_size = opts.font_size,
+  font = opts.font,
+  window_frame = opts.window_frame,
+  front_end = opts.front_end,
+  webgpu_power_preference = opts.webgpu_power_preference,
   window_background_opacity = 0.95,
-  freetype_load_target = freetype_load_target,
+  freetype_load_target = opts.freetype_load_target,
 
   -- Pane divider weight. WezTerm has no dedicated setting: the split line is
   -- drawn at underline_height, so this also thickens underlines and box glyphs.
   underline_thickness = "3px",
 
-  -- Cursor. animation_fps = 1 above turns the fade into a plain on/off blink.
   default_cursor_style = "BlinkingBlock",
   cursor_blink_rate = 500,
-  cursor_blink_ease_in = "Constant",
-  cursor_blink_ease_out = "Constant",
-
 
   -- win32_system_backdrop = "Acrylic"  -- frosted glass effect
   -- win32_acrylic_accent_color = "#10101080"
-  max_fps = max_fps,
+  max_fps = opts.max_fps,
   scrollback_lines = 10000,
 
   -- windows
@@ -124,6 +66,9 @@ config = {
   enable_tab_bar = true,
   use_fancy_tab_bar = true,
   tab_and_split_indices_are_zero_based = true,
+  -- Default is 16, which cuts names like "data-structure-algorithms-toolkit"
+  -- down to nothing once the index and pane count are prepended.
+  tab_max_width = 28,
 
   -- key_bindings
   disable_default_key_bindings = true,
@@ -140,7 +85,7 @@ config.mouse_bindings = {
     event = { Up = { streak = 2, button = 'Left' } },
     mods = 'CTRL',
     action = wezterm.action_callback(function(window, pane)
-      local cwd = pane:get_current_working_directory()
+      local cwd = pane:get_current_working_dir()
       if cwd then
         if is_macos then
           wezterm.open_with(cwd.file_path, 'Finder')
@@ -170,7 +115,7 @@ local function tab_title(tab)
     if info.is_active then active_pane = info.pane; break end
   end
   if not active_pane then return "?" end
-  local ok, cwd = pcall(function() return active_pane:get_current_working_directory() end)
+  local ok, cwd = pcall(function() return active_pane:get_current_working_dir() end)
   if ok and cwd then
     return cwd.file_path:match("([^/\\]+)/?$") or cwd.file_path
   end
@@ -277,6 +222,48 @@ config.keys ={
     }},
 }
 
+-- Workspace pickers (Ctrl+X w / Ctrl+X W)
+for _, key in ipairs(workspaces.keys) do
+  table.insert(config.keys, key)
+end
+
+-- Jump straight to a tab by the index shown in its title. Zero-based, to match
+-- tab_and_split_indices_are_zero_based.
+for i = 0, 9 do
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = "LEADER",
+    action = act.ActivateTab(i),
+  })
+end
+
+-- Session persistence. plugin.require clones from GitHub on first run; if that
+-- machine is offline the whole config would otherwise fail to load, leaving no
+-- usable terminal. Degrade to the pickers above instead.
+local ok, resurrect = pcall(wezterm.plugin.require, "https://github.com/MLFlexer/resurrect.wezterm")
+if ok then
+  resurrect.state_manager.periodic_save()
+  wezterm.on("gui-startup", resurrect.state_manager.resurrect_on_gui_startup)
+
+  table.insert(config.keys, {
+    key = "s", mods = "LEADER",
+    action = wezterm.action_callback(function()
+      resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
+    end),
+  })
+  table.insert(config.keys, {
+    key = "l", mods = "LEADER",
+    action = wezterm.action_callback(function(window, pane)
+      resurrect.fuzzy_loader.fuzzy_load(window, pane, function(id)
+        local state = resurrect.state_manager.load_state(id:match("([^/]+)%.json$"), "workspace")
+        resurrect.workspace_state.restore_workspace(state, { relative = true, restore_text = true })
+      end)
+    end),
+  })
+else
+  wezterm.log_warn("resurrect.wezterm unavailable: " .. tostring(resurrect))
+end
+
 config.key_tables = {
 	copy_mode = {
     { key = 'h', mods = 'NONE', action = act.CopyMode('MoveLeft') },
@@ -347,31 +334,13 @@ config.key_tables = {
 	}
 }
 
--- tab title
-wezterm.on('format-tab-title', function(tab)
-  local title = tab.tab_title
-  if not title or #title == 0 then
-    local cwd = tab.active_pane.current_working_dir
-    if cwd then
-      title = cwd.file_path:match("([^/\\]+)/?$") or cwd.file_path
-    else
-      title = tab.active_pane.title
-    end
-  end
-  if tab.active_pane.is_zoomed then
-    title = '[Z] ' .. title
-  end
-  local pane_count = #tab.panes
-  if pane_count > 1 then
-    title = title .. ' [' .. pane_count .. ']'
-  end
-  return title
-end)
-
+-- Tab titles and frame colors live in tabbar.lua. apply_to_config must run
+-- after color_scheme/window_frame are set: it reads them.
+tabbar.apply_to_config(config)
 
 local dispatcher = require("dispatcher")
 dispatcher.apply_to_config(config, {
-  nvim_bin = nvim_bin,
+  nvim_bin = opts.nvim_bin,
   focus_nvim = true,
   debug = true,      -- set false once it works
 })

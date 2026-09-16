@@ -68,6 +68,7 @@ Enter with `Ctrl+X` `c`, or by pressing `Esc` out of the find bar.
 | --- | --- |
 | `Ctrl+X` `j` | Next tab |
 | `Ctrl+X` `k` | Previous tab |
+| `Ctrl+X` `0`…`9` | Jump to tab by the index shown in its title |
 | `Ctrl+X` `t` | Fuzzy tab switcher (labelled by directory) |
 | `Ctrl+X` `<` or `Ctrl+X` `Shift+,` | Move tab left |
 | `Ctrl+X` `>` or `Ctrl+X` `Shift+.` | Move tab right |
@@ -75,8 +76,21 @@ Enter with `Ctrl+X` `c`, or by pressing `Esc` out of the find bar.
 | `Ctrl+Shift+W` | Close tab (no confirmation) |
 | `Ctrl+Shift+R` | Rename tab |
 
-Tab titles default to the current directory name; a zoomed pane shows `[Z]`.
-Tab and split indices are zero-based.
+Tab titles are built in [`tabbar.lua`](tabbar.lua) as `<index> <title><markers>`:
+
+| Part | Meaning |
+| --- | --- |
+| leading number | Zero-based tab index — what `Ctrl+X <n>` jumps to |
+| `[Z]` | The tab's active pane is zoomed |
+| `[n]` | The tab holds *n* panes |
+| `●` | An inactive tab produced output while you were elsewhere |
+
+The title itself is the explicit tab name if set (`Ctrl+Shift+R`), otherwise the active
+pane's directory, otherwise the pane title. `tab_max_width` is 28 so long repo names survive.
+
+The tab bar background is read from the active scheme's `[colors.tab_bar]` and pushed into
+`window_frame`. `use_fancy_tab_bar = true` otherwise ignores that value and falls back to a
+grey that doesn't match the theme.
 
 ---
 
@@ -108,6 +122,52 @@ without re-pressing the leader. It exits automatically after 1 second of inactiv
 | `h` `j` `k` `l` | Resize by 3 cells left / down / up / right |
 | `Shift+H` `Shift+J` `Shift+K` `Shift+L` | Resize by 1 cell (fine adjustment) |
 | `Esc` or `Enter` | Leave resize mode |
+
+---
+
+## Workspaces
+
+A workspace is a separate set of tabs and panes. See [`workspaces.lua`](workspaces.lua).
+
+| Key | Action |
+| --- | --- |
+| `Ctrl+X` `w` | Project picker — fuzzy list of git repos, opens each as its own workspace |
+| `Ctrl+X` `Shift+W` | Switch between workspaces that are already open |
+| `Ctrl+X` `s` | Save the current workspace layout |
+| `Ctrl+X` `l` | Restore a saved workspace layout |
+
+The project list covers `~/project` and `~/.dotfiles`, finding git repos up to 3 levels
+deep via `fd` (falling back to a plain directory listing if `fd` is missing). Nested repos
+are labelled by their path relative to the root, e.g. `gkr/kumiki`. The list is scanned
+once per WezTerm session — restart to pick up a new repo.
+
+Save/restore is [resurrect.wezterm](https://github.com/MLFlexer/resurrect.wezterm), which
+also autosaves every 15 minutes and restores on startup. If the plugin can't be loaded the
+config still works; only these two keys go away.
+
+> **Install note.** `~/.gitconfig` rewrites GitHub HTTPS URLs to SSH (`insteadOf`), and
+> WezTerm's bundled libgit2 has no SSH transport, so it can't clone the plugin itself
+> ([wezterm#4488](https://github.com/wezterm/wezterm/issues/4488)). On a new machine, clone
+> it by hand into WezTerm's plugin directory — `~/Library/Application Support/wezterm/plugins`
+> on macOS, `~/.local/share/wezterm/plugins` on Linux/Windows — using the mangled directory
+> names `httpssCssZssZsgithubsDscomsZsMLFlexersZsresurrectsDswezterm` and
+> `httpssCssZssZsgithubsDscomsZschrisgvesZsdevsDswezterm` (its dependency).
+
+---
+
+## Status bar
+
+The right side of the tab bar shows, when applicable:
+
+| Segment | Meaning |
+| --- | --- |
+| `LEADER` / `RESIZE` / `COPY` / `SEARCH` | Highlighted block when the leader or a key table is armed |
+| workspace name | Current workspace |
+|  branch | Branch of the active pane's repo, or short SHA when detached |
+| directory | Basename of the active pane's working directory |
+
+Branch lookups are cached per directory for 5 seconds (including misses), so the status bar
+does not shell out to git on every refresh. See [`git.lua`](git.lua).
 
 ---
 
@@ -148,7 +208,8 @@ Recognised patterns:
 - `File "path.py", line 12` (Python tracebacks)
 
 Neovim must be listening on `<git-root>/.nvim/socket_dispatcher/nvim.sock` and define a
-`Jump(file, line, col)` Lua function.
+`Jump(file, line, col)` Lua function. The repo root is resolved via [`git.lua`](git.lua),
+shared with the status bar.
 
 ---
 

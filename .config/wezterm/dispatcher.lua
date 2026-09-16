@@ -1,22 +1,9 @@
 local wezterm = require("wezterm")
+local git = require("git")
 
 local M = {}
 
 local is_windows = wezterm.target_triple:find("windows") ~= nil
-
-local root_cache = {}
-
-local function git_root(path)
-  if root_cache[path] then return root_cache[path] end
-  local devnull = is_windows and "NUL" or "/dev/null"
-  local p = io.popen('cd ' .. ('%q'):format(path) ..
-                     ' && git rev-parse --show-toplevel 2>' .. devnull)
-  local root = p and p:read('*l')
-  if p then p:close() end
-  if not root or root == '' then root = path end
-  root_cache[path] = root
-  return root
-end
 
 -- Must match M.pipe_name in socket-dispatcher/init.lua exactly. Named pipes
 -- are one global namespace, so the name comes from the full root path; using
@@ -62,7 +49,7 @@ function M.apply_to_config(config, opts)
     local cwd = pane:get_current_working_dir()
     if not cwd then return true end
 
-    local root = git_root(cwd.file_path)
+    local root = git.root(cwd.file_path)
     local sock = is_windows and pipe_name(root) or (root .. opts.sock_path)
 
     -- absolute is "/..." on unix but "C:\..." or "C:/..." on windows
